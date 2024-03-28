@@ -12,7 +12,14 @@
             <img src="assets/img/charater1.svg" class="profileImg">
             <img src="assets/img/onlineRing.svg" class="onlineIcon">
         </div>
-        <img src="assets/img/keyboardArrowDown.svg" class="arrowDown">
+        <img src="assets/img/keyboardArrowDown.svg" class="arrowDown" (click)="showSideMenu()">
     </div>
 
 </header>
+
+<div class="menu" [ngClass]="{'dBlock': openMenu, 'dNone': !openMenu}" (click)="showSideMenu()">
+    <div class="whiteBox fontNunito">
+        <p (click)="showProfile()">Profil</p>
+        <p>Log out</p>
+    </div>
+</div>
