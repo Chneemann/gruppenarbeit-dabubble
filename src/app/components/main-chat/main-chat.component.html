@@ -1,9 +1,13 @@
-@for (channel of getChannels(); track channel) {
 <section>
-  @if (channel.id == currentChannel) {
-  <h1>{{ channel.name }}</h1>
-  <br />
-  <div>
+  @for (channel of getChannels(); track channel) { @if (channel.id ==
+  currentChannel) {
+  <div class="header">
+    <div class="headline">
+      <img src="./../../../../assets/img/hashtag.svg" alt="" />
+      <p>{{ channel.name }}</p>
+      <img src="./../../../../assets/img/keyboardArrowDown.svg" alt="" />
+    </div>
+    <br /><br />
     @for (chat of getChatChannel(currentChannel); track chat) {
     <div>
       @for (user of getChatUsers(chat.userId); track user) {
@@ -14,6 +18,5 @@
     </div>
     }
   </div>
-  }
+  } }
 </section>
-}

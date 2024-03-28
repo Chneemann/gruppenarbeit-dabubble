@@ -16,9 +16,9 @@ app-sidebar {
 
 app-main-chat {
   width: 100%;
+  padding: 12px;
   min-height: calc(100vh - 120px);
   background-color: #edeefe;
-  border: 1px solid #000;
 }
 
 app-secondary-chat {

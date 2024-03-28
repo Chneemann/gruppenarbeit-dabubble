@@ -11,7 +11,7 @@
   </div>
   @for (channel of getChannels(); track channel; let i = $index) {
   <div class="channelName" routerLink="/main/{{ channel.id }}">
-    <img src="./../../../../assets/img/sidebar/hashtag.svg" alt="" />
+    <img src="./../../../../assets/img/hashtag.svg" alt="" />
     <p>{{ channel.name }}</p>
   </div>
   }
