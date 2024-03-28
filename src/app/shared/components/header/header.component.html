@@ -10,7 +10,7 @@
         <h1 class="fontNunito">Max Müller</h1>
         <div>
             <img src="assets/img/charater1.svg" class="profileImg">
-            <img src="assets/img/onlineRing.svg" class="onlineIcon">
+            <img src="assets/img/{{ isOnline? 'onlineRing.svg' : 'offlineRing.svg'}}" class="onlineIcon">
         </div>
         <img src="assets/img/keyboardArrowDown.svg" class="arrowDown" (click)="showSideMenu()">
     </div>

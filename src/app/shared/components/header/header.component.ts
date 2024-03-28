@@ -12,6 +12,8 @@ import { Component } from '@angular/core';
 export class HeaderComponent {
   openMenu = false;
   showCurrentProfile = false;
+  isOnline = true; //---- Zeige onlineStatus an
+
   constructor() {}
 
   showSideMenu() {
