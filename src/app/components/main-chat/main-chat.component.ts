@@ -1,30 +1,16 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, Input } from '@angular/core';
 import { ChannleService } from '../../service/channle.service';
+import { MainComponent } from '../main/main.component';
 
 @Component({
   selector: 'app-main-chat',
   standalone: true,
-  imports: [],
+  imports: [MainComponent],
   templateUrl: './main-chat.component.html',
   styleUrl: './main-chat.component.scss',
 })
 export class MainChatComponent {
-  currentChannel: string = '';
+  @Input() currentChannel: string = '';
 
-  constructor(
-    private router: ActivatedRoute,
-    public channelService: ChannleService
-  ) {}
-  ngOnInit() {
-    this.routeUserId();
-  }
-
-  routeUserId() {
-    if (this.router.params.subscribe()) {
-      this.router.params.subscribe((params) => {
-        this.currentChannel = params['id'];
-      });
-    }
-  }
+  constructor(public channelService: ChannleService) {}
 }
