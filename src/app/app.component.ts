@@ -11,5 +11,10 @@ import { UserService } from './service/user.service';
 })
 export class AppComponent {
   constructor(public userService: UserService) {}
+
+  icons = {
+    ':smilie:': '/img',
+  };
+
   title = 'dabubble';
 }

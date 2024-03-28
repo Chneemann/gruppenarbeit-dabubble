@@ -15,7 +15,6 @@ export class UserService {
   constructor() {
     this.subUserList().subscribe(() => {
       this.organizeUserData();
-      console.log(this.userMap, this.allUsers);
     });
   }
 
