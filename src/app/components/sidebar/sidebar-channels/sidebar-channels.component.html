@@ -1,0 +1,24 @@
+<section>
+  <div class="headline">
+    <div class="headlineText">
+      <img src="./../../../../assets/img/sidebar/arrow-drop-down.svg" alt="" />
+      <img src="./../../../../assets/img/sidebar/bubbles.svg" alt="" />
+      <p>Channels</p>
+    </div>
+    <div class="newChannel">
+      <img src="./../../../../assets/img/add.svg" alt="" />
+    </div>
+  </div>
+  @for (channel of getChannels(); track channel; let i = $index) {
+  <div class="channelName" routerLink="/main/{{ channel.id }}">
+    <img src="./../../../../assets/img/sidebar/hashtag.svg" alt="" />
+    <p>{{ channel.name }}</p>
+  </div>
+  }
+  <div class="addChannel">
+    <div class="circle">
+      <img src="./../../../../assets/img/sidebar/add-circle.svg" alt="" />
+    </div>
+    <p>Add channel</p>
+  </div>
+</section>

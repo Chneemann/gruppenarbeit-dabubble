@@ -1,18 +1,17 @@
 <section>
   <div class="headline">
     <div class="logo">
-      <img src="./../../../assets/img/workspace-logo.svg" alt="" />
+      <img src="./../../../assets/img/sidebar/workspace-logo.svg" alt="" />
       <h2>Devspace</h2>
     </div>
     <div class="newChat">
-      <img src="./../../../assets/img/new-chat.svg" alt="" />
+      <img src="./../../../assets/img/sidebar/new-chat.svg" alt="" />
     </div>
   </div>
   <div class="channels">
-    @for (channel of getChannels(); track channel; let i = $index) {
-    <div class="channelName" routerLink="/main/{{ channel.id }}">
-      {{ channel.name }}
-    </div>
-    }
+    <app-sidebar-channels></app-sidebar-channels>
+  </div>
+  <div class="directMessages">
+    <app-sidebar-direct-messages></app-sidebar-direct-messages>
   </div>
 </section>

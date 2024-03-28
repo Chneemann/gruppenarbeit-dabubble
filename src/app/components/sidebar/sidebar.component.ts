@@ -1,20 +1,16 @@
 import { Component } from '@angular/core';
-import { ChannleService } from '../../service/channle.service';
-import { Channel } from '../../interface/channel.interface';
 import { RouterModule } from '@angular/router';
+import { SidebarChannelsComponent } from './sidebar-channels/sidebar-channels.component';
+import { SidebarDirectMessagesComponent } from './sidebar-direct-messages/sidebar-direct-messages.component';
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [RouterModule],
+  imports: [
+    RouterModule,
+    SidebarChannelsComponent,
+    SidebarDirectMessagesComponent,
+  ],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss',
 })
-export class SidebarComponent {
-  allChannels: Channel[] = [];
-
-  constructor(public channleService: ChannleService) {}
-
-  getChannels(): Channel[] {
-    return this.channleService.allChannels;
-  }
-}
+export class SidebarComponent {}
