@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { ChannleService } from '../../service/channle.service';
 import { Channel } from '../../interface/channel.interface';
 import { RouterModule } from '@angular/router';
