@@ -1,0 +1,31 @@
+app-header {
+  display: block;
+  height: 120px;
+  background-color: #edeefe;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+}
+
+app-sidebar {
+  min-width: 10vw;
+  min-height: calc(100vh - 120px);
+  background-color: #edeefe;
+  border: 1px solid #000;
+}
+
+app-main-chat {
+  min-width: 80vw;
+  min-height: calc(100vh - 120px);
+  background-color: #edeefe;
+  border: 1px solid #000;
+}
+
+app-secondary-chat {
+  min-width: 10vw;
+  min-height: calc(100vh - 120px);
+  background-color: #edeefe;
+  border: 1px solid #000;
+}
