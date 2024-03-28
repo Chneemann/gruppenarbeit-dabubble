@@ -2,6 +2,13 @@
   margin: 0;
 }
 
+@mixin displayFlex($d:flex, $j: center, $a:center, $g: 0){
+  display: $d;
+  justify-content: $j;
+  align-items: $a;
+  gap: $g;
+}
+
 .fontNunito{
   font-family: 'Nunito';
 }

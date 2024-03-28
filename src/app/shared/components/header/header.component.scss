@@ -1,0 +1,42 @@
+@import '../../../../styles.scss';
+
+header{
+    height: 110px;
+    @include displayFlex($j: space-between);
+    .homeIcon{
+        margin-left: 20px;
+    }
+    .inputPosition{
+        @include displayFlex();
+        >input{
+            width: 40vw;
+            height: 40px;
+            border-radius: 30px;
+            padding: 4px;
+            padding-left: 20px;
+            padding-right: 48px;
+            font-size: larger;
+            border: none;
+            outline: none;
+        }
+        >img{
+            margin-left: -40px;
+            cursor: pointer;
+        }
+    }
+    >div{
+        @include displayFlex($g: 20px);
+        .profileImg{
+            width: 80px;
+            object-fit: contain;
+            border-radius: 50%;
+        }
+        .onlineIcon{
+            margin-left: -20px;
+        }
+    }
+    .arrowDown{
+        margin-right: 20px;
+        cursor: pointer;
+    }
+}
