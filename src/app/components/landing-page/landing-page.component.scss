@@ -6,25 +6,24 @@ app-header {
 
 .content {
   display: flex;
-  align-items: center;
 }
 
 app-sidebar {
-  min-width: 10vw;
+  min-width: 380px;
   min-height: calc(100vh - 120px);
   background-color: #edeefe;
   border: 1px solid #000;
 }
 
 app-main-chat {
-  min-width: 80vw;
+  width: 100%;
   min-height: calc(100vh - 120px);
   background-color: #edeefe;
   border: 1px solid #000;
 }
 
 app-secondary-chat {
-  min-width: 10vw;
+  min-width: 485px;
   min-height: calc(100vh - 120px);
   background-color: #edeefe;
   border: 1px solid #000;
