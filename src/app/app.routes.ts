@@ -6,4 +6,5 @@ export const routes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'main', component: LandingPageComponent },
+  { path: 'main/:id', component: LandingPageComponent },
 ];

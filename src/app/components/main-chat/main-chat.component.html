@@ -1,1 +1,4 @@
-<p>main-chat works!</p>
+@if (currentChannel) {
+{{ channelService.displayChannleDetails(currentChannel, "description") }}
+<br /><br />
+} @else { Klicke auf einen Channel in der Sidebar }

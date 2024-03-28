@@ -20,7 +20,9 @@ import { SecondaryChatComponent } from '../secondary-chat/secondary-chat.compone
   styleUrl: './landing-page.component.scss',
 })
 export class LandingPageComponent {
-  constructor(public userService: UserService, private router: Router) {}
+  constructor(public userService: UserService, private route: Router) {}
+
+  currentChannel: string = '';
 
   ngOnInit() {
     this.ifUserLogin();
@@ -28,7 +30,7 @@ export class LandingPageComponent {
 
   ifUserLogin() {
     if (!this.userService.isUserLogin) {
-      this.router.navigateByUrl('/login');
+      this.route.navigateByUrl('/login');
     }
   }
 }

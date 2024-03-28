@@ -9,8 +9,6 @@ import { UserService } from './service/user.service';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  constructor(public userService: UserService) {}
-
   icons = {
     ':smilie:': '/img',
   };

@@ -23,6 +23,7 @@ app-main-chat {
 }
 
 app-secondary-chat {
+  display: none;
   min-width: 485px;
   min-height: calc(100vh - 120px);
   background-color: #edeefe;
