@@ -6,6 +6,7 @@ import { UserService } from '../../service/user.service';
 import { User } from '../../interface/user.interface';
 import { Channel } from '../../interface/channel.interface';
 import { Chat } from '../../interface/chat.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-chat',
@@ -17,11 +18,18 @@ import { Chat } from '../../interface/chat.interface';
 export class MainChatComponent {
   @Input() currentChannel: string = '';
 
+  chatFound: boolean = false;
+
   constructor(
+    private route: Router,
     public userService: UserService,
     public channelService: ChannleService,
     public chatService: ChatService
-  ) {}
+  ) {
+    if (this.currentChannel == '') {
+      this.route.navigateByUrl('/main/XiqUAXRY1W7PixC9kVTa');
+    }
+  }
 
   getUsers(): User[] {
     return this.userService.allUsers;
@@ -30,6 +38,14 @@ export class MainChatComponent {
   getChatUsers(chatId: string) {
     chatId = chatId.replace(/\s/g, '');
     const filteredTasks = this.getUsers().filter((user) => user.id == chatId);
+    return filteredTasks;
+  }
+
+  getChatChannel(chatId: string) {
+    chatId = chatId.replace(/\s/g, '');
+    const filteredTasks = this.getChats().filter(
+      (chat) => chat.channelId == chatId
+    );
     return filteredTasks;
   }
 
