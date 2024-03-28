@@ -1,7 +1,18 @@
-<h1>Sidebar</h1>
-<br />
-@for (channel of getChannels(); track channel; let i = $index) {
-<h2 routerLink="/main/{{ channel.id }}">
-  {{ channel.name }}
-</h2>
-}
+<section>
+  <div class="headline">
+    <div class="logo">
+      <img src="./../../../assets/img/workspace-logo.svg" alt="" />
+      <h2>Devspace</h2>
+    </div>
+    <div class="newChat">
+      <img src="./../../../assets/img/new-chat.svg" alt="" />
+    </div>
+  </div>
+  <div class="channels">
+    @for (channel of getChannels(); track channel; let i = $index) {
+    <div class="channelName" routerLink="/main/{{ channel.id }}">
+      {{ channel.name }}
+    </div>
+    }
+  </div>
+</section>
