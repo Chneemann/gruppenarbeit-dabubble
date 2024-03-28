@@ -1,4 +1,21 @@
-@if (currentChannel) {
-{{ channelService.displayChannleDetails(currentChannel, "description") }}
-<br /><br />
-} @else { Klicke auf einen Channel in der Sidebar }
+@if (currentChannel) { @for (channel of getChannels(); track channel) {
+<section>
+  @if (channel.id == currentChannel) {
+  <h1>{{ channel.name }}</h1>
+  <br />
+  <div>
+    @for (chat of getChats(); track chat) { @if (currentChannel ==
+    chat.channelId) {
+    <div>
+      @for (user of getChatUsers(chat.userId); track user) {
+      <p>{{ user.firstName }} {{ user.lastName }}</p>
+      <p>{{ chat.message }}</p>
+      }
+    </div>
+    } @else {
+    <p>Der Channel ist leer</p>
+    } }
+  </div>
+  }
+</section>
+} } @else { Klicke auf einen Channel in der Sidebar }

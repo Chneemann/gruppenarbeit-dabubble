@@ -38,6 +38,7 @@ export class MainComponent {
       this.route.navigateByUrl('/login');
     }
   }
+
   routeUserId() {
     if (this.router.params.subscribe()) {
       this.router.params.subscribe((params) => {

@@ -1,6 +1,11 @@
 import { Injectable, inject } from '@angular/core';
-import { Firestore, collection, onSnapshot } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import {
+  Firestore,
+  collection,
+  onSnapshot,
+  query,
+  where,
+} from '@angular/fire/firestore';
 import { User } from '../interface/user.interface';
 
 @Injectable({
@@ -10,44 +15,49 @@ export class UserService {
   firestore: Firestore = inject(Firestore);
 
   allUsers: User[] = [];
-  userMap: { [key: string]: User } = {};
+  allChatUsers: User[] = [];
   isUserLogin: boolean = true;
 
+  unsubUser;
+  unsubChannelUser;
+
   constructor() {
-    this.subUserList().subscribe(() => {
-      this.organizeUserData();
-    });
+    this.unsubUser = this.subUserList();
+    this.unsubChannelUser = this.subChannelUserList('a');
   }
 
   subUserList() {
-    return new Observable<void>((observer) => {
-      const unsubscribe = onSnapshot(
-        collection(this.firestore, 'users'),
-        (list) => {
-          this.allUsers = [];
-          list.forEach((element) => {
-            const taskData = { ...(element.data() as User), id: element.id };
-            this.allUsers.push(taskData);
-          });
-          observer.next();
-        }
-      );
-      return () => unsubscribe();
+    return onSnapshot(collection(this.firestore, 'users'), (list) => {
+      this.allUsers = [];
+      list.forEach((element) => {
+        this.allUsers.push(this.setUserObject(element.data(), element.id));
+      });
     });
   }
 
-  organizeUserData() {
-    this.userMap = {};
-    this.allUsers.forEach((user) => {
-      this.userMap[user.id] = user;
+  subChannelUserList(chatId: string) {
+    const q = query(
+      collection(this.firestore, 'users'),
+      where(chatId, '==', true)
+    );
+    return onSnapshot(q, (list) => {
+      this.allChatUsers = [];
+      list.forEach((element) => {
+        this.allChatUsers.push(this.setUserObject(element.data(), element.id));
+      });
     });
   }
 
-  displayUserDetails(id: string, query: keyof User) {
-    if (this.userMap[id]) {
-      const user = this.userMap[id];
-      return user[query];
-    }
-    return '';
+  setUserObject(obj: any, id: string): User {
+    return {
+      id: id,
+      firstName: obj.firstName || '',
+      lastName: obj.lastName || '',
+    };
+  }
+
+  ngOnDestroy() {
+    this.unsubUser();
+    this.unsubChannelUser();
   }
 }

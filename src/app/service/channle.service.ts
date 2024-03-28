@@ -1,6 +1,5 @@
 import { Injectable, inject } from '@angular/core';
 import { Firestore, collection, onSnapshot } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
 import { Channel } from '../interface/channel.interface';
 
 @Injectable({
@@ -10,42 +9,33 @@ export class ChannleService {
   firestore: Firestore = inject(Firestore);
 
   allChannels: Channel[] = [];
-  channleMap: { [key: string]: Channel } = {};
+
+  unsubChannel;
 
   constructor() {
-    this.subChannleList().subscribe(() => {
-      this.organizeUserData();
+    this.unsubChannel = this.subChannelList();
+  }
+
+  subChannelList() {
+    return onSnapshot(collection(this.firestore, 'channels'), (list) => {
+      this.allChannels = [];
+      list.forEach((element) => {
+        this.allChannels.push(
+          this.setChannelObject(element.data(), element.id)
+        );
+      });
     });
   }
 
-  subChannleList() {
-    return new Observable<void>((observer) => {
-      const unsubscribe = onSnapshot(
-        collection(this.firestore, 'channels'),
-        (list) => {
-          const channels: Channel[] = [];
-          list.forEach((element) => {
-            const taskData = { ...(element.data() as Channel), id: element.id };
-            channels.push(taskData);
-          });
-          if (channels.length > 0) {
-            this.allChannels = channels;
-          }
-          observer.next();
-        }
-      );
-      return () => unsubscribe();
-    });
+  setChannelObject(obj: any, id: string): Channel {
+    return {
+      id: id,
+      name: obj.name || '',
+      description: obj.description,
+    };
   }
 
-  organizeUserData() {
-    this.channleMap = {};
-    this.allChannels.forEach((channel) => {
-      this.channleMap[channel.id] = channel;
-    });
-  }
-
-  displayChannleDetails(id: string, query: keyof Channel) {
-    return this.channleMap[id][query];
+  ngOnDestroy() {
+    this.unsubChannel();
   }
 }

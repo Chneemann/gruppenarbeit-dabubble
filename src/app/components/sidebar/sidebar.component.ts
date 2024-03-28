@@ -12,13 +12,9 @@ import { RouterModule } from '@angular/router';
 export class SidebarComponent {
   allChannels: Channel[] = [];
 
-  constructor(public channleService: ChannleService) {
-    this.channleService.subChannleList().subscribe(() => {
-      this.allChannels = this.loadAllChannles();
-    });
-  }
+  constructor(public channleService: ChannleService) {}
 
-  loadAllChannles(): Channel[] {
+  getChannels(): Channel[] {
     return this.channleService.allChannels;
   }
 }

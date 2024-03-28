@@ -1,7 +1,7 @@
 <h1>Sidebar</h1>
 <br />
-@for (channle of channleService.allChannels; track channle; let i = $index) {
-<h2 routerLink="/main/{{ channleService.allChannels[i].id }}">
-  {{ channleService.allChannels[i].name }}
+@for (channel of getChannels(); track channel; let i = $index) {
+<h2 routerLink="/main/{{ channel.id }}">
+  {{ channel.name }}
 </h2>
 }
