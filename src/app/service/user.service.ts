@@ -11,6 +11,7 @@ export class UserService {
 
   allUsers: User[] = [];
   userMap: { [key: string]: User } = {};
+  isUserLogin: boolean = true;
 
   constructor() {
     this.subUserList().subscribe(() => {
