@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { HeaderComponent } from '../../shared/components/header/header.component';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { UserService } from '../../service/user.service';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { MainChatComponent } from '../main-chat/main-chat.component';
 import { SecondaryChatComponent } from '../secondary-chat/secondary-chat.component';
+import { ChatService } from '../../service/chat.service';
 
 @Component({
   selector: 'app-landing-page',
@@ -22,6 +23,7 @@ import { SecondaryChatComponent } from '../secondary-chat/secondary-chat.compone
 export class MainComponent {
   constructor(
     public userService: UserService,
+    public chatService: ChatService,
     private route: Router,
     private router: ActivatedRoute
   ) {}

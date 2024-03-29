@@ -3,6 +3,7 @@ import { User } from '../../../interface/user.interface';
 import { Chat } from '../../../interface/chat.interface';
 import { ChatContentComponent } from '../chat-content/chat-content.component';
 import { CommonModule } from '@angular/common';
+import { ChatService } from '../../../service/chat.service';
 
 @Component({
   selector: 'app-single-chat',
@@ -15,6 +16,9 @@ export class SingleChatComponent {
   @Input() user!: User;
   @Input() chat!: Chat;
   @Input() index!: number;
+  @Input() currentChat!: string;
+
+  constructor(public chatService: ChatService) {}
 
   convertTimestamp(timestamp: number) {
     var a = new Date(timestamp * 1000);
@@ -37,5 +41,11 @@ export class SingleChatComponent {
     var date = a.getDate();
     var time = month + ' ' + date + ', ' + year;
     return time;
+  }
+
+  openSecondaryChat(chatId: string) {
+    console.log(chatId);
+    this.chatService.isSecondaryChatOpen =
+      !this.chatService.isSecondaryChatOpen;
   }
 }

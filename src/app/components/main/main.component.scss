@@ -18,16 +18,10 @@ app-secondary-chat {
   background-color: #edeefe;
 }
 
-app-sidebar {
-  padding: 12px;
-}
-
 app-main-chat {
-  width: 100%;
-  padding: 12px;
+  max-width: 100%;
 }
 
 app-secondary-chat {
-  display: none;
   min-width: 485px;
 }
