@@ -10,9 +10,7 @@
     @for (chat of getChatChannel(currentChannel); track chat) {
     <div>
       @for (user of getChatUsers(chat.userId); track user) {
-      <p>{{ user.firstName }} {{ user.lastName }}</p>
-      <p>{{ chat.message }}</p>
-      <br />
+      <app-chat-content [user]="user" [chat]="chat"></app-chat-content>
       }
     </div>
     }

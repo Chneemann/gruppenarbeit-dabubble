@@ -8,11 +8,12 @@ import { Channel } from '../../interface/channel.interface';
 import { Chat } from '../../interface/chat.interface';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { ChatContentComponent } from './chat-content/chat-content.component';
 
 @Component({
   selector: 'app-main-chat',
   standalone: true,
-  imports: [MainComponent, CommonModule],
+  imports: [MainComponent, CommonModule, ChatContentComponent],
   templateUrl: './main-chat.component.html',
   styleUrl: './main-chat.component.scss',
 })
