@@ -5,3 +5,11 @@ export interface Chat {
   message: string;
   publishedTimestamp: number;
 }
+
+export interface ChatAnswers {
+  id: string;
+  chatId: string;
+  message: string;
+  publishedTimestamp: number;
+  userId: string;
+}

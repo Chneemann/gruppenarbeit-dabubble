@@ -1,6 +1,11 @@
 import { Injectable, inject } from '@angular/core';
-import { Firestore, collection, onSnapshot } from '@angular/fire/firestore';
-import { Chat } from '../interface/chat.interface';
+import {
+  CollectionReference,
+  Firestore,
+  collection,
+  onSnapshot,
+} from '@angular/fire/firestore';
+import { Chat, ChatAnswers } from '../interface/chat.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -9,12 +14,15 @@ export class ChatService {
   firestore: Firestore = inject(Firestore);
 
   allChats: Chat[] = [];
+  allChatAnswers: ChatAnswers[] = [];
   isSecondaryChatOpen: string = '';
 
   unsubChat;
+  unsubChatAnswers;
 
   constructor() {
     this.unsubChat = this.subChatList();
+    this.unsubChatAnswers = this.subChatAnswersList();
   }
 
   subChatList() {
@@ -22,6 +30,17 @@ export class ChatService {
       this.allChats = [];
       list.forEach((element) => {
         this.allChats.push(this.setChatObject(element.data(), element.id));
+      });
+    });
+  }
+
+  subChatAnswersList() {
+    return onSnapshot(collection(this.firestore, 'chat-answers'), (list) => {
+      this.allChatAnswers = [];
+      list.forEach((element) => {
+        this.allChatAnswers.push(
+          this.setChatAnswersObject(element.data(), element.id)
+        );
       });
     });
   }
@@ -36,7 +55,18 @@ export class ChatService {
     };
   }
 
+  setChatAnswersObject(obj: any, id: string): ChatAnswers {
+    return {
+      id: id,
+      chatId: obj.chatId,
+      message: obj.message,
+      publishedTimestamp: obj.publishedTimestamp,
+      userId: obj.userId,
+    };
+  }
+
   ngOnDestroy() {
     this.unsubChat();
+    this.unsubChatAnswers();
   }
 }

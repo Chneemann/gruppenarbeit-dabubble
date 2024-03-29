@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { User } from '../../../interface/user.interface';
-import { Chat } from '../../../interface/chat.interface';
+import { Chat, ChatAnswers } from '../../../interface/chat.interface';
 import { ChatContentComponent } from '../chat-content/chat-content.component';
 import { CommonModule } from '@angular/common';
 import { ChatService } from '../../../service/chat.service';
@@ -14,7 +14,7 @@ import { ChatService } from '../../../service/chat.service';
 })
 export class SingleChatComponent {
   @Input() user!: User;
-  @Input() chat!: Chat;
+  @Input() chat!: Chat | ChatAnswers;
   @Input() index!: number;
   @Input() currentChat!: string;
 

@@ -1,13 +1,48 @@
 <section>
-  <div class="header">
-    <div class="headline">
-      <p>Thread</p>
-      @for (channel of getChannelName(); track channel) {
-      <span># {{ channel.name }}</span>
+  <div class="chat">
+    <div class="header">
+      <div class="headline">
+        <p>Thread</p>
+        @for (channel of getChannelName(); track channel) {
+        <span># {{ channel.name }}</span>
+        }
+      </div>
+      <div class="close" (click)="closeSecondaryChat()">
+        <img src="./../../../../assets/img/closeIcon.svg" alt="" />
+      </div>
+    </div>
+    @for (chat of getSingleChat(this.chatService.isSecondaryChatOpen); track
+    chat; let i = $index) {
+    <div [ngClass]="{ mirror: i % 2 !== 0 }">
+      @for (user of getChatUsers(chat.userId); track user) {
+      <app-single-chat
+        [user]="user"
+        [chat]="chat"
+        [index]="i"
+        [currentChat]="chat.id"
+      ></app-single-chat>
       }
     </div>
-    <div class="close" (click)="closeSecondaryChat()">
-      <img src="./../../../../assets/img/closeIcon.svg" alt="" />
+    }
+    <div class="spacer">
+      <p>0 Answers</p>
+      <div class="line"></div>
     </div>
+    @for (chat of getChatAnswers(this.chatService.isSecondaryChatOpen); track
+    chat; let i = $index) {
+    <div [ngClass]="{ mirror: i % 2 !== 0 }">
+      @for (user of getChatUsers(chat.userId); track user) {
+      <app-single-chat
+        [user]="user"
+        [chat]="chat"
+        [index]="i"
+        [currentChat]="chat.id"
+      ></app-single-chat>
+      }
+    </div>
+    }
+  </div>
+  <div class="answer">
+    <app-chat-msg-box></app-chat-msg-box>
   </div>
 </section>

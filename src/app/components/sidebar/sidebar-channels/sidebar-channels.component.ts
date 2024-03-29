@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ChannleService } from '../../../service/channle.service';
 import { Channel } from '../../../interface/channel.interface';
 import { RouterLink } from '@angular/router';
+import { ChatService } from '../../../service/chat.service';
 
 @Component({
   selector: 'app-sidebar-channels',
@@ -11,9 +12,14 @@ import { RouterLink } from '@angular/router';
   styleUrl: './sidebar-channels.component.scss',
 })
 export class SidebarChannelsComponent {
-  constructor(public channleService: ChannleService) {}
+  constructor(
+    public channelService: ChannleService,
+    public chatService: ChatService
+  ) {}
 
   getChannels(): Channel[] {
-    return this.channleService.allChannels;
+    this.chatService.isSecondaryChatOpen = '';
+
+    return this.channelService.allChannels;
   }
 }
