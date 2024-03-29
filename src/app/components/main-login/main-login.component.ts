@@ -3,13 +3,13 @@ import { NgForm } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-main-login',
   standalone: true,
   imports: [FormsModule],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  templateUrl: './main-login.component.html',
+  styleUrl: './main-login.component.scss'
 })
-export class LoginComponent {
+export class MainLoginComponent {
   
   usersData = {
     name:'',
