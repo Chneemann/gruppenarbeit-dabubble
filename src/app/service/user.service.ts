@@ -38,6 +38,8 @@ export class UserService {
       firstName: obj.firstName,
       lastName: obj.lastName,
       avatar: obj.avatar,
+      email:obj.email,
+      password:obj.password,
     };
   }
 
