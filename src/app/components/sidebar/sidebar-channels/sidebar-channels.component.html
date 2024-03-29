@@ -10,7 +10,11 @@
     </div>
   </div>
   @for (channel of getChannels(); track channel; let i = $index) {
-  <div class="channelName" routerLink="/main/{{ channel.id }}">
+  <div
+    class="channelName"
+    routerLink="/main/{{ channel.id }}"
+    (click)="closeSecondaryChat()"
+  >
     <img src="./../../../../assets/img/hashtag.svg" alt="" />
     <p>{{ channel.name }}</p>
   </div>

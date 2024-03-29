@@ -17,9 +17,10 @@ export class SidebarChannelsComponent {
     public chatService: ChatService
   ) {}
 
-  getChannels(): Channel[] {
+  closeSecondaryChat() {
     this.chatService.isSecondaryChatId = '';
-
+  }
+  getChannels(): Channel[] {
     return this.channelService.allChannels;
   }
 }
