@@ -1,0 +1,37 @@
+<div>
+    <div class="whiteBox">
+      <div class="boxHeader fontNunito">
+        <p>Profile</p>
+        <div class="positionCloseIcon" (click)="closeEditUserWindow()">
+            <img src="assets/img/closeIcon.svg" class="closeIcon"/>
+        </div>
+      </div>
+
+      <img src="assets/img/charater1.svg" class="profileImg" />
+
+        <div class="inputBox">
+            <div class="positionName">
+                <div class="positionNameIcon">
+                    <img src="assets/img/personCircle.svg" />
+                    <h1 class="fontNunito">Full name</h1>
+                </div>
+                <input class="inputName" type="text" placeholder="hier variable vom namen eintragen" />
+            </div>
+
+            <div class="positionName">
+                <div class="positionNameIcon">
+                    <img src="assets/img/mail-iconBlack.svg" />
+                    <h1 class="fontNunito">E-Mail-Address</h1>
+                </div>
+                <input class="inputName" type="text" placeholder="hier variable vom namen eintragen" />
+            </div>
+        </div>
+
+        <div class="position2Btn">
+            <button class="cancelBtn" (click)="closeEditUserWindow()">Cancel</button>
+            <button class="saveBtn" (click)="saveNewUserData()">Save</button>
+        </div>
+    </div>
+
+    <div class="grayBackground"></div>
+</div>

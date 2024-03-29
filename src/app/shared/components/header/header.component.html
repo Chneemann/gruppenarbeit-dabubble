@@ -1,25 +1,41 @@
 <header>
-    <img src="assets/img/home-icon.svg" class="homeIcon">
+  <img src="assets/img/home-icon.svg" class="homeIcon" />
 
-    <div class="inputPosition">
-        <input type="text" placeholder="Search the code" class="fontNunito">
-        <img src="assets/img/search-icon.svg">
-    </div>
+  <div class="inputPosition">
+    <input type="text" placeholder="Search the code" class="fontNunito" />
+    <img src="assets/img/search-icon.svg" />
+  </div>
 
+  <div>
+    <h1 class="fontNunito">Max Müller</h1>
     <div>
-        <h1 class="fontNunito">Max Müller</h1>
-        <div>
-            <img src="assets/img/charater1.svg" class="profileImg">
-            <img src="assets/img/{{ isOnline? 'onlineRing.svg' : 'offlineRing.svg'}}" class="onlineIcon">
-        </div>
-        <img src="assets/img/keyboardArrowDown.svg" class="arrowDown" (click)="showSideMenu()">
+      <img src="assets/img/charater1.svg" class="profileImg" />
+      <img
+        src="assets/img/{{ isOnline ? 'onlineRing.svg' : 'offlineRing.svg' }}"
+        class="onlineIcon"
+      />
     </div>
-
+    <img
+      src="assets/img/keyboardArrowDown.svg"
+      class="arrowDown"
+      (click)="showSideMenu()"
+    />
+  </div>
 </header>
 
-<div class="menu" [ngClass]="{'dBlock': openMenu, 'dNone': !openMenu}" (click)="showSideMenu()">
-    <div class="whiteBox fontNunito">
-        <p (click)="showProfile()">Profil</p>
-        <p>Log out</p>
-    </div>
+<div
+  class="menu"
+  [ngClass]="{ dBlock: openMenu, dNone: !openMenu }"
+  (click)="showSideMenu()"
+>
+  <div class="whiteBox fontNunito">
+    <p (click)="showProfile()">Profil</p>
+    <p>Log out</p>
+  </div>
 </div>
+
+<app-edit-user
+  [ngClass]="{ 'dBlock': showCurrentProfile, 'dNone': !showCurrentProfile }"
+ [showCurrentProfile]="showCurrentProfile"
+ (testValueChange)="updateTestValue($event)"
+ ></app-edit-user>

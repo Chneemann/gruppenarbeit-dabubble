@@ -1,0 +1,107 @@
+@import '../../../../../../styles.scss';
+
+
+.whiteBox{
+    width: 440px;
+    height: auto;
+    background-color: white;
+    border-radius: 15px;
+    position: absolute;
+    z-index: 5;
+    top: 110px;
+    right: 20px;
+    @include displayFlex();
+    flex-direction: column;
+    padding-top: 32px;
+    .boxHeader{
+        width: 360px;
+        @include displayFlex($j: space-between);
+        >p{
+            font-size: 20px;
+            font-weight: 600;
+            margin: 0;
+        }
+        .positionCloseIcon {
+            width: 40px;
+            height: 40px;
+            @include displayFlex();
+            &:hover {
+                background-color: #ECEEFE;
+                border-radius: 25px;
+                cursor: pointer;
+                > img {
+                    filter: invert(59%) sepia(26%) saturate(871%) hue-rotate(199deg) brightness(93%) contrast(100%);
+                }
+            }
+        }
+    }
+    .profileImg{
+        width: 200px;
+        object-fit: cover;
+        border-radius: 50%;
+        margin: 56px;
+    }
+}
+
+.inputBox{
+    width: 360px;
+    .positionName{
+        margin-bottom: 26px;
+        .positionNameIcon{
+            @include displayFlex($j: flex-start,$g: 20px);
+        }
+        .inputName{
+            width: 344px;
+            border: 1px solid #888dec;
+            outline: none;
+            height: 26px;
+            border-radius: 25px;
+            padding: 8px;
+            font-size: larger;
+            &:hover{
+                border: 1px solid #444DF2;
+            }
+        }
+    }
+}
+
+.position2Btn{
+    margin-bottom: 24px;
+    .cancelBtn{
+        width: 120px;
+        height: 48px;
+        background-color: white;
+        border: 1px solid #888dec;
+        border-radius: 25px;
+        font-size: larger;
+        color: #444DF2;
+        &:hover{
+            background-color: #444DF2;
+            color: white;
+            cursor: pointer;
+        }
+    }
+    .saveBtn{
+        width: 120px;
+        height: 48px;
+        margin-left: 24px;
+        background-color: #444DF2;
+        border: none;
+        border-radius: 25px;
+        font-size: larger;
+        color: white;
+        &:hover{
+            background-color: #888dec;
+            cursor: pointer;
+        }
+    }
+}
+
+.grayBackground{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+}

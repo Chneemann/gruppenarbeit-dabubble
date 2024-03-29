@@ -54,22 +54,23 @@ header{
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.3);
     z-index: 5;
-    .whiteBox{
-        background-color: whitesmoke;
-        @include displayFlex($g: 20px);
-        flex-direction: column;
-        width: 220px;
-        height: 160px;
-        border-top-left-radius: 40px;
-        border-bottom-left-radius: 40px;
-        border-bottom-right-radius: 40px;
-        position: absolute;
-        top: 110px;
-        right: 20px;
-        p{
-            font-size: 22px;
-            font-weight: 600;
-            cursor: pointer;
-        }
+}
+
+.whiteBox{
+    background-color: whitesmoke;
+    @include displayFlex($g: 20px);
+    flex-direction: column;
+    width: 220px;
+    height: 160px;
+    border-top-left-radius: 40px;
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+    position: absolute;
+    top: 110px;
+    right: 20px;
+    p{
+        font-size: 22px;
+        font-weight: 600;
+        cursor: pointer;
     }
 }
