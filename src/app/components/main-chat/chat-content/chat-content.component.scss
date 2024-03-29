@@ -3,6 +3,11 @@ section {
   flex-direction: column;
   justify-content: end;
   min-height: calc(100vh - 248px);
+  .line {
+    margin: 24px 48px;
+    border: 1px solid #adb0d9;
+    opacity: 0.4;
+  }
 }
 
 .mirror {

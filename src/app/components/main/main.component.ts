@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { HeaderComponent } from '../../shared/components/header/header.component';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { UserService } from '../../service/user.service';
@@ -39,6 +39,10 @@ export class MainComponent {
     if (!this.userService.isUserLogin) {
       this.route.navigateByUrl('/login');
     }
+  }
+
+  isSecondaryChatOpen(): boolean {
+    return this.chatService.isSecondaryChatId != '';
   }
 
   routeUserId() {

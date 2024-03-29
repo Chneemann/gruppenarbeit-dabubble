@@ -1,4 +1,4 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable, OnDestroy, inject } from '@angular/core';
 import {
   Firestore,
   collection,
@@ -11,7 +11,7 @@ import { User } from '../interface/user.interface';
 @Injectable({
   providedIn: 'root',
 })
-export class UserService {
+export class UserService implements OnDestroy {
   firestore: Firestore = inject(Firestore);
 
   allUsers: User[] = [];
@@ -38,8 +38,8 @@ export class UserService {
       firstName: obj.firstName,
       lastName: obj.lastName,
       avatar: obj.avatar,
-      email:obj.email,
-      password:obj.password,
+      email: obj.email,
+      password: obj.password,
     };
   }
 

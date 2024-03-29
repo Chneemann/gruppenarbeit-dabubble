@@ -32,7 +32,7 @@ export class SecondaryChatComponent {
   ) {}
 
   closeSecondaryChat() {
-    this.chatService.isSecondaryChatOpen = '';
+    this.chatService.isSecondaryChatId = '';
   }
 
   getChannels(): Channel[] {

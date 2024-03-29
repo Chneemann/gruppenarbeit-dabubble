@@ -1,21 +1,16 @@
-import { Injectable, inject } from '@angular/core';
-import {
-  CollectionReference,
-  Firestore,
-  collection,
-  onSnapshot,
-} from '@angular/fire/firestore';
+import { Injectable, OnDestroy, inject } from '@angular/core';
+import { Firestore, collection, onSnapshot } from '@angular/fire/firestore';
 import { Chat, ChatAnswers } from '../interface/chat.interface';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ChatService {
+export class ChatService implements OnDestroy {
   firestore: Firestore = inject(Firestore);
 
   allChats: Chat[] = [];
   allChatAnswers: ChatAnswers[] = [];
-  isSecondaryChatOpen: string = '';
+  isSecondaryChatId: string = '';
 
   unsubChat;
   unsubChatAnswers;

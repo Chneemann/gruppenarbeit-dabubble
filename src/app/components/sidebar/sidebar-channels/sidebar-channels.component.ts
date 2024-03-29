@@ -18,7 +18,7 @@ export class SidebarChannelsComponent {
   ) {}
 
   getChannels(): Channel[] {
-    this.chatService.isSecondaryChatOpen = '';
+    this.chatService.isSecondaryChatId = '';
 
     return this.channelService.allChannels;
   }

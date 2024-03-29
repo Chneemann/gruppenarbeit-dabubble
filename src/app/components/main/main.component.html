@@ -3,7 +3,7 @@
 <div class="content">
   <app-sidebar></app-sidebar>
   <app-main-chat [currentChannel]="currentChannel"></app-main-chat>
-  @if (this.chatService.isSecondaryChatOpen != '') {
+  @if (isSecondaryChatOpen()) {
   <app-secondary-chat [currentChannel]="currentChannel"></app-secondary-chat>
   }
 </div>

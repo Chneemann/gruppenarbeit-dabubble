@@ -11,8 +11,8 @@
         <img src="./../../../../assets/img/closeIcon.svg" alt="" />
       </div>
     </div>
-    @for (chat of getSingleChat(this.chatService.isSecondaryChatOpen); track
-    chat; let i = $index) {
+    @for (chat of getSingleChat(this.chatService.isSecondaryChatId); track chat;
+    let i = $index) {
     <div [ngClass]="{ mirror: i % 2 !== 0 }">
       @for (user of getChatUsers(chat.userId); track user) {
       <app-single-chat
@@ -28,7 +28,7 @@
       <p>0 Answers</p>
       <div class="line"></div>
     </div>
-    @for (chat of getChatAnswers(this.chatService.isSecondaryChatOpen); track
+    @for (chat of getChatAnswers(this.chatService.isSecondaryChatId); track
     chat; let i = $index) {
     <div [ngClass]="{ mirror: i % 2 !== 0 }">
       @for (user of getChatUsers(chat.userId); track user) {

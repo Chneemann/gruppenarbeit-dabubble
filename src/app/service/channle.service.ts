@@ -1,11 +1,11 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable, OnDestroy, inject } from '@angular/core';
 import { Firestore, collection, onSnapshot } from '@angular/fire/firestore';
 import { Channel } from '../interface/channel.interface';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ChannleService {
+export class ChannleService implements OnDestroy {
   firestore: Firestore = inject(Firestore);
 
   allChannels: Channel[] = [];
