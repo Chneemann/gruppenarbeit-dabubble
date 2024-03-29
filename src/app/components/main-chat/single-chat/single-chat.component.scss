@@ -1,6 +1,15 @@
 section {
   display: flex;
-  padding: 24px 0;
+  padding: 24px 48px;
+  cursor: pointer;
+  &:hover {
+    background-color: #edeefe;
+    .userContent {
+      .msg {
+        background-color: #fff;
+      }
+    }
+  }
 }
 
 .userAvatar {

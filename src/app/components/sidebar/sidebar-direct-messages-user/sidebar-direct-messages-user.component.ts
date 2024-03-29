@@ -11,8 +11,4 @@ import { User } from '../../../interface/user.interface';
 })
 export class SidebarDirectMessagesUserComponent {
   constructor(public userService: UserService) {}
-
-  getUsers(): User[] {
-    return this.userService.allUsers;
-  }
 }
