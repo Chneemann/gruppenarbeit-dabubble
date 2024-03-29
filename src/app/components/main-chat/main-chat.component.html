@@ -6,15 +6,16 @@
       <p>{{ channel.name }}</p>
       <img src="./../../../../assets/img/keyboardArrowDown.svg" alt="" />
     </div>
-    <br /><br />
-    @for (chat of getChatChannel(currentChannel); track chat) {
-    <div>
-      @for (user of getChatUsers(chat.userId); track user) {
-      <app-chat-content [user]="user" [chat]="chat"></app-chat-content>
-      }
-    </div>
-    }
   </div>
+  <!-- CHAT CONTENT-->
+  <app-chat-content
+    [getChatChannel]="getChatChannel"
+    [getChatUsers]="getChatUsers"
+    [getChats]="getChats"
+    [getUsers]="getUsers"
+    [currentChannel]="currentChannel"
+  >
+  </app-chat-content>
   }
 
   <div

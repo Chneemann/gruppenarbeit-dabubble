@@ -1,0 +1,8 @@
+section {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  margin: 0 48px;
+  width: calc(100% - 96px);
+  min-height: calc(100vh - 290px);
+}

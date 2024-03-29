@@ -1,4 +1,10 @@
 <section>
-  <p>{{ user.firstName }} {{ user.lastName }}</p>
-  <p>{{ chat.message }}</p>
+  @for (chat of getChatChannel(currentChannel); track chat) {
+  <div>
+    @for (user of getChatUsers(chat.userId); track user) {
+    <app-single-chat [user]="user" [chat]="chat"></app-single-chat>
+    }
+  </div>
+  }
+  <app-chat-msg-box></app-chat-msg-box>
 </section>
