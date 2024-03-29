@@ -1,6 +1,6 @@
 app-header {
   display: block;
-  height: 120px;
+  height: 110px;
   background-color: #edeefe;
 }
 
@@ -8,23 +8,26 @@ app-header {
   display: flex;
 }
 
+app-sidebar,
+app-main-chat,
+app-secondary-chat {
+  padding: 12px;
+  min-height: calc(
+    100vh - 134px
+  ); // Minus app-header:height & app-sidebar:padding
+  background-color: #edeefe;
+}
+
 app-sidebar {
   padding: 12px;
-  min-height: calc(100vh - 120px);
-  background-color: #edeefe;
 }
 
 app-main-chat {
   width: 100%;
   padding: 12px;
-  min-height: calc(100vh - 120px);
-  background-color: #edeefe;
 }
 
 app-secondary-chat {
   display: none;
   min-width: 485px;
-  min-height: calc(100vh - 120px);
-  background-color: #edeefe;
-  border: 1px solid #000;
 }
