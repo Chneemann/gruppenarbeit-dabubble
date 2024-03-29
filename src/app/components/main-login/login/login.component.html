@@ -1,1 +1,19 @@
-<p>login works!</p>
+<form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm" class="contactForm">
+ 
+    <input #name="ngModel" [(ngModel)]="usersData.name" id="name" name="name" type="text" placeholder="" required />1
+    @if (!name.valid && name.touched) {
+        <p class="error">Name ist erforderlich.</p>
+  }
+    <input #email="ngModel" [(ngModel)]="usersData.email" id="email" name="email"  type="email" placeholder="" required  pattern="[^@]+@[^.]+..+"/>2
+    @if (!email.valid && email.touched) {
+      
+  }
+    <input #message="ngModel" minlength="10" [(ngModel)]="usersData.password" name="message" placeholder="" id="message" cols="30" rows="10" >3
+    @if (!message.valid && message.touched) {
+
+    }
+    <div class="checkBox">
+    </div>
+    <button [disabled] >Login</button> 
+    
+  </form>
