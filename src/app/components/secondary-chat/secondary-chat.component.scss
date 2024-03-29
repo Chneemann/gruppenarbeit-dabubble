@@ -5,7 +5,42 @@ section {
 }
 
 .header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 36px 48px;
+}
+
+.headline {
+  display: flex;
+  align-items: center;
   font-size: 24px;
   font-weight: 700;
+  span {
+    font-size: 14px;
+    font-weight: 400;
+    color: #797ef3;
+    padding-left: 12px;
+  }
+}
+
+.close {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  &:hover {
+    background-color: #edeefe;
+    border-radius: 100%;
+    img {
+      width: 16px;
+      height: 16px;
+    }
+  }
+  img {
+    width: 14px;
+    height: 14px;
+  }
 }

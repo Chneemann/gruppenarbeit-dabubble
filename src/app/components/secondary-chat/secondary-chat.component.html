@@ -1,1 +1,13 @@
-<section><div class="header">Thread</div></section>
+<section>
+  <div class="header">
+    <div class="headline">
+      <p>Thread</p>
+      @for (channel of getChannelName(); track channel) {
+      <span># {{ channel.name }}</span>
+      }
+    </div>
+    <div class="close" (click)="closeSecondaryChat()">
+      <img src="./../../../../assets/img/closeIcon.svg" alt="" />
+    </div>
+  </div>
+</section>

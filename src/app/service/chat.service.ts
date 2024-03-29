@@ -9,7 +9,7 @@ export class ChatService {
   firestore: Firestore = inject(Firestore);
 
   allChats: Chat[] = [];
-  isSecondaryChatOpen: boolean = false;
+  isSecondaryChatOpen: string = '';
 
   unsubChat;
 

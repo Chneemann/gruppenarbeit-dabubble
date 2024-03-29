@@ -44,8 +44,6 @@ export class SingleChatComponent {
   }
 
   openSecondaryChat(chatId: string) {
-    console.log(chatId);
-    this.chatService.isSecondaryChatOpen =
-      !this.chatService.isSecondaryChatOpen;
+    this.chatService.isSecondaryChatOpen = chatId;
   }
 }
