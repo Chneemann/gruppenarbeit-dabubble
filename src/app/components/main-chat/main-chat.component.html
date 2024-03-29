@@ -1,7 +1,6 @@
 <section>
-  @for (channel of getChannels(); track channel) { @if (channel.id ==
-  currentChannel) {
-  <div class="header">
+  @for (channel of getChannelName(currentChannel); track channel) {
+  <div class="header" (click)="showMenu()">
     <div class="headline">
       <img src="./../../../../assets/img/hashtag.svg" alt="" />
       <p>{{ channel.name }}</p>
@@ -18,5 +17,59 @@
     </div>
     }
   </div>
-  } }
+  }
+
+  <div
+    class="menu"
+    [ngClass]="{ dBlock: openMenu, dNone: !openMenu }"
+    (click)="showMenu()"
+  >
+    <div class="whiteBox">
+      @for (channel of getChannelName(currentChannel); track channel) {
+      <div class="headerBox">
+        <div class="headline">
+          <img src="./../../../../assets/img/hashtag.svg" alt="" />
+          <p>{{ channel.name }}</p>
+        </div>
+        <div class="closeBtn">
+          <img src="./../../../../assets/img/closeIcon.svg" alt="" />
+        </div>
+      </div>
+      }
+      <div class="contentChannel">
+        @for (channel of getChannelName(currentChannel); track channel) {
+        <div class="contentHeadline">
+          <p>Channel Name</p>
+          <span (click)="editChannelName()">Edit</span>
+        </div>
+        <div class="channelName">
+          <img src="./../../../../assets/img/hashtag.svg" alt="" />
+          <p>{{ channel.name }}</p>
+        </div>
+        }
+      </div>
+
+      <div class="contentChannel">
+        @for (channel of getChannelName(currentChannel); track channel) {
+        <div class="contentHeadline">
+          <p>Description</p>
+          <span (click)="editChannelName()">Edit</span>
+        </div>
+        <div class="channelName">
+          <p>{{ channel.description }}</p>
+        </div>
+        <div class="line"></div>
+        <div class="contentHeadline">
+          <p>Created by</p>
+        </div>
+        <div class="channelCreator">
+          @for (user of getChatUsers(channel.creator); track user) {
+          <p>{{ user.firstName }} {{ user.lastName }}</p>
+          }
+        </div>
+        }
+      </div>
+      <div class="leaveChannel"><p>Leave channel</p></div>
+    </div>
+  </div>
 </section>

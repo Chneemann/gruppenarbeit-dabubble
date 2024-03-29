@@ -30,8 +30,9 @@ export class ChannleService {
   setChannelObject(obj: any, id: string): Channel {
     return {
       id: id,
-      name: obj.name || '',
+      name: obj.name,
       description: obj.description,
+      creator: obj.creator,
     };
   }
 

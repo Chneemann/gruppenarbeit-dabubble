@@ -7,18 +7,19 @@ import { User } from '../../interface/user.interface';
 import { Channel } from '../../interface/channel.interface';
 import { Chat } from '../../interface/chat.interface';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-main-chat',
   standalone: true,
-  imports: [MainComponent],
+  imports: [MainComponent, CommonModule],
   templateUrl: './main-chat.component.html',
   styleUrl: './main-chat.component.scss',
 })
 export class MainChatComponent {
   @Input() currentChannel: string = '';
 
-  chatFound: boolean = false;
+  openMenu: boolean = true;
 
   constructor(
     private route: Router,
@@ -31,8 +32,22 @@ export class MainChatComponent {
     }
   }
 
+  showMenu() {
+    this.openMenu = !this.openMenu;
+  }
+
+  editChannelName() {}
+
   getUsers(): User[] {
     return this.userService.allUsers;
+  }
+
+  getChannels(): Channel[] {
+    return this.channelService.allChannels;
+  }
+
+  getChats(): Chat[] {
+    return this.chatService.allChats;
   }
 
   getChatUsers(chatId: string) {
@@ -49,11 +64,11 @@ export class MainChatComponent {
     return filteredTasks;
   }
 
-  getChannels(): Channel[] {
-    return this.channelService.allChannels;
-  }
-
-  getChats(): Chat[] {
-    return this.chatService.allChats;
+  getChannelName(chatId: string) {
+    chatId = chatId.replace(/\s/g, '');
+    const filteredTasks = this.getChannels().filter(
+      (channel) => channel.id == chatId
+    );
+    return filteredTasks;
   }
 }

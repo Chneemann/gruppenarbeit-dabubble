@@ -1,3 +1,5 @@
+@import "./../../../styles.scss";
+
 section {
   height: 100%;
   border-radius: 24px;
@@ -6,6 +8,12 @@ section {
 
 .header {
   padding: 36px 48px;
+}
+
+.headerBox {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .headline {
@@ -33,5 +41,118 @@ section {
   &:hover {
     background-color: #edeefe;
     border-radius: 24px;
+  }
+}
+
+.menu {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 5;
+  .whiteBox {
+    background-color: whitesmoke;
+    padding: 24px;
+    width: 500px;
+
+    border-top-right-radius: 40px;
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+    position: absolute;
+    top: 200px;
+    left: 460px;
+  }
+}
+
+.closeBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 37px;
+  height: 37px;
+  cursor: pointer;
+  &:hover {
+    background-color: #edeefe;
+    border-radius: 100%;
+    img {
+      width: 15px;
+      height: 15px;
+    }
+  }
+  img {
+    width: 13px;
+    height: 13px;
+  }
+}
+
+.contentChannel {
+  margin-top: 12px;
+  padding: 24px;
+  border-radius: 40px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  p {
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .contentHeadline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    span {
+      font-size: 18px;
+      font-weight: 400;
+      color: #545af1;
+      cursor: pointer;
+      &:hover {
+        font-weight: 700;
+      }
+    }
+  }
+
+  .channelName {
+    display: flex;
+    align-items: center;
+    margin-top: 18px;
+    img {
+      width: 16px;
+      height: 16px;
+      padding-right: 12px;
+    }
+    p {
+      font-size: 18px;
+      font-weight: 400;
+    }
+  }
+  .channelCreator {
+    margin-top: 24px;
+    p {
+      font-size: 24px;
+      font-weight: 200;
+      color: #535af1;
+    }
+  }
+}
+
+.line {
+  margin: 24px 6px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.leaveChannel {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  margin-top: 18px;
+  p {
+    padding: 12px 25px;
+    border-radius: 25px;
+    color: #fff;
+    background-color: #444df2;
+    cursor: pointer;
+    &:hover {
+      filter: opacity(70%);
+    }
   }
 }
