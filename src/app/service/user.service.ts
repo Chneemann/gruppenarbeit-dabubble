@@ -35,8 +35,9 @@ export class UserService {
   setUserObject(obj: any, id: string): User {
     return {
       id: id,
-      firstName: obj.firstName || '',
-      lastName: obj.lastName || '',
+      firstName: obj.firstName,
+      lastName: obj.lastName,
+      avatar: obj.avatar,
     };
   }
 

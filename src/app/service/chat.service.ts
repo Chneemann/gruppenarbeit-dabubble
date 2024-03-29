@@ -28,9 +28,10 @@ export class ChatService {
   setChatObject(obj: any, id: string): Chat {
     return {
       id: id,
-      userId: obj.userId || '',
-      channelId: obj.channelId || '',
+      userId: obj.userId,
+      channelId: obj.channelId,
       message: obj.message,
+      publishedTimestamp: obj.publishedTimestamp,
     };
   }
 

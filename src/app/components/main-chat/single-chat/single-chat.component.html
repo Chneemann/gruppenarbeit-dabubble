@@ -1,4 +1,15 @@
 <section>
-  <p>{{ user.firstName }} {{ user.lastName }}</p>
-  <p>{{ chat.message }}</p>
+  <div class="userAvatar">
+    <img
+      src="./../../../../assets/img/user-icons/{{ user.avatar }}.svg"
+      alt=""
+    />
+  </div>
+  <div class="userContent">
+    <div class="name">
+      {{ user.firstName }} {{ user.lastName }}
+      <span>{{ convertTimestamp(chat.publishedTimestamp) }}</span>
+    </div>
+    <div class="msg">{{ chat.message }}</div>
+  </div>
 </section>
