@@ -23,6 +23,7 @@
     class="menu"
     [ngClass]="{ dBlock: openMenu, dNone: !openMenu }"
     (click)="showMenu()"
+    (mousedown)="preventClose($event)"
   >
     <div class="whiteBox">
       @for (channel of getChannelName(currentChannel); track channel) {
@@ -31,7 +32,7 @@
           <img src="./../../../../assets/img/hashtag.svg" alt="" />
           <p>{{ channel.name }}</p>
         </div>
-        <div class="closeBtn">
+        <div class="closeBtn" (click)="closeMenu()">
           <img src="./../../../../assets/img/closeIcon.svg" alt="" />
         </div>
       </div>

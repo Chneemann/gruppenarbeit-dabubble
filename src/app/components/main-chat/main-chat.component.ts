@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, HostListener, Input } from '@angular/core';
 import { ChannleService } from '../../service/channle.service';
 import { MainComponent } from '../main/main.component';
 import { ChatService } from '../../service/chat.service';
@@ -19,13 +19,14 @@ import { CommonModule } from '@angular/common';
 export class MainChatComponent {
   @Input() currentChannel: string = '';
 
-  openMenu: boolean = true;
+  openMenu: boolean = false;
 
   constructor(
     private route: Router,
     public userService: UserService,
     public channelService: ChannleService,
-    public chatService: ChatService
+    public chatService: ChatService,
+    private elementRef: ElementRef
   ) {
     if (this.currentChannel == '') {
       this.route.navigateByUrl('/main/XiqUAXRY1W7PixC9kVTa');
@@ -33,7 +34,28 @@ export class MainChatComponent {
   }
 
   showMenu() {
-    this.openMenu = !this.openMenu;
+    this.openMenu = true;
+  }
+
+  closeMenu() {
+    this.openMenu = false;
+  }
+
+  preventClose(event: MouseEvent) {
+    if (this.elementRef.nativeElement.contains(event.target)) {
+      const clickedElement = event.target as HTMLElement;
+      const menuContent =
+        this.elementRef.nativeElement.querySelector('.whiteBox');
+      const closeBtn = this.elementRef.nativeElement.querySelector('.closeBtn');
+      if (closeBtn.contains(clickedElement)) {
+        this.closeMenu();
+        event.stopPropagation();
+      }
+      if (!menuContent.contains(clickedElement)) {
+        this.closeMenu();
+        event.stopPropagation();
+      }
+    }
   }
 
   editChannelName() {}
