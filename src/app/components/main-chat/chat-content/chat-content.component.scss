@@ -4,3 +4,7 @@ section {
   justify-content: end;
   min-height: calc(100vh - 290px);
 }
+
+.mirror {
+  transform: scaleX(-1);
+}

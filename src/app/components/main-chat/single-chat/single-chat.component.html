@@ -5,7 +5,7 @@
       alt=""
     />
   </div>
-  <div class="userContent">
+  <div class="userContent" [ngClass]="{ mirror: index % 2 !== 0 }">
     <div class="name">
       {{ user.firstName }} {{ user.lastName }}
       <span>{{ convertTimestamp(chat.publishedTimestamp) }}</span>

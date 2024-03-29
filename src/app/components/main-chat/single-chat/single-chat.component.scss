@@ -44,3 +44,10 @@ section {
     background-color: #eceefe;
   }
 }
+
+.mirror {
+  transform: scaleX(-1);
+  .msg {
+    background-color: #797ef3 !important;
+  }
+}

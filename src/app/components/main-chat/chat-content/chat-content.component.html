@@ -1,8 +1,8 @@
 <section>
-  @for (chat of getChatChannel(currentChannel); track chat) {
-  <div>
+  @for (chat of getChatChannel(currentChannel); track chat; let i = $index) {
+  <div [ngClass]="{ mirror: i % 2 !== 0 }">
     @for (user of getChatUsers(chat.userId); track user) {
-    <app-single-chat [user]="user" [chat]="chat"></app-single-chat>
+    <app-single-chat [user]="user" [chat]="chat" [index]="i"></app-single-chat>
     }
   </div>
   }
