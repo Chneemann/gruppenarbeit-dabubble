@@ -57,7 +57,7 @@ header{
 }
 
 .whiteBox{
-    background-color: whitesmoke;
+    background-color: white;
     @include displayFlex($g: 20px);
     flex-direction: column;
     width: 220px;
@@ -72,5 +72,13 @@ header{
         font-size: 22px;
         font-weight: 600;
         cursor: pointer;
+        text-align: center;
+        padding: 8px;
+        &:hover{
+            width: 62%;
+            background-color: #EDEEFE;
+            border-radius: 15px;
+            color: #444df2;
+        }
     }
 }

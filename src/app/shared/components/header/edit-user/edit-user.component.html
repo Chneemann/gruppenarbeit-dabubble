@@ -1,9 +1,12 @@
 
-<div class="mainBox" [ngClass]="{ 'dBlock': showCurrentProfile, 'dNone': !showCurrentProfile }">
+<div class="grayBackground" (click)="closeCurrentProfile()"></div>
+
   <div class="whiteBox">
     <div class="boxHeader fontNunito">
-      <p>Profile</p>
-      <img (click)="closeCurrentProfile()" src="assets/img/closeIcon.svg" />
+      <h2 class="fontNunito">Profil</h2>
+      <div class="positionCloseIcon" (click)="closeCurrentProfile()">
+        <img src="assets/img/closeIcon.svg" class="closeIcon"/>
+      </div>
     </div>
     <img
       src="assets/img/charater1.svg"
@@ -37,7 +40,6 @@
       </div>
     </div>
   </div>
-</div>
 
 <app-edit-user-details
   [ngClass]="{ 'dBlock': openEditUserValue, 'dNone': !openEditUserValue }"

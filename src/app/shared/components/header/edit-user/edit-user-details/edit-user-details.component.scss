@@ -16,15 +16,12 @@
     .boxHeader{
         width: 360px;
         @include displayFlex($j: space-between);
-        >p{
-            font-size: 20px;
-            font-weight: 600;
-            margin: 0;
-        }
         .positionCloseIcon {
             width: 40px;
             height: 40px;
             @include displayFlex();
+            margin-right: -10px;
+            transition: 0.3s ease-in-out;
             &:hover {
                 background-color: #ECEEFE;
                 border-radius: 25px;
@@ -58,8 +55,9 @@
             border-radius: 25px;
             padding: 8px;
             font-size: larger;
+            transition: 0.3s ease-in-out;
             &:hover{
-                border: 1px solid #444DF2;
+                border: 1px solid #2c36f0;
             }
         }
     }
@@ -75,6 +73,7 @@
         border-radius: 25px;
         font-size: larger;
         color: #444DF2;
+        transition: 0.3s ease-in-out;
         &:hover{
             background-color: #444DF2;
             color: white;
@@ -90,6 +89,7 @@
         border-radius: 25px;
         font-size: larger;
         color: white;
+        transition: 0.3s ease-in-out;
         &:hover{
             background-color: #888dec;
             cursor: pointer;
@@ -104,4 +104,5 @@
     top: 0;
     left: 0;
     background-color: rgba(0, 0, 0, 0.3);
+    z-index: 5;
 }
