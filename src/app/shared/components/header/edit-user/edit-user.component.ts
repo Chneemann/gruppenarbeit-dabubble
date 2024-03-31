@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { EditUserDetailsComponent } from './edit-user-details/edit-user-details.component';
+import { UserService } from '../../../../service/user.service';
+import { User } from '../../../../interface/user.interface';
 
 @Component({
   selector: 'app-edit-user',
@@ -17,7 +19,7 @@ export class EditUserComponent {
 
   @Output()testValueChange = new EventEmitter<boolean>();
 
-  constructor(){
+  constructor(public userService: UserService){
   }
 
 
@@ -27,9 +29,7 @@ export class EditUserComponent {
 
 
   openEditUser(){
-    this.openEditUserValue = true;
-    console.log('open edit window:', this.openEditUserValue);
-    
+    this.openEditUserValue = true; 
   }
 
 
@@ -38,11 +38,22 @@ export class EditUserComponent {
     this.testValueChange.emit(this.showCurrentProfile);
   }
 
+
   updateCloseValue(value: boolean){
     this.showCurrentProfile = value;
     this.openEditUserValue = value;
-    console.log('----showCurrentProfile edit-user:', this.openEditUserValue);
-    console.log('----openEditUserValue edit-user:', this.openEditUserValue);
+  }
+
+  
+  getUsers(): User[] {
+    return this.userService.allUsers;
+  }
+
+
+  getCuurentUsers(userId: string) {
+    // userId = userId.replace(/\s/g, '');
+    const filteredUser = this.getUsers().filter((user) => user.id == userId);
+    return filteredUser;
   }
 
 }

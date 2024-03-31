@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { EditUserComponent } from '../edit-user.component';
+import { User } from '../../../../../interface/user.interface';
+import { UserService } from '../../../../../service/user.service';
 
 @Component({
   selector: 'app-edit-user-details',
@@ -16,9 +18,10 @@ export class EditUserDetailsComponent {
 
   @Output()closeEditWindow = new EventEmitter<boolean>();
   @Output()saveUserData = new EventEmitter<boolean>();
+filteredUser: any;
 
 
-  constructor(){}
+  constructor(public userService: UserService){}
 
 
   closeEditUserWindow(){
@@ -32,5 +35,17 @@ export class EditUserDetailsComponent {
     this.showCurrentProfile = false;
     this.saveUserData.emit(this.showCurrentProfile);
     console.log('saveUserData close=false:', this.showCurrentProfile);
+  }
+
+
+  getUsers(): User[] {
+    return this.userService.allUsers;
+  }
+
+
+  getCuurentUsers(userId: string) {
+    // userId = userId.replace(/\s/g, '');
+    const filteredUser = this.getUsers().filter((user) => user.id == userId);
+    return filteredUser;
   }
 }
