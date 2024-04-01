@@ -18,7 +18,6 @@ export class EditUserDetailsComponent {
 
   @Output()closeEditWindow = new EventEmitter<boolean>();
   @Output()saveUserData = new EventEmitter<boolean>();
-filteredUser: any;
 
 
   constructor(public userService: UserService){}
@@ -35,15 +34,4 @@ filteredUser: any;
     this.saveUserData.emit(this.showCurrentProfile);
   }
 
-
-  getUsers(): User[] {
-    return this.userService.allUsers;
-  }
-
-
-  getCuurentUsers(userId: string) {
-    // userId = userId.replace(/\s/g, '');
-    const filteredUser = this.getUsers().filter((user) => user.id == userId);
-    return filteredUser;
-  }
 }

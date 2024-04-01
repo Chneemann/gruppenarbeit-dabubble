@@ -44,16 +44,4 @@ export class EditUserComponent {
     this.openEditUserValue = value;
   }
 
-  
-  getUsers(): User[] {
-    return this.userService.allUsers;
-  }
-
-
-  getCuurentUsers(userId: string) {
-    // userId = userId.replace(/\s/g, '');
-    const filteredUser = this.getUsers().filter((user) => user.id == userId);
-    return filteredUser;
-  }
-
 }

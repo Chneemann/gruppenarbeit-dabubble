@@ -13,13 +13,12 @@ import { User } from '../../../interface/user.interface';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
+
   openMenu = false;
   showCurrentProfile = false;
   isOnline = true; //---- Zeige onlineStatus an
   closeProfil = false;
-  currentLoggtinUser = {};
-filteredUser: any;
-
+  
 
   constructor(public userService: UserService) {}
 
@@ -39,16 +38,5 @@ filteredUser: any;
     this.showCurrentProfile = value;  
   }
 
-
-  getUsers(): User[] {
-    return this.userService.allUsers;
-  }
-
-
-  getCuurentUsers(userId: string) {
-    // userId = userId.replace(/\s/g, '');
-    const filteredUser = this.getUsers().filter((user) => user.id == userId);
-    return filteredUser;
-  }
 
 }

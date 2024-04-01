@@ -16,7 +16,8 @@ export class UserService implements OnDestroy {
 
   allUsers: User[] = [];
   isUserLogin: boolean = true;
-
+  userId: string ='PXp9TG7kkBniV9x2nHRr';
+  
   unsubUser;
 
   constructor() {
@@ -41,6 +42,17 @@ export class UserService implements OnDestroy {
       email: obj.email,
       password: obj.password,
     };
+  }
+
+  
+  getUsers(): User[] {
+    return this.allUsers;
+  }
+
+
+  getCuurentUsers() {
+    const filteredUser = this.getUsers().filter((user) => user.id == this.userId);
+    return filteredUser;
   }
 
   ngOnDestroy() {

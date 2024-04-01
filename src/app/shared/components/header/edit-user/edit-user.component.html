@@ -1,6 +1,6 @@
 
 <div class="grayBackground" (click)="closeCurrentProfile()"></div>
-
+@for(i of userService.getCuurentUsers(); track i){
   <div class="whiteBox">
     <div class="boxHeader fontNunito">
       <h2 class="fontNunito">Profil</h2>
@@ -9,14 +9,13 @@
       </div>
     </div>
     <img
-      src="assets/img/charater1.svg"
+      src="assets/img/user-icons/{{i.avatar}}.svg"
       class="profileImg"
       (click)="showSideMenu()"
     />
     <div class="detailsBox">
       <div class="editBtnPosition">
-        <!-- <h1 class="fontNunito">{{filteredUser.firstName}} {{filteredUser.lastName}}</h1> -->
-        <h1 class="fontNunito">Max Müller</h1>
+        <h1 class="fontNunito">{{i.firstName}} {{i.lastName}}</h1>
         <p class="editBtn" (click)="openEditUser()">Edit</p>
       </div>
 
@@ -31,22 +30,17 @@
         <img src="assets/img/mail-icon.svg" />
         <div class="emailH2">
           <h2>E-Mail-Address</h2>
-          <!-- <a
-            href="mailto:wwweewefeff&#64;dede.de"
-            target="_blank"
-            class="fontNunito"
-            >{{filteredUser.email}}</a
-          > -->
           <a
             href="mailto:wwweewefeff&#64;dede.de"
             target="_blank"
             class="fontNunito"
-            >maxMüller&#64;ffe.de</a
+            >{{i.email}}</a
           >
         </div>
       </div>
     </div>
   </div>
+}
 
 <app-edit-user-details
   [ngClass]="{ 'dBlock': openEditUserValue, 'dNone': !openEditUserValue }"
