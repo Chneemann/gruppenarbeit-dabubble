@@ -1,3 +1,46 @@
 <section>
-  <p>chat-msg-box works!</p>
+  <div [ngClass]="{ posiotionDataFromPc: hasFile, '': !hasFile }">
+    <label
+      for="files"
+      class="btn fontNunito"
+      [ngClass]="{ dBlock: hasFile, dNone: !hasFile }"
+      >
+      <!-- <img src="assets/img/{{getFileIcons}}" alt=""> -->
+      </label
+    >
+    <input
+      type="file"
+      #fileInput
+      id="file"
+      style="display: none"
+      (change)="onFileChange($event)"
+      multiple
+    />
+  </div>
+  <textarea></textarea>
+  <div class="positionAllIcons">
+    <div class="positionSpecialIcons">
+      <img
+        src="assets/img/addIcon.svg"
+        class="interactIcons"
+        (click)="fileInput.click()"
+      />
+      <img src="assets/img/verticalLine.svg" />
+      <img
+        src="assets/img/smileIcon.svg"
+        class="interactIcons"
+        (click)="addSmaili()"
+      />
+      <img
+        src="assets/img/atIcon.svg"
+        class="interactIcons"
+        (click)="targetChetUser()"
+      />
+    </div>
+    <img
+      src="assets/img/sendIcon.svg"
+      class="sendIcon"
+      (click)="sendMessage()"
+    />
+  </div>
 </section>
