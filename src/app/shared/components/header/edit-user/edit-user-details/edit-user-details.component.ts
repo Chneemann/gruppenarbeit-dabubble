@@ -27,14 +27,12 @@ filteredUser: any;
   closeEditUserWindow(){
     this.openEditUserValue = !this.openEditUserValue;
     this.closeEditWindow.emit(this.openEditUserValue);
-    console.log('openEditUserValue:', this.openEditUserValue);
   }
 
 
   saveNewUserData(){
     this.showCurrentProfile = false;
     this.saveUserData.emit(this.showCurrentProfile);
-    console.log('saveUserData close=false:', this.showCurrentProfile);
   }
 
 

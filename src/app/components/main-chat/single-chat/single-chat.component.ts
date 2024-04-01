@@ -21,8 +21,8 @@ export class SingleChatComponent {
   constructor(public chatService: ChatService) {}
 
   convertTimestamp(timestamp: number) {
-    var a = new Date(timestamp * 1000);
-    var months = [
+    let a = new Date(timestamp * 1000);
+    let months = [
       'Jan.',
       'Feb.',
       'Mar.',
@@ -36,10 +36,10 @@ export class SingleChatComponent {
       'Nov.',
       'Dec.',
     ];
-    var year = a.getFullYear();
-    var month = months[a.getMonth()];
-    var date = a.getDate();
-    var time = month + ' ' + date + ', ' + year;
+    let year = a.getFullYear();
+    let month = months[a.getMonth()];
+    let date = a.getDate();
+    let time = month + ' ' + date + ', ' + year;
     return time;
   }
 
