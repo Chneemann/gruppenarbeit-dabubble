@@ -5,9 +5,13 @@
       <img src="./../../../../assets/img/sidebar/bubbles.svg" alt="" />
       <p>Channels</p>
     </div>
-    <div class="newChannel">
-      <img src="./../../../../assets/img/add.svg" alt="" />
-    </div>
+    <app-small-btn
+      [imgSrc]="'add.svg'"
+      [imgSize]="'14px'"
+      [btnSize]="'28px'"
+      [btnBgHoverColor]="'#edeefe'"
+    >
+    </app-small-btn>
   </div>
   @for (channel of getChannels(); track channel; let i = $index) {
   <div
