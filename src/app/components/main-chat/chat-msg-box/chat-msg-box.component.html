@@ -1,13 +1,11 @@
 <section>
   <div [ngClass]="{ posiotionDataFromPc: hasFile, '': !hasFile }">
-    <label
-      for="files"
-      class="btn fontNunito"
-      [ngClass]="{ dBlock: hasFile, dNone: !hasFile }"
-      >
-      <!-- <img src="assets/img/{{getFileIcons}}" alt=""> -->
-      </label
-    >
+    @if(hasFile){
+      <div class="fileBox" [ngClass]="{ dBlock: hasFile, dNone: !hasFile }" *ngFor="let file of uploadFiles">
+        <img src=" {{checkIcon(file)}}"  class="fileIcons" (click)="showCurrentFile(file)">
+        <img src="assets/img/closeIcon.svg" class="closeIcon" (click)="deleteFile(file)">
+      </div>
+    }
     <input
       type="file"
       #fileInput
