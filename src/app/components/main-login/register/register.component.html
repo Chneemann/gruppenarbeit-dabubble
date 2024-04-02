@@ -1,19 +1,20 @@
-<form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm" class="contactForm">
+<form (ngSubmit)="onSubmit()" #contactForm="ngForm" class="contactForm">
  
-    <input #name="ngModel" [(ngModel)]="usersData.firstName" id="name" name="name" type="text" placeholder="" required />1
+    <!-- <input #name="ngModel" [(ngModel)]="usersData.firstName" id="name" name="name" type="text" placeholder="" required />1
     @if (!name.valid && name.touched) {
         <p class="error">Name ist erforderlich.</p>
-  }
-    <input #email="ngModel" [(ngModel)]="usersData.email" id="email" name="email"  type="email" placeholder="" required  pattern="[^@]+@[^.]+..+"/>2
-    @if (!email.valid && email.touched) {
+  } -->
+    <input #emailField="ngModel" [(ngModel)]="email" id="email" name="email"  type="email" placeholder="email" required  pattern="[^@]+@[^.]+..+"/>2
+    @if (!emailField.valid && emailField.touched) {
       
   }
-    <input #message="ngModel" minlength="10" [(ngModel)]="usersData.password" name="message" placeholder="" id="message" cols="30" rows="10" >3
+    <input #message="ngModel" minlength="10" [(ngModel)]="password" name="message" placeholder="pw" id="message" cols="30" rows="10" >3
     @if (!message.valid && message.touched) {
 
     }
     <div class="checkBox">
     </div>
     <button [disabled] >Regestrieren</button> 
+    
     
   </form>

@@ -1,33 +1,63 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { loginService } from '../../../service/login.service';
-import { User } from '../../../interface/user.interface';
+import { Firestore, addDoc, collection } from '@angular/fire/firestore';
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 
 @Component({
   selector: 'app-register',
   standalone: true,
   imports: [FormsModule],
   templateUrl: './register.component.html',
-  styleUrl: './register.component.scss'
+  styleUrl: './register.component.scss',
 })
 export class RegisterComponent {
- 
-   usersData : User = {
-     firstName: '',
-     email: '',
-     password: '',
-     lastName: '',
-     avatar: ''
-   };
+  firestore: Firestore = inject(Firestore);
+  email: string = '';
+  password: string = '';
+  name: string = '';
 
-  constructor(public loginservice: loginService){
-
+  constructor() {
   }
-  onSubmit(form: NgForm) {
-    console.log('Registrierungsversuch mit:',this.usersData);
-    this.loginservice.addNewUser(this.usersData);
-    
-    form.resetForm();
+  register() {
+    const auth = getAuth();
+    createUserWithEmailAndPassword(auth, this.email, this.password)
+      .then((userCredential) => {
+        // Erfolgreiche Registrierung
+        const user = userCredential.user;
+        // Rufen Sie createUserWithFirebase mit dem user-Objekt auf
+        this.createUserWithFirebase(user);
+      })
+      .catch((error) => {
+        console.error('Registration error:', error);
+      });
   }
 
+  createUserWithFirebase(user: any) {
+    // Stellen Sie sicher, dass user und user.uid nicht undefined sind
+    if (!user || !user.uid) {
+      console.error('User or user UID is undefined.');
+      return;
+    }
+    const userDataToSave = {
+      email: this.email,
+      password: this.password,
+      // user:this.user.uid
+      name: this.name,
+    };
+
+    const usersCollection = collection(this.firestore, 'users');
+    addDoc(usersCollection, userDataToSave)
+      .then(() => {
+        console.log('User successfully added to Firestore!');
+      })
+      .catch((error) => {
+        console.error('Error adding user to Firestore:', error);
+      });
+  }
+
+  onSubmit() {
+    console.log('Registrierungsversuch mit:', this.email, this.password);
+    this.register();
+  }
 }
