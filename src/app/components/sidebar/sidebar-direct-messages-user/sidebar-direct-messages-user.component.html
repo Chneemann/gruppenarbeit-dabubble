@@ -2,10 +2,10 @@
   <div class="user">
     <img src="./../../../../assets/img/charater1.svg" alt="" />
     <div class="dot"></div>
-    @if (userService.allUsers.length > 0) {
+    @if (userService.getUsers().length > 0) {
     <p>
-      {{ userService.allUsers[1].firstName }},
-      {{ userService.allUsers[1].lastName }}
+      {{ userService.getUsers()[0].firstName }},
+      {{ userService.getUsers()[0].lastName }}
     </p>
     }
   </div>

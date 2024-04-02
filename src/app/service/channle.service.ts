@@ -20,20 +20,10 @@ export class ChannleService implements OnDestroy {
     return onSnapshot(collection(this.firestore, 'channels'), (list) => {
       this.allChannels = [];
       list.forEach((element) => {
-        this.allChannels.push(
-          this.setChannelObject(element.data(), element.id)
-        );
+        const channelWithId = { id: element.id, ...element.data() } as Channel;
+        this.allChannels.push(channelWithId);
       });
     });
-  }
-
-  setChannelObject(obj: any, id: string): Channel {
-    return {
-      id: id,
-      name: obj.name,
-      description: obj.description,
-      creator: obj.creator,
-    };
   }
 
   ngOnDestroy() {
