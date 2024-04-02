@@ -24,7 +24,8 @@ export class ChatService implements OnDestroy {
     return onSnapshot(collection(this.firestore, 'chats'), (list) => {
       this.allChats = [];
       list.forEach((element) => {
-        this.allChats.push(this.setChatObject(element.data(), element.id));
+        const chatWithId = { id: element.id, ...element.data() } as Chat;
+        this.allChats.push(chatWithId);
       });
     });
   }
@@ -33,31 +34,10 @@ export class ChatService implements OnDestroy {
     return onSnapshot(collection(this.firestore, 'chat-answers'), (list) => {
       this.allChatAnswers = [];
       list.forEach((element) => {
-        this.allChatAnswers.push(
-          this.setChatAnswersObject(element.data(), element.id)
-        );
+        const chatWithId = { id: element.id, ...element.data() } as ChatAnswers;
+        this.allChatAnswers.push(chatWithId);
       });
     });
-  }
-
-  setChatObject(obj: any, id: string): Chat {
-    return {
-      id: id,
-      userId: obj.userId,
-      channelId: obj.channelId,
-      message: obj.message,
-      publishedTimestamp: obj.publishedTimestamp,
-    };
-  }
-
-  setChatAnswersObject(obj: any, id: string): ChatAnswers {
-    return {
-      id: id,
-      chatId: obj.chatId,
-      message: obj.message,
-      publishedTimestamp: obj.publishedTimestamp,
-      userId: obj.userId,
-    };
   }
 
   ngOnDestroy() {

@@ -27,25 +27,4 @@ section {
       font-weight: 700;
     }
   }
-
-  .newChat {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 48px;
-    height: 48px;
-    cursor: pointer;
-    &:hover {
-      background-color: #edeefe;
-      border-radius: 100%;
-      img {
-        width: 28px;
-        height: 28px;
-      }
-    }
-    img {
-      width: 24px;
-      height: 24px;
-    }
-  }
 }

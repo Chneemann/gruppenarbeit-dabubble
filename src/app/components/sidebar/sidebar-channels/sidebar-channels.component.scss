@@ -32,27 +32,6 @@ section {
   }
 }
 
-.newChannel {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 28px;
-  height: 28px;
-  cursor: pointer;
-  &:hover {
-    background-color: #edeefe;
-    border-radius: 100%;
-    img {
-      width: 16px;
-      height: 16px;
-    }
-  }
-  img {
-    width: 14px;
-    height: 14px;
-  }
-}
-
 .channelName {
   display: flex;
   margin: 12px 24px;

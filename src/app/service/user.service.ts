@@ -16,8 +16,8 @@ export class UserService implements OnDestroy {
 
   allUsers: User[] = [];
   isUserLogin: boolean = true;
-  userId: string ='PXp9TG7kkBniV9x2nHRr';
-  
+  userId: string = 'PXp9TG7kkBniV9x2nHRr';
+
   unsubUser;
 
   constructor() {
@@ -28,30 +28,20 @@ export class UserService implements OnDestroy {
     return onSnapshot(collection(this.firestore, 'users'), (list) => {
       this.allUsers = [];
       list.forEach((element) => {
-        this.allUsers.push(this.setUserObject(element.data(), element.id));
+        const userWithId = { id: element.id, ...element.data() } as User;
+        this.allUsers.push(userWithId);
       });
     });
   }
 
-  setUserObject(obj: any, id: string): User {
-    return {
-      id: id,
-      firstName: obj.firstName,
-      lastName: obj.lastName,
-      avatar: obj.avatar,
-      email: obj.email,
-      password: obj.password,
-    };
-  }
-
-  
   getUsers(): User[] {
     return this.allUsers;
   }
 
-
   getCuurentUsers() {
-    const filteredUser = this.getUsers().filter((user) => user.id == this.userId);
+    const filteredUser = this.getUsers().filter(
+      (user) => user.id == this.userId
+    );
     return filteredUser;
   }
 

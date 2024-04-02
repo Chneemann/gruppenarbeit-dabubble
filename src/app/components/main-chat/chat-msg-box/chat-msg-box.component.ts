@@ -11,9 +11,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class ChatMsgBoxComponent {
   hasFile: boolean = false;
-  currentFile?: File;
-  currentFiles: FileList | null = null;
-  message = '';
+  currentFiles!: FileList ;
   files: any;
   uploadFiles: File[] = [];
   getFileIcons = [
@@ -24,34 +22,21 @@ export class ChatMsgBoxComponent {
     'assets/img/videoIcon.svg',
   ];
 
+
   constructor() {}
 
-  
+
   onFileChange(event: any) {
     this.currentFiles = event.target.files;
     this.hasFile = this.currentFiles!.length > 0;
 
     if (this.currentFiles) {
-      // this.uploadFiles = [];
       for (let i = 0; i < this.currentFiles.length; i++) {
         const fileInfo = this.currentFiles[i];
-        const iconElement = this.createIconElement(fileInfo);
-        const label = document.querySelector('label[for="files"]') as HTMLElement;
-        label.appendChild(iconElement);
         this.uploadFiles.push(fileInfo);
         console.log(this.uploadFiles);
-        
       }
     }
-  }
-
-
-  createIconElement(fileInfo: File): HTMLImageElement {
-    const iconUrl = this.checkIcon(fileInfo);
-    const iconElement = document.createElement('img');
-    iconElement.src = iconUrl;
-    iconElement.classList.add('icon-style');
-    return iconElement;
   }
 
 
@@ -63,13 +48,30 @@ export class ChatMsgBoxComponent {
     } else if (fileInfo.type == "application/pdf") {
       return this.getFileIcons[3];
     } else if (fileInfo.type == "video/mp4") {
-      return this.getFileIcons[5];
+      return this.getFileIcons[4];
     } else {
       return this.getFileIcons[0];
     }
   }
 
-  uploadData() {}
+
+  deleteFile(file: File) {
+    const index = this.uploadFiles.indexOf(file);
+    if (index !== -1) {
+      this.uploadFiles.splice(index, 1);
+      this.hasFile = this.uploadFiles.length > 0;
+    }
+    console.log(this.uploadFiles); ///------------------------------------------------------------
+  }
+  
+  
+  showCurrentFile(file: File) {
+    const blob = new Blob([file], { type: file.type });  // Blob (Binary Large Object) 
+    const url = URL.createObjectURL(blob); // Erstelle einen Objekt-URL für den blon
+    window.open(url, '_blank'); // öffne den datei in einem neuen Fenster
+  }
+  
+  
 
   addSmaili() {}
 

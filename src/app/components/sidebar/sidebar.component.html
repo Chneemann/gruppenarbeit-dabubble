@@ -4,9 +4,13 @@
       <img src="./../../../assets/img/sidebar/workspace-logo.svg" alt="" />
       <p>Devspace</p>
     </div>
-    <div class="newChat">
-      <img src="./../../../assets/img/sidebar/new-chat.svg" alt="" />
-    </div>
+    <app-small-btn
+      [imgSrc]="'sidebar/new-chat.svg'"
+      [imgSize]="'24px'"
+      [btnSize]="'48px'"
+      [btnBgHoverColor]="'#edeefe'"
+    >
+    </app-small-btn>
   </div>
   <div class="channels">
     <app-sidebar-channels></app-sidebar-channels>
