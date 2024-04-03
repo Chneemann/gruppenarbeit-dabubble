@@ -1,26 +1,164 @@
-button{
-    font-size: 18px;
-    font-weight: 600;
-    padding: 12px 25px;
-    border-radius: 25px;
-    color: #fff;
-    background-color: #cacad6;
-    outline: none;
-    border: none;
-    box-sizing: border-box;
-    transition: .2s;
-
+// .content{
+// display: flex;
+// justify-content: center;
+// }
+.loginSektion {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  padding-left: 16px;
+  padding-right: 16px;
+  background-color: #eceefe;
+  // max-width: 1920px; für max width aufbau
 }
-.aktivButton{
-    font-size: 18px;
-    font-weight: 600;
-    padding: 12px 25px;
-    border-radius: 25px;
-    color: #fff;
-    background-color: #444df2;
-    outline: none;
-    border: none;
-    box-sizing: border-box;
-    transition: .2s;
-
+.header {
+  margin: 75px;
+  display: flex;
+  width: 94%;
 }
+.registerContainer {
+  max-width: 606px;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 30px;
+  box-sizing: border-box;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  gap: 16px;
+  max-height: 669px;
+  height: 100%;
+}
+.registerTop {
+    margin-top: 32px;
+    margin-bottom: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  > span {
+    width: 90%;
+    text-align: center;
+    font-size: 40px;
+    font-weight: 700;
+
+    color: #444df2;
+  }
+}
+.registerBackImg{
+    cursor: pointer;
+}
+.registerInfoText{
+    margin-bottom: 24px;
+    text-align: center;
+    max-width: 425px;
+    >span{
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24px;
+    }
+}
+.inputContainer {
+  position: relative;
+  margin-bottom: 32px;
+}
+.iconP {
+  position: absolute;
+  top: 16px;
+  left: 20px;
+}
+.inputField {
+  padding-left: 60px;
+  border: 1px solid #444df2;
+  font-size: 18px;
+  font-weight: 500;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  background: #eceefe;
+  height: 60px;
+  border-radius: 100px;
+}
+.error{
+    position: absolute;
+    margin: 4px;
+}
+.contactForm{
+    width: 90%;
+}
+.checkBox{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    >div{
+        cursor: pointer;
+        // &:hover{
+        //     background-image: url('/assets/img/login/lock.png');
+        
+        //     // filter: sepia(100%) hue-rotate(-50deg) saturate(500%); merken und notieren !
+    
+           
+        // }
+    }
+}
+.registerBottom{
+    display: flex;
+    justify-content: end;
+    margin-top: 32px;
+}
+
+button {
+  padding: 12px 25px;
+  color: #fff;
+  background-color: #cacad6;
+  outline: none;
+  border: none;
+  box-sizing: border-box;
+  transition: 0.2s;
+  border-radius: 25px;
+  font-size: 18px;
+  font-weight: 600;
+}
+.aktivButton {
+  padding: 12px 25px;
+  color: #fff;
+  background-color: #444df2;
+  outline: none;
+  border: none;
+  box-sizing: border-box;
+  transition: 0.2s;
+  border-radius: 25px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.footer{
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-top: 132px;
+    margin-bottom: 24px;
+    >a{
+        font-size: 18px;
+        font-weight: 400px;
+        text-decoration: none;
+        color: #797ef3;
+        padding-right: 8px;
+        padding: 0px;
+        padding: 4px 12px 4px 12px;
+        border-radius: 100px;
+        border: 1px solid #ECEEFE;
+        &:hover{
+            border: 1px solid #444df2;
+          
+        }
+    }
+}
+.fontColor{
+    cursor: pointer;
+    color: #444df2;
+    }

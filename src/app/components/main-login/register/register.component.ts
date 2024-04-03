@@ -1,17 +1,19 @@
 import { Component, inject } from '@angular/core';
-import { FormsModule, NgForm } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, NgForm, Validators } from '@angular/forms';
 import { loginService } from '../../../service/login.service';
 import { Firestore, addDoc, collection } from '@angular/fire/firestore';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { SmallBtnComponent } from "../../../shared/components/small-btn/small-btn.component";
 
 
 @Component({
-  selector: 'app-register',
-  standalone: true,
-  imports: [FormsModule,CommonModule],
-  templateUrl: './register.component.html',
-  styleUrl: './register.component.scss',
+    selector: 'app-register',
+    standalone: true,
+    templateUrl: './register.component.html',
+    styleUrl: './register.component.scss',
+    imports: [FormsModule, CommonModule, RouterModule, SmallBtnComponent]
 })
 export class RegisterComponent {
   firestore: Firestore = inject(Firestore);
@@ -19,8 +21,14 @@ export class RegisterComponent {
   email: string = '';
   password: string = '';
   name: string = '';
+  currentImage: string;
+  defaultImage = '/assets/img/login/box.png';
+  clickedImage = '/assets/img/login/box-checked.png';
+  hoverImage = '/assets/img/login/box-hover.png';
+  clickedHoverImage = '/assets/img/login/box-checked-hover.png';
 
   constructor() {
+    this.currentImage = this.defaultImage;
   }
 
   register() {
@@ -65,4 +73,30 @@ export class RegisterComponent {
     this.register();
     ngForm.resetForm();
   }
+  toggleCheckbox() {
+    this.isChecked = !this.isChecked;
+    this.updateImage();
+  }
+  
+  formGroup = new FormGroup({
+    nameField: new FormControl('', Validators.required),
+    emailField: new FormControl('', [Validators.required, Validators.email]),
+    passwordField: new FormControl('', [Validators.required, Validators.minLength(6)])
+  });
+  onMouseOver() {
+    this.updateImage(true);
+  }
+
+  onMouseOut() {
+    this.updateImage();
+  }
+
+  updateImage(isHovering: boolean = false) {
+    if (this.isChecked) {
+      this.currentImage = isHovering ? this.clickedHoverImage : this.clickedImage;
+    } else {
+      this.currentImage = isHovering ? this.hoverImage : this.defaultImage;
+    }
+  }
+
 }
