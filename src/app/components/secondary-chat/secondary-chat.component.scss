@@ -66,3 +66,7 @@ section {
     opacity: 0.4;
   }
 }
+
+.mirror {
+  transform: scaleX(-1);
+}

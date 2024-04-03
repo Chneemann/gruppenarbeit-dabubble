@@ -17,6 +17,7 @@ export class SingleChatComponent {
   @Input() chat!: Chat | ChatAnswers;
   @Input() index!: number;
   @Input() currentChat!: string;
+  @Input() showAnswer!: boolean;
 
   constructor(public chatService: ChatService) {}
 

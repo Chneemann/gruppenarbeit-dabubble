@@ -20,15 +20,15 @@
         [chat]="chat"
         [index]="i"
         [currentChat]="chat.id"
+        [showAnswer]="false"
       ></app-single-chat>
       }
     </div>
-    }
     <div class="spacer">
-      <p>0 Answers</p>
+      <p>{{ displayCountChatAnswer(chat.id) }} Answers</p>
       <div class="line"></div>
     </div>
-    @for (chat of getChatAnswers(this.chatService.isSecondaryChatId); track
+    } @for (chat of getChatAnswers(this.chatService.isSecondaryChatId); track
     chat; let i = $index) {
     <div [ngClass]="{ mirror: i % 2 !== 0 }">
       @for (user of getChatUsers(chat.userId); track user) {
@@ -37,6 +37,7 @@
         [chat]="chat"
         [index]="i"
         [currentChat]="chat.id"
+        [showAnswer]="false"
       ></app-single-chat>
       }
     </div>

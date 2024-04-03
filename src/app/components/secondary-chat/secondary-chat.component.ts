@@ -31,6 +31,10 @@ export class SecondaryChatComponent {
     public chatService: ChatService
   ) {}
 
+  displayCountChatAnswer(chatId: string) {
+    return this.chatService.getChatAnswers(chatId).length;
+  }
+
   closeSecondaryChat() {
     this.chatService.isSecondaryChatId = '';
   }
