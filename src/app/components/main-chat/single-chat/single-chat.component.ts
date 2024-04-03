@@ -20,6 +20,23 @@ export class SingleChatComponent {
 
   constructor(public chatService: ChatService) {}
 
+  displayCountChatAnswer() {
+    let count: number = 0;
+    let getChatAnswers = this.chatService.getChatAnswers(this.chat.id);
+    for (let i = 0; i < getChatAnswers.length; i++) {
+      count++;
+    }
+    return count;
+  }
+
+  displayLastChatAnswer() {
+    let getChatAnswers = this.chatService.getChatAnswers(this.chat.id);
+    for (let i = 0; i < getChatAnswers.length; i++) {
+      return this.convertTimestamp(getChatAnswers[i].publishedTimestamp);
+    }
+    return;
+  }
+
   convertTimestamp(timestamp: number) {
     let a = new Date(timestamp * 1000);
     let months = [

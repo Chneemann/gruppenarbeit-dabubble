@@ -11,5 +11,11 @@
       <span>{{ convertTimestamp(chat.publishedTimestamp) }}</span>
     </div>
     <div class="msg">{{ chat.message }}</div>
+    @for (chatAnswers of chatService.getChatAnswers(chat.id); track $index) {
+    <div class="answers">
+      <p>{{ displayCountChatAnswer() }} Antworten</p>
+      <span>Letzte Antwort {{ displayLastChatAnswer() }}</span>
+    </div>
+    }
   </div>
 </section>

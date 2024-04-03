@@ -40,6 +40,14 @@ export class ChatService implements OnDestroy {
     });
   }
 
+  getChatAnswers(chatId: string): ChatAnswers[] {
+    chatId = chatId.replace(/\s/g, '');
+    const filteredTasks = this.allChatAnswers.filter(
+      (chat) => chat.chatId == chatId
+    );
+    return filteredTasks;
+  }
+
   ngOnDestroy() {
     this.unsubChat();
     this.unsubChatAnswers();
