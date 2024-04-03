@@ -3,29 +3,33 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { loginService } from '../../../service/login.service';
 import { Firestore, addDoc, collection } from '@angular/fire/firestore';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule,CommonModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
 })
 export class RegisterComponent {
   firestore: Firestore = inject(Firestore);
+  isChecked: boolean = false;
   email: string = '';
   password: string = '';
   name: string = '';
 
   constructor() {
   }
+
   register() {
     const auth = getAuth();
     createUserWithEmailAndPassword(auth, this.email, this.password)
       .then((userCredential) => {
-        // Erfolgreiche Registrierung
+        // erfolgreiche registrierung
         const user = userCredential.user;
-        // Rufen Sie createUserWithFirebase mit dem user-Objekt auf
+        // in backend pushen
         this.createUserWithFirebase(user);
       })
       .catch((error) => {
@@ -34,7 +38,7 @@ export class RegisterComponent {
   }
 
   createUserWithFirebase(user: any) {
-    // Stellen Sie sicher, dass user und user.uid nicht undefined sind
+    //  user und user.uid nicht undefined sonst fehler
     if (!user || !user.uid) {
       console.error('User or user UID is undefined.');
       return;
@@ -56,8 +60,9 @@ export class RegisterComponent {
       });
   }
 
-  onSubmit() {
+  onSubmit(ngForm: NgForm) {
     console.log('Registrierungsversuch mit:', this.email, this.password);
     this.register();
+    ngForm.resetForm();
   }
 }

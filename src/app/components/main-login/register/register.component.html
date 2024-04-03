@@ -1,20 +1,22 @@
-<form (ngSubmit)="onSubmit()" #contactForm="ngForm" class="contactForm">
+<form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm" class="contactForm">
  
-    <!-- <input #name="ngModel" [(ngModel)]="usersData.firstName" id="name" name="name" type="text" placeholder="" required />1
-    @if (!name.valid && name.touched) {
+     <input #nameField="ngModel" [(ngModel)]="name" id="name" name="name" type="text" placeholder="Name und Nachname" required [ngClass]="{'aktivInput': nameField.valid && nameField.touched}" />
+    @if (!nameField.valid && nameField.touched) {
         <p class="error">Name ist erforderlich.</p>
-  } -->
-    <input #emailField="ngModel" [(ngModel)]="email" id="email" name="email"  type="email" placeholder="email" required  pattern="[^@]+@[^.]+..+"/>2
+    }
+    <input #emailField="ngModel" [(ngModel)]="email" id="email" name="email"  type="email" placeholder="email" required [ngClass]="{'aktivInput': emailField.valid && emailField.touched}" pattern="[^@]+@[^.]+..+"/>
     @if (!emailField.valid && emailField.touched) {
+      <p class="error">Email ist erforderlich.</p>
       
   }
-    <input #message="ngModel" minlength="10" [(ngModel)]="password" name="message" placeholder="pw" id="message" cols="30" rows="10" >3
-    @if (!message.valid && message.touched) {
+    <input #passwordField="ngModel" minlength="6" [(ngModel)]="password" name="password" placeholder="Passwort" id="message" required [ngClass]="{'aktivInput': passwordField.valid && passwordField.touched}" cols="30" rows="10" >
+    @if (!passwordField.valid && passwordField.touched) {
+      <p class="error">Passwort ist erforderlich.</p>
 
     }
     <div class="checkBox">
     </div>
-    <button [disabled] >Regestrieren</button> 
+    <button [ngClass]="{'aktivButton': nameField.valid && emailField.valid&& passwordField.valid }">Weiter</button>
     
     
   </form>

@@ -18,10 +18,10 @@ export class LoginComponent {
   name: string = '';
 
   constructor() {}
-  onSubmit(form: NgForm) {
+  onSubmit(ngForm: NgForm) {
     console.log('LogingVersuch mit:', this.email, this.password);
     this.login();
-    // form.resetForm();
+    // ngForm.resetForm();
   }
 
   login() {
