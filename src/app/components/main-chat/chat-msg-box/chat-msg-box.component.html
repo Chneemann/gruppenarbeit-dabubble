@@ -1,10 +1,22 @@
 <section>
   <div [ngClass]="{ posiotionDataFromPc: hasFile, '': !hasFile }">
     @if(hasFile){
-      <div class="fileBox" [ngClass]="{ dBlock: hasFile, dNone: !hasFile }" *ngFor="let file of uploadFiles">
-        <img src=" {{checkIcon(file)}}"  class="fileIcons" (click)="showCurrentFile(file)">
-        <img src="assets/img/closeIcon.svg" class="closeIcon" (click)="deleteFile(file)">
-      </div>
+    <div
+      class="fileBox"
+      [ngClass]="{ dBlock: hasFile, dNone: !hasFile }"
+      *ngFor="let file of uploadFiles"
+    >
+      <img
+        src=" {{ checkIcon(file) }}"
+        class="fileIcons"
+        (click)="showCurrentFile(file)"
+      />
+      <img
+        src="assets/img/closeIcon.svg"
+        class="closeIcon"
+        (click)="deleteFile(file)"
+      />
+    </div>
     }
     <input
       type="file"
@@ -15,7 +27,12 @@
       multiple
     />
   </div>
-  <textarea></textarea>
+  <textarea
+    placeholder="Type your message"
+    type="text"
+    name="textarea"
+    [(ngModel)]="textArea"
+  ></textarea>
   <div class="positionAllIcons">
     <div class="positionSpecialIcons">
       <img
@@ -24,11 +41,22 @@
         (click)="fileInput.click()"
       />
       <img src="assets/img/verticalLine.svg" />
+
+      <!------------------------------------------->
       <img
         src="assets/img/smileIcon.svg"
         class="interactIcons"
-        (click)="addSmaili()"
+        (click)="isEmojiPickerVisible = !isEmojiPickerVisible;"
       />
+      
+      <br /><emoji-mart
+        class="emoji-mart"
+        *ngIf="isEmojiPickerVisible"
+        (emojiSelect)="addEmoji($event)"
+        title="Choose your emoji"
+      ></emoji-mart>
+      <!------------------------------------------->
+
       <img
         src="assets/img/atIcon.svg"
         class="interactIcons"

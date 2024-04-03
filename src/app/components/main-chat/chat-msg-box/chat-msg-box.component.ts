@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { PickerComponent } from '@ctrl/ngx-emoji-mart';
 
 @Component({
   selector: 'app-chat-msg-box',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, PickerComponent],
   templateUrl: './chat-msg-box.component.html',
   styleUrl: './chat-msg-box.component.scss',
 })
@@ -21,6 +22,8 @@ export class ChatMsgBoxComponent {
     'assets/img/pdfIcon.svg',
     'assets/img/videoIcon.svg',
   ];
+  public textArea: string = '';
+  public isEmojiPickerVisible: boolean | undefined;
 
 
   constructor() {}
@@ -70,10 +73,13 @@ export class ChatMsgBoxComponent {
     const url = URL.createObjectURL(blob); // Erstelle einen Objekt-URL für den blon
     window.open(url, '_blank'); // öffne den datei in einem neuen Fenster
   }
-  
-  
 
-  addSmaili() {}
+  
+  public addEmoji(event: any) {
+    this.textArea = `${this.textArea}${event.emoji.native}`;
+    this.isEmojiPickerVisible = false;
+  }
+
 
   targetChetUser() {}
 
