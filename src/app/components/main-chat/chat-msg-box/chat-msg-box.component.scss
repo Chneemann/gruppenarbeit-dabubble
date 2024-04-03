@@ -86,6 +86,7 @@ section {
   width: 12px;
   object-fit: contain;
   cursor: pointer;
+  transition: 0.3s ease-in-out;
   &:hover{
     background-color: red;
     border-radius: 50%;
