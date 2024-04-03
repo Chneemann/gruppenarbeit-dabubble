@@ -21,20 +21,16 @@ export class SingleChatComponent {
   constructor(public chatService: ChatService) {}
 
   displayCountChatAnswer() {
-    let count: number = 0;
-    let getChatAnswers = this.chatService.getChatAnswers(this.chat.id);
-    for (let i = 0; i < getChatAnswers.length; i++) {
-      count++;
-    }
-    return count;
+    return this.chatService.getChatAnswers(this.chat.id).length;
   }
 
   displayLastChatAnswer() {
-    let getChatAnswers = this.chatService.getChatAnswers(this.chat.id);
-    for (let i = 0; i < getChatAnswers.length; i++) {
-      return this.convertTimestamp(getChatAnswers[i].publishedTimestamp);
+    const getChatAnswers = this.chatService.getChatAnswers(this.chat.id);
+    const lastChatAnswer = getChatAnswers[getChatAnswers.length - 1];
+    if (lastChatAnswer) {
+      return this.convertTimestamp(lastChatAnswer.publishedTimestamp);
     }
-    return;
+    return null; // oder was auch immer der Standardwert sein soll, wenn keine Antwort gefunden wurde
   }
 
   convertTimestamp(timestamp: number) {
