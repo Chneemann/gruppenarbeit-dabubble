@@ -83,6 +83,7 @@ export class RegisterComponent {
     emailField: new FormControl('', [Validators.required, Validators.email]),
     passwordField: new FormControl('', [Validators.required, Validators.minLength(6)])
   });
+
   onMouseOver() {
     this.updateImage(true);
   }
