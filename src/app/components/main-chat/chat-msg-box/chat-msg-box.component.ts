@@ -1,7 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { PickerComponent } from '@ctrl/ngx-emoji-mart';
+import { ChatService } from '../../../service/chat.service';
+import { ChannleService } from '../../../service/channle.service';
+import { Firestore, addDoc, collection } from '@angular/fire/firestore';
+
 
 @Component({
   selector: 'app-chat-msg-box',
@@ -25,9 +29,11 @@ export class ChatMsgBoxComponent {
   public textArea: string = '';
   public isEmojiPickerVisible: boolean | undefined;
   showEmojis: boolean = false;
+  currentChetValue: string = '';
+  @Input() currentChannel: string = '';
 
 
-  constructor() {}
+  constructor(private ChatService:ChatService, private ChannleService:ChannleService, private firestore: Firestore) {}
 
 
   onFileChange(event: any) {
@@ -90,5 +96,21 @@ export class ChatMsgBoxComponent {
 
   targetChetUser() {}
 
-  sendMessage() {}
+  
+  async sendMessage() {
+    if (this.currentChannel) {
+      console.log(this.currentChannel);
+      const messageRef = collection(this.firestore, "chats");
+      await addDoc(messageRef, {
+        channelId: this.currentChannel,
+        message:  this.currentChetValue,
+        publishedTimestamp: Math.floor(Date.now() / 1000),
+        attachments: [],
+        userId: "vW6U4ckmoaHEXvhTRlmq"
+      });
+    } else {
+      console.error(this.currentChannel, 'this.currentChannel ist leer');
+    }
+    this.currentChetValue = '';
+  }
 }

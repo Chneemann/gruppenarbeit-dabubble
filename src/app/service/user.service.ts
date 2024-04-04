@@ -38,7 +38,7 @@ export class UserService implements OnDestroy {
     return this.allUsers;
   }
 
-  getCuurentUsers() {
+  getCurentUsers() {
     const filteredUser = this.getUsers().filter(
       (user) => user.id == this.userId
     );
