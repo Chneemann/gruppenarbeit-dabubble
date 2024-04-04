@@ -1,4 +1,116 @@
-.all{
- background-color: rgb(236,238,254); 
- height: 100vh;
+* {
+  font-family: Nunito;
+}
+.avatarSektion {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  padding-left: 16px;
+  padding-right: 16px;
+  background-color: #eceefe;
+}
+.avatarContainer {
+  max-width: 606px;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 30px;
+  box-sizing: border-box;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  gap: 16px;
+  max-height: 669px;
+  height: 100%;
+}
+.avatarTop {
+  margin-top: 16px;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  > span {
+    width: 90%;
+    text-align: center;
+    font-size: 40px;
+    font-weight: 700;
+    padding-right: 48px;
+    color: #444df2;
+  }
+}
+.viewAvatarContainer {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 24px;
+  > img {
+    height: 168px;
+    border-radius: 100%;
+  }
+  > span {
+    font-size: 32px;
+    font-weight: 700;
+  }
+}
+.chooseAvatarContainer {
+    gap: 16px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 8px;
+  > div {
+    display: flex;
+    gap: 10px;
+    > span {
+      font-size: 20px;
+      font-weight: 400;
+    }
+    > img {
+      height: 72px;
+      gap: 10px;
+      border-radius: 100%;
+    }
+  }
+}
+.ownAvatarContainer {
+  display: flex;
+  gap: 32px;
+  > div {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 400;
+  }
+}
+.BtnUpload {
+  background-color: #ffff;
+  color: #444df2;
+  border: 1px solid #444df2;
+  &:hover {
+    background-color: #444df2;
+    color: #ffff;
+  }
+}
+
+.avatarBottom {
+  display: flex;
+  justify-content: end;
+
+  width: 100%;
+}
+
+button {
+  padding: 12px 25px;
+  color: #fff;
+  background-color: #cacad6;
+  outline: none;
+  border: none;
+  box-sizing: border-box;
+  transition: 0.2s;
+  border-radius: 25px;
+  font-size: 18px;
+  font-weight: 600;
 }

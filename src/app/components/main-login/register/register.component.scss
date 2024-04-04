@@ -13,11 +13,6 @@
   background-color: #eceefe;
   // max-width: 1920px; für max width aufbau
 }
-.header {
-  margin: 75px;
-  display: flex;
-  width: 94%;
-}
 .registerContainer {
   max-width: 606px;
   width: 100%;
@@ -34,8 +29,10 @@
   height: 100%;
 }
 .registerTop {
-    margin-top: 32px;
-    margin-bottom: 24px;
+    // margin-top: 32px;   ursprung aber damit beim switchen gleich bleibt mal testen unter hier->
+    // margin-bottom: 24px;
+    margin-top: 16px;
+    margin-bottom: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -139,29 +136,3 @@ button {
   font-weight: 600;
   cursor: pointer;
 }
-.footer{
-    display: flex;
-    justify-content: center;
-    gap: 32px;
-    margin-top: 132px;
-    margin-bottom: 24px;
-    >a{
-        font-size: 18px;
-        font-weight: 400px;
-        text-decoration: none;
-        color: #797ef3;
-        padding-right: 8px;
-        padding: 0px;
-        padding: 4px 12px 4px 12px;
-        border-radius: 100px;
-        border: 1px solid #ECEEFE;
-        &:hover{
-            border: 1px solid #444df2;
-          
-        }
-    }
-}
-.fontColor{
-    cursor: pointer;
-    color: #444df2;
-    }

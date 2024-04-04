@@ -1,4 +1,43 @@
-<div class="all">
-<app-header></app-header>
-<app-footer></app-footer>
+<div class="avatarSektion">
+  <app-header></app-header>
+  <div class="avatarContainer">
+    <div class="avatarTop">
+      <div [routerLink]="['/login']" class="registerBackImg">
+        <app-small-btn
+          [imgSrc]="'login/arrow-back.svg'"
+          [imgSize]="'24px'"
+          [btnSize]="'48px'"
+          [btnBgHoverColor]="'#edeefe'"
+        >
+        </app-small-btn>
+      </div>
+      <span>Wähle deinen Avatar</span>
+    </div>
+
+    <div class="viewAvatarContainer">
+        <img src="/assets/img/charater1.svg" alt="">
+        <span>Fredi Hunse</span>
+    </div>
+
+    <div class="chooseAvatarContainer">
+        <div><span>Aus der Liste wählen</span></div>
+        <div>
+            <img src="/assets/img/charater1.svg" alt="">
+            <img src="/assets/img/charater1.svg" alt="">
+            <img src="/assets/img/charater1.svg" alt="">
+            <img src="/assets/img/charater1.svg" alt="">
+            <img src="/assets/img/charater1.svg" alt="">
+            <img src="/assets/img/charater1.svg" alt="">
+        </div>
+    </div>
+
+    <div class="ownAvatarContainer">
+        <div>eigenes Bild verwenden</div>
+        <div><button class="BtnUpload">Datei hochladen</button></div>
+    </div>
+
+    <div class="avatarBottom">
+        <button>Weiter</button></div>
+  </div>
+  <app-footer></app-footer>
 </div>
