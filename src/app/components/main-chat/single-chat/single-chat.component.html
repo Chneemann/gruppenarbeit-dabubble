@@ -11,7 +11,7 @@
       <span>{{ convertTimestamp(chat.publishedTimestamp) }}</span>
     </div>
     <div class="msg">{{ chat.message }}</div>
-    @if (chatService.getChatAnswers(chat.id) && showAnswer) {
+    @if (chatService.getChatAnswers(chat.id).length > 0 && showAnswer) {
     <div class="answers">
       <p>{{ displayCountChatAnswer() }} Antworten</p>
       <span>Letzte Antwort {{ displayLastChatAnswer() }}</span>
