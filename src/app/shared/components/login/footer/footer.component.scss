@@ -1,0 +1,29 @@
+.footer{
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-top: 132px;
+    margin-bottom: 24px;
+    width: 100vw;
+    position: absolute;
+    bottom: 0;
+    >a{
+        font-size: 18px;
+        font-weight: 400px;
+        text-decoration: none;
+        color: #797ef3;
+        padding-right: 8px;
+        padding: 0px;
+        padding: 4px 12px 4px 12px;
+        border-radius: 100px;
+        border: 1px solid #ECEEFE;
+        &:hover{
+            border: 1px solid #444df2;
+          
+        }
+    }
+}
+.fontColor{
+    cursor: pointer;
+    color: #444df2;
+    }
