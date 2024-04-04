@@ -18,12 +18,11 @@ section {
     resize: none;
     font-family: "Nunito";
     font-size: large;
-    position: relative;
     input{
       position: absolute;
       top: 0;
       left: 0;
-      background-color: blue;
+      background-color: rgb(236, 236, 236);
       width: 10px;
       height: 10px;
     }
@@ -92,6 +91,12 @@ section {
     background-color: red;
     border-radius: 50%;
   }
+}
 
-
+.smileysBackground{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
 }

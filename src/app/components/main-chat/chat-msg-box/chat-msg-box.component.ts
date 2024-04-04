@@ -24,6 +24,7 @@ export class ChatMsgBoxComponent {
   ];
   public textArea: string = '';
   public isEmojiPickerVisible: boolean | undefined;
+  showEmojis: boolean = false;
 
 
   constructor() {}
@@ -78,6 +79,12 @@ export class ChatMsgBoxComponent {
   public addEmoji(event: any) {
     this.textArea = `${this.textArea}${event.emoji.native}`;
     this.isEmojiPickerVisible = false;
+  }
+
+
+  toggleShowEmojis(){
+    this.showEmojis = !this.showEmojis;
+    this.isEmojiPickerVisible = true; 
   }
 
 
