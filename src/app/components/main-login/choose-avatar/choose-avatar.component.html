@@ -17,23 +17,37 @@
     <div class="viewAvatarContainer">
         <img src="/assets/img/charater1.svg" alt="">
         <span>Fredi Hunse</span>
+        
+    </div>
+    <div> 
+        <input
+        type="file"
+        #fileInput
+        id="file"
+        style="display:none"
+        (change)="onFileChange($event)"
+        multiple
+      />
+    </div>
+    <div>
+        <img [src]="avatarSrc" alt="Avatar" style="width: 100px; height: 100px;">
     </div>
 
     <div class="chooseAvatarContainer">
         <div><span>Aus der Liste wählen</span></div>
         <div>
-            <img src="/assets/img/charater1.svg" alt="">
-            <img src="/assets/img/charater1.svg" alt="">
-            <img src="/assets/img/charater1.svg" alt="">
-            <img src="/assets/img/charater1.svg" alt="">
-            <img src="/assets/img/charater1.svg" alt="">
-            <img src="/assets/img/charater1.svg" alt="">
+            <img src="/assets/img/user-icons/female-1.svg" alt="">
+            <img src="/assets/img/user-icons/female-2.svg" alt="">
+            <img src="/assets/img/user-icons/guest.svg" alt="">
+            <img src="/assets/img/user-icons/male-1.svg" alt="">
+            <img src="/assets/img/user-icons/male-2.svg" alt="">
+            <img src="/assets/img/user-icons/male-3.svg" alt="">
         </div>
     </div>
 
     <div class="ownAvatarContainer">
         <div>eigenes Bild verwenden</div>
-        <div><button class="BtnUpload">Datei hochladen</button></div>
+        <div><button class="BtnUpload" (click)="fileInput.click()">Datei hochladen</button></div>
     </div>
 
     <div class="avatarBottom">
