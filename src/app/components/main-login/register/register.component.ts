@@ -6,6 +6,8 @@ import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SmallBtnComponent } from "../../../shared/components/small-btn/small-btn.component";
+import { HeaderComponent } from "../../../shared/components/login/header/header.component";
+import { FooterComponent } from "../../../shared/components/login/footer/footer.component";
 
 
 @Component({
@@ -13,7 +15,7 @@ import { SmallBtnComponent } from "../../../shared/components/small-btn/small-bt
     standalone: true,
     templateUrl: './register.component.html',
     styleUrl: './register.component.scss',
-    imports: [FormsModule, CommonModule, RouterModule, SmallBtnComponent]
+    imports: [FormsModule, CommonModule, RouterModule, SmallBtnComponent, HeaderComponent, FooterComponent]
 })
 export class RegisterComponent {
   firestore: Firestore = inject(Firestore);

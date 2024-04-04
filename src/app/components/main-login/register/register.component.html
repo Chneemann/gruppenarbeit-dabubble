@@ -1,10 +1,7 @@
 <!-- <div class="content">  für max widh aufbau-->
+ 
   <div class="loginSektion">
-   
-    <div class="header">
-        <img src="/assets/img/login/logo.svg" alt="" />
-    </div>
-    
+    <app-header></app-header>
     <div class="registerContainer">
         <div class="registerTop">
           
@@ -69,7 +66,7 @@
             [disabled]="!isChecked || !contactForm.valid ">Weiter</button></div>
         </form>
     </div>
-    
-    <div class="footer"><a [routerLink]="['/Impressum']">Impressum</a><a [routerLink]="['/Datenschutz']">Datenschutz</a></div>
+    <app-footer></app-footer>
 </div>
+
 <!-- </div> -->
