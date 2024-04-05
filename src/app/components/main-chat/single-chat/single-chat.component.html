@@ -8,13 +8,13 @@
   <div class="userContent" [ngClass]="{ mirror: index % 2 !== 0 }">
     <div class="name">
       {{ user.firstName }} {{ user.lastName }}
-      <span>{{ convertTimestamp(chat.publishedTimestamp) }}</span>
+      <span>{{ convertTimestampHour(chat.publishedTimestamp) }}</span>
     </div>
     <div class="msg">{{ chat.message }}</div>
     @if (chatService.getChatAnswers(chat.id).length > 0 && showAnswer) {
     <div class="answers">
-      <p>{{ displayCountChatAnswer() }} Antworten</p>
-      <span>Letzte Antwort {{ displayLastChatAnswer() }}</span>
+      <p>{{ displayCountChatAnswer() }} Answers</p>
+      <span>Last answer: {{ displayLastChatAnswer() }}</span>
     </div>
     }
   </div>

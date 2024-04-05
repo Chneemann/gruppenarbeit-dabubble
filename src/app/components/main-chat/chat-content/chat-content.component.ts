@@ -29,4 +29,43 @@ export class ChatContentComponent {
     private chatService: ChatService,
     private userService: UserService
   ) {}
+
+  convertTimestampDate(timestamp: number) {
+    const currentDate = new Date();
+    const inputDate = new Date(timestamp * 1000);
+
+    const days = [
+      'Sunday',
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday',
+    ];
+    const months = [
+      'Jan.',
+      'Feb.',
+      'Mar.',
+      'Apr.',
+      'May.',
+      'Jun.',
+      'Jul.',
+      'Aug.',
+      'Sep.',
+      'Oct.',
+      'Nov.',
+      'Dec.',
+    ];
+
+    const dayNumber = inputDate.getDate();
+    const day = days[inputDate.getDay()];
+    const month = months[inputDate.getMonth()];
+
+    if (inputDate.toDateString() === currentDate.toDateString()) {
+      return `Today`;
+    } else {
+      return `${day}, ${dayNumber} ${month}`;
+    }
+  }
 }

@@ -1,8 +1,12 @@
 <section>
   @for (chat of getChatChannel(currentChannel); track chat; let i = $index) {
+  @for (user of getChatUsers(chat.userId); track user) {
+  <div class="line">
+    <span class="lines"></span>
+    <p>{{ convertTimestampDate(chat.publishedTimestamp) }}</p>
+    <span class="lines"></span>
+  </div>
   <div [ngClass]="{ mirror: i % 2 !== 0 }">
-    @for (user of getChatUsers(chat.userId); track user) {
-    <div class="line"></div>
     <app-single-chat
       [user]="user"
       [chat]="chat"
@@ -10,8 +14,7 @@
       [currentChat]="chat.id"
       [showAnswer]="true"
     ></app-single-chat>
-    }
   </div>
-  }
+  } }
   <app-chat-msg-box [currentChannel]="currentChannel"></app-chat-msg-box>
 </section>
