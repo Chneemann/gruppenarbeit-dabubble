@@ -49,7 +49,9 @@
   gap: 24px;
   > img {
     height: 168px;
+    width: 168px;
     border-radius: 100%;
+    object-fit: cover;
   }
   > span {
     font-size: 32px;
