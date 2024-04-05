@@ -15,7 +15,7 @@
     </div>
 
     <div class="viewAvatarContainer">
-        <img src="/assets/img/charater1.svg" alt="">
+        <img [src]="avatarSrc" alt="Avatar">
         <span>Fredi Hunse</span>
         
     </div>
@@ -29,19 +29,10 @@
         multiple
       />
     </div>
-    <div>
-        <img [src]="avatarSrc" alt="Avatar" style="width: 100px; height: 100px;">
-    </div>
-
     <div class="chooseAvatarContainer">
         <div><span>Aus der Liste wählen</span></div>
         <div>
-            <img src="/assets/img/user-icons/female-1.svg" alt="">
-            <img src="/assets/img/user-icons/female-2.svg" alt="">
-            <img src="/assets/img/user-icons/guest.svg" alt="">
-            <img src="/assets/img/user-icons/male-1.svg" alt="">
-            <img src="/assets/img/user-icons/male-2.svg" alt="">
-            <img src="/assets/img/user-icons/male-3.svg" alt="">
+          <img (click) ="chooseExistAvatar(i)" *ngFor="let imageSrc of avatarImages let i = index" [src]="imageSrc" alt="">
         </div>
     </div>
 
@@ -51,7 +42,7 @@
     </div>
 
     <div class="avatarBottom">
-        <button>Weiter</button></div>
+        <button (click)="uploadSelectedFile()" >Weiter</button></div>
   </div>
   <app-footer></app-footer>
 </div>
