@@ -3,7 +3,7 @@ import { HeaderComponent } from "../../../shared/components/login/header/header.
 import { FooterComponent } from "../../../shared/components/login/footer/footer.component";
 import { RouterModule } from '@angular/router';
 import { SmallBtnComponent } from "../../../shared/components/small-btn/small-btn.component";
-import { getStorage, ref, uploadBytes  } from "firebase/storage";
+import { getStorage, ref, uploadBytes, getDownloadURL   } from "firebase/storage";
 import { Firestore } from '@angular/fire/firestore';
 @Component({
     selector: 'app-choose-avatar',
@@ -40,11 +40,18 @@ export class ChooseAvatarComponent {
         const storageRef = ref(storage, 'avatars/' + file.name);
         uploadBytes(storageRef, file).then((snapshot) => {
             console.log('Datei hochgeladen!', snapshot);
-            // Hier könnten Sie z.B. die URL des hochgeladenen Bildes abrufen und speichern
-        }).catch((error) => {
-            console.error('Fehler beim Hochladen: ', error);
+            getDownloadURL(ref(storage, 'avatars/' + file.name))
+             .then((url) => {
+                this.avatarSrc = url;  // das bild aktualisieren  
+                console.log('bild url hier', url);
+              })
+              
+            .catch((error) => console.error('Fehler beim Abrufen der Download-URL:', error));
+        })
+        .catch((error) => {
+          console.error('Fehler beim Hochladen:', error);
         });
-    }
+      }
 
     showCurrentFile(file: File) {
         const blob = new Blob([file], { type: file.type }); 
