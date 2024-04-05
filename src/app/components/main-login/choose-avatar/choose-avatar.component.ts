@@ -42,6 +42,7 @@ export class ChooseAvatarComponent {
               this.avatarSrc = e.target.result; // Das gelesene Bild als Avatar setzen
             };
             reader.readAsDataURL(file); // Lesen der Datei als Data URL
+            this.uploadFile(file)
         }
     }
 
@@ -71,5 +72,9 @@ export class ChooseAvatarComponent {
 
       chooseExistAvatar(index: number) {
         this.avatarSrc = this.avatarImages[index]
+        
+      }
+      read(){
+        console.log('das ist drin',this.avatarSrc)
       }
 }
