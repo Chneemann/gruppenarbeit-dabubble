@@ -5,7 +5,8 @@ import { PickerComponent } from '@ctrl/ngx-emoji-mart';
 import { ChatService } from '../../../service/chat.service';
 import { ChannleService } from '../../../service/channle.service';
 import { Firestore, addDoc, collection } from '@angular/fire/firestore';
-import { getStorage, ref, uploadBytes } from '@angular/fire/storage';
+import { getDownloadURL, getStorage, ref, uploadBytes } from '@angular/fire/storage';
+import { DownloadFilesService } from '../../../service/download-files.service';
 
 
 @Component({
@@ -39,8 +40,7 @@ export class ChatMsgBoxComponent {
 
 
   constructor(
-    private ChatService: ChatService,
-    private ChannleService: ChannleService,
+    private downloadFilesService: DownloadFilesService,
     private firestore: Firestore
   ) {}
 
@@ -56,6 +56,7 @@ export class ChatMsgBoxComponent {
     }
   }
 
+
   checkIcon(fileInfo: any) {
     if (fileInfo.type == 'audio/mpeg') {
       return this.getFileIcons[2];
@@ -70,6 +71,7 @@ export class ChatMsgBoxComponent {
     }
   }
 
+
   deleteFile(file: File) {
     const index = this.uploadFiles.indexOf(file);
     if (index !== -1) {
@@ -79,30 +81,35 @@ export class ChatMsgBoxComponent {
     console.log(this.uploadFiles); ///------------------------------------------------------------
   }
 
+
   showCurrentFile(file: File) {
     const blob = new Blob([file], { type: file.type }); // Blob (Binary Large Object)
     const url = URL.createObjectURL(blob); // Erstelle einen Objekt-URL für den blon
     window.open(url, '_blank');
   }
 
+
   public addEmoji(event: any) {
     this.textArea = `${this.textArea}${event.emoji.native}`;
     this.isEmojiPickerVisible = false;
   }
+
 
   toggleShowEmojis() {
     this.showEmojis = !this.showEmojis;
     this.isEmojiPickerVisible = true;
   }
 
+
   targetChetUser() {}
 
+  
   async sendMessage() {
     this.fileUploaded();
     if (this.currentChannel) {
       console.log(this.currentChannel);
       const messageRef = collection(this.firestore, 'chats');
-      const docRef = await addDoc(messageRef, {
+      await addDoc(messageRef, {
         channelId: this.currentChannel,
         message: this.currentChetValue,
         publishedTimestamp: Math.floor(Date.now() / 1000),
@@ -110,7 +117,7 @@ export class ChatMsgBoxComponent {
         // attachments: [{ data: 'base64String', type: 'file/type' }] || [],
         // attachments: [this.loadAllFiles()] || null,
         // attachments: this.uploadFiles.length === 0 ? [] : [await this.loadAllFiles()],
-        attachments: this.uploadFiles.length === 0 ? [await this.loadAllFiles()] : [],
+        // attachments: this.uploadFiles.length === 0 ? [await this.loadAllFiles()] : [],
         // attachments: this.currentChangedFile.length === 0 ? [] : this.currentChangedFile.map((file: { data: any; type: any; }) => ({ data: file.data, type: file.type })),
         userId: 'vW6U4ckmoaHEXvhTRlmq',
       });
@@ -164,15 +171,21 @@ export class ChatMsgBoxComponent {
   // }
 
 
-  loadAllFiles() { // lädt die fails in den firebase storage
-    const storage = getStorage();
-    for (const file of this.uploadFiles) {
-      const storageRef = ref(storage, `${this.currentChannel}/chatFiles/${file.name}`);
-      uploadBytes(storageRef, file).then((snapshot) => {
-        console.log('Uploaded a blob or file!', snapshot);
-      });
-      // return storageRef;
-    }
-  }
+  // loadAllFiles() { // lädt die fails in den firebase storage
+  //   const storage = getStorage();
+  //   for (const file of this.uploadFiles) {
+  //     const storageRef = ref(storage, `${this.currentChannel}/chatFiles/${file.name}`);
+  //     uploadBytes(storageRef, file).then((snapshot) => {
+  //       console.log('Uploaded a blob or file!', snapshot);
+  //       getDownloadURL(ref(storage, `${this.currentChannel}/chatFiles/${file.name}`))
+  //         .then((file) => {
+  //           this.downloadedFile.push(file);  // das bild aktualisieren  
+  //           console.log('file url hier', this.downloadedFile);
+  //         }).catch((error) => console.error('Fehler beim Abrufen der Download-URL:', error));
+  //     });
+  //   }
+  // }
   
+
+
 }
