@@ -20,14 +20,14 @@
         
     </div>
     <div> 
-        <!-- <input
+        <input
         type="file"
         #fileInput
         id="file"
         style="display:none"
-        (change)="uploadFile(uploadFile)"
+        (change)="onFileChange($event)"
         multiple
-      /> -->
+      />
     </div>
     <div>
         <img [src]="avatarSrc" alt="Avatar" style="width: 100px; height: 100px;">
@@ -47,9 +47,7 @@
 
     <div class="ownAvatarContainer">
         <div>eigenes Bild verwenden</div>
-        <label for="fileUpload">Choose a File</label>
-        <input id="fileUpload" type="file" #upload>
-        <div> <button (click)="uploadFile(upload)">Upload</button></div>
+        <div><button class="BtnUpload" (click)="fileInput.click()">Datei hochladen</button></div>
     </div>
 
     <div class="avatarBottom">
