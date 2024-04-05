@@ -5,7 +5,7 @@ import { RegisterComponent } from './components/main-login/register/register.com
 import { ChooseAvatarComponent } from './components/main-login/choose-avatar/choose-avatar.component';
 
 export const routes: Routes = [
-  { path: '', component: MainComponent },
+   { path: '', component: MainComponent },
   { path: 'login', component: MainLoginComponent },
   // { path: 'Impressum', component: RegisterComponent },
   // { path: 'Datenschutz', component: ChooseAvatarComponent },

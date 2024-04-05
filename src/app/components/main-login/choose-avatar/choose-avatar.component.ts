@@ -3,14 +3,18 @@ import { HeaderComponent } from "../../../shared/components/login/header/header.
 import { FooterComponent } from "../../../shared/components/login/footer/footer.component";
 import { RouterModule } from '@angular/router';
 import { SmallBtnComponent } from "../../../shared/components/small-btn/small-btn.component";
-import { getStorage, ref, uploadBytes, getDownloadURL   } from "firebase/storage";
+// import { getStorage, ref, uploadBytes, getDownloadURL   } from "firebase/storage";
 import { Firestore } from '@angular/fire/firestore';
+import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+
+import { Storage, ref, uploadBytesResumable } from '@angular/fire/storage';
 @Component({
     selector: 'app-choose-avatar',
     standalone: true,
     templateUrl: './choose-avatar.component.html',
     styleUrl: './choose-avatar.component.scss',
-    imports: [HeaderComponent, FooterComponent, RouterModule, SmallBtnComponent]
+    imports: [HeaderComponent, FooterComponent, RouterModule, SmallBtnComponent,HttpClientModule,CommonModule]
 })
 
 export class ChooseAvatarComponent {
@@ -19,43 +23,60 @@ export class ChooseAvatarComponent {
     constructor() {
     }
 
-    onFileChange(event: any) {
-        if (event.target.files && event.target.files[0]) {
-            const file = event.target.files[0];
-      
-            // FileReader um die Datei zu lesen
-            const reader = new FileReader();
-            reader.onload = (e: any) => {
-              this.avatarSrc = e.target.result; // Das gelesene Bild als Avatar setzen
-            };
-            reader.readAsDataURL(file); // Lesen der Datei als Data URL
+    private readonly storage: Storage = inject(Storage);
 
-            // Optional: Hochladen der Datei in Firebase Storage
-            this.uploadFile(file);
+    uploadFile(input: HTMLInputElement) {
+        if (!input.files) return
+
+        const files: FileList = input.files;
+
+        for (let i = 0; i < files.length; i++) {
+            const file = files.item(i);
+            if (file) {
+                const storageRef = ref(this.storage, file.name);
+                uploadBytesResumable(storageRef, file);
+            }
         }
     }
-
-    uploadFile(file: File) {
-        const storage = getStorage();
-        const storageRef = ref(storage, 'avatars/' + file.name);
-        uploadBytes(storageRef, file).then((snapshot) => {
-            console.log('Datei hochgeladen!', snapshot);
-            getDownloadURL(ref(storage, 'avatars/' + file.name))
-             .then((url) => {
-                this.avatarSrc = url;  // das bild aktualisieren  
-                console.log('bild url hier', url);
-              })
-              
-            .catch((error) => console.error('Fehler beim Abrufen der Download-URL:', error));
-        })
-        .catch((error) => {
-          console.error('Fehler beim Hochladen:', error);
-        });
-      }
-
-    showCurrentFile(file: File) {
-        const blob = new Blob([file], { type: file.type }); 
-        const url = URL.createObjectURL(blob);
-        window.open(url, '_blank'); // Öffnen der Datei in einem neuen Fenster
-    }
 }
+
+
+
+    // onFileChange(event: any) {
+    //     if (event.target.files && event.target.files[0]) {
+    //         const file = event.target.files[0];
+      
+    //         // FileReader um die Datei zu lesen
+    //         const reader = new FileReader();
+    //         reader.onload = (e: any) => {
+    //           this.avatarSrc = e.target.result; // Das gelesene Bild als Avatar setzen
+    //         };
+    //         reader.readAsDataURL(file); // Lesen der Datei als Data URL
+
+    //         // Optional: Hochladen der Datei in Firebase Storage
+    //         this.uploadFile(file);
+    //     }
+    // }
+
+    // uploadFile(file: File) {
+    //     const storage = getStorage();
+    //     const storageRef = ref(storage, 'avatars/' + file.name);
+    //     uploadBytes(storageRef, file).then((snapshot) => {
+    //         console.log('Datei hochgeladen!', snapshot);
+    //         getDownloadURL(ref(storage, 'avatars/' + file.name))
+    //          .then((url) => {
+    //             this.avatarSrc = url;  // das bild aktualisieren  
+    //             console.log('bild url hier', url);
+    //           })
+    //         .catch((error) => console.error('Fehler beim Abrufen der Download-URL:', error));
+    //     })
+    //     .catch((error) => {
+    //       console.error('Fehler beim Hochladen:', error);
+    //     });
+    //   }
+
+    // showCurrentFile(file: File) {
+    //     const blob = new Blob([file], { type: file.type }); 
+    //     const url = URL.createObjectURL(blob);
+    //     window.open(url, '_blank'); // Öffnen der Datei in einem neuen Fenster
+    // }
