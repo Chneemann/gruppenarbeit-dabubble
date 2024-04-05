@@ -5,6 +5,8 @@ import { PickerComponent } from '@ctrl/ngx-emoji-mart';
 import { ChatService } from '../../../service/chat.service';
 import { ChannleService } from '../../../service/channle.service';
 import { Firestore, addDoc, collection } from '@angular/fire/firestore';
+import { getStorage, ref, uploadBytes } from '@angular/fire/storage';
+
 
 @Component({
   selector: 'app-chat-msg-box',
@@ -32,6 +34,9 @@ export class ChatMsgBoxComponent {
   @Input() currentChannel: string = '';
   base64String: any = '';
   currentChangedFile: any = [];
+  currentAnswer: any;
+  test:any;
+
 
   constructor(
     private ChatService: ChatService,
@@ -47,7 +52,6 @@ export class ChatMsgBoxComponent {
         const fileInfo = this.currentFiles[i];
         this.uploadFiles.push(fileInfo);
         console.log(this.uploadFiles);
-        this.fileUploaded();
       }
     }
   }
@@ -78,7 +82,7 @@ export class ChatMsgBoxComponent {
   showCurrentFile(file: File) {
     const blob = new Blob([file], { type: file.type }); // Blob (Binary Large Object)
     const url = URL.createObjectURL(blob); // Erstelle einen Objekt-URL für den blon
-    window.open(url, '_blank'); // öffne den datei in einem neuen Fenster
+    window.open(url, '_blank');
   }
 
   public addEmoji(event: any) {
@@ -94,47 +98,81 @@ export class ChatMsgBoxComponent {
   targetChetUser() {}
 
   async sendMessage() {
+    this.fileUploaded();
     if (this.currentChannel) {
       console.log(this.currentChannel);
       const messageRef = collection(this.firestore, 'chats');
-      await addDoc(messageRef, {
+      const docRef = await addDoc(messageRef, {
         channelId: this.currentChannel,
         message: this.currentChetValue,
         publishedTimestamp: Math.floor(Date.now() / 1000),
-        attachments: [],
+        // attachments: this.currentChangedFile || [],
+        // attachments: [{ data: 'base64String', type: 'file/type' }] || [],
+        // attachments: [this.loadAllFiles()] || null,
+        // attachments: this.uploadFiles.length === 0 ? [] : [await this.loadAllFiles()],
+        attachments: this.uploadFiles.length === 0 ? [await this.loadAllFiles()] : [],
+        // attachments: this.currentChangedFile.length === 0 ? [] : this.currentChangedFile.map((file: { data: any; type: any; }) => ({ data: file.data, type: file.type })),
         userId: 'vW6U4ckmoaHEXvhTRlmq',
       });
+
+      // this.currentAnswer = docRef;
+      // this.test = this.currentAnswer.data();
+      // console.log('test', this.test);
+      
+
+      console.log('this.currentAnswer',this.currentAnswer);
+      
+      // this.loadAllFiles();
     } else {
       console.error(this.currentChannel, 'this.currentChannel ist leer');
     }
     this.currentChetValue = '';
+    this.uploadFiles = [];
+    this.hasFile = false;
   }
 
 
-  fileUploaded() {
-    this.currentChangedFile = []; // Reset curentChangedFile before processing
-
+  fileUploaded() { // wandelt die files in strings um
+    this.currentChangedFile = []; 
     for (const file of this.uploadFiles) {
       const reader = new FileReader();
-  
       reader.onload = (event: any) => {
         const base64String = event.target.result as string;
-        const convertedFile = {
-          data: base64String.split(',')[1], // Remove data URI prefix
+        const attachment = {
+          data: base64String.split(',')[1],
           type: file.type,
         };
-  
-        this.currentChangedFile.push(convertedFile);
+        this.currentChangedFile.push(attachment);
       };
-  
       reader.readAsDataURL(file);
+    }
+    console.log('current stringified files', this.currentChangedFile);
+  }
+  
+
+
+  // loadAllFiles() {
+  //   if (this.currentChangedFile.length === 0) {
+  //     return []; // Leeres Array zurückgeben, wenn keine Dateien vorhanden sind
+  //   }
+  
+  //   for (let i = 0; i < this.currentChangedFile.length; i++) {
+  //     const fileData = this.currentChangedFile[i].data;
+  //     const fileType = this.currentChangedFile[i].type;
+  //     return { data: fileData, type: fileType }; 
+  //   }
+  // }
+
+
+  loadAllFiles() { // lädt die fails in den firebase storage
+    const storage = getStorage();
+    for (const file of this.uploadFiles) {
+      const storageRef = ref(storage, `${this.currentChannel}/chatFiles/${file.name}`);
+      uploadBytes(storageRef, file).then((snapshot) => {
+        console.log('Uploaded a blob or file!', snapshot);
+      });
+      // return storageRef;
     }
   }
   
-
-  
-
-  displayString() {
-    console.log(this.currentChangedFile, 'Base64String about to be printed');
-  }
 }
