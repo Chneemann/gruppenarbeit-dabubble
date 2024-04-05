@@ -53,7 +53,28 @@ export class SingleChatComponent {
     let year = a.getFullYear();
     let month = months[a.getMonth()];
     let date = a.getDate();
-    let time = month + ' ' + date + ', ' + year;
+    let hour = a.getHours() % 12 || 12;
+    let minute = a.getMinutes().toString();
+    let seconds = a.getSeconds().toString();
+    let period = a.getHours() >= 12 ? 'PM' : 'AM';
+
+    minute = parseInt(minute) < 10 ? '0' + minute : minute;
+    seconds = parseInt(seconds) < 10 ? '0' + seconds : seconds;
+
+    let time =
+      month +
+      ' ' +
+      date +
+      ', ' +
+      year +
+      ' - ' +
+      hour +
+      ':' +
+      minute +
+      ':' +
+      seconds +
+      ' ' +
+      period;
     return time;
   }
 
