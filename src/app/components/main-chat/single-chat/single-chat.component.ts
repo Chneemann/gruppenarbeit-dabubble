@@ -2,14 +2,14 @@ import { Component, Input } from '@angular/core';
 import { User } from '../../../interface/user.interface';
 import { Chat, ChatAnswers } from '../../../interface/chat.interface';
 import { ChatContentComponent } from '../chat-content/chat-content.component';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgSwitchCase } from '@angular/common';
 import { ChatService } from '../../../service/chat.service';
 import { DownloadFilesService } from '../../../service/download-files.service';
 
 @Component({
   selector: 'app-single-chat',
   standalone: true,
-  imports: [ChatContentComponent, CommonModule],
+  imports: [ChatContentComponent, CommonModule, NgSwitchCase],
   templateUrl: './single-chat.component.html',
   styleUrl: './single-chat.component.scss',
 })
@@ -58,4 +58,15 @@ export class SingleChatComponent {
       this.chatService.isSecondaryChatId = chatId;
     }
   }
+
+
+  getFileType(file: string): string {
+    const extension = file.split('.').pop()?.toLowerCase();
+    const getTag = extension!.split('?')[0];
+    if (getTag) {
+      return getTag;
+    }
+    return '';
+  }
+  
 }

@@ -10,7 +10,7 @@
       {{ user.firstName }} {{ user.lastName }}
       <span>{{ convertTimestampHour(chat.publishedTimestamp) }}</span>
     </div>
-    <div class="msg">
+    <div class="msg" (click)="openSecondaryChat(currentChat)">
       {{ chat.message }}
       <!-- Attachments -->
       <ng-container
@@ -22,8 +22,24 @@
             <div class="files">
               <div *ngFor="let file of folder.files">
                 <a href="{{ file }}" target="_blank">
-                  <img src="{{ file }}" alt="" />
-                </a>
+                    @switch (getFileType(file)){
+                      @case ("png") {
+                        <img src="{{ file }}" alt="" class="class"/>
+                      }
+                      @case ("pdf") {
+                        <img src="{{ file }}" class="basicFileLook">`;
+                      }
+                      @case ("mp3") {
+                        <audio controls src="{{ file }}" class="basicFileLook"></audio>
+                      }
+                      @case ("mp4") {
+                        <video controls src="{{ file }}" class="basicFileLook"></video>
+                      }
+                      @default {
+                        <img src="{{ file }}" alt="" class="class"/>
+                      }
+                    }
+                </a> 
               </div>
             </div>
           </div>
