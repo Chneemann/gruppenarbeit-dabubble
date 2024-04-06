@@ -10,7 +10,13 @@
       {{ user.firstName }} {{ user.lastName }}
       <span>{{ convertTimestampHour(chat.publishedTimestamp) }}</span>
     </div>
-    <div class="msg">{{ chat.message }}</div>
+    <div class="msg">{{ chat.message }} <br> 
+
+        @for(file of downloadFilesService.downloadAllFiles(chat.id); track file){
+          {{file}}
+        }
+
+      </div>
     @if (chatService.getChatAnswers(chat.id).length > 0 && showAnswer) {
     <div class="answers">
       <p>{{ displayCountChatAnswer() }} Answers</p>

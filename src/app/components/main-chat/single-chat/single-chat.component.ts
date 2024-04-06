@@ -4,6 +4,7 @@ import { Chat, ChatAnswers } from '../../../interface/chat.interface';
 import { ChatContentComponent } from '../chat-content/chat-content.component';
 import { CommonModule } from '@angular/common';
 import { ChatService } from '../../../service/chat.service';
+import { DownloadFilesService } from '../../../service/download-files.service';
 
 @Component({
   selector: 'app-single-chat',
@@ -19,7 +20,7 @@ export class SingleChatComponent {
   @Input() currentChat!: string;
   @Input() showAnswer!: boolean;
 
-  constructor(public chatService: ChatService) {}
+  constructor(public chatService: ChatService, public downloadFilesService: DownloadFilesService) {}
 
   displayCountChatAnswer() {
     return this.chatService.getChatAnswers(this.chat.id).length;

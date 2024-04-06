@@ -20,7 +20,6 @@ export class ChatMsgBoxComponent {
   hasFile: boolean = false;
   currentFiles!: FileList;
   files: any;
-  uploadFiles: File[] = [];
   getFileIcons = [
     'assets/img/documentIcon.svg',
     'assets/img/imgIcon.svg',
@@ -40,7 +39,7 @@ export class ChatMsgBoxComponent {
 
 
   constructor(
-    private downloadFilesService: DownloadFilesService,
+    public downloadFilesService: DownloadFilesService,
     private firestore: Firestore
   ) {}
 
@@ -50,8 +49,8 @@ export class ChatMsgBoxComponent {
     if (this.currentFiles) {
       for (let i = 0; i < this.currentFiles.length; i++) {
         const fileInfo = this.currentFiles[i];
-        this.uploadFiles.push(fileInfo);
-        console.log(this.uploadFiles);
+        this.downloadFilesService.uploadFiles.push(fileInfo);
+        console.log(this.downloadFilesService.uploadFiles);
       }
     }
   }
@@ -73,12 +72,12 @@ export class ChatMsgBoxComponent {
 
 
   deleteFile(file: File) {
-    const index = this.uploadFiles.indexOf(file);
+    const index = this.downloadFilesService.uploadFiles.indexOf(file);
     if (index !== -1) {
-      this.uploadFiles.splice(index, 1);
-      this.hasFile = this.uploadFiles.length > 0;
+      this.downloadFilesService.uploadFiles.splice(index, 1);
+      this.hasFile = this.downloadFilesService.uploadFiles.length > 0;
     }
-    console.log(this.uploadFiles); ///------------------------------------------------------------
+    console.log(this.downloadFilesService.uploadFiles); ///------------------------------------------------------------
   }
 
 
@@ -103,9 +102,8 @@ export class ChatMsgBoxComponent {
 
   targetChetUser() {}
 
-  
+
   async sendMessage() {
-    this.fileUploaded();
     if (this.currentChannel) {
       console.log(this.currentChannel);
       const messageRef = collection(this.firestore, 'chats');
@@ -113,48 +111,41 @@ export class ChatMsgBoxComponent {
         channelId: this.currentChannel,
         message: this.currentChetValue,
         publishedTimestamp: Math.floor(Date.now() / 1000),
-        // attachments: this.currentChangedFile || [],
-        // attachments: [{ data: 'base64String', type: 'file/type' }] || [],
-        // attachments: [this.loadAllFiles()] || null,
-        // attachments: this.uploadFiles.length === 0 ? [] : [await this.loadAllFiles()],
-        // attachments: this.uploadFiles.length === 0 ? [await this.loadAllFiles()] : [],
-        // attachments: this.currentChangedFile.length === 0 ? [] : this.currentChangedFile.map((file: { data: any; type: any; }) => ({ data: file.data, type: file.type })),
         userId: 'vW6U4ckmoaHEXvhTRlmq',
+      }).then((docID) => {
+        this.downloadFilesService.loadAllFiles(docID.id);
+        console.log('docID.id', docID.id);
       });
-
-      // this.currentAnswer = docRef;
-      // this.test = this.currentAnswer.data();
-      // console.log('test', this.test);
       
 
       console.log('this.currentAnswer',this.currentAnswer);
       
-      // this.loadAllFiles();
+      // this.downloadFilesService.loadAllFiles(this.currentChannel);
     } else {
       console.error(this.currentChannel, 'this.currentChannel ist leer');
     }
     this.currentChetValue = '';
-    this.uploadFiles = [];
+    this.downloadFilesService.uploadFiles = [];
     this.hasFile = false;
   }
 
 
-  fileUploaded() { // wandelt die files in strings um
-    this.currentChangedFile = []; 
-    for (const file of this.uploadFiles) {
-      const reader = new FileReader();
-      reader.onload = (event: any) => {
-        const base64String = event.target.result as string;
-        const attachment = {
-          data: base64String.split(',')[1],
-          type: file.type,
-        };
-        this.currentChangedFile.push(attachment);
-      };
-      reader.readAsDataURL(file);
-    }
-    console.log('current stringified files', this.currentChangedFile);
-  }
+  // fileUploaded() { // wandelt die files in strings um
+  //   this.currentChangedFile = []; 
+  //   for (const file of this.downloadFilesService.uploadFiles) {
+  //     const reader = new FileReader();
+  //     reader.onload = (event: any) => {
+  //       const base64String = event.target.result as string;
+  //       const attachment = {
+  //         data: base64String.split(',')[1],
+  //         type: file.type,
+  //       };
+  //       this.currentChangedFile.push(attachment);
+  //     };
+  //     reader.readAsDataURL(file);
+  //   }
+  //   console.log('current stringified files', this.currentChangedFile);
+  // }
   
 
 

@@ -4,7 +4,7 @@
       <div
         class="fileBox"
         [ngClass]="{ dBlock: hasFile, dNone: !hasFile }"
-        *ngFor="let file of uploadFiles"
+        *ngFor="let file of this.downloadFilesService.uploadFiles"
       >
         <img
           src=" {{ checkIcon(file) }}"
@@ -42,7 +42,6 @@
         (click)="fileInput.click()"
       />
       <img src="assets/img/verticalLine.svg" />
-      <button (click)="fileUploaded()">X</button>
       <img
         src="assets/img/smileIcon.svg"
         class="interactIcons"
