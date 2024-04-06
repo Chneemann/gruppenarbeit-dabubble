@@ -2,6 +2,7 @@ import { Injectable, Input } from '@angular/core';
 import {
   getDownloadURL,
   getStorage,
+  listAll,
   ref,
   uploadBytes,
 } from '@angular/fire/storage';
@@ -12,8 +13,9 @@ import {
 export class DownloadFilesService {
   uploadFiles: File[] = [];
   downloadedFile: any = [];
-  constructor() {}
-
+  constructor() {
+    console.log(this.displayAllFiles('q9Ptk7r7DjFdn2Nf0o94'));
+  }
 
   loadAllFiles(docID: string) {
     // lädt die fails in den firebase storage
@@ -26,22 +28,28 @@ export class DownloadFilesService {
     }
   }
 
-  downloadAllFiles(docID: string) {
+  displayAllFiles(docID: string) {
     const storage = getStorage();
-    getDownloadURL(ref(storage, `chatFiles/${docID}/`))
-    .then((file) => {
-      // const test = { id: docID};
-      // this.downloadedFile.push(test: {file});  // das bild aktualisieren
-      // const downloadedFilesMap = new Map();
-      // downloadedFilesMap.set(docID, [file]);
-      let allFiles = file;
-      // this.downloadedFile = downloadedFilesMap;
-      // this.filterChetID(docID);
-      console.log('file url hier', this.downloadedFile);
-      return allFiles;
-    })
-    .catch((error) =>
-      console.error('Fehler beim Abrufen der Download-URL:', error));
-      return '';
+    const listRef = ref(storage, 'chatFiles/' + docID);
+    listAll(listRef)
+      .then((res) => {
+        res.items.forEach((itemRef) => {
+          return this.downloadFile(itemRef.name, docID);
+        });
+      })
+      .catch((error) => {
+        console.error('Fehler beim Abrufen der Download-URL:', error);
+      });
+  }
+
+  downloadFile(file: string, docID: string) {
+    const storage = getStorage();
+    getDownloadURL(ref(storage, 'chatFiles/' + docID + '/' + file))
+      .then((url) => {
+        console.log(url);
+      })
+      .catch((error) => {
+        console.error('Fehler beim Abrufen der Download-URL:', error);
+      });
   }
 }
