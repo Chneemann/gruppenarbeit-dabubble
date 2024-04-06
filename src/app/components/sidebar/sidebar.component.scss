@@ -9,7 +9,6 @@ section {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 24px;
   .logo {
     display: flex;
     justify-content: left;
@@ -27,4 +26,10 @@ section {
       font-weight: 700;
     }
   }
+}
+
+.channels,
+.directMessages,
+.headline {
+  padding: 36px 36px 0 36px;
 }
