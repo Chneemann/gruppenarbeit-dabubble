@@ -11,6 +11,7 @@ section {
   border-bottom-right-radius: 24px;
   background-color: #fff;
   box-shadow: 10px 5px 5px rgba($color: #000000, $alpha: 0.2);
+  z-index: 1;
   cursor: pointer;
   &:hover {
     box-shadow: 10px 5px 5px rgba($color: #000000, $alpha: 0.3);

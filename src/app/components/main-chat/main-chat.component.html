@@ -7,7 +7,7 @@
       <img src="./../../../../assets/img/keyboardArrowDown.svg" alt="" />
     </div>
   </div>
-  <!-- CHAT CONTENT-->
+  <!-- Chat content -->
   <app-chat-content
     [getChatChannel]="getChatChannel"
     [getChatUsers]="getChatUsers"
@@ -17,7 +17,7 @@
   >
   </app-chat-content>
   }
-
+  <!-- Channel description dialog -->
   <div
     class="menu"
     [ngClass]="{ dBlock: openMenu, dNone: !openMenu }"
@@ -47,7 +47,6 @@
         </div>
         }
       </div>
-
       <div class="contentChannel">
         @for (channel of getChannelName(currentChannel); track channel) {
         <div class="contentHeadline">
