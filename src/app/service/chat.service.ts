@@ -1,5 +1,11 @@
 import { Injectable, OnDestroy, inject } from '@angular/core';
-import { Firestore, collection, onSnapshot } from '@angular/fire/firestore';
+import {
+  Firestore,
+  collection,
+  onSnapshot,
+  orderBy,
+  query,
+} from '@angular/fire/firestore';
 import { Chat, ChatAnswers } from '../interface/chat.interface';
 
 @Injectable({
@@ -21,7 +27,12 @@ export class ChatService implements OnDestroy {
   }
 
   subChatList() {
-    return onSnapshot(collection(this.firestore, 'chats'), (list) => {
+    const queryRef = query(
+      collection(this.firestore, 'chats'),
+      orderBy('publishedTimestamp')
+    );
+
+    return onSnapshot(queryRef, (list) => {
       this.allChats = [];
       list.forEach((element) => {
         const chatWithId = { id: element.id, ...element.data() } as Chat;

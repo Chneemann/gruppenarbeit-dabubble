@@ -20,7 +20,12 @@ export class SingleChatComponent {
   @Input() currentChat!: string;
   @Input() showAnswer!: boolean;
 
-  constructor(public chatService: ChatService, public downloadFilesService: DownloadFilesService) {}
+  downloadedFiles: string[] = [];
+
+  constructor(
+    public chatService: ChatService,
+    public downloadFilesService: DownloadFilesService
+  ) {}
 
   displayCountChatAnswer() {
     return this.chatService.getChatAnswers(this.chat.id).length;

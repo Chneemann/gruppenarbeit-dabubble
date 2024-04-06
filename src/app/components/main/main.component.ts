@@ -8,6 +8,7 @@ import { SecondaryChatComponent } from '../secondary-chat/secondary-chat.compone
 import { ChatService } from '../../service/chat.service';
 import { ChannleService } from '../../service/channle.service';
 import { SidebarToggleComponent } from '../sidebar/sidebar-toggle/sidebar-toggle.component';
+import { DownloadFilesService } from '../../service/download-files.service';
 
 @Component({
   selector: 'app-landing-page',

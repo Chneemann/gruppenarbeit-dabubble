@@ -1,4 +1,4 @@
-import { Injectable, Input } from '@angular/core';
+import { Injectable, Input, OnInit } from '@angular/core';
 import {
   getDownloadURL,
   getStorage,
@@ -6,15 +6,20 @@ import {
   ref,
   uploadBytes,
 } from '@angular/fire/storage';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DownloadFilesService {
   uploadFiles: File[] = [];
-  downloadedFile: any = [];
+  downloadedFiles: BehaviorSubject<{ id: string; files: string[] }[]> =
+    new BehaviorSubject<{ id: string; files: string[] }[]>([]);
+
+  fileNames: any[] = [];
+
   constructor() {
-    console.log(this.displayAllFiles('q9Ptk7r7DjFdn2Nf0o94'));
+    this.listAllFiles();
   }
 
   loadAllFiles(docID: string) {
@@ -28,28 +33,33 @@ export class DownloadFilesService {
     }
   }
 
-  displayAllFiles(docID: string) {
+  listAllFiles() {
     const storage = getStorage();
-    const listRef = ref(storage, 'chatFiles/' + docID);
-    listAll(listRef)
-      .then((res) => {
-        res.items.forEach((itemRef) => {
-          return this.downloadFile(itemRef.name, docID);
-        });
-      })
-      .catch((error) => {
-        console.error('Fehler beim Abrufen der Download-URL:', error);
-      });
-  }
+    const listRef2 = ref(storage, 'chatFiles');
 
-  downloadFile(file: string, docID: string) {
-    const storage = getStorage();
-    getDownloadURL(ref(storage, 'chatFiles/' + docID + '/' + file))
-      .then((url) => {
-        console.log(url);
+    listAll(listRef2)
+      .then(async (res) => {
+        const downloadedFilesData: { id: string; files: string[] }[] = [];
+
+        for (const folderRef of res.prefixes) {
+          const folderID = folderRef.name;
+          const folderFiles = [];
+
+          const folderRes = await listAll(folderRef);
+
+          for (const fileRef of folderRes.items) {
+            const url = await getDownloadURL(fileRef);
+            folderFiles.push(url);
+          }
+
+          downloadedFilesData.push({ id: folderID, files: folderFiles });
+        }
+
+        // Emit the updated value
+        this.downloadedFiles.next(downloadedFilesData);
       })
       .catch((error) => {
-        console.error('Fehler beim Abrufen der Download-URL:', error);
+        console.error('Fehler beim Abrufen der Dateien:', error);
       });
   }
 }

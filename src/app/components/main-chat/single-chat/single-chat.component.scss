@@ -66,3 +66,16 @@ section {
     font-weight: 400;
   }
 }
+
+.attachments {
+  img {
+    width: auto;
+    height: 80px;
+    margin: 12px;
+    border: 1px solid #000;
+  }
+}
+
+.files {
+  display: flex;
+}

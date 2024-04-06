@@ -10,7 +10,26 @@
       {{ user.firstName }} {{ user.lastName }}
       <span>{{ convertTimestampHour(chat.publishedTimestamp) }}</span>
     </div>
-    <div class="msg">{{ chat.message }} <br /></div>
+    <div class="msg">
+      {{ chat.message }}
+      <!-- Attachments -->
+      <ng-container
+        *ngIf="downloadFilesService.downloadedFiles | async as files"
+      >
+        <div class="attachments" *ngFor="let folder of files">
+          <div *ngIf="chat.id == folder.id">
+            <br /><i>Attachments:</i><br />
+            <div class="files">
+              <div *ngFor="let file of folder.files">
+                <a href="{{ file }}" target="_blank">
+                  <img src="{{ file }}" alt="" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
     @if (chatService.getChatAnswers(chat.id).length > 0 && showAnswer) {
     <div class="answers">
       <p>{{ displayCountChatAnswer() }} Answers</p>
