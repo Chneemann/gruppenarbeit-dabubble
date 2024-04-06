@@ -12,7 +12,6 @@ import { SidebarToggleComponent } from './sidebar-toggle/sidebar-toggle.componen
     SidebarChannelsComponent,
     SidebarDirectMessagesComponent,
     SmallBtnComponent,
-    SidebarToggleComponent,
   ],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss',

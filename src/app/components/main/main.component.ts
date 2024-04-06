@@ -6,6 +6,8 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
 import { MainChatComponent } from '../main-chat/main-chat.component';
 import { SecondaryChatComponent } from '../secondary-chat/secondary-chat.component';
 import { ChatService } from '../../service/chat.service';
+import { ChannleService } from '../../service/channle.service';
+import { SidebarToggleComponent } from '../sidebar/sidebar-toggle/sidebar-toggle.component';
 
 @Component({
   selector: 'app-landing-page',
@@ -16,6 +18,7 @@ import { ChatService } from '../../service/chat.service';
     SidebarComponent,
     MainChatComponent,
     SecondaryChatComponent,
+    SidebarToggleComponent,
   ],
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss',
@@ -24,11 +27,13 @@ export class MainComponent {
   constructor(
     public userService: UserService,
     public chatService: ChatService,
+    public channelService: ChannleService,
     private route: Router,
     private router: ActivatedRoute
   ) {}
 
   currentChannel: string = '';
+  isSidebarOpen: boolean = true;
 
   ngOnInit() {
     this.ifUserLogin();

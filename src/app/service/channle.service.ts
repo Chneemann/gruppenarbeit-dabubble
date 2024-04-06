@@ -9,6 +9,7 @@ export class ChannleService implements OnDestroy {
   firestore: Firestore = inject(Firestore);
 
   allChannels: Channel[] = [];
+  isSidebarOpen: boolean = true;
 
   unsubChannel;
 
