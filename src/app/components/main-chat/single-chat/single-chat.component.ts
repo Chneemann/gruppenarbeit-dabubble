@@ -5,11 +5,14 @@ import { ChatContentComponent } from '../chat-content/chat-content.component';
 import { CommonModule, NgSwitchCase } from '@angular/common';
 import { ChatService } from '../../../service/chat.service';
 import { DownloadFilesService } from '../../../service/download-files.service';
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
+
+
 
 @Component({
   selector: 'app-single-chat',
   standalone: true,
-  imports: [ChatContentComponent, CommonModule, NgSwitchCase],
+  imports: [ChatContentComponent, CommonModule, NgSwitchCase, NgxExtendedPdfViewerModule],
   templateUrl: './single-chat.component.html',
   styleUrl: './single-chat.component.scss',
 })

@@ -22,24 +22,31 @@
             <div class="files">
               <div *ngFor="let file of folder.files">
                 <a href="{{ file }}" target="_blank">
-                    @switch (getFileType(file)){
-                      @case ("png") {
-                        <img src="{{ file }}" alt="" class="class"/>
-                      }
-                      @case ("pdf") {
-                        <img src="{{ file }}" class="basicFileLook">`;
-                      }
-                      @case ("mp3") {
-                        <audio controls src="{{ file }}" class="basicFileLook"></audio>
-                      }
-                      @case ("mp4") {
-                        <video controls src="{{ file }}" class="basicFileLook"></video>
-                      }
-                      @default {
-                        <img src="{{ file }}" alt="" class="class"/>
-                      }
-                    }
-                </a> 
+                  @switch (getFileType(file)){ @case ("png") {
+                  <img src="{{ file }}" alt="" class="basicFileLookHover" />
+                  } @case ("pdf") {
+                  <!-- <img src="{{ file }}" class="basicFileLook">`; -->
+                  <!-- <embed src="{{ file }}" class="basicFileLookHover" type="application/pdf"/> -->
+                  <!-- <embed type="application/pdf" src="{{ file }}" class="basicFileLook" alt="pdf" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html" background-color="0xFF525659" top-toolbar-height="56" full-frame="" internalinstanceid="21" title="CHROME"> -->
+                    <!-- <ngx-extended-pdf-viewer src="{{ file }}" class="basicFileLook"></ngx-extended-pdf-viewer> -->
+                    <!-- <embed src="{{ file }}" type="application/pdf" class="basicFileLookHover"> -->
+                    <!-- <ngx-extended-pdf-viewer src="{{ file }}" class="pdfPreViewer"></ngx-extended-pdf-viewer> --> <!--führe => npm install ngx-extended-pdf-viewer --save  <= aus ums anzuzeigen-->
+                    <iframe src="{{ file }}" class="basicFileLookHover" frameborder="0"></iframe>
+
+                  } @case ("mp3") {
+                  <video class="audioLook" name="media" controls="controls">
+                    <source src="{{ file }}" type="video/mp4" />
+                  </video>
+                  } @case ("mp4") {
+                  <video
+                    controls
+                    src="{{ file }}"
+                    class="basicFileLook"
+                  ></video>
+                  } @default {
+                  <img src="{{ file }}" alt="" class="basicFileLookHover" />
+                  } }
+                </a>
               </div>
             </div>
           </div>
