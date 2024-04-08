@@ -1,9 +1,13 @@
+@import '../../../../styles.scss';
+
 section {
   display: flex;
   padding: 24px 48px;
   cursor: pointer;
+
   &:hover {
     background-color: #edeefe;
+
     .userContent {
       .msg {
         background-color: #fff;
@@ -14,6 +18,7 @@ section {
 
 .userAvatar {
   padding-right: 24px;
+
   img {
     width: 70px;
     height: 70px;
@@ -27,12 +32,14 @@ section {
     align-items: center;
     font-size: 18px;
     font-weight: 700;
+
     span {
       font-size: 14px;
       font-weight: 400;
       margin-left: 12px;
     }
   }
+
   .msg {
     margin-top: 6px;
     padding: 12px;
@@ -47,6 +54,7 @@ section {
 
 .mirror {
   transform: scaleX(-1);
+
   .msg {
     background-color: #797ef3 !important;
   }
@@ -56,10 +64,12 @@ section {
   display: flex;
   align-items: center;
   margin-top: 12px;
+
   p {
     font-size: 18px;
     font-weight: 400;
   }
+
   span {
     padding-left: 12px;
     font-size: 14px;
@@ -68,33 +78,66 @@ section {
 }
 
 .attachments {
-  .basicFileLookHover {
-    cursor: pointer;
-    width: auto;
+  a {
     height: 80px;
-    margin: 12px;
-    border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
-    transition: 0.3s ease-in-out;
-    &:hover{
-      scale: 1.1;
+
+    .basicFileLookHover {
+      cursor: pointer;
+      width: auto;
+      height: 80px;
+      margin: 12px;
+      border-radius: 10px;
+      box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+      transition: 0.3s ease-in-out;
+
+      &:hover {
+        scale: 1.1;
+      }
     }
-  }
-  .basicFileLook {
-    cursor: pointer;
-    width: auto;
-    height: 80px;
-    margin: 12px;
-    border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
-  }
-  .audioLook{
-    height: 80px;
-    min-width: 280px;
-  }
-  .pdfPreViewer{
-    height: 120px;
-    width: 300px;
+
+    .basicFileLook {
+      cursor: pointer;
+      width: auto;
+      height: 80px;
+      margin: 12px;
+      border-radius: 10px;
+      box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    }
+
+    .audioLook {
+      cursor: pointer;
+      height: 80px;
+      min-width: 280px;
+    }
+    .pdfDiv{
+      @include displayFlex();
+      flex-direction: column;
+      .pdfPreViewer {
+        cursor: pointer;
+        width: auto;
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+      }
+      button {
+        width: 84px;
+        height: 29px;
+        background-color: white;
+        border: none;
+        border-radius: 25px;
+        font-size: small;
+        color: #444DF2;
+        transition: 0.3s ease-in-out;
+        box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+        text-decoration: none !important;
+        outline: none !important;
+        margin-top: 12px;
+        &:hover {
+          background-color: #444DF2;
+          color: white;
+          cursor: pointer;
+        }
+      }
+    }
   }
 }
 

@@ -79,4 +79,5 @@ export class SingleChatComponent {
     return this.sanitizer.bypassSecurityTrustResourceUrl(file);
   }
   
+  
 }
