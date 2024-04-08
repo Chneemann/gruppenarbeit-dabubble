@@ -6,6 +6,7 @@ import { CommonModule, NgSwitchCase } from '@angular/common';
 import { ChatService } from '../../../service/chat.service';
 import { DownloadFilesService } from '../../../service/download-files.service';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
+import { DomSanitizer } from '@angular/platform-browser';
 
 
 
@@ -22,12 +23,14 @@ export class SingleChatComponent {
   @Input() index!: number;
   @Input() currentChat!: string;
   @Input() showAnswer!: boolean;
+  trustedUrl: string = '';
 
   downloadedFiles: string[] = [];
 
   constructor(
     public chatService: ChatService,
-    public downloadFilesService: DownloadFilesService
+    public downloadFilesService: DownloadFilesService,
+    public sanitizer: DomSanitizer
   ) {}
 
   displayCountChatAnswer() {
@@ -66,10 +69,14 @@ export class SingleChatComponent {
   getFileType(file: string): string {
     const extension = file.split('.').pop()?.toLowerCase();
     const getTag = extension!.split('?')[0];
-    if (getTag) {
+    if (getTag) { 
       return getTag;
     }
     return '';
+  }
+
+  getSafeFileUrl(file: string) {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(file);
   }
   
 }
