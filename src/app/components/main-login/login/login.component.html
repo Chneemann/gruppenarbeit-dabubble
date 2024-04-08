@@ -2,15 +2,15 @@
  
   <div class="loginSektion">
     <app-header></app-header>
-    <div class="registerContainer">
-        <div class="registerTop">
+    <div class="loginContainer">
+        <div class="loginTop">
           
-            <div [routerLink]="['/login']" class="registerBackImg">
+            <div [routerLink]="['/login']" class="loginBackImg">
            
             </div>
             <span>Anmeldung</span>
         </div>
-        <div class="registerInfoText">
+        <div class="loginInfoText">
           <span>Wir empfehlen dir, die E-Mail-Adresse zu nutzen, die du bei der Arbeit verwendest.</span>
         </div>
         <form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm" class="contactForm">
@@ -54,12 +54,19 @@
             </div>
 
 
-             <div class="registerBottom">
+             <div class="loginBottom">
                <button [ngClass]="{'aktivButton':  contactForm.valid}" 
                [disabled]="  !contactForm.valid ">Anmelden</button>
                <button class="guestButton" >Gäste-Login</button>
              </div>
         </form>
+    </div>
+    <div class="registerContainer">
+      <div>
+        <span>Neu bei DABubble?</span>
+        <div class="createAccountContainer"><span class="createAccoun">Konto erstellen</span>
+        </div></div>
+
     </div>
     <app-footer></app-footer>
 </div>

@@ -1,4 +1,3 @@
-
 // .content{
 // display: flex;
 // justify-content: center;
@@ -14,7 +13,7 @@
   background-color: #eceefe;
   // max-width: 1920px; für max width aufbau
 }
-.registerContainer {
+.loginContainer {
   max-width: 606px;
   width: 100%;
   background-color: #fff;
@@ -29,7 +28,7 @@
   max-height: 690px;
   height: 100%;
 }
-.registerTop {
+.loginTop {
   // margin-top: 32px;   ursprung aber damit beim switchen gleich bleibt mal testen unter hier->
   // margin-bottom: 24px;
   margin-bottom: 8px;
@@ -47,10 +46,10 @@
   }
 }
 
-.registerBackImg {
+.loginBackImg {
   cursor: pointer;
 }
-.registerInfoText {
+.loginInfoText {
   margin-bottom: 24px;
   text-align: center;
   max-width: 486px;
@@ -80,11 +79,11 @@
   background: #eceefe;
   height: 60px;
   border-radius: 100px;
-  &:hover{
-    border: 1px solid#686868
+  &:hover {
+    border: 1px solid#686868;
   }
   &:focus {
-    border: 1px solid  #444df2;;
+    border: 1px solid #444df2;
   }
 }
 .error {
@@ -102,8 +101,11 @@
   margin-bottom: 32px;
   margin-top: 40px;
   > span {
+    font-family: Figtree, sans-serif, Nunito;
+    color: #797ef3;
     &:hover {
-      font-weight: 700;
+      cursor: pointer;
+      font-weight: 500;
       background-color: #eceefe;
       padding: 12px 16px 12px 16px;
       border-radius: 100px;
@@ -119,7 +121,7 @@
   font-size: 18px;
   margin-bottom: 32px;
   > div {
-    border: 1px solid #ADB0D9;
+    border: 1px solid #adb0d9;
     width: 42%;
     height: 0px;
     display: flex;
@@ -141,14 +143,15 @@
   height: 60px;
   border-radius: 100px;
   color: rgba(121, 126, 243, 1);
-  &:hover{
+  &:hover {
     font-weight: 700;
     border: 1px solid #444df2;
     color: #444df2;
+    cursor: pointer;
   }
 }
 
-.registerBottom {
+.loginBottom {
   display: flex;
   justify-content: center;
   margin-top: 32px;
@@ -179,25 +182,63 @@ button {
   font-size: 18px;
   font-weight: 600;
   cursor: pointer;
-  &:hover{
+  &:hover {
     filter: brightness(1.6);
+  }
 }
+.guestButton {
+  padding: 12px 25px;
+  color: #444df2;
+  background-color: #ffff;
+  border: 1px solid #444df2;
+  outline: none;
+  box-sizing: border-box;
+  transition: 0.2s;
+  border-radius: 25px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  &:hover {
+    background-color: #444df2;
+    color: #fff;
+    border: 1px solid #ffff;
+  }
 }
-.guestButton{
-    padding: 12px 25px;
-    color: #444df2;
-    background-color: #ffff;
-    border: 1px solid #444df2;
-    outline: none;
-    box-sizing: border-box;
-    transition: 0.2s;
-    border-radius: 25px;
-    font-size: 18px;
-    font-weight: 600;
-    cursor: pointer;
-    &:hover{
-        background-color: #444df2;
-        color: #fff;
-        border: 1px solid #ffff;
+.registerContainer {
+  position: absolute;
+  right: 0;
+  margin: 76px;
+  > div {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    > span {
+      font-weight: 400;
+      font-size: 18px;
     }
+  }
+}
+.createAccountContainer {
+  display: flex;
+  justify-content: end;
+}
+.createAccoun {
+  text-align: end;
+  font-family: Figtree, sans-serif, Nunito;
+  color: #797ef3;
+  cursor: pointer;
+  padding-right: 8px;
+  padding: 0px;
+  padding: 4px 12px 4px 12px;
+  border-radius: 100px;
+  border: 1px solid #eceefe;
+  font-weight: 400;
+  font-size: 18px;
+  margin-right: -13px;
+  &:hover {
+    font-weight: 500;
+    background-color: #eceefe;
+    color: #444df2;
+    border: 1px solid #444df2;
+  }
 }
