@@ -59,10 +59,10 @@
   }
 }
 .chooseAvatarContainer {
-    gap: 16px;
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 8px;
+  gap: 16px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 8px;
   > div {
     display: flex;
     gap: 10px;
@@ -116,7 +116,9 @@ button {
   font-size: 18px;
   font-weight: 600;
   cursor: pointer;
-  &:hover{
-    filter: brightness(1.6);
 }
+.hoverBtn {
+  &:hover {
+    background-color: #676eec;
+  }
 }
