@@ -1,7 +1,7 @@
 <section (click)="openSecondaryChat(currentChat)">
   <div class="userAvatar">
     <img
-      src="./../../../../assets/img/user-icons/{{ user.avatar }}.svg"
+      src="assets/img/user-icons/{{ user.avatar }}.svg"
       alt=""
     />
   </div>
@@ -25,15 +25,7 @@
                   @switch (getFileType(file)){ @case ("png") {
                   <img src="{{ file }}" alt="" class="basicFileLookHover" />
                   } @case ("pdf") {
-                    <!-- <img src="{{ file }}" class="basicFileLook">`; -->
-                    <!-- <object type="application/pdf" data="{{ file }}" class="basicFileLookHover"></object> -->
-                    <!-- <embed src="{{ file }}" class="basicFileLookHover" type="application/pdf"/> -->
-                    <!-- <embed type="application/pdf" src="{{ file }}" class="basicFileLook" alt="pdf" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html" background-color="0xFF525659" top-toolbar-height="56" full-frame="" internalinstanceid="21" title="CHROME"> -->
-                    <!-- <ngx-extended-pdf-viewer src="{{ file }}" class="basicFileLook"></ngx-extended-pdf-viewer> -->
-                    <!-- <embed src="{{ file }}" type="application/pdf" class="basicFileLookHover"> -->
-                    <!-- <ngx-extended-pdf-viewer src="{{ file }}" class="pdfPreViewer"></ngx-extended-pdf-viewer> --> <!--führe => npm install ngx-extended-pdf-viewer --save  <= aus ums anzuzeigen-->
-                    <iframe src="{{ file }}" class="basicFileLookHover" frameborder="0"></iframe>
-
+                    <iframe [src]="getSafeFileUrl(file)"  class="basicFileLookHover"></iframe>
                   } @case ("mp3") {
                   <video class="audioLook" name="media" controls="controls">
                     <source src="{{ file }}" type="video/mp4" />
