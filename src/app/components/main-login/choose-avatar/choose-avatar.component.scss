@@ -107,7 +107,7 @@
 button {
   padding: 12px 25px;
   color: #fff;
-  background-color: #cacad6;
+  background-color: #444df2;
   outline: none;
   border: none;
   box-sizing: border-box;
@@ -115,4 +115,8 @@ button {
   border-radius: 25px;
   font-size: 18px;
   font-weight: 600;
+  cursor: pointer;
+  &:hover{
+    filter: brightness(1.6);
+}
 }

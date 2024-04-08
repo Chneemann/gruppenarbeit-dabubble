@@ -73,7 +73,7 @@
 }
 .inputField {
   padding-left: 60px;
-  border: 1px solid #444df2;
+  border: 1px solid #ffff;
   font-size: 18px;
   font-weight: 500;
   outline: none;
@@ -82,7 +82,14 @@
   background: #eceefe;
   height: 60px;
   border-radius: 100px;
+  &:hover{
+    border: 1px solid#686868
+  }
+  &:focus {
+    border: 1px solid  #444df2;;
+  }
 }
+
 .error{
     position: absolute;
     margin: 4px;
@@ -128,4 +135,7 @@ button {
   font-size: 18px;
   font-weight: 600;
   cursor: pointer;
+  &:hover{
+    filter: brightness(1.6);
+}
 }
