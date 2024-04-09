@@ -1,7 +1,7 @@
 <section>
   <div class="headline">
     <div class="logo">
-      <img src="./../../../assets/img/sidebar/workspace-logo.svg" alt="" />
+      <img src="assets/img/sidebar/workspace-logo.svg" alt="" />
       <p>Devspace</p>
     </div>
     <app-small-btn
@@ -16,6 +16,6 @@
     <app-sidebar-channels></app-sidebar-channels>
   </div>
   <div class="directMessages">
-    <app-sidebar-direct-messages></app-sidebar-direct-messages>
+    <app-sidebar-direct-messages [ngClass]="{'slideIn': channelService.isSidebarOpen, 'slideOut': !channelService.isSidebarOpen}"></app-sidebar-direct-messages>
   </div>
 </section>

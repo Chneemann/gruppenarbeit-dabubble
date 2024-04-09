@@ -9,6 +9,7 @@ import { ChatService } from '../../service/chat.service';
 import { ChannleService } from '../../service/channle.service';
 import { SidebarToggleComponent } from '../sidebar/sidebar-toggle/sidebar-toggle.component';
 import { DownloadFilesService } from '../../service/download-files.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-landing-page',
@@ -20,6 +21,7 @@ import { DownloadFilesService } from '../../service/download-files.service';
     MainChatComponent,
     SecondaryChatComponent,
     SidebarToggleComponent,
+    CommonModule
   ],
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss',

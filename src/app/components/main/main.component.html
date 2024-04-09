@@ -1,9 +1,12 @@
 @if (userService.isUserLogin) {
 <app-header></app-header>
 <div class="content">
-  @if (channelService.isSidebarOpen) {
-  <app-sidebar></app-sidebar>
-  }
+  <!-- @if (channelService.isSidebarOpen) {
+  <app-sidebar class="slideIn"></app-sidebar>
+  } @else {
+    <app-sidebar class="slideOut"></app-sidebar>
+  } -->
+  <app-sidebar [ngClass]="{'slideIn': channelService.isSidebarOpen, 'slideOut': !channelService.isSidebarOpen}"></app-sidebar>
   <app-sidebar-toggle></app-sidebar-toggle>
   <app-main-chat [currentChannel]="currentChannel"></app-main-chat>
   @if (isSecondaryChatOpen()) {

@@ -2,9 +2,9 @@
   @for (channel of getChannelName(currentChannel); track channel) {
   <div class="header">
     <div class="headline" (click)="showMenu()">
-      <img src="./../../../../assets/img/hashtag.svg" alt="" />
+      <img src="assets/img/hashtag.svg" alt="" />
       <p>{{ channel.name }}</p>
-      <img src="./../../../../assets/img/keyboardArrowDown.svg" alt="" />
+      <img src="assets/img/keyboardArrowDown.svg" alt="" />
     </div>
   </div>
   <!-- Chat content -->
@@ -27,11 +27,11 @@
       @for (channel of getChannelName(currentChannel); track channel) {
       <div class="headerBox">
         <div class="headline">
-          <img src="./../../../../assets/img/hashtag.svg" alt="" />
+          <img src="assets/img/hashtag.svg" alt="" />
           <p>{{ channel.name }}</p>
         </div>
         <div class="closeBtn" (click)="closeMenu()">
-          <img src="./../../../../assets/img/closeIcon.svg" alt="" />
+          <img src="assets/img/closeIcon.svg" alt="" />
         </div>
       </div>
       }
@@ -42,7 +42,7 @@
           <span (click)="editChannelName()">Edit</span>
         </div>
         <div class="channelName">
-          <img src="./../../../../assets/img/hashtag.svg" alt="" />
+          <img src="assets/img/hashtag.svg" alt="" />
           <p>{{ channel.name }}</p>
         </div>
         }

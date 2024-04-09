@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { UserService } from '../../../service/user.service';
-import { User } from '../../../interface/user.interface';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-sidebar-direct-messages-user',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './sidebar-direct-messages-user.component.html',
   styleUrl: './sidebar-direct-messages-user.component.scss',
 })

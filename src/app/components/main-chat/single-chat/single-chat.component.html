@@ -9,7 +9,6 @@
     </div>
     <div class="msg" (click)="openSecondaryChat(currentChat)">
       {{ chat.message }}
-      <!-- Attachments -->
       <ng-container
         *ngIf="downloadFilesService.downloadedFiles | async as files"
       >
