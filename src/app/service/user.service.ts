@@ -45,6 +45,15 @@ export class UserService implements OnDestroy {
     return filteredUser;
   }
 
+  filterUsers(user: string) { // klappt nicht richtig. bei const filteredUsers kommt fehlermeldung
+    const searchUser = user.toLowerCase().trim();
+    
+    const filteredUsers = this.allUsers.filter((user) =>
+      user.firstName.toLowerCase() === searchUser);
+    console.log('get User', filteredUsers);
+  }
+  
+
   ngOnDestroy() {
     this.unsubUser();
   }

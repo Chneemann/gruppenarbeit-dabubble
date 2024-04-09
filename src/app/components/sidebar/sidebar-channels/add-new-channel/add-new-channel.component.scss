@@ -80,9 +80,58 @@
 } 
 
 .smalWhiteBox{
+  padding: 32px;
   width: 48vw;
-  height: 300px;
+  height: auto;
   background-color: whitesmoke;
   border-radius: 25px;
   z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  .positionSelectionBtn{
+    @include displayFlex($j: flex-start, $g: 12px);
+    span{
+      display: flex;
+    }
+    img{
+      cursor: pointer;
+    }
+  }
+  .positionCreateBtn{
+    width: 100%;
+    @include displayFlex($j: flex-end);
+  }
+  .textfieldStyle{
+    width: calc(100% - 24px);
+    border: 1px solid #888dec;
+    outline: none;
+    height: 26px;
+    border-radius: 25px;
+    padding: 8px;
+    padding-left: 12px;
+    padding-right: 12px;
+    height: auto;
+    font-size: larger;
+    transition: 0.3s ease-in-out;
+    &:hover{
+        border: 1px solid #2c36f0;
+    }
+  }
+  button{
+    width: 98px;
+    height: 32px;
+    @include displayFlex();
+    background-color: white;
+    border: 1px solid #888dec;
+    border-radius: 25px;
+    font-size: medium;
+    color: #444DF2;
+    transition: 0.3s ease-in-out;
+    &:hover{
+        background-color: #444DF2;
+        color: white;
+        cursor: pointer;
+    }
+  }
 }

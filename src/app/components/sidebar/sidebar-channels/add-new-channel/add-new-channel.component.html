@@ -20,7 +20,7 @@
     <input
       type="text"
       class="textfieldStyle"
-      placeholder="Choose a name"
+      placeholder="Choose a name for the channel."
       [(ngModel)]="channelName"
     />
     <div class="descriptionBox">
@@ -34,12 +34,30 @@
       rows="10"
       class="textfieldStyle"
       [(ngModel)]="channelDescription"
+      placeholder="Write here which topics can be discussed in the channel."
     ></textarea>
     <div class="btnBox">
       <button (click)="createNewChannel()">Cteate</button>
     </div>
   </div>
   } @else {
-  <div class="smalWhiteBox"></div>
+  <div class="smalWhiteBox">
+    <div class="positionSelectionBtn">
+      <img src="assets/img/{{ changeImg? 'radioButtonUnchecked.svg' : 'radioButtonChecked.svg'}}" alt="" (click)="toggleBtnFalse()" />
+      <span
+        >Add all members for the&nbsp;
+        <p>office team</p>
+        .</span
+      >
+    </div>
+    <div class="positionSelectionBtn">
+      <img src="assets/img/{{ !changeImg? 'radioButtonUnchecked.svg' : 'radioButtonChecked.svg'}}" alt="" (click)="toggleBtnTrue()"/>
+      <span>add certain people</span>
+    </div>
+    <input type="text" *ngIf="changeImg" class="textfieldStyle" [(ngModel)]="seachedUser" (keyup)="userService.filterUsers(seachedUser)">
+    <div class="positionCreateBtn">
+      <button class="btnBox">Create</button>
+    </div>
+  </div>
   }
 </div>
