@@ -2,7 +2,7 @@
   <app-header></app-header>
   <div class="avatarContainer">
     <div class="avatarTop">
-      <div [routerLink]="['/login']" class="registerBackImg">
+      <div routerLink="/register" class="registerBackImg">
         <app-small-btn
           [imgSrc]="'login/arrow-back.svg'"
           [imgSize]="'24px'"
@@ -42,7 +42,7 @@
     </div>
 
     <div class="avatarBottom ">
-        <button class="hoverBtn" (click)="read()" >Weiter</button></div>
+        <button class="hoverBtn" (click)="read()" routerLink="/main" >Weiter</button></div>
   </div>
   <app-footer></app-footer>
 </div>

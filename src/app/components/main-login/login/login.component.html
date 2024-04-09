@@ -4,10 +4,6 @@
     <app-header></app-header>
     <div class="loginContainer">
         <div class="loginTop">
-          
-            <div [routerLink]="['/login']" class="loginBackImg">
-           
-            </div>
             <span>Anmeldung</span>
         </div>
         <div class="loginInfoText">
@@ -42,7 +38,7 @@
             </div>
 
             <div class="passwordContainer">
-              <span>Passwort vergessen?</span>
+              <span routerLink="/passwordForget">Passwort vergessen?</span>
             </div>
 
             <div class="separatorContainer">
@@ -56,19 +52,18 @@
 
              <div class="loginBottom">
                <button [ngClass]="{'aktivButton':  contactForm.valid}" 
-               [disabled]="  !contactForm.valid ">Anmelden</button>
-               <button class="guestButton" >Gäste-Login</button>
+               [disabled]="!contactForm.valid" >Anmelden</button>
+               <button routerLink="/main" class="guestButton" >Gäste-Login</button>
              </div>
         </form>
     </div>
     <div class="registerContainer">
       <div>
         <span>Neu bei DABubble?</span>
-        <div class="createAccountContainer"><span class="createAccoun">Konto erstellen</span>
+        <div class="createAccountContainer"><span routerLink="/register" class="createAccoun">Konto erstellen</span>
         </div></div>
 
     </div>
-    <button [routerLink]="['/register']" >test</button>
     <app-footer></app-footer>
 </div>
 

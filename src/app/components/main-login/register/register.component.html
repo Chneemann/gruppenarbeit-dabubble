@@ -5,8 +5,8 @@
     <div class="registerContainer">
         <div class="registerTop">
           
-            <div routerLink="login" class="registerBackImg">
-              <app-small-btn routerLink="login"
+            <div routerLink="/login" class="registerBackImg">
+              <app-small-btn
           [imgSrc]="'login/arrow-back.svg'"
           [imgSize]="'24px'"
           [btnSize]="'48px'"
@@ -62,8 +62,8 @@
                <span>Ich stimme der <span class="fontColor"[routerLink]="['/Datenschutz']">Datenschutzerklärung </span>zu.</span>
             </div>
             <div class="registerBottom">
-            <button  [ngClass]="{'aktivButton': isChecked && contactForm.valid}" 
-            [disabled]="!isChecked || !contactForm.valid ">Weiter</button></div>
+            <button [ngClass]="{'aktivButton': isChecked && contactForm.valid}" 
+            [disabled]="!isChecked || !contactForm.valid" routerLink="/avatar">Weiter</button></div>
         </form>
     </div>
     <app-footer></app-footer>
