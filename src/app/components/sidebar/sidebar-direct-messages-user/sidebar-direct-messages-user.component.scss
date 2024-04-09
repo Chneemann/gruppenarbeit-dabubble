@@ -6,7 +6,6 @@ section {
 .user {
   display: flex;
   align-items: center;
-  position: relative;
   margin: 12px;
   padding: 12px;
   max-width: fit-content;
@@ -28,11 +27,10 @@ section {
 }
 
 .dot {
-  position: absolute;
   width: 12px;
   height: 12px;
-  top: 45px;
-  left: 42px;
+  margin-top: 34px;
+  margin-left: -12px;
   border: 2px 0px 0px 0px;
   background-color: #92c83e;
   border-radius: 100%;
