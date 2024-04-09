@@ -10,6 +10,7 @@
       [imgSize]="'14px'"
       [btnSize]="'28px'"
       [btnBgHoverColor]="'#edeefe'"
+      (click)="channelService.addNewChannel()"
     >
     </app-small-btn>
   </div>
@@ -23,10 +24,15 @@
     <p>{{ channel.name }}</p>
   </div>
   }
-  <div class="addChannel">
+  <div class="addChannel" (click)="channelService.addNewChannel()">
     <div class="circle">
       <img src="assets/img/sidebar/add-circle.svg" alt="" />
     </div>
     <p>Add channel</p>
   </div>
+  <app-add-new-channel  [ngClass]="{
+    'dBlock': channelService.showAddChannelBox,
+    'dNone': !channelService.showAddChannelBox
+  }"></app-add-new-channel>
 </section>
+
