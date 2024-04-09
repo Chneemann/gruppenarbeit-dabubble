@@ -10,6 +10,7 @@ export class ChannleService implements OnDestroy {
 
   allChannels: Channel[] = [];
   isSidebarOpen: boolean = true;
+  showAddChannelBox: boolean = false;
 
   unsubChannel;
 
@@ -25,6 +26,10 @@ export class ChannleService implements OnDestroy {
         this.allChannels.push(channelWithId);
       });
     });
+  }
+
+  addNewChannel(){
+    this.showAddChannelBox = !this.showAddChannelBox;
   }
 
   ngOnDestroy() {

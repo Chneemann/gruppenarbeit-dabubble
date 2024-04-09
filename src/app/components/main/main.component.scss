@@ -12,9 +12,7 @@ app-sidebar,
 app-main-chat,
 app-secondary-chat {
   padding: 12px;
-  min-height: calc(
-    100vh - 134px
-  ); // Minus app-header:height & app-sidebar:padding
+  min-height: calc(100vh - 134px); // Minus app-header:height & app-sidebar:padding
   background-color: #edeefe;
 }
 
@@ -24,4 +22,16 @@ app-main-chat {
 
 app-secondary-chat {
   min-width: 485px;
+}
+
+.slideIn {
+  float: right;
+  right: 0;
+  transition: 0.3s ease-in-out;
+}
+
+.slideOut {
+  float: left;
+  margin-right: -390px;
+  transition: 0.3s ease-in-out;
 }
