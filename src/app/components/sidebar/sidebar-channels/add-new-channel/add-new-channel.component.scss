@@ -1,26 +1,88 @@
 @import '../../../../../styles.scss';
 
-.darkBackground{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.3);
-  }
-  
-  .newChannelDescription{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    @include displayFlex();
-    .whiteWindow{
-      width: 68vw;
-      height: 48vh;
-      background-color: whitesmoke;
+.darkBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 2;
+}
+
+.newChannelDescription {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  @include displayFlex();
+  font-family: "Nunito";
+  .whiteWindow {
+    width: 60vw;
+    height: auto;
+    background-color: whitesmoke;
+    border-radius: 25px;
+    z-index: 3;
+    @include displayFlex($a: flex-start, $g: 8px);
+    flex-direction: column;
+    text-align: left;
+    padding: 32px;
+    .posiotionHeader {
+      @include displayFlex($j: space-between);
+      width: 100%;
+    }
+
+    .textfieldStyle{
+      width: calc(100% - 16px);
+      border: 1px solid #888dec;
+      outline: none;
+      height: 26px;
       border-radius: 25px;
+      padding: 8px;
+      font-size: larger;
+      transition: 0.3s ease-in-out;
+      &:hover{
+          border: 1px solid #2c36f0;
+      }
+    }
+    textarea{
+      resize: none;
+      min-height: 72px;
+    }
+    .descriptionBox{
+      @include displayFlex();
+      h3{
+        font-weight: 400;
+      }
     }
   }
-  
+}
+
+.btnBox{
+  width: 100%;
+  @include displayFlex($j: flex-end);
+  button{
+    width: 120px;
+    height: 48px;
+    background-color: white;
+    border: 1px solid #888dec;
+    border-radius: 25px;
+    font-size: larger;
+    color: #444DF2;
+    transition: 0.3s ease-in-out;
+    &:hover{
+        background-color: #444DF2;
+        color: white;
+        cursor: pointer;
+    }
+  }
+} 
+
+.smalWhiteBox{
+  width: 48vw;
+  height: 300px;
+  background-color: whitesmoke;
+  border-radius: 25px;
+  z-index: 3;
+}

@@ -1,4 +1,45 @@
 <div class="darkBackground" (click)="toggleShowAddChannelBox()"></div>
 <div class="newChannelDescription">
-  <div class="whiteWindow"></div>
+  @if (!shwoNextWindow) {
+  <div class="whiteWindow">
+    <div class="posiotionHeader">
+      <h2>Channel erstellen</h2>
+      <app-small-btn
+        [imgSrc]="'closeIcon.svg'"
+        [imgSize]="'16px'"
+        [btnSize]="'32px'"
+        [btnBgHoverColor]="'#edeefe'"
+        (click)="toggleShowAddChannelBox()"
+      ></app-small-btn>
+    </div>
+    <span
+      >Channels are for your team to communicate. It is best if they are
+      topic-based.</span
+    >
+    <h2>Channel-Name</h2>
+    <input
+      type="text"
+      class="textfieldStyle"
+      placeholder="Choose a name"
+      [(ngModel)]="channelName"
+    />
+    <div class="descriptionBox">
+      <h2>Description</h2>
+      &nbsp;
+      <h3>(optional)</h3>
+    </div>
+    <textarea
+      id=""
+      cols="30"
+      rows="10"
+      class="textfieldStyle"
+      [(ngModel)]="channelDescription"
+    ></textarea>
+    <div class="btnBox">
+      <button (click)="createNewChannel()">Cteate</button>
+    </div>
+  </div>
+  } @else {
+  <div class="smalWhiteBox"></div>
+  }
 </div>
