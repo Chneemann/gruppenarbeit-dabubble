@@ -15,13 +15,15 @@ export class loginService {
 
   }
 
-  async addNewUser(userData: User) {
-    await addDoc(collection(this.firestore, 'users'), userData)
-      .catch((err) => {
-        console.error(err);
-      })
-      .then((docRef) => {
-        console.log('Document written with ID: ', docRef?.id);
-      });
-  }
+
+
+  // async addNewUser(userData: User) {
+  //   await addDoc(collection(this.firestore, 'users'), userData)
+  //     .catch((err) => {
+  //       console.error(err);
+  //     })
+  //     .then((docRef) => {
+  //       console.log('Document written with ID: ', docRef?.id);
+  //     });
+  // }
 }

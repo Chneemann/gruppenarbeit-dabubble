@@ -3,7 +3,7 @@ import { loginService } from '../../../service/login.service';
 import { Firestore } from '@angular/fire/firestore';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { FormControl, FormGroup, FormsModule, NgForm, Validators } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { HeaderComponent } from "../../../shared/components/login/header/header.component";
 import { FooterComponent } from "../../../shared/components/login/footer/footer.component";
 import { CommonModule } from '@angular/common';
@@ -13,14 +13,14 @@ import { CommonModule } from '@angular/common';
     standalone: true,
     templateUrl: './login.component.html',
     styleUrl: './login.component.scss',
-    imports: [FormsModule,CommonModule, HeaderComponent, FooterComponent,RouterModule]
+    imports: [FormsModule,CommonModule, HeaderComponent, FooterComponent,RouterLink]
 })
 export class LoginComponent {
   firestore: Firestore = inject(Firestore);
   email: string = '';
   password: string = '';
 
-  constructor() {}
+  constructor(private loginService: loginService) {}
 
   onSubmit(ngForm: NgForm) {
     console.log('LogingVersuch mit:', this.email, this.password);

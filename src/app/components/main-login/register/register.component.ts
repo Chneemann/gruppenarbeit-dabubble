@@ -1,13 +1,14 @@
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, NgForm, Validators } from '@angular/forms';
-import { loginService } from '../../../service/login.service';
 import { Firestore, addDoc, collection } from '@angular/fire/firestore';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { SmallBtnComponent } from "../../../shared/components/small-btn/small-btn.component";
 import { HeaderComponent } from "../../../shared/components/login/header/header.component";
 import { FooterComponent } from "../../../shared/components/login/footer/footer.component";
+import { User } from 'firebase/auth';
+import { loginService } from '../../../service/login.service';
 
 
 @Component({
@@ -15,7 +16,7 @@ import { FooterComponent } from "../../../shared/components/login/footer/footer.
     standalone: true,
     templateUrl: './register.component.html',
     styleUrl: './register.component.scss',
-    imports: [FormsModule, CommonModule, RouterModule, SmallBtnComponent, HeaderComponent, FooterComponent]
+    imports: [FormsModule, CommonModule, SmallBtnComponent, HeaderComponent, FooterComponent, RouterLink]
 })
 export class RegisterComponent {
   firestore: Firestore = inject(Firestore);
@@ -29,7 +30,7 @@ export class RegisterComponent {
   hoverImage = '/assets/img/login/box-hover.png';
   clickedHoverImage = '/assets/img/login/box-checked-hover.png';
 
-  constructor() {
+  constructor(private loginService: loginService) {
     this.currentImage = this.defaultImage;
   }
 
@@ -47,16 +48,15 @@ export class RegisterComponent {
       });
   }
 
-  createUserWithFirebase(user: any) {
-    //  user und user.uid nicht undefined sonst fehler
+  createUserWithFirebase(user: User) {
+   
     if (!user || !user.uid) {
       console.error('User or user UID is undefined.');
       return;
     }
     const userDataToSave = {
       email: this.email,
-      password: this.password,
-      // user:this.user.uid
+      user:user.uid,
       name: this.name,
     };
 
@@ -70,11 +70,12 @@ export class RegisterComponent {
       });
   }
 
-  onSubmit(ngForm: NgForm) {
+   onSubmit(ngForm: NgForm) {
     console.log('Registrierungsversuch mit:', this.email, this.password);
     this.register();
-    ngForm.resetForm();
+    // ngForm.resetForm();
   }
+
   toggleCheckbox() {
     this.isChecked = !this.isChecked;
     this.updateImage();

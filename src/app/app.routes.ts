@@ -7,7 +7,7 @@ import { ChooseAvatarComponent } from './components/main-login/choose-avatar/cho
 export const routes: Routes = [
    { path: '', component: MainComponent },
   { path: 'login', component: MainLoginComponent },
-  // { path: 'Impressum', component: RegisterComponent },
+   { path: 'register', component: RegisterComponent },
   // { path: 'Datenschutz', component: ChooseAvatarComponent },
   { path: 'main', component: MainComponent },
   { path: 'main/:id', component: MainComponent },
