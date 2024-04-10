@@ -17,7 +17,7 @@ export class loginService {
   firestore: Firestore = inject(Firestore);
   email: string = '';
   password: string = '';
-  constructor( public router: Router) {
+  constructor( private router: Router) {
 
   }
 
