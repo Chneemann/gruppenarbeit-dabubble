@@ -2,9 +2,10 @@
 
 section {
   display: flex;
-  padding: 24px 48px;
+  padding: 36px 48px;
   cursor: pointer;
   position: relative;
+  margin: 24px 0;
 
   &:hover {
     background-color: #edeefe;
@@ -16,8 +17,11 @@ section {
   }
 }
 
-.d-none {
-  display: none;
+app-options-menu {
+  position: absolute;
+  top: 0px;
+  left: 12px;
+  z-index: 2;
 }
 
 .userAvatar {

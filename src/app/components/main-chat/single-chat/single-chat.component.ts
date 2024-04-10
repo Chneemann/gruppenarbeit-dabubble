@@ -25,7 +25,7 @@ import { OptionsMenuComponent } from './options-menu/options-menu.component';
 export class SingleChatComponent {
   @Input() user!: User;
   @Input() chat!: Chat | ChatAnswers;
-  @Input() index!: number;
+  @Input() index: number = 0;
   @Input() currentChat!: string;
   @Input() showAnswer!: boolean;
   trustedUrl: string = '';
