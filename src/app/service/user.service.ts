@@ -47,26 +47,8 @@ export class UserService implements OnDestroy {
     );
     return filteredUser;
   }
-
-
-  getUserFirstName(user: User): user is User & { firstName: string } {
-    return user.hasOwnProperty('firstName');
-  }
   
 
-  filterUsers(user: string) {
-    const searchedUser = user.toLowerCase().trim();
-    const filteredUsers = this.getUsers().filter((user) => {
-      if (this.getUserFirstName(user)) {
-        return user.firstName.toLowerCase() === searchedUser;
-      } else {
-        return false;
-      }
-    });
-    console.log('get User', filteredUsers);
-  }
-
-  
   ngOnDestroy() {
     this.unsubUser();
   }

@@ -4,7 +4,7 @@ import { ChannleService } from '../../../../service/channle.service';
 import { SmallBtnComponent } from '../../../../shared/components/small-btn/small-btn.component';
 import { FormsModule } from '@angular/forms';
 import { UserService } from '../../../../service/user.service';
-import { debounceTime } from 'rxjs';
+import { User } from '../../../../interface/user.interface';
 
 @Component({
   selector: 'app-add-new-channel',
@@ -46,4 +46,21 @@ export class AddNewChannelComponent {
     this.changeImg = false;
   }
   
+
+  getUserFirstName(user: User): user is User & { firstName: string } {
+    return user.hasOwnProperty('firstName');
+  }
+  
+
+  filterUsers(user: string) {
+    const searchedUser = user.toLowerCase().trim();
+    const filteredUsers = this.userService.getUsers().filter((user) => {
+      if (this.getUserFirstName(user)) {
+        return user.firstName.toLowerCase().indexOf(searchedUser.toLowerCase()) !== -1;
+      } else {
+        return false;
+      }
+    });
+    console.log('get User', filteredUsers);
+  }
 }

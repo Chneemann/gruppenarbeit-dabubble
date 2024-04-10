@@ -54,7 +54,7 @@
       <img src="assets/img/{{ !changeImg? 'radioButtonUnchecked.svg' : 'radioButtonChecked.svg'}}" alt="" (click)="toggleBtnTrue()"/>
       <span>Add certain people</span>
     </div>
-    <input type="text" *ngIf="changeImg" class="textfieldStyle" [(ngModel)]="seachedUser" (keyup)="userService.filterUsers(seachedUser)">
+    <input type="text" *ngIf="changeImg" class="textfieldStyle" [(ngModel)]="seachedUser" (keyup)="filterUsers(seachedUser)">
     <div class="positionCreateBtn">
       <button class="btnBox">Create</button>
     </div>
