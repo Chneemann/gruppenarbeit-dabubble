@@ -24,6 +24,7 @@ export class UserService implements OnDestroy {
     this.unsubUser = this.subUserList();
   }
 
+
   subUserList() {
     return onSnapshot(collection(this.firestore, 'users'), (list) => {
       this.allUsers = [];
@@ -34,9 +35,11 @@ export class UserService implements OnDestroy {
     });
   }
 
+
   getUsers(): User[] {
     return this.allUsers;
   }
+
 
   getCurentUsers() {
     const filteredUser = this.getUsers().filter(
@@ -45,15 +48,25 @@ export class UserService implements OnDestroy {
     return filteredUser;
   }
 
-  filterUsers(user: string) { // klappt nicht richtig. bei const filteredUsers kommt fehlermeldung
-    const searchUser = user.toLowerCase().trim();
-    
-    const filteredUsers = this.allUsers.filter((user) =>
-      user.firstName.toLowerCase() === searchUser);
-    console.log('get User', filteredUsers);
+
+  getUserFirstName(user: User): user is User & { firstName: string } {
+    return user.hasOwnProperty('firstName');
   }
   
 
+  filterUsers(user: string) {
+    const searchedUser = user.toLowerCase().trim();
+    const filteredUsers = this.getUsers().filter((user) => {
+      if (this.getUserFirstName(user)) {
+        return user.firstName.toLowerCase() === searchedUser;
+      } else {
+        return false;
+      }
+    });
+    console.log('get User', filteredUsers);
+  }
+
+  
   ngOnDestroy() {
     this.unsubUser();
   }
