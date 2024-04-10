@@ -56,10 +56,7 @@ export class AddNewChannelComponent {
       const fullName = `${user.firstName} ${user.lastName}`.toLowerCase();
       return fullName.includes(searchedUser);
     });
-    console.log('get User', filteredUsers);
     this.getSearchedUser.push(...filteredUsers);
-    console.log('user array', this.getSearchedUser);
-    
   }
   
 
@@ -78,6 +75,7 @@ export class AddNewChannelComponent {
   toggleAddedUserBox(){
     this.showExistenUsers = false;
   }
+  
 
   createChannel(){
   }
