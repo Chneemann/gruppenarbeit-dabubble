@@ -80,13 +80,11 @@ export class MainChatComponent {
   }
 
   getChatUsers(chatId: string) {
-    chatId = chatId.replace(/\s/g, '');
     const filteredTasks = this.getUsers().filter((user) => user.id == chatId);
     return filteredTasks;
   }
 
   getChatChannel(chatId: string) {
-    chatId = chatId.replace(/\s/g, '');
     const filteredTasks = this.getChats().filter(
       (chat) => chat.channelId == chatId
     );
@@ -94,7 +92,6 @@ export class MainChatComponent {
   }
 
   getChannelName(chatId: string) {
-    chatId = chatId.replace(/\s/g, '');
     const filteredTasks = this.getChannels().filter(
       (channel) => channel.id == chatId
     );

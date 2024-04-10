@@ -1,7 +1,7 @@
 section {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: -24px;
+  left: 12px;
 }
 
 .content {
@@ -15,4 +15,8 @@ section {
   border-top-left-radius: 24px;
   border-top-right-radius: 24px;
   border-bottom-left-radius: 24px;
+}
+
+.mirror {
+  transform: scaleX(-1);
 }

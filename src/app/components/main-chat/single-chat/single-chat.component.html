@@ -4,7 +4,8 @@
   (mouseleave)="toggleOptionMenu()"
 >
   <app-options-menu
-    [ngClass]="{ 'd-none': !isOptionMenuVisible }"
+    [ngStyle]="{ display: isOptionMenuVisible ? 'block' : 'none' }"
+    [index]="index"
   ></app-options-menu>
   <div class="userAvatar">
     <img src="assets/img/user-icons/{{ user.avatar }}.svg" alt="" />
