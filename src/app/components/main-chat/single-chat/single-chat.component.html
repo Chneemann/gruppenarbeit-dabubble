@@ -1,4 +1,11 @@
-<section (click)="openSecondaryChat(currentChat)">
+<section
+  (click)="openSecondaryChat(currentChat)"
+  (mouseenter)="toggleOptionMenu()"
+  (mouseleave)="toggleOptionMenu()"
+>
+  <app-options-menu
+    [ngClass]="{ 'd-none': !isOptionMenuVisible }"
+  ></app-options-menu>
   <div class="userAvatar">
     <img src="assets/img/user-icons/{{ user.avatar }}.svg" alt="" />
   </div>

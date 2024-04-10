@@ -14,6 +14,7 @@ import { SingleChatComponent } from '../single-chat/single-chat.component';
 import { ChatMsgBoxComponent } from '../chat-msg-box/chat-msg-box.component';
 import { CommonModule } from '@angular/common';
 import { DownloadFilesService } from '../../../service/download-files.service';
+import { OptionsMenuComponent } from '../single-chat/options-menu/options-menu.component';
 
 @Component({
   selector: 'app-chat-content',
