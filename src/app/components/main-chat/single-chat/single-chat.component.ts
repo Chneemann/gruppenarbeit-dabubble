@@ -35,6 +35,7 @@ export class SingleChatComponent {
 
   constructor(
     public chatService: ChatService,
+    public channelService: ChatService,
     public downloadFilesService: DownloadFilesService,
     public sanitizer: DomSanitizer
   ) {}
@@ -69,8 +70,12 @@ export class SingleChatComponent {
     return formattedTime;
   }
 
-  openSecondaryChat(chatId: string) {
-    if (!this.chatService.isSecondaryChatId) {
+  openSecondaryChat(chatId: string, event: MouseEvent) {
+    const target = event.target as HTMLElement;
+    const isOptionsMenuClicked = target.closest('app-options-menu') !== null;
+    const isFilesClicked = target.closest('.files') !== null;
+
+    if (!isOptionsMenuClicked && !isFilesClicked) {
       this.chatService.isSecondaryChatId = chatId;
     }
   }

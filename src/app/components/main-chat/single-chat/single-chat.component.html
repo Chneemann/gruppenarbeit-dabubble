@@ -1,5 +1,5 @@
 <section
-  (click)="openSecondaryChat(currentChat)"
+  (click)="openSecondaryChat(currentChat, $event)"
   (mouseenter)="toggleOptionMenu()"
   (mouseleave)="toggleOptionMenu()"
 >
@@ -15,7 +15,7 @@
       {{ user.firstName }} {{ user.lastName }}
       <span>{{ convertTimestampHour(chat.publishedTimestamp) }}</span>
     </div>
-    <div class="msg" (click)="openSecondaryChat(currentChat)">
+    <div class="msg">
       {{ chat.message }}
       <ng-container
         *ngIf="downloadFilesService.downloadedFiles | async as files"
