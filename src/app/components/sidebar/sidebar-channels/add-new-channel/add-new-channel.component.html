@@ -41,22 +41,71 @@
     </div>
   </div>
   } @else {
-  <div class="smalWhiteBox">
+  <div class="smalWhiteBox" (click)="toggleAddedUserBox()">
     <div class="positionSelectionBtn">
-      <img src="assets/img/{{ changeImg? 'radioButtonUnchecked.svg' : 'radioButtonChecked.svg'}}" alt="" (click)="toggleBtnFalse()" />
-      <span
-        >Add all members for the&nbsp;
-        <p>office team</p>
-        .</span
-      >
+      <img
+        src="assets/img/{{
+          changeImg ? 'radioButtonUnchecked.svg' : 'radioButtonChecked.svg'
+        }}"
+        alt=""
+        (click)="toggleBtnFalse()"
+      />
+      <span>Add all members for theoffice team</span>
     </div>
     <div class="positionSelectionBtn">
-      <img src="assets/img/{{ !changeImg? 'radioButtonUnchecked.svg' : 'radioButtonChecked.svg'}}" alt="" (click)="toggleBtnTrue()"/>
+      <img
+        src="assets/img/{{
+          !changeImg ? 'radioButtonUnchecked.svg' : 'radioButtonChecked.svg'
+        }}"
+        (click)="toggleBtnTrue()"
+      />
       <span>Add certain people</span>
     </div>
-    <input type="text" *ngIf="changeImg" class="textfieldStyle" [(ngModel)]="seachedUser" (keyup)="filterUsers(seachedUser)">
+    <div class="addedUserBox">
+      <div
+        class="userPosition"
+        *ngFor="let user of getSelectedUsers; let i = index"
+      >
+        <img
+          src="assets/img/user-icons/{{ user.avatar }}.svg"
+          class="avatarImg"
+        />
+        <h3>{{ user.firstName }} {{ user.lastName }}</h3>
+        <img
+          src="assets/img/closeIcon.svg"
+          class="imgClose"
+          (click)="spliceCurrentUser(i)"
+        />
+      </div>
+      <input
+        type="text"
+        *ngIf="changeImg"
+        class="textfieldStyle"
+        [(ngModel)]="userName"
+        (keyup)="filterUsers(userName)"
+      />
+    </div>
+    <div
+      class="showSearchedUsersWindow"
+      [ngClass]="{ dBlock: showExistenUsers, dNone: !showExistenUsers }"
+    >
+      <div class="positionOfAllUsersInBox">
+        @for(user of getSearchedUser; track user){
+        <div class="user" (click)="chooseUser(user)">
+          <div class="positionImgs">
+            <img
+              src="assets/img/user-icons/{{ user.avatar }}.svg"
+              class="avatarImg"
+            />
+            <img src="assets/img/onlineRing.svg" class="onlineImg" />
+          </div>
+          <h1>{{ user.firstName }} {{ user.lastName }}</h1>
+        </div>
+        }
+      </div>
+    </div>
     <div class="positionCreateBtn">
-      <button class="btnBox">Create</button>
+      <button class="btnBox" (click)="createChannel()">Create</button>
     </div>
   </div>
   }

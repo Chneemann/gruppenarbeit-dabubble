@@ -8,6 +8,7 @@
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.3);
     @include displayFlex();
+    z-index: 1;
 }
 
 .whiteBox{

@@ -19,7 +19,10 @@ export class AddNewChannelComponent {
   channelDescription: string = '';
   shwoNextWindow: boolean = false;
   changeImg: boolean = false;
-  seachedUser = '';
+  userName: string = '';
+  getSearchedUser: User[] = [];
+  showExistenUsers: boolean = false;
+  getSelectedUsers: User[] = [];
 
   constructor(public channelServide: ChannleService, public userService: UserService){}
 
@@ -32,8 +35,6 @@ export class AddNewChannelComponent {
 
   createNewChannel(){
     this.shwoNextWindow = !this.shwoNextWindow;
-    console.log('channelName:', this.channelName);
-    console.log('description:', this.channelDescription);
   }
 
 
@@ -45,22 +46,39 @@ export class AddNewChannelComponent {
   toggleBtnFalse(){
     this.changeImg = false;
   }
-  
 
-  getUserFirstName(user: User): user is User & { firstName: string } {
-    return user.hasOwnProperty('firstName');
+
+  filterUsers(userName: string) {
+    this.showExistenUsers = true;
+    this.getSearchedUser = [];
+    const searchedUser = userName.toLowerCase().trim();
+    const filteredUsers = this.userService.getUsers().filter(user => {
+      const fullName = `${user.firstName} ${user.lastName}`.toLowerCase();
+      return fullName.includes(searchedUser);
+    });
+    console.log('get User', filteredUsers);
+    this.getSearchedUser.push(...filteredUsers);
+    console.log('user array', this.getSearchedUser);
+    
   }
   
 
-  filterUsers(user: string) {
-    const searchedUser = user.toLowerCase().trim();
-    const filteredUsers = this.userService.getUsers().filter((user) => {
-      if (this.getUserFirstName(user)) {
-        return user.firstName.toLowerCase().indexOf(searchedUser.toLowerCase()) !== -1;
-      } else {
-        return false;
-      }
-    });
-    console.log('get User', filteredUsers);
+  chooseUser(user: User){
+    this.getSelectedUsers.push(user);
+    this.showExistenUsers = false;
+  }
+
+
+  spliceCurrentUser(index: number){
+    this.getSelectedUsers.splice(index, 1);
+    this.showExistenUsers = false;
+  }
+
+
+  toggleAddedUserBox(){
+    this.showExistenUsers = false;
+  }
+
+  createChannel(){
   }
 }
