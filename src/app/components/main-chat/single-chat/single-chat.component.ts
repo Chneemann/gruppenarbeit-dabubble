@@ -7,13 +7,18 @@ import { ChatService } from '../../../service/chat.service';
 import { DownloadFilesService } from '../../../service/download-files.service';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { DomSanitizer } from '@angular/platform-browser';
-
-
+import { OptionsMenuComponent } from './options-menu/options-menu.component';
 
 @Component({
   selector: 'app-single-chat',
   standalone: true,
-  imports: [ChatContentComponent, CommonModule, NgSwitchCase, NgxExtendedPdfViewerModule],
+  imports: [
+    ChatContentComponent,
+    CommonModule,
+    NgSwitchCase,
+    NgxExtendedPdfViewerModule,
+    OptionsMenuComponent,
+  ],
   templateUrl: './single-chat.component.html',
   styleUrl: './single-chat.component.scss',
 })
@@ -24,6 +29,7 @@ export class SingleChatComponent {
   @Input() currentChat!: string;
   @Input() showAnswer!: boolean;
   trustedUrl: string = '';
+  isOptionMenuVisible: boolean = false;
 
   downloadedFiles: string[] = [];
 
@@ -32,6 +38,10 @@ export class SingleChatComponent {
     public downloadFilesService: DownloadFilesService,
     public sanitizer: DomSanitizer
   ) {}
+
+  toggleOptionMenu() {
+    this.isOptionMenuVisible = !this.isOptionMenuVisible;
+  }
 
   displayCountChatAnswer() {
     return this.chatService.getChatAnswers(this.chat.id).length;
@@ -65,11 +75,10 @@ export class SingleChatComponent {
     }
   }
 
-
   getFileType(file: string): string {
     const extension = file.split('.').pop()?.toLowerCase();
     const getTag = extension!.split('?')[0];
-    if (getTag) { 
+    if (getTag) {
       return getTag;
     }
     return '';
@@ -78,6 +87,4 @@ export class SingleChatComponent {
   getSafeFileUrl(file: string) {
     return this.sanitizer.bypassSecurityTrustResourceUrl(file);
   }
-  
-  
 }
