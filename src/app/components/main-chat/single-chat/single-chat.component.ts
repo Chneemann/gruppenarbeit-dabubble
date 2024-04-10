@@ -28,6 +28,8 @@ export class SingleChatComponent {
   @Input() index: number = 0;
   @Input() currentChat!: string;
   @Input() showAnswer!: boolean;
+  @Input() showOptionsMenu: boolean = false;
+
   trustedUrl: string = '';
   isOptionMenuVisible: boolean = false;
 

@@ -3,10 +3,12 @@
   (mouseenter)="toggleOptionMenu()"
   (mouseleave)="toggleOptionMenu()"
 >
+  @if (showOptionsMenu){
   <app-options-menu
     [ngStyle]="{ display: isOptionMenuVisible ? 'block' : 'none' }"
     [index]="index"
   ></app-options-menu>
+  }
   <div class="userAvatar">
     <img src="assets/img/user-icons/{{ user.avatar }}.svg" alt="" />
   </div>
