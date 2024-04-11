@@ -100,16 +100,26 @@
     }
   }
   .addedUserBox{
-    position: relative;
+    display: flex;
+    flex-wrap: wrap;
     height: auto;
+    max-width: 100%;
+    border: 1px solid #888dec;
+    background-color:white;
+    border-radius: 25px;
+    transition: 0.3s ease-in-out;
+      &:hover{
+          border: 1px solid #2c36f0;
+      }
     .userPosition{
       @include displayFlex($g: 8px);
-      position: absolute;
       padding: 4px;
       padding-left: 8px;
       padding-right: 8px;
       background-color: #EDEEFE;
       border-radius: 25px;
+      border-radius: 25px;
+      margin: 4px;
       .avatarImg{
         width: 32px;
         object-fit: contain;
@@ -125,22 +135,17 @@
           filter: brightness(0) saturate(100%) invert(8%) sepia(96%) saturate(6339%) hue-rotate(1deg) brightness(102%) contrast(109%);
         }
       }
-      .textfieldStyle{
-        width: calc(100% - 24px);
-        border: 1px solid #888dec;
-        outline: none;
-        height: 26px;
-        border-radius: 25px;
-        padding: 8px;
-        padding-left: 12px;
-        padding-right: 12px;
-        height: auto;
-        font-size: larger;
-        transition: 0.3s ease-in-out;
-        &:hover{
-            border: 1px solid #2c36f0;
-        }
-      }
+    }
+    .inputfieldStyle{
+      width: auto;
+      flex-grow: 1;
+      outline: none;
+      border: none;
+      border-radius: 25px;
+      height: 26px;
+      padding: 12px;
+      height: auto;
+      font-size: larger;
     }
   }
   .positionCreateBtn{

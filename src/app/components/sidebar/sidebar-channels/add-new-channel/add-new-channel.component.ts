@@ -60,10 +60,18 @@ export class AddNewChannelComponent {
   }
   
 
-  chooseUser(user: User){
-    this.getSelectedUsers.push(user);
+  chooseUser(user: User) {
+    const isUserAlreadySelected = this.getSelectedUsers.some(selectedUser => selectedUser.id === user.id);
+  
+    if (!isUserAlreadySelected) {
+      this.getSelectedUsers.push(user);
+    } else {
+      console.log('User already selected!');
+    }
+    this.userName = '';
     this.showExistenUsers = false;
   }
+  
 
 
   spliceCurrentUser(index: number){

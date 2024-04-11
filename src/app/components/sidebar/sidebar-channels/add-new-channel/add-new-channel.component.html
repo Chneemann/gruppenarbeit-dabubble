@@ -1,6 +1,6 @@
 <div class="darkBackground" (click)="toggleShowAddChannelBox()"></div>
 <div class="newChannelDescription">
-  @if (!shwoNextWindow) {
+  @if (shwoNextWindow) {
   <div class="whiteWindow">
     <div class="posiotionHeader">
       <h2>Channel erstellen</h2>
@@ -61,7 +61,7 @@
       />
       <span>Add certain people</span>
     </div>
-    <div class="addedUserBox">
+    <div class="addedUserBox"  *ngIf="changeImg">
       <div
         class="userPosition"
         *ngFor="let user of getSelectedUsers; let i = index"
@@ -79,8 +79,7 @@
       </div>
       <input
         type="text"
-        *ngIf="changeImg"
-        class="textfieldStyle"
+        class="inputfieldStyle"
         [(ngModel)]="userName"
         (keyup)="filterUsers(userName)"
       />
