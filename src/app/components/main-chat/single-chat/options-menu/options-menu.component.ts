@@ -12,4 +12,10 @@ import { SmallBtnComponent } from '../../../../shared/components/small-btn/small
 })
 export class OptionsMenuComponent {
   @Input() index: number = 0;
+
+  isNavOpen: boolean = false;
+
+  toggleNav() {
+    this.isNavOpen = !this.isNavOpen;
+  }
 }

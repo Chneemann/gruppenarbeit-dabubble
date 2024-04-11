@@ -29,11 +29,15 @@
     >
     </app-small-btn>
     <app-small-btn
+      (click)="toggleNav()"
       [imgSrc]="'more-vertical.svg'"
       [imgSize]="'24px'"
       [btnSize]="'36px'"
       [btnBgHoverColor]="'#edeefe'"
     >
     </app-small-btn>
+  </div>
+  <div class="nav" [ngClass]="{ 'd-none': !isNavOpen }">
+    <p>Edit message</p>
   </div>
 </section>

@@ -18,8 +18,35 @@ section {
   border-bottom-left-radius: 25px;
 }
 
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  background-color: #fff;
+  padding: 10px 20px 10px 20px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  p {
+    font-size: 24px;
+    font-weight: 600;
+    padding: 10px 20px 10px 20px;
+    border-radius: 20px;
+    &:hover {
+      color: #545af1;
+      background-color: #edeefe;
+    }
+  }
+}
+
 app-small-btn {
   padding: 0 8px;
+}
+
+.d-none {
+  display: none;
 }
 
 .mirror {
