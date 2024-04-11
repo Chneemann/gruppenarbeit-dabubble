@@ -1,4 +1,4 @@
-import { Injectable, OnDestroy, inject } from '@angular/core';
+import { Injectable, Input, OnDestroy, inject } from '@angular/core';
 import { Firestore, collection, onSnapshot } from '@angular/fire/firestore';
 import { Channel } from '../interface/channel.interface';
 
@@ -11,6 +11,8 @@ export class ChannleService implements OnDestroy {
   allChannels: Channel[] = [];
   isSidebarOpen: boolean = true;
   showAddChannelBox: boolean = false;
+  channelName: string = '';
+  channelDescription: string = '';
 
   unsubChannel;
 
@@ -30,6 +32,8 @@ export class ChannleService implements OnDestroy {
 
   addNewChannel(){
     this.showAddChannelBox = !this.showAddChannelBox;
+    this.channelName = '';
+    this.channelDescription = '';
   }
 
   ngOnDestroy() {

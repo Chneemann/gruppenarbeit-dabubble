@@ -14,15 +14,14 @@ import { User } from '../../../../interface/user.interface';
   styleUrl: './add-new-channel.component.scss'
 })
 export class AddNewChannelComponent {
-
-  channelName: string = '';
-  channelDescription: string = '';
   shwoNextWindow: boolean = false;
   changeImg: boolean = false;
   userName: string = '';
   getSearchedUser: User[] = [];
   showExistenUsers: boolean = false;
   getSelectedUsers: User[] = [];
+  btnIsValid: boolean = false;
+
 
   constructor(public channelServide: ChannleService, public userService: UserService){}
 
@@ -73,7 +72,6 @@ export class AddNewChannelComponent {
   }
   
 
-
   spliceCurrentUser(index: number){
     this.getSelectedUsers.splice(index, 1);
     this.showExistenUsers = false;
@@ -84,6 +82,13 @@ export class AddNewChannelComponent {
     this.showExistenUsers = false;
   }
   
+
+  checkIsValif(channelName:string){
+    const channelNameLenght = channelName.length;
+    if (channelNameLenght >= 3) {
+      this.btnIsValid = true;
+    }
+  }
 
   createChannel(){
   }
