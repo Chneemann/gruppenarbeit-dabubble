@@ -10,7 +10,7 @@
       [imgSize]="'14px'"
       [btnSize]="'28px'"
       [btnBgHoverColor]="'#edeefe'"
-      (click)="channelService.addNewChannel()"
+      (click)="channelService.openAddNewChannelWindow()"
     >
     </app-small-btn>
   </div>
@@ -24,7 +24,7 @@
     <p>{{ channel.name }}</p>
   </div>
   }
-  <div class="addChannel" (click)="channelService.addNewChannel()">
+  <div class="addChannel" (click)="channelService.openAddNewChannelWindow()">
     <div class="circle">
       <img src="assets/img/sidebar/add-circle.svg" alt="" />
     </div>
