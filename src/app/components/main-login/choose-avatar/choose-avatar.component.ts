@@ -23,16 +23,16 @@ import { RouterLink, Router } from '@angular/router';
   ],
 })
 export class ChooseAvatarComponent {
-  avatarSrc: string = '/assets/img/charater1.svg';
+  avatarSrc: string = '/assets/img/user-icons/guest.svg';
   firestore: Firestore = inject(Firestore);
   selectedFile: File | null = null;
   avatarImages: string[] = [
     '/assets/img/user-icons/female-1.svg',
     '/assets/img/user-icons/female-2.svg',
-    '/assets/img/user-icons/guest.svg',
     '/assets/img/user-icons/male-1.svg',
     '/assets/img/user-icons/male-2.svg',
     '/assets/img/user-icons/male-3.svg',
+    '/assets/img/user-icons/male-4.svg',
   ];
 
   constructor(public loginService: loginService, private router: Router) {}

@@ -25,7 +25,7 @@ export class loginService {
   email: string = '';
   password: string = '';
   name: string = '';
-  avatar: string = '/assets/img/charater1.svg';
+  avatar: string = '/assets/img/user-icons/guest.svg';
 
   constructor(private router: Router) {}
   // -------------------- login start seite ------------------------------->
