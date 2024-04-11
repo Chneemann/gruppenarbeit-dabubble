@@ -23,14 +23,14 @@
         <form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm" class="contactForm">
             <div class="inputContainer">
               <img class="iconP"  src="/assets/img/login/person-filled.png" alt="">
-                <input class="inputField" #nameField="ngModel" [(ngModel)]="name" id="name" name="name" type="text" placeholder="Name und Nachname" required [ngClass]="{ aktivInput: nameField.valid && nameField.touched }" />
+                <input class="inputField" #nameField="ngModel" [(ngModel)]="loginService.name" id="name" name="name" type="text" placeholder="Name und Nachname" required [ngClass]="{ aktivInput: nameField.valid && nameField.touched }" />
                 @if (!nameField.valid && nameField.touched) {
                 <p class="error">Name ist erforderlich.</p>
                 }
             </div>
             <div class="inputContainer">
               <img class="iconP" src="/assets/img/login/mail.png" alt="">
-                <input class="inputField" #emailField="ngModel" [(ngModel)]="email" id="email" name="email" type="email" placeholder="email" required [ngClass]="{ aktivInput: emailField.valid && emailField.touched }" pattern="[^@]+@[^.]+..+" />
+                <input class="inputField" #emailField="ngModel" [(ngModel)]="loginService.email" id="email" name="email" type="email" placeholder="email" required [ngClass]="{ aktivInput: emailField.valid && emailField.touched }" pattern="[^@]+@[^.]+..+" />
                 @if (!emailField.valid && emailField.touched) {
                 <p class="error">Email ist erforderlich.</p>
                 }
@@ -40,7 +40,7 @@
                 <input class="inputField"
                     #passwordField="ngModel"
                     minlength="6"
-                    [(ngModel)]="password"
+                    [(ngModel)]="loginService.password"
                     name="password"
                     placeholder="Passwort"
                     id="message"
@@ -63,7 +63,7 @@
             </div>
             <div class="registerBottom">
             <button [ngClass]="{'aktivButton': isChecked && contactForm.valid}" 
-            [disabled]="!isChecked || !contactForm.valid" routerLink="/avatar">Weiter</button></div>
+            [disabled]="!isChecked || !contactForm.valid">Weiter</button></div>
         </form>
     </div>
     <app-footer></app-footer>
