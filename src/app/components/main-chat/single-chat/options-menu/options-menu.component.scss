@@ -8,13 +8,18 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 200px;
-  height: 48px;
+  width: 256px;
+  height: 46px;
   background-color: #fff;
-  border: 1px solid rgba($color: #000000, $alpha: 0.5);
-  border-top-left-radius: 24px;
-  border-top-right-radius: 24px;
-  border-bottom-left-radius: 24px;
+  padding: 3px 15px 3px 20px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  border-bottom-left-radius: 25px;
+}
+
+app-small-btn {
+  padding: 0 8px;
 }
 
 .mirror {

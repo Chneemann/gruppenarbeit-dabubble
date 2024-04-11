@@ -1,3 +1,39 @@
 <section [ngClass]="{ mirror: index % 2 !== 0 }">
-  <div class="content"><p>options-menu works!</p></div>
+  <div class="content">
+    <app-small-btn
+      [imgSrc]="'okay.svg'"
+      [imgSize]="'24px'"
+      [btnSize]="'36px'"
+      [btnBgHoverColor]="'#edeefe'"
+    >
+    </app-small-btn>
+    <app-small-btn
+      [imgSrc]="'clap-hands.svg'"
+      [imgSize]="'24px'"
+      [btnSize]="'36px'"
+      [btnBgHoverColor]="'#edeefe'"
+    >
+    </app-small-btn>
+    <app-small-btn
+      [imgSrc]="'add-reaction.svg'"
+      [imgSize]="'24px'"
+      [btnSize]="'36px'"
+      [btnBgHoverColor]="'#edeefe'"
+    >
+    </app-small-btn>
+    <app-small-btn
+      [imgSrc]="'answer.svg'"
+      [imgSize]="'24px'"
+      [btnSize]="'36px'"
+      [btnBgHoverColor]="'#edeefe'"
+    >
+    </app-small-btn>
+    <app-small-btn
+      [imgSrc]="'more-vertical.svg'"
+      [imgSize]="'24px'"
+      [btnSize]="'36px'"
+      [btnBgHoverColor]="'#edeefe'"
+    >
+    </app-small-btn>
+  </div>
 </section>
