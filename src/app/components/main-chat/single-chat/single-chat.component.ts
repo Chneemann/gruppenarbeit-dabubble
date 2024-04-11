@@ -8,6 +8,7 @@ import { DownloadFilesService } from '../../../service/download-files.service';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { DomSanitizer } from '@angular/platform-browser';
 import { OptionsMenuComponent } from './options-menu/options-menu.component';
+import { AttachmentsComponent } from './attachments/attachments.component';
 
 @Component({
   selector: 'app-single-chat',
@@ -18,6 +19,7 @@ import { OptionsMenuComponent } from './options-menu/options-menu.component';
     NgSwitchCase,
     NgxExtendedPdfViewerModule,
     OptionsMenuComponent,
+    AttachmentsComponent,
   ],
   templateUrl: './single-chat.component.html',
   styleUrl: './single-chat.component.scss',
@@ -33,13 +35,10 @@ export class SingleChatComponent {
   trustedUrl: string = '';
   isOptionMenuVisible: boolean = false;
 
-  downloadedFiles: string[] = [];
-
   constructor(
     public chatService: ChatService,
     public channelService: ChatService,
-    public downloadFilesService: DownloadFilesService,
-    public sanitizer: DomSanitizer
+    public downloadFilesService: DownloadFilesService
   ) {}
 
   toggleOptionMenu() {
@@ -80,18 +79,5 @@ export class SingleChatComponent {
     if (!isOptionsMenuClicked && !isFilesClicked) {
       this.chatService.isSecondaryChatId = chatId;
     }
-  }
-
-  getFileType(file: string): string {
-    const extension = file.split('.').pop()?.toLowerCase();
-    const getTag = extension!.split('?')[0];
-    if (getTag) {
-      return getTag;
-    }
-    return '';
-  }
-
-  getSafeFileUrl(file: string) {
-    return this.sanitizer.bypassSecurityTrustResourceUrl(file);
   }
 }

@@ -1,0 +1,32 @@
+<ng-container *ngIf="downloadFilesService.downloadedFiles | async as files">
+  <div class="attachments" *ngFor="let folder of files">
+    <div *ngIf="chatId == folder.id">
+      <br /><i>Attachments:</i><br />
+      <div class="files">
+        <div *ngFor="let file of folder.files">
+          <a href="{{ file }}" target="_blank">
+            @switch (getFileType(file)){ @case ("png") {
+            <img src="{{ file }}" alt="" class="basicFileLookHover" />
+            } @case ("pdf") {
+            <div class="pdfDiv">
+              <iframe
+                [src]="getSafeFileUrl(file)"
+                class="pdfPreViewer"
+              ></iframe>
+              <button>show PDF</button>
+            </div>
+            } @case ("mp3") {
+            <video class="audioLook" name="media" controls="controls">
+              <source src="{{ file }}" type="video/mp4" />
+            </video>
+            } @case ("mp4") {
+            <video controls src="{{ file }}" class="basicFileLook"></video>
+            } @default {
+            <img src="{{ file }}" alt="" class="basicFileLookHover" />
+            } }
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
