@@ -12,16 +12,21 @@
         (click)="toggleShowAddChannelBox()"
       ></app-small-btn>
     </div>
-    <span
+    <span style="font-size: large;"
       >Channels are for your team to communicate. It is best if they are
       topic-based.</span
     >
-    <h2>Channel-Name</h2>
+    <div class="descriptionBox">
+      <h2>Channel-Name</h2>
+      &nbsp;
+      <h3>(required)</h3>
+    </div>
     <input
       type="text"
       class="textfieldStyle"
-      placeholder="Choose a name for the channel."
-      [(ngModel)]="channelName"
+      placeholder="Choose a name for the channel - minimum 3 letters"
+      [(ngModel)]="channelServide.channelName"
+      (keyup)="checkIsValif(channelServide.channelName)"
     />
     <div class="descriptionBox">
       <h2>Description</h2>
@@ -33,15 +38,25 @@
       cols="30"
       rows="10"
       class="textfieldStyle"
-      [(ngModel)]="channelDescription"
+      [(ngModel)]="channelServide.channelDescription"
       placeholder="Write here which topics can be discussed in the channel."
     ></textarea>
     <div class="btnBox">
-      <button (click)="createNewChannel()">Create</button>
+      <button (click)="createNewChannel()"  [disabled]="!btnIsValid" [ngClass]="{ 'disabledBtn': !btnIsValid, 'furterBtnClass': btnIsValid}">Further</button>
     </div>
   </div>
   } @else {
   <div class="smalWhiteBox" (click)="toggleAddedUserBox()">
+    <div class="headerAddPeople">
+      <h2>Add People</h2>
+      <app-small-btn
+        [imgSrc]="'closeIcon.svg'"
+        [imgSize]="'16px'"
+        [btnSize]="'32px'"
+        [btnBgHoverColor]="'#edeefe'"
+        (click)="toggleShowAddChannelBox()"
+      ></app-small-btn>
+    </div>
     <div class="positionSelectionBtn">
       <img
         src="assets/img/{{

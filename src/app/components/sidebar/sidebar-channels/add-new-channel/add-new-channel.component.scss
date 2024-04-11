@@ -62,7 +62,7 @@
 .btnBox{
   width: 100%;
   @include displayFlex($j: flex-end);
-  button{
+  .furterBtnClass{
     width: 120px;
     height: 48px;
     background-color: white;
@@ -196,7 +196,7 @@
   border-top-left-radius: 0;
   border: 1px solid #888dec;
   position: absolute;
-  top: 144px;
+  top: 200px;
   left: 54px;
   padding: 8px;
   text-align: start;
@@ -227,4 +227,19 @@
       }
     }
   }
+}
+
+.headerAddPeople{
+  @include displayFlex($j: space-between);
+}
+
+.disabledBtn {
+  background-color: #22222242;
+  border: none;
+  font-size: larger;
+  color: #fff;
+  width: 120px;
+  height: 48px;
+  border-radius: 25px;
+  font-size: larger;
 }
