@@ -48,7 +48,10 @@ export class RegisterComponent {
       'Registrierungsversuch mit:',
       this.loginService.email,
       this.loginService.password
-    );
+    );  
+    const names = this.loginService.name.split(' ');
+    this.loginService.firstName = names[0];
+    this.loginService.lastName = names.slice(1).join(' ');
     this.router.navigate(['/avatar']);
     // this.loginService.register();
     // ngForm.resetForm();

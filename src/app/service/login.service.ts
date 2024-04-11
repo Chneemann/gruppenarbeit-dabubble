@@ -25,6 +25,8 @@ export class loginService {
   email: string = '';
   password: string = '';
   name: string = '';
+  firstName: string = '';
+  lastName: string = '';
   avatar: string = '/assets/img/user-icons/guest.svg';
 
   constructor(private router: Router) {}
@@ -93,7 +95,8 @@ export class loginService {
     const userDataToSave = {
       email: this.email,
       user: user.uid,
-      name: this.name,
+      firstName: this.firstName,
+      lastName: this.lastName,
       avatar: this.avatar,
     };
 
