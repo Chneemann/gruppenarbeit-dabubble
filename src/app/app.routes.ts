@@ -5,6 +5,8 @@ import { ChooseAvatarComponent } from './components/main-login/choose-avatar/cho
 import { PasswordForgetComponent } from './components/main-login/password-forget/password-forget.component';
 import { PasswordResetComponent } from './components/main-login/password-reset/password-reset.component';
 import { LoginComponent } from './components/main-login/login/login.component';
+import { ImprintComponent } from './shared/components/imprint/imprint.component';
+import { PrivacyPolicyComponent } from './shared/components/privacy-policy/privacy-policy.component';
 
 export const routes: Routes = [
    { path: '', component: MainComponent },
@@ -15,4 +17,6 @@ export const routes: Routes = [
    { path: 'passwordReset', component: PasswordResetComponent },
   { path: 'main', component: MainComponent },
   { path: 'main/:id', component: MainComponent },
+  { path: 'imprint', component: ImprintComponent },
+  { path: 'privacy-policy', component: PrivacyPolicyComponent },
 ];
