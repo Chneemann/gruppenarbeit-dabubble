@@ -15,7 +15,9 @@ import {
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { User } from 'firebase/auth';
+import { User } from '../interface/user.interface';
+// import { User } from 'firebase/auth';
+
 
 @Injectable({
   providedIn: 'root',
@@ -79,8 +81,17 @@ export class loginService {
       .then((userCredential) => {
         // erfolgreiche registrierung
         const user = userCredential.user;
+        
+        const userDataToSave: User  = {
+          uid: user.uid,
+          firstName: this.firstName,
+          lastName: this.lastName,
+          avatar: this.avatar,
+          email: this.email,
+          
+        };
 
-        this.createUserWithFirebase(user);
+        this.createUserWithFirebase(userDataToSave);
       })
       .catch((error) => {
         console.error('Registration error:', error);
@@ -92,16 +103,10 @@ export class loginService {
       console.error('User or user UID is undefined.');
       return;
     }
-    const userDataToSave = {
-      email: this.email,
-      user: user.uid,
-      firstName: this.firstName,
-      lastName: this.lastName,
-      avatar: this.avatar,
-    };
+ 
 
     const usersCollection = collection(this.firestore, 'users');
-    addDoc(usersCollection, userDataToSave)
+    addDoc(usersCollection, user)
       .then(() => {
         console.log('User successfully added to Firestore!');
       })
