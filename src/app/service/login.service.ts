@@ -30,6 +30,7 @@ export class loginService {
   firstName: string = '';
   lastName: string = '';
   avatar: string = '/assets/img/user-icons/guest.svg';
+  currentUser: string = '';
 
   constructor(private router: Router) {}
   // -------------------- login start seite ------------------------------->
@@ -46,7 +47,7 @@ export class loginService {
         // eingeloggt
         const user = userCredential.user;
         console.log('Eingeloggt als:', user);
-        this.router.navigate(['/main']);
+        // this.router.navigate([`/main/${docRef.id}`]);
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -107,13 +108,15 @@ export class loginService {
 
     const usersCollection = collection(this.firestore, 'users');
     addDoc(usersCollection, user)
-      .then(() => {
+      .then((docRef) => {
         console.log('User successfully added to Firestore!');
+        this.currentUser = docRef.id;
+        console.log('User',this.currentUser);
+           this.router.navigate([`/main/${docRef.id}`]);
       })
       .catch((error) => {
         console.error('Error adding user to Firestore:', error);
       });
-    this.login();
   }
 
   // -------------------- choose avatar ------------------------------->
