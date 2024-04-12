@@ -1,7 +1,7 @@
 <ng-container *ngIf="downloadFilesService.downloadedFiles | async as files">
   <div class="attachments" *ngFor="let folder of files">
     <div *ngIf="chatId == folder.id">
-      <br /><i>Attachments:</i><br />
+      <br /><i>Attachments:</i>
       <div class="files">
         <div *ngFor="let file of folder.files">
           <a href="{{ file }}" target="_blank">

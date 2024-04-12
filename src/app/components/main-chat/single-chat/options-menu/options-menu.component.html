@@ -1,4 +1,7 @@
-<section [ngClass]="{ mirror: index % 2 !== 0 }">
+<section
+  [ngClass]="{ mirror: index % 2 !== 0 }"
+  (mouseleave)="this.isNavOpen = false"
+>
   <div class="content">
     <app-small-btn
       [imgSrc]="'okay.svg'"
@@ -37,7 +40,7 @@
     >
     </app-small-btn>
   </div>
-  <div class="nav" [ngClass]="{ 'd-none': !isNavOpen }">
+  <div class="nav" [ngClass]="{ 'd-none': !isNavOpen }" (click)="editMsg()">
     <p>Edit message</p>
   </div>
 </section>
