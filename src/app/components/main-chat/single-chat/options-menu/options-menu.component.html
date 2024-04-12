@@ -1,4 +1,7 @@
-<section [ngClass]="{ mirror: index % 2 !== 0 }">
+<section
+  [ngClass]="{ mirror: index % 2 !== 0 }"
+  (mouseleave)="this.isNavOpen = false"
+>
   <div class="content">
     <app-small-btn
       [imgSrc]="'okay.svg'"

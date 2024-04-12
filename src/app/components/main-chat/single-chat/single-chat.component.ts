@@ -6,7 +6,6 @@ import { CommonModule, NgSwitchCase } from '@angular/common';
 import { ChatService } from '../../../service/chat.service';
 import { DownloadFilesService } from '../../../service/download-files.service';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
-import { DomSanitizer } from '@angular/platform-browser';
 import { OptionsMenuComponent } from './options-menu/options-menu.component';
 import { AttachmentsComponent } from './attachments/attachments.component';
 
