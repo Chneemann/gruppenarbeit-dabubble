@@ -7,6 +7,7 @@
   <app-options-menu
     [ngStyle]="{ display: isOptionMenuVisible ? 'block' : 'none' }"
     [index]="index"
+    (variableEmitter)="editMsg($event)"
   >
     ></app-options-menu
   >
@@ -19,8 +20,20 @@
       {{ user.firstName }} {{ user.lastName }}
       <span>{{ convertTimestampHour(chat.publishedTimestamp) }}</span>
     </div>
-    <div class="msg">
-      {{ chat.message }}
+    <div class="content">
+      <div class="msg">
+        @if (!isMsgInEdit) {
+        {{ chat.message }}
+        } @else {
+        <input
+          type="text"
+          name="input"
+          id=""
+          placeholder="{{ chat.message }}"
+        />
+        <button>Send</button>
+        }
+      </div>
       <app-attachments [chatId]="chat.id"></app-attachments>
     </div>
     @if (chatService.getChatAnswers(chat.id).length > 0 && showAnswer) {

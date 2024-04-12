@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { User } from '../../../interface/user.interface';
 import { Chat, ChatAnswers } from '../../../interface/chat.interface';
 import { ChatContentComponent } from '../chat-content/chat-content.component';
@@ -33,12 +33,17 @@ export class SingleChatComponent {
 
   trustedUrl: string = '';
   isOptionMenuVisible: boolean = false;
+  isMsgInEdit: boolean = false;
 
   constructor(
     public chatService: ChatService,
     public channelService: ChatService,
     public downloadFilesService: DownloadFilesService
   ) {}
+
+  editMsg(variable: boolean) {
+    this.isMsgInEdit = variable;
+  }
 
   toggleOptionMenu() {
     this.isOptionMenuVisible = !this.isOptionMenuVisible;
@@ -74,8 +79,9 @@ export class SingleChatComponent {
     const target = event.target as HTMLElement;
     const isOptionsMenuClicked = target.closest('app-options-menu') !== null;
     const isFilesClicked = target.closest('.files') !== null;
+    const isInputClicked = target.closest('input') !== null;
 
-    if (!isOptionsMenuClicked && !isFilesClicked) {
+    if (!isOptionsMenuClicked && !isFilesClicked && !isInputClicked) {
       this.chatService.isSecondaryChatId = chatId;
     }
   }
