@@ -5,15 +5,18 @@ import { RouterLink } from '@angular/router';
 import { ChatService } from '../../../service/chat.service';
 import { SmallBtnComponent } from '../../../shared/components/small-btn/small-btn.component';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { AddNewChannelComponent } from './add-new-channel/add-new-channel.component';
 
 @Component({
   selector: 'app-sidebar-channels',
   standalone: true,
-  imports: [RouterLink, SmallBtnComponent, CommonModule, AddNewChannelComponent],
+  imports: [RouterLink, SmallBtnComponent, CommonModule, FormsModule, AddNewChannelComponent],
   templateUrl: './sidebar-channels.component.html',
   styleUrl: './sidebar-channels.component.scss',
 })
+
+
 export class SidebarChannelsComponent {
 
   constructor(
@@ -21,6 +24,10 @@ export class SidebarChannelsComponent {
     public chatService: ChatService
   ) {}
 
+  openAddChannelWindow() {
+    this.channelService.btnIsValid = false;
+    this.channelService.showAddChannelBox = true;
+  }
 
   closeSecondaryChat() {
     this.chatService.isSecondaryChatId = '';

@@ -10,7 +10,7 @@
       [imgSize]="'14px'"
       [btnSize]="'28px'"
       [btnBgHoverColor]="'#edeefe'"
-      (click)="channelService.openAddNewChannelWindow()"
+      (click)="openAddChannelWindow()"
     >
     </app-small-btn>
   </div>
@@ -24,7 +24,7 @@
     <p>{{ channel.name }}</p>
   </div>
   }
-  <div class="addChannel" (click)="channelService.openAddNewChannelWindow()">
+  <div class="addChannel" (click)="openAddChannelWindow()">
     <div class="circle">
       <img src="assets/img/sidebar/add-circle.svg" alt="" />
     </div>
@@ -32,7 +32,7 @@
   </div>
   <app-add-new-channel  [ngClass]="{
     'dBlock': channelService.showAddChannelBox,
-    'dNone': !channelService.showAddChannelBox
-  }"></app-add-new-channel>
+    'dNone': !channelService.showAddChannelBox}"
+    ></app-add-new-channel>
 </section>
 

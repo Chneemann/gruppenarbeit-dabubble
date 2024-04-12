@@ -8,8 +8,8 @@ import { SecondaryChatComponent } from '../secondary-chat/secondary-chat.compone
 import { ChatService } from '../../service/chat.service';
 import { ChannleService } from '../../service/channle.service';
 import { SidebarToggleComponent } from '../sidebar/sidebar-toggle/sidebar-toggle.component';
-import { DownloadFilesService } from '../../service/download-files.service';
 import { CommonModule } from '@angular/common';
+import { AddNewChannelComponent } from '../sidebar/sidebar-channels/add-new-channel/add-new-channel.component';
 
 @Component({
   selector: 'app-landing-page',
@@ -21,7 +21,8 @@ import { CommonModule } from '@angular/common';
     MainChatComponent,
     SecondaryChatComponent,
     SidebarToggleComponent,
-    CommonModule
+    CommonModule,
+    AddNewChannelComponent
   ],
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss',

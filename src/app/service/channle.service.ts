@@ -1,9 +1,7 @@
-import { Injectable, Input, OnDestroy, inject, input } from '@angular/core';
+import { Injectable, OnDestroy, inject } from '@angular/core';
 import { Firestore, addDoc, collection, onSnapshot } from '@angular/fire/firestore';
 import { Channel } from '../interface/channel.interface';
-import { User } from '../interface/user.interface';
-import { UserService } from './user.service';
-import { AddNewChannelComponent } from '../components/sidebar/sidebar-channels/add-new-channel/add-new-channel.component';
+
 
 @Injectable({
   providedIn: 'root',
@@ -14,18 +12,12 @@ export class ChannleService implements OnDestroy {
   allChannels: Channel[] = [];
   isSidebarOpen: boolean = true;
   showAddChannelBox: boolean = false;
-  channelName: string = '';
-  channelDescription: string = '';
   btnIsValid: boolean = false;
-  privatChannel: boolean = false;
-  getSelectedUsers: User[] = [];
-  channelIsPrivat: boolean = false;
-  shwoNextWindow: boolean = false;
 
 
   unsubChannel;
 
-  constructor(private userServide: UserService) {
+  constructor() {
     this.unsubChannel = this.subChannelList();
   }
 
@@ -46,34 +38,11 @@ export class ChannleService implements OnDestroy {
   }
 
 
-  async openAddNewChannelWindow(){
-    this.showAddChannelBox = !this.showAddChannelBox;
-    this.channelName = '';
-    this.channelDescription = '';
-    this.btnIsValid = false;
-    this.getSelectedUsers = [];
-    this.shwoNextWindow = false;
+  async createNewChannel(newChannel: Channel){
+    await addDoc(this.firesorePath(), newChannel).catch(
+    (err) => { console.error(err)});
   }
 
-
-  async addNewChannel(){
-    await addDoc(this.firesorePath(), this.channelToJson()).catch(
-    (err) => { console.error(err)}
-  )
-    this.openAddNewChannelWindow();
-  }
-
-
-  channelToJson(){
-    return {
-      creator: this.userServide.userId, // id später verändern jenachdem wer eingeloggt ist
-      description: this.channelDescription,
-      name: this.channelName,
-      hashtag: this.privatChannel,
-      addedUser: this.getSelectedUsers,
-      privatChannel: this.channelIsPrivat
-    }
-  }
 
   ngOnDestroy() {
     this.unsubChannel();

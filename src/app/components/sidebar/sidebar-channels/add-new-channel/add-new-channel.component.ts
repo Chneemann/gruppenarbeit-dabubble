@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ChannleService } from '../../../../service/channle.service';
 import { SmallBtnComponent } from '../../../../shared/components/small-btn/small-btn.component';
 import { FormsModule } from '@angular/forms';
 import { UserService } from '../../../../service/user.service';
 import { User } from '../../../../interface/user.interface';
+import { Channel } from '../../../../interface/channel.interface';
 
 @Component({
   selector: 'app-add-new-channel',
@@ -18,6 +19,22 @@ export class AddNewChannelComponent {
   userName: string = '';
   showExistenUsers: boolean = false;
   getSearchedUser: User[] = [];
+  channelName: string = '';
+  channelDescription: string = '';
+  privatChannel: boolean = false;
+  getSelectedUsers: User[] = [];
+  selectedUsers: string[] = [];
+  channelIsPrivat: boolean = false;
+  shwoNextWindow: boolean = false;
+
+  newChannel: Channel = {
+    name: this.channelName,
+    description: this.channelDescription,
+    creator: this.userService.userId,
+    privatChannel: this.privatChannel,
+    hashtag: this.channelName,
+    addedUser: this.selectedUsers,
+  }
 
 
   constructor(public channelService: ChannleService, public userService: UserService){}
@@ -25,24 +42,24 @@ export class AddNewChannelComponent {
 
   toggleShowAddChannelBox(){
     this.channelService.showAddChannelBox = !this.channelService.showAddChannelBox;
-    this.channelService.shwoNextWindow = false;
+    this.shwoNextWindow = false;
   }
 
 
   createNewChannel(){
-    this.channelService.shwoNextWindow = !this.channelService.shwoNextWindow;
+    this.shwoNextWindow = !this.shwoNextWindow;
   }
 
 
   toggleBtnTrue(){
     this.changeImg = true;
-    this.channelService.channelIsPrivat = true;
+    this.channelIsPrivat = true;
   }
 
 
   toggleBtnFalse(){
     this.changeImg = false;
-    this.channelService.channelIsPrivat = false;
+    this.channelIsPrivat = false;
   }
 
 
@@ -59,10 +76,12 @@ export class AddNewChannelComponent {
   
 
   chooseUser(user: User) {
-    const isUserAlreadySelected = this.channelService.getSelectedUsers.some(selectedUser => selectedUser.id === user.id);
+    const isUserAlreadySelected = this.getSelectedUsers.some(selectedUser => selectedUser.id === user.id);
   
     if (!isUserAlreadySelected) {
-      this.channelService.getSelectedUsers.push(user);
+      this.selectedUsers.push(user.id!);
+      this.getSelectedUsers.push(user);
+      console.log('this.selectedUsers', this.selectedUsers);
     } else {
       console.log('User already selected!');
     }
@@ -72,7 +91,7 @@ export class AddNewChannelComponent {
   
 
   spliceCurrentUser(index: number){
-    this.channelService.getSelectedUsers.splice(index, 1);
+    this.getSelectedUsers.splice(index, 1);
     this.showExistenUsers = false;
   }
 
@@ -82,11 +101,29 @@ export class AddNewChannelComponent {
   }
   
 
-  checkIsValif(channelName:string){
+  checkIfChannelNameIsValid(channelName:string){
     const channelNameLenght = channelName.length;
     if (channelNameLenght >= 3) {
       this.channelService.btnIsValid = true;
+    } else {
+      this.channelService.btnIsValid = false;
     }
+  }
+
+  addNewChannel(){
+    this.channelService.createNewChannel(this.newChannel);
+    this.openAddNewChannelWindow();
+  }
+
+
+  openAddNewChannelWindow(){
+    this.channelService.showAddChannelBox = !this.channelService.showAddChannelBox;
+    this.channelName = '';
+    this.channelDescription = '';
+    this.channelService.btnIsValid = false;
+    this.getSelectedUsers = [];
+    this.selectedUsers = [];
+    this.shwoNextWindow = false;
   }
 
   createChannel(){
