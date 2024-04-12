@@ -59,6 +59,11 @@ a {
     text-decoration: underline;
   }
 }
+.team{
+  display: flex;
+  justify-content: start;
+  gap: 98px
+}
 
 /*------------- RESPONSIVE -------------*/
 
