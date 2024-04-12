@@ -26,16 +26,14 @@ export class AddNewChannelComponent {
   selectedUsers: string[] = [];
   channelIsPrivat: boolean = false;
   shwoNextWindow: boolean = false;
-
-  newChannel: Channel = {
-    name: this.channelName,
-    description: this.channelDescription,
-    creator: this.userService.userId,
-    privatChannel: this.privatChannel,
-    hashtag: this.channelName,
-    addedUser: this.selectedUsers,
-  }
-
+  // newChannel: Channel = {
+  //   name: this.channelName,
+  //   description: this.channelDescription || '',
+  //   creator: this.userService.userId,
+  //   privatChannel: this.privatChannel,
+  //   hashtag: this.channelName,
+  //   addedUser: this.selectedUsers,
+  // }
 
   constructor(public channelService: ChannleService, public userService: UserService){}
 
@@ -111,7 +109,15 @@ export class AddNewChannelComponent {
   }
 
   addNewChannel(){
-    this.channelService.createNewChannel(this.newChannel);
+    const newChannel: Channel = {
+      name: this.channelName,
+      description: this.channelDescription || '',
+      creator: this.userService.userId,
+      privatChannel: this.privatChannel,
+      hashtag: this.channelName,
+      addedUser: this.selectedUsers,
+    }
+    this.channelService.createNewChannel(newChannel);
     this.openAddNewChannelWindow();
   }
 
