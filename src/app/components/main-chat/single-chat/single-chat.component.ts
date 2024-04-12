@@ -8,6 +8,8 @@ import { DownloadFilesService } from '../../../service/download-files.service';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { OptionsMenuComponent } from './options-menu/options-menu.component';
 import { AttachmentsComponent } from './attachments/attachments.component';
+import { ChatMsgBoxComponent } from '../chat-msg-box/chat-msg-box.component';
+import { SmallBtnComponent } from '../../../shared/components/small-btn/small-btn.component';
 
 @Component({
   selector: 'app-single-chat',
@@ -19,6 +21,8 @@ import { AttachmentsComponent } from './attachments/attachments.component';
     NgxExtendedPdfViewerModule,
     OptionsMenuComponent,
     AttachmentsComponent,
+    ChatMsgBoxComponent,
+    SmallBtnComponent,
   ],
   templateUrl: './single-chat.component.html',
   styleUrl: './single-chat.component.scss',
@@ -43,6 +47,11 @@ export class SingleChatComponent {
 
   editMsg(variable: boolean) {
     this.isMsgInEdit = variable;
+  }
+
+  closeEditMsg() {
+    this.isMsgInEdit = false;
+    this.toggleOptionMenu();
   }
 
   toggleOptionMenu() {
@@ -79,9 +88,15 @@ export class SingleChatComponent {
     const target = event.target as HTMLElement;
     const isOptionsMenuClicked = target.closest('app-options-menu') !== null;
     const isFilesClicked = target.closest('.files') !== null;
-    const isInputClicked = target.closest('input') !== null;
+    const isContentClicked = target.closest('textarea') !== null;
+    const isBtnClicked = target.closest('.btns') !== null;
 
-    if (!isOptionsMenuClicked && !isFilesClicked && !isInputClicked) {
+    if (
+      !isOptionsMenuClicked &&
+      !isFilesClicked &&
+      !isContentClicked &&
+      !isBtnClicked
+    ) {
       this.chatService.isSecondaryChatId = chatId;
     }
   }

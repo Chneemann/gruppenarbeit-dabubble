@@ -19,6 +19,7 @@ export class OptionsMenuComponent {
 
   editMsg() {
     this.variableEmitter.emit(true);
+    this.toggleNav();
   }
 
   toggleNav() {

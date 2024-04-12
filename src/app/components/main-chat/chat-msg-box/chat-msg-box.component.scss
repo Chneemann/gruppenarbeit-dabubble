@@ -1,7 +1,8 @@
-@import '../../../../styles.scss';
+@import "../../../../styles.scss";
 // @import '../../../../../node_modules/@ctrl/ngx-emoji-mart/picker.css';
 
 section {
+  width: auto;
   margin: 24px;
   padding: 24px;
   padding-bottom: 54px;
@@ -9,7 +10,8 @@ section {
   border-radius: 40px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   margin-top: 12px;
-  >textarea{
+  background-color: #fff;
+  > textarea {
     width: 100%;
     height: 100%;
     cursor: pointer;
@@ -18,7 +20,7 @@ section {
     resize: none;
     font-family: "Nunito";
     font-size: large;
-    input{
+    input {
       position: absolute;
       top: 0;
       left: 0;
@@ -27,15 +29,15 @@ section {
       height: 10px;
     }
   }
-  .positionAllIcons{
+  .positionAllIcons {
     @include displayFlex($j: space-between);
-    .positionSpecialIcons{
+    .positionSpecialIcons {
       @include displayFlex($j: space-between, $g: 3px);
-      .interactIcons{
+      .interactIcons {
         cursor: pointer;
         transition: filter 0.3s ease;
         padding: 8px;
-        &:hover{
+        &:hover {
           scale: 1.1;
           background-color: #b7bae7;
           border-radius: 50%;
@@ -44,15 +46,15 @@ section {
       }
     }
   }
-  .sendIcon{
+  .sendIcon {
     cursor: pointer;
-    &:hover{
+    &:hover {
       scale: 1.1;
-      filter: brightness(0) saturate(100%) invert(56%) sepia(97%) saturate(1270%) hue-rotate(204deg) brightness(95%) contrast(94%);
+      filter: brightness(0) saturate(100%) invert(56%) sepia(97%)
+        saturate(1270%) hue-rotate(204deg) brightness(95%) contrast(94%);
     }
   }
 }
-
 
 .fileBox {
   border: 1px solid #e5e5e5;
@@ -64,22 +66,20 @@ section {
   margin-right: 12px;
   position: relative;
   @include displayFlex();
-  .fileIcons{
+  .fileIcons {
     margin-left: 12px;
     margin-right: 12px;
     cursor: pointer;
   }
 }
 
-
-.posiotionDataFromPc{
+.posiotionDataFromPc {
   margin-top: -40px;
   display: flex;
   width: 60px;
 }
 
-
-.closeIcon{
+.closeIcon {
   position: absolute;
   top: -4px;
   right: -4px;
@@ -87,13 +87,13 @@ section {
   object-fit: contain;
   cursor: pointer;
   transition: 0.3s ease-in-out;
-  &:hover{
+  &:hover {
     background-color: red;
     border-radius: 50%;
   }
 }
 
-.smileysBackground{
+.smileysBackground {
   position: absolute;
   left: 0;
   top: 0;

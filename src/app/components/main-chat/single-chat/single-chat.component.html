@@ -25,13 +25,24 @@
         @if (!isMsgInEdit) {
         {{ chat.message }}
         } @else {
-        <input
+        <textarea
           type="text"
           name="input"
           id=""
           placeholder="{{ chat.message }}"
-        />
-        <button>Send</button>
+          >{{ chat.message }}</textarea
+        >
+        <div class="btns">
+          <app-small-btn
+            [imgSrc]="'closeIcon.svg'"
+            [imgSize]="'15px'"
+            [btnSize]="'26px'"
+            [btnBgHoverColor]="'#edeefe'"
+            (click)="closeEditMsg()"
+          >
+          </app-small-btn>
+          <img src="assets/img/sendIcon.svg" class="sendIcon" />
+        </div>
         }
       </div>
       <app-attachments [chatId]="chat.id"></app-attachments>
