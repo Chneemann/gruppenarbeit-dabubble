@@ -1,7 +1,6 @@
 section {
   display: flex;
   padding: 36px 48px;
-  cursor: pointer;
   position: relative;
   &:hover {
     background-color: #edeefe;
@@ -44,7 +43,6 @@ app-options-menu {
   }
 
   .content {
-    width: 100%;
     margin-top: 6px;
     padding: 12px;
     font-size: 18px;
@@ -71,6 +69,8 @@ app-options-menu {
   transform: scaleX(-1);
   .content {
     color: #fff;
+    border-top-left-radius: 24px;
+    border-top-right-radius: 0;
   }
   .content {
     background-color: #797ef3 !important;
@@ -81,12 +81,18 @@ app-options-menu {
   display: flex;
   align-items: center;
   margin-top: 12px;
-
   p {
+    margin-right: 2px;
     font-size: 18px;
     font-weight: 400;
+    color: #535af1;
+    cursor: pointer;
+    &:hover {
+      margin-right: 0;
+      font-weight: 700;
+      color: #444df2;
+    }
   }
-
   span {
     padding-left: 12px;
     font-size: 14px;

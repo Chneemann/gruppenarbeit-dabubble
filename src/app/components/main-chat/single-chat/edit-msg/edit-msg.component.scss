@@ -11,37 +11,37 @@ form {
     resize: none;
     &:focus {
       outline: none;
-      padding: 11px;
-      border: 2px dashed #000;
     }
     &:invalid {
-      padding: 11px;
-      border: 2px dashed red;
+      border: 1px solid red;
     }
   }
-  .btns {
-    app-small-btn {
-      position: absolute;
-      top: 12px;
-      right: 12px;
+}
+.btns {
+  position: absolute;
+  bottom: 16px;
+  right: 12px;
+  .btn {
+    padding: 12px 25px;
+    border-radius: 50px;
+    border: 1px solid #6971f5;
+    background-color: #6971f5;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    &:disabled {
+      background-color: #686868;
     }
-    .btnSend {
-      position: absolute;
-      bottom: 12px;
-      right: 12px;
-      padding: 0;
-      border: none;
-      background-color: transparent;
-      cursor: pointer;
-      .sendIcon {
-        width: 24px;
-        height: 24px;
-      }
-      &:hover {
-        scale: 1.1;
-        filter: brightness(0) saturate(100%) invert(56%) sepia(97%)
-          saturate(1270%) hue-rotate(204deg) brightness(95%) contrast(94%);
-      }
+    &:first-child {
+      margin-right: 12px;
+      background-color: #fff;
+      color: #6971f5;
+    }
+    &:hover {
+      background-color: #444df2;
+      border-color: #444df2;
+      color: #fff;
     }
   }
 }

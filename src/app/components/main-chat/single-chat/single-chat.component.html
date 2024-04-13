@@ -1,12 +1,9 @@
-<section
-  (click)="openSecondaryChat(currentChat, $event)"
-  (mouseenter)="toggleOptionMenu()"
-  (mouseleave)="toggleOptionMenu()"
->
+<section (mouseenter)="toggleOptionMenu()" (mouseleave)="toggleOptionMenu()">
   @if (showOptionsMenu){
   <app-options-menu
     [ngStyle]="{ display: isOptionMenuVisible ? 'block' : 'none' }"
     [index]="index"
+    [currentChat]="currentChat"
     (editMsgEmitter)="editMsgEmitter($event)"
   >
     ></app-options-menu
@@ -35,11 +32,16 @@
       </div>
       <app-attachments [chatId]="chat.id"></app-attachments>
     </div>
-    @if (chatService.getChatAnswers(chat.id).length > 0 && showAnswer) {
     <div class="answers">
-      <p>{{ displayCountChatAnswer() }} Answers</p>
+      @if (chatService.getChatAnswers(chat.id).length > 0 && showAnswer) {
+      <p (click)="openSecondaryChat(chat.id)">
+        {{ displayCountChatAnswer() }} Answers
+      </p>
       <span>Last answer: {{ displayLastChatAnswer() }}</span>
+
+      } @else { @if (showAnswer) {
+      <p (click)="openSecondaryChat(chat.id)">Answers...</p>
+      } }
     </div>
-    }
   </div>
 </section>

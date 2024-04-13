@@ -7,7 +7,9 @@
     type="text"
     id="message"
     name="message"
-    minlength="3"
+    minlength="6"
+    rows="5"
+    cols="10"
     #message="ngModel"
     [(ngModel)]="chat.message"
     >{{ originalMessage }}</textarea
@@ -31,21 +33,13 @@
     ></emoji-mart>
   </div>
   <div class="btns">
-    <app-small-btn
-      [imgSrc]="'closeIcon.svg'"
-      [imgSize]="'15px'"
-      [btnSize]="'26px'"
-      [btnBgHoverColor]="'#edeefe'"
-      (click)="closeEditMsg()"
+    <button type="reset" class="btn" (click)="closeEditMsg()">Cancel</button>
+    <button
+      type="submit"
+      class="btn"
+      [disabled]="message.invalid || chat.message == originalMessage"
     >
-    </app-small-btn>
-    <button type="submit" class="btnSend" [disabled]="message.invalid">
-      <img
-        src="assets/img/sendIcon.svg"
-        alt="Send"
-        class="sendIcon"
-        [ngClass]="{ disabledIcon: message.invalid }"
-      />
+      Save
     </button>
   </div>
 </form>

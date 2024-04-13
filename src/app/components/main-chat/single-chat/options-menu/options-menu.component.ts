@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { SingleChatComponent } from '../single-chat.component';
 import { SmallBtnComponent } from '../../../../shared/components/small-btn/small-btn.component';
+import { ChatService } from '../../../../service/chat.service';
 
 @Component({
   selector: 'app-options-menu',
@@ -12,9 +13,12 @@ import { SmallBtnComponent } from '../../../../shared/components/small-btn/small
 })
 export class OptionsMenuComponent {
   @Input() index: number = 0;
+  @Input() currentChat: string = '';
   @Output() editMsgEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   isNavOpen: boolean = false;
+
+  constructor(public chatService: ChatService) {}
 
   editMsg() {
     this.editMsgEmitter.emit(true);
@@ -23,5 +27,9 @@ export class OptionsMenuComponent {
 
   toggleNav() {
     this.isNavOpen = !this.isNavOpen;
+  }
+
+  openSecondaryChat(chatId: string) {
+    this.chatService.isSecondaryChatId = chatId;
   }
 }

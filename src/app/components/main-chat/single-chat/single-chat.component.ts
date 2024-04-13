@@ -34,11 +34,11 @@ import { EditMsgComponent } from './edit-msg/edit-msg.component';
   styleUrl: './single-chat.component.scss',
 })
 export class SingleChatComponent {
-  @Input() user!: User;
-  @Input() chat!: Chat | ChatAnswers;
+  @Input() user: User = {} as User;
+  @Input() chat: Chat | ChatAnswers = {} as Chat | ChatAnswers;
   @Input() index: number = 0;
-  @Input() currentChat!: string;
-  @Input() showAnswer!: boolean;
+  @Input() currentChat: string = '';
+  @Input() showAnswer: boolean = false;
   @Input() showOptionsMenu: boolean = false;
 
   trustedUrl: string = '';
@@ -90,20 +90,7 @@ export class SingleChatComponent {
     return formattedTime;
   }
 
-  openSecondaryChat(chatId: string, event: MouseEvent) {
-    const target = event.target as HTMLElement;
-    const isOptionsMenuClicked = target.closest('app-options-menu') !== null;
-    const isFilesClicked = target.closest('.files') !== null;
-    const isContentClicked = target.closest('textarea') !== null;
-    const isBtnClicked = target.closest('.btns') !== null;
-
-    if (
-      !isOptionsMenuClicked &&
-      !isFilesClicked &&
-      !isContentClicked &&
-      !isBtnClicked
-    ) {
-      this.chatService.isSecondaryChatId = chatId;
-    }
+  openSecondaryChat(chatId: string) {
+    this.chatService.isSecondaryChatId = chatId;
   }
 }
