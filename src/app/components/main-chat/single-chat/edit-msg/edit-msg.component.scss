@@ -1,7 +1,8 @@
 form {
+  position: relative;
   width: calc(100% - 24px);
   textarea {
-    width: 100%;
+    width: calc(100% - 80px);
     height: 100px;
     border: 0;
     border-radius: 20px;
@@ -83,4 +84,48 @@ form {
 .disabledIcon {
   filter: brightness(0) saturate(100%) invert(45%) sepia(75%) saturate(684%)
     hue-rotate(204deg) brightness(101%) contrast(91%);
+}
+
+.files {
+  position: absolute;
+  padding-top: 12px;
+  top: 0;
+  right: -24px;
+}
+
+.fileBox {
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  padding: 5px 10px;
+  margin-bottom: 6px;
+  background-color: #eee;
+  max-width: 40px;
+  max-height: 20px;
+  margin-right: 12px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .fileIcons {
+    margin-left: 12px;
+    margin-right: 12px;
+    cursor: pointer;
+    &:hover {
+      filter: brightness(0) saturate(100%) invert(20%) sepia(40%)
+        saturate(6312%) hue-rotate(236deg) brightness(106%) contrast(90%);
+    }
+  }
+}
+
+.closeIcon {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 16px;
+  object-fit: contain;
+  cursor: pointer;
+  &:hover {
+    filter: brightness(0) saturate(100%) invert(20%) sepia(78%) saturate(5090%)
+      hue-rotate(5deg) brightness(105%) contrast(103%);
+  }
 }

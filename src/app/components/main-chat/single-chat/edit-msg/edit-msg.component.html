@@ -42,4 +42,27 @@
       </button>
     </div>
   </div>
+
+  <!-- FILES -->
+
+  <ng-container *ngIf="downloadFilesService.downloadedFiles | async as files">
+    <div *ngFor="let folder of files">
+      <div class="files" *ngIf="chat.id == folder.id">
+        <div *ngFor="let file of folder.files">
+          <div class="fileBox">
+            <img
+              src=" {{ getFileType(file) }}"
+              class="fileIcons"
+              (click)="showCurrentFile(file)"
+            />
+            <img
+              src="assets/img/closeIcon.svg"
+              class="closeIcon"
+              (click)="deleteFile(file)"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
 </form>

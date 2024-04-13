@@ -12,6 +12,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { ChatService } from '../../../../service/chat.service';
 import { PickerComponent } from '@ctrl/ngx-emoji-mart';
 import { SmallBtnComponent } from '../../../../shared/components/small-btn/small-btn.component';
+import { DownloadFilesService } from '../../../../service/download-files.service';
 
 @Component({
   selector: 'app-edit-msg',
@@ -35,7 +36,18 @@ export class EditMsgComponent {
   showEmojis: boolean = false;
   public originalMessage: string = '';
 
-  constructor(public chatService: ChatService) {}
+  getFileIcons = [
+    'assets/img/documentIcon.svg',
+    'assets/img/imgIcon.svg',
+    'assets/img/mp3Icon.svg',
+    'assets/img/pdfIcon.svg',
+    'assets/img/videoIcon.svg',
+  ];
+
+  constructor(
+    public chatService: ChatService,
+    public downloadFilesService: DownloadFilesService
+  ) {}
 
   ngOnInit() {
     this.originalMessage = this.chat.message;
@@ -59,5 +71,33 @@ export class EditMsgComponent {
   toggleShowEmojis() {
     this.showEmojis = !this.showEmojis;
     this.isEmojiPickerVisible = true;
+  }
+
+  showCurrentFile(filePath: string) {
+    const url = filePath;
+    window.open(url, '_blank');
+  }
+
+  getFileType(filePath: string): string {
+    const fileName = filePath.split('?')[0].split('/').pop();
+
+    if (fileName) {
+      if (fileName.endsWith('.mp3' || '.wav' || '.wave')) {
+        return 'assets/img/mp3Icon.svg';
+      } else if (fileName.endsWith('.jpg' || '.jpeg' || '.png' || '.gif')) {
+        return 'assets/img/imgIcon.svg';
+      } else if (fileName.endsWith('.pdf' || '.txt')) {
+        return 'assets/img/pdfIcon.svg';
+      } else if (fileName.endsWith('.mp4' || '.avi')) {
+        return 'assets/img/videoIcon.svg';
+      }
+    }
+
+    // Default type
+    return 'assets/img/documentIcon.svg';
+  }
+
+  deleteFile(file: string) {
+    console.log('Deleted:' + file);
   }
 }
