@@ -7,7 +7,7 @@
   <app-options-menu
     [ngStyle]="{ display: isOptionMenuVisible ? 'block' : 'none' }"
     [index]="index"
-    (variableEmitter)="editMsg($event)"
+    (editMsgEmitter)="editMsgEmitter($event)"
   >
     ></app-options-menu
   >
@@ -22,7 +22,7 @@
     </div>
     <div class="content">
       <div class="msg">
-        @if (!isMsgInEdit) {
+        @if (!isMsgEditFormOpen) {
         {{ chat.message }}
         @if (chat.edited) {
         <span>(bearbeitet)</span>

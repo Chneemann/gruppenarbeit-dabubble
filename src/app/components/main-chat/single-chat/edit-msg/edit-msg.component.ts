@@ -27,15 +27,22 @@ export class EditMsgComponent {
 
   public isEmojiPickerVisible: boolean | undefined;
   showEmojis: boolean = false;
+  public originalMessage: string = '';
 
   constructor(public chatService: ChatService) {}
 
+  ngOnInit() {
+    this.originalMessage = this.chat.message;
+  }
+
   closeEditMsg() {
+    this.chat.message = this.originalMessage;
     this.closeEditMsgEmitter.emit(false);
   }
 
   onSubmit(chatId: string, form: NgForm) {
     this.chatService.updateChat(chatId, form.value);
+    this.closeEditMsg();
   }
 
   public addEmoji(event: any) {

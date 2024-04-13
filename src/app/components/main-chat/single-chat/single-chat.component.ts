@@ -43,7 +43,7 @@ export class SingleChatComponent {
 
   trustedUrl: string = '';
   isOptionMenuVisible: boolean = false;
-  isMsgInEdit: boolean = false;
+  isMsgEditFormOpen: boolean = false;
 
   constructor(
     public chatService: ChatService,
@@ -51,12 +51,12 @@ export class SingleChatComponent {
     public downloadFilesService: DownloadFilesService
   ) {}
 
-  editMsg(variable: boolean) {
-    this.isMsgInEdit = variable;
+  editMsgEmitter(variable: boolean) {
+    this.isMsgEditFormOpen = variable;
   }
 
   closeEditMsgEmitter(value: boolean) {
-    this.isMsgInEdit = value;
+    this.isMsgEditFormOpen = value;
     this.toggleOptionMenu();
   }
 

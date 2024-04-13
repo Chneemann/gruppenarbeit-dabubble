@@ -2,7 +2,6 @@
   (ngSubmit)="onSubmit(chat.id, taskForm)"
   #taskForm="ngForm"
   onsubmit="return false"
-  onclick="return false"
 >
   <textarea
     type="text"
@@ -11,8 +10,7 @@
     minlength="3"
     #message="ngModel"
     [(ngModel)]="chat.message"
-    placeholder="{{ chat.message }}"
-    >{{ chat.message }}</textarea
+    >{{ originalMessage }}</textarea
   >
   <img
     src="assets/img/smileIcon.svg"

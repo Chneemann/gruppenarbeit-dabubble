@@ -12,13 +12,12 @@ import { SmallBtnComponent } from '../../../../shared/components/small-btn/small
 })
 export class OptionsMenuComponent {
   @Input() index: number = 0;
-  @Output() variableEmitter: EventEmitter<boolean> =
-    new EventEmitter<boolean>();
+  @Output() editMsgEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   isNavOpen: boolean = false;
 
   editMsg() {
-    this.variableEmitter.emit(true);
+    this.editMsgEmitter.emit(true);
     this.toggleNav();
   }
 
