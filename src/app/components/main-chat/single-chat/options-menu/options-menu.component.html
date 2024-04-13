@@ -41,7 +41,15 @@
     >
     </app-small-btn>
   </div>
-  <div class="nav" [ngClass]="{ 'd-none': !isNavOpen }" (click)="editMsg()">
+  <div
+    class="nav"
+    [ngClass]="{
+      'd-none': !isNavOpen,
+      'animation-coming-in': isNavOpen,
+      'animation-coming-out': !isNavOpen
+    }"
+    (click)="editMsg()"
+  >
     <p>Edit message</p>
   </div>
 </section>

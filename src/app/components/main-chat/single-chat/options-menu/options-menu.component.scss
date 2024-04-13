@@ -1,7 +1,7 @@
 section {
   position: absolute;
   top: -24px;
-  left: 12px;
+  right: 12px;
 }
 
 .content {
@@ -55,4 +55,36 @@ app-small-btn {
 
 .mirror {
   transform: scaleX(-1);
+}
+
+/*------------- ANIMATION -------------*/
+
+.animation-coming-in {
+  animation: coming-in 125ms ease-in-out forwards;
+}
+
+.animation-coming-out {
+  animation: coming-out 125ms ease-in-out forwards;
+}
+
+@keyframes coming-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes coming-out {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
 }

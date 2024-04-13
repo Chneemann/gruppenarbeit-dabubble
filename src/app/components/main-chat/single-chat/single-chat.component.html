@@ -1,7 +1,10 @@
 <section (mouseenter)="toggleOptionMenu()" (mouseleave)="toggleOptionMenu()">
   @if (showOptionsMenu){
   <app-options-menu
-    [ngStyle]="{ display: isOptionMenuVisible ? 'block' : 'none' }"
+    [ngClass]="{
+      'animation-coming-in': isOptionMenuVisible,
+      'animation-coming-out': !isOptionMenuVisible
+    }"
     [index]="index"
     [currentChat]="currentChat"
     (editMsgEmitter)="editMsgEmitter($event)"
@@ -35,7 +38,7 @@
       <span>Last answer: {{ displayLastChatAnswer() }}</span>
 
       } @else { @if (showAnswer) {
-      <p (click)="openSecondaryChat(chat.id)">Answers...</p>
+      <p (click)="openSecondaryChat(chat.id)">Answer...</p>
       } }
     </div>
   </div>

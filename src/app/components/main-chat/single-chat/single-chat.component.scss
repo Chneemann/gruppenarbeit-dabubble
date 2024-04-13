@@ -15,7 +15,7 @@ section {
 app-options-menu {
   position: absolute;
   top: 0px;
-  left: 12px;
+  right: 12px;
   z-index: 2;
 }
 
@@ -105,4 +105,36 @@ app-options-menu {
   border-radius: 20px;
   background-color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+/*------------- ANIMATION -------------*/
+
+.animation-coming-in {
+  animation: coming-in 125ms ease-in-out forwards;
+}
+
+.animation-coming-out {
+  animation: coming-out 125ms ease-in-out forwards;
+}
+
+@keyframes coming-in {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes coming-out {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0);
+  }
 }

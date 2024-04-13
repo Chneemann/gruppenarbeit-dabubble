@@ -36,14 +36,6 @@ export class EditMsgComponent {
   showEmojis: boolean = false;
   public originalMessage: string = '';
 
-  getFileIcons = [
-    'assets/img/documentIcon.svg',
-    'assets/img/imgIcon.svg',
-    'assets/img/mp3Icon.svg',
-    'assets/img/pdfIcon.svg',
-    'assets/img/videoIcon.svg',
-  ];
-
   constructor(
     public chatService: ChatService,
     public downloadFilesService: DownloadFilesService
@@ -63,6 +55,8 @@ export class EditMsgComponent {
     this.closeEditMsg();
   }
 
+  // EMOJI
+
   public addEmoji(event: any) {
     this.chat.message = `${this.chat.message}${event.emoji.native}`;
     this.isEmojiPickerVisible = false;
@@ -72,6 +66,8 @@ export class EditMsgComponent {
     this.showEmojis = !this.showEmojis;
     this.isEmojiPickerVisible = true;
   }
+
+  // FILES
 
   showCurrentFile(filePath: string) {
     const url = filePath;
@@ -92,8 +88,6 @@ export class EditMsgComponent {
         return 'assets/img/videoIcon.svg';
       }
     }
-
-    // Default type
     return 'assets/img/documentIcon.svg';
   }
 
