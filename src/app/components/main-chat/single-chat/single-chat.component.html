@@ -25,24 +25,40 @@
         @if (!isMsgInEdit) {
         {{ chat.message }}
         } @else {
-        <textarea
-          type="text"
-          name="input"
-          id=""
-          placeholder="{{ chat.message }}"
-          >{{ chat.message }}</textarea
+        <form
+          (ngSubmit)="onSubmit(chat.id, taskForm)"
+          #taskForm="ngForm"
+          onsubmit="return false"
         >
-        <div class="btns">
-          <app-small-btn
-            [imgSrc]="'closeIcon.svg'"
-            [imgSize]="'15px'"
-            [btnSize]="'26px'"
-            [btnBgHoverColor]="'#edeefe'"
-            (click)="closeEditMsg()"
+          <textarea
+            type="text"
+            id="message"
+            name="message"
+            minlength="3"
+            #message="ngModel"
+            [(ngModel)]="chat.message"
+            placeholder="{{ chat.message }}"
+            >{{ chat.message }}</textarea
           >
-          </app-small-btn>
-          <img src="assets/img/sendIcon.svg" class="sendIcon" />
-        </div>
+          <div class="btns">
+            <app-small-btn
+              [imgSrc]="'closeIcon.svg'"
+              [imgSize]="'15px'"
+              [btnSize]="'26px'"
+              [btnBgHoverColor]="'#edeefe'"
+              (click)="closeEditMsg()"
+            >
+            </app-small-btn>
+            <button type="submit" class="btnSend" [disabled]="message.invalid">
+              <img
+                src="assets/img/sendIcon.svg"
+                alt="Send"
+                class="sendIcon"
+                [ngClass]="{ disabledIcon: message.invalid }"
+              />
+            </button>
+          </div>
+        </form>
         }
       </div>
       <app-attachments [chatId]="chat.id"></app-attachments>

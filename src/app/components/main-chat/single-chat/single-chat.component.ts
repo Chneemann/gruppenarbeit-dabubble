@@ -10,6 +10,7 @@ import { OptionsMenuComponent } from './options-menu/options-menu.component';
 import { AttachmentsComponent } from './attachments/attachments.component';
 import { ChatMsgBoxComponent } from '../chat-msg-box/chat-msg-box.component';
 import { SmallBtnComponent } from '../../../shared/components/small-btn/small-btn.component';
+import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-single-chat',
@@ -17,6 +18,7 @@ import { SmallBtnComponent } from '../../../shared/components/small-btn/small-bt
   imports: [
     ChatContentComponent,
     CommonModule,
+    FormsModule,
     NgSwitchCase,
     NgxExtendedPdfViewerModule,
     OptionsMenuComponent,
@@ -52,6 +54,12 @@ export class SingleChatComponent {
   closeEditMsg() {
     this.isMsgInEdit = false;
     this.toggleOptionMenu();
+  }
+
+  onSubmit(chatId: string, form: NgForm) {
+    this.isMsgInEdit = false;
+    this.toggleOptionMenu();
+    this.chatService.updateChat(chatId, form.value);
   }
 
   toggleOptionMenu() {

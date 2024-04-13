@@ -2,9 +2,11 @@ import { Injectable, OnDestroy, inject } from '@angular/core';
 import {
   Firestore,
   collection,
+  doc,
   onSnapshot,
   orderBy,
   query,
+  updateDoc,
 } from '@angular/fire/firestore';
 import { Chat, ChatAnswers } from '../interface/chat.interface';
 
@@ -48,6 +50,14 @@ export class ChatService implements OnDestroy {
         const chatWithId = { id: element.id, ...element.data() } as ChatAnswers;
         this.allChatAnswers.push(chatWithId);
       });
+    });
+  }
+
+  async updateChat(chatId: string, update: Partial<Chat>) {
+    const chatRef = doc(collection(this.firestore, 'chats'), chatId);
+    await updateDoc(chatRef, update).catch((err) => {
+      console.error(err);
+      throw err;
     });
   }
 
