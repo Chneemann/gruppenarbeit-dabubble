@@ -24,7 +24,9 @@
       <div class="msg">
         @if (!isMsgInEdit) {
         {{ chat.message }}
-        } @else {
+        @if (chat.edited) {
+        <span>(bearbeitet)</span>
+        } } @else {
         <form
           (ngSubmit)="onSubmit(chat.id, taskForm)"
           #taskForm="ngForm"

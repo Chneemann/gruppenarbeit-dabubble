@@ -23,7 +23,6 @@ app-options-menu {
 
 .userAvatar {
   padding-right: 24px;
-
   img {
     width: 70px;
     height: 70px;
@@ -38,7 +37,6 @@ app-options-menu {
     align-items: center;
     font-size: 18px;
     font-weight: 700;
-
     span {
       font-size: 14px;
       font-weight: 400;
@@ -57,10 +55,12 @@ app-options-menu {
     border-bottom-right-radius: 24px;
     background-color: #eceefe;
     .msg {
-      display: flex;
-      justify-content: space-between;
       position: relative;
       width: 100%;
+      span {
+        font-size: 12px;
+        font-style: italic;
+      }
     }
     app-attachments  {
       height: 200px;
@@ -69,8 +69,7 @@ app-options-menu {
 }
 
 form {
-  width: 100%;
-  padding-right: 28px;
+  width: calc(100% - 28px);
   textarea {
     width: 100%;
     min-height: 100px;

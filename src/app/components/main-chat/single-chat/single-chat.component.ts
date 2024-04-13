@@ -57,8 +57,7 @@ export class SingleChatComponent {
   }
 
   onSubmit(chatId: string, form: NgForm) {
-    this.isMsgInEdit = false;
-    this.toggleOptionMenu();
+    this.closeEditMsg();
     this.chatService.updateChat(chatId, form.value);
   }
 

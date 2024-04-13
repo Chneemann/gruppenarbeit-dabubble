@@ -55,7 +55,8 @@ export class ChatService implements OnDestroy {
 
   async updateChat(chatId: string, update: Partial<Chat>) {
     const chatRef = doc(collection(this.firestore, 'chats'), chatId);
-    await updateDoc(chatRef, update).catch((err) => {
+    const updatedData = { ...update, edited: true };
+    await updateDoc(chatRef, updatedData).catch((err) => {
       console.error(err);
       throw err;
     });
