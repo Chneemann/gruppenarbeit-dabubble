@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  HostListener,
+  Input,
+  Output,
+} from '@angular/core';
 import { Chat, ChatAnswers } from '../../../../interface/chat.interface';
 import { SingleChatComponent } from '../single-chat.component';
 import { CommonModule } from '@angular/common';

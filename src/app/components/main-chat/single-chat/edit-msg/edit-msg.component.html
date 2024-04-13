@@ -12,12 +12,6 @@
     [(ngModel)]="chat.message"
     >{{ originalMessage }}</textarea
   >
-  <img
-    src="assets/img/smileIcon.svg"
-    class="interactIcons"
-    (click)="isEmojiPickerVisible = !isEmojiPickerVisible"
-    (click)="toggleShowEmojis()"
-  />
   <div
     class="smileysBackground"
     [ngClass]="{ dBlock: showEmojis, dNone: !showEmojis }"
@@ -30,14 +24,22 @@
       title="Choose your emoji"
     ></emoji-mart>
   </div>
-  <div class="btns">
-    <button type="reset" class="btn" (click)="closeEditMsg()">Cancel</button>
-    <button
-      type="submit"
-      class="btn"
-      [disabled]="message.invalid || chat.message == originalMessage"
-    >
-      Save
-    </button>
+  <div class="userInteraction">
+    <img
+      src="assets/img/smileIcon.svg"
+      class="interactIcons"
+      (click)="isEmojiPickerVisible = !isEmojiPickerVisible"
+      (click)="toggleShowEmojis()"
+    />
+    <div class="btns">
+      <button type="reset" class="btn" (click)="closeEditMsg()">Cancel</button>
+      <button
+        type="submit"
+        class="btn"
+        [disabled]="message.invalid || chat.message == originalMessage"
+      >
+        Save
+      </button>
+    </div>
   </div>
 </form>

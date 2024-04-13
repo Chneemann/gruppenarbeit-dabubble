@@ -42,11 +42,6 @@ app-options-menu {
     }
   }
 
-  .editContent {
-    width: 100%;
-    background-color: aqua;
-  }
-
   .content {
     margin-top: 6px;
     padding: 12px;
@@ -103,4 +98,11 @@ app-options-menu {
     font-size: 14px;
     font-weight: 400;
   }
+}
+
+.editForm {
+  width: 100%;
+  border-radius: 20px;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.2);
 }

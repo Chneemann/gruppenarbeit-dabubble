@@ -40,7 +40,7 @@
     </div>
   </div>
   } @else {
-  <div class="editContent" [ngClass]="{ mirror: index % 2 !== 0 }">
+  <div class="editForm" [ngClass]="{ mirror: index % 2 !== 0 }">
     <app-edit-msg
       [chat]="chat"
       (closeEditMsgEmitter)="closeEditMsgEmitter($event)"

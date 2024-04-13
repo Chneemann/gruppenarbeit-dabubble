@@ -1,9 +1,9 @@
 form {
-  width: calc(100% - 28px);
+  width: calc(100% - 24px);
   textarea {
     width: 100%;
-    min-height: 100px;
-    border: 1px solid rgba(0, 0, 0, 0.2);
+    height: 100px;
+    border: 0;
     border-radius: 20px;
     font-size: 18px;
     font-weight: 400;
@@ -17,10 +17,18 @@ form {
     }
   }
 }
+
+.userInteraction {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  img {
+    padding-left: 24px;
+  }
+}
+
 .btns {
-  position: absolute;
-  bottom: 16px;
-  right: 12px;
+  padding: 12px 0;
   .btn {
     padding: 12px 25px;
     border-radius: 50px;
@@ -50,9 +58,6 @@ form {
 }
 
 .interactIcons {
-  position: absolute;
-  bottom: 12px;
-  left: 6px;
   cursor: pointer;
   transition: filter 0.3s ease;
   padding: 8px;
