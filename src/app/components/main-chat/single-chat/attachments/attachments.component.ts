@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { DownloadFilesService } from '../../../../service/download-files.service';
-import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-attachments',
@@ -15,10 +14,7 @@ export class AttachmentsComponent {
 
   downloadedFiles: string[] = [];
 
-  constructor(
-    public downloadFilesService: DownloadFilesService,
-    public sanitizer: DomSanitizer
-  ) {}
+  constructor(public downloadFilesService: DownloadFilesService) {}
 
   getFileType(file: string): string {
     const extension = file.split('.').pop()?.toLowerCase();
@@ -27,9 +23,5 @@ export class AttachmentsComponent {
       return getTag;
     }
     return '';
-  }
-
-  getSafeFileUrl(file: string) {
-    return this.sanitizer.bypassSecurityTrustResourceUrl(file);
   }
 }

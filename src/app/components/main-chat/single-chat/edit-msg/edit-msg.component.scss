@@ -42,6 +42,9 @@ form {
       background-color: #444df2;
       border-color: #444df2;
       color: #fff;
+      &:disabled {
+        background-color: #686868;
+      }
     }
   }
 }

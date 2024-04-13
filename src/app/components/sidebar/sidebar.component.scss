@@ -32,15 +32,3 @@ section {
 .headline {
   padding: 36px 36px 0 36px;
 }
-
-.slideIn {
-  float: left;
-  right: 0;
-  transition: 0.3s ease-in-out;
-}
-
-.slideOut {
-  float: left;
-  margin-right: -420px;
-  transition: 0.3s ease-in-out;
-}

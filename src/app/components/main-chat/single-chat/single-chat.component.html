@@ -12,6 +12,7 @@
   <div class="userAvatar">
     <img src="assets/img/user-icons/{{ user.avatar }}.svg" alt="" />
   </div>
+  @if (!isMsgEditFormOpen) {
   <div class="userContent" [ngClass]="{ mirror: index % 2 !== 0 }">
     <div class="name">
       {{ user.firstName }} {{ user.lastName }}
@@ -19,15 +20,9 @@
     </div>
     <div class="content">
       <div class="msg">
-        @if (!isMsgEditFormOpen) {
         {{ chat.message }}
         @if (chat.edited) {
         <span>(bearbeitet)</span>
-        } } @else {
-        <app-edit-msg
-          [chat]="chat"
-          (closeEditMsgEmitter)="closeEditMsgEmitter($event)"
-        ></app-edit-msg>
         }
       </div>
       <app-attachments [chatId]="chat.id"></app-attachments>
@@ -44,4 +39,12 @@
       } }
     </div>
   </div>
+  } @else {
+  <div class="editContent" [ngClass]="{ mirror: index % 2 !== 0 }">
+    <app-edit-msg
+      [chat]="chat"
+      (closeEditMsgEmitter)="closeEditMsgEmitter($event)"
+    ></app-edit-msg>
+  </div>
+  }
 </section>
