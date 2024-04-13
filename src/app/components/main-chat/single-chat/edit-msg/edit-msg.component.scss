@@ -1,0 +1,78 @@
+form {
+  width: calc(100% - 28px);
+  textarea {
+    width: 100%;
+    min-height: 100px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    font-size: 18px;
+    font-weight: 400;
+    padding: 12px;
+    resize: none;
+    &:focus {
+      outline: none;
+      padding: 11px;
+      border: 2px dashed #000;
+    }
+    &:invalid {
+      padding: 11px;
+      border: 2px dashed red;
+    }
+  }
+  .btns {
+    app-small-btn {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+    }
+    .btnSend {
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      padding: 0;
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+      .sendIcon {
+        width: 24px;
+        height: 24px;
+      }
+      &:hover {
+        scale: 1.1;
+        filter: brightness(0) saturate(100%) invert(56%) sepia(97%)
+          saturate(1270%) hue-rotate(204deg) brightness(95%) contrast(94%);
+      }
+    }
+  }
+}
+
+.interactIcons {
+  position: absolute;
+  bottom: 12px;
+  left: 6px;
+  cursor: pointer;
+  transition: filter 0.3s ease;
+  padding: 8px;
+  &:hover {
+    scale: 1.1;
+    background-color: #b7bae7;
+    border-radius: 50%;
+    filter: brightness(120%);
+  }
+}
+
+.emoji-mart {
+  z-index: 99 !important;
+}
+
+.smileysBackground {
+  position: absolute;
+  left: -500px;
+  bottom: -70px;
+  z-index: 99 !important;
+}
+
+.disabledIcon {
+  filter: brightness(0) saturate(100%) invert(45%) sepia(75%) saturate(684%)
+    hue-rotate(204deg) brightness(101%) contrast(91%);
+}

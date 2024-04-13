@@ -11,6 +11,8 @@ import { AttachmentsComponent } from './attachments/attachments.component';
 import { ChatMsgBoxComponent } from '../chat-msg-box/chat-msg-box.component';
 import { SmallBtnComponent } from '../../../shared/components/small-btn/small-btn.component';
 import { FormsModule, NgForm } from '@angular/forms';
+import { PickerComponent } from '@ctrl/ngx-emoji-mart';
+import { EditMsgComponent } from './edit-msg/edit-msg.component';
 
 @Component({
   selector: 'app-single-chat',
@@ -25,6 +27,8 @@ import { FormsModule, NgForm } from '@angular/forms';
     AttachmentsComponent,
     ChatMsgBoxComponent,
     SmallBtnComponent,
+    PickerComponent,
+    EditMsgComponent,
   ],
   templateUrl: './single-chat.component.html',
   styleUrl: './single-chat.component.scss',
@@ -51,14 +55,9 @@ export class SingleChatComponent {
     this.isMsgInEdit = variable;
   }
 
-  closeEditMsg() {
-    this.isMsgInEdit = false;
+  closeEditMsgEmitter(value: boolean) {
+    this.isMsgInEdit = value;
     this.toggleOptionMenu();
-  }
-
-  onSubmit(chatId: string, form: NgForm) {
-    this.closeEditMsg();
-    this.chatService.updateChat(chatId, form.value);
   }
 
   toggleOptionMenu() {

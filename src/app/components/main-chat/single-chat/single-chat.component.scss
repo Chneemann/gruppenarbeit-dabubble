@@ -3,7 +3,6 @@ section {
   padding: 36px 48px;
   cursor: pointer;
   position: relative;
-
   &:hover {
     background-color: #edeefe;
     .userContent {
@@ -68,62 +67,11 @@ app-options-menu {
   }
 }
 
-form {
-  width: calc(100% - 28px);
-  textarea {
-    width: 100%;
-    min-height: 100px;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: 20px;
-    font-size: 18px;
-    font-weight: 400;
-    padding: 12px;
-    resize: none;
-    &:focus {
-      outline: none;
-      padding: 11px;
-      border: 2px dashed #000;
-    }
-    &:invalid {
-      padding: 11px;
-      border: 2px dashed red;
-    }
-  }
-  .btns {
-    app-small-btn {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-    }
-    .btnSend {
-      position: absolute;
-      bottom: 12px;
-      right: 12px;
-      padding: 0;
-      border: none;
-      background-color: transparent;
-      cursor: pointer;
-      .sendIcon {
-        width: 24px;
-        height: 24px;
-      }
-      &:hover {
-        scale: 1.1;
-        filter: brightness(0) saturate(100%) invert(56%) sepia(97%)
-          saturate(1270%) hue-rotate(204deg) brightness(95%) contrast(94%);
-      }
-    }
-  }
-}
-
-.disabledIcon {
-  filter: brightness(0) saturate(100%) invert(45%) sepia(75%) saturate(684%)
-    hue-rotate(204deg) brightness(101%) contrast(91%);
-}
-
 .mirror {
   transform: scaleX(-1);
-
+  .content {
+    color: #fff;
+  }
   .content {
     background-color: #797ef3 !important;
   }
