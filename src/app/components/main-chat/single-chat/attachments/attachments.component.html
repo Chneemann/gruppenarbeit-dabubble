@@ -1,26 +1,43 @@
 <ng-container *ngIf="downloadFilesService.downloadedFiles | async as files">
   <div class="attachments" *ngFor="let folder of files">
     <div *ngIf="chatId == folder.id">
-      <br /><i>Attachments:</i>
+      <br />
       <div class="files">
         <div *ngFor="let file of folder.files">
-          <a href="{{ file }}" target="_blank">
-            @switch (getFileType(file)){ @case ("png") {
-            <img src="{{ file }}" alt="" class="basicFileLookHover" />
-            } @case ("pdf") {
-            <div class="pdfDiv">
-              <button>show PDF</button>
-            </div>
-            } @case ("mp3") {
-            <video class="audioLook" name="media" controls="controls">
-              <source src="{{ file }}" type="video/mp4" />
-            </video>
-            } @case ("mp4") {
-            <video controls src="{{ file }}" class="basicFileLook"></video>
-            } @default {
-            <img src="{{ file }}" alt="" class="basicFileLookHover" />
-            } }
-          </a>
+          <div class="filesView">
+            <a href="{{ file }}" target="_blank">
+              @if (getFileType(file) === 'png' || getFileType(file) === 'jpg' ||
+              getFileType(file) === 'jpeg' || getFileType(file) === 'gif') {
+              <img src="{{ file }}" alt="" />
+              } @if (getFileType(file) === 'pdf') {
+              <img
+                class="otherFiles"
+                src="./../../../../../assets/img/attachments/pdf.png"
+                alt=""
+              />
+              } @if (getFileType(file) === 'doc') {
+              <img
+                class="otherFiles"
+                src="./../../../../../assets/img/attachments/doc.png"
+                alt=""
+              />
+              } @if (getFileType(file) === 'txt') {
+              <img
+                class="otherFiles"
+                src="./../../../../../assets/img/attachments/txt.png"
+                alt=""
+              />
+              } @if (getFileType(file) === 'mp3') {
+              <img
+                class="otherFiles"
+                src="./../../../../../assets/img/attachments/audio.png"
+                alt=""
+              />
+              }@if (getFileType(file) === 'mp4') {
+              <video controls src="{{ file }}"></video>
+              }
+            </a>
+          </div>
         </div>
       </div>
     </div>

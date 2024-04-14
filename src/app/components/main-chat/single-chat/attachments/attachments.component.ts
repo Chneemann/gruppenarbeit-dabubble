@@ -19,9 +19,6 @@ export class AttachmentsComponent {
   getFileType(file: string): string {
     const extension = file.split('.').pop()?.toLowerCase();
     const getTag = extension!.split('?')[0];
-    if (getTag) {
-      return getTag;
-    }
-    return '';
+    return getTag || '';
   }
 }

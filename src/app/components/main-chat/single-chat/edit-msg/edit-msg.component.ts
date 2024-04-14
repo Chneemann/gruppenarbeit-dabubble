@@ -78,11 +78,11 @@ export class EditMsgComponent {
     const fileName = filePath.split('?')[0].split('/').pop();
 
     if (fileName) {
-      if (fileName.endsWith('.mp3' || '.wav' || '.wave')) {
+      if (fileName.endsWith('.mp3')) {
         return 'assets/img/mp3Icon.svg';
       } else if (fileName.endsWith('.jpg' || '.jpeg' || '.png' || '.gif')) {
         return 'assets/img/imgIcon.svg';
-      } else if (fileName.endsWith('.pdf' || '.txt')) {
+      } else if (fileName.endsWith('.pdf' || '.doc' || '.txt')) {
         return 'assets/img/pdfIcon.svg';
       } else if (fileName.endsWith('.mp4' || '.avi')) {
         return 'assets/img/videoIcon.svg';
