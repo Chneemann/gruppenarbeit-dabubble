@@ -2,42 +2,33 @@
   <div class="attachments" *ngFor="let folder of files">
     <div *ngIf="chatId == folder.id">
       <br />
-      <div
-        class="files"
-        [ngStyle]="{ width: openOnSecondaryChat ? 'min-content' : '100%' }"
-      >
+      <div class="files">
         <div *ngFor="let file of folder.files">
           <div class="filesView">
             <a href="{{ file }}" target="_blank">
-              @if (getFileType(file) === 'png' || getFileType(file) === 'jpg' ||
-              getFileType(file) === 'jpeg' || getFileType(file) === 'gif') {
-              <img src="{{ file }}" alt="" />
-              } @if (getFileType(file) === 'pdf') {
+              @if (['png', 'jpg', 'jpeg', 'gif'].includes(getFileType(file))) {
+              <img
+                src="{{ file }}"
+                alt="image"
+                [ngStyle]="{ height: openOnSecondaryChat ? '7.5vw' : '5vw' }"
+              />
+              } @if (['pdf', 'doc', 'txt', 'mp3', 'wav',
+              'wma'].includes(getFileType(file))) {
               <img
                 class="otherFiles"
-                src="./../../../../../assets/img/attachments/pdf.png"
-                alt=""
+                src="./../../../../../assets/img/attachments/{{
+                  getFileType(file)
+                }}.png"
+                alt="image"
+                [ngStyle]="{ height: openOnSecondaryChat ? '5vw' : '3vw' }"
               />
-              } @if (getFileType(file) === 'doc') {
-              <img
-                class="otherFiles"
-                src="./../../../../../assets/img/attachments/doc.png"
-                alt=""
-              />
-              } @if (getFileType(file) === 'txt') {
-              <img
-                class="otherFiles"
-                src="./../../../../../assets/img/attachments/txt.png"
-                alt=""
-              />
-              } @if (getFileType(file) === 'mp3') {
-              <img
-                class="otherFiles"
-                src="./../../../../../assets/img/attachments/audio.png"
-                alt=""
-              />
-              }@if (getFileType(file) === 'mp4') {
-              <video controls src="{{ file }}"></video>
+              } @if (getFileType(file) === 'mp4') {
+              <video
+                controls
+                src="{{ file }}"
+                alt="video"
+                [ngStyle]="{ height: openOnSecondaryChat ? '7.5vw' : '5vw' }"
+              ></video>
               }
             </a>
           </div>
