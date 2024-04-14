@@ -5,15 +5,15 @@
       <div class="files">
         <div *ngFor="let file of folder.files">
           <div class="filesView">
+            @if (['png', 'jpg', 'jpeg', 'gif'].includes(getFileType(file))) {
+            <img
+              src="{{ file }}"
+              alt="image"
+              [ngStyle]="{ height: openOnSecondaryChat ? '7.5vw' : '5vw' }"
+              (click)="showOverlay(file)"
+            />
+            } @if (['pdf', 'doc', 'txt'].includes(getFileType(file))) {
             <a href="{{ file }}" target="_blank">
-              @if (['png', 'jpg', 'jpeg', 'gif'].includes(getFileType(file))) {
-              <img
-                src="{{ file }}"
-                alt="image"
-                [ngStyle]="{ height: openOnSecondaryChat ? '7.5vw' : '5vw' }"
-              />
-              } @if (['pdf', 'doc', 'txt', 'mp3', 'wav',
-              'wma'].includes(getFileType(file))) {
               <img
                 class="otherFiles"
                 src="./../../../../../assets/img/attachments/{{
@@ -21,16 +21,24 @@
                 }}.png"
                 alt="image"
                 [ngStyle]="{ height: openOnSecondaryChat ? '5vw' : '3vw' }"
-              />
-              } @if (getFileType(file) === 'mp4') {
+            /></a>
+            } @if (['mp3', 'wav', 'wma'].includes(getFileType(file))) {
+            <audio
+              controls
+              preload="auto"
+              src="{{ file }}"
+              [ngStyle]="{ width: openOnSecondaryChat ? '' : '250px' }"
+            ></audio>
+            }@if (getFileType(file) === 'mp4') {
+            <div (click)="showOverlay(file)">
               <video
                 controls
                 src="{{ file }}"
                 alt="video"
                 [ngStyle]="{ height: openOnSecondaryChat ? '7.5vw' : '5vw' }"
               ></video>
-              }
-            </a>
+            </div>
+            }
           </div>
         </div>
       </div>

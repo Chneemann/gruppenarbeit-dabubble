@@ -1,0 +1,15 @@
+<div *ngIf="overlayData" class="overlay">
+  <div class="overlayContent">
+    @if (['png', 'jpg', 'jpeg', 'gif'].includes(getFileType(overlayData))) {
+    <img [src]="overlayData" alt="Overlay Image" />
+    }
+    <app-small-btn
+      [imgSrc]="'closeIcon.svg'"
+      [imgSize]="'32px'"
+      [btnSize]="'48px'"
+      [btnBgHoverColor]="'#edeefe'"
+      (click)="onCloseOverlay()"
+    >
+    </app-small-btn>
+  </div>
+</div>

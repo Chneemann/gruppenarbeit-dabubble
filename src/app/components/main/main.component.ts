@@ -10,6 +10,7 @@ import { ChannleService } from '../../service/channle.service';
 import { SidebarToggleComponent } from '../sidebar/sidebar-toggle/sidebar-toggle.component';
 import { CommonModule } from '@angular/common';
 import { AddNewChannelComponent } from '../sidebar/sidebar-channels/add-new-channel/add-new-channel.component';
+import { OverlayComponent } from '../../shared/components/overlay/overlay.component';
 
 @Component({
   selector: 'app-landing-page',
@@ -22,7 +23,8 @@ import { AddNewChannelComponent } from '../sidebar/sidebar-channels/add-new-chan
     SecondaryChatComponent,
     SidebarToggleComponent,
     CommonModule,
-    AddNewChannelComponent
+    AddNewChannelComponent,
+    OverlayComponent,
   ],
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss',
