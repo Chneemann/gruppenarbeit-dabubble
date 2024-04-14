@@ -10,7 +10,8 @@ import { DownloadFilesService } from '../../../../service/download-files.service
   styleUrl: './attachments.component.scss',
 })
 export class AttachmentsComponent {
-  @Input() chatId!: string;
+  @Input() chatId: string = '';
+  @Input() openOnSecondaryChat: boolean = false;
 
   downloadedFiles: string[] = [];
 

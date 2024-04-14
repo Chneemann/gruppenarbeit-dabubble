@@ -43,6 +43,8 @@ app-options-menu {
   }
 
   .content {
+    max-width: 100%;
+    overflow-x: auto;
     margin-top: 6px;
     padding: 12px;
     font-size: 18px;

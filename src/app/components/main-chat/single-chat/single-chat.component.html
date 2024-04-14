@@ -1,5 +1,5 @@
 <section (mouseenter)="toggleOptionMenu()" (mouseleave)="toggleOptionMenu()">
-  @if (showOptionsMenu){
+  @if (openOnSecondaryChat){
   <app-options-menu
     [ngClass]="{
       'animation-coming-in': isOptionMenuVisible,
@@ -16,7 +16,11 @@
     <img src="assets/img/user-icons/{{ user.avatar }}.svg" alt="" />
   </div>
   @if (!isMsgEditFormOpen) {
-  <div class="userContent" [ngClass]="{ mirror: index % 2 !== 0 }">
+  <div
+    class="userContent"
+    [ngClass]="{ mirror: index % 2 !== 0 }"
+    [ngStyle]="{ width: openOnSecondaryChat ? 'fit-content' : '80%' }"
+  >
     <div class="name">
       {{ user.firstName }} {{ user.lastName }}
       <span>{{ convertTimestampHour(chat.publishedTimestamp) }}</span>
@@ -28,7 +32,10 @@
         <span>(bearbeitet)</span>
         }
       </div>
-      <app-attachments [chatId]="chat.id"></app-attachments>
+      <app-attachments
+        [chatId]="chat.id"
+        [openOnSecondaryChat]="openOnSecondaryChat"
+      ></app-attachments>
     </div>
     <div class="answers">
       @if (chatService.getChatAnswers(chat.id).length > 0 && showAnswer) {
