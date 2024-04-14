@@ -2,6 +2,8 @@
   <div class="overlayContent">
     @if (['png', 'jpg', 'jpeg', 'gif'].includes(getFileType(overlayData))) {
     <img [src]="overlayData" alt="Overlay Image" />
+    } @if (['mp4'].includes(getFileType(overlayData))) {
+    <video controls [src]="overlayData" alt="video"></video>
     }
     <app-small-btn
       [imgSrc]="'closeIcon.svg'"

@@ -9,6 +9,7 @@
             <img
               src="{{ file }}"
               alt="image"
+              loading="lazy"
               [ngStyle]="{ height: openOnSecondaryChat ? '7.5vw' : '5vw' }"
               (click)="showOverlay(file)"
             />
@@ -20,6 +21,7 @@
                   getFileType(file)
                 }}.png"
                 alt="image"
+                loading="lazy"
                 [ngStyle]="{ height: openOnSecondaryChat ? '5vw' : '3vw' }"
             /></a>
             } @if (['mp3', 'wav', 'wma'].includes(getFileType(file))) {
@@ -27,14 +29,15 @@
               controls
               preload="auto"
               src="{{ file }}"
+              loading="lazy"
               [ngStyle]="{ width: openOnSecondaryChat ? '' : '250px' }"
             ></audio>
             }@if (getFileType(file) === 'mp4') {
             <div (click)="showOverlay(file)">
               <video
-                controls
                 src="{{ file }}"
                 alt="video"
+                loading="lazy"
                 [ngStyle]="{ height: openOnSecondaryChat ? '7.5vw' : '5vw' }"
               ></video>
             </div>
