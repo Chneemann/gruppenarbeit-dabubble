@@ -1,12 +1,13 @@
 <section>
+  @for (user of userService.getUsers(); track $index) {
   <div class="user">
-    <img src="assets/img/charater1.svg" alt="" />
+    <img src="{{ user.avatar }}" alt="" />
     <div class="dot"></div>
     @if (userService.getUsers().length > 0) {
     <p>
-      {{ userService.getUsers()[0].firstName }},
-      {{ userService.getUsers()[0].lastName }}
+      {{ user.firstName }} {{ user.lastName }}
     </p>
     }
   </div>
+  }
 </section>

@@ -1,11 +1,18 @@
 import { Component } from '@angular/core';
 import { SidebarDirectMessagesUserComponent } from '../sidebar-direct-messages-user/sidebar-direct-messages-user.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-sidebar-direct-messages',
   standalone: true,
-  imports: [SidebarDirectMessagesUserComponent],
+  imports: [SidebarDirectMessagesUserComponent, CommonModule],
   templateUrl: './sidebar-direct-messages.component.html',
   styleUrl: './sidebar-direct-messages.component.scss',
 })
-export class SidebarDirectMessagesComponent {}
+export class SidebarDirectMessagesComponent {
+  minimizeUsers: boolean = false;
+
+  minimizeAllUsers(){
+    this.minimizeUsers = !this.minimizeUsers;
+  }
+}

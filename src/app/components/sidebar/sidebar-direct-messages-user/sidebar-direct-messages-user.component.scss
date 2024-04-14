@@ -1,13 +1,16 @@
 section {
   display: flex;
   flex-direction: column;
+  max-height: 32vh;
+  overflow: auto;
+  width: 300px;
 }
 
 .user {
   display: flex;
   align-items: center;
-  margin: 12px;
-  padding: 12px;
+  margin: 6px;
+  padding: 6px;
   max-width: fit-content;
   cursor: pointer;
   img {
@@ -19,6 +22,7 @@ section {
     font-size: 18px;
     font-weight: 400;
     padding: 0 12px 0 18px;
+    text-align: left;
   }
   &:hover {
     background-color: #edeefe;

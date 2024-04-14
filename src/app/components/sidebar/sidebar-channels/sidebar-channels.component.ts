@@ -18,11 +18,18 @@ import { AddNewChannelComponent } from './add-new-channel/add-new-channel.compon
 
 
 export class SidebarChannelsComponent {
+  minimizeChannels: boolean = true;
 
   constructor(
     public channelService: ChannleService,
     public chatService: ChatService
   ) {}
+
+
+  minimizeAllChannels(){
+    this.minimizeChannels = !this.minimizeChannels;
+  }
+
 
   openAddChannelWindow() {
     this.channelService.btnIsValid = false;
