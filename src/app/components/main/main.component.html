@@ -13,7 +13,7 @@
     <!-- @if (isSecondaryChatOpen()) { -->
     <app-secondary-chat
       [currentChannel]="currentChannel"
-      [ngClass]="{slideInRightWindow: !chatService.openRightWindow, slideOutRightWindow: chatService.openRightWindow}"
+      [ngClass]="{slideInRightWindow: chatService.openRightWindow, slideOutRightWindow: !chatService.openRightWindow}"
     ></app-secondary-chat>
     <!-- } -->
   </div>

@@ -9,28 +9,22 @@ app-header {
 }
 
 app-sidebar,
-app-main-chat {
+app-main-chat,app-secondary-chat {
   padding: 12px;
-  min-height: calc(100vh - 134px); // Minus app-header:height & app-sidebar:padding
+  min-height: calc(100vh - 134px); 
   background-color: #edeefe;
 }
 
 .chatBox{
   display: flex;
   width: 100%;
+  flex-grow: 1;
   app-main-chat {
-    flex: 1;
+    width: 100%;
   }
   
-  app-secondary-chat {
-    min-width: 470px;
-    margin: 12px;
-    margin-left: 0;
-    min-height: calc(100vh - 134px); // Minus app-header:height & app-sidebar:padding
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    border-radius: 25px;
-    z-index: 5;
-  }
+  app-secondary-chat {}
+
 }
 
 .minusWidth{
@@ -57,34 +51,37 @@ app-sidebar {
 
 .slideInRightWindow {
   transition: 0.3s ease-in-out;
-  position: absolute;
-  right: -600px;
+  width: 100%;
+  padding: 12px;
   animation: slideIn;
 }
 
 @keyframes slideIn {
   from {
-    right: -600px;
+    transform: translateX(-100%);
   }
 
   to {
-    right: 0;
+    width: 100%;
+    padding: 12px;
+    transform: translateX(0);
   }
 }
 
 .slideOutRightWindow {
   transition: 0.3s ease-in-out;
-  position: absolute;
-  right: 0;
   animation: slideOut;
+  width: 0;
+  padding-right: 0;
+  padding-left: 0;
 }
 
 @keyframes slideOut {
   from {
-    right: 0;
+    transform: translateX(0);
   }
 
   to {
-    right: -600px;
+    transform: translateX(-100%);
   }
 }
