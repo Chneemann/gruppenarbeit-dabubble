@@ -29,7 +29,9 @@ export class OptionsMenuComponent {
     this.isNavOpen = !this.isNavOpen;
   }
 
-  openSecondaryChat(chatId: string) {
-    this.chatService.isSecondaryChatId = chatId;
+  toggleSecondaryChat(chatId: string) {
+    this.chatService.isSecondaryChatId
+      ? (this.chatService.isSecondaryChatId = '')
+      : (this.chatService.isSecondaryChatId = chatId);
   }
 }
