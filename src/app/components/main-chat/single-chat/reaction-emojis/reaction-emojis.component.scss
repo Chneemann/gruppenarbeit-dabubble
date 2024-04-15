@@ -1,0 +1,29 @@
+section {
+  display: flex;
+}
+
+.emoji {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 12px;
+  background-color: #fff;
+  width: 44px;
+  height: 30px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  border: 1px solid #adb0d9;
+  transition: 0.125s ease-in-out;
+  cursor: pointer;
+  img {
+    height: 24px;
+    width: auto;
+  }
+  span {
+    font-size: 16px;
+    font-weight: 400;
+  }
+  &:hover {
+    border-color: #444df2;
+  }
+}
