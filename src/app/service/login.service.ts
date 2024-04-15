@@ -136,7 +136,8 @@ export class loginService {
         console.log('User successfully added to Firestore!');
         this.currentUser = docRef.id;
         console.log('UserREGI', this.currentUser);
-        this.router.navigate([`/main/${docRef.id}`]);
+        // this.router.navigate([`/main/${docRef.id}`]);
+        this.login();
       })
       .catch((error) => {
         console.error('Error adding user to Firestore:', error);
