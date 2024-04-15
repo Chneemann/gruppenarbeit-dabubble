@@ -13,6 +13,7 @@ import { SmallBtnComponent } from '../../../shared/components/small-btn/small-bt
 import { FormsModule, NgForm } from '@angular/forms';
 import { PickerComponent } from '@ctrl/ngx-emoji-mart';
 import { EditMsgComponent } from './edit-msg/edit-msg.component';
+import { ReactionEmojisComponent } from './reaction-emojis/reaction-emojis.component';
 
 @Component({
   selector: 'app-single-chat',
@@ -29,6 +30,7 @@ import { EditMsgComponent } from './edit-msg/edit-msg.component';
     SmallBtnComponent,
     PickerComponent,
     EditMsgComponent,
+    ReactionEmojisComponent,
   ],
   templateUrl: './single-chat.component.html',
   styleUrl: './single-chat.component.scss',

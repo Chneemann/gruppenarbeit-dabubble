@@ -2,16 +2,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 100%;
   width: 0;
   height: 0;
   cursor: pointer;
-  transition: 0.2s ease-in-out;
+  transition: 0.125s ease-in-out;
   &:hover {
     background-color: var(--btnBgHoverColor);
-    border-radius: 100%;
-    scale: 1.1;
     img {
       scale: 1.1;
+      filter: var(--filter);
     }
   }
 }
