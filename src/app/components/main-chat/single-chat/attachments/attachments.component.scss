@@ -11,21 +11,20 @@
     padding: 12px 12px 6px 12px;
     cursor: pointer;
     transition: 0.3s ease-in-out;
+    filter: drop-shadow(3px 3px 3px rgba(0, 0, 0, 0.3));
     img,
     video {
       height: 7.5vw;
       width: auto;
       border-radius: 12px;
-      filter: drop-shadow(3px 3px 3px rgba(0, 0, 0, 0.3));
     }
     .otherFiles {
       height: 5vw;
       width: auto;
       border-radius: 12px;
-      filter: drop-shadow(3px 3px 3px rgba(0, 0, 0, 0.3));
     }
     &:hover {
-      filter: drop-shadow(3px 3px 3px rgba(0, 0, 0, 0.8));
+      filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.35));
     }
   }
 }
