@@ -7,8 +7,24 @@
     [btnBgHoverColor]="'#edeefe'"
   >
   </app-small-btn>
-  <div class="emoji">
+  <div
+    class="emoji"
+    (mouseenter)="toggleDialog()"
+    (mouseleave)="toggleDialog()"
+  >
     <img src="./../../../../../assets/img/okay.svg" alt="" />
     <span>1</span>
+  </div>
+  <div
+    class="dialog"
+    [ngStyle]="{
+      display: isDialogOpen ? 'block' : 'none'
+    }"
+  >
+    <div class="icon">
+      <img src="./../../../../../assets/img/okay.svg" alt="" />
+    </div>
+    <div class="name">Peter Lustig</div>
+    <p>hat reagiert</p>
   </div>
 </section>
