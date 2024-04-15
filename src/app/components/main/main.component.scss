@@ -9,21 +9,32 @@ app-header {
 }
 
 app-sidebar,
-app-main-chat,
-app-secondary-chat {
+app-main-chat {
   padding: 12px;
-  min-height: calc(
-    100vh - 134px
-  ); // Minus app-header:height & app-sidebar:padding
+  min-height: calc(100vh - 134px); // Minus app-header:height & app-sidebar:padding
   background-color: #edeefe;
 }
 
-app-main-chat {
+.chatBox{
+  display: flex;
   width: 100%;
+  app-main-chat {
+    flex: 1;
+  }
+  
+  app-secondary-chat {
+    min-width: 470px;
+    margin: 12px;
+    margin-left: 0;
+    min-height: calc(100vh - 134px); // Minus app-header:height & app-sidebar:padding
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 25px;
+    z-index: 5;
+  }
 }
 
-app-secondary-chat {
-  min-width: 470px;
+.minusWidth{
+  width: calc(100% - 518px);
 }
 
 app-sidebar {
@@ -34,10 +45,46 @@ app-sidebar {
   float: right;
   right: 0;
   transition: 0.3s ease-in-out;
+  animation: slideIn;
 }
 
 .slideOut {
   float: left;
   margin-right: -390px;
   transition: 0.3s ease-in-out;
+  animation: slideOut;
+}
+
+.slideInRightWindow {
+  transition: 0.3s ease-in-out;
+  position: absolute;
+  right: -600px;
+  animation: slideIn;
+}
+
+@keyframes slideIn {
+  from {
+    right: -600px;
+  }
+
+  to {
+    right: 0;
+  }
+}
+
+.slideOutRightWindow {
+  transition: 0.3s ease-in-out;
+  position: absolute;
+  right: 0;
+  animation: slideOut;
+}
+
+@keyframes slideOut {
+  from {
+    right: 0;
+  }
+
+  to {
+    right: -600px;
+  }
 }

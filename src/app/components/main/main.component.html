@@ -8,10 +8,15 @@
     }"
   ></app-sidebar>
   <app-sidebar-toggle></app-sidebar-toggle>
-  <app-main-chat [currentChannel]="currentChannel"></app-main-chat>
-  @if (isSecondaryChatOpen()) {
-  <app-secondary-chat [currentChannel]="currentChannel"></app-secondary-chat>
-  }
+  <div class="chatBox">
+    <app-main-chat [currentChannel]="currentChannel"></app-main-chat>
+    <!-- @if (isSecondaryChatOpen()) { -->
+    <app-secondary-chat
+      [currentChannel]="currentChannel"
+      [ngClass]="{slideInRightWindow: !chatService.openRightWindow, slideOutRightWindow: chatService.openRightWindow}"
+    ></app-secondary-chat>
+    <!-- } -->
+  </div>
 </div>
 }
 <app-overlay></app-overlay>

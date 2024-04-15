@@ -58,7 +58,7 @@ export class MainComponent {
 
   routeUserId() {
     if (this.router.params.subscribe()) {
-      this.router.params.subscribe((params) => {
+        this.router.params.subscribe((params) => {
         this.currentChannel = params['id'];
       });
     }

@@ -44,9 +44,9 @@
       </p>
       <span>Last answer: {{ displayLastChatAnswer() }}</span>
 
-      } @else { @if (showAnswer) {
+      } @else if (showAnswer) {
       <p (click)="openSecondaryChat(chat.id)">Answer...</p>
-      } }
+      } 
     </div>
     <app-reaction-emojis></app-reaction-emojis>
   </div>

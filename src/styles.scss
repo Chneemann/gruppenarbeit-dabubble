@@ -3,6 +3,10 @@
   font-family: "Nunito", sans-serif;
 }
 
+body{
+  overflow-x: hidden;
+}
+
 @mixin displayFlex($d: flex, $j: center, $a: center, $g: 0) {
   display: $d;
   justify-content: $j;

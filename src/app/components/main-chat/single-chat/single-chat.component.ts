@@ -93,6 +93,7 @@ export class SingleChatComponent {
   }
 
   openSecondaryChat(chatId: string) {
+    this.chatService.openRightWindow = !this.chatService.openRightWindow;
     this.chatService.isSecondaryChatId = chatId;
   }
 }
