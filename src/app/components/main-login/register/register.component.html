@@ -25,14 +25,14 @@
               <img class="iconP"  src="/assets/img/login/person-filled.png" alt="">
                 <input class="inputField" #nameField="ngModel" [(ngModel)]="loginService.name" id="name" name="name" type="text" placeholder="Name und Nachname" required [ngClass]="{ aktivInput: nameField.valid && nameField.touched }" />
                 @if (!nameField.valid && nameField.touched) {
-                <p class="error">Name ist erforderlich.</p>
+                <p class="error">*Name ist erforderlich.</p>
                 }
             </div>
             <div class="inputContainer">
               <img class="iconP" src="/assets/img/login/mail.png" alt="">
-                <input class="inputField" #emailField="ngModel" [(ngModel)]="loginService.email" id="email" name="email" type="email" placeholder="email" required [ngClass]="{ aktivInput: emailField.valid && emailField.touched }" pattern="[^@]+@[^.]+..+" />
+                <input class="inputField" #emailField="ngModel" [(ngModel)]="loginService.email" id="email" name="email" type="email" placeholder="email" required [ngClass]="{ aktivInput: emailField.valid && emailField.touched }" pattern="[^@]+@[^.]+\..+"/>
                 @if (!emailField.valid && emailField.touched) {
-                <p class="error">Email ist erforderlich.</p>
+                <p class="error">*Email ist erforderlich.</p>
                 }
             </div>
             <div class="inputContainer">
@@ -50,7 +50,7 @@
                     rows="10"
                 />
                 @if (!passwordField.valid && passwordField.touched) {
-                <p class="error">Passwort ist erforderlich.</p>
+                <p class="error">*Bitte geben Sie ein Passwort ein (mindestens 6 Zeichen).</p>
                 }
             </div>
 

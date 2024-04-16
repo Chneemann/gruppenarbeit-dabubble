@@ -13,7 +13,7 @@
             
             <div class="inputContainer">
               <img class="iconP" src="/assets/img/login/mail.png" alt="">
-                <input class="inputField" #emailField="ngModel" [(ngModel)]="loginService.email" id="email" name="email" type="email" placeholder="email" required [ngClass]="{ aktivInput: emailField.valid && emailField.touched }" pattern="[^@]+@[^.]+..+" />
+                <input class="inputField" #emailField="ngModel" [(ngModel)]="loginService.email" id="email" name="email" type="email" placeholder="email" required [ngClass]="{ aktivInput: emailField.valid && emailField.touched }" pattern="[^@]+@[^.]+\..+" />
                 @if (!emailField.valid && emailField.touched) {
                 <p class="error">*Email ist erforderlich.</p>
                 }
