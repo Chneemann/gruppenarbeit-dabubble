@@ -38,19 +38,19 @@ export class loginService {
   lastName: string = '';
   avatar: string = '/assets/img/user-icons/guest.svg';
   currentUser: string = '';
+  errorMessage: string = '';
 
   constructor(private router: Router, private userService: UserService) {}
   // -------------------- login start seite ------------------------------->
   login() {
     const auth = getAuth();
     if (!this.email || !this.password) {
-      console.info('E-Mail und Passwort dürfen nicht leer sein.');
-      return; // Validierung fehlgeschlagen
+      this.errorMessage ='E-Mail und Passwort dürfen nicht leer sein.';
+      return; 
     }
 
     signInWithEmailAndPassword(auth, this.email, this.password)
       .then((userCredential) => {
-        // Eingeloggt
         const user = userCredential.user;
         console.log('Eingeloggt als:', user);
 
@@ -66,37 +66,27 @@ export class loginService {
               this.currentUser = userDoc.id;
               console.log('UserLOGI', this.currentUser);
               this.userService.userId = this.currentUser;
-              this.router.navigate([`/main`]); // hier log ich mir die docref aus und verwende die entweder hier oder später in main
+              this.router.navigate([`/main`]); 
             } else {
-              console.error('Kein zugehöriges Benutzerdokument gefunden.');
+              console.info('Kein zugehöriges Benutzerdokument gefunden.');
             }
           })
           .catch((error) => {
-            console.error('Fehler beim Abrufen des Benutzerdokuments:', error);
+            console.info('Fehler beim Abrufen des Benutzerdokuments:', error);
           });
       })
       .catch((error) => {
-        // Fehlerbehandlung bei Authentifizierungsfehlern
         const errorCode = error.code;
-        const errorMessage = error.message;
-
-        switch (errorCode) {
-          case 'auth/user-not-found':
-            console.info('Kein Benutzer mit dieser E-Mail gefunden.');
-            break;
-          case 'auth/wrong-password':
-            console.info('Falsches Passwort.');
-            break;
-          case 'auth/invalid-email':
-            console.info('Ungültiges E-Mail-Format.');
-            break;
+         switch (errorCode) {
           case 'auth/invalid-credential':
-            console.info(
-              'Ungültige Anmeldeinformationen. Bitte überprüfen Sie Ihre Eingaben.'
-            );
+            this.errorMessage = '*Ungültige Anmeldeinformationen. Bitte überprüfen Sie Ihre Eingaben.'
+            break;
+            case 'auth/too-many-requests':
+            this.errorMessage = '*Der Zugriff auf dieses Konto wurde aufgrund zahlreicher fehlgeschlagener Anmeldeversuche vorübergehend deaktiviert.'
             break;
           default:
-            console.info('Login-Fehler:', errorMessage);
+            this.errorMessage = '*Bitte Überprüfe deine Eingaben.'
+            break;
         }
       });
   }

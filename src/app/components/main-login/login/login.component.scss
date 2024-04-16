@@ -87,8 +87,10 @@
   }
 }
 .error {
+  color: #ED1E79;
   position: absolute;
   margin: 4px;
+  font-size: 14px;
 }
 .contactForm {
   width: 90%;
@@ -185,6 +187,9 @@ button {
   &:hover {
     background-color: #676eec;
   }
+}
+.aktivInput {
+  border: 1px solid#686868;
 }
 .guestButton {
   padding: 12px 25px;
