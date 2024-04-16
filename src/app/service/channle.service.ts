@@ -13,6 +13,7 @@ export class ChannleService implements OnDestroy {
   isSidebarOpen: boolean = true;
   showAddChannelBox: boolean = false;
   btnIsValid: boolean = false;
+  openPrvChat: boolean = false;
 
 
   unsubChannel;

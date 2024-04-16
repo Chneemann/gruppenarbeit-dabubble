@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { UserService } from '../../../service/user.service';
 import { CommonModule } from '@angular/common';
+import { ChannleService } from '../../../service/channle.service';
 
 @Component({
   selector: 'app-sidebar-direct-messages-user',
@@ -10,5 +11,9 @@ import { CommonModule } from '@angular/common';
   styleUrl: './sidebar-direct-messages-user.component.scss',
 })
 export class SidebarDirectMessagesUserComponent {
-  constructor(public userService: UserService) {}
+  constructor(public userService: UserService, private channelService: ChannleService) {}
+
+  openPrvChat(){
+    this.channelService.openPrvChat = true;
+  }
 }

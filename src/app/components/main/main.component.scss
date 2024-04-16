@@ -9,9 +9,11 @@ app-header {
 }
 
 app-sidebar,
-app-main-chat,app-secondary-chat {
+app-main-chat,
+app-secondary-chat,
+app-privat-chat {
   padding: 12px;
-  min-height: calc(100vh - 134px); 
+  min-height: calc(100vh - 158px); 
   background-color: #edeefe;
 }
 
@@ -22,8 +24,9 @@ app-main-chat,app-secondary-chat {
   app-main-chat {
     width: 100%;
   }
-  
-  app-secondary-chat {}
+  app-privat-chat{
+    width: 100%;
+  }
 
 }
 

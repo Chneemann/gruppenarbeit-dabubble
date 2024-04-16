@@ -1,0 +1,11 @@
+<section>
+  <div class="header">
+    <div class="headline" (click)="openUserProfil()">
+        <div class="imgBox">
+            <img class="imgUser" src="{{ userService.allUsers[3].avatar }}"/>
+        </div>
+      <p>{{ userService.allUsers[1].firstName }} {{ userService.allUsers[1].lastName }}</p>
+    </div>
+  </div>
+  <app-chat-content> </app-chat-content>
+</section>
