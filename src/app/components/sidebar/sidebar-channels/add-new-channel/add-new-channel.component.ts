@@ -109,10 +109,19 @@ export class AddNewChannelComponent {
       creator: this.userService.userId,
       privatChannel: this.privatChannel,
       hashtag: this.channelName,
-      addedUser: this.selectedUsers,
+      addedUser: this.checkUserArray()
     }
     this.channelService.createNewChannel(newChannel);
     this.openAddNewChannelWindow();
+  }
+
+
+  checkUserArray(){
+    if (this.channelIsPrivat) {
+      return this.selectedUsers;
+    } else {
+      return this.userService.getUserIDs;
+    }
   }
 
 

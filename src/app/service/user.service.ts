@@ -19,31 +19,24 @@ export class UserService implements OnDestroy {
     this.unsubUser = this.subUserList();
   }
 
+  
   subUserList() {
     return onSnapshot(collection(this.firestore, 'users'), (list) => {
       this.allUsers = [];
+      this.getUserIDs = [];
       list.forEach((element) => {
         const userWithId = { id: element.id, ...element.data() } as User;
         this.allUsers.push(userWithId);
-        this.loadAllUserIDs(userWithId);
+        this.getUserIDs.push(userWithId.id!);
       });
     });
   }
 
-  loadAllUserIDs(userWithId: User) {
-    const isUserAlreadySelected = this.allUsers.find(
-      (user) => user.id === userWithId.id
-    );
-
-    if (!isUserAlreadySelected) {
-      this.getUserIDs.push(userWithId.id!);
-    }
-    console.log(this.getUserIDs);
-  }
 
   getUsers(): User[] {
     return this.allUsers;
   }
+
 
   getCurentUsers() {
     const filteredUser = this.getUsers().filter(
@@ -52,8 +45,8 @@ export class UserService implements OnDestroy {
     return filteredUser;
   }
 
+
   ngOnDestroy() {
     this.unsubUser();
   }
 }
-
