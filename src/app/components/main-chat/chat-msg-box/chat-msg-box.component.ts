@@ -2,10 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { PickerComponent } from '@ctrl/ngx-emoji-mart';
-import { ChatService } from '../../../service/chat.service';
-import { ChannleService } from '../../../service/channle.service';
 import { Firestore, addDoc, collection } from '@angular/fire/firestore';
-import { getDownloadURL, getStorage, ref, uploadBytes } from '@angular/fire/storage';
 import { DownloadFilesService } from '../../../service/download-files.service';
 
 
@@ -82,8 +79,8 @@ export class ChatMsgBoxComponent {
 
 
   showCurrentFile(file: File) {
-    const blob = new Blob([file], { type: file.type }); // Blob (Binary Large Object)
-    const url = URL.createObjectURL(blob); // Erstelle einen Objekt-URL für den blon
+    const blob = new Blob([file], { type: file.type });
+    const url = URL.createObjectURL(blob);
     window.open(url, '_blank');
   }
 
@@ -94,13 +91,13 @@ export class ChatMsgBoxComponent {
   }
 
 
-  toggleShowEmojis() {
-    this.showEmojis = !this.showEmojis;
+  changeShowEmojisValue() {
+    // this.showEmojis = !this.showEmojis;
     this.isEmojiPickerVisible = true;
   }
+  
 
-
-  targetChetUser() {}
+  targetChetUser(){}
 
 
   async sendMessage() {
@@ -116,11 +113,6 @@ export class ChatMsgBoxComponent {
         this.downloadFilesService.loadAllFiles(docID.id);
         console.log('docID.id', docID.id);
       });
-      
-
-      console.log('this.currentAnswer',this.currentAnswer);
-      
-      // this.downloadFilesService.loadAllFiles(this.currentChannel);
     } else {
       console.error(this.currentChannel, 'this.currentChannel ist leer');
     }
@@ -129,54 +121,6 @@ export class ChatMsgBoxComponent {
     this.hasFile = false;
   }
 
-
-  // fileUploaded() { // wandelt die files in strings um
-  //   this.currentChangedFile = []; 
-  //   for (const file of this.downloadFilesService.uploadFiles) {
-  //     const reader = new FileReader();
-  //     reader.onload = (event: any) => {
-  //       const base64String = event.target.result as string;
-  //       const attachment = {
-  //         data: base64String.split(',')[1],
-  //         type: file.type,
-  //       };
-  //       this.currentChangedFile.push(attachment);
-  //     };
-  //     reader.readAsDataURL(file);
-  //   }
-  //   console.log('current stringified files', this.currentChangedFile);
-  // }
-  
-
-
-  // loadAllFiles() {
-  //   if (this.currentChangedFile.length === 0) {
-  //     return []; // Leeres Array zurückgeben, wenn keine Dateien vorhanden sind
-  //   }
-  
-  //   for (let i = 0; i < this.currentChangedFile.length; i++) {
-  //     const fileData = this.currentChangedFile[i].data;
-  //     const fileType = this.currentChangedFile[i].type;
-  //     return { data: fileData, type: fileType }; 
-  //   }
-  // }
-
-
-  // loadAllFiles() { // lädt die fails in den firebase storage
-  //   const storage = getStorage();
-  //   for (const file of this.uploadFiles) {
-  //     const storageRef = ref(storage, `${this.currentChannel}/chatFiles/${file.name}`);
-  //     uploadBytes(storageRef, file).then((snapshot) => {
-  //       console.log('Uploaded a blob or file!', snapshot);
-  //       getDownloadURL(ref(storage, `${this.currentChannel}/chatFiles/${file.name}`))
-  //         .then((file) => {
-  //           this.downloadedFile.push(file);  // das bild aktualisieren  
-  //           console.log('file url hier', this.downloadedFile);
-  //         }).catch((error) => console.error('Fehler beim Abrufen der Download-URL:', error));
-  //     });
-  //   }
-  // }
-  
 
 
 }

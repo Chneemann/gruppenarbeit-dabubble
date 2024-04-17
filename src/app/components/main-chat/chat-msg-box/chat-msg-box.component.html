@@ -45,19 +45,17 @@
       <img
         src="assets/img/smileIcon.svg"
         class="interactIcons"
-        (click)="isEmojiPickerVisible = !isEmojiPickerVisible;"
-        (click)="toggleShowEmojis()"
-      />
-      <div class="smileysBackground" [ngClass]="{ 'dBlock': showEmojis, 'dNone': !showEmojis }"  (click)="toggleShowEmojis()">
-        <emoji-mart
-      
-        class="emoji-mart"
-        *ngIf="isEmojiPickerVisible"
-        (emojiSelect)="addEmoji($event)"
-        title="Choose your emoji"
-        ></emoji-mart>
-      </div>
 
+        (click)="changeShowEmojisValue()"
+      />
+        @if (isEmojiPickerVisible) {
+          <emoji-mart
+          class="emoji-mart"
+          *ngIf="isEmojiPickerVisible"
+          (emojiSelect)="addEmoji($event)"
+          title="Choose your emoji"
+          ></emoji-mart>
+        }
       <img
         src="assets/img/atIcon.svg"
         class="interactIcons"
