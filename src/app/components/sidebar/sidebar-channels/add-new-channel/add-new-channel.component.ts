@@ -111,7 +111,7 @@ export class AddNewChannelComponent {
       hashtag: this.channelName,
       addedUser: this.checkUserArray()
     }
-    this.channelService.createNewChannel(newChannel);
+    this.channelService.createNewChannel(newChannel, 'channels');
     this.openAddNewChannelWindow();
   }
 

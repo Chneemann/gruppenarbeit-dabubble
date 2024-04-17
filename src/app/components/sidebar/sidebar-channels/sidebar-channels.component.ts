@@ -7,6 +7,7 @@ import { SmallBtnComponent } from '../../../shared/components/small-btn/small-bt
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AddNewChannelComponent } from './add-new-channel/add-new-channel.component';
+import { UserService } from '../../../service/user.service';
 
 @Component({
   selector: 'app-sidebar-channels',
@@ -22,7 +23,8 @@ export class SidebarChannelsComponent {
 
   constructor(
     public channelService: ChannleService,
-    public chatService: ChatService
+    public chatService: ChatService,
+    public userService: UserService
   ) {}
 
 
@@ -44,5 +46,28 @@ export class SidebarChannelsComponent {
   getChannels(): Channel[] {
     return this.channelService.allChannels;
   }
+
+
+  createPrvChannel() {
+    const newPrvChannel = {
+      creatorID: this.userService.userId,
+      talkToUserId: 'AtfXMQBhArLa4uUoKPqp'
+    };
+  
+    const channelExists = this.channelService.allPrvChannels.some(
+      (channel) =>
+        (channel.creatorID === newPrvChannel.creatorID && channel.talkToUserId === newPrvChannel.talkToUserId) ||
+        (channel.creatorID === newPrvChannel.talkToUserId && channel.talkToUserId === newPrvChannel.creatorID)
+    );
+  
+    if (!channelExists) {
+      this.channelService.createNewChannel(newPrvChannel, 'prv-channels');
+      console.log('prv channel angelegt');
+      
+    } else {
+      console.log('Private channel already exists!');
+    }
+  }
+  
 
 }

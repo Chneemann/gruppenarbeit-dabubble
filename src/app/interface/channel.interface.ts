@@ -7,3 +7,10 @@ export interface Channel {
   hashtag: string;
   addedUser: Array<string>;
 }
+
+export interface PrvChannel {
+  id?: string;
+  creatorID : string;
+  talkToUserId : string;
+}
+

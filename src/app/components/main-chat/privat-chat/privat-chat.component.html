@@ -1,11 +1,13 @@
+<!-- <section routerLink="/main/{{ channel.id }}"> -->
 <section>
   <div class="header">
     <div class="headline" (click)="openUserProfil()">
         <div class="imgBox">
-            <img class="imgUser" src="{{ userService.allUsers[3].avatar }}"/>
+            <img class="imgUser" src="{{ userService.allUsers[1].avatar }}"/>
         </div>
       <p>{{ userService.allUsers[1].firstName }} {{ userService.allUsers[1].lastName }}</p>
     </div>
   </div>
-  <app-chat-content> </app-chat-content>
+  <!-- <app-chat-content> </app-chat-content>
+  <app-chat-msg-box></app-chat-msg-box> -->
 </section>

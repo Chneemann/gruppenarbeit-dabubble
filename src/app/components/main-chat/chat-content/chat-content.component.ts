@@ -15,6 +15,7 @@ import { ChatMsgBoxComponent } from '../chat-msg-box/chat-msg-box.component';
 import { CommonModule } from '@angular/common';
 import { DownloadFilesService } from '../../../service/download-files.service';
 import { OptionsMenuComponent } from '../single-chat/options-menu/options-menu.component';
+import { ChannleService } from '../../../service/channle.service';
 
 @Component({
   selector: 'app-chat-content',
@@ -40,6 +41,7 @@ export class ChatContentComponent implements AfterViewInit, AfterViewChecked {
   constructor(
     private chatService: ChatService,
     private userService: UserService,
+    public channelService: ChannleService,
     private downloadFilesService: DownloadFilesService,
     private renderer: Renderer2
   ) {}

@@ -12,7 +12,9 @@ export class UserService implements OnDestroy {
   getUserIDs: string[] = [];
   isUserLogin: boolean = true;
   userId: string = 'C2p2Dm1au4l6cyyMBrWo';
+  getPrvChetUserId: string = '';
 
+  
   unsubUser;
 
   constructor() {

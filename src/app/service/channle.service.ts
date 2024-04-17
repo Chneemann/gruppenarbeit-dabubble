@@ -1,6 +1,7 @@
 import { Injectable, OnDestroy, inject } from '@angular/core';
 import { Firestore, addDoc, collection, onSnapshot } from '@angular/fire/firestore';
-import { Channel } from '../interface/channel.interface';
+import { Channel, PrvChannel } from '../interface/channel.interface';
+import { DownloadFilesService } from './download-files.service';
 
 
 @Injectable({
@@ -14,22 +15,26 @@ export class ChannleService implements OnDestroy {
   showAddChannelBox: boolean = false;
   btnIsValid: boolean = false;
   openPrvChat: boolean = false;
+  // chetInPrvChet: boolean = false;
+  allPrvChannels: PrvChannel[] = [];
 
 
   unsubChannel;
+  unsubPrvChannel;
 
   constructor() {
     this.unsubChannel = this.subChannelList();
+    this.unsubPrvChannel = this.subPrvChannelList();
   }
 
 
-  firesorePath(){
-   return collection(this.firestore, 'channels');
+  firesorePath(path: string){
+   return collection(this.firestore, path);
   }
 
 
   subChannelList() {
-    return onSnapshot(this.firesorePath(), (list) => {
+    return onSnapshot(this.firesorePath('channels'), (list) => {
       this.allChannels = [];
       list.forEach((element) => {
         const channelWithId = { id: element.id, ...element.data() } as Channel;
@@ -38,14 +43,26 @@ export class ChannleService implements OnDestroy {
     });
   }
 
+  subPrvChannelList() {
+    return onSnapshot(this.firesorePath('prv-channels'), (list) => {
+      this.allPrvChannels = [];
+      list.forEach((element) => {
+        const channelWithId = { id: element.id, ...element.data() } as PrvChannel;
+        this.allPrvChannels.push(channelWithId);
+      });
+    });
+  }
 
-  async createNewChannel(newChannel: Channel){
-    await addDoc(this.firesorePath(), newChannel).catch(
+
+  async createNewChannel(newChannel: Channel | PrvChannel, path: string){
+    await addDoc(this.firesorePath(path), newChannel).catch(
     (err) => { console.error(err)});
   }
 
 
+
   ngOnDestroy() {
     this.unsubChannel();
+    this.unsubPrvChannel();
   }
 }

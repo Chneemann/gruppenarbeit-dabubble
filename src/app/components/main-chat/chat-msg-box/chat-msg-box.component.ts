@@ -95,7 +95,8 @@ export class ChatMsgBoxComponent {
     // this.showEmojis = !this.showEmojis;
     this.isEmojiPickerVisible = true;
   }
-  
+
+
 
   targetChetUser(){}
 
