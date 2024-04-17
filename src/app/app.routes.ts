@@ -9,12 +9,12 @@ import { ImprintComponent } from './shared/components/imprint/imprint.component'
 import { PrivacyPolicyComponent } from './shared/components/privacy-policy/privacy-policy.component';
 
 export const routes: Routes = [
-   { path: '', component: MainComponent },
+  { path: '', component: MainComponent },
   { path: 'login', component: LoginComponent },
-   { path: 'register', component: RegisterComponent },
-   { path: 'avatar', component: ChooseAvatarComponent },
-   { path: 'passwordForget', component: PasswordForgetComponent },
-   { path: 'passwordReset', component: PasswordResetComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'avatar', component: ChooseAvatarComponent },
+  { path: 'passwordForget', component: PasswordForgetComponent },
+  { path: 'passwordReset', component: PasswordResetComponent },
   { path: 'main', component: MainComponent },
   { path: 'main/:id', component: MainComponent },
   { path: 'imprint', component: ImprintComponent },

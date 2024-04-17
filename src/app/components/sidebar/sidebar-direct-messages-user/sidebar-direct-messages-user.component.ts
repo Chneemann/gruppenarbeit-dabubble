@@ -3,11 +3,12 @@ import { UserService } from '../../../service/user.service';
 import { CommonModule } from '@angular/common';
 import { ChannleService } from '../../../service/channle.service';
 import { User } from '../../../interface/user.interface';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar-direct-messages-user',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './sidebar-direct-messages-user.component.html',
   styleUrl: './sidebar-direct-messages-user.component.scss',
 })
@@ -16,6 +17,6 @@ export class SidebarDirectMessagesUserComponent {
 
   openPrvChat(user: User){
     this.channelService.openPrvChat = true;
-    user.id! = this.userService.getPrvChetUserId;
+    this.userService.getPrvChetUserId = user.id!;
   }
 }

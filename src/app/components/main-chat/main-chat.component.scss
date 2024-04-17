@@ -157,3 +157,46 @@ section {
     }
   }
 }
+
+// -------- prv chat--------
+
+
+.headerPrvChat {
+    height: auto;
+    display: flex;
+    padding: 8px 28px;
+    box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.05);
+}
+
+.headerBoxPrvChat {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.headlinePrvChat {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    max-width: fit-content;
+    cursor: pointer;
+    .imgBoxPrvChat{
+        @include displayFlex();
+        margin-right: 16px;
+        .imgUserPrvChat {
+            width: 56px;
+            height: 56px;
+            object-fit: cover;
+            border-radius: 50%;
+          }
+    }
+    p {
+      font-size: 24px;
+      font-weight: 700;
+      padding-right: 12px;
+    }
+    &:hover {
+        background-color: #edeefe;
+        border-radius: 35px;
+    }
+}

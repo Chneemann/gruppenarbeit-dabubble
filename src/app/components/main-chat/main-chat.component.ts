@@ -4,7 +4,7 @@ import { MainComponent } from '../main/main.component';
 import { ChatService } from '../../service/chat.service';
 import { UserService } from '../../service/user.service';
 import { User } from '../../interface/user.interface';
-import { Channel } from '../../interface/channel.interface';
+import { Channel, PrvChannel } from '../../interface/channel.interface';
 import { Chat } from '../../interface/chat.interface';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -79,6 +79,10 @@ export class MainChatComponent {
     return this.chatService.allChats;
   }
 
+  getPrvChatArray(): PrvChannel[]{
+    return this.channelService.allPrvChannels;
+  }
+
   getChatUsers(chatId: string) {
     const filteredTasks = this.getUsers().filter((user) => user.id == chatId);
     return filteredTasks;
@@ -96,5 +100,34 @@ export class MainChatComponent {
       (channel) => channel.id == chatId
     );
     return filteredTasks;
+  }
+
+
+  getPrvChat(prvChatId: string) {
+    const filteredChats = this.getPrvChatArray().filter(
+      (prvChat) => prvChat.id == prvChatId
+    );
+
+    return filteredChats;
+  }
+
+
+  filterUser(talkToUserId: string){
+    return this.userService.allUsers.filter((user) => user.id == talkToUserId);
+  }
+
+  checkCurrentChannel(currentChannel: string){
+    const allChannels = this.channelService.allChannels.some((channel) => channel.id == currentChannel);
+    const allPrvChannels = this.channelService.allPrvChannels.some((channel) => channel.id == currentChannel);
+    if (allChannels) {
+      return 'allChannels';
+    } else if(allPrvChannels) {
+      return 'allPrvChannels';
+    }
+    return '';
+  }
+  
+  openUserProfil(){
+    this.channelService.openPrvChat = true;
   }
 }

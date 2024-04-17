@@ -55,9 +55,9 @@ export class MainComponent {
     }
   }
 
-  isSecondaryChatOpen(): boolean {
-    return this.chatService.isSecondaryChatId != '';
-  }
+  // isSecondaryChatOpen(): boolean {
+  //   return this.chatService.isSecondaryChatId != '';
+  // }
 
   routeUserId() {
     if (this.router.params.subscribe()) {

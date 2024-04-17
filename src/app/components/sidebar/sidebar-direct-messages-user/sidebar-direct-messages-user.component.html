@@ -1,6 +1,6 @@
 <section>
   @for (user of userService.getUsers(); track user) {
-  <div class="user" (click)="openPrvChat(user)">
+  <div class="user" (click)="openPrvChat(user)" >
     <img src="{{ user.avatar }}" alt="" />
     <div class="dot"></div>
     @if (userService.getUsers().length > 0) {

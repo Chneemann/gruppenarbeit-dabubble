@@ -51,7 +51,7 @@ export class SidebarChannelsComponent {
   createPrvChannel() {
     const newPrvChannel = {
       creatorID: this.userService.userId,
-      talkToUserId: 'AtfXMQBhArLa4uUoKPqp'
+      talkToUserId: '1H87ZD5MvFbEuNUbcG0p'
     };
   
     const channelExists = this.channelService.allPrvChannels.some(
@@ -63,7 +63,6 @@ export class SidebarChannelsComponent {
     if (!channelExists) {
       this.channelService.createNewChannel(newPrvChannel, 'prv-channels');
       console.log('prv channel angelegt');
-      
     } else {
       console.log('Private channel already exists!');
     }
