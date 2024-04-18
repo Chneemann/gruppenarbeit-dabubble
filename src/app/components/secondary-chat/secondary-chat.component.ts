@@ -36,8 +36,7 @@ export class SecondaryChatComponent {
   }
 
   closeSecondaryChat() {
-    this.chatService.isSecondaryChatId = '';
-    this.chatService.openRightWindow = false;
+    this.chatService.toggleSecondaryChat('none');
   }
 
   getChannels(): Channel[] {

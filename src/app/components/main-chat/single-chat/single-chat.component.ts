@@ -51,8 +51,8 @@ export class SingleChatComponent {
   constructor(
     public chatService: ChatService,
     public channelService: ChatService,
-    public downloadFilesService: DownloadFilesService)
-    {}
+    public downloadFilesService: DownloadFilesService
+  ) {}
 
   editMsgEmitter(variable: boolean) {
     this.isMsgEditFormOpen = variable;
@@ -94,7 +94,6 @@ export class SingleChatComponent {
   }
 
   openSecondaryChat(chatId: string) {
-    this.chatService.openRightWindow = true;
-    this.chatService.isSecondaryChatId = chatId;
+    this.chatService.toggleSecondaryChat(chatId);
   }
 }

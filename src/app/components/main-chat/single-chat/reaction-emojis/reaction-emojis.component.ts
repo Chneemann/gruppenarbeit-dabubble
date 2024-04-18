@@ -17,7 +17,7 @@ export class ReactionEmojisComponent {
   @Input() chat: Chat | ChatAnswers = {} as Chat | ChatAnswers;
 
   reactionDialogId: string = '';
-  dialogLeft = 0;
+  reactionDialogLeft = 0;
   arrayIcons: string[] = [];
 
   constructor(
@@ -61,7 +61,7 @@ export class ReactionEmojisComponent {
     if (!this.channelService.isSidebarOpen) {
       offset = 390;
     }
-    this.dialogLeft = emojiRect.left + emojiRect.width - 440 + offset;
+    this.reactionDialogLeft = emojiRect.left + emojiRect.width - 440 + offset;
   }
 
   toggleEmoji(reactionID: string) {

@@ -13,24 +13,23 @@ app-main-chat,
 app-secondary-chat,
 app-privat-chat {
   padding: 12px;
-  min-height: calc(100vh - 158px); 
+  min-height: calc(100vh - 158px);
   background-color: #edeefe;
 }
 
-.chatBox{
+.chatBox {
   display: flex;
   width: 100%;
   flex-grow: 1;
   app-main-chat {
     width: 100%;
   }
-  app-privat-chat{
+  app-privat-chat {
     width: 100%;
   }
-
 }
 
-.minusWidth{
+.minusWidth {
   width: calc(100% - 518px);
 }
 
@@ -53,7 +52,7 @@ app-sidebar {
 }
 
 .slideInRightWindow {
-  transition: 0.3s ease-in-out;
+  transition: 0.5s ease-in-out;
   width: 100%;
   padding: 12px;
   animation: slideIn;
@@ -72,7 +71,7 @@ app-sidebar {
 }
 
 .slideOutRightWindow {
-  transition: 0.3s ease-in-out;
+  transition: 0.5s ease-in-out;
   animation: slideOut;
   width: 0;
   padding-right: 0;

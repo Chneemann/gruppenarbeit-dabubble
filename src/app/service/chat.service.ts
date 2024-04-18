@@ -94,6 +94,15 @@ export class ChatService implements OnDestroy {
     return filteredTasks;
   }
 
+  toggleSecondaryChat(chatId: string) {
+    this.openRightWindow = !this.openRightWindow;
+    this.openRightWindow
+      ? (this.isSecondaryChatId = chatId)
+      : setTimeout(() => {
+          this.isSecondaryChatId = '';
+        }, 500);
+  }
+
   ngOnDestroy() {
     this.unsubChat();
     this.unsubChatAnswers();
