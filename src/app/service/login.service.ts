@@ -39,8 +39,12 @@ export class loginService {
   avatar: string = '/assets/img/user-icons/guest.svg';
   currentUser: string = '';
   errorMessage: string = '';
+  private hasAnimationPlayed = false;
+ 
 
-  constructor(private router: Router, private userService: UserService) {}
+  constructor(private router: Router, private userService: UserService) {
+   
+  }
   // -------------------- login start seite ------------------------------->
   login() {
     const auth = getAuth();
@@ -139,4 +143,13 @@ export class loginService {
   getAvatarUrl(url: string) {
     return (this.avatar = url);
   }
+  // -------------------- animation login------------------------------->
+  getAnimationState(): boolean {
+    return this.hasAnimationPlayed;
+  }
+
+  setAnimationState(state: boolean): void {
+    this.hasAnimationPlayed = state;
+  }
+
 }

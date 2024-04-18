@@ -1,0 +1,22 @@
+<div class="background" [class.opacity]="animationBackground"  [class.d-none]="d_none"></div>
+   <div class="headerContainer">
+     <div class="header">
+   
+       <div [class.logo]="animationStart" [class.logoEndPosition]="animationToEndPosiotion" class="logo">
+         <img [class.imgEndPosiotion]="animationToEndPosiotion" src="assets/img/login/logo-animation.svg" />
+         <div class="logo-text" [class.logo-text]="animationLogo" [class.logo-text]="animationStart">
+          <span [class.logo-text-span]="animationStart" >DABubble</span></div>
+       
+      </div>
+      </div>
+  
+     <div [ngStyle]="{'opacity': opacity}" class="registerContainer">
+     <div>
+      <span>Neu bei DABubble?</span>
+      <div class="createAccountContainer">
+        <span routerLink="/register" class="createAccoun">Konto erstellen</span>
+      </div>
+    </div>
+   </div>
+  </div>
+

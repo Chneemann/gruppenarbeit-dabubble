@@ -1,23 +1,19 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { loginService } from '../../../service/login.service';
-
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import { FormControl, FormGroup, FormsModule, NgForm, Validators } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
-import { HeaderComponent } from "../../../shared/components/login/header/header.component";
+import { FormsModule, NgForm } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 import { FooterComponent } from "../../../shared/components/login/footer/footer.component";
 import { CommonModule } from '@angular/common';
+import { StartHeaderComponent } from "../../../shared/components/login/start-header/start-header.component";
 
 @Component({
     selector: 'app-login',
     standalone: true,
     templateUrl: './login.component.html',
     styleUrl: './login.component.scss',
-    imports: [FormsModule,CommonModule, HeaderComponent, FooterComponent,RouterLink]
+    imports: [FormsModule, CommonModule, FooterComponent, RouterLink, StartHeaderComponent]
 })
 export class LoginComponent {
-
-
 
   constructor(public loginService: loginService) {}
 
@@ -26,6 +22,4 @@ export class LoginComponent {
     this.loginService.login();
     // ngForm.resetForm();
   }
-
-    }
-
+}

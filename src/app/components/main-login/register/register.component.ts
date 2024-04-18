@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject,Input } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -11,25 +11,26 @@ import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { CommonModule } from '@angular/common';
 import { RouterLink, Router } from '@angular/router';
 import { SmallBtnComponent } from '../../../shared/components/small-btn/small-btn.component';
-import { HeaderComponent } from '../../../shared/components/login/header/header.component';
 import { FooterComponent } from '../../../shared/components/login/footer/footer.component';
 import { User } from 'firebase/auth';
 import { loginService } from '../../../service/login.service';
+import { StartHeaderComponent } from "../../../shared/components/login/start-header/start-header.component";
 
 @Component({
-  selector: 'app-register',
-  standalone: true,
-  templateUrl: './register.component.html',
-  styleUrl: './register.component.scss',
-  imports: [
-    FormsModule,
-    CommonModule,
-    SmallBtnComponent,
-    HeaderComponent,
-    FooterComponent,
-    RouterLink,
-  ],
+    selector: 'app-register',
+    standalone: true,
+    templateUrl: './register.component.html',
+    styleUrl: './register.component.scss',
+    imports: [
+        FormsModule,
+        CommonModule,
+        SmallBtnComponent,
+        FooterComponent,
+        RouterLink,
+        StartHeaderComponent
+    ]
 })
+
 export class RegisterComponent {
   firestore: Firestore = inject(Firestore);
   isChecked: boolean = false;

@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { HeaderComponent } from '../../../shared/components/login/header/header.component';
+
 import { FooterComponent } from '../../../shared/components/login/footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { SmallBtnComponent } from '../../../shared/components/small-btn/small-btn.component';
@@ -8,6 +8,7 @@ import { Firestore } from '@angular/fire/firestore';
 import { CommonModule } from '@angular/common';
 import { loginService } from '../../../service/login.service';
 import { RouterLink, Router } from '@angular/router';
+import { StartHeaderComponent } from '../../../shared/components/login/start-header/start-header.component';
 
 @Component({
   selector: 'app-choose-avatar',
@@ -15,7 +16,7 @@ import { RouterLink, Router } from '@angular/router';
   templateUrl: './choose-avatar.component.html',
   styleUrl: './choose-avatar.component.scss',
   imports: [
-    HeaderComponent,
+    StartHeaderComponent,
     FooterComponent,
     RouterModule,
     SmallBtnComponent,

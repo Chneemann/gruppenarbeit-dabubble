@@ -11,7 +11,9 @@
   padding-left: 16px;
   padding-right: 16px;
   background-color: #eceefe;
+ 
   // max-width: 1920px; für max width aufbau
+   // position: relative;
 }
 .loginContainer {
   max-width: 606px;
@@ -207,43 +209,5 @@ button {
     background-color: #444df2;
     color: #fff;
     border: 1px solid #ffff;
-  }
-}
-.registerContainer {
-  position: absolute;
-  right: 0;
-  margin: 76px;
-  > div {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    > span {
-      font-weight: 400;
-      font-size: 18px;
-    }
-  }
-}
-.createAccountContainer {
-  display: flex;
-  justify-content: end;
-}
-.createAccoun {
-  text-align: end;
-  font-family: Figtree, sans-serif, Nunito;
-  color: #797ef3;
-  cursor: pointer;
-  padding-right: 8px;
-  padding: 0px;
-  padding: 4px 12px 4px 12px;
-  border-radius: 100px;
-  border: 1px solid #eceefe;
-  font-weight: 400;
-  font-size: 18px;
-  margin-right: -13px;
-  &:hover {
-    font-weight: 500;
-    background-color: #eceefe;
-    color: #444df2;
-    border: 1px solid #444df2;
   }
 }
