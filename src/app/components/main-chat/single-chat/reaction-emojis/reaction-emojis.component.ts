@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { SmallBtnComponent } from '../../../../shared/components/small-btn/small-btn.component';
 import { CommonModule } from '@angular/common';
 import { Chat, ChatAnswers } from '../../../../interface/chat.interface';
@@ -68,7 +68,6 @@ export class ReactionEmojisComponent {
     const userIds = this.getReactionDocId(reactionID)[0].userId;
     if (userIds.includes(this.userService.userId)) {
       userIds.splice(userIds.indexOf(this.userService.userId), 1);
-      console.log(userIds);
     } else {
       userIds.push(this.userService.userId);
     }
