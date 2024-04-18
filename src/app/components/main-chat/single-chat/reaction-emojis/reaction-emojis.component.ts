@@ -21,8 +21,8 @@ export class ReactionEmojisComponent {
   arrayIcons: string[] = [];
 
   constructor(
-    public userService: UserService,
-    public chatService: ChatService,
+    private userService: UserService,
+    private chatService: ChatService,
     private channelService: ChannleService
   ) {}
 
@@ -41,7 +41,7 @@ export class ReactionEmojisComponent {
     );
   }
 
-  getReactionId(chatId: string) {
+  getReactionDocId(chatId: string) {
     return this.chatService.allChatReactions.filter(
       (reaction) => reaction.id === chatId
     );
@@ -62,5 +62,16 @@ export class ReactionEmojisComponent {
       offset = 390;
     }
     this.dialogLeft = emojiRect.left + emojiRect.width - 440 + offset;
+  }
+
+  toggleEmoji(reactionID: string) {
+    const userIds = this.getReactionDocId(reactionID)[0].userId;
+    if (userIds.includes(this.userService.userId)) {
+      userIds.splice(userIds.indexOf(this.userService.userId), 1);
+      console.log(userIds);
+    } else {
+      userIds.push(this.userService.userId);
+    }
+    this.chatService.updateReaction(reactionID, userIds);
   }
 }

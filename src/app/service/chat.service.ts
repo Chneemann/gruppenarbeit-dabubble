@@ -79,6 +79,14 @@ export class ChatService implements OnDestroy {
     });
   }
 
+  async updateReaction(reactionId: any, array: string[]) {
+    await updateDoc(doc(collection(this.firestore, 'reactions'), reactionId), {
+      userId: array,
+    }).catch((err) => {
+      console.error(err);
+    });
+  }
+
   getChatAnswers(chatId: string): ChatAnswers[] {
     const filteredTasks = this.allChatAnswers.filter(
       (chat) => chat.chatId == chatId

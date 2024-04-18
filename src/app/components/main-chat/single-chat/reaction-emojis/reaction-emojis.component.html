@@ -10,6 +10,7 @@
   @for (reaction of getReaction(chat.id); track reaction; let i = $index) {
   <div
     class="emoji"
+    (click)="toggleEmoji(reaction.id)"
     (mouseenter)="openDialog(reaction.id, $event)"
     (mouseleave)="closeDialog()"
   >
@@ -21,7 +22,7 @@
   <!-- DIALOG-->
 
   @if (reactionDialogId != '') { @for (reaction of
-  getReactionId(reactionDialogId); track reaction) {
+  getReactionDocId(reactionDialogId); track reaction) {
   <div
     *ngIf="reactionDialogId !== ''"
     class="dialog"
@@ -31,7 +32,7 @@
       <img src="./../../../../../assets/img/{{ reaction.icon }}.svg" />
     </div>
     <div class="name">
-      @for (reactionUId of getReactionId(reactionDialogId)[0].userId; track
+      @for (reactionUId of getReactionDocId(reactionDialogId)[0].userId; track
       reactionUId;) {
       <div class="user">
         {{ getUserId(reactionUId)[0].firstName }}
@@ -39,7 +40,7 @@
       </div>
       }
     </div>
-    @if (getReactionId(reactionDialogId)[0].userId.length > 1) {
+    @if (getReactionDocId(reactionDialogId)[0].userId.length > 1) {
     <p>haben reagiert.</p>
     } @else {
     <p>hat reagiert.</p>
