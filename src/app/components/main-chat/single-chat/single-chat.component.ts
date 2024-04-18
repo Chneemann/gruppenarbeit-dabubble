@@ -14,6 +14,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { PickerComponent } from '@ctrl/ngx-emoji-mart';
 import { EditMsgComponent } from './edit-msg/edit-msg.component';
 import { ReactionEmojisComponent } from './reaction-emojis/reaction-emojis.component';
+import { UserService } from '../../../service/user.service';
 
 @Component({
   selector: 'app-single-chat',
@@ -50,8 +51,8 @@ export class SingleChatComponent {
   constructor(
     public chatService: ChatService,
     public channelService: ChatService,
-    public downloadFilesService: DownloadFilesService
-  ) {}
+    public downloadFilesService: DownloadFilesService)
+    {}
 
   editMsgEmitter(variable: boolean) {
     this.isMsgEditFormOpen = variable;

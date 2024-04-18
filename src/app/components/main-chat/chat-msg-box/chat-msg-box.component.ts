@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { PickerComponent } from '@ctrl/ngx-emoji-mart';
 import { Firestore, addDoc, collection } from '@angular/fire/firestore';
 import { DownloadFilesService } from '../../../service/download-files.service';
+import { UserService } from '../../../service/user.service';
 
 
 @Component({
@@ -37,7 +38,8 @@ export class ChatMsgBoxComponent {
 
   constructor(
     public downloadFilesService: DownloadFilesService,
-    private firestore: Firestore
+    private firestore: Firestore,
+    private userService: UserService
   ) {}
 
   onFileChange(event: any) {
@@ -109,7 +111,7 @@ export class ChatMsgBoxComponent {
         channelId: this.currentChannel,
         message: this.currentChetValue,
         publishedTimestamp: Math.floor(Date.now() / 1000),
-        userId: 'vW6U4ckmoaHEXvhTRlmq',
+        userId: this.userService.userId,
       }).then((docID) => {
         this.downloadFilesService.loadAllFiles(docID.id);
         console.log('docID.id', docID.id);
