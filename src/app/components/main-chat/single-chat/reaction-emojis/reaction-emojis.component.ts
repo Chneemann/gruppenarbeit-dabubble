@@ -3,7 +3,6 @@ import { SmallBtnComponent } from '../../../../shared/components/small-btn/small
 import { CommonModule } from '@angular/common';
 import { Chat, ChatAnswers } from '../../../../interface/chat.interface';
 import { UserService } from '../../../../service/user.service';
-import { User } from '../../../../interface/user.interface';
 import { ChatService } from '../../../../service/chat.service';
 
 @Component({
@@ -14,7 +13,7 @@ import { ChatService } from '../../../../service/chat.service';
   styleUrl: './reaction-emojis.component.scss',
 })
 export class ReactionEmojisComponent {
-  @Input() chat!: Chat | ChatAnswers;
+  @Input() chat: Chat | ChatAnswers = {} as Chat | ChatAnswers;
 
   reactionDialogId: string = '';
   dialogVisible = false;
@@ -31,7 +30,7 @@ export class ReactionEmojisComponent {
     this.calculateDialogPosition(event);
     setTimeout(() => {
       this.dialogVisible = true;
-    }, 50); // Timeout für die bessere Animation
+    }, 50);
   }
 
   closeDialog() {
@@ -61,6 +60,6 @@ export class ReactionEmojisComponent {
   calculateDialogPosition(event: MouseEvent) {
     const emojiElement = event.target as HTMLElement;
     const emojiRect = emojiElement.getBoundingClientRect();
-    this.dialogLeft = emojiRect.left + emojiRect.width - 440; // Adjust 10 as needed
+    this.dialogLeft = emojiRect.left + emojiRect.width - 440;
   }
 }

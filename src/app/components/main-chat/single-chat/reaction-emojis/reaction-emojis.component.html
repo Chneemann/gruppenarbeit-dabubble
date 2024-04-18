@@ -25,21 +25,25 @@
   <div
     *ngIf="reactionDialogId !== ''"
     class="dialog"
-    [ngClass]="{ show: dialogVisible }"
     [style.left.px]="dialogLeft"
   >
     <div class="icon">
       <img src="./../../../../../assets/img/{{ reaction.icon }}.svg" />
     </div>
     <div class="name">
-      @for (reactionUId of getReaction(chat.id)[0].userId; track reactionUId;) {
+      @for (reactionUId of getReactionId(reactionDialogId)[0].userId; track
+      reactionUId;) {
       <div class="user">
         {{ getUserId(reactionUId)[0].firstName }}
         {{ getUserId(reactionUId)[0].lastName }}
       </div>
       }
     </div>
-    <p>hat reagiert</p>
+    @if (getReactionId(reactionDialogId)[0].userId.length > 1) {
+    <p>haben reagiert.</p>
+    } @else {
+    <p>hat reagiert.</p>
+    }
   </div>
   }}
 </section>
