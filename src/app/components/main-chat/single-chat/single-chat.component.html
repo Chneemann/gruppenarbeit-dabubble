@@ -1,4 +1,4 @@
-<section (mouseenter)="toggleOptionMenu()" (mouseleave)="toggleOptionMenu()">
+<section (mouseenter)="showOptionMenu()" (mouseleave)="hideOptionMenu()">
   @if (openOnSecondaryChat){
   <app-options-menu
     [ngClass]="{

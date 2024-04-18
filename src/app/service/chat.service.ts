@@ -20,7 +20,7 @@ export class ChatService implements OnDestroy {
   allChatAnswers: ChatAnswers[] = [];
   allChatReactions: ChatReactions[] = [];
   isSecondaryChatId: string = '';
-  openRightWindow: boolean = false;
+  isSecondaryChatOpen: boolean = false;
 
   unsubChat;
   unsubChatAnswers;
@@ -95,8 +95,10 @@ export class ChatService implements OnDestroy {
   }
 
   toggleSecondaryChat(chatId: string) {
-    this.openRightWindow = !this.openRightWindow;
-    this.openRightWindow
+    chatId == 'none'
+      ? (this.isSecondaryChatOpen = false)
+      : (this.isSecondaryChatOpen = !this.isSecondaryChatOpen);
+    this.isSecondaryChatOpen
       ? (this.isSecondaryChatId = chatId)
       : setTimeout(() => {
           this.isSecondaryChatId = '';

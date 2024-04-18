@@ -60,11 +60,15 @@ export class SingleChatComponent {
 
   closeEditMsgEmitter(value: boolean) {
     this.isMsgEditFormOpen = value;
-    this.toggleOptionMenu();
+    this.hideOptionMenu();
   }
 
-  toggleOptionMenu() {
-    this.isOptionMenuVisible = !this.isOptionMenuVisible;
+  showOptionMenu() {
+    this.isOptionMenuVisible = true;
+  }
+
+  hideOptionMenu() {
+    this.isOptionMenuVisible = false;
   }
 
   displayCountChatAnswer() {
