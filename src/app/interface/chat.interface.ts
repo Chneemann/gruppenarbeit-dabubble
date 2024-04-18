@@ -4,6 +4,8 @@ export interface Chat {
   channelId: string;
   message: string;
   edited: boolean;
+  reactionIcon: string[];
+  reactionUserId: string[];
   publishedTimestamp: number;
 }
 
@@ -12,6 +14,15 @@ export interface ChatAnswers {
   chatId: string;
   message: string;
   edited: boolean;
+  reactionIcon: string[];
+  reactionUserId: string[];
   publishedTimestamp: number;
   userId: string;
+}
+
+export interface ChatReactions {
+  id: string;
+  chatId: string;
+  icon: string;
+  userId: string[];
 }

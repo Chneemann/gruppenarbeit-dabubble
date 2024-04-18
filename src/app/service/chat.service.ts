@@ -8,7 +8,7 @@ import {
   query,
   updateDoc,
 } from '@angular/fire/firestore';
-import { Chat, ChatAnswers } from '../interface/chat.interface';
+import { Chat, ChatAnswers, ChatReactions } from '../interface/chat.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -18,15 +18,18 @@ export class ChatService implements OnDestroy {
 
   allChats: Chat[] = [];
   allChatAnswers: ChatAnswers[] = [];
+  allChatReactions: ChatReactions[] = [];
   isSecondaryChatId: string = '';
   openRightWindow: boolean = false;
 
   unsubChat;
   unsubChatAnswers;
+  unsubChatReactions;
 
   constructor() {
     this.unsubChat = this.subChatList();
     this.unsubChatAnswers = this.subChatAnswersList();
+    this.unsubChatReactions = this.subChatListReactions();
   }
 
   subChatList() {
@@ -54,6 +57,19 @@ export class ChatService implements OnDestroy {
     });
   }
 
+  subChatListReactions() {
+    return onSnapshot(collection(this.firestore, 'reactions'), (list) => {
+      this.allChatReactions = [];
+      list.forEach((element) => {
+        const chatReactionsWithId = {
+          id: element.id,
+          ...element.data(),
+        } as ChatReactions;
+        this.allChatReactions.push(chatReactionsWithId);
+      });
+    });
+  }
+
   async updateChat(chatId: string, update: Partial<Chat>) {
     const chatRef = doc(collection(this.firestore, 'chats'), chatId);
     const updatedData = { ...update, edited: true };
@@ -64,7 +80,6 @@ export class ChatService implements OnDestroy {
   }
 
   getChatAnswers(chatId: string): ChatAnswers[] {
-    chatId = chatId.replace(/\s/g, '');
     const filteredTasks = this.allChatAnswers.filter(
       (chat) => chat.chatId == chatId
     );
@@ -74,5 +89,6 @@ export class ChatService implements OnDestroy {
   ngOnDestroy() {
     this.unsubChat();
     this.unsubChatAnswers();
+    this.unsubChatReactions();
   }
 }
