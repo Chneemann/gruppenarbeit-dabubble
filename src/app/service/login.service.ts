@@ -11,6 +11,8 @@ import {
 import {
   getAuth,
   signInWithPopup,
+  signInWithRedirect,
+  getRedirectResult,
   GoogleAuthProvider,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
@@ -111,29 +113,55 @@ export class loginService {
           lastName: this.lastName,
           avatar: this.avatar,
           email: this.email,
+          status:false,
+          
         };
 
-        this.createUserWithFirebase(userDataToSave);
+        this.createUserInFirestore(userDataToSave);
       })
       .catch((error) => {
         console.error('Registration error:', error);
       });
   }
 
-  createUserWithFirebase(user: User) {
-    if (!user || !user.uid) {
-      console.error('User or user UID is undefined.');
-      return;
-    }
+  // createUserWithFirebase(user: User) {
+  //   if (!user || !user.uid) {
+  //     console.error('User or user UID is undefined.');
+  //     return;
+  //   }
+
+  //   const usersCollection = collection(this.firestore, 'users');
+  //   addDoc(usersCollection, user)
+  //     .then((docRef) => {
+  //       console.log('User successfully added to Firestore!');
+  //       this.currentUser = docRef.id;
+  //       console.log('UserREGI', this.currentUser);
+  //       // this.router.navigate([`/main/${docRef.id}`]);
+  //       this.login();
+  //     })
+  //     .catch((error) => {
+  //       console.error('Error adding user to Firestore:', error);
+  //     });
+  // }
+
+  //--------------------- create user in firestore for more functions --------------------->
+  createUserInFirestore(user: User) {
+    const userDataToSave: User = {
+      uid: user.uid,
+      email: user.email,
+      firstName: user.firstName || '',
+      lastName: user.lastName || '',
+      avatar: user.avatar || '/assets/img/user-icons/guest.svg',
+      status:false,
+    };
 
     const usersCollection = collection(this.firestore, 'users');
-    addDoc(usersCollection, user)
+    addDoc(usersCollection, userDataToSave)
       .then((docRef) => {
-        console.log('User successfully added to Firestore!');
+        console.log('User successfully added to Firestore with ID:', docRef.id);
         this.currentUser = docRef.id;
-        console.log('UserREGI', this.currentUser);
-        // this.router.navigate([`/main/${docRef.id}`]);
-        this.login();
+        this.userService.userId = this.currentUser;
+        this.router.navigate([`/main`]);
       })
       .catch((error) => {
         console.error('Error adding user to Firestore:', error);
@@ -160,34 +188,52 @@ export class loginService {
     this.introCompleteStatus = state;
   }
   //------------------------ GoogleLogin -------------------------------------------->
+
   googleLogin() {
     const auth = getAuth();
     const provider = new GoogleAuthProvider();
 
     signInWithPopup(auth, provider)
       .then((result) => {
-       
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        if (credential) {
-          const token = credential.accessToken; 
-       
-          const user = result.user;
-          console.log('Name: ', user.displayName);
-          console.log('E-Mail: ', user.email);
-          console.log('Profilbild URL: ', user.photoURL);
-        } else {
-          console.error('Keine Anmeldeinformationen erhalten.');
-        }
+        const user = result.user;
+        console.log(
+          'Google User: ',
+          user.displayName,
+          user.email,
+          user.photoURL
+        );
+
+        // existiert der benutzer prüfen
+        const usersCollection = collection(this.firestore, 'users');
+        const querySnapshot = query(
+          usersCollection,
+          where('uid', '==', user.uid)
+        );
+        getDocs(querySnapshot).then((snapshot) => {
+          if (snapshot.empty) {
+            // wenn der nicht da ist, erstellen
+            this.createUserInFirestore({
+              uid: user.uid,
+              email: user.email || 'leer@gmail.com',
+              firstName: user.displayName
+                ? user.displayName.split(' ')[0]
+                : 'FirstName', 
+              lastName: user.displayName
+                ? user.displayName.split(' ').slice(1).join(' ')
+                : 'LastName',
+              avatar: user.photoURL || '/assets/img/user-icons/guest.svg',
+              status:false,
+            });
+          } else {
+            // wen benutzer schon da ist weiterleiten 
+            this.currentUser = snapshot.docs[0].id;
+            this.userService.userId = this.currentUser;
+            this.router.navigate([`/main`]);
+          }
+        });
       })
       .catch((error) => {
-      
-        const errorCode = error.code;
-        const errorMessage = error.message;
-      
-        const email = error.customData.email;
-    
-        const credential = GoogleAuthProvider.credentialFromError(error);
-       
+        console.error('Google login error:', error);
       });
   }
 }

@@ -5,4 +5,5 @@ export interface User {
   lastName: string;
   avatar: string;
   email:string;
+  status:false;
 }
