@@ -1,23 +1,25 @@
-@if (userService.isUserLogin) {
-<app-header></app-header>
-<div class="content">
-  <app-sidebar
-    [ngClass]="{
-      slideIn: channelService.isSidebarOpen,
-      slideOut: !channelService.isSidebarOpen
-    }"
-  ></app-sidebar>
-  <app-sidebar-toggle></app-sidebar-toggle>
-  <div class="chatBox">
-    <app-main-chat [currentChannel]="currentChannel"></app-main-chat>
-    <app-secondary-chat
-      [currentChannel]="currentChannel"
-      [ngClass]="{
-        slideInRightWindow: chatService.isSecondaryChatOpen,
-        slideOutRightWindow: !chatService.isSecondaryChatOpen
-      }"
-    ></app-secondary-chat>
-  </div>
+<div (click)="toggleBooleans()">
+  @if (userService.isUserLogin) {
+    <app-header></app-header>
+    <div class="content">
+      <app-sidebar
+        [ngClass]="{
+          slideIn: channelService.isSidebarOpen,
+          slideOut: !channelService.isSidebarOpen
+        }"
+      ></app-sidebar>
+      <app-sidebar-toggle></app-sidebar-toggle>
+      <div class="chatBox">
+        <app-main-chat [currentChannel]="currentChannel"></app-main-chat>
+        <app-secondary-chat
+          [currentChannel]="currentChannel"
+          [ngClass]="{
+            slideInRightWindow: chatService.isSecondaryChatOpen,
+            slideOutRightWindow: !chatService.isSecondaryChatOpen
+          }"
+        ></app-secondary-chat>
+      </div>
+    </div>
+    }
+    <app-overlay></app-overlay>
 </div>
-}
-<app-overlay></app-overlay>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { SidebarChannelsComponent } from './sidebar-channels/sidebar-channels.component';
 import { SidebarDirectMessagesComponent } from './sidebar-direct-messages/sidebar-direct-messages.component';
@@ -6,6 +6,7 @@ import { SmallBtnComponent } from '../../shared/components/small-btn/small-btn.c
 import { CommonModule } from '@angular/common';
 import { ChannleService } from '../../service/channle.service';
 import { SearchbarComponent } from './searchbar/searchbar.component';
+import { ToggleBooleanService } from '../../service/toggle-boolean.service';
 @Component({
   selector: 'app-sidebar',
   standalone: true,
@@ -21,14 +22,12 @@ import { SearchbarComponent } from './searchbar/searchbar.component';
   styleUrl: './sidebar.component.scss',
 })
 export class SidebarComponent {
-  openSchearchWindow: boolean = false;
-  constructor(public channelService: ChannleService){}
+  
+  constructor(public channelService: ChannleService, public tootleBoolean: ToggleBooleanService){}
 
-  openSearchbar(){
-    this.openSchearchWindow = !this.openSchearchWindow;
+  openSearchbar(event: any) {
+    this.tootleBoolean.openSearchWindow = true;
+    event.stopPropagation();
   }
 
-  toogleSpenSchearchWindow(variable: boolean) {
-    this.openSchearchWindow = variable;
-  }
 }

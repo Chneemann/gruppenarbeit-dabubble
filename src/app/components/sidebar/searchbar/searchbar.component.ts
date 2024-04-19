@@ -1,21 +1,29 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component } from '@angular/core';
+import { ToggleBooleanService } from '../../../service/toggle-boolean.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-searchbar',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './searchbar.component.html',
-  styleUrl: './searchbar.component.scss'
+  styleUrl: './searchbar.component.scss',
 })
 export class SearchbarComponent {
-  @Input() openSchearchWindow!: boolean;
-  @Output() toogleSpenSchearchWindow: EventEmitter<boolean> = new EventEmitter<boolean>();
+  inputValue: string = '';
 
+  constructor(private toggleBoolean: ToggleBooleanService) {}
 
-  constructor(){}
-
-  closeSearchWindow(){
-    this.toogleSpenSchearchWindow.emit(false);
+  closeSearchWindow(event: Event) {
+    this.toggleBoolean.openSearchWindow = false;
+    event.stopPropagation();
+    this.inputValue = '';
   }
+
+  openSearchbar(event: Event){
+    this.toggleBoolean.openSearchWindow = true;
+    event.stopPropagation();
+  }
+  
 }

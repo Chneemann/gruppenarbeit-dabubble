@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { HeaderComponent } from '../../shared/components/header/header.component';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { UserService } from '../../service/user.service';
@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 import { AddNewChannelComponent } from '../sidebar/sidebar-channels/add-new-channel/add-new-channel.component';
 import { OverlayComponent } from '../../shared/components/overlay/overlay.component';
 import { PrivatChatComponent } from '../main-chat/privat-chat/privat-chat.component';
+import { ToggleBooleanService } from '../../service/toggle-boolean.service';
 
 @Component({
   selector: 'app-landing-page',
@@ -26,7 +27,6 @@ import { PrivatChatComponent } from '../main-chat/privat-chat/privat-chat.compon
     CommonModule,
     AddNewChannelComponent,
     OverlayComponent,
-    CommonModule,
     PrivatChatComponent,
   ],
   templateUrl: './main.component.html',
@@ -38,7 +38,8 @@ export class MainComponent {
     public chatService: ChatService,
     public channelService: ChannleService,
     private route: Router,
-    private router: ActivatedRoute
+    private router: ActivatedRoute,
+    private toggleAllBooleans: ToggleBooleanService
   ) {}
 
   currentChannel: string = '';
@@ -61,5 +62,9 @@ export class MainComponent {
         this.currentChannel = params['id'];
       });
     }
+  }
+
+  toggleBooleans(){
+    this.toggleAllBooleans.openSearchWindow = false;
   }
 }

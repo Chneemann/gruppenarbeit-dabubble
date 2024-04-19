@@ -9,15 +9,17 @@
       [imgSize]="'24px'"
       [btnSize]="'48px'"
       [btnBgHoverColor]="'#edeefe'"
-      style="margin-right: -26px;"
-      (click)="openSearchbar()"
+      style="margin-right: -26px"
+      (click)="openSearchbar($event)"
+      id="test"
     >
     </app-small-btn>
   </div>
-  <app-searchbar [openSchearchWindow]="openSchearchWindow"
-  (toogleSpenSchearchWindow)="toogleSpenSchearchWindow($event)"
-  [ngClass]="{ dBlock: openSchearchWindow, dNone: !openSchearchWindow }"
-></app-searchbar>
+  <app-searchbar
+    [ngClass]="{ dBlock: tootleBoolean.openSearchWindow, dNone: !tootleBoolean.openSearchWindow }"
+  ></app-searchbar>
+
+
   <div class="channels">
     <app-sidebar-channels></app-sidebar-channels>
   </div>
