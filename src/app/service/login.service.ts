@@ -10,6 +10,8 @@ import {
 // import { User } from '../interface/user.interface';
 import {
   getAuth,
+  signInWithPopup,
+  GoogleAuthProvider,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
 } from 'firebase/auth';
@@ -41,17 +43,14 @@ export class loginService {
   errorMessage: string = '';
   private hasAnimationPlayed = false;
   private introCompleteStatus = false;
- 
 
-  constructor(private router: Router, private userService: UserService) {
-   
-  }
+  constructor(private router: Router, private userService: UserService) {}
   // -------------------- login start seite ------------------------------->
   login() {
     const auth = getAuth();
     if (!this.email || !this.password) {
-      this.errorMessage ='E-Mail und Passwort dürfen nicht leer sein.';
-      return; 
+      this.errorMessage = 'E-Mail und Passwort dürfen nicht leer sein.';
+      return;
     }
 
     signInWithEmailAndPassword(auth, this.email, this.password)
@@ -71,7 +70,7 @@ export class loginService {
               this.currentUser = userDoc.id;
               console.log('UserLOGI', this.currentUser);
               this.userService.userId = this.currentUser;
-              this.router.navigate([`/main`]); 
+              this.router.navigate([`/main`]);
             } else {
               console.info('Kein zugehöriges Benutzerdokument gefunden.');
             }
@@ -82,15 +81,17 @@ export class loginService {
       })
       .catch((error) => {
         const errorCode = error.code;
-         switch (errorCode) {
+        switch (errorCode) {
           case 'auth/invalid-credential':
-            this.errorMessage = '*Ungültige Anmeldeinformationen. Bitte überprüfen Sie Ihre Eingaben.'
+            this.errorMessage =
+              '*Ungültige Anmeldeinformationen. Bitte überprüfen Sie Ihre Eingaben.';
             break;
-            case 'auth/too-many-requests':
-            this.errorMessage = '*Der Zugriff auf dieses Konto wurde aufgrund zahlreicher fehlgeschlagener Anmeldeversuche vorübergehend deaktiviert.'
+          case 'auth/too-many-requests':
+            this.errorMessage =
+              '*Der Zugriff auf dieses Konto wurde aufgrund zahlreicher fehlgeschlagener Anmeldeversuche vorübergehend deaktiviert.';
             break;
           default:
-            this.errorMessage = '*Bitte Überprüfe deine Eingaben.'
+            this.errorMessage = '*Bitte Überprüfe deine Eingaben.';
             break;
         }
       });
@@ -158,5 +159,35 @@ export class loginService {
   setFinalClass(state: boolean): void {
     this.introCompleteStatus = state;
   }
+  //------------------------ GoogleLogin -------------------------------------------->
+  googleLogin() {
+    const auth = getAuth();
+    const provider = new GoogleAuthProvider();
 
+    signInWithPopup(auth, provider)
+      .then((result) => {
+       
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        if (credential) {
+          const token = credential.accessToken; 
+       
+          const user = result.user;
+          console.log('Name: ', user.displayName);
+          console.log('E-Mail: ', user.email);
+          console.log('Profilbild URL: ', user.photoURL);
+        } else {
+          console.error('Keine Anmeldeinformationen erhalten.');
+        }
+      })
+      .catch((error) => {
+      
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      
+        const email = error.customData.email;
+    
+        const credential = GoogleAuthProvider.credentialFromError(error);
+       
+      });
+  }
 }
