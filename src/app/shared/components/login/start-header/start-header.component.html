@@ -2,15 +2,15 @@
    <div class="headerContainer">
      <div class="header">
    
-       <div [class.logo]="animationStart" [class.logoEndPosition]="animationToEndPosiotion" class="logo">
-         <img [class.imgEndPosiotion]="animationToEndPosiotion" src="assets/img/login/logo-animation.svg" />
+       <div [class.logo]="animationStart" [class.logoEndPosition]="animationToEndPosiotion" [class.final-div-position]="loginService.getFinalclass()" class="logo">
+         <img [class.final-img-position]="loginService.getFinalclass()" [class.imgEndPosiotion]="animationToEndPosiotion" src="assets/img/login/logo-animation.svg" />
          <div class="logo-text" [class.logo-text]="animationLogo" [class.logo-text]="animationStart">
-          <span [class.logo-text-span]="animationStart" >DABubble</span></div>
+          <span [class.logo-text-span]="animationStart" [class.final-span-position]="loginService.getFinalclass()" >DABubble</span></div>
        
       </div>
       </div>
   
-     <div [ngStyle]="{'opacity': opacity}" class="registerContainer">
+     <div [style.display]="display" class="registerContainer">
      <div>
       <span>Neu bei DABubble?</span>
       <div class="createAccountContainer">

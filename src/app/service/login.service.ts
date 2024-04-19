@@ -40,6 +40,7 @@ export class loginService {
   currentUser: string = '';
   errorMessage: string = '';
   private hasAnimationPlayed = false;
+  private introCompleteStatus = false;
  
 
   constructor(private router: Router, private userService: UserService) {
@@ -147,9 +148,15 @@ export class loginService {
   getAnimationState(): boolean {
     return this.hasAnimationPlayed;
   }
+  getFinalclass(): boolean {
+    return this.introCompleteStatus;
+  }
 
   setAnimationState(state: boolean): void {
     this.hasAnimationPlayed = state;
+  }
+  setFinalClass(state: boolean): void {
+    this.introCompleteStatus = state;
   }
 
 }
