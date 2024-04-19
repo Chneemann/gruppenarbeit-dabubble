@@ -19,6 +19,12 @@ form {
   }
 }
 
+app-emoji-picker {
+  position: absolute;
+  top: -120px;
+  left: 180px;
+}
+
 .userInteraction {
   display: flex;
   justify-content: space-between;

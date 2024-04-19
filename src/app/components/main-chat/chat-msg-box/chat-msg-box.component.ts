@@ -5,12 +5,12 @@ import { PickerComponent } from '@ctrl/ngx-emoji-mart';
 import { Firestore, addDoc, collection } from '@angular/fire/firestore';
 import { DownloadFilesService } from '../../../service/download-files.service';
 import { UserService } from '../../../service/user.service';
-
+import { EmojiPickerComponent } from '../../../shared/components/emoji-picker/emoji-picker.component';
 
 @Component({
   selector: 'app-chat-msg-box',
   standalone: true,
-  imports: [CommonModule, FormsModule, PickerComponent],
+  imports: [CommonModule, FormsModule, PickerComponent, EmojiPickerComponent],
   templateUrl: './chat-msg-box.component.html',
   styleUrl: './chat-msg-box.component.scss',
 })
@@ -26,15 +26,13 @@ export class ChatMsgBoxComponent {
     'assets/img/videoIcon.svg',
   ];
   public textArea: string = '';
-  public isEmojiPickerVisible: boolean | undefined;
-  showEmojis: boolean = false;
+  isEmojiPickerVisible: boolean | undefined;
   currentChetValue: string = '';
   @Input() currentChannel: string = '';
   base64String: any = '';
   currentChangedFile: any = [];
   currentAnswer: any;
-  test:any;
-
+  test: any;
 
   constructor(
     public downloadFilesService: DownloadFilesService,
@@ -54,7 +52,6 @@ export class ChatMsgBoxComponent {
     }
   }
 
-
   checkIcon(fileInfo: any) {
     if (fileInfo.type == 'audio/mpeg') {
       return this.getFileIcons[2];
@@ -69,7 +66,6 @@ export class ChatMsgBoxComponent {
     }
   }
 
-
   deleteFile(file: File) {
     const index = this.downloadFilesService.uploadFiles.indexOf(file);
     if (index !== -1) {
@@ -79,29 +75,22 @@ export class ChatMsgBoxComponent {
     console.log(this.downloadFilesService.uploadFiles); ///------------------------------------------------------------
   }
 
-
   showCurrentFile(file: File) {
     const blob = new Blob([file], { type: file.type });
     const url = URL.createObjectURL(blob);
     window.open(url, '_blank');
   }
 
-
   public addEmoji(event: any) {
     this.textArea = `${this.textArea}${event.emoji.native}`;
     this.isEmojiPickerVisible = false;
   }
 
-
-  changeShowEmojisValue() {
-    // this.showEmojis = !this.showEmojis;
-    this.isEmojiPickerVisible = true;
+  toggleEmojiPicker() {
+    this.isEmojiPickerVisible = !this.isEmojiPickerVisible;
   }
 
-
-
-  targetChetUser(){}
-
+  targetChatUser() {}
 
   async sendMessage() {
     if (this.currentChannel) {
@@ -123,7 +112,4 @@ export class ChatMsgBoxComponent {
     this.downloadFilesService.uploadFiles = [];
     this.hasFile = false;
   }
-
-
-
 }

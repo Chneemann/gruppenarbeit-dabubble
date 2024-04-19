@@ -1,22 +1,22 @@
 <section>
   <div [ngClass]="{ posiotionDataFromPc: hasFile, '': !hasFile }">
     @if(hasFile){
-      <div
-        class="fileBox"
-        [ngClass]="{ dBlock: hasFile, dNone: !hasFile }"
-        *ngFor="let file of this.downloadFilesService.uploadFiles"
-      >
-        <img
-          src=" {{ checkIcon(file) }}"
-          class="fileIcons"
-          (click)="showCurrentFile(file)"
-        />
-        <img
-          src="assets/img/closeIcon.svg"
-          class="closeIcon"
-          (click)="deleteFile(file)"
-        />
-      </div>
+    <div
+      class="fileBox"
+      [ngClass]="{ dBlock: hasFile, dNone: !hasFile }"
+      *ngFor="let file of this.downloadFilesService.uploadFiles"
+    >
+      <img
+        src=" {{ checkIcon(file) }}"
+        class="fileIcons"
+        (click)="showCurrentFile(file)"
+      />
+      <img
+        src="assets/img/closeIcon.svg"
+        class="closeIcon"
+        (click)="deleteFile(file)"
+      />
+    </div>
     }
     <input
       type="file"
@@ -45,21 +45,12 @@
       <img
         src="assets/img/smileIcon.svg"
         class="interactIcons"
-
-        (click)="changeShowEmojisValue()"
+        (click)="toggleEmojiPicker()"
       />
-        @if (isEmojiPickerVisible) {
-          <emoji-mart
-          class="emoji-mart"
-          *ngIf="isEmojiPickerVisible"
-          (emojiSelect)="addEmoji($event)"
-          title="Choose your emoji"
-          ></emoji-mart>
-        }
       <img
         src="assets/img/atIcon.svg"
         class="interactIcons"
-        (click)="targetChetUser()"
+        (click)="targetChatUser()"
       />
     </div>
     <img
@@ -68,4 +59,7 @@
       (click)="sendMessage()"
     />
   </div>
+  @if (isEmojiPickerVisible) {
+  <app-emoji-picker></app-emoji-picker>
+  }
 </section>

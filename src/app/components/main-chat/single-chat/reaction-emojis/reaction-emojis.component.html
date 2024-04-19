@@ -5,9 +5,12 @@
     [btnSize]="'40px'"
     [btnBgColor]="'#fff'"
     [btnBgHoverColor]="'#edeefe'"
+    (click)="toggleEmojiPicker()"
   >
   </app-small-btn>
-  @for (reaction of getReaction(chat.id); track reaction; let i = $index) {
+  @if(isEmojiPickerVisible) {
+  <app-emoji-picker></app-emoji-picker>
+  } @for (reaction of getReaction(chat.id); track reaction; let i = $index) {
   <div
     class="emoji"
     (click)="toggleEmoji(reaction.id)"

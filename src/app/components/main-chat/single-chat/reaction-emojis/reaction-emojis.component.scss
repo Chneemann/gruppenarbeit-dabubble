@@ -1,12 +1,12 @@
 section {
   display: flex;
+  position: relative;
 }
 
 .emoji {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position: relative;
   margin-left: 12px;
   background-color: #fff;
   width: 44px;
@@ -27,6 +27,14 @@ section {
   &:hover {
     border-color: #444df2;
   }
+}
+
+app-emoji-picker {
+  position: absolute;
+  bottom: 50px;
+  left: 20px;
+  z-index: 3;
+  width: fit-content;
 }
 
 .dialog {

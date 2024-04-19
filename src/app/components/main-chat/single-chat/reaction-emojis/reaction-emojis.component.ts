@@ -5,11 +5,12 @@ import { Chat, ChatAnswers } from '../../../../interface/chat.interface';
 import { UserService } from '../../../../service/user.service';
 import { ChatService } from '../../../../service/chat.service';
 import { ChannleService } from '../../../../service/channle.service';
+import { EmojiPickerComponent } from '../../../../shared/components/emoji-picker/emoji-picker.component';
 
 @Component({
   selector: 'app-reaction-emojis',
   standalone: true,
-  imports: [CommonModule, SmallBtnComponent],
+  imports: [CommonModule, SmallBtnComponent, EmojiPickerComponent],
   templateUrl: './reaction-emojis.component.html',
   styleUrl: './reaction-emojis.component.scss',
 })
@@ -19,6 +20,7 @@ export class ReactionEmojisComponent {
   reactionDialogId: string = '';
   reactionDialogLeft = 0;
   arrayIcons: string[] = [];
+  isEmojiPickerVisible: boolean = false;
 
   constructor(
     private userService: UserService,
@@ -72,5 +74,9 @@ export class ReactionEmojisComponent {
       userIds.push(this.userService.userId);
     }
     this.chatService.updateReaction(reactionID, userIds);
+  }
+
+  toggleEmojiPicker() {
+    this.isEmojiPickerVisible = !this.isEmojiPickerVisible;
   }
 }
