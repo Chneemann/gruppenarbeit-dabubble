@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output, output } from '@angular/core';
 import { PickerComponent } from '@ctrl/ngx-emoji-mart';
 
 @Component({
@@ -9,7 +9,13 @@ import { PickerComponent } from '@ctrl/ngx-emoji-mart';
   styleUrl: './emoji-picker.component.scss',
 })
 export class EmojiPickerComponent {
-  public addEmoji(event: any) {
-    console.log(event.emoji.id);
+  @Input() output: string = '';
+  @Output() emojiOutputEmitter: EventEmitter<void> = new EventEmitter<void>();
+
+  addEmoji(event: any) {
+    this.output == 'id' ? this.emojiOutputEmitter.emit(event.emoji.id) : null;
+    this.output == 'native'
+      ? this.emojiOutputEmitter.emit(event.emoji.native)
+      : null;
   }
 }

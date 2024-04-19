@@ -60,6 +60,9 @@
     />
   </div>
   @if (isEmojiPickerVisible) {
-  <app-emoji-picker></app-emoji-picker>
+  <app-emoji-picker
+    [output]="'native'"
+    (emojiOutputEmitter)="onButtonClicked($event)"
+  ></app-emoji-picker>
   }
 </section>

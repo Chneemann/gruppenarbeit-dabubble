@@ -40,6 +40,10 @@ export class ChatMsgBoxComponent {
     private userService: UserService
   ) {}
 
+  onButtonClicked($event: any) {
+    this.addEmoji($event);
+  }
+
   onFileChange(event: any) {
     this.currentFiles = event.target.files;
     this.hasFile = this.currentFiles!.length > 0;
@@ -82,7 +86,7 @@ export class ChatMsgBoxComponent {
   }
 
   public addEmoji(event: any) {
-    this.textArea = `${this.textArea}${event.emoji.native}`;
+    this.textArea = `${this.textArea}${event}`;
     this.isEmojiPickerVisible = false;
   }
 
