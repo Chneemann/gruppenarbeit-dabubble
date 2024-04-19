@@ -63,7 +63,7 @@ export class ReactionEmojisComponent {
     if (!this.channelService.isSidebarOpen) {
       offset = 390;
     }
-    this.reactionDialogLeft = emojiRect.left + emojiRect.width - 440 + offset;
+    this.reactionDialogLeft = emojiRect.left + emojiRect.width - 580 + offset;
   }
 
   toggleEmoji(reactionID: string) {
