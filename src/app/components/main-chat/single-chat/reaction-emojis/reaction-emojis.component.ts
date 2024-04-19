@@ -28,6 +28,10 @@ export class ReactionEmojisComponent {
     private channelService: ChannleService
   ) {}
 
+  emojiOutputEmitter($event: any) {
+    console.log($event);
+  }
+
   openDialog(reactionId: string, event: MouseEvent) {
     this.reactionDialogId = reactionId;
     this.calculateDialogPosition(event);

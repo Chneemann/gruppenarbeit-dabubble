@@ -9,7 +9,10 @@
   >
   </app-small-btn>
   @if(isEmojiPickerVisible) {
-  <app-emoji-picker [output]="'native'"></app-emoji-picker>
+  <app-emoji-picker
+    [output]="'id'"
+    (emojiOutputEmitter)="emojiOutputEmitter($event)"
+  ></app-emoji-picker>
   } @for (reaction of getReaction(chat.id); track reaction; let i = $index) {
   <div
     class="emoji"

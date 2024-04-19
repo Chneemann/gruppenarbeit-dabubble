@@ -24,6 +24,7 @@
       [imgSize]="'24px'"
       [btnSize]="'36px'"
       [btnBgHoverColor]="'#edeefe'"
+      (click)="toggleEmojiPicker()"
     >
     </app-small-btn>
     <app-small-btn
@@ -54,4 +55,10 @@
   >
     <p>Edit message</p>
   </div>
+  @if(isEmojiPickerVisible) {
+  <app-emoji-picker
+    [output]="'id'"
+    (emojiOutputEmitter)="emojiOutputEmitter($event)"
+  ></app-emoji-picker>
+  }
 </section>

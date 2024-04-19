@@ -40,7 +40,7 @@ export class ChatMsgBoxComponent {
     private userService: UserService
   ) {}
 
-  onButtonClicked($event: any) {
+  emojiOutputEmitter($event: any) {
     this.addEmoji($event);
   }
 

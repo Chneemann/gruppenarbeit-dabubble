@@ -8,6 +8,7 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
   width: 256px;
   height: 46px;
   background-color: #fff;
@@ -16,6 +17,14 @@ section {
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
   border-bottom-left-radius: 25px;
+}
+
+app-emoji-picker {
+  position: absolute;
+  bottom: 53px;
+  left: 150px;
+  z-index: 3;
+  width: fit-content;
 }
 
 .nav {

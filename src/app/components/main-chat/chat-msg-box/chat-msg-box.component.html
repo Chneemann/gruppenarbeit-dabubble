@@ -62,7 +62,7 @@
   @if (isEmojiPickerVisible) {
   <app-emoji-picker
     [output]="'native'"
-    (emojiOutputEmitter)="onButtonClicked($event)"
+    (emojiOutputEmitter)="emojiOutputEmitter($event)"
   ></app-emoji-picker>
   }
 </section>
