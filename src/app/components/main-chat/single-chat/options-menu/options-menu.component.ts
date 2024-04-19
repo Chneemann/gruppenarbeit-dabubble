@@ -30,8 +30,6 @@ export class OptionsMenuComponent {
   }
 
   toggleSecondaryChat(chatId: string) {
-    this.chatService.isSecondaryChatId
-      ? (this.chatService.isSecondaryChatId = '')
-      : (this.chatService.isSecondaryChatId = chatId);
+    this.chatService.toggleSecondaryChat(chatId);
   }
 }

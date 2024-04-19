@@ -7,24 +7,44 @@
     [btnBgHoverColor]="'#edeefe'"
   >
   </app-small-btn>
+  @for (reaction of getReaction(chat.id); track reaction; let i = $index) {
   <div
     class="emoji"
-    (mouseenter)="toggleDialog()"
-    (mouseleave)="toggleDialog()"
+    (click)="toggleEmoji(reaction.id)"
+    (mouseenter)="openDialog(reaction.id, $event)"
+    (mouseleave)="closeDialog()"
   >
-    <img src="./../../../../../assets/img/okay.svg" alt="" />
-    <span>1</span>
+    <img src="./../../../../../assets/img/{{ reaction.icon }}.svg" />
+    <span>{{ reaction.userId.length }}</span>
   </div>
+  }
+
+  <!-- DIALOG-->
+
+  @if (reactionDialogId != '') { @for (reaction of
+  getReactionDocId(reactionDialogId); track reaction) {
   <div
+    *ngIf="reactionDialogId !== ''"
     class="dialog"
-    [ngStyle]="{
-      display: isDialogOpen ? 'block' : 'none'
-    }"
+    [style.left.px]="reactionDialogLeft"
   >
     <div class="icon">
-      <img src="./../../../../../assets/img/okay.svg" alt="" />
+      <img src="./../../../../../assets/img/{{ reaction.icon }}.svg" />
     </div>
-    <div class="name">Peter Lustig</div>
-    <p>hat reagiert</p>
+    <div class="name">
+      @for (reactionUId of getReactionDocId(reactionDialogId)[0].userId; track
+      reactionUId;) {
+      <div class="user">
+        {{ getUserId(reactionUId)[0].firstName }}
+        {{ getUserId(reactionUId)[0].lastName }}
+      </div>
+      }
+    </div>
+    @if (getReactionDocId(reactionDialogId)[0].userId.length > 1) {
+    <p>haben reagiert.</p>
+    } @else {
+    <p>hat reagiert.</p>
+    }
   </div>
+  }}
 </section>

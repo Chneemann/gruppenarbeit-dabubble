@@ -27,7 +27,7 @@ import { PrivatChatComponent } from '../main-chat/privat-chat/privat-chat.compon
     AddNewChannelComponent,
     OverlayComponent,
     CommonModule,
-    PrivatChatComponent
+    PrivatChatComponent,
   ],
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss',
@@ -55,13 +55,9 @@ export class MainComponent {
     }
   }
 
-  // isSecondaryChatOpen(): boolean {
-  //   return this.chatService.isSecondaryChatId != '';
-  // }
-
   routeUserId() {
     if (this.router.params.subscribe()) {
-        this.router.params.subscribe((params) => {
+      this.router.params.subscribe((params) => {
         this.currentChannel = params['id'];
       });
     }

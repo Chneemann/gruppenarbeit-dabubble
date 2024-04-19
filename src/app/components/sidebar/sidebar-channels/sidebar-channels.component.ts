@@ -12,12 +12,16 @@ import { UserService } from '../../../service/user.service';
 @Component({
   selector: 'app-sidebar-channels',
   standalone: true,
-  imports: [RouterLink, SmallBtnComponent, CommonModule, FormsModule, AddNewChannelComponent],
+  imports: [
+    RouterLink,
+    SmallBtnComponent,
+    CommonModule,
+    FormsModule,
+    AddNewChannelComponent,
+  ],
   templateUrl: './sidebar-channels.component.html',
   styleUrl: './sidebar-channels.component.scss',
 })
-
-
 export class SidebarChannelsComponent {
   minimizeChannels: boolean = true;
 
@@ -27,11 +31,9 @@ export class SidebarChannelsComponent {
     public userService: UserService
   ) {}
 
-
-  minimizeAllChannels(){
+  minimizeAllChannels() {
     this.minimizeChannels = !this.minimizeChannels;
   }
-
 
   openAddChannelWindow() {
     this.channelService.btnIsValid = false;
@@ -39,27 +41,27 @@ export class SidebarChannelsComponent {
   }
 
   closeSecondaryChat() {
-    this.chatService.isSecondaryChatId = '';
+    this.chatService.toggleSecondaryChat('none');
   }
-
 
   getChannels(): Channel[] {
     return this.channelService.allChannels;
   }
 
-
   createPrvChannel() {
     const newPrvChannel = {
       creatorID: this.userService.userId,
-      talkToUserId: '1H87ZD5MvFbEuNUbcG0p'
+      talkToUserId: '1H87ZD5MvFbEuNUbcG0p',
     };
-  
+
     const channelExists = this.channelService.allPrvChannels.some(
       (channel) =>
-        (channel.creatorID === newPrvChannel.creatorID && channel.talkToUserId === newPrvChannel.talkToUserId) ||
-        (channel.creatorID === newPrvChannel.talkToUserId && channel.talkToUserId === newPrvChannel.creatorID)
+        (channel.creatorID === newPrvChannel.creatorID &&
+          channel.talkToUserId === newPrvChannel.talkToUserId) ||
+        (channel.creatorID === newPrvChannel.talkToUserId &&
+          channel.talkToUserId === newPrvChannel.creatorID)
     );
-  
+
     if (!channelExists) {
       this.channelService.createNewChannel(newPrvChannel, 'prv-channels');
       console.log('prv channel angelegt');
@@ -67,6 +69,4 @@ export class SidebarChannelsComponent {
       console.log('Private channel already exists!');
     }
   }
-  
-
 }

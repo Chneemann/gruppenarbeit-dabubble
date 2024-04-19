@@ -8,7 +8,7 @@ import {
   query,
   updateDoc,
 } from '@angular/fire/firestore';
-import { Chat, ChatAnswers } from '../interface/chat.interface';
+import { Chat, ChatAnswers, ChatReactions } from '../interface/chat.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -18,15 +18,18 @@ export class ChatService implements OnDestroy {
 
   allChats: Chat[] = [];
   allChatAnswers: ChatAnswers[] = [];
+  allChatReactions: ChatReactions[] = [];
   isSecondaryChatId: string = '';
-  openRightWindow: boolean = false;
+  isSecondaryChatOpen: boolean = false;
 
   unsubChat;
   unsubChatAnswers;
+  unsubChatReactions;
 
   constructor() {
     this.unsubChat = this.subChatList();
     this.unsubChatAnswers = this.subChatAnswersList();
+    this.unsubChatReactions = this.subChatListReactions();
   }
 
   subChatList() {
@@ -54,6 +57,19 @@ export class ChatService implements OnDestroy {
     });
   }
 
+  subChatListReactions() {
+    return onSnapshot(collection(this.firestore, 'reactions'), (list) => {
+      this.allChatReactions = [];
+      list.forEach((element) => {
+        const chatReactionsWithId = {
+          id: element.id,
+          ...element.data(),
+        } as ChatReactions;
+        this.allChatReactions.push(chatReactionsWithId);
+      });
+    });
+  }
+
   async updateChat(chatId: string, update: Partial<Chat>) {
     const chatRef = doc(collection(this.firestore, 'chats'), chatId);
     const updatedData = { ...update, edited: true };
@@ -63,16 +79,35 @@ export class ChatService implements OnDestroy {
     });
   }
 
+  async updateReaction(reactionId: any, array: string[]) {
+    await updateDoc(doc(collection(this.firestore, 'reactions'), reactionId), {
+      userId: array,
+    }).catch((err) => {
+      console.error(err);
+    });
+  }
+
   getChatAnswers(chatId: string): ChatAnswers[] {
-    chatId = chatId.replace(/\s/g, '');
     const filteredTasks = this.allChatAnswers.filter(
       (chat) => chat.chatId == chatId
     );
     return filteredTasks;
   }
 
+  toggleSecondaryChat(chatId: string) {
+    chatId == 'none'
+      ? (this.isSecondaryChatOpen = false)
+      : (this.isSecondaryChatOpen = !this.isSecondaryChatOpen);
+    this.isSecondaryChatOpen
+      ? (this.isSecondaryChatId = chatId)
+      : setTimeout(() => {
+          this.isSecondaryChatId = '';
+        }, 500);
+  }
+
   ngOnDestroy() {
     this.unsubChat();
     this.unsubChatAnswers();
+    this.unsubChatReactions();
   }
 }

@@ -51,8 +51,8 @@ export class SingleChatComponent {
   constructor(
     public chatService: ChatService,
     public channelService: ChatService,
-    public downloadFilesService: DownloadFilesService)
-    {}
+    public downloadFilesService: DownloadFilesService
+  ) {}
 
   editMsgEmitter(variable: boolean) {
     this.isMsgEditFormOpen = variable;
@@ -60,11 +60,15 @@ export class SingleChatComponent {
 
   closeEditMsgEmitter(value: boolean) {
     this.isMsgEditFormOpen = value;
-    this.toggleOptionMenu();
+    this.hideOptionMenu();
   }
 
-  toggleOptionMenu() {
-    this.isOptionMenuVisible = !this.isOptionMenuVisible;
+  showOptionMenu() {
+    this.isOptionMenuVisible = true;
+  }
+
+  hideOptionMenu() {
+    this.isOptionMenuVisible = false;
   }
 
   displayCountChatAnswer() {
@@ -94,7 +98,6 @@ export class SingleChatComponent {
   }
 
   openSecondaryChat(chatId: string) {
-    this.chatService.openRightWindow = true;
-    this.chatService.isSecondaryChatId = chatId;
+    this.chatService.toggleSecondaryChat(chatId);
   }
 }
