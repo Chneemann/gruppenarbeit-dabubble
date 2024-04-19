@@ -18,14 +18,16 @@ import { StartHeaderComponent } from '../../../shared/components/login/start-hea
 })
 export class PasswordForgetComponent {
   email: string = '';
+  emailSentBtn = false;
   firestore: Firestore = inject(Firestore);
   constructor(private router: Router){}
 
-  passwordReset(){
+  passwordReset(ngForm: NgForm){
     const auth = getAuth();
     sendPasswordResetEmail(auth, this.email)
      .then(() => {
        // Password reset email sent!
+      //  ngForm.resetForm(); oder so übergben 
        console.log('test hier',this.email)
         // this.router.navigate(['/login']);  später zum weiter leiten 
      })
@@ -39,7 +41,14 @@ export class PasswordForgetComponent {
 
   onSubmit(ngForm: NgForm) {
     console.log('LogingVersuch mit:', this.email);
-   this.passwordReset()
-    // ngForm.resetForm();
+   this.passwordReset(ngForm) // zum test falls das andere zu schnell löscht
+    this.sendEmail()
+    // ngForm.resetForm(); gucken ob alles klappt dan das am ende rein
+  }
+  sendEmail() {
+    this.emailSentBtn = true;
+    setTimeout(() => {
+      this.emailSentBtn = false; 
+    }, 6000);
   }
 }
