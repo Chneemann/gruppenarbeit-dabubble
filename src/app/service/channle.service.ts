@@ -15,7 +15,6 @@ export class ChannleService implements OnDestroy {
   showAddChannelBox: boolean = false;
   btnIsValid: boolean = false;
   openPrvChat: boolean = false;
-  // chetInPrvChet: boolean = false;
   allPrvChannels: PrvChannel[] = [];
 
 

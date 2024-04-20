@@ -64,7 +64,7 @@ export class MainComponent {
     }
   }
 
-  toggleBooleans(){
-    this.toggleAllBooleans.openSearchWindow = false;
-  }
+  // toggleBooleans(){
+  //   this.toggleAllBooleans.openSearchWindow = false;
+  // }
 }

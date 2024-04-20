@@ -1,4 +1,45 @@
 <section>
+  @if (checkCurrentChannel(currentChannel) == 'searchBar') {
+
+    <div class="headerSearhcBar">
+      <h1>New message</h1>
+      <input type="text" placeholder="To: #channel or @someone" [(ngModel)]="inputValue" (keyup)="filterChannelAndUser(inputValue)">
+    </div>
+      @if (filterChannelAndUser(inputValue)) {    
+        <div class="filteredElementWindow">
+          @if (firstLetter == '#') {
+            @for (i of channelService.allChannels; track $index) {
+              <h3 class="user">#{{i.name}}</h3>
+            }
+          } @else if (firstLetter == '@') {
+            @for (i of userService.allUsers; track $index) {
+              <div class="user">
+                <div class="positionImgs">
+                  <img
+                    src="{{ i.avatar }}"
+                    class="avatarImg"
+                  />
+                  <img src="assets/img/onlineRing.svg" class="onlineImg" />
+                </div>
+                <h3>{{ i.firstName }} {{ i.lastName }}</h3>
+              </div>
+            }
+          }
+        </div>
+      }
+    
+    <app-chat-content
+      [getChatChannel]="getChatChannel"
+      [getChatUsers]="getChatUsers"
+      [getChats]="getChats"
+      [getUsers]="getUsers"
+      [currentChannel]="currentChannel"
+      [isPrivatChannel]="true"
+      [hideContentWindow]="true"
+    >
+    </app-chat-content>
+  } @else {
+  
   @if(checkCurrentChannel(currentChannel) == 'allPrvChannels'){ @for (user of
   getPrvChat(currentChannel); track user; let i = $index) {
   <div class="headerPrvChat">
@@ -35,6 +76,7 @@
     [getUsers]="getUsers"
     [currentChannel]="currentChannel"
     [isPrivatChannel]="true"
+    [hideContentWindow]="false"
   >
   </app-chat-content>
   } } @else if (checkCurrentChannel(currentChannel) == 'allChannels') { @for
@@ -52,6 +94,7 @@
     [getChats]="getChats"
     [getUsers]="getUsers"
     [currentChannel]="currentChannel"
+    [hideContentWindow]="false"
   >
   </app-chat-content>
   }
@@ -109,4 +152,5 @@
     </div>
   </div>
   }
+}
 </section>

@@ -10,15 +10,10 @@
       [btnSize]="'48px'"
       [btnBgHoverColor]="'#edeefe'"
       style="margin-right: -26px"
-      (click)="openSearchbar($event)"
-      id="test"
+      routerLink="/main/searchBar"
     >
     </app-small-btn>
   </div>
-  <app-searchbar
-    [ngClass]="{ dBlock: tootleBoolean.openSearchWindow, dNone: !tootleBoolean.openSearchWindow }"
-  ></app-searchbar>
-
 
   <div class="channels">
     <app-sidebar-channels></app-sidebar-channels>

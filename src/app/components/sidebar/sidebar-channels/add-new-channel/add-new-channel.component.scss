@@ -219,7 +219,8 @@
         @include displayFlex($a: flex-end);
         .avatarImg{
           width: 40px;
-          object-fit: contain;
+          height: 40px;
+          object-fit: cover;
           border-radius: 50%;
         }
         .onlineImg{

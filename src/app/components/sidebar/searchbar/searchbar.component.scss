@@ -39,3 +39,16 @@ section{
         }
     }
 }
+
+.suggestions{
+    width: 200px;
+    height: 300px;
+    background-color: coral;
+    position: absolute;
+    top: 46px;
+    left: 360px;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    z-index: 1;
+    box-shadow: rgb(111 139 169) 0px 20px 30px -10px;
+}

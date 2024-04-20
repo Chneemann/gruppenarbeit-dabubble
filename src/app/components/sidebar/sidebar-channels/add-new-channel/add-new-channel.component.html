@@ -82,7 +82,7 @@
         *ngFor="let user of getSelectedUsers; let i = index"
       >
         <img
-          src="assets/img/user-icons/{{ user.avatar }}.svg"
+          src="{{ user.avatar }}"
           class="avatarImg"
         />
         <h3>{{ user.firstName }} {{ user.lastName }}</h3>
@@ -108,7 +108,7 @@
         <div class="user" (click)="chooseUser(user)">
           <div class="positionImgs">
             <img
-              src="assets/img/user-icons/{{ user.avatar }}.svg"
+              src="{{ user.avatar }}"
               class="avatarImg"
             />
             <img src="assets/img/onlineRing.svg" class="onlineImg" />

@@ -25,9 +25,8 @@ export class SidebarComponent {
   
   constructor(public channelService: ChannleService, public tootleBoolean: ToggleBooleanService){}
 
-  openSearchbar(event: any) {
+  openSearchbar() {
     this.tootleBoolean.openSearchWindow = true;
-    event.stopPropagation();
   }
 
 }

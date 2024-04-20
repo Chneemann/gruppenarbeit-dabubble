@@ -10,6 +10,9 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ChatContentComponent } from './chat-content/chat-content.component';
 import { SingleChatComponent } from './single-chat/single-chat.component';
+import { ToggleBooleanService } from '../../service/toggle-boolean.service';
+import { ChatMsgBoxComponent } from './chat-msg-box/chat-msg-box.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-main-chat',
@@ -19,6 +22,8 @@ import { SingleChatComponent } from './single-chat/single-chat.component';
     CommonModule,
     ChatContentComponent,
     SingleChatComponent,
+    ChatMsgBoxComponent,
+    FormsModule
   ],
   templateUrl: './main-chat.component.html',
   styleUrl: './main-chat.component.scss',
@@ -26,14 +31,18 @@ import { SingleChatComponent } from './single-chat/single-chat.component';
 export class MainChatComponent {
   @Input() currentChannel: string = '';
 
+  inputValue: string = '';
   openMenu: boolean = false;
+  test:boolean = false;
+  firstLetter:string = '';
 
   constructor(
     private route: Router,
     public userService: UserService,
     public channelService: ChannleService,
     public chatService: ChatService,
-    private elementRef: ElementRef
+    private elementRef: ElementRef,
+    public tootleBoolean: ToggleBooleanService
   ) {
     if (this.currentChannel == '') {
       this.route.navigateByUrl('/main/XiqUAXRY1W7PixC9kVTa');
@@ -117,6 +126,9 @@ export class MainChatComponent {
   }
 
   checkCurrentChannel(currentChannel: string){
+    if(currentChannel === 'searchBar'){
+      return 'searchBar';
+    }
     const allChannels = this.channelService.allChannels.some((channel) => channel.id == currentChannel);
     const allPrvChannels = this.channelService.allPrvChannels.some((channel) => channel.id == currentChannel);
     if (allChannels) {
@@ -127,6 +139,19 @@ export class MainChatComponent {
     return '';
   }
   
+  filterChannelAndUser(inputValue: string){
+    const filterChannels = '#';
+    const filterUsers = '@';
+    this.firstLetter = inputValue[0];
+
+    if (this.firstLetter == filterChannels) {
+      return 'filterChannel'
+    } else if(this.firstLetter == filterUsers) {
+      return 'filterUsers'
+    }
+    return inputValue = '';
+  }
+
   openUserProfil(){
     this.channelService.openPrvChat = true;
   }

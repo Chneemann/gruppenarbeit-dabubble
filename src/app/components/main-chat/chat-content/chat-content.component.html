@@ -1,4 +1,5 @@
 <section>
+  @if (!hideContentWindow) {
   <div class="content" #messageBody>
     @for (chat of getChatChannel(currentChannel); track chat; let i = $index) {
     @for (user of getChatUsers(chat.userId); track user) {
@@ -20,5 +21,6 @@
     </div>
     } }
   </div>
+  }
   <app-chat-msg-box [currentChannel]="currentChannel"></app-chat-msg-box>
 </section>

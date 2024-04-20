@@ -32,6 +32,7 @@ import { ChannleService } from '../../../service/channle.service';
 export class ChatContentComponent implements AfterViewInit, AfterViewChecked {
   @Input() currentChannel: string = '';
   @Input() isPrivatChannel: boolean = false;
+  @Input() hideContentWindow: boolean = false;
   @Input() getChats!: () => any;
   @Input() getUsers!: () => any;
   @Input() getChatChannel!: (currentChannel: string) => any;

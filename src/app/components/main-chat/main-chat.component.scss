@@ -200,3 +200,70 @@ section {
         border-radius: 35px;
     }
 }
+
+.headerSearhcBar{
+  height: auto;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.05);
+  @include displayFlex($a: flex-start, $g: 8px);
+  flex-direction: column;
+  padding: 16px;
+  input{
+    width: calc(100% - 8px);
+    height: 36px;
+    border-radius: 26px;
+    padding-left: 8px;
+    margin-right: 2px;
+    font-size: larger;
+    border: 1px solid #888dec;
+    font-family: "Nunito", sans-serif;
+    outline: none;
+    &:hover{
+        border: 1px solid #5f66e7;
+    }
+  }
+}
+
+
+.filteredElementWindow{
+  z-index: 3;
+  max-height: 240px;
+  overflow: auto;
+  scrollbar-width: none;
+  position: absolute;
+  left: 440px;
+  top: 218px;
+  border-radius: 25px;
+  border-top-left-radius: 0;
+  border: 1px solid #888dec;
+  background-color: #FFFFFF;
+  padding: 8px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  @include displayFlex($a: flex-start);
+  flex-direction: column;
+  .user{
+    @include displayFlex($j: flex-start);
+    padding: 6px;
+    margin-bottom: 6px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    &:hover{
+      background-color: #EDEEFE;
+      border-radius: 25px;
+    }
+    .positionImgs{
+      @include displayFlex($a: flex-end);
+      .avatarImg{
+        width: 40px;
+        height: 40px;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+      .onlineImg{
+        margin-left: -12px;
+        margin-bottom: -2px;
+      }
+    }
+  }
+}
