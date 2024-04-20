@@ -33,8 +33,6 @@ section {
 
 .showAllUsers {
   animation-name: slideIn;
-  max-height: 32vh;
-  overflow: hidden;
   transition: max-height 0.3s ease-in-out;
 }
 
