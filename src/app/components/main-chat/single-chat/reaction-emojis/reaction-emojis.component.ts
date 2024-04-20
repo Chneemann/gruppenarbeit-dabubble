@@ -107,10 +107,12 @@ export class ReactionEmojisComponent {
     const userIds = this.getReactionDocId(reactionID)[0].userId;
     if (userIds.includes(this.userService.userId)) {
       userIds.splice(userIds.indexOf(this.userService.userId), 1);
+      if (userIds.length == 0) {
+        this.chatService.deleteData(reactionID, 'reactions');
+      }
     } else {
       userIds.push(this.userService.userId);
     }
-    this.chatService.updateReaction(reactionID, userIds);
   }
 
   toggleEmojiPicker() {

@@ -3,6 +3,7 @@ import {
   Firestore,
   addDoc,
   collection,
+  deleteDoc,
   doc,
   onSnapshot,
   orderBy,
@@ -90,6 +91,14 @@ export class ChatService implements OnDestroy {
 
   async createNewReaction(reaction: ChatReactions) {
     await addDoc(collection(this.firestore, 'reactions'), reaction).catch(
+      (err) => {
+        console.error(err);
+      }
+    );
+  }
+
+  async deleteData(docId: string, database: string) {
+    await deleteDoc(doc(collection(this.firestore, database), docId)).catch(
       (err) => {
         console.error(err);
       }
