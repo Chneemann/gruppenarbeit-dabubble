@@ -41,6 +41,7 @@ export class SingleChatComponent {
   @Input() chat: Chat | ChatAnswers = {} as Chat | ChatAnswers;
   @Input() index: number = 0;
   @Input() currentChat: string = '';
+  @Input() isPrivatChannel: boolean = false;
   @Input() showAnswer: boolean = false;
   @Input() openOnSecondaryChat: boolean = false;
 

@@ -30,6 +30,7 @@
       (click)="toggleEmojiPicker()"
     >
     </app-small-btn>
+    @if (!isPrivatChannel) {
     <app-small-btn
       (click)="toggleSecondaryChat(currentChat)"
       [imgSrc]="'answer.svg'"
@@ -38,6 +39,8 @@
       [btnBgHoverColor]="'#edeefe'"
     >
     </app-small-btn>
+    {{ isItMyChatMsg(currentChat) }}
+    } @if (isItMyChatMsg(currentChat)) {
     <app-small-btn
       (click)="toggleNav()"
       [imgSrc]="'more-vertical.svg'"
@@ -46,6 +49,7 @@
       [btnBgHoverColor]="'#edeefe'"
     >
     </app-small-btn>
+    }
   </div>
   <div
     class="nav"

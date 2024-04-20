@@ -8,6 +8,7 @@
     [currentChat]="currentChat"
     (editMsgEmitter)="editMsgEmitter($event)"
     [openOnSecondaryChat]="openOnSecondaryChat"
+    [isPrivatChannel]="isPrivatChannel"
   >
     ></app-options-menu
   >
@@ -37,6 +38,7 @@
         [openOnSecondaryChat]="openOnSecondaryChat"
       ></app-attachments>
     </div>
+    @if (!isPrivatChannel) {
     <div class="answers">
       @if (chatService.getChatAnswers(chat.id).length > 0 && showAnswer) {
       <p (click)="openSecondaryChat(chat.id)">
@@ -48,6 +50,9 @@
       <p (click)="openSecondaryChat(chat.id)">Answer...</p>
       }
     </div>
+    } @else {
+    <div class="spacer"></div>
+    }
     <app-reaction-emojis
       [chat]="chat"
       [index]="index"

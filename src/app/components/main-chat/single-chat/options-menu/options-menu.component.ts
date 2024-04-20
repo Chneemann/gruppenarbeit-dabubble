@@ -23,6 +23,7 @@ export class OptionsMenuComponent {
   @Input() index: number = 0;
   @Input() currentChat: string = '';
   @Input() openOnSecondaryChat: boolean = false;
+  @Input() isPrivatChannel: boolean = false;
   @Output() editMsgEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   isNavOpen: boolean = false;
@@ -42,6 +43,11 @@ export class OptionsMenuComponent {
     if (!this.checkExistEmojiOnChat(chatId, $event)) {
       this.addNewReaction($event, chatId);
     }
+  }
+
+  isItMyChatMsg(chatId: string) {
+    let chat = this.chatService.allChats.filter((chat) => chat.id === chatId);
+    return chat.find((chat) => chat.userId === this.userService.userId);
   }
 
   addReactionIcon(icon: string, chatId: string) {
