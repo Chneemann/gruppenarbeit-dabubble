@@ -1,25 +1,43 @@
 <section>
-  @if(checkCurrentChannel(currentChannel) == 'allPrvChannels'){
-    @for (user of getPrvChat(currentChannel); track user; let i = $index) {
-      <div class="headerPrvChat">
-        <div class="headlinePrvChat" (click)="openUserProfil()">
-            <div class="imgBoxPrvChat">
-                <img class="imgUserPrvChat" src="{{ filterUser(user.talkToUserId)[i].avatar }}"/>
-            </div>
-          <p>{{ filterUser(user.talkToUserId)[i].firstName }} {{ filterUser(user.talkToUserId)[i].lastName }}</p>
-        </div>
+  @if(checkCurrentChannel(currentChannel) == 'allPrvChannels'){ @for (user of
+  getPrvChat(currentChannel); track user; let i = $index) {
+  <div class="headerPrvChat">
+    <div class="headlinePrvChat" (click)="openUserProfil()">
+      @if (user.talkToUserId == userService.userId) {
+      <div class="imgBoxPrvChat">
+        <img
+          class="imgUserPrvChat"
+          src="{{ filterUser(user.creatorId)[i].avatar }}"
+        />
       </div>
-      <app-chat-content
-        [getChatChannel]="getChatChannel"
-        [getChatUsers]="getChatUsers"
-        [getChats]="getChats"
-        [getUsers]="getUsers"
-        [currentChannel]="currentChannel"
-      >
-      </app-chat-content>
+      <p>
+        {{ filterUser(user.creatorId)[i].firstName }}
+        {{ filterUser(user.creatorId)[i].lastName }}
+      </p>
+      } @else {
+      <div class="imgBoxPrvChat">
+        <img
+          class="imgUserPrvChat"
+          src="{{ filterUser(user.talkToUserId)[i].avatar }}"
+        />
+      </div>
+      <p>
+        {{ filterUser(user.talkToUserId)[i].firstName }}
+        {{ filterUser(user.talkToUserId)[i].lastName }}
+      </p>
       }
-  } @else if (checkCurrentChannel(currentChannel) == 'allChannels') {
-  @for (channel of getChannelName(currentChannel); track channel) {
+    </div>
+  </div>
+  <app-chat-content
+    [getChatChannel]="getChatChannel"
+    [getChatUsers]="getChatUsers"
+    [getChats]="getChats"
+    [getUsers]="getUsers"
+    [currentChannel]="currentChannel"
+  >
+  </app-chat-content>
+  } } @else if (checkCurrentChannel(currentChannel) == 'allChannels') { @for
+  (channel of getChannelName(currentChannel); track channel) {
   <div class="header">
     <div class="headline" (click)="showMenu()">
       <img src="assets/img/hashtag.svg" alt="" />
@@ -89,5 +107,5 @@
       <div class="leaveChannel"><p>Leave channel</p></div>
     </div>
   </div>
-}
+  }
 </section>
