@@ -22,7 +22,11 @@
     (mouseenter)="openDialog(reaction.id, $event)"
     (mouseleave)="closeDialog()"
   >
+    @if (reaction.icon === "okay" || reaction.icon === "clap-hands") {
     <img src="./../../../../../assets/img/{{ reaction.icon }}.svg" />
+    } @else {
+    <ngx-emoji emoji="{{ reaction.icon }}"></ngx-emoji>
+    }
     <span>{{ reaction.userId.length }}</span>
   </div>
   } }
@@ -37,7 +41,11 @@
     [style.left.px]="reactionDialogLeft"
   >
     <div class="icon">
+      @if (reaction.icon === "okay" || reaction.icon === "clap-hands") {
       <img src="./../../../../../assets/img/{{ reaction.icon }}.svg" />
+      } @else {
+      <ngx-emoji emoji="{{ reaction.icon }}"></ngx-emoji>
+      }
     </div>
     <div class="name">
       @for (reactionUId of getReactionDocId(reactionDialogId)[0].userId; track

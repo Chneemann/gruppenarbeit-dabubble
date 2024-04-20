@@ -10,11 +10,16 @@ import { UserService } from '../../../../service/user.service';
 import { ChatService } from '../../../../service/chat.service';
 import { ChannleService } from '../../../../service/channle.service';
 import { EmojiPickerComponent } from '../../../../shared/components/emoji-picker/emoji-picker.component';
-
+import { EmojiComponent } from '@ctrl/ngx-emoji-mart/ngx-emoji';
 @Component({
   selector: 'app-reaction-emojis',
   standalone: true,
-  imports: [CommonModule, SmallBtnComponent, EmojiPickerComponent],
+  imports: [
+    CommonModule,
+    SmallBtnComponent,
+    EmojiPickerComponent,
+    EmojiComponent,
+  ],
   templateUrl: './reaction-emojis.component.html',
   styleUrl: './reaction-emojis.component.scss',
 })
