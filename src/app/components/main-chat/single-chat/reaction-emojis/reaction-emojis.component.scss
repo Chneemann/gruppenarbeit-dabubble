@@ -29,23 +29,10 @@ section {
   }
 }
 
-app-emoji-picker {
-  position: absolute;
-  bottom: 50px;
-  left: 20px;
-  z-index: 3;
-  width: fit-content;
-}
-
-ngx-emoji {
-  display: flex;
-  align-items: center;
-}
-
 .dialog {
   position: absolute;
   bottom: 42px;
-  left: 0;
+  left: 80px;
   width: 158px;
   min-height: 112px;
   padding: 15px 10px;
@@ -76,4 +63,17 @@ ngx-emoji {
     color: #fff;
     text-align: center;
   }
+}
+
+app-emoji-picker {
+  position: absolute;
+  bottom: 50px;
+  left: 20px;
+  z-index: 3;
+  width: fit-content;
+}
+
+ngx-emoji {
+  display: flex;
+  align-items: center;
 }

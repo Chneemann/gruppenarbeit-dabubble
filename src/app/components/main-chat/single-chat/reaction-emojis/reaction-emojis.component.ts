@@ -11,6 +11,7 @@ import { ChatService } from '../../../../service/chat.service';
 import { ChannleService } from '../../../../service/channle.service';
 import { EmojiPickerComponent } from '../../../../shared/components/emoji-picker/emoji-picker.component';
 import { EmojiComponent } from '@ctrl/ngx-emoji-mart/ngx-emoji';
+import { timeInterval } from 'rxjs';
 @Component({
   selector: 'app-reaction-emojis',
   standalone: true,
@@ -25,6 +26,8 @@ import { EmojiComponent } from '@ctrl/ngx-emoji-mart/ngx-emoji';
 })
 export class ReactionEmojisComponent {
   @Input() chat: Chat | ChatAnswers = {} as Chat | ChatAnswers;
+  @Input() index: number = 0;
+  @Input() openOnSecondaryChat: boolean = false;
 
   reactionDialogId: string = '';
   reactionDialogLeft = 0;
@@ -33,8 +36,7 @@ export class ReactionEmojisComponent {
 
   constructor(
     private userService: UserService,
-    private chatService: ChatService,
-    private channelService: ChannleService
+    private chatService: ChatService
   ) {}
 
   emojiOutputEmitter($event: any, chatId: string) {
@@ -60,9 +62,8 @@ export class ReactionEmojisComponent {
     this.isEmojiPickerVisible = $event;
   }
 
-  openDialog(reactionId: string, event: MouseEvent) {
+  openDialog(reactionId: string) {
     this.reactionDialogId = reactionId;
-    this.calculateDialogPosition(event);
   }
 
   closeDialog() {
@@ -93,25 +94,18 @@ export class ReactionEmojisComponent {
     return filteredUser;
   }
 
-  calculateDialogPosition(event: MouseEvent) {
-    const emojiElement = event.target as HTMLElement;
-    const emojiRect = emojiElement.getBoundingClientRect();
-    let offset = 0;
-    if (!this.channelService.isSidebarOpen) {
-      offset = 390;
-    }
-    this.reactionDialogLeft = emojiRect.left + emojiRect.width - 580 + offset;
-  }
-
   toggleEmoji(reactionID: string) {
     const userIds = this.getReactionDocId(reactionID)[0].userId;
     if (userIds.includes(this.userService.userId)) {
       userIds.splice(userIds.indexOf(this.userService.userId), 1);
       if (userIds.length == 0) {
         this.chatService.deleteData(reactionID, 'reactions');
+      } else {
+        this.chatService.updateReaction(reactionID, userIds);
       }
     } else {
       userIds.push(this.userService.userId);
+      this.chatService.updateReaction(reactionID, userIds);
     }
   }
 

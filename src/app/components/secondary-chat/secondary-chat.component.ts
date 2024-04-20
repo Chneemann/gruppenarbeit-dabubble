@@ -56,13 +56,11 @@ export class SecondaryChatComponent {
   }
 
   getSingleChat(chatId: string): Chat[] {
-    chatId = chatId.replace(/\s/g, '');
     const filteredTasks = this.getChats().filter((chat) => chat.id == chatId);
     return filteredTasks;
   }
 
   getChatAnswers(chatId: string): ChatAnswers[] {
-    chatId = chatId.replace(/\s/g, '');
     const filteredTasks = this.getChatAnswer().filter(
       (chat) => chat.chatId == chatId
     );
@@ -70,13 +68,11 @@ export class SecondaryChatComponent {
   }
 
   getChatUsers(chatId: string) {
-    chatId = chatId.replace(/\s/g, '');
     const filteredTasks = this.getUsers().filter((user) => user.id == chatId);
     return filteredTasks;
   }
 
   getChannelName() {
-    this.currentChannel = this.currentChannel.replace(/\s/g, '');
     const filteredTasks = this.getChannels().filter(
       (channel) => channel.id == this.currentChannel
     );
@@ -84,7 +80,6 @@ export class SecondaryChatComponent {
   }
 
   getChatChannel(chatId: string) {
-    chatId = chatId.replace(/\s/g, '');
     const filteredTasks = this.getChats().filter(
       (chat) => chat.channelId == chatId
     );

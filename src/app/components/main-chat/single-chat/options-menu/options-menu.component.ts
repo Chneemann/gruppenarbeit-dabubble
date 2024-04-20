@@ -39,14 +39,29 @@ export class OptionsMenuComponent {
 
   emojiOutputEmitter($event: any, chatId: string) {
     if (!this.checkExistEmojiOnChat(chatId, $event)) {
-      let reaction: ChatReactions = {
-        chatId: chatId,
-        icon: $event,
-        userId: [this.userService.userId],
-      };
-      const { id, ...reactionWithoutId } = reaction;
-      this.chatService.createNewReaction(reactionWithoutId);
+      this.addNewReaction($event, chatId);
     }
+  }
+
+  addReactionIcon(icon: string, chatId: string) {
+    if (!this.checkExistEmojiOnChat(chatId, icon)) {
+      this.addNewReaction(icon, chatId);
+    } else {
+      const id = this.getReactionIcon(chatId, icon)[0].id;
+      if (id != undefined) {
+        this.toggleEmoji(id);
+      }
+    }
+  }
+
+  addNewReaction(event: any, chatId: string) {
+    let reaction: ChatReactions = {
+      chatId: chatId,
+      icon: event,
+      userId: [this.userService.userId],
+    };
+    const { id, ...reactionWithoutId } = reaction;
+    this.chatService.createNewReaction(reactionWithoutId);
   }
 
   checkExistEmojiOnChat(chatId: string, icon: string) {
@@ -83,5 +98,26 @@ export class OptionsMenuComponent {
 
   toggleEmojiPicker() {
     this.isEmojiPickerVisible = !this.isEmojiPickerVisible;
+  }
+
+  getReactionDocId(chatId: string) {
+    return this.chatService.allChatReactions.filter(
+      (reaction) => reaction.id === chatId
+    );
+  }
+
+  toggleEmoji(reactionID: string) {
+    const userIds = this.getReactionDocId(reactionID)[0].userId;
+    if (userIds.includes(this.userService.userId)) {
+      userIds.splice(userIds.indexOf(this.userService.userId), 1);
+      if (userIds.length == 0) {
+        this.chatService.deleteData(reactionID, 'reactions');
+      } else {
+        this.chatService.updateReaction(reactionID, userIds);
+      }
+    } else {
+      userIds.push(this.userService.userId);
+      this.chatService.updateReaction(reactionID, userIds);
+    }
   }
 }

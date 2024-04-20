@@ -48,7 +48,11 @@
       <p (click)="openSecondaryChat(chat.id)">Answer...</p>
       }
     </div>
-    <app-reaction-emojis [chat]="chat"></app-reaction-emojis>
+    <app-reaction-emojis
+      [chat]="chat"
+      [index]="index"
+      [openOnSecondaryChat]="openOnSecondaryChat"
+    ></app-reaction-emojis>
   </div>
   } @else {
   <div class="editForm" [ngClass]="{ mirror: index % 2 !== 0 }">

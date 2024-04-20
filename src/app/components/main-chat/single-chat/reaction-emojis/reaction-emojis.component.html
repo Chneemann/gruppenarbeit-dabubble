@@ -19,7 +19,7 @@
   <div
     class="emoji"
     (click)="toggleEmoji(reaction.id)"
-    (mouseenter)="openDialog(reaction.id, $event)"
+    (mouseenter)="openDialog(reaction.id)"
     (mouseleave)="closeDialog()"
   >
     @if (reaction.icon === "okay" || reaction.icon === "clap-hands") {
@@ -35,11 +35,7 @@
 
   @if (reactionDialogId != '') { @for (reaction of
   getReactionDocId(reactionDialogId); track reaction) {
-  <div
-    *ngIf="reactionDialogId !== ''"
-    class="dialog"
-    [style.left.px]="reactionDialogLeft"
-  >
+  <div *ngIf="reactionDialogId !== ''" class="dialog">
     <div class="icon">
       @if (reaction.icon === "okay" || reaction.icon === "clap-hands") {
       <img src="./../../../../../assets/img/{{ reaction.icon }}.svg" />
