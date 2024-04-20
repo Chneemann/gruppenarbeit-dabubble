@@ -1,5 +1,4 @@
 <section (mouseenter)="showOptionMenu()" (mouseleave)="hideOptionMenu()">
-  @if (openOnSecondaryChat){
   <app-options-menu
     [ngClass]="{
       'animation-coming-in': isOptionMenuVisible,
@@ -8,10 +7,11 @@
     [index]="index"
     [currentChat]="currentChat"
     (editMsgEmitter)="editMsgEmitter($event)"
+    [openOnSecondaryChat]="openOnSecondaryChat"
   >
     ></app-options-menu
   >
-  }
+
   <div class="userAvatar">
     <img src="{{ user.avatar }}" alt="" />
   </div>
@@ -19,7 +19,7 @@
   <div
     class="userContent"
     [ngClass]="{ mirror: index % 2 !== 0 }"
-    [ngStyle]="{ width: openOnSecondaryChat ? 'fit-content' : '80%' }"
+    [ngStyle]="{ width: openOnSecondaryChat ? '80%' : 'fit-content' }"
   >
     <div class="name">
       {{ user.firstName }} {{ user.lastName }}

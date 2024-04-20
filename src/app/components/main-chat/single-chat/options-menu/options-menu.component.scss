@@ -9,7 +9,8 @@ section {
   align-items: center;
   justify-content: center;
   position: relative;
-  width: 256px;
+  max-width: 256px;
+  width: fit-content;
   height: 46px;
   background-color: #fff;
   padding: 3px 15px 3px 20px;
@@ -49,7 +50,7 @@ section {
 app-emoji-picker {
   position: absolute;
   top: 53px;
-  left: 150px;
+  left: 140px;
   z-index: 3;
   width: fit-content;
 }
@@ -66,8 +67,12 @@ app-small-btn {
   transform: scaleX(-1);
 }
 
+.secondaryChatPickerOffset {
+  left: 30px !important;
+}
+
 .mirrorEmojiPicker {
-  left: -195px;
+  left: -190px !important;
 }
 
 /*------------- ANIMATION -------------*/

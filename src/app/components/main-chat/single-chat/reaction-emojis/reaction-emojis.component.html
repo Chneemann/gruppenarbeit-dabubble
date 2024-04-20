@@ -1,4 +1,5 @@
-<section>
+<section (mouseleave)="this.isEmojiPickerVisible = false">
+  @if (!openOnSecondaryChat) {
   <app-small-btn
     [imgSrc]="'add-reaction.svg'"
     [imgSize]="'24px'"
@@ -8,7 +9,7 @@
     (click)="toggleEmojiPicker()"
   >
   </app-small-btn>
-  @if(isEmojiPickerVisible) {
+  } @if(isEmojiPickerVisible) {
   <app-emoji-picker
     [output]="'id'"
     (emojiOutputEmitter)="emojiOutputEmitter($event, chat.id)"

@@ -22,6 +22,7 @@ import { ChatReactions } from '../../../../interface/chat.interface';
 export class OptionsMenuComponent {
   @Input() index: number = 0;
   @Input() currentChat: string = '';
+  @Input() openOnSecondaryChat: boolean = false;
   @Output() editMsgEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   isNavOpen: boolean = false;
