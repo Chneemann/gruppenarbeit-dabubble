@@ -31,7 +31,6 @@ export class ReactionEmojisComponent {
 
   reactionDialogId: string = '';
   reactionDialogLeft = 0;
-  arrayIcons: string[] = [];
   isEmojiPickerVisible: boolean = false;
 
   constructor(
@@ -56,6 +55,10 @@ export class ReactionEmojisComponent {
       this.getReactionIcon(chatId, icon).length > 0
       ? true
       : false;
+  }
+
+  indexOfArray(array: any[], element: any): number {
+    return array.indexOf(element);
   }
 
   emojiVisibleEmitter($event: any) {
@@ -85,6 +88,16 @@ export class ReactionEmojisComponent {
     return this.chatService.allChatReactions.filter(
       (reaction) => reaction.id === chatId
     );
+  }
+
+  countReactionDocId(chatId: string) {
+    let count = 0;
+    this.chatService.allChatReactions.forEach((reaction) => {
+      if (reaction.id === chatId) {
+        count++;
+      }
+    });
+    return count;
   }
 
   getUserId(userId: string) {

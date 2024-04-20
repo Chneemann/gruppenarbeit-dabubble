@@ -6,7 +6,7 @@ section {
 .emoji {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   margin-left: 12px;
   background-color: #fff;
   width: 44px;
@@ -23,6 +23,7 @@ section {
   span {
     font-size: 16px;
     font-weight: 400;
+    padding-left: 6px;
   }
   &:hover {
     border-color: #444df2;
@@ -31,12 +32,13 @@ section {
 
 .dialog {
   position: absolute;
-  bottom: 42px;
+  bottom: 52px;
   left: 80px;
   width: 158px;
   min-height: 112px;
   padding: 15px 10px;
   border-radius: 30px 30px 30px 0px;
+  z-index: 4;
   background-color: #444df2;
   .icon {
     display: flex;

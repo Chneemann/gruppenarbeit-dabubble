@@ -30,13 +30,19 @@
     }
     <span>{{ reaction.userId.length }}</span>
   </div>
-  } }
+  }}
 
   <!-- DIALOG-->
 
   @if (reactionDialogId != '') { @for (reaction of
   getReactionDocId(reactionDialogId); track reaction) {
-  <div *ngIf="reactionDialogId !== ''" class="dialog">
+  <div
+    class="dialog"
+    [style.left.px]="
+      (openOnSecondaryChat ? 45 : 85) +
+      indexOfArray(getReaction(chat.id), reaction) * 80
+    "
+  >
     <div class="icon">
       @if (reaction.icon === "okay" || reaction.icon === "clap-hands") {
       <img src="./../../../../../assets/img/{{ reaction.icon }}.svg" />
@@ -59,5 +65,5 @@
     <p>hat reagiert.</p>
     }
   </div>
-  }}
+  } }
 </section>
