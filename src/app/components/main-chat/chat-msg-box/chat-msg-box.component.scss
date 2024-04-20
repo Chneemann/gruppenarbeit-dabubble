@@ -33,20 +33,10 @@ section {
     @include displayFlex($j: space-between);
     .positionSpecialIcons {
       @include displayFlex($j: space-between, $g: 3px);
-      .interactIcons {
-        cursor: pointer;
-        transition: filter 0.3s ease;
-        padding: 8px;
-        &:hover {
-          scale: 1.1;
-          background-color: #b7bae7;
-          border-radius: 50%;
-          filter: brightness(120%);
-        }
-      }
     }
   }
   .sendIcon {
+    padding: 6px;
     cursor: pointer;
     &:hover {
       scale: 1.1;
@@ -54,6 +44,15 @@ section {
         saturate(1270%) hue-rotate(204deg) brightness(95%) contrast(94%);
     }
   }
+}
+
+.verticalLine {
+  height: 28px;
+  padding: 6px;
+}
+
+app-small-btn {
+  padding: 6px 3px;
 }
 
 .fileBox {

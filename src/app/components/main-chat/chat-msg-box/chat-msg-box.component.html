@@ -36,22 +36,28 @@
   ></textarea>
   <div class="positionAllIcons">
     <div class="positionSpecialIcons">
-      <img
-        src="assets/img/addIcon.svg"
-        class="interactIcons"
+      <app-small-btn
+        [imgSrc]="'addIcon.svg'"
+        [imgSize]="'16px'"
+        [btnSize]="'24px'"
+        [btnBgHoverColor]="'#edeefe'"
         (click)="fileInput.click()"
-      />
-      <img src="assets/img/verticalLine.svg" />
-      <img
-        src="assets/img/smileIcon.svg"
-        class="interactIcons"
+      ></app-small-btn>
+      <img class="verticalLine" src="assets/img/verticalLine.svg" />
+      <app-small-btn
+        [imgSrc]="'smileIcon.svg'"
+        [imgSize]="'20px'"
+        [btnSize]="'32px'"
+        [btnBgHoverColor]="'#edeefe'"
         (click)="toggleEmojiPicker()"
-      />
-      <img
-        src="assets/img/atIcon.svg"
-        class="interactIcons"
+      ></app-small-btn>
+      <app-small-btn
+        [imgSrc]="'atIcon.svg'"
+        [imgSize]="'20px'"
+        [btnSize]="'32px'"
+        [btnBgHoverColor]="'#edeefe'"
         (click)="targetChatUser()"
-      />
+      ></app-small-btn>
     </div>
     <img
       src="assets/img/sendIcon.svg"

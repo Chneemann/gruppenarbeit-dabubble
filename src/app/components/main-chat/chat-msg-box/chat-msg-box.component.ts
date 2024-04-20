@@ -6,11 +6,18 @@ import { Firestore, addDoc, collection } from '@angular/fire/firestore';
 import { DownloadFilesService } from '../../../service/download-files.service';
 import { UserService } from '../../../service/user.service';
 import { EmojiPickerComponent } from '../../../shared/components/emoji-picker/emoji-picker.component';
+import { SmallBtnComponent } from '../../../shared/components/small-btn/small-btn.component';
 
 @Component({
   selector: 'app-chat-msg-box',
   standalone: true,
-  imports: [CommonModule, FormsModule, PickerComponent, EmojiPickerComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    PickerComponent,
+    EmojiPickerComponent,
+    SmallBtnComponent,
+  ],
   templateUrl: './chat-msg-box.component.html',
   styleUrl: './chat-msg-box.component.scss',
 })
