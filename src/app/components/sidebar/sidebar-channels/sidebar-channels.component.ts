@@ -50,16 +50,16 @@ export class SidebarChannelsComponent {
 
   createPrvChannel() {
     const newPrvChannel = {
-      creatorID: this.userService.userId,
+      creatorId: this.userService.userId,
       talkToUserId: '1H87ZD5MvFbEuNUbcG0p',
     };
 
     const channelExists = this.channelService.allPrvChannels.some(
       (channel) =>
-        (channel.creatorID === newPrvChannel.creatorID &&
+        (channel.creatorId === newPrvChannel.creatorId &&
           channel.talkToUserId === newPrvChannel.talkToUserId) ||
-        (channel.creatorID === newPrvChannel.talkToUserId &&
-          channel.talkToUserId === newPrvChannel.creatorID)
+        (channel.creatorId === newPrvChannel.talkToUserId &&
+          channel.talkToUserId === newPrvChannel.creatorId)
     );
 
     if (!channelExists) {

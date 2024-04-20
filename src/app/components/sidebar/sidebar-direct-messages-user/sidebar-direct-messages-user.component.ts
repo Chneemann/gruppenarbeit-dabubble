@@ -27,7 +27,7 @@ export class SidebarDirectMessagesUserComponent {
 
   displayPrivateChat(userId: string) {
     const creatorChannels = this.channelService.allPrvChannels.filter(
-      (user) => user.creatorID === userId
+      (user) => user.creatorId === userId
     );
     const talkToUserChannels = this.channelService.allPrvChannels.filter(
       (user) => user.talkToUserId === userId

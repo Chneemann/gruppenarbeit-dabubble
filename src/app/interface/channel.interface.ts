@@ -10,7 +10,6 @@ export interface Channel {
 
 export interface PrvChannel {
   id?: string;
-  creatorID : string;
-  talkToUserId : string;
+  creatorId: string;
+  talkToUserId: string;
 }
-

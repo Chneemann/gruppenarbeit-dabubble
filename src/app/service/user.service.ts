@@ -11,17 +11,15 @@ export class UserService implements OnDestroy {
   allUsers: User[] = [];
   getUserIDs: string[] = [];
   isUserLogin: boolean = true;
-  userId: string = 'C2p2Dm1au4l6cyyMBrWo';
+  userId: string = 'JX5JxxPx0sdjEPHCs5F9';
   getPrvChetUserId: string = '';
 
-  
   unsubUser;
 
   constructor() {
     this.unsubUser = this.subUserList();
   }
 
-  
   subUserList() {
     return onSnapshot(collection(this.firestore, 'users'), (list) => {
       this.allUsers = [];
@@ -34,11 +32,9 @@ export class UserService implements OnDestroy {
     });
   }
 
-
   getUsers(): User[] {
     return this.allUsers;
   }
-
 
   getCurentUsers() {
     const filteredUser = this.getUsers().filter(
@@ -46,7 +42,6 @@ export class UserService implements OnDestroy {
     );
     return filteredUser;
   }
-
 
   ngOnDestroy() {
     this.unsubUser();
