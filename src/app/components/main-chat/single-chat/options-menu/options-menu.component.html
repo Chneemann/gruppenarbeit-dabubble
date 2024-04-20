@@ -1,5 +1,4 @@
 <section
-  [ngClass]="{ mirror: index % 2 !== 0 }"
   (mouseleave)="this.isNavOpen = false; this.isEmojiPickerVisible = false"
 >
   @if (!openOnSecondaryChat) {
@@ -10,6 +9,7 @@
       [btnSize]="'36px'"
       [imgFilter]="'none'"
       [btnBgHoverColor]="'#edeefe'"
+      [ngClass]="{ mirror: index % 2 !== 0 }"
       (click)="addReactionIcon('okay', currentChat)"
     >
     </app-small-btn>
@@ -19,6 +19,7 @@
       [btnSize]="'36px'"
       [imgFilter]="'none'"
       [btnBgHoverColor]="'#edeefe'"
+      [ngClass]="{ mirror: index % 2 !== 0 }"
       (click)="addReactionIcon('clap-hands', currentChat)"
     >
     </app-small-btn>
@@ -27,26 +28,28 @@
       [imgSize]="'24px'"
       [btnSize]="'36px'"
       [btnBgHoverColor]="'#edeefe'"
+      [ngClass]="{ mirror: index % 2 !== 0 }"
       (click)="toggleEmojiPicker()"
     >
     </app-small-btn>
     @if (!isPrivatChannel) {
     <app-small-btn
-      (click)="toggleSecondaryChat(currentChat)"
       [imgSrc]="'answer.svg'"
       [imgSize]="'24px'"
       [btnSize]="'36px'"
       [btnBgHoverColor]="'#edeefe'"
+      [ngClass]="{ mirror: index % 2 !== 0 }"
+      (click)="toggleSecondaryChat(currentChat)"
     >
     </app-small-btn>
-    {{ isItMyChatMsg(currentChat) }}
     } @if (isItMyChatMsg(currentChat)) {
     <app-small-btn
-      (click)="toggleNav()"
       [imgSrc]="'more-vertical.svg'"
       [imgSize]="'24px'"
       [btnSize]="'36px'"
       [btnBgHoverColor]="'#edeefe'"
+      [ngClass]="{ mirror: index % 2 !== 0 }"
+      (click)="toggleNav()"
     >
     </app-small-btn>
     }
@@ -60,23 +63,26 @@
     }"
     (click)="editMsg()"
   >
-    <p>Edit message</p>
+    <p [ngClass]="{ mirror: index % 2 !== 0 }">Edit message</p>
   </div>
   } @else {
-  <div class="content" [ngClass]="{ mirror: index % 2 !== 0 }">
+  <div class="content">
     <app-small-btn
       [imgSrc]="'add-reaction.svg'"
       [imgSize]="'24px'"
       [btnSize]="'36px'"
       [btnBgHoverColor]="'#edeefe'"
+      [ngClass]="{ mirror: index % 2 !== 0 }"
       (click)="toggleEmojiPicker()"
     ></app-small-btn>
   </div>
   } @if(isEmojiPickerVisible) {
   <app-emoji-picker
-    class="secondaryChatPickerOffset"
     [output]="'id'"
-    [ngClass]="{ mirrorEmojiPicker: index % 2 !== 1 }"
+    [ngClass]="{
+      mirror: index % 2 !== 0,
+      secondaryChatPickerOffset: openOnSecondaryChat
+    }"
     (emojiOutputEmitter)="emojiOutputEmitter($event, currentChat)"
     (emojiVisibleEmitter)="emojiVisibleEmitter($event)"
   ></app-emoji-picker>

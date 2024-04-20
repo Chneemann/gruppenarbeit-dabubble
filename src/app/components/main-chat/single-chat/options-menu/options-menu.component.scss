@@ -50,9 +50,8 @@ section {
 app-emoji-picker {
   position: absolute;
   top: 53px;
-  left: 140px;
-  z-index: 3;
-  width: fit-content;
+  left: -80px;
+  z-index: 5;
 }
 
 app-small-btn {
@@ -68,10 +67,6 @@ app-small-btn {
 }
 
 .secondaryChatPickerOffset {
-  left: 30px !important;
-}
-
-.mirrorEmojiPicker {
   left: -190px !important;
 }
 

@@ -23,6 +23,7 @@ app-emoji-picker {
   position: absolute;
   top: -120px;
   left: 180px;
+  z-index: 5;
 }
 
 .userInteraction {
@@ -74,17 +75,6 @@ app-emoji-picker {
     border-radius: 50%;
     filter: brightness(120%);
   }
-}
-
-.emoji-mart {
-  z-index: 99 !important;
-}
-
-.smileysBackground {
-  position: absolute;
-  left: -500px;
-  bottom: -70px;
-  z-index: 99 !important;
 }
 
 .disabledIcon {
