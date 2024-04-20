@@ -58,6 +58,7 @@
   @if(isEmojiPickerVisible) {
   <app-emoji-picker
     [output]="'id'"
+    [ngClass]="{ mirrorEmojiPicker: index % 2 !== 1 }"
     (emojiOutputEmitter)="emojiOutputEmitter($event)"
   ></app-emoji-picker>
   }

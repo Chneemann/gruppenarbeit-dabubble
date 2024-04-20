@@ -34,7 +34,11 @@ app-privat-chat {
 }
 
 app-sidebar {
-  width: 366px;
+  max-width: 366px;
+}
+
+app-secondary-chat {
+  max-width: 485px;
 }
 
 .slideIn {

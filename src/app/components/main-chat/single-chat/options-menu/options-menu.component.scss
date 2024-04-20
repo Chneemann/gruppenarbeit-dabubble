@@ -19,14 +19,6 @@ section {
   border-bottom-left-radius: 25px;
 }
 
-app-emoji-picker {
-  position: absolute;
-  bottom: 53px;
-  left: 150px;
-  z-index: 3;
-  width: fit-content;
-}
-
 .nav {
   display: flex;
   align-items: center;
@@ -54,6 +46,14 @@ app-emoji-picker {
   }
 }
 
+app-emoji-picker {
+  position: absolute;
+  bottom: 53px;
+  left: 150px;
+  z-index: 3;
+  width: fit-content;
+}
+
 app-small-btn {
   padding: 0 8px;
 }
@@ -64,6 +64,10 @@ app-small-btn {
 
 .mirror {
   transform: scaleX(-1);
+}
+
+.mirrorEmojiPicker {
+  left: -195px;
 }
 
 /*------------- ANIMATION -------------*/
