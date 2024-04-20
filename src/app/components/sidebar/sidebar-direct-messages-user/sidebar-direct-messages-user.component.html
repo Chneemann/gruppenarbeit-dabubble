@@ -1,13 +1,14 @@
 <section>
-  @for (user of userService.getUsers(); track user) {
-  <div class="user" (click)="openPrvChat(user)" >
+  @for (directMessage of displayPrivateChat(this.userService.userId); track
+  directMessage) { @if (directMessage.creatorID === this.userService.userId ||
+  directMessage.talkToUserId === this.userService.userId) { @for (user of
+  getChatUsers(directMessage.talkToUserId); track user){
+  <div class="user" routerLink="/main/{{ directMessage.id }}">
     <img src="{{ user.avatar }}" alt="" />
     <div class="dot"></div>
     @if (userService.getUsers().length > 0) {
-    <p>
-      {{ user.firstName }} {{ user.lastName }}
-    </p>
+    <p>{{ user.firstName }} {{ user.lastName }}</p>
     }
   </div>
-  }
+  } } }
 </section>

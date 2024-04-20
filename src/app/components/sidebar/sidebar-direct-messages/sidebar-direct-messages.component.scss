@@ -8,7 +8,7 @@ section {
   display: flex;
   align-items: center;
   cursor: pointer;
-  .arrowImg{
+  .arrowImg {
     width: 10px;
     height: 10px;
     object-fit: contain;
@@ -31,12 +31,11 @@ section {
   }
 }
 
-
 .showAllUsers {
   animation-name: slideIn;
   max-height: 32vh;
   overflow: hidden;
-  transition: max-height 0.3s ease-in-out; 
+  transition: max-height 0.3s ease-in-out;
 }
 
 @keyframes slideIn {
@@ -48,8 +47,6 @@ section {
     height: 100%;
   }
 }
-
-
 
 .hideAllUsers {
   transition: max-height 0.3s ease-in-out;

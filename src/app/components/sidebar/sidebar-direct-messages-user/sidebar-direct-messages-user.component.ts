@@ -13,10 +13,25 @@ import { RouterLink } from '@angular/router';
   styleUrl: './sidebar-direct-messages-user.component.scss',
 })
 export class SidebarDirectMessagesUserComponent {
-  constructor(public userService: UserService, private channelService: ChannleService) {}
+  constructor(
+    public userService: UserService,
+    private channelService: ChannleService
+  ) {}
 
-  openPrvChat(user: User){
-    this.channelService.openPrvChat = true;
-    this.userService.getPrvChetUserId = user.id!;
+  getChatUsers(userId: string) {
+    const filteredTasks = this.userService
+      .getUsers()
+      .filter((user) => user.id == userId);
+    return filteredTasks;
+  }
+
+  displayPrivateChat(userId: string) {
+    const creatorChannels = this.channelService.allPrvChannels.filter(
+      (user) => user.creatorID === userId
+    );
+    const talkToUserChannels = this.channelService.allPrvChannels.filter(
+      (user) => user.talkToUserId === userId
+    );
+    return creatorChannels.concat(talkToUserChannels);
   }
 }
