@@ -59,7 +59,7 @@
   <app-emoji-picker
     [output]="'id'"
     [ngClass]="{ mirrorEmojiPicker: index % 2 !== 1 }"
-    (emojiOutputEmitter)="emojiOutputEmitter($event)"
+    (emojiOutputEmitter)="emojiOutputEmitter($event, currentChat)"
     (emojiVisibleEmitter)="emojiVisibleEmitter($event)"
   ></app-emoji-picker>
   }

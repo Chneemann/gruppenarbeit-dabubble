@@ -4,6 +4,8 @@ import { SingleChatComponent } from '../single-chat.component';
 import { SmallBtnComponent } from '../../../../shared/components/small-btn/small-btn.component';
 import { ChatService } from '../../../../service/chat.service';
 import { EmojiPickerComponent } from '../../../../shared/components/emoji-picker/emoji-picker.component';
+import { UserService } from '../../../../service/user.service';
+import { ChatReactions } from '../../../../interface/chat.interface';
 
 @Component({
   selector: 'app-options-menu',
@@ -25,15 +27,44 @@ export class OptionsMenuComponent {
   isNavOpen: boolean = false;
   isEmojiPickerVisible: boolean = false;
 
-  constructor(public chatService: ChatService) {}
+  constructor(
+    public chatService: ChatService,
+    private userService: UserService
+  ) {}
 
   editMsg() {
     this.editMsgEmitter.emit(true);
     this.toggleNav();
   }
 
-  emojiOutputEmitter($event: any) {
-    console.log($event);
+  emojiOutputEmitter($event: any, chatId: string) {
+    if (!this.checkExistEmojiOnChat(chatId, $event)) {
+      let reaction: ChatReactions = {
+        chatId: chatId,
+        icon: $event,
+        userId: [this.userService.userId],
+      };
+      const { id, ...reactionWithoutId } = reaction;
+      this.chatService.createNewReaction(reactionWithoutId);
+    }
+  }
+
+  checkExistEmojiOnChat(chatId: string, icon: string) {
+    return this.getReaction(chatId).length > 0 &&
+      this.getReactionIcon(chatId, icon).length > 0
+      ? true
+      : false;
+  }
+
+  getReaction(chatId: string) {
+    return this.chatService.allChatReactions.filter(
+      (reaction) => reaction.chatId === chatId
+    );
+  }
+
+  getReactionIcon(chatId: string, icon: string) {
+    const chat = this.getReaction(chatId);
+    return chat.filter((reaction) => reaction.icon == icon);
   }
 
   emojiVisibleEmitter($event: any) {
