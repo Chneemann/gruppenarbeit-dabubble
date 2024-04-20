@@ -11,9 +11,11 @@
   @if(isEmojiPickerVisible) {
   <app-emoji-picker
     [output]="'id'"
-    (emojiOutputEmitter)="emojiOutputEmitter($event)"
+    (emojiOutputEmitter)="emojiOutputEmitter($event, chat.id)"
+    (emojiVisibleEmitter)="emojiVisibleEmitter($event)"
   ></app-emoji-picker>
   } @for (reaction of getReaction(chat.id); track reaction; let i = $index) {
+  @if (reaction.id) {
   <div
     class="emoji"
     (click)="toggleEmoji(reaction.id)"
@@ -23,7 +25,7 @@
     <img src="./../../../../../assets/img/{{ reaction.icon }}.svg" />
     <span>{{ reaction.userId.length }}</span>
   </div>
-  }
+  } }
 
   <!-- DIALOG-->
 

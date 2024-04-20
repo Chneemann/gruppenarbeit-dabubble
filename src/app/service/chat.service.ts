@@ -1,6 +1,7 @@
 import { Injectable, OnDestroy, inject } from '@angular/core';
 import {
   Firestore,
+  addDoc,
   collection,
   doc,
   onSnapshot,
@@ -85,6 +86,14 @@ export class ChatService implements OnDestroy {
     }).catch((err) => {
       console.error(err);
     });
+  }
+
+  async createNewReaction(reaction: ChatReactions) {
+    await addDoc(collection(this.firestore, 'reactions'), reaction).catch(
+      (err) => {
+        console.error(err);
+      }
+    );
   }
 
   getChatAnswers(chatId: string): ChatAnswers[] {

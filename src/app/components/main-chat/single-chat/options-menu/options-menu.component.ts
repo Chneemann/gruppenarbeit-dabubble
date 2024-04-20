@@ -36,6 +36,10 @@ export class OptionsMenuComponent {
     console.log($event);
   }
 
+  emojiVisibleEmitter($event: any) {
+    this.isEmojiPickerVisible = $event;
+  }
+
   toggleNav() {
     this.isNavOpen = !this.isNavOpen;
     this.isEmojiPickerVisible = false;

@@ -21,7 +21,7 @@ export interface ChatAnswers {
 }
 
 export interface ChatReactions {
-  id: string;
+  id?: string;
   chatId: string;
   icon: string;
   userId: string[];

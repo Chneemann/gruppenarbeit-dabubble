@@ -11,11 +11,18 @@ import { PickerComponent } from '@ctrl/ngx-emoji-mart';
 export class EmojiPickerComponent {
   @Input() output: string = '';
   @Output() emojiOutputEmitter: EventEmitter<void> = new EventEmitter<void>();
+  @Output() emojiVisibleEmitter: EventEmitter<boolean> =
+    new EventEmitter<boolean>();
 
   addEmoji(event: any) {
     this.output == 'id' ? this.emojiOutputEmitter.emit(event.emoji.id) : null;
     this.output == 'native'
       ? this.emojiOutputEmitter.emit(event.emoji.native)
       : null;
+    this.closeEmojiPicker();
+  }
+
+  closeEmojiPicker() {
+    this.emojiVisibleEmitter.emit(false);
   }
 }

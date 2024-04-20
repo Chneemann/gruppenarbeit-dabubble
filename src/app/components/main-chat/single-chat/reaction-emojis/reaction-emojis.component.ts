@@ -1,7 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { SmallBtnComponent } from '../../../../shared/components/small-btn/small-btn.component';
 import { CommonModule } from '@angular/common';
-import { Chat, ChatAnswers } from '../../../../interface/chat.interface';
+import {
+  Chat,
+  ChatAnswers,
+  ChatReactions,
+} from '../../../../interface/chat.interface';
 import { UserService } from '../../../../service/user.service';
 import { ChatService } from '../../../../service/chat.service';
 import { ChannleService } from '../../../../service/channle.service';
@@ -28,8 +32,27 @@ export class ReactionEmojisComponent {
     private channelService: ChannleService
   ) {}
 
-  emojiOutputEmitter($event: any) {
-    console.log($event);
+  emojiOutputEmitter($event: any, chatId: string) {
+    if (!this.checkExistEmojiOnChat(chatId, $event)) {
+      let reaction: ChatReactions = {
+        chatId: chatId,
+        icon: $event,
+        userId: [this.userService.userId],
+      };
+      const { id, ...reactionWithoutId } = reaction;
+      this.chatService.createNewReaction(reactionWithoutId);
+    }
+  }
+
+  checkExistEmojiOnChat(chatId: string, icon: string) {
+    return this.getReaction(chatId).length > 0 &&
+      this.getReactionIcon(chatId, icon).length > 0
+      ? true
+      : false;
+  }
+
+  emojiVisibleEmitter($event: any) {
+    this.isEmojiPickerVisible = $event;
   }
 
   openDialog(reactionId: string, event: MouseEvent) {
@@ -45,6 +68,11 @@ export class ReactionEmojisComponent {
     return this.chatService.allChatReactions.filter(
       (reaction) => reaction.chatId === chatId
     );
+  }
+
+  getReactionIcon(chatId: string, icon: string) {
+    const chat = this.getReaction(chatId);
+    return chat.filter((reaction) => reaction.icon == icon);
   }
 
   getReactionDocId(chatId: string) {
