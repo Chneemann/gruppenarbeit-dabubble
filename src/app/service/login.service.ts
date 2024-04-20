@@ -3,8 +3,10 @@ import {
   Firestore,
   addDoc,
   collection,
+  doc,
   getDocs,
   query,
+  updateDoc,
   where,
 } from '@angular/fire/firestore';
 // import { User } from '../interface/user.interface';
@@ -72,6 +74,7 @@ export class loginService {
               this.currentUser = userDoc.id;
               console.log('UserLOGI', this.currentUser);
               this.userService.userId = this.currentUser;
+              this.updateUserOnlineStatus(this.currentUser);
               this.router.navigate([`/main`]);
             } else {
               console.info('Kein zugehöriges Benutzerdokument gefunden.');
@@ -98,6 +101,20 @@ export class loginService {
         }
       });
   }
+
+  updateUserOnlineStatus(userId: string) {
+    const userDocRef = doc(this.firestore, 'users', userId);
+    const updates = {
+      status: true,
+    };
+    updateDoc(userDocRef, updates)
+      .then(() => {
+        console.log(`Status ${updates}`);
+      })
+      .catch((error) => {
+        console.error('Failed to update status:', error);
+      });
+  }
   // -------------------- register ------------------------------->
 
   register() {
@@ -113,8 +130,7 @@ export class loginService {
           lastName: this.lastName,
           avatar: this.avatar,
           email: this.email,
-          status:false,
-          
+          status: false,
         };
 
         this.createUserInFirestore(userDataToSave);
@@ -152,7 +168,7 @@ export class loginService {
       firstName: user.firstName || '',
       lastName: user.lastName || '',
       avatar: user.avatar || '/assets/img/user-icons/guest.svg',
-      status:false,
+      status: false,
     };
 
     const usersCollection = collection(this.firestore, 'users');
@@ -217,15 +233,15 @@ export class loginService {
               email: user.email || 'leer@gmail.com',
               firstName: user.displayName
                 ? user.displayName.split(' ')[0]
-                : 'FirstName', 
+                : 'FirstName',
               lastName: user.displayName
                 ? user.displayName.split(' ').slice(1).join(' ')
                 : 'LastName',
               avatar: user.photoURL || '/assets/img/user-icons/guest.svg',
-              status:false,
+              status: false,
             });
           } else {
-            // wen benutzer schon da ist weiterleiten 
+            // wen benutzer schon da ist weiterleiten
             this.currentUser = snapshot.docs[0].id;
             this.userService.userId = this.currentUser;
             this.router.navigate([`/main`]);
