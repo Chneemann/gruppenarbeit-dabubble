@@ -1,4 +1,11 @@
-import { Component, ElementRef, HostListener, Input } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  HostListener,
+  Input,
+  ViewChild,
+} from '@angular/core';
 import { ChannleService } from '../../service/channle.service';
 import { MainComponent } from '../main/main.component';
 import { ChatService } from '../../service/chat.service';
@@ -23,18 +30,18 @@ import { FormsModule } from '@angular/forms';
     ChatContentComponent,
     SingleChatComponent,
     ChatMsgBoxComponent,
-    FormsModule
+    FormsModule,
   ],
   templateUrl: './main-chat.component.html',
   styleUrl: './main-chat.component.scss',
 })
-export class MainChatComponent {
+export class MainChatComponent implements AfterViewInit {
   @Input() currentChannel: string = '';
 
   inputValue: string = '';
   openMenu: boolean = false;
-  test:boolean = false;
-  firstLetter:string = '';
+  firstLetter: string = '';
+  mainChatSectionWidth: number = 0;
 
   constructor(
     private route: Router,
@@ -47,6 +54,29 @@ export class MainChatComponent {
     if (this.currentChannel == '') {
       this.route.navigateByUrl('/main/XiqUAXRY1W7PixC9kVTa');
     }
+  }
+
+  ngAfterViewInit() {
+    const mainChatSection =
+      this.elementRef.nativeElement.querySelector('section');
+
+    const observer = new ResizeObserver((entries) => {
+      for (let entry of entries) {
+        const newWidth = entry.contentRect.width;
+        if (newWidth <= 680) {
+          this.mainChatSectionWidth = 3;
+        } else if (newWidth <= 740) {
+          this.mainChatSectionWidth = 4;
+        } else if (newWidth <= 800) {
+          this.mainChatSectionWidth = 5;
+        } else if (newWidth <= 860) {
+          this.mainChatSectionWidth = 6;
+        } else {
+          this.mainChatSectionWidth = 100;
+        }
+      }
+    });
+    observer.observe(mainChatSection);
   }
 
   showMenu() {
@@ -88,7 +118,7 @@ export class MainChatComponent {
     return this.chatService.allChats;
   }
 
-  getPrvChatArray(): PrvChannel[]{
+  getPrvChatArray(): PrvChannel[] {
     return this.channelService.allPrvChannels;
   }
 
@@ -111,7 +141,6 @@ export class MainChatComponent {
     return filteredTasks;
   }
 
-
   getPrvChat(prvChatId: string) {
     const filteredChats = this.getPrvChatArray().filter(
       (prvChat) => prvChat.id == prvChatId
@@ -120,39 +149,42 @@ export class MainChatComponent {
     return filteredChats;
   }
 
-
-  filterUser(talkToUserId: string){
+  filterUser(talkToUserId: string) {
     return this.userService.allUsers.filter((user) => user.id == talkToUserId);
   }
 
-  checkCurrentChannel(currentChannel: string){
-    if(currentChannel === 'searchBar'){
+  checkCurrentChannel(currentChannel: string) {
+    if (currentChannel === 'searchBar') {
       return 'searchBar';
     }
-    const allChannels = this.channelService.allChannels.some((channel) => channel.id == currentChannel);
-    const allPrvChannels = this.channelService.allPrvChannels.some((channel) => channel.id == currentChannel);
+    const allChannels = this.channelService.allChannels.some(
+      (channel) => channel.id == currentChannel
+    );
+    const allPrvChannels = this.channelService.allPrvChannels.some(
+      (channel) => channel.id == currentChannel
+    );
     if (allChannels) {
       return 'allChannels';
-    } else if(allPrvChannels) {
+    } else if (allPrvChannels) {
       return 'allPrvChannels';
     }
     return '';
   }
-  
-  filterChannelAndUser(inputValue: string){
+
+  filterChannelAndUser(inputValue: string) {
     const filterChannels = '#';
     const filterUsers = '@';
     this.firstLetter = inputValue[0];
 
     if (this.firstLetter == filterChannels) {
-      return 'filterChannel'
-    } else if(this.firstLetter == filterUsers) {
-      return 'filterUsers'
+      return 'filterChannel';
+    } else if (this.firstLetter == filterUsers) {
+      return 'filterUsers';
     }
-    return inputValue = '';
+    return (inputValue = '');
   }
 
-  openUserProfil(){
+  openUserProfil() {
     this.channelService.openPrvChat = true;
   }
 }

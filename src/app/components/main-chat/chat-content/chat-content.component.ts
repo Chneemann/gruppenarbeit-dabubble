@@ -33,6 +33,7 @@ export class ChatContentComponent implements AfterViewInit, AfterViewChecked {
   @Input() currentChannel: string = '';
   @Input() isPrivatChannel: boolean = false;
   @Input() hideContentWindow: boolean = false;
+  @Input() mainChatSectionWidth: number = 0;
   @Input() getChats!: () => any;
   @Input() getUsers!: () => any;
   @Input() getChatChannel!: (currentChannel: string) => any;

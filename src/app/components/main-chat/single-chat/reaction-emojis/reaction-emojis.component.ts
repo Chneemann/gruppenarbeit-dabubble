@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input } from '@angular/core';
 import { SmallBtnComponent } from '../../../../shared/components/small-btn/small-btn.component';
 import { CommonModule } from '@angular/common';
 import {
@@ -28,6 +28,7 @@ export class ReactionEmojisComponent {
   @Input() chat: Chat | ChatAnswers = {} as Chat | ChatAnswers;
   @Input() index: number = 0;
   @Input() openOnSecondaryChat: boolean = false;
+  @Input() mainChatSectionWidth: number = 0;
 
   reactionDialogId: string = '';
   reactionDialogLeft = 0;

@@ -40,7 +40,10 @@
     class="dialog"
     [ngStyle]="{
       'left.px':
-        indexOfArray(getReaction(chat.id), reaction) >= 2 && openOnSecondaryChat
+        (indexOfArray(getReaction(chat.id), reaction) >= 2 &&
+          openOnSecondaryChat) ||
+        (indexOfArray(getReaction(chat.id), reaction) >= mainChatSectionWidth &&
+          !openOnSecondaryChat)
           ? (openOnSecondaryChat ? -135 : -85) +
             indexOfArray(getReaction(chat.id), reaction) * 80
           : (openOnSecondaryChat ? 45 : 85) +
@@ -48,15 +51,21 @@
     }"
     [ngClass]="{
       mirror:
-        indexOfArray(getReaction(chat.id), reaction) >= 2 && openOnSecondaryChat
+        (indexOfArray(getReaction(chat.id), reaction) >= 2 &&
+          openOnSecondaryChat) ||
+        (indexOfArray(getReaction(chat.id), reaction) >= mainChatSectionWidth &&
+          !openOnSecondaryChat)
     }"
   >
     <div
       class="icon"
       [ngClass]="{
         mirror:
-          indexOfArray(getReaction(chat.id), reaction) >= 2 &&
-          openOnSecondaryChat
+          (indexOfArray(getReaction(chat.id), reaction) >= 2 &&
+            openOnSecondaryChat) ||
+          (indexOfArray(getReaction(chat.id), reaction) >=
+            mainChatSectionWidth &&
+            !openOnSecondaryChat)
       }"
     >
       @if (reaction.icon === "okay" || reaction.icon === "clap-hands") {
@@ -69,8 +78,11 @@
       class="name"
       [ngClass]="{
         mirror:
-          indexOfArray(getReaction(chat.id), reaction) >= 2 &&
-          openOnSecondaryChat
+          (indexOfArray(getReaction(chat.id), reaction) >= 2 &&
+            openOnSecondaryChat) ||
+          (indexOfArray(getReaction(chat.id), reaction) >=
+            mainChatSectionWidth &&
+            !openOnSecondaryChat)
       }"
     >
       @for (reactionUId of getReactionDocId(reactionDialogId)[0].userId; track
@@ -85,8 +97,11 @@
     <p
       [ngClass]="{
         mirror:
-          indexOfArray(getReaction(chat.id), reaction) >= 2 &&
-          openOnSecondaryChat
+          (indexOfArray(getReaction(chat.id), reaction) >= 2 &&
+            openOnSecondaryChat) ||
+          (indexOfArray(getReaction(chat.id), reaction) >=
+            mainChatSectionWidth &&
+            !openOnSecondaryChat)
       }"
     >
       haben reagiert.
@@ -95,8 +110,11 @@
     <p
       [ngClass]="{
         mirror:
-          indexOfArray(getReaction(chat.id), reaction) >= 2 &&
-          openOnSecondaryChat
+          (indexOfArray(getReaction(chat.id), reaction) >= 2 &&
+            openOnSecondaryChat) ||
+          (indexOfArray(getReaction(chat.id), reaction) >=
+            mainChatSectionWidth &&
+            !openOnSecondaryChat)
       }"
     >
       hat reagiert.
