@@ -14,7 +14,6 @@ import { SingleChatComponent } from '../single-chat/single-chat.component';
 import { ChatMsgBoxComponent } from '../chat-msg-box/chat-msg-box.component';
 import { CommonModule } from '@angular/common';
 import { DownloadFilesService } from '../../../service/download-files.service';
-import { OptionsMenuComponent } from '../single-chat/options-menu/options-menu.component';
 import { ChannleService } from '../../../service/channle.service';
 
 @Component({
@@ -33,7 +32,6 @@ export class ChatContentComponent implements AfterViewInit, AfterViewChecked {
   @Input() currentChannel: string = '';
   @Input() isPrivatChannel: boolean = false;
   @Input() hideContentWindow: boolean = false;
-  @Input() mainChatSectionWidth: number = 0;
   @Input() getChats!: () => any;
   @Input() getUsers!: () => any;
   @Input() getChatChannel!: (currentChannel: string) => any;

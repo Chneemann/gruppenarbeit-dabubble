@@ -35,14 +35,12 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './main-chat.component.html',
   styleUrl: './main-chat.component.scss',
 })
-export class MainChatComponent implements AfterViewInit {
+export class MainChatComponent {
   @Input() currentChannel: string = '';
 
   inputValue: string = '';
   openMenu: boolean = false;
   firstLetter: string = '';
-  mainChatSectionWidth: number = 0;
-
   constructor(
     private route: Router,
     public userService: UserService,
@@ -54,29 +52,6 @@ export class MainChatComponent implements AfterViewInit {
     if (this.currentChannel == '') {
       this.route.navigateByUrl('/main/XiqUAXRY1W7PixC9kVTa');
     }
-  }
-
-  ngAfterViewInit() {
-    const mainChatSection =
-      this.elementRef.nativeElement.querySelector('section');
-
-    const observer = new ResizeObserver((entries) => {
-      for (let entry of entries) {
-        const newWidth = entry.contentRect.width;
-        if (newWidth <= 680) {
-          this.mainChatSectionWidth = 3;
-        } else if (newWidth <= 740) {
-          this.mainChatSectionWidth = 4;
-        } else if (newWidth <= 800) {
-          this.mainChatSectionWidth = 5;
-        } else if (newWidth <= 860) {
-          this.mainChatSectionWidth = 6;
-        } else {
-          this.mainChatSectionWidth = 100;
-        }
-      }
-    });
-    observer.observe(mainChatSection);
   }
 
   showMenu() {

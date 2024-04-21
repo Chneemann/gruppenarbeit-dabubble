@@ -1,4 +1,4 @@
-<section #mainChatSection>
+<section>
   @if (checkCurrentChannel(currentChannel) == 'searchBar') {
 
   <div class="headerSearhcBar">
@@ -63,7 +63,6 @@
     [currentChannel]="currentChannel"
     [isPrivatChannel]="true"
     [hideContentWindow]="false"
-    [mainChatSectionWidth]="mainChatSectionWidth"
   >
   </app-chat-content>
   } } @else if (checkCurrentChannel(currentChannel) == 'allChannels') { @for
@@ -82,7 +81,6 @@
     [getUsers]="getUsers"
     [currentChannel]="currentChannel"
     [hideContentWindow]="false"
-    [mainChatSectionWidth]="mainChatSectionWidth"
   >
   </app-chat-content>
   }

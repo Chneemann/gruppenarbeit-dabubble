@@ -1,4 +1,11 @@
-import { AfterViewInit, Component, ElementRef, Input } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  HostListener,
+  Input,
+  ViewChild,
+} from '@angular/core';
 import { SmallBtnComponent } from '../../../../shared/components/small-btn/small-btn.component';
 import { CommonModule } from '@angular/common';
 import {
@@ -28,13 +35,30 @@ export class ReactionEmojisComponent {
   @Input() chat: Chat | ChatAnswers = {} as Chat | ChatAnswers;
   @Input() index: number = 0;
   @Input() openOnSecondaryChat: boolean = false;
-  @Input() mainChatSectionWidth: number = 0;
 
   reactionDialogId: string = '';
   reactionDialogLeft = 0;
   isEmojiPickerVisible: boolean = false;
+  emojiSectionWidth: number = 0;
+  dialogX: number = 0;
+  dialogY: number = 0;
+
+  openDialog(reactionId: any, event: MouseEvent) {
+    this.reactionDialogId = reactionId;
+    this.updateDialogPosition(event);
+  }
+
+  closeDialog() {
+    this.reactionDialogId = '';
+  }
+
+  updateDialogPosition(event: MouseEvent) {
+    this.dialogX = event.clientX - 200;
+    this.dialogY = event.clientY;
+  }
 
   constructor(
+    private elementRef: ElementRef,
     private userService: UserService,
     private chatService: ChatService
   ) {}
@@ -64,14 +88,6 @@ export class ReactionEmojisComponent {
 
   emojiVisibleEmitter($event: any) {
     this.isEmojiPickerVisible = $event;
-  }
-
-  openDialog(reactionId: string) {
-    this.reactionDialogId = reactionId;
-  }
-
-  closeDialog() {
-    this.reactionDialogId = '';
   }
 
   getReaction(chatId: string) {
