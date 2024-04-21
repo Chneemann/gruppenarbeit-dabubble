@@ -1,4 +1,4 @@
-<section (mouseenter)="showOptionMenu()" (mouseleave)="hideOptionMenu()">
+<section (mousemove)="showOptionMenu()" (mouseleave)="hideOptionMenu()">
   <app-options-menu
     [ngClass]="{
       'animation-coming-in': isOptionMenuVisible,
