@@ -1,10 +1,7 @@
 import {
-  AfterViewInit,
   Component,
   ElementRef,
-  HostListener,
-  Input,
-  ViewChild,
+  Input
 } from '@angular/core';
 import { ChannleService } from '../../service/channle.service';
 import { MainComponent } from '../main/main.component';
@@ -38,9 +35,9 @@ import { FormsModule } from '@angular/forms';
 export class MainChatComponent {
   @Input() currentChannel: string = '';
 
-  inputValue: string = '';
   openMenu: boolean = false;
   firstLetter: string = '';
+  openSearchWindow: boolean = false;
   constructor(
     private route: Router,
     public userService: UserService,
@@ -150,16 +147,38 @@ export class MainChatComponent {
     const filterChannels = '#';
     const filterUsers = '@';
     this.firstLetter = inputValue[0];
-
     if (this.firstLetter == filterChannels) {
+      this.tootleBoolean.openSearchWindow = true;
       return 'filterChannel';
     } else if (this.firstLetter == filterUsers) {
+      this.tootleBoolean.openSearchWindow = true;
       return 'filterUsers';
     }
-    return (inputValue = '');
+    console.log(this.tootleBoolean.openSearchWindow);
+    return (this.chatService.inputValue = '');
   }
 
   openUserProfil() {
     this.channelService.openPrvChat = true;
   }
+
+
+  chooseElement(element: Channel | User) {
+    if ('firstName' in element) {
+      this.chatService.inputValue += `${element.firstName} ${element.lastName}`;
+      this.chatService.getUserId = element.id!;
+      // console.log(this.chatService.getUserId );
+      
+      // const getPrvChannel = this.chatService.allChats.filter((chat) => chat.userId == this.chatService.getUserId);
+      // console.log(getPrvChannel[0].channelId!);
+    } else {
+      this.chatService.inputValue += element.name;
+      this.chatService.getChannelId = element.id!;
+    }
+    this.tootleBoolean.openSearchWindow = false;
+  }
+  
+  
+  
+  
 }

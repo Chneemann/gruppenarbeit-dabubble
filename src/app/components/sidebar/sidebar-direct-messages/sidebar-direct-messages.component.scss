@@ -34,6 +34,8 @@ section {
 .showAllUsers {
   animation-name: slideIn;
   transition: max-height 0.3s ease-in-out;
+  overflow: hidden;
+  max-height: 32vh;
 }
 
 @keyframes slideIn {

@@ -7,6 +7,8 @@ import { DownloadFilesService } from '../../../service/download-files.service';
 import { UserService } from '../../../service/user.service';
 import { EmojiPickerComponent } from '../../../shared/components/emoji-picker/emoji-picker.component';
 import { SmallBtnComponent } from '../../../shared/components/small-btn/small-btn.component';
+import { ChatService } from '../../../service/chat.service';
+import { ChannleService } from '../../../service/channle.service';
 
 @Component({
   selector: 'app-chat-msg-box',
@@ -44,7 +46,9 @@ export class ChatMsgBoxComponent {
   constructor(
     public downloadFilesService: DownloadFilesService,
     private firestore: Firestore,
-    private userService: UserService
+    private userService: UserService,
+    private chatService: ChatService,
+    private channelService: ChannleService
   ) {}
 
   emojiOutputEmitter($event: any) {
@@ -105,16 +109,14 @@ export class ChatMsgBoxComponent {
 
   async sendMessage() {
     if (this.currentChannel) {
-      console.log(this.currentChannel);
       const messageRef = collection(this.firestore, 'chats');
       await addDoc(messageRef, {
-        channelId: this.currentChannel,
+        channelId: this.checkChannelId(),
         message: this.currentChetValue,
         publishedTimestamp: Math.floor(Date.now() / 1000),
         userId: this.userService.userId,
       }).then((docID) => {
         this.downloadFilesService.loadAllFiles(docID.id);
-        console.log('docID.id', docID.id);
       });
     } else {
       console.error(this.currentChannel, 'this.currentChannel ist leer');
@@ -122,5 +124,20 @@ export class ChatMsgBoxComponent {
     this.currentChetValue = '';
     this.downloadFilesService.uploadFiles = [];
     this.hasFile = false;
+    this.chatService.inputValue = '';
   }
+
+
+  checkChannelId(){
+    if (this.chatService.getChannelId) {
+      return this.chatService.getChannelId;
+    } else if (this.chatService.getUserId){
+      const getPrvChannel = this.chatService.allChats.filter((chat) => chat.userId == this.chatService.getUserId);
+      console.log(getPrvChannel);
+      
+      return getPrvChannel[0].channelId;
+    }
+    return this.currentChannel;
+  }
+
 }

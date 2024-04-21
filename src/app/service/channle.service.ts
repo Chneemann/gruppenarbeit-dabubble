@@ -23,7 +23,7 @@ export class ChannleService implements OnDestroy {
 
   constructor() {
     this.unsubChannel = this.subChannelList();
-    this.unsubPrvChannel = this.subPrvChannelList();
+    this.unsubPrvChannel = this.subPrvChannelList(); 
   }
 
 
@@ -42,6 +42,7 @@ export class ChannleService implements OnDestroy {
     });
   }
 
+
   subPrvChannelList() {
     return onSnapshot(this.firesorePath('prv-channels'), (list) => {
       this.allPrvChannels = [];
@@ -57,7 +58,6 @@ export class ChannleService implements OnDestroy {
     await addDoc(this.firesorePath(path), newChannel).catch(
     (err) => { console.error(err)});
   }
-
 
 
   ngOnDestroy() {

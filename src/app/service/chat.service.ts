@@ -23,6 +23,9 @@ export class ChatService implements OnDestroy {
   allChatReactions: ChatReactions[] = [];
   isSecondaryChatId: string = '';
   isSecondaryChatOpen: boolean = false;
+  getChannelId: string = '';
+  getUserId: string = '';
+  inputValue: string = '';
 
   unsubChat;
   unsubChatAnswers;

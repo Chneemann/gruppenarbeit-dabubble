@@ -14,10 +14,4 @@ export class AppComponent {
   title = 'dabubble';
 
   constructor(public toggleAllBooleans:ToggleBooleanService){}
-
-  // toggleBooleans(){
-  //   this.toggleAllBooleans.openSearchWindow = false;
-  //   console.log('openSearchWindow = false');
-    
-  // }
 }

@@ -6,18 +6,29 @@
     <input
       type="text"
       placeholder="To: #channel or @someone"
-      [(ngModel)]="inputValue"
-      (keyup)="filterChannelAndUser(inputValue)"
+      [(ngModel)]="chatService.inputValue"
+      (keyup)="filterChannelAndUser(chatService.inputValue)"
     />
   </div>
-  @if (filterChannelAndUser(inputValue)) {
+  <div style="margin-top: -24px;">
+    <app-chat-content
+    [getChatChannel]="getChatChannel"
+    [getChatUsers]="getChatUsers"
+    [getChats]="getChats"
+    [getUsers]="getUsers"
+    [currentChannel]="currentChannel"
+    [hideContentWindow]="false"
+  >
+  </app-chat-content>
+  </div>
+  @if (tootleBoolean.openSearchWindow) {
   <div class="filteredElementWindow">
     @if (firstLetter == '#') { @for (i of channelService.allChannels; track
     $index) {
-    <h3 class="user">#{{ i.name }}</h3>
+    <h3 class="user" (click)="chooseElement(i)">#{{ i.name }}</h3>
     } } @else if (firstLetter == '@') { @for (i of userService.allUsers; track
     $index) {
-    <div class="user">
+    <div class="user" (click)="chooseElement(i)">
       <div class="positionImgs">
         <img src="{{ i.avatar }}" class="avatarImg" />
         <img src="assets/img/onlineRing.svg" class="onlineImg" />
