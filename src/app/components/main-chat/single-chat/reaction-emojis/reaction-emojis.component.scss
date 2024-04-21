@@ -67,6 +67,10 @@ section {
   }
 }
 
+.mirror {
+  transform: scaleX(-1);
+}
+
 app-emoji-picker {
   position: absolute;
   bottom: 42px;

@@ -38,19 +38,41 @@
   getReactionDocId(reactionDialogId); track reaction) {
   <div
     class="dialog"
-    [style.left.px]="
-      (openOnSecondaryChat ? 45 : 85) +
-      indexOfArray(getReaction(chat.id), reaction) * 80
-    "
+    [ngStyle]="{
+      'left.px':
+        indexOfArray(getReaction(chat.id), reaction) >= 2 && openOnSecondaryChat
+          ? (openOnSecondaryChat ? -135 : -85) +
+            indexOfArray(getReaction(chat.id), reaction) * 80
+          : (openOnSecondaryChat ? 45 : 85) +
+            indexOfArray(getReaction(chat.id), reaction) * 80
+    }"
+    [ngClass]="{
+      mirror:
+        indexOfArray(getReaction(chat.id), reaction) >= 2 && openOnSecondaryChat
+    }"
   >
-    <div class="icon">
+    <div
+      class="icon"
+      [ngClass]="{
+        mirror:
+          indexOfArray(getReaction(chat.id), reaction) >= 2 &&
+          openOnSecondaryChat
+      }"
+    >
       @if (reaction.icon === "okay" || reaction.icon === "clap-hands") {
       <img src="./../../../../../assets/img/{{ reaction.icon }}.svg" />
       } @else {
       <ngx-emoji emoji="{{ reaction.icon }}"></ngx-emoji>
       }
     </div>
-    <div class="name">
+    <div
+      class="name"
+      [ngClass]="{
+        mirror:
+          indexOfArray(getReaction(chat.id), reaction) >= 2 &&
+          openOnSecondaryChat
+      }"
+    >
       @for (reactionUId of getReactionDocId(reactionDialogId)[0].userId; track
       reactionUId;) {
       <div class="user">
@@ -60,9 +82,25 @@
       }
     </div>
     @if (getReactionDocId(reactionDialogId)[0].userId.length > 1) {
-    <p>haben reagiert.</p>
+    <p
+      [ngClass]="{
+        mirror:
+          indexOfArray(getReaction(chat.id), reaction) >= 2 &&
+          openOnSecondaryChat
+      }"
+    >
+      haben reagiert.
+    </p>
     } @else {
-    <p>hat reagiert.</p>
+    <p
+      [ngClass]="{
+        mirror:
+          indexOfArray(getReaction(chat.id), reaction) >= 2 &&
+          openOnSecondaryChat
+      }"
+    >
+      hat reagiert.
+    </p>
     }
   </div>
   } }
