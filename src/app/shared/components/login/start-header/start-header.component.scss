@@ -70,10 +70,11 @@
 .logo {
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: 60%;
   transform: translate(-50%, -50%);
-  width: 187px;
-  height: 184px;
+  display: flex;
+    align-items: center;
+ // height: 184px; // muss raus damit loigo in mitte bleibt bei 320 px guck asuwirkeungen
   animation: logoAnimation-slide 0.5s ease-in forwards 1s;
   background-size: contain;
   z-index: 999;
@@ -81,17 +82,15 @@
 @keyframes logoAnimation-slide {
   0% {
     top: 50%;
-    left: 50%;
+    left: 60%;
     transform: translate(-50%, -50%);
-    width: 187px;
-    height: 184px;
   }
   100% {
     top: 50%;
-    left: 40%;
+    left: 50% ;
     transform: translate(-50%, -50%);
-    width: 187px;
-    height: 184px;
+
+    
   }
 }
 
@@ -99,10 +98,8 @@
 .logoEndPosition {
   position: absolute;
   top: 50%;
-  left: 40%;
+  left: 50%;
   transform: translate(-50%, -50%);
-  width: 187px;
-  height: 184px;
   animation: animationToEndPosiotion 0.5s ease-in forwards 1s;
   background-size: contain;
   z-index: 999;
@@ -129,14 +126,15 @@
   0% {
     top: 50%;
     left: 50%;
+    width: 240px;
     transform: translate(-50%, -50%);
-    width: 150px;
-    height: 184px;
+    
   }
   100% {
     top: 125px;
-    left: 166px;
-    width: 82px;
+    left: 195px;
+    width: 240px;
+    gap: 11px;
     height: 70px;
   }
 }
@@ -144,10 +142,10 @@
 //  -------------------------->
 
 .logo-text {
-  position: absolute;
+  // position: absolute;
   top: 50%;
-  left: 195%;
-  transform: translate(-50%, -50%);
+  left: 50%;
+  // transform: translate(-50%, -50%);
   overflow: hidden;
   white-space: nowrap;
   transition: clip-path 0.5s ease-in-out;
@@ -208,21 +206,11 @@
 
 //---------------<<<<<<final position
 
-.finalPosition{
-  position: absolute;
-  transform: translate(-50%, -50%);
-  background-size: contain;
-  z-index: 999;
-  top: 132px;
-  left: 120px;
-  width: 100px;
-  height: 121px;
-}
-
 .final-span-position{
   font-size: 32px;
     color: black;
     font-weight: 800;
+    animation: none;
 }
 .final-img-position{
    width: 70px;
@@ -231,7 +219,7 @@
 .final-div-position{
   position: absolute;
   top: 125px;
-  left: 166px;
+  // left: 166px;
   transform: translate(-50%, -50%);
   width: 82px;
   height: 70px;
@@ -240,7 +228,77 @@
   background-size: contain;
   z-index: 999;
   gap: 11px;
+  left: 195px;
+  width: 240px;
 
 }
+
+// ----------------Responsiv--------------->
+
+@media (max-width: 700px) {
+ 
+  // .logo-text-span{
+  //   font-size: 34px;
+  //   animation: none;
+   
+  // }
+
+  
+    //----> ab hier der mittlere slide
+}
+
+@media (max-width: 320px) { 
+  .test{
+    height: 80px;
+  }
+  .final-div-position{
+    left: 50%;
+  }
+  .registerContainer{
+    
+    position: absolute;
+    bottom: 0%;
+    margin: 69px;
+    margin-bottom: 106px;
+    >div{
+      align-items: center;
+    }
+  }
+  .createAccoun{
+    margin-right: 0;
+  }
+  .logoEndPosition {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation:none;
+    animation: animationToEndPosiotion2 0.5s ease-in forwards 1s;
+
+  }
+
+
+  @keyframes animationToEndPosiotion2 {
+    0% {
+      top: 50%;
+      left: 50%;
+      width: 240px;
+      transform: translate(-50%, -50%);
+      
+    }
+    100% {
+      top: 125px;
+      left:50%;
+      width: 240px;
+      gap: 11px;
+      height: 70px;
+    }
+  }
+ 
+}
+
+
+
+
 
 // background-image: url(../../../../../assets/img/login/logo-animation.svg);
