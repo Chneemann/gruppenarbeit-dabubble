@@ -166,11 +166,9 @@ export class MainChatComponent {
   chooseElement(element: Channel | User) {
     if ('firstName' in element) {
       this.chatService.inputValue += `${element.firstName} ${element.lastName}`;
-      this.chatService.getUserId = element.id!;
-      // console.log(this.chatService.getUserId );
-      
-      // const getPrvChannel = this.chatService.allChats.filter((chat) => chat.userId == this.chatService.getUserId);
-      // console.log(getPrvChannel[0].channelId!);
+      const getUserID = element.id!;    
+      const getPrvChannel = this.channelService.allPrvChannels.filter((chat) => chat.talkToUserId == getUserID);
+      this.chatService.getPrvChatId = getPrvChannel[0].id!;
     } else {
       this.chatService.inputValue += element.name;
       this.chatService.getChannelId = element.id!;

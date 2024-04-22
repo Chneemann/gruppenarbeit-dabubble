@@ -131,11 +131,8 @@ export class ChatMsgBoxComponent {
   checkChannelId(){
     if (this.chatService.getChannelId) {
       return this.chatService.getChannelId;
-    } else if (this.chatService.getUserId){
-      const getPrvChannel = this.chatService.allChats.filter((chat) => chat.userId == this.chatService.getUserId);
-      console.log(getPrvChannel);
-      
-      return getPrvChannel[0].channelId;
+    } else if (this.chatService.getPrvChatId){
+      return this.chatService.getPrvChatId;
     }
     return this.currentChannel;
   }

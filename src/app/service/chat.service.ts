@@ -24,7 +24,7 @@ export class ChatService implements OnDestroy {
   isSecondaryChatId: string = '';
   isSecondaryChatOpen: boolean = false;
   getChannelId: string = '';
-  getUserId: string = '';
+  getPrvChatId: string = '';
   inputValue: string = '';
 
   unsubChat;
