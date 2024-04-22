@@ -21,7 +21,7 @@
     >
     </app-chat-content>
   </div>
-  @if (tootleBoolean.openSearchWindow) {
+  @if (toggleBoolean.openSearchWindow) {
   <div class="filteredElementWindow">
     @if (firstLetter == '#') { @for (i of channelService.allChannels; track
     $index) {
@@ -86,12 +86,15 @@
     </div>
     <div class="addUserToChannelBox">
       @if (filterChannelForSelectedUser(currentChannel)) {
-      <div class="addedUsers" (click)="openMemberWindow()">
+      <div class="addedUsers" (click)="openMemberWindow(false)">
         @for(user of getFiltertUsers.slice(0, 3) ; track user) {
         <div class="userAvatar">
           <img src="{{ user.avatar }}" alt="" />
         </div>
         }
+        <div *ngIf="getFiltertUsers.length > 3" class="dotsImg">
+          <img *ngFor="let i of [0, 1, 2]" src="assets/img/offlineRing.svg" alt="">
+        </div>
         <h3 style="padding: 4px">{{ getFiltertUsers.length }}</h3>
       </div>
       <app-small-btn
@@ -99,16 +102,18 @@
         [imgSize]="'20px'"
         [btnSize]="'32px'"
         [btnBgHoverColor]="'#edeefe'"
+        (click)="openMemberWindow(true)"
       ></app-small-btn>
       }
     </div>
   </div>
   <app-show-channel-member
     [ngClass]="{
-      dBlock: tootleBoolean.openChannelMemberWindow,
-      dNone: !tootleBoolean.openChannelMemberWindow
+      dBlock: toggleBoolean.openChannelMemberWindow,
+      dNone: !toggleBoolean.openChannelMemberWindow
     }"
     [getFiltertUsers]="getFiltertUsers"
+    [currentChannel]="currentChannel"
   ></app-show-channel-member>
   <app-chat-content
     [getChatChannel]="getChatChannel"

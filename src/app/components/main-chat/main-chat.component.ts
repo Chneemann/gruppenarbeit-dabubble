@@ -49,7 +49,7 @@ export class MainChatComponent {
     public channelService: ChannleService,
     public chatService: ChatService,
     private elementRef: ElementRef,
-    public tootleBoolean: ToggleBooleanService
+    public toggleBoolean: ToggleBooleanService
   ) {
     if (this.currentChannel == '') {
       this.route.navigateByUrl('/main/XiqUAXRY1W7PixC9kVTa');
@@ -163,10 +163,10 @@ export class MainChatComponent {
     const filterUsers = '@';
     this.firstLetter = inputValue[0];
     if (this.firstLetter == filterChannels) {
-      this.tootleBoolean.openSearchWindow = true;
+      this.toggleBoolean.openSearchWindow = true;
       return 'filterChannel';
     } else if (this.firstLetter == filterUsers) {
-      this.tootleBoolean.openSearchWindow = true;
+      this.toggleBoolean.openSearchWindow = true;
       return 'filterUsers';
     }
     return (this.chatService.inputValue = '');
@@ -188,7 +188,7 @@ export class MainChatComponent {
       this.chatService.inputValue += element.name;
       this.chatService.getChannelId = element.id!;
     }
-    this.tootleBoolean.openSearchWindow = false;
+    this.toggleBoolean.openSearchWindow = false;
   }
   
   
@@ -210,8 +210,9 @@ export class MainChatComponent {
     }
   }
 
-  openMemberWindow(){
-    this.tootleBoolean.openChannelMemberWindow = true;
+  openMemberWindow(boolean: boolean){
+    this.toggleBoolean.openChannelMemberWindow = true;
+    this.toggleBoolean.openAddMemberWindow(boolean);
   }
   
 }

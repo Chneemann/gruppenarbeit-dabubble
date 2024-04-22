@@ -1,6 +1,6 @@
 <section>
   <div class="darkBackground" (click)="closeChannelMemberWindow()"></div>
-  @if (!toogleBooleans.closeChannelMemberWindow) {
+  @if (!toggleBoolean.closeChannelMemberWindow) {
   <div class="whiteBox">
     <div class="posiotionHeader">
       <h2>Channel member</h2>
@@ -24,7 +24,7 @@
       </div>
       }
     </div>
-    <div class="addMemberBox" (click)="openAddMemberWindow()">
+    <div class="addMemberBox" (click)="toggleBoolean.openAddMemberWindow(true)">
       <img src="assets/img/addPerson.svg" />
       <h3>Add member</h3>
     </div>
@@ -33,8 +33,10 @@
   <div class="addMemberToChannelBox">
     <div class="posiotionHeader">
         <div class="headline">
-            <h2>Add member</h2>
-            <p># channel</p>
+          <h2>Add member</h2>
+          @if (getChannelName(currentChannel)) {
+            <p># {{getCurrentChannelName}}</p>
+          }
         </div>
         <app-small-btn
           [imgSrc]="'closeIcon.svg'"
@@ -59,28 +61,28 @@
           (click)="spliceCurrentUser(i)"
         />
       </div>
+      <div
+      class="showSearchedUsersWindow"
+      [ngClass]="{ dBlock: showExistenUsers, dNone: !showExistenUsers }"
+    >
+      <div class="positionOfAllUsersBox">
+        @for(user of getSearchedUser; track user){
+        <div class="userBox" (click)="chooseUser(user)">
+          <div class="positionImgsBox">
+            <img src="{{ user.avatar }}" class="addAvatarImg" />
+            <img src="assets/img/onlineRing.svg" class="addOnlineImg" />
+          </div>
+          <h1>{{ user.firstName }} {{ user.lastName }}</h1>
+        </div>
+        }
+      </div>
+    </div>
       <input
         type="text"
         class="inputfieldStyle"
         [(ngModel)]="userName"
         (keyup)="filterUsers(userName)"
       />
-    </div>
-    <div
-      class="showSearchedUsersWindow"
-      [ngClass]="{ dBlock: showExistenUsers, dNone: !showExistenUsers }"
-    >
-      <div class="positionOfAllUsersInBox">
-        @for(user of getSearchedUser; track user){
-        <div class="user" (click)="chooseUser(user)">
-          <div class="positionImgs">
-            <img src="{{ user.avatar }}" class="avatarImg" />
-            <img src="assets/img/onlineRing.svg" class="onlineImg" />
-          </div>
-          <h1>{{ user.firstName }} {{ user.lastName }}</h1>
-        </div>
-        }
-      </div>
     </div>
     <div class="positionCreateBtn">
       <button class="furterBtnClass">Create</button>

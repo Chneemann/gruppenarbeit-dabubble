@@ -54,7 +54,7 @@ section {
     width: auto;
     height: 40px;
     padding: 3px;
-    padding-left: 16px;
+    padding-left: 26px;
     border-radius: 25px;
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
@@ -68,7 +68,7 @@ section {
       background-color: whitesmoke;
       border-radius: 50%;
       @include displayFlex();
-      margin-left: -12px;
+      margin-left: -22px;
       img{
       width: 36px;
       height: 36px;
@@ -298,5 +298,15 @@ section {
         margin-bottom: -2px;
       }
     }
+  }
+}
+
+.dotsImg{
+  @include displayFlex($a: flex-end);
+  margin-bottom: -26px;
+  margin-left: -10px;
+  img{
+    width: 6px;
+    height: 6px;
   }
 }

@@ -98,8 +98,7 @@
         [(ngModel)]="userName"
         (keyup)="filterUsers(userName)"
       />
-    </div>
-    <div
+      <div
       class="showSearchedUsersWindow"
       [ngClass]="{ dBlock: showExistenUsers, dNone: !showExistenUsers }"
     >
@@ -118,6 +117,26 @@
         }
       </div>
     </div>
+    </div>
+    <!-- <div
+      class="showSearchedUsersWindow"
+      [ngClass]="{ dBlock: showExistenUsers, dNone: !showExistenUsers }"
+    >
+      <div class="positionOfAllUsersInBox">
+        @for(user of getSearchedUser; track user){
+        <div class="user" (click)="chooseUser(user)">
+          <div class="positionImgs">
+            <img
+              src="{{ user.avatar }}"
+              class="avatarImg"
+            />
+            <img src="assets/img/onlineRing.svg" class="onlineImg" />
+          </div>
+          <h1>{{ user.firstName }} {{ user.lastName }}</h1>
+        </div>
+        }
+      </div>
+    </div> -->
     <div class="positionCreateBtn">
       <button class="btnBox" (click)="addNewChannel()">Create</button>
     </div>

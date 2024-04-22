@@ -10,4 +10,9 @@ export class ToggleBooleanService {
   openSearchWindow: boolean = false;
   openChannelMemberWindow: boolean = false;
   closeChannelMemberWindow: boolean = false;
+
+
+  openAddMemberWindow(boolean : boolean){
+    this.closeChannelMemberWindow = boolean;
+  }
 }
