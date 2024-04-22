@@ -1,0 +1,28 @@
+@import '../../../../styles.scss';
+
+.darkBackground{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 3;
+}
+
+.whiteBox{
+    position: absolute;
+    top: 200px;
+    right: 108px;
+    width: 280px;
+    height: 160px;
+    z-index:4;
+    border-radius: 35px;
+    border-top-right-radius: 0;
+    background-color: aliceblue;
+    .posiotionHeader {
+        @include displayFlex($j: space-between);
+        padding: 12px;
+        width: calc(100% - 24px);
+    }
+}

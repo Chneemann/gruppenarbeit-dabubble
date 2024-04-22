@@ -8,4 +8,5 @@ export class ToggleBooleanService {
   constructor() { }
 
   openSearchWindow: boolean = false;
+  openChannelMemberWindow: boolean = false;
 }
