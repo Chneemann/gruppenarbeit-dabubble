@@ -11,13 +11,14 @@ import { loginService } from '../../../../service/login.service';
   styleUrl: './start-header.component.scss',
 })
 export class StartHeaderComponent {
-  @Input() introComplete: boolean = false;
+  @Input() introCompleteStatus: boolean = false;
   @Input() display: string = '';
   animationStart: boolean = false;
   animationLogo: boolean = false;
   d_none: boolean = false;
   animationBackground: boolean = false;
   animationToEndPosiotion: boolean = false;
+  animationsBlock: boolean = false;
 
   constructor(public loginService: loginService) {}
 
@@ -26,7 +27,7 @@ export class StartHeaderComponent {
       this.triggerAnimations();
     } else {
       this.d_none = true; // Setzen Sie d-none, wenn die Animation bereits abgespielt wurde
-      
+     
     }
   }
 
@@ -44,9 +45,11 @@ export class StartHeaderComponent {
             this.animationBackground = true;
           }, 1000);
           this.animationToEndPosiotion = true;
-          this.loginService.setAnimationState(true); //  Animation  abgespielt true
+           this.loginService.setAnimationState(true); //  Animation  abgespielt true
           setTimeout(() => {
+            
              this.loginService.setFinalClass(true)
+              this.animationsBlock=true
           }, 3300);
         }, 2000); // hinterguner
       }, 300); // dan nach der zeit dass usw aktuell schrift

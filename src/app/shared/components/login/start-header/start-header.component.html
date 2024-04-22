@@ -2,8 +2,9 @@
    <div class="headerContainer">
      <div class="header">
    
-       <div [class.logo]="animationStart" [class.logoEndPosition]="animationToEndPosiotion"[class.final-div-position]="loginService.getFinalclass()"  class="logo">
-        <img class="test" [class.final-img-position]="loginService.getFinalclass()" [class.imgEndPosiotion]="animationToEndPosiotion" src="assets/img/login/logo-animation.svg" />
+      <div  [class.logo]="animationStart && !this.animationsBlock " [class.logoEndPosition]="animationToEndPosiotion && !this.animationsBlock " [class.final-div-position]="loginService.getFinalclass()">
+    
+        <img class="test" [class.final-img-position]="loginService.getFinalclass()" [class.imgEndPosiotion]="animationToEndPosiotion " src="assets/img/login/logo-animation.svg" />
          <div class="logo-text" [class.logo-text]="animationLogo" [class.logo-text]="animationStart">
           <span [class.logo-text-span]="animationStart" [class.final-span-position]="loginService.getFinalclass()" >DABubble</span></div>
        
@@ -20,5 +21,4 @@
    </div>
   </div>
 
-  <!-- <div [class.logo]="animationStart" [class.logoEndPosition]="animationToEndPosiotion" [class.final-div-position]="loginService.getFinalclass()" class="logo"> -->
-    <!-- <img class="test" [class.final-img-position]="loginService.getFinalclass()" [class.imgEndPosiotion]="animationToEndPosiotion" src="assets/img/login/logo-animation.svg" /> -->
+  <!-- <div [class.logo]="animationStart" [class.logoEndPosition]="animationToEndPosiotion"[class.final-div-position]="loginService.getFinalclass()"  class="logo"> -->
