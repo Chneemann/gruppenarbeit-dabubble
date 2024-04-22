@@ -34,6 +34,7 @@ import { timeInterval } from 'rxjs';
 export class ReactionEmojisComponent {
   @Input() chat: Chat | ChatAnswers = {} as Chat | ChatAnswers;
   @Input() index: number = 0;
+  @Input() isMirrored: boolean = false;
   @Input() openOnSecondaryChat: boolean = false;
 
   reactionDialogId: string = '';
@@ -53,8 +54,17 @@ export class ReactionEmojisComponent {
   }
 
   updateDialogPosition(event: MouseEvent) {
-    this.dialogX = event.clientX - 200;
-    this.dialogY = event.clientY;
+    const currentTarget = event.currentTarget as HTMLElement;
+    if (currentTarget) {
+      const rect = currentTarget.getBoundingClientRect();
+      if (this.isMirrored) {
+        this.dialogX = event.clientX - rect.left + 200;
+        this.dialogY = event.clientY - rect.top - 10;
+      } else {
+        this.dialogX = event.clientX - 200;
+        this.dialogY = event.clientY + 10;
+      }
+    }
   }
 
   constructor(
