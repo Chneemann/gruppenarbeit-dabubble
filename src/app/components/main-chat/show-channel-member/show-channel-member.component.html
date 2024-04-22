@@ -1,15 +1,90 @@
 <section>
-    <div class="darkBackground" (click)="closeChannelMemberWindow()"></div>
-    <div class="whiteBox">
-        <div class="posiotionHeader">
-            <h2>Channel member</h2>
-            <app-small-btn
-              [imgSrc]="'closeIcon.svg'"
-              [imgSize]="'16px'"
-              [btnSize]="'32px'"
-              [btnBgHoverColor]="'#edeefe'"
-              (click)="closeChannelMemberWindow()"
-            ></app-small-btn>
-        </div>
+  <div class="darkBackground" (click)="closeChannelMemberWindow()"></div>
+  @if (!toogleBooleans.closeChannelMemberWindow) {
+  <div class="whiteBox">
+    <div class="posiotionHeader">
+      <h2>Channel member</h2>
+      <app-small-btn
+        [imgSrc]="'closeIcon.svg'"
+        [imgSize]="'16px'"
+        [btnSize]="'32px'"
+        [btnBgHoverColor]="'#edeefe'"
+        (click)="closeChannelMemberWindow()"
+        style="margin-right: -12px"
+      ></app-small-btn>
     </div>
+    <div class="positionOfAllUsersInBox">
+      @for(user of getFiltertUsers; track user){
+      <div class="user">
+        <div class="positionImgs">
+          <img src="{{ user.avatar }}" class="avatarImg" />
+          <img src="assets/img/onlineRing.svg" class="onlineImg" />
+        </div>
+        <h1>{{ user.firstName }} {{ user.lastName }}</h1>
+      </div>
+      }
+    </div>
+    <div class="addMemberBox" (click)="openAddMemberWindow()">
+      <img src="assets/img/addPerson.svg" />
+      <h3>Add member</h3>
+    </div>
+  </div>
+  } @else {
+  <div class="addMemberToChannelBox">
+    <div class="posiotionHeader">
+        <div class="headline">
+            <h2>Add member</h2>
+            <p># channel</p>
+        </div>
+        <app-small-btn
+          [imgSrc]="'closeIcon.svg'"
+          [imgSize]="'16px'"
+          [btnSize]="'32px'"
+          [btnBgHoverColor]="'#edeefe'"
+          (click)="closeChannelMemberWindow()"
+          style="margin-right: -12px"
+        ></app-small-btn>
+    </div>
+    
+    <div class="addedUserBox">
+      <div
+        class="userPosition"
+        *ngFor="let user of getSelectedUsers; let i = index"
+      >
+        <img src="{{ user.avatar }}" class="avatarImg" />
+        <h3>{{ user.firstName }} {{ user.lastName }}</h3>
+        <img
+          src="assets/img/closeIcon.svg"
+          class="imgClose"
+          (click)="spliceCurrentUser(i)"
+        />
+      </div>
+      <input
+        type="text"
+        class="inputfieldStyle"
+        [(ngModel)]="userName"
+        (keyup)="filterUsers(userName)"
+      />
+    </div>
+    <div
+      class="showSearchedUsersWindow"
+      [ngClass]="{ dBlock: showExistenUsers, dNone: !showExistenUsers }"
+    >
+      <div class="positionOfAllUsersInBox">
+        @for(user of getSearchedUser; track user){
+        <div class="user" (click)="chooseUser(user)">
+          <div class="positionImgs">
+            <img src="{{ user.avatar }}" class="avatarImg" />
+            <img src="assets/img/onlineRing.svg" class="onlineImg" />
+          </div>
+          <h1>{{ user.firstName }} {{ user.lastName }}</h1>
+        </div>
+        }
+      </div>
+    </div>
+    <div class="positionCreateBtn">
+      <button class="furterBtnClass">Create</button>
+    </div>
+  </div>
+  }
 </section>

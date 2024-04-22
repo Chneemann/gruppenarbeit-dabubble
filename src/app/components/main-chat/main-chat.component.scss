@@ -49,7 +49,6 @@ section {
 
 .addUserToChannelBox{
   @include displayFlex($g: 12px);
-  transition: 0.3s ease-in-out !important;
   .addedUsers{
     @include displayFlex($g: 8px);
     width: auto;
