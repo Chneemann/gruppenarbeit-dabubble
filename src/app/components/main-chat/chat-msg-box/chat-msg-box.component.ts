@@ -9,6 +9,7 @@ import { EmojiPickerComponent } from '../../../shared/components/emoji-picker/em
 import { SmallBtnComponent } from '../../../shared/components/small-btn/small-btn.component';
 import { ChatService } from '../../../service/chat.service';
 import { ChannleService } from '../../../service/channle.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-chat-msg-box',
@@ -44,11 +45,11 @@ export class ChatMsgBoxComponent {
   test: any;
 
   constructor(
+    private route: Router,
     public downloadFilesService: DownloadFilesService,
     private firestore: Firestore,
     private userService: UserService,
-    private chatService: ChatService,
-    private channelService: ChannleService
+    private chatService: ChatService
   ) {}
 
   emojiOutputEmitter($event: any) {
@@ -121,10 +122,8 @@ export class ChatMsgBoxComponent {
     } else {
       console.error(this.currentChannel, 'this.currentChannel ist leer');
     }
-    this.currentChetValue = '';
-    this.downloadFilesService.uploadFiles = [];
-    this.hasFile = false;
-    this.chatService.inputValue = '';
+    this.forwardToChannel();
+    this.resetValues();
   }
 
 
@@ -137,4 +136,20 @@ export class ChatMsgBoxComponent {
     return this.currentChannel;
   }
 
+
+  forwardToChannel(){
+    if (this.chatService.getChannelId || this.chatService.getPrvChatId) {
+      this.route.navigateByUrl(`/main/${this.checkChannelId()}`);
+    }
+  }
+
+
+  resetValues(){
+    this.currentChetValue = '';
+    this.downloadFilesService.uploadFiles = [];
+    this.hasFile = false;
+    this.chatService.inputValue = '';
+    this.chatService.getChannelId = '';
+    this.chatService.getPrvChatId = '';
+  }
 }
