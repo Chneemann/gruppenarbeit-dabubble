@@ -6,13 +6,16 @@
 }
 
 .header {
-  margin: 75px;
   display: flex;
   background-color: #eceefe;
 }
 .registerContainer {
-  display: unset;
-  margin: 90px;
+  // display: unset;
+  // margin: 90px;
+  position: absolute;
+  top: 90px;
+  right: 71px;
+
   > div {
     display: flex;
     flex-direction: column;
@@ -57,8 +60,8 @@
   width: 100%;
   height: 100%;
   transition: 1s;
-  overflow-x: hidden;
-  overflow-y: hidden;
+  overflow-x: hidden!important;
+  overflow-y: hidden!important;
 }
 .background.d-none {
   display: none;
@@ -73,8 +76,8 @@
   left: 60%;
   transform: translate(-50%, -50%);
   display: flex;
-    align-items: center;
- // height: 184px; // muss raus damit loigo in mitte bleibt bei 320 px guck asuwirkeungen
+  align-items: center;
+  // height: 184px; // muss raus damit loigo in mitte bleibt bei 320 px guck asuwirkeungen
   animation: logoAnimation-slide 0.5s ease-in forwards 1s;
   background-size: contain;
   z-index: 999;
@@ -87,7 +90,7 @@
   }
   100% {
     top: 50%;
-    left: 50% ;
+    left: 50%;
     transform: translate(-50%, -50%);
   }
 }
@@ -126,7 +129,6 @@
     left: 50%;
     width: 240px;
     transform: translate(-50%, -50%);
-    
   }
   100% {
     top: 125px;
@@ -204,99 +206,118 @@
 
 //---------------<<<<<<final position
 
-.final-span-position{
+.final-span-position {
   font-size: 32px;
-    color: black;
-    font-weight: 800;
-    animation: none;
+  color: black;
+  font-weight: 800;
+  animation: none;
 }
-.final-img-position{
-   width: 70px;
-    height: 70px;
+.final-img-position {
+  width: 70px;
+  height: 70px;
 }
-.final-div-position{
+.final-div-position {
   position: absolute;
   top: 125px;
   // left: 166px;
   transform: translate(-50%, -50%);
-  width: 82px;
-  height: 70px;
- display: flex;
- align-items: center;
+
+  display: flex;
+  align-items: center;
   background-size: contain;
   z-index: 999;
   gap: 11px;
   left: 195px;
-  width: 240px;
-
 }
 
 // ----------------Responsiv--------------->
 
 @media (max-width: 700px) {
- 
   // .logo-text-span{
   //   font-size: 34px;
   //   animation: none;
-   
+
   // }
 
-  
-    //----> ab hier der mittlere slide
+  //----> ab hier der mittlere slide
 }
 
-@media (max-width: 320px) { 
-  .test{
-    height: 80px;
+@media (max-width: 320px) {
+  .headerContainer {
+    height: 100px;
   }
-  .final-div-position{
+  .final-div-position {
     left: 50%;
+    top: 50px;
   }
-  .registerContainer{
-    
-    position: absolute;
-    bottom: 0%;
-    margin: 69px;
-    margin-bottom: 106px;
-    >div{
+  .registerContainer {
+    display: none;
+    > div {
       align-items: center;
     }
   }
-  .createAccoun{
+  .createAccoun {
     margin-right: 0;
   }
   .logoEndPosition {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    animation:none;
-    animation: animationToEndPosiotion2 0.5s ease-in forwards 1s;
-
+    animation: none;
+    animation: animationToEndPosiotionMobile 0.5s ease-in forwards 1s;
   }
 
-
-  @keyframes animationToEndPosiotion2 {
+  @keyframes animationToEndPosiotionMobile {
     0% {
       top: 50%;
       left: 50%;
-      width: 240px;
-      transform: translate(-50%, -50%);
-      
+      width: 70px;
     }
     100% {
-      top: 125px;
-      left:50%;
-      width: 240px;
+      top: 50px;
+      left: 50%;
+      width: 237.55px;
       gap: 11px;
+    }
+  }
+  .mobileImg {
+    height: 90px;
+  }
+  .logo-text-span {
+    font-size: 34px;
+    font-weight: 800;
+    color: white;
+    animation: none;
+    animation: spanFontSizeChangeMobile 0.7s ease-in forwards 3.25s;
+  }
+  @keyframes spanFontSizeChangeMobile {
+    0% {
+      font-size: 34px;
+    }
+    50% {
+      font-size: 32px;
+    }
+    100% {
+      font-size: 32px;
+      color: black;
+    }
+  }
+
+  .imgEndPosiotion {
+    animation: none;
+    animation: imgSizeMobile 0.5s ease-in forwards 1s;
+  }
+  @keyframes imgSizeMobile {
+    0% {
+      width: 90px;
+      height: 90px;
+    }
+    90% {
+      width: 70px;
+      height: 70px;
+    }
+    100% {
+      width: 70px;
       height: 70px;
     }
   }
- 
 }
-
-
-
-
 
 // background-image: url(../../../../../assets/img/login/logo-animation.svg);

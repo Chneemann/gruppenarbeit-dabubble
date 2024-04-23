@@ -1,16 +1,21 @@
-// .content{
-// display: flex;
-// justify-content: center;
-// }
+ .content{
+  background-color: #eceefe;
+  height: 100vh;
+ 
+ }
+ .startIntroScrollProtect{
+  overflow-x: hidden;
+  overflow-y: hidden;
+ }
 .loginSektion {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  height: 100vh;
   padding-left: 16px;
   padding-right: 16px;
-  background-color: #eceefe;
+  background: #eceefe;
+ 
  
   // max-width: 1920px; für max width aufbau
    // position: relative;
@@ -28,7 +33,6 @@
   position: relative;
   gap: 16px;
   max-height: 690px;
-  height: 100%;
 }
 .loginTop {
   // margin-top: 32px;   ursprung aber damit beim switchen gleich bleibt mal testen unter hier->
@@ -39,11 +43,9 @@
   align-items: center;
   width: 100%;
   > span {
-    width: 90%;
     text-align: center;
     font-size: 40px;
     font-weight: 700;
-    padding-right: 48px;
     color: #444df2;
   }
 }
@@ -210,4 +212,117 @@ button {
     color: #fff;
     border: 1px solid #ffff;
   }
+}
+.mobileRegisterContainer {
+  display: none;
+  > div {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+    > span {
+      font-weight: 400;
+      font-size: 18px;
+    }
+  }
+}
+.mobileCreateAccountContainer {
+  display: flex;
+  justify-content: end;
+}
+.mobileCreateAccoun {
+  
+  font-family: Figtree, sans-serif, Nunito;
+  color: #797ef3;
+  cursor: pointer;
+  padding: 4px 12px 4px 12px;
+  border-radius: 100px;
+  border: 1px solid #eceefe;
+  font-weight: 400;
+  font-size: 18px;
+  &:hover {
+    font-weight: 500;
+    background-color: #eceefe;
+    color: #444df2;
+    border: 1px solid #444df2;
+  }
+}
+@media (max-width: 320px) {
+  .loginSektion{
+    justify-content: flex-start;  }
+  
+  .loginTop{
+    margin-bottom: 0;
+    >span{
+      font-size: 32px;
+    }
+  }
+  .loginInfoText{
+    margin-bottom: 0;
+    >span{
+      font-size: 17px;
+    }
+  }
+  .loginContainer{
+    padding: 16px;
+    max-height: 552px;
+    padding-left: 18px;
+        padding-right: 18px;
+        gap: 12px;
+     
+  }
+  .contactForm {
+    width: 100%;
+  }
+  .inputContainer{
+    margin-bottom: 22px;
+  }
+  .inputField{
+    height: 52px;
+  }
+  .iconP{
+    top: 15px;
+  }
+  .passwordContainer{
+    margin-bottom: 22px;
+    margin-top: 32px;
+    font-size: 17px;
+  }
+  .separatorContainer{
+    font-size: 17px;
+    margin-bottom: 22px;
+  }
+  .googleLogingContainer{
+    font-size: 17px;
+    height: 52px;
+    gap: 0;
+    margin-bottom: 22px;
+    >img{
+      height: 32px;
+    }
+  }
+  .loginBottom{
+    margin-top: 0px;
+        gap: 12px;
+    >button{
+      width: 118px;
+      height: 52px;
+      padding: 0;
+    }
+  }
+  .guestButton{
+   
+    font-size: 17px;
+    white-space: nowrap;
+  }
+  .aktivButton{
+   
+    font-size: 17px;
+  }
+  .mobileRegisterContainer {
+    display: flex;
+    background-color: #eceefe;
+    width: 100vw;
+    justify-content: center;
+}
 }

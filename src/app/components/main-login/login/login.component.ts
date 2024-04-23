@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, Renderer2 } from '@angular/core';
 import { loginService } from '../../../service/login.service';
 import { FormsModule, NgForm } from '@angular/forms';
 import { RouterLink } from '@angular/router';
@@ -15,8 +15,23 @@ import { StartHeaderComponent } from "../../../shared/components/login/start-hea
 })
 export class LoginComponent {
 
-  constructor(public loginService: loginService) {}
+  constructor(public loginService: loginService,   private elRef: ElementRef, 
+    private renderer: Renderer2) {}
 
+    ngOnInit(): void {
+      setTimeout(() => {
+        const element = this.elRef.nativeElement.querySelector('.startIntroScrollProtect');
+        if (element) {
+          this.renderer.removeClass(element, 'startIntroScrollProtect');
+        }
+      }, 4500);
+    }
+
+  removeOverflow() {
+
+
+    
+  }
   onSubmit(ngForm: NgForm) {
     console.log('LogingVersuch mit:', this.loginService.email, this.loginService.password);
     this.loginService.login();
