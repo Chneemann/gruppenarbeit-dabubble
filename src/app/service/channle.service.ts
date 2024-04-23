@@ -1,5 +1,5 @@
 import { Injectable, OnDestroy, inject } from '@angular/core';
-import { Firestore, addDoc, collection, onSnapshot } from '@angular/fire/firestore';
+import { Firestore, addDoc, collection, doc, onSnapshot, updateDoc } from '@angular/fire/firestore';
 import { Channel, PrvChannel } from '../interface/channel.interface';
 import { DownloadFilesService } from './download-files.service';
 
@@ -16,6 +16,7 @@ export class ChannleService implements OnDestroy {
   btnIsValid: boolean = false;
   openPrvChat: boolean = false;
   allPrvChannels: PrvChannel[] = [];
+  channelMembers: string [] = [];
 
 
   unsubChannel;
@@ -59,6 +60,12 @@ export class ChannleService implements OnDestroy {
     (err) => { console.error(err)});
   }
 
+
+  async addNewMemberToChannel(category: string ,channelID: string, selectedUsers: string []){
+    const allMembers: string[] = [...selectedUsers, ...this.channelMembers];
+    const docRef = doc(this.firestore, `${category}/${channelID}`);
+    await updateDoc(docRef, { addedUser: allMembers });
+  }
 
   ngOnDestroy() {
     this.unsubChannel();

@@ -30,8 +30,9 @@
   }
 }
 
+
 .positionOfAllUsersInBox {
-  @include displayFlex($a: flex-start);
+  @include displayFlex($j: flex-start, $a: flex-start);
   flex-direction: column;
   height: 210px;
   overflow: auto;
@@ -120,7 +121,12 @@
   &:hover {
     border: 1px solid #2c36f0;
   }
-
+  p{
+    position: absolute;
+    top: -20px;
+    left: 26px;
+    color: red;
+  }
   .userPosition {
     @include displayFlex($g: 8px);
     padding: 4px;
@@ -151,7 +157,6 @@
     }
   }
 
-  
   .inputfieldStyle {
     width: auto;
     flex-grow: 1;
@@ -165,20 +170,29 @@
   }
 }
 
+.showSearchedUsersWindow::-webkit-scrollbar {
+  display: none; 
+}
+
 .showSearchedUsersWindow{
   position: absolute;
   top: 88%;
-  right: 160px;
+  right: 126px;
   z-index: 3;
   padding: 4px;
   border: 1px solid #888dec;
   border-radius: 25px;
   border-top-left-radius: 0;
   background-color: white;
+  overflow: auto;
+  max-height: 210px;
+  width: 240px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  text-align: start;
   .positionOfAllUsersBox {
     @include displayFlex($a: flex-start);
     flex-direction: column;
-    max-height: 210px;
     overflow: auto;
     width: 100%;
     .userBox {
@@ -217,7 +231,7 @@
   @include displayFlex($j: flex-end);
 }
 
-  .furterBtnClass {
+.furterBtnClass {
   width: 120px;
   height: 48px;
   background-color: white;
@@ -243,4 +257,24 @@
   height: 48px;
   border-radius: 25px;
   font-size: larger;
+  transition: 0.3s ease-in-out;
+}
+
+
+.showWanrningNotice{
+  animation: shwoWN 0.3s ease-in-out;
+}
+
+@keyframes shwoWN {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+.hideWanrningNotice{
+  animation: hideWN 0.3s ease-in-out;
+}
+
+@keyframes hideWN {
+  from {opacity: 1;}
+  to {opacity: 0;}
 }
