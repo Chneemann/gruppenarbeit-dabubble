@@ -66,5 +66,6 @@ export class MainComponent {
 
   toggleBooleans(){
     this.toggleAllBooleans.openSearchWindow = false;
+    this.toggleAllBooleans.openSearchWindowHead = false; 
   }
 }

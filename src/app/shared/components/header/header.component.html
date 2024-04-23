@@ -2,8 +2,28 @@
   <img src="assets/img/home-icon.svg" class="homeIcon" />
 
   <div class="inputPosition">
-    <input type="text" placeholder="Search content at current channel" class="fontNunito" />
+    <input type="text" placeholder="Search content at current channel" class="fontNunito" [(ngModel)]="inputValue" (keyup)="filterAllInfo($event, inputValue)" />
     <img src="assets/img/search-icon.svg" />
+    <div class="suggestionBox"  [ngClass]="{ showSearchWindow: toggleBoolean.openSearchWindowHead, hideSearchWindow: !toggleBoolean.openSearchWindowHead }">
+      <!-- @if (filteredUsers.length > 0) { -->
+        <h4>Users:</h4>
+        @for (user of filteredUsers; track user) {
+          <p>{{user.firstName}} {{user.lastName}}</p>
+        }
+      <!-- } -->
+      <!-- @if (filteredChannels.length > 0) { -->
+        <h4>Channels:</h4>
+        @for (channel of filteredChannels; track channel) {
+          <p>{{channel.name}}</p>
+        }
+      <!-- } -->
+      <!-- @if (filteredChats.length > 0) { -->
+        <h4>Threads:</h4>
+        @for (chat of filteredChats; track chat) {
+          <p>{{chat.message}}</p>
+        }
+      <!-- } -->
+    </div>
   </div>
 
   <div>
