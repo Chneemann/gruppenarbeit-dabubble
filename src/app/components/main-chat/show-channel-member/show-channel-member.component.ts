@@ -36,6 +36,7 @@ export class ShowChannelMemberComponent {
   closeChannelMemberWindow() {
     this.toggleBoolean.openChannelMemberWindow = false;
     this.toggleBoolean.closeChannelMemberWindow = false;
+    this.resetValues();
   }
 
 
@@ -56,6 +57,7 @@ export class ShowChannelMemberComponent {
     
     for (const user of getChannel) {
       const userArray = user.addedUser;
+      this.channelService.channelMembers = userArray;
       
       for (const user of filteredUsers) {
         const isUserInChannel = userArray.some(channelUser => channelUser === user.id);
@@ -100,6 +102,18 @@ export class ShowChannelMemberComponent {
 
 
   addUserToChannel(){
+    this.channelService.addNewMemberToChannel('channels', this.currentChannel, this.selectedUsers);
+    this.closeChannelMemberWindow();
+  }
 
+
+  resetValues(){
+   this.userName = '';
+   this.showExistenUsers = false;
+   this.getSearchedUser = [];
+   this.getCurrentChannelName = '';
+   this.getSelectedUsers = [];
+   this.selectedUsers = [];
+   this.userIsSelected = false;
   }
 }
