@@ -130,10 +130,11 @@ export class loginService {
           lastName: this.lastName,
           avatar: this.avatar,
           email: this.email,
-          status: false,
+          status: true,
         };
 
         this.createUserInFirestore(userDataToSave);
+        console.error('Registration error:', user.uid);
       })
       .catch((error) => {
         console.error('Registration error:', error);
@@ -168,7 +169,7 @@ export class loginService {
       firstName: user.firstName || '',
       lastName: user.lastName || '',
       avatar: user.avatar || '/assets/img/user-icons/guest.svg',
-      status: false,
+      status: true,
     };
 
     const usersCollection = collection(this.firestore, 'users');
@@ -238,7 +239,7 @@ export class loginService {
                 ? user.displayName.split(' ').slice(1).join(' ')
                 : 'LastName',
               avatar: user.photoURL || '/assets/img/user-icons/guest.svg',
-              status: false,
+              status: true,
             });
           } else {
             // wen benutzer schon da ist weiterleiten
