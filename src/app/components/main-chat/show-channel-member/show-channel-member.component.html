@@ -32,23 +32,32 @@
   } @else {
   <div class="addMemberToChannelBox">
     <div class="posiotionHeader">
-        <div class="headline">
-          <h2>Add member</h2>
-          @if (getChannelName(currentChannel)) {
-            <p># {{getCurrentChannelName}}</p>
-          }
-        </div>
-        <app-small-btn
-          [imgSrc]="'closeIcon.svg'"
-          [imgSize]="'16px'"
-          [btnSize]="'32px'"
-          [btnBgHoverColor]="'#edeefe'"
-          (click)="closeChannelMemberWindow()"
-          style="margin-right: -12px"
-        ></app-small-btn>
+      <div class="headline">
+        <h2>Add member</h2>
+        @if (getChannelName(currentChannel)) {
+        <p># {{ getCurrentChannelName }}</p>
+        }
+      </div>
+      <app-small-btn
+        [imgSrc]="'closeIcon.svg'"
+        [imgSize]="'16px'"
+        [btnSize]="'32px'"
+        [btnBgHoverColor]="'#edeefe'"
+        (click)="closeChannelMemberWindow()"
+        style="margin-right: -12px"
+      ></app-small-btn>
     </div>
-    
     <div class="addedUserBox">
+      @if (userIsSelected) {
+      <p
+        [ngClass]="{
+          showWanrningNotice: userIsSelected,
+          hideWanrningNotice: !userIsSelected
+        }"
+      >
+        User is allready selected.
+      </p>
+      }
       <div
         class="userPosition"
         *ngFor="let user of getSelectedUsers; let i = index"
@@ -62,21 +71,21 @@
         />
       </div>
       <div
-      class="showSearchedUsersWindow"
-      [ngClass]="{ dBlock: showExistenUsers, dNone: !showExistenUsers }"
-    >
-      <div class="positionOfAllUsersBox">
-        @for(user of getSearchedUser; track user){
-        <div class="userBox" (click)="chooseUser(user)">
-          <div class="positionImgsBox">
-            <img src="{{ user.avatar }}" class="addAvatarImg" />
-            <img src="assets/img/onlineRing.svg" class="addOnlineImg" />
+        class="showSearchedUsersWindow"
+        [ngClass]="{ dBlock: showExistenUsers, dNone: !showExistenUsers }"
+      >
+        <div class="positionOfAllUsersBox">
+          @for(user of getSearchedUser; track user){
+          <div class="userBox" (click)="chooseUser(user)">
+            <div class="positionImgsBox">
+              <img src="{{ user.avatar }}" class="addAvatarImg" />
+              <img src="assets/img/onlineRing.svg" class="addOnlineImg" />
+            </div>
+            <h1>{{ user.firstName }} {{ user.lastName }}</h1>
           </div>
-          <h1>{{ user.firstName }} {{ user.lastName }}</h1>
+          }
         </div>
-        }
       </div>
-    </div>
       <input
         type="text"
         class="inputfieldStyle"
@@ -85,7 +94,17 @@
       />
     </div>
     <div class="positionCreateBtn">
-      <button class="furterBtnClass">Create</button>
+      <button
+        class="furterBtnClass"
+        [ngClass]="{
+          furterBtnClass: getSelectedUsers.length > 0,
+          disabledBtn: getSelectedUsers.length === 0
+        }"
+        [disabled]="getSelectedUsers.length === 0"
+        (click)="addUserToChannel()"
+      >
+        Create
+      </button>
     </div>
   </div>
   }

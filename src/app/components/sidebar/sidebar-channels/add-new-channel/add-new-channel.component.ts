@@ -35,6 +35,8 @@ export class AddNewChannelComponent {
   toggleShowAddChannelBox(){
     this.channelService.showAddChannelBox = !this.channelService.showAddChannelBox;
     this.shwoNextWindow = false;
+    this.channelName = '';
+    this.channelDescription = '';
   }
 
 

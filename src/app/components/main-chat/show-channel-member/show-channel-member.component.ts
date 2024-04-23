@@ -15,19 +15,13 @@ import { UserService } from '../../../service/user.service';
   styleUrl: './show-channel-member.component.scss',
 })
 export class ShowChannelMemberComponent {
-  changeImg: boolean = false;
   userName: string = '';
   showExistenUsers: boolean = false;
   getSearchedUser: User[] = [];
-  channelName: string = '';
-  channelDescription: string = '';
   getCurrentChannelName: string = '';
-  privatChannel: boolean = false;
   getSelectedUsers: User[] = [];
   selectedUsers: string[] = [];
-  testarray: string[] = [];
-  channelIsPrivat: boolean = false;
-  shwoNextWindow: boolean = false;
+  userIsSelected: boolean = false;
 
   @Input() getFiltertUsers!: User[];
   @Input() currentChannel!: string;
@@ -53,8 +47,25 @@ export class ShowChannelMemberComponent {
       const fullName = `${user.firstName} ${user.lastName}`.toLowerCase();
       return fullName.includes(searchedUser);
     });
-    this.getSearchedUser.push(...filteredUsers);
+    this.checkIfUserIsInChannel(filteredUsers);
   }
+
+
+  checkIfUserIsInChannel(filteredUsers: User[]) {
+    const getChannel = this.channelService.allChannels.filter(channel => channel.id === this.currentChannel);
+    
+    for (const user of getChannel) {
+      const userArray = user.addedUser;
+      
+      for (const user of filteredUsers) {
+        const isUserInChannel = userArray.some(channelUser => channelUser === user.id);
+        if (!isUserInChannel) {
+          this.getSearchedUser.push(user);
+        }
+      }      
+    }
+  }
+  
 
 
   chooseUser(user: User) {
@@ -65,9 +76,9 @@ export class ShowChannelMemberComponent {
     if (!isUserAlreadySelected) {
       this.selectedUsers.push(user.id!);
       this.getSelectedUsers.push(user);
-      console.log('this.selectedUsers', this.selectedUsers);
+      this.userIsSelected = false;
     } else {
-      console.log('User already selected!');
+      this.userIsSelected = true;
     }
     this.userName = '';
     this.showExistenUsers = false;
@@ -85,5 +96,10 @@ export class ShowChannelMemberComponent {
     const getChannelName = this.channelService.allChannels.filter((channel) => channel.id == currentChannel);
     this.getCurrentChannelName = getChannelName[0].name;
     return getName;
+  }
+
+
+  addUserToChannel(){
+
   }
 }
