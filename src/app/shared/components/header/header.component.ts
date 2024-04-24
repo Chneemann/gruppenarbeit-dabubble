@@ -9,6 +9,7 @@ import { ChannleService } from '../../../service/channle.service';
 import { ChatService } from '../../../service/chat.service';
 import { Channel } from '../../../interface/channel.interface';
 import { Chat } from '../../../interface/chat.interface';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-header',
@@ -24,15 +25,16 @@ export class HeaderComponent {
   closeProfil: boolean = false;
   openSearchWindow: boolean = false;
   inputValue: string = '';
-  filteredUsers: User [] = [];
-  filteredChannels: Channel [] = [];
-  filteredChats: Chat [] = [];
+  filteredUsers: User[] = [];
+  filteredChannels: Channel[] = [];
+  filteredChats: Chat[] = [];
 
   constructor(
     public userService: UserService,
     public toggleBoolean: ToggleBooleanService,
     private channelService: ChannleService,
-    private chatService: ChatService
+    private chatService: ChatService,
+    private sanitizer: DomSanitizer
   ) {}
 
   showSideMenu() {
@@ -48,43 +50,45 @@ export class HeaderComponent {
     this.showCurrentProfile = value;
   }
 
-  filterAllInfo( inputValue: string) {
+  filterAllInfo(inputValue: string) {
     this.toggleBoolean.openSearchWindowHead = true;
     // event.stopPropagation;
     const getInputValue = inputValue.toLowerCase().trim();
-
     this.filterUsersChannelsChats(getInputValue);
+  
   }
 
-
-  filterUsersChannelsChats(inputValue: string){
+  filterUsersChannelsChats(inputValue: string) {
     const filterUsers = this.userService.getUsers().filter((user) => {
       const fullName = `${user.firstName} ${user.lastName}`.toLowerCase();
       return fullName.includes(inputValue);
     });
-    
-    const filterChannels = this.channelService.allChannels.filter(channel => {
+
+    const filterChannels = this.channelService.allChannels.filter((channel) => {
       const channelName = `${channel.name}`.toLowerCase();
       return channelName.includes(inputValue);
     });
 
-    const filterChants = this.chatService.allChats.filter(chat => {
+    const filterChants = this.chatService.allChats.filter((chat) => {
       const chatMessage = `${chat.message}`.toLowerCase();
       return chatMessage.includes(inputValue);
     });
 
     this.sortPrvAndPublicMessages(filterChants);
-    
+
     this.filteredUsers = filterUsers;
     this.filteredChannels = filterChannels;
   }
 
-
   getChannel(chatID: string): string {
-    if (this.inputValue) {
-      const filteredChat = this.filteredChats.find(chat => chat.channelId === chatID);
+    if (this.inputValue != '') {
+      const filteredChat = this.filteredChats.find(
+        (chat) => chat.channelId === chatID
+      );
       if (filteredChat) {
-        const channelName = this.channelService.allChannels.find(channel => channel.id === filteredChat.channelId);
+        const channelName = this.channelService.allChannels.find(
+          (channel) => channel.id === filteredChat.channelId
+        );
         return channelName!.name;
       }
       return '';
@@ -92,11 +96,10 @@ export class HeaderComponent {
       return '';
     }
   }
-  
 
   sortPrvAndPublicMessages(chats: Chat[]) {
     const publicChats: Chat[] = [];
-  
+
     for (const chat of chats) {
       const isPublicChannel = this.channelService.allPrvChannels.some(
         (prvChannel) => prvChannel.id === chat.channelId
@@ -106,6 +109,20 @@ export class HeaderComponent {
       }
     }
     this.filteredChats = publicChats;
+    this.filteredChats = this.highlightChatMessages(this.filteredChats, this.inputValue);
   }
+
+  highlightChatMessages(chats: Chat[], searchTerm: string): Chat[] {
+    return chats.map((chat) => {
+      const highlightedMessage = chat.message.replace(
+        new RegExp(searchTerm, 'gi'),
+        (match) => this.sanitizer.bypassSecurityTrustHtml(`<p style="background-color: yellow;">${match}</p>`).toString()
+      );
+      return { ...chat, message: highlightedMessage };
+    });
+  }
+
+  
+  
   
 }

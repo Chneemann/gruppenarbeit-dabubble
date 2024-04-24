@@ -5,7 +5,7 @@
     <input type="text" placeholder="Search content at current channel" class="fontNunito" [(ngModel)]="inputValue" (keyup)="filterAllInfo( inputValue)" />
     <img src="assets/img/search-icon.svg" />
     <div class="suggestionBox"  [ngClass]="{ showSearchWindow: toggleBoolean.openSearchWindowHead, hideSearchWindow: !toggleBoolean.openSearchWindowHead }">
-      @if (filteredUsers.length > 0) {
+      @if (filteredUsers.length > 0 && inputValue != '') {
         <div class="contantBox">
           <h4>Users:</h4>
           <div class="ansersBox">
@@ -21,7 +21,7 @@
           </div>
         </div>
       }
-      @if (filteredChannels.length > 0) {
+      @if (filteredChannels.length > 0 && inputValue != '') {
         <div class="contantBox">
           <h4>Channels:</h4>
           <div class="ansersBox">
@@ -31,7 +31,7 @@
           </div>
         </div>
       }
-      @if (filteredChats.length > 0) {
+      @if (filteredChats.length > 0 && inputValue != '') {
         <div class="contantBoxChats">
           <h4>Threads:</h4>
           <div class="channelAnswers">
