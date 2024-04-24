@@ -48,9 +48,9 @@ export class HeaderComponent {
     this.showCurrentProfile = value;
   }
 
-  filterAllInfo(event: Event, inputValue: string) {
+  filterAllInfo( inputValue: string) {
     this.toggleBoolean.openSearchWindowHead = true;
-    event.stopPropagation;
+    // event.stopPropagation;
     const getInputValue = inputValue.toLowerCase().trim();
 
     this.filterUsersChannelsChats(getInputValue);
@@ -75,5 +75,32 @@ export class HeaderComponent {
       return chatMessage.includes(inputValue);
     });
     console.log('filterChants', filterChants);
+  }
+
+
+  getLegthOfFiltedUsers(){
+    if (this.filteredUsers.length > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+
+  getLegthOfFiltedChannels(){
+    if (this.filteredChannels.length > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+
+  getLegthOfFiltedChats(){
+    if (this.filteredChats.length > 0) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
