@@ -3,7 +3,7 @@ import { FooterComponent } from '../../../shared/components/login/footer/footer.
 import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { HeaderComponent } from '../../../shared/components/login/header/header.component';
+import { StartHeaderComponent } from '../../../shared/components/login/start-header/start-header.component';
 import { SmallBtnComponent } from '../../../shared/components/small-btn/small-btn.component';
 import { Firestore } from '@angular/fire/firestore';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -17,7 +17,7 @@ import { User } from 'firebase/auth';
   imports: [
     FormsModule,
     CommonModule,
-    HeaderComponent,
+    StartHeaderComponent,
     FooterComponent,
     RouterModule,
     SmallBtnComponent,
