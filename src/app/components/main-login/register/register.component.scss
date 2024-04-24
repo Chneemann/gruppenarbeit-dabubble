@@ -1,4 +1,4 @@
-.loginSektion {
+.registerSektion {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -138,3 +138,65 @@ button {
 .aktivInput {
   border: 1px solid#686868;
 }
+
+@media (max-width: 570px) {
+  .registerTop{
+    margin-bottom: 0;
+    >span{
+      font-size: 32px;
+    }
+  }
+  .registerInfoText{
+    margin-bottom: 0;
+    >span{
+      font-size: 17px;
+    }
+  }
+  .loginContainer{
+    padding: 16px;
+    max-height: 552px;
+    padding-left: 18px;
+        padding-right: 18px;
+        gap: 12px;
+        max-width: 400px;
+     
+  }
+  .contactForm {
+    width: 110%;
+  }
+  .inputContainer{
+    margin-bottom: 22px;
+  }
+  .inputField{
+    height: 52px;
+  }
+  .iconP{
+    top: 15px;
+  }
+  .registerBottom{
+    margin-top: 26px;
+    gap: 24px;
+    >button{
+      width: 118px;
+      height: 52px;
+      padding: 0;
+    }
+  }
+  .guestButton{
+   
+    font-size: 17px;
+    white-space: nowrap;
+  }
+  .aktivButton{
+   
+    font-size: 17px;
+  }
+  
+}
+@media (max-width: 380px) {
+  .loginContainer{
+    max-width: 306px;
+  }
+}
+
+
