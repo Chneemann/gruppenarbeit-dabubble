@@ -5,23 +5,44 @@
     <input type="text" placeholder="Search content at current channel" class="fontNunito" [(ngModel)]="inputValue" (keyup)="filterAllInfo( inputValue)" />
     <img src="assets/img/search-icon.svg" />
     <div class="suggestionBox"  [ngClass]="{ showSearchWindow: toggleBoolean.openSearchWindowHead, hideSearchWindow: !toggleBoolean.openSearchWindowHead }">
-      @if (getLegthOfFiltedUsers()) {
-        <h4>Users:</h4>
-        @for (user of filteredUsers; track user) {
-          <p>{{user.firstName}} {{user.lastName}}</p>
-        }
+      @if (filteredUsers.length > 0) {
+        <div class="contantBox">
+          <h4>Users:</h4>
+          <div class="ansersBox">
+            @for (user of filteredUsers; track user) {
+              <div class="userDiv">
+                <div class="userImgDiv">
+                  <img src="{{ user.avatar}}" class="userProfilImg">
+                  <img src="assets/img/offlineRing.svg" class="userOnlineImg">
+                </div>
+                <p>{{user.firstName}} {{user.lastName}}</p>
+              </div>
+            }
+          </div>
+        </div>
       }
-      @if (getLegthOfFiltedChannels()) {
-        <h4>Channels:</h4>
-        @for (channel of filteredChannels; track channel) {
-          <p>{{channel.name}}</p>
-        }
+      @if (filteredChannels.length > 0) {
+        <div class="contantBox">
+          <h4>Channels:</h4>
+          <div class="ansersBox">
+            @for (channel of filteredChannels; track channel) {
+              <p># {{channel.name}}</p>
+            }
+          </div>
+        </div>
       }
-      @if (  getLegthOfFiltedChats()) {
-        <h4>Threads:</h4>
-        @for (chat of filteredChats; track chat) {
-          <p>{{chat.message}}</p>
-        }
+      @if (filteredChats.length > 0) {
+        <div class="contantBoxChats">
+          <h4>Threads:</h4>
+          <div class="channelAnswers">
+            @for (chat of filteredChats; track chat) {
+              <div class="ansersBoxChats">
+                <p class="threadNmae">[ {{getChannel(chat.channelId)}} ]</p>
+                <p class="threadContetnt">- {{chat.message}}</p>
+              </div>
+            }
+          </div>
+        </div>
       }
     </div>
   </div>

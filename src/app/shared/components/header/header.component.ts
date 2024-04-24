@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { UserService } from '../../../service/user.service';
 import { User } from '../../../interface/user.interface';
@@ -32,7 +32,7 @@ export class HeaderComponent {
     public userService: UserService,
     public toggleBoolean: ToggleBooleanService,
     private channelService: ChannleService,
-    private chatService: ChatService,
+    private chatService: ChatService
   ) {}
 
   showSideMenu() {
@@ -75,32 +75,17 @@ export class HeaderComponent {
       return chatMessage.includes(inputValue);
     });
     console.log('filterChants', filterChants);
+
+    this.filteredUsers = filterUsers;
+    this.filteredChannels = filterChannels;
+    this.filteredChats = filterChants;
   }
 
 
-  getLegthOfFiltedUsers(){
-    if (this.filteredUsers.length > 0) {
-      return true;
-    } else {
-      return false;
-    }
+  getChannel(chatID: string){
+    const filterChannelName = this.channelService.allChannels.filter( channel => channel.id === chatID);
+    return filterChannelName[0].name;
   }
 
 
-  getLegthOfFiltedChannels(){
-    if (this.filteredChannels.length > 0) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-
-  getLegthOfFiltedChats(){
-    if (this.filteredChats.length > 0) {
-      return true;
-    } else {
-      return false;
-    }
-  }
 }
