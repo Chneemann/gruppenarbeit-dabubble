@@ -1,16 +1,12 @@
-// .content{
-// display: flex;
-// justify-content: center;
-// }
 .loginSektion {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  height: 100vh;
   padding-left: 16px;
   padding-right: 16px;
   background-color: #eceefe;
+  height: 100vh;
   // max-width: 1920px; für max width aufbau
 }
 .registerContainer {
@@ -25,9 +21,7 @@
   align-items: center;
   position: relative;
   gap: 16px;
-  // max-height: 669px;
-  max-height: 690px;
-  height: 100%;
+  height: 690px;
 }
 .registerTop {
   // margin-top: 32px;   ursprung aber damit beim switchen gleich bleibt mal testen unter hier->

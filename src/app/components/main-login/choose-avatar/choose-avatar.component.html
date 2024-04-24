@@ -1,63 +1,66 @@
 <div class="avatarSektion">
-  <app-start-header [display]="'none'"></app-start-header>
-  <div class="registerContainer">
-    <div class="registerTop">
-      <div class="avatarContainer">
-        <div class="avatarTop">
-          <div routerLink="/register" class="registerBackImg">
-            <app-small-btn
-              [imgSrc]="'login/arrow-back.svg'"
-              [imgSize]="'24px'"
-              [btnSize]="'48px'"
-              [btnBgHoverColor]="'#edeefe'"
-            >
-            </app-small-btn>
+    <app-start-header [display]="'none'"></app-start-header>
+    <div class="registerContainer">
+      <div class="registerTop">
+        <div class="avatarContainer">
+          <div class="avatarTop">
+            <div routerLink="/register" class="registerBackImg">
+              <app-small-btn
+                [imgSrc]="'login/arrow-back.svg'"
+                [imgSize]="'24px'"
+                [btnSize]="'48px'"
+                [btnBgHoverColor]="'#edeefe'"
+              >
+              </app-small-btn>
+            </div>
+            <span>Wähle deinen Avatar</span>
           </div>
-          <span>Wähle deinen Avatar</span>
-        </div>
 
-        <div class="viewAvatarContainer">
-          <img [src]="avatarSrc" alt="Avatar" />
-          <span>{{ loginService.firstName }} {{ loginService.lastName }}</span>
-        </div>
-        <div>
-          <input
-            type="file"
-            #fileInput
-            id="file"
-            style="display: none"
-            (change)="onFileChange($event)"
-            multiple
-          />
-        </div>
-        <div class="chooseAvatarContainer">
-          <div><span>Aus der Liste wählen</span></div>
+          <div class="viewAvatarContainer">
+            <img [src]="avatarSrc" alt="Avatar" />
+            <span
+              >{{ loginService.firstName }} {{ loginService.lastName }}</span
+            >
+          </div>
           <div>
-            <img
-              (click)="chooseExistAvatar(i)"
-              *ngFor="let imageSrc of avatarImages; let i = index"
-              [src]="imageSrc"
-              alt=""
+            <input
+              type="file"
+              #fileInput
+              id="file"
+              style="display: none"
+              (change)="onFileChange($event)"
+              multiple
             />
           </div>
-        </div>
+          <div class="chooseAvatarContainer">
+            <div><span>Aus der Liste wählen</span></div>
+            <div>
+              <img
+                (click)="chooseExistAvatar(i)"
+                *ngFor="let imageSrc of avatarImages; let i = index"
+                [src]="imageSrc"
+                alt=""
+              />
+            </div>
+          </div>
 
-        <div class="ownAvatarContainer">
-          <div>eigenes Bild verwenden</div>
-          <div>
-            <button class="BtnUpload" (click)="fileInput.click()">
-              Datei hochladen
+          <div class="ownAvatarContainer">
+            <div>eigenes Bild verwenden</div>
+            <div>
+              <button class="BtnUpload" (click)="fileInput.click()">
+                Datei hochladen
+              </button>
+            </div>
+          </div>
+
+          <div class="avatarBottom">
+            <button class="hoverBtn" (click)="loginService.register()">
+              Weiter
             </button>
           </div>
         </div>
-
-        <div class="avatarBottom">
-          <button class="hoverBtn" (click)="loginService.register()">
-            Weiter
-          </button>
-        </div>
       </div>
     </div>
+    <app-footer></app-footer>
   </div>
-  <app-footer></app-footer>
-</div>
+

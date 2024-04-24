@@ -1,15 +1,16 @@
 * {
   font-family: Nunito;
 }
+
 .avatarSektion {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  height: 100vh;
   padding-left: 16px;
   padding-right: 16px;
   background-color: #eceefe;
+  height: 100vh;
 }
 .avatarContainer {
   width: 606px;
@@ -23,8 +24,8 @@
   position: relative;
   gap: 16px;
   // max-height: 669px;
-  max-height: 690px;
-  height: 100%;
+ height: 690px;
+ 
 }
 .avatarTop {
   margin-top: 16px;

@@ -5,6 +5,7 @@
 
 body{
   overflow-x: hidden;
+  background-color: #eceefe;
 }
 
 @mixin displayFlex($d: flex, $j: center, $a: center, $g: 0) {

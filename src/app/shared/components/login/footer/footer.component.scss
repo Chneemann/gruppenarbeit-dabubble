@@ -5,6 +5,7 @@
     background-color: #eceefe;
     padding-top: 132px;
     padding-bottom: 24px;
+    width: 100vw;
    
     >a{
         font-size: 18px;
@@ -25,4 +26,10 @@
 .fontColor{
     cursor: pointer;
     color: #444df2;
+    }
+    @media (max-width: 570px) {
+        .footer{
+            padding-top: 32px;
+        }
+        
     }

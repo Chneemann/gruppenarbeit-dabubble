@@ -1,9 +1,4 @@
- .content{
-  background-color: #eceefe;
-  height: 100vh;
- 
- }
- .startIntroScrollProtect{
+.startIntroScrollProtect{
   overflow-x: hidden;
   overflow-y: hidden;
  }
@@ -12,13 +7,8 @@
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  padding-left: 16px;
-  padding-right: 16px;
   background: #eceefe;
- 
- 
-  // max-width: 1920px; für max width aufbau
-   // position: relative;
+  height: 100vh;
 }
 .loginContainer {
   max-width: 606px;
@@ -32,11 +22,9 @@
   align-items: center;
   position: relative;
   gap: 16px;
-  max-height: 690px;
+  height: 690px;
 }
 .loginTop {
-  // margin-top: 32px;   ursprung aber damit beim switchen gleich bleibt mal testen unter hier->
-  // margin-bottom: 24px;
   margin-bottom: 8px;
   display: flex;
   justify-content: center;
@@ -247,10 +235,7 @@ button {
     border: 1px solid #444df2;
   }
 }
-@media (max-width: 320px) {
-  .loginSektion{
-    justify-content: flex-start;  }
-  
+@media (max-width: 570px) {
   .loginTop{
     margin-bottom: 0;
     >span{
@@ -269,6 +254,7 @@ button {
     padding-left: 18px;
         padding-right: 18px;
         gap: 12px;
+        max-width: 400px;
      
   }
   .contactForm {
@@ -303,7 +289,7 @@ button {
   }
   .loginBottom{
     margin-top: 0px;
-        gap: 12px;
+    gap: 24px;
     >button{
       width: 118px;
       height: 52px;
@@ -323,6 +309,14 @@ button {
     display: flex;
     background-color: #eceefe;
     width: 100vw;
+    padding-top: 40px;
     justify-content: center;
 }
 }
+
+@media (max-width: 380px) {
+  .loginContainer{
+    max-width: 306px;
+  }
+}
+
