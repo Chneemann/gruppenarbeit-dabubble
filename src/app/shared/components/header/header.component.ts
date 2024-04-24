@@ -62,30 +62,50 @@ export class HeaderComponent {
       const fullName = `${user.firstName} ${user.lastName}`.toLowerCase();
       return fullName.includes(inputValue);
     });
-    console.log('filterUsers', filterUsers);
     
     const filterChannels = this.channelService.allChannels.filter(channel => {
       const channelName = `${channel.name}`.toLowerCase();
       return channelName.includes(inputValue);
     });
-    console.log('filterChannels', filterChannels);
 
     const filterChants = this.chatService.allChats.filter(chat => {
       const chatMessage = `${chat.message}`.toLowerCase();
       return chatMessage.includes(inputValue);
     });
-    console.log('filterChants', filterChants);
 
+    this.sortPrvAndPublicMessages(filterChants);
+    
     this.filteredUsers = filterUsers;
     this.filteredChannels = filterChannels;
-    this.filteredChats = filterChants;
   }
 
 
-  getChannel(chatID: string){
-    const filterChannelName = this.channelService.allChannels.filter( channel => channel.id === chatID);
-    return filterChannelName[0].name;
+  getChannel(chatID: string): string {
+    if (this.inputValue) {
+      const filteredChat = this.filteredChats.find(chat => chat.channelId === chatID);
+      if (filteredChat) {
+        const channelName = this.channelService.allChannels.find(channel => channel.id === filteredChat.channelId);
+        return channelName!.name;
+      }
+      return '';
+    } else {
+      return '';
+    }
   }
+  
 
-
+  sortPrvAndPublicMessages(chats: Chat[]) {
+    const publicChats: Chat[] = [];
+  
+    for (const chat of chats) {
+      const isPublicChannel = this.channelService.allPrvChannels.some(
+        (prvChannel) => prvChannel.id === chat.channelId
+      );
+      if (!isPublicChannel) {
+        publicChats.push(chat);
+      }
+    }
+    this.filteredChats = publicChats;
+  }
+  
 }
