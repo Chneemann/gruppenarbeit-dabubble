@@ -112,15 +112,25 @@ export class HeaderComponent {
     this.filteredChats = this.highlightChatMessages(this.filteredChats, this.inputValue);
   }
 
+  // highlightChatMessages(chats: Chat[], searchTerm: string): Chat[] {
+  //   return chats.map((chat) => {
+  //     const highlightedMessage = chat.message.replace(
+  //       new RegExp(searchTerm, 'gi'),
+  //       (match) => `<p style="background-color: yellow;">${match}</p>`
+  //     );
+  //     return { ...chat, message: highlightedMessage };
+  //   });
+  // }
   highlightChatMessages(chats: Chat[], searchTerm: string): Chat[] {
     return chats.map((chat) => {
-      const highlightedMessage = chat.message.replace(
-        new RegExp(searchTerm, 'gi'),
-        (match) => this.sanitizer.bypassSecurityTrustHtml(`<p style="background-color: yellow;">${match}</p>`).toString()
-      );
+      const regex = new RegExp(searchTerm, 'gi');
+      const highlightedMessage = chat.message.replace(regex, (match) => {
+        return `<p style="background-color: yellow;">${match}</p>`;
+      });
       return { ...chat, message: highlightedMessage };
     });
   }
+  
 
   
   
