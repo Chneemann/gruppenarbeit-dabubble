@@ -12,10 +12,6 @@ section {
   margin-right: 75px;
  
 }
-.headerContainer{
-  display: flex;
-  width: 99vw !important;
-}
 .header {
   display: flex;
   justify-content: space-between;
@@ -81,9 +77,32 @@ a {
 
 
 /*------------- RESPONSIVE -------------*/
+@media screen and (max-width: 1040px) {
+  section {
+    padding-right: 0;
+  }
+  .team{
+    flex-direction: column;
+    gap: 21px;
+  }
+}
 
 @media screen and (max-width: 910px) {
   section {
     padding-right: 0;
   }
 }
+@media screen and (max-width: 600px) {
+  .container {
+    padding: 24px;
+    margin-left: 0px;
+    margin-right: 16px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  h2{
+    font-size: 24px;
+  }
+}
+

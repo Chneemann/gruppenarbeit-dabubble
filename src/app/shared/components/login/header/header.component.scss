@@ -1,9 +1,17 @@
 .headerContainer{
   display: flex;
-  width: 97vw;
+  
 }
 .header {
     margin: 75px;
     display: flex;
     background-color: #eceefe;
   }
+  @media screen and (max-width: 600px) {
+    .headerContainer{
+  justify-content: center;
+    }
+  
+  
+  }
+  
