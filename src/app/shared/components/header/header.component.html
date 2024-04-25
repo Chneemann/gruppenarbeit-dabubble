@@ -5,17 +5,18 @@
     <input type="text" placeholder="Search content at current channel" class="fontNunito" [(ngModel)]="inputValue" (keyup)="filterAllInfo( inputValue)" />
     <img src="assets/img/search-icon.svg" />
     <div class="suggestionBox"  [ngClass]="{ showSearchWindow: toggleBoolean.openSearchWindowHead, hideSearchWindow: !toggleBoolean.openSearchWindowHead }">
+      <!-----Search output------>
       @if (filteredUsers.length > 0 && inputValue != '') {
         <div class="contantBox">
           <h4>Users:</h4>
           <div class="ansersBox">
             @for (user of filteredUsers; track user) {
-              <div class="userDiv">
+              <div class="userDiv" routerLink="/main/{{ getPrvChat([user]) }}">
                 <div class="userImgDiv">
                   <img src="{{ user.avatar}}" class="userProfilImg">
                   <img src="assets/img/offlineRing.svg" class="userOnlineImg">
                 </div>
-                <p routerLink="/main/{{ getPrvChat([user]) }}">{{user.firstName}} {{user.lastName}}</p>
+                <p>{{user.firstName}} {{user.lastName}}</p>
               </div>
             }
           </div>
@@ -50,6 +51,7 @@
   </div>
 
   <div>
+    <!----- right hreader side----->
     @for(i of userService.getCurentUsers(); track i){
     <h1 class="fontNunito">{{ i.firstName }} {{ i.lastName }}</h1>
 

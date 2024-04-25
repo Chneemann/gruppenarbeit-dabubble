@@ -10,7 +10,7 @@ import { ChatService } from '../../../service/chat.service';
 import { Channel } from '../../../interface/channel.interface';
 import { Chat } from '../../../interface/chat.interface';
 import { RouterLink } from '@angular/router';
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-header',
@@ -84,21 +84,24 @@ export class HeaderComponent {
   }
 
 
-  getChannel(chatID: string): string {
+  getChannel(chatID: string){
     if (this.inputValue != '') {
-      const filteredChat = this.filteredChats.find(
+      const filteredChatBoolean = this.filteredChats.some(
         (chat) => chat.channelId === chatID
       );
-      if (filteredChat) {
+      if (filteredChatBoolean) {
+        const filteredChat = this.filteredChats.find(
+            (chat) => chat.channelId === chatID
+          );
         const channelName = this.channelService.allChannels.find(
-          (channel) => channel.id === filteredChat.channelId
+          (channel) => channel.id === filteredChat!.channelId
         );
-        return channelName!.name;
+        return  channelName!.name;
       }
-      return '';
     } else {
       return '';
     }
+    return  '';
   }
 
 
@@ -119,60 +122,50 @@ export class HeaderComponent {
   }
 
 
-  highlightChatMessages(chats: Chat[], searchTerm: string): Chat[] {
-    return chats.map((chat) => {
-      if (typeof chat.message === 'string') {
-        const highlightedMessage = chat.message.replace(
-          new RegExp(searchTerm, 'gi'),
-          (match: string) => this.sanitizer.bypassSecurityTrustHtml(`<p style="background-color: yellow;">${match}</p>`).toString()
-        );
-        return { ...chat, message: highlightedMessage };
-      } else {
-        // Handle the case where message is SafeHtml
-        // You can't modify SafeHtml directly, so you might need to create a new Chat object with a modified message property.
-        return chat;
-      }
-    });
-  }
-  
-
-  
-  
-
   // highlightChatMessages(chats: Chat[], searchTerm: string): Chat[] {
   //   return chats.map((chat) => {
-  //     const highlightedMessage = chat.message.replace(
-  //       new RegExp(searchTerm, 'gi'), // 'gi' für globales und nicht-unterscheidendes Suchen
-  //       (match) => `|${match}|`
-  //     );
-  //     return { ...chat, message: highlightedMessage };
+  //     if (typeof chat.message === 'string') {
+  //       const highlightedMessage = chat.message.replace(
+  //         new RegExp(searchTerm, 'gi'),
+  //         (match: SafeHtml) => this.sanitizer.bypassSecurityTrustHtml(`<p style="background-color: yellow;">${match}</p>`).toString()
+  //       );
+  //       return { ...chat, message: highlightedMessage };
+  //     } else {
+  //       return chat;
+  //     }
   //   });
   // }
   
-  // getPrvChat(user: User[]) {
-  //   const foundChat = this.channelService.allPrvChannels.find((channel) => channel.talkToUserId === user[0].id!);
-  //   const foundChat2 = this.channelService.allPrvChannels.find((channel) => channel.creatorId === user[0].id!);
+
   
-  //   if (foundChat ) {
-  //     // Rückgabe der Chat-ID aus dem gefundenen PrvChannel
-  //     return foundChat.id;
-  //   } else {
-  //     return ''; // Oder null, wenn keine Chat-ID gefunden wurde
-  //   }
-  // }
+  
+
+  highlightChatMessages(chats: Chat[], searchTerm: string): Chat[] {
+    return chats.map((chat) => {
+      const highlightedMessage = chat.message.replace(
+        new RegExp(searchTerm, 'gi'), // 'gi' für globales und nicht-unterscheidendes Suchen
+        (match: SafeHtml) => `|${match}|`
+      );
+      return { ...chat, message: highlightedMessage };
+    });
+  }
+  
   
   getPrvChat(user: User[]) {
+    console.log('user', user[0].firstName);
+    
+    const getUserRoutBoolean = this.channelService.allPrvChannels.some((channel) => channel.creatorId === user[0].id!);
   
-    // const getUserRoutBoolean = this.channelService.allPrvChannels.some((channel) => channel.creatorId === user[0].id!);
-  
-    // if (getUserRoutBoolean) {
-    //   const foundChatId = this.channelService.allPrvChannels.filter((channel) => channel.creatorId === user[0].id!);
-    //   for(const chat of foundChatId){
-    //     return  chat.id;
-    //   }
-    //   return  '';
-    // }
-    // return '';
+    if (getUserRoutBoolean) {
+      const foundChatId = this.channelService.allPrvChannels.filter((channel) => channel.creatorId === user[0].id!);
+      // for(const chat of foundChatId){
+      //   const filterChat = this.chatService.allChats.filter((channel) => channel.channelId === chat.id!);
+      //   return  filterChat[0].id;
+      // }
+      return  foundChatId[0].id;
+      // return  '';
+    }
+    return '';
   }
   
   

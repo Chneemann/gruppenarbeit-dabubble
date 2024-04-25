@@ -32,6 +32,7 @@ export class SidebarDirectMessagesUserComponent {
     const talkToUserChannels = this.channelService.allPrvChannels.filter(
       (user) => user.talkToUserId === userId
     );
+    
     return creatorChannels.concat(talkToUserChannels);
   }
 }
