@@ -46,6 +46,7 @@ section {
   overflow: auto;
   .channelName {
     display: flex;
+    align-items: center;
     margin: 12px 24px;
     padding: 8px;
     max-width: fit-content;

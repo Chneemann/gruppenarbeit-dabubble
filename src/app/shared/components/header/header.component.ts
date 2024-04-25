@@ -9,12 +9,13 @@ import { ChannleService } from '../../../service/channle.service';
 import { ChatService } from '../../../service/chat.service';
 import { Channel } from '../../../interface/channel.interface';
 import { Chat } from '../../../interface/chat.interface';
+import { RouterLink } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, EditUserComponent, FormsModule],
+  imports: [CommonModule, EditUserComponent, FormsModule, RouterLink],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
@@ -34,7 +35,7 @@ export class HeaderComponent {
     public toggleBoolean: ToggleBooleanService,
     private channelService: ChannleService,
     private chatService: ChatService,
-    private sanitizer: DomSanitizer
+    public sanitizer:DomSanitizer
   ) {}
 
   showSideMenu() {
@@ -78,7 +79,10 @@ export class HeaderComponent {
 
     this.filteredUsers = filterUsers;
     this.filteredChannels = filterChannels;
+    console.log('this.filteredUsers', this.filteredUsers);
+    console.log('this.filteredChannels', this.filteredChannels);
   }
+
 
   getChannel(chatID: string): string {
     if (this.inputValue != '') {
@@ -97,6 +101,7 @@ export class HeaderComponent {
     }
   }
 
+
   sortPrvAndPublicMessages(chats: Chat[]) {
     const publicChats: Chat[] = [];
 
@@ -110,29 +115,58 @@ export class HeaderComponent {
     }
     this.filteredChats = publicChats;
     this.filteredChats = this.highlightChatMessages(this.filteredChats, this.inputValue);
+    console.log('this.filteredChats', this.filteredChats);
   }
+
+  highlightChatMessages(chats: Chat[], searchTerm: string): Chat[] {
+    return chats.map((chat) => {
+      const highlightedMessage = chat.message.replace(
+        new RegExp(searchTerm, 'gi'),
+        (match) => this.sanitizer.bypassSecurityTrustHtml(`<p style="background-color: yellow;">${match}</p>`).toString()
+      );
+      return { ...chat, message: highlightedMessage };
+    });
+  }
+
+  
+  
 
   // highlightChatMessages(chats: Chat[], searchTerm: string): Chat[] {
   //   return chats.map((chat) => {
   //     const highlightedMessage = chat.message.replace(
-  //       new RegExp(searchTerm, 'gi'),
-  //       (match) => `<p style="background-color: yellow;">${match}</p>`
+  //       new RegExp(searchTerm, 'gi'), // 'gi' für globales und nicht-unterscheidendes Suchen
+  //       (match) => `|${match}|`
   //     );
   //     return { ...chat, message: highlightedMessage };
   //   });
   // }
-  highlightChatMessages(chats: Chat[], searchTerm: string): Chat[] {
-    return chats.map((chat) => {
-      const regex = new RegExp(searchTerm, 'gi');
-      const highlightedMessage = chat.message.replace(regex, (match) => {
-        return `<p style="background-color: yellow;">${match}</p>`;
-      });
-      return { ...chat, message: highlightedMessage };
-    });
-  }
   
 
-  
+  getPrvChat(userID: string){
+    const prvChats: string[] = [];
+    const getUserRout = this.channelService.allPrvChannels.filter((channel) => channel.creatorId === userID);
+    const getUserRout2 = this.channelService.allPrvChannels.some((channel) => channel.creatorId === userID);
+    // console.log(getUserRout);
+    // console.log(getUserRout2);
+    if (getUserRout2) {
+      for (const user of getUserRout) {
+        const isPublicChannel = this.channelService.allPrvChannels.some(
+          (prvChannel) => prvChannel.id === user.id
+        );
+        if (!isPublicChannel) {
+          prvChats.push(user.id!);
+        }
+        
+      }
+      return prvChats;
+    } else {
+      return''
+    }
+    // for (const user of getUserRout) {
+    //   fo
+    // }
+
+  }
   
   
 }

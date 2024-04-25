@@ -58,15 +58,17 @@ header{
     scrollbar-width: none;
     overflow: scroll;
     -ms-overflow-style: none;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
     .contantBox{
         @include displayFlex($j: space-between, $a:flex-start);
         width: 100%;
-        margin-bottom: 20px;
         h4{
             width: 30%
         }
         .ansersBox{
-            @include displayFlex($a: flex-start, $g: 8px);
+            @include displayFlex($a: flex-start, $g: 4px);
             flex-direction: column;
             width: 70%
         }
@@ -77,7 +79,7 @@ header{
         width: 100%;
         .channelAnswers{
             width: 100%;
-            @include displayFlex($g: 8px);
+            @include displayFlex($g: 4px);
             flex-direction: column;
             .ansersBoxChats{
                 width: 100%;
@@ -85,16 +87,40 @@ header{
                 .threadNmae{
                     width: 30%;
                 }
-                .threadContetnt{
+                .threadContetntBox{
                     width: 70%;
+                    .threadContetnt{
+                        width: fit-content;
+                        padding: 4px;
+                        &:hover{
+                            background-color: #b4b8f8;
+                            border-radius: 25px;
+                            cursor: pointer;
+                        }
+                    }
                 }
             }
         }
     }
 }
 
+.channelName{
+    padding: 4px;
+    &:hover{
+        background-color: #b4b8f8;
+        border-radius: 25px;
+        cursor: pointer;
+    }
+}
+
 .userDiv{
     @include displayFlex();
+    padding: 4px;
+    &:hover{
+        background-color: #b4b8f8;
+        border-radius: 25px;
+        cursor: pointer;
+    }
     .userImgDiv{
         margin-left: 40px;
         @include displayFlex($j: space-between, $a:flex-end);
@@ -170,15 +196,16 @@ header{
   
   .hideSearchWindow{
     animation: hideSW 0.3s ease-in-out;
-    width: calc(40vw + 66px);
+    width: calc(40vw + 26px);
     max-height: 0;
     padding: 0;
   }
   
   @keyframes hideSW {
-    from {max-height: 40vh;}
+    from {max-height: 40vh;
+        padding: 20px;}
     to {max-height: 0;
-        padding: 0;}
+        padding: 20px;}
   }
   
   

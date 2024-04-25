@@ -1,6 +1,6 @@
 <section>
   @if (checkCurrentChannel(currentChannel) == 'searchBar') {
-
+  <!-----Searchwindow at the sidebar----->
   <div class="headerSearhcBar">
     <h1>New message</h1>
     <input
@@ -22,6 +22,7 @@
     </app-chat-content>
   </div>
   @if (toggleBoolean.openSearchWindow) {
+  <!-----search suggestions----->
   <div class="filteredElementWindow">
     @if (firstLetter == '#') { @for (i of channelService.allChannels; track
     $index) {
@@ -37,8 +38,9 @@
     </div>
     } }
   </div>
-  } } @else { @if(checkCurrentChannel(currentChannel) == 'allPrvChannels'){ @for
-  (user of getPrvChat(currentChannel); track user; let i = $index) {
+  } } @else { @if(checkCurrentChannel(currentChannel) == 'allPrvChannels'){
+  <!------------shwo prv chat----------->
+     @for (user of getPrvChat(currentChannel); track user; let i = $index) {
   <div class="headerPrvChat">
     <div class="headlinePrvChat" (click)="openUserProfil()">
       @if (user.talkToUserId == userService.userId) {
@@ -76,8 +78,9 @@
     [hideContentWindow]="false"
   >
   </app-chat-content>
-  } } @else if (checkCurrentChannel(currentChannel) == 'allChannels') { @for
-  (channel of getChannelName(currentChannel); track channel) {
+  } } @else if (checkCurrentChannel(currentChannel) == 'allChannels') { 
+  <!-------show public channel-chat ----------->
+    @for(channel of getChannelName(currentChannel); track channel) {
   <div class="header">
     <div class="headline" (click)="showMenu()">
       <img src="assets/img/hashtag.svg" alt="" />
@@ -95,7 +98,7 @@
         <div *ngIf="getFiltertUsers.length > 3" class="dotsImg">
           <img *ngFor="let i of [0, 1, 2]" src="assets/img/offlineRing.svg" alt="">
         </div>
-        <h3 style="padding: 4px">{{ getFiltertUsers.length }}</h3>
+        <h3>{{ getFiltertUsers.length }}</h3>
       </div>
       <app-small-btn
         [imgSrc]="'addPerson.svg'"
