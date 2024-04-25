@@ -15,7 +15,7 @@
                   <img src="{{ user.avatar}}" class="userProfilImg">
                   <img src="assets/img/offlineRing.svg" class="userOnlineImg">
                 </div>
-                <p>{{user.firstName}} {{user.lastName}}</p>
+                <p routerLink="/main/{{ getPrvChat(user.id!) }}">{{user.firstName}} {{user.lastName}}</p>
               </div>
             }
           </div>
@@ -26,7 +26,7 @@
           <h4>Channels:</h4>
           <div class="ansersBox">
             @for (channel of filteredChannels; track channel) {
-              <p># {{channel.name}}</p>
+              <p class="channelName" routerLink="/main/{{ channel.id }}"># {{channel.name}}</p>
             }
           </div>
         </div>
@@ -38,7 +38,9 @@
             @for (chat of filteredChats; track chat) {
               <div class="ansersBoxChats">
                 <p class="threadNmae">[ {{getChannel(chat.channelId)}} ]</p>
-                <p class="threadContetnt">- {{chat.message}}</p>
+                <div class="threadContetntBox">
+                  <p class="threadContetnt" [innerHTML]="chat.message" routerLink="/main/{{ chat.channelId }}"></p>
+                </div>
               </div>
             }
           </div>
