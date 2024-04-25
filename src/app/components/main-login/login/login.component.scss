@@ -1,55 +1,23 @@
-.startIntroScrollProtect{
+@import "../../../shared/components/login/mixins/mixin.scss";
+.startIntroScrollProtect {
   overflow-x: hidden;
   overflow-y: hidden;
- }
+}
 .loginSektion {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: column;
-  background: #eceefe;
-  height: 100vh;
+  @include SektionBody;
 }
 .loginContainer {
-  max-width: 606px;
-  width: 100%;
-  background-color: #fff;
-  border-radius: 30px;
-  box-sizing: border-box;
-  padding: 32px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  gap: 16px;
-  height: 690px;
+  @include Card;
 }
 .loginTop {
-  margin-bottom: 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  > span {
-    text-align: center;
-    font-size: 40px;
-    font-weight: 700;
-    color: #444df2;
-  }
+  @include topText;
 }
 
 .loginBackImg {
   cursor: pointer;
 }
 .loginInfoText {
-  margin-bottom: 24px;
-  text-align: center;
-  max-width: 486px;
-  > span {
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 24px;
-  }
+  @include InfoText;
 }
 .inputContainer {
   position: relative;
@@ -61,28 +29,10 @@
   left: 20px;
 }
 .inputField {
-  padding-left: 60px;
-  border: 1px solid #ffff;
-  font-size: 18px;
-  font-weight: 500;
-  outline: none;
-  width: 100%;
-  box-sizing: border-box;
-  background: #eceefe;
-  height: 60px;
-  border-radius: 100px;
-  &:hover {
-    border: 1px solid#686868;
-  }
-  &:focus {
-    border: 1px solid #444df2;
-  }
+  @include inputStyle;
 }
 .error {
-  color: #ED1E79;
-  position: absolute;
-  margin: 4px;
-  font-size: 14px;
+  @include errorStyle;
 }
 .contactForm {
   width: 90%;
@@ -153,32 +103,10 @@
 }
 
 button {
-  padding: 12px 25px;
-  color: #fff;
-  background-color: #cacad6;
-  outline: none;
-  border: none;
-  box-sizing: border-box;
-  transition: 0.2s;
-  border-radius: 25px;
-  font-size: 18px;
-  font-weight: 600;
+  @include buttonGrey;
 }
 .aktivButton {
-  padding: 12px 25px;
-  color: #fff;
-  background-color: #444df2;
-  outline: none;
-  border: none;
-  box-sizing: border-box;
-  transition: 0.2s;
-  border-radius: 25px;
-  font-size: 18px;
-  font-weight: 600;
-  cursor: pointer;
-  &:hover {
-    background-color: #676eec;
-  }
+  @include aktivButtonBlue;
 }
 .aktivInput {
   border: 1px solid#686868;
@@ -219,7 +147,6 @@ button {
   justify-content: end;
 }
 .mobileCreateAccoun {
-  
   font-family: Figtree, sans-serif, Nunito;
   color: #797ef3;
   cursor: pointer;
@@ -236,73 +163,70 @@ button {
   }
 }
 @media (max-width: 570px) {
-  .loginTop{
+  .loginTop {
     margin-bottom: 0;
-    >span{
+    > span {
       font-size: 32px;
     }
   }
-  .loginInfoText{
+  .loginInfoText {
     margin-bottom: 0;
-    >span{
+    > span {
       font-size: 17px;
     }
   }
-  .loginContainer{
+  .loginContainer {
     padding: 16px;
     max-height: 552px;
     padding-left: 18px;
-        padding-right: 18px;
-        gap: 12px;
-        max-width: 400px;
-     
+    padding-right: 18px;
+    gap: 12px;
+    max-width: 400px;
   }
   .contactForm {
     width: 100%;
   }
-  .inputContainer{
+  .inputContainer {
     margin-bottom: 22px;
   }
-  .inputField{
+  .inputField {
     height: 52px;
   }
-  .iconP{
+  .iconP {
     top: 15px;
   }
-  .passwordContainer{
+  .passwordContainer {
     margin-bottom: 22px;
     margin-top: 32px;
     font-size: 17px;
   }
-  .separatorContainer{
+  .separatorContainer {
     font-size: 17px;
     margin-bottom: 22px;
   }
-  .googleLogingContainer{
+  .googleLogingContainer {
     font-size: 17px;
     height: 52px;
     gap: 0;
     margin-bottom: 22px;
-    >img{
+    > img {
       height: 32px;
     }
   }
-  .loginBottom{
+  .loginBottom {
     margin-top: 0px;
     gap: 24px;
-    >button{
+    > button {
       width: 118px;
       height: 52px;
       padding: 0;
     }
   }
-  .guestButton{
-   
+  .guestButton {
     font-size: 17px;
     white-space: nowrap;
   }
-  .aktivButton{
-   
+  .aktivButton {
     font-size: 17px;
   }
   .mobileRegisterContainer {
@@ -311,12 +235,11 @@ button {
     width: 100vw;
     padding-top: 40px;
     justify-content: center;
-}
-}
-
-@media (max-width: 380px) {
-  .loginContainer{
-    max-width: 306px;
   }
 }
 
+@media (max-width: 380px) {
+  .loginContainer {
+    max-width: 306px;
+  }
+}

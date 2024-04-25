@@ -1,45 +1,15 @@
+@import "../../../shared/components/login/mixins/mixin.scss";
 .registerSektion {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: column;
-  padding-left: 16px;
-  padding-right: 16px;
-  background-color: #eceefe;
-  height: 100vh;
-  // max-width: 1920px; für max width aufbau
+  @include SektionBody;
 }
 .registerContainer {
-  max-width: 606px;
-  width: 100%;
-  background-color: #fff;
-  border-radius: 30px;
-  box-sizing: border-box;
-  padding: 32px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  gap: 16px;
-  height: 690px;
+  @include Card;
 }
 .registerTop {
-  // margin-top: 32px;   ursprung aber damit beim switchen gleich bleibt mal testen unter hier->
-  // margin-bottom: 24px;
-  margin-top: 16px;
-  margin-bottom: 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
+  @include topText;
   > span {
     width: 90%;
-    text-align: center;
-    font-size: 40px;
-    font-weight: 700;
     padding-right: 48px;
-
-    color: #444df2;
   }
 }
 
@@ -47,14 +17,7 @@
   cursor: pointer;
 }
 .registerInfoText {
-  margin-bottom: 24px;
-  text-align: center;
-  max-width: 486px;
-  > span {
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 24px;
-  }
+  @include InfoText;
 }
 .inputContainer {
   position: relative;
@@ -66,29 +29,11 @@
   left: 20px;
 }
 .inputField {
-  padding-left: 60px;
-  border: 1px solid #ffff;
-  font-size: 18px;
-  font-weight: 500;
-  outline: none;
-  width: 100%;
-  box-sizing: border-box;
-  background: #eceefe;
-  height: 60px;
-  border-radius: 100px;
-  &:hover {
-    border: 1px solid#686868;
-  }
-  &:focus {
-    border: 1px solid #444df2;
-  }
+  @include inputStyle;
 }
 
 .error {
-  color: #ED1E79;
-  position: absolute;
-  margin: 4px;
-  font-size: 14px;
+  @include errorStyle;
 }
 .contactForm {
   width: 90%;
@@ -108,95 +53,67 @@
 }
 
 button {
-  padding: 12px 25px;
-  color: #fff;
-  background-color: #cacad6;
-  outline: none;
-  border: none;
-  box-sizing: border-box;
-  transition: 0.2s;
-  border-radius: 25px;
-  font-size: 18px;
-  font-weight: 600;
+  @include buttonGrey;
 }
 .aktivButton {
-  padding: 12px 25px;
-  color: #ffffff;
-  background-color: #444df2;
-  outline: none;
-  border: none;
-  box-sizing: border-box;
-  transition: 0.2s;
-  border-radius: 25px;
-  font-size: 18px;
-  font-weight: 600;
-  cursor: pointer;
-  &:hover {
-    background-color: #676eec;
-  }
+  @include aktivButtonBlue;
 }
 .aktivInput {
   border: 1px solid#686868;
 }
 
 @media (max-width: 570px) {
-  .registerTop{
+  .registerTop {
     margin-bottom: 0;
-    >span{
+    > span {
       font-size: 32px;
     }
   }
-  .registerInfoText{
+  .registerInfoText {
     margin-bottom: 0;
-    >span{
+    > span {
       font-size: 17px;
     }
   }
-  .loginContainer{
+  .registerContainer {
     padding: 16px;
     max-height: 552px;
     padding-left: 18px;
-        padding-right: 18px;
-        gap: 12px;
-        max-width: 400px;
-     
+    padding-right: 18px;
+    gap: 12px;
+    max-width: 400px;
   }
   .contactForm {
-    width: 110%;
+    width: 100%;
   }
-  .inputContainer{
+  .inputContainer {
     margin-bottom: 22px;
   }
-  .inputField{
+  .inputField {
     height: 52px;
   }
-  .iconP{
+  .iconP {
     top: 15px;
   }
-  .registerBottom{
+  .registerBottom {
     margin-top: 26px;
     gap: 24px;
-    >button{
+    > button {
       width: 118px;
       height: 52px;
       padding: 0;
     }
   }
-  .guestButton{
-   
+  .guestButton {
     font-size: 17px;
     white-space: nowrap;
   }
-  .aktivButton{
-   
+  .aktivButton {
     font-size: 17px;
   }
-  
 }
 @media (max-width: 380px) {
-  .loginContainer{
+  .registerContainer {
     max-width: 306px;
   }
 }
-
-

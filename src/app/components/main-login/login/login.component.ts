@@ -26,12 +26,6 @@ export class LoginComponent {
         }
       }, 4500);
     }
-
-  removeOverflow() {
-
-
-    
-  }
   onSubmit(ngForm: NgForm) {
     console.log('LogingVersuch mit:', this.loginService.email, this.loginService.password);
     this.loginService.login();

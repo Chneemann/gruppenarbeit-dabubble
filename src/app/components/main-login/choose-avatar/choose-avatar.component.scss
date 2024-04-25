@@ -1,47 +1,19 @@
+@import "../../../shared/components/login/mixins/mixin.scss";
 * {
   font-family: Nunito;
 }
 
 .avatarSektion {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: column;
-  padding-left: 16px;
-  padding-right: 16px;
-  background-color: #eceefe;
-  height: 100vh;
+  @include SektionBody;
 }
 .avatarContainer {
-  max-width: 606px;
-  width: 100%;
-  background-color: #fff;
-  border-radius: 30px;
-  box-sizing: border-box;
-  padding: 32px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  gap: 16px;
-  // max-height: 669px;
- height: 690px;
- 
+  @include Card;
 }
 .avatarTop {
-  margin-top: 16px;
-  margin-bottom: 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
+  @include topText;
   > span {
     width: 90%;
-    text-align: center;
-    font-size: 40px;
-    font-weight: 700;
     padding-right: 48px;
-    color: #444df2;
   }
 }
 .viewAvatarContainer {
@@ -76,9 +48,9 @@
     > img {
       height: 72px;
       border-radius: 100%;
-      border:4px solid #ffff;
+      border: 4px solid #ffff;
       cursor: pointer;
-      &:hover{
+      &:hover {
         border: 4px solid #cacad6;
       }
     }
@@ -99,6 +71,7 @@
   background-color: #ffff;
   color: #444df2;
   border: 1px solid #444df2;
+  cursor: pointer;
   &:hover {
     background-color: #444df2;
     color: #ffff;
@@ -113,16 +86,7 @@
 }
 
 button {
-  padding: 12px 25px;
-  color: #fff;
-  background-color: #444df2;
-  outline: none;
-  border: none;
-  box-sizing: border-box;
-  transition: 0.2s;
-  border-radius: 25px;
-  font-size: 18px;
-  font-weight: 600;
+  @include buttonGrey;
   cursor: pointer;
 }
 .hoverBtn {
@@ -131,28 +95,31 @@ button {
   }
 }
 @media (max-width: 570px) {
-  .avatarTop{
+  .avatarTop {
     margin-bottom: 0;
 
-    >span{
+    > span {
       font-size: 24px;
       white-space: nowrap;
     }
   }
-  .chooseAvatarContainer{
+  .chooseAvatarContainer {
     width: 100%;
   }
-  .mobileImgContainer{
+  .mobileImgContainer {
     overflow: auto;
   }
-  .ownAvatarContainer{
-         margin-right: 0;
-         gap: 16px;
-         flex-direction: column;
+  .ownAvatarContainer {
+    margin-right: 0;
+    gap: 16px;
+    flex-direction: column;
   }
-  .avatarBottom{
+  .avatarBottom {
     margin-top: 8px;
   }
 }
-
-
+@media (max-width: 380px) {
+  .avatarContainer {
+    max-width: 306px;
+  }
+}
