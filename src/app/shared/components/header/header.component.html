@@ -15,7 +15,7 @@
                   <img src="{{ user.avatar}}" class="userProfilImg">
                   <img src="assets/img/offlineRing.svg" class="userOnlineImg">
                 </div>
-                <p routerLink="/main/{{ getPrvChat(user.id!) }}">{{user.firstName}} {{user.lastName}}</p>
+                <p routerLink="/main/{{ getPrvChat([user]) }}">{{user.firstName}} {{user.lastName}}</p>
               </div>
             }
           </div>

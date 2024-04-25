@@ -79,8 +79,8 @@ export class HeaderComponent {
 
     this.filteredUsers = filterUsers;
     this.filteredChannels = filterChannels;
-    console.log('this.filteredUsers', this.filteredUsers);
-    console.log('this.filteredChannels', this.filteredChannels);
+    // console.log('this.filteredUsers', this.filteredUsers);
+    // console.log('this.filteredChannels', this.filteredChannels);
   }
 
 
@@ -115,18 +115,26 @@ export class HeaderComponent {
     }
     this.filteredChats = publicChats;
     this.filteredChats = this.highlightChatMessages(this.filteredChats, this.inputValue);
-    console.log('this.filteredChats', this.filteredChats);
+    // console.log('this.filteredChats', this.filteredChats);
   }
+
 
   highlightChatMessages(chats: Chat[], searchTerm: string): Chat[] {
     return chats.map((chat) => {
-      const highlightedMessage = chat.message.replace(
-        new RegExp(searchTerm, 'gi'),
-        (match) => this.sanitizer.bypassSecurityTrustHtml(`<p style="background-color: yellow;">${match}</p>`).toString()
-      );
-      return { ...chat, message: highlightedMessage };
+      if (typeof chat.message === 'string') {
+        const highlightedMessage = chat.message.replace(
+          new RegExp(searchTerm, 'gi'),
+          (match: string) => this.sanitizer.bypassSecurityTrustHtml(`<p style="background-color: yellow;">${match}</p>`).toString()
+        );
+        return { ...chat, message: highlightedMessage };
+      } else {
+        // Handle the case where message is SafeHtml
+        // You can't modify SafeHtml directly, so you might need to create a new Chat object with a modified message property.
+        return chat;
+      }
     });
   }
+  
 
   
   
@@ -141,32 +149,32 @@ export class HeaderComponent {
   //   });
   // }
   
-
-  getPrvChat(userID: string){
-    const prvChats: string[] = [];
-    const getUserRout = this.channelService.allPrvChannels.filter((channel) => channel.creatorId === userID);
-    const getUserRout2 = this.channelService.allPrvChannels.some((channel) => channel.creatorId === userID);
-    // console.log(getUserRout);
-    // console.log(getUserRout2);
-    if (getUserRout2) {
-      for (const user of getUserRout) {
-        const isPublicChannel = this.channelService.allPrvChannels.some(
-          (prvChannel) => prvChannel.id === user.id
-        );
-        if (!isPublicChannel) {
-          prvChats.push(user.id!);
-        }
-        
-      }
-      return prvChats;
-    } else {
-      return''
-    }
-    // for (const user of getUserRout) {
-    //   fo
+  // getPrvChat(user: User[]) {
+  //   const foundChat = this.channelService.allPrvChannels.find((channel) => channel.talkToUserId === user[0].id!);
+  //   const foundChat2 = this.channelService.allPrvChannels.find((channel) => channel.creatorId === user[0].id!);
+  
+  //   if (foundChat ) {
+  //     // Rückgabe der Chat-ID aus dem gefundenen PrvChannel
+  //     return foundChat.id;
+  //   } else {
+  //     return ''; // Oder null, wenn keine Chat-ID gefunden wurde
+  //   }
+  // }
+  
+  getPrvChat(user: User[]) {
+  
+    // const getUserRoutBoolean = this.channelService.allPrvChannels.some((channel) => channel.creatorId === user[0].id!);
+  
+    // if (getUserRoutBoolean) {
+    //   const foundChatId = this.channelService.allPrvChannels.filter((channel) => channel.creatorId === user[0].id!);
+    //   for(const chat of foundChatId){
+    //     return  chat.id;
+    //   }
+    //   return  '';
     // }
-
+    // return '';
   }
+  
   
   
 }

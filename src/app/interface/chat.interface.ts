@@ -1,8 +1,10 @@
+import { SafeHtml } from "@angular/platform-browser";
+
 export interface Chat {
   id: string;
   userId: string;
   channelId: string;
-  message: string;
+  message: string | SafeHtml;
   edited: boolean;
   reactionIcon: string[];
   reactionUserId: string[];
@@ -12,7 +14,7 @@ export interface Chat {
 export interface ChatAnswers {
   id: string;
   chatId: string;
-  message: string;
+  message: string | SafeHtml;
   edited: boolean;
   reactionIcon: string[];
   reactionUserId: string[];

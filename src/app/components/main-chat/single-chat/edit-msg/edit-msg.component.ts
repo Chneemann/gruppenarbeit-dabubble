@@ -42,7 +42,7 @@ export class EditMsgComponent {
   ) {}
 
   ngOnInit() {
-    this.originalMessage = this.chat.message;
+    this.originalMessage = (this.chat.message as string);
   }
 
   closeEditMsg() {
