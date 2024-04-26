@@ -1,5 +1,4 @@
 import { Component, inject } from '@angular/core';
-
 import { FooterComponent } from '../../../shared/components/login/footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { SmallBtnComponent } from '../../../shared/components/small-btn/small-btn.component';
@@ -7,7 +6,7 @@ import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { Firestore } from '@angular/fire/firestore';
 import { CommonModule } from '@angular/common';
 import { loginService } from '../../../service/login.service';
-import { RouterLink, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { StartHeaderComponent } from '../../../shared/components/login/start-header/start-header.component';
 
 @Component({
@@ -38,22 +37,27 @@ export class ChooseAvatarComponent {
 
   constructor(public loginService: loginService, private router: Router) {}
 
-  onFileChange(event: any) {
-    if (event.target.files && event.target.files[0]) {
-      const file = event.target.files[0];
-      this.selectedFile = file;
+  onFileChange(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
 
-      // FileReader um die Datei zu lesen
+    if (inputElement.files && inputElement.files[0]) {
+      const file = inputElement.files[0];
+
+      if (!file.type.startsWith('image/')) {
+        console.error('Datei ist kein Bild.');
+        return;
+      }
+      this.selectedFile = file;
       const reader = new FileReader();
       reader.onload = (e: any) => {
-        this.avatarSrc = e.target.result; // Das gelesene Bild als Avatar setzen
+        this.avatarSrc = e.target.result;
       };
-      reader.readAsDataURL(file); // Lesen der Datei als Data URL
+      reader.readAsDataURL(file);
       this.uploadFile(file);
     }
   }
 
-  uploadFile(file: any) {
+  uploadFile(file: File) {
     const storage = getStorage();
     const storageRef = ref(storage, 'avatars/' + file.name);
     uploadBytes(storageRef, file)
@@ -61,25 +65,14 @@ export class ChooseAvatarComponent {
         console.log('Datei hochgeladen!', snapshot);
         getDownloadURL(ref(storage, 'avatars/' + file.name))
           .then((url) => {
-            this.avatarSrc = url; // das bild aktualisieren
+            this.avatarSrc = url;
             console.log('bild url hier', url);
             this.loginService.getAvatarUrl(url);
-          })
-
-          .catch((error) =>
+          }).catch((error) =>
             console.error('Fehler beim Abrufen der Download-URL:', error)
-          );
-      })
-      .catch((error) => {
+          );}).catch((error) => {
         console.error('Fehler beim Hochladen:', error);
-      });
-  }
-
-  // uploadSelectedFile() {
-  //   if (this.selectedFile) {
-  //     this.uploadFile(this.selectedFile);
-  //   }
-  // }
+      });}
 
   chooseExistAvatar(index: number) {
     this.avatarSrc = this.avatarImages[index];

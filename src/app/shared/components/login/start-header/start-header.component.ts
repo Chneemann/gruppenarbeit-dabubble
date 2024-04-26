@@ -27,7 +27,6 @@ export class StartHeaderComponent {
       this.triggerAnimations();
     } else {
       this.d_none = true; // Setzen Sie d-none, wenn die Animation bereits abgespielt wurde
-     
     }
   }
 
@@ -36,21 +35,17 @@ export class StartHeaderComponent {
       this.animationStart = true; // erste dass hioer
       setTimeout(() => {
         this.animationLogo = true; // dann das hier nochmal drauf
-
         setTimeout(() => {
           setTimeout(() => {
-            setTimeout(() => {
-              this.d_none = true;
-            }, 500);
             this.animationBackground = true;
           }, 1000);
           this.animationToEndPosiotion = true;
-           this.loginService.setAnimationState(true); //  Animation  abgespielt true
+          this.loginService.setAnimationState(true); //  Animation  abgespielt true
           setTimeout(() => {
-            
-             this.loginService.setFinalClass(true)
-              this.animationsBlock=true
-          }, 3300);
+            this.d_none = true;
+            this.loginService.setFinalClass(true);
+            this.animationsBlock = true;
+          }, 2000);
         }, 2000); // hinterguner
       }, 300); // dan nach der zeit dass usw aktuell schrift
     }, 1000); // also das fängt an
