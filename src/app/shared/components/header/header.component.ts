@@ -7,9 +7,9 @@ import { ToggleBooleanService } from '../../../service/toggle-boolean.service';
 import { FormsModule } from '@angular/forms';
 import { ChannleService } from '../../../service/channle.service';
 import { ChatService } from '../../../service/chat.service';
-import { Channel } from '../../../interface/channel.interface';
+import { Channel, PrvChannel } from '../../../interface/channel.interface';
 import { Chat } from '../../../interface/chat.interface';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
@@ -29,13 +29,15 @@ export class HeaderComponent {
   filteredUsers: User[] = [];
   filteredChannels: Channel[] = [];
   filteredChats: Chat[] = [];
+  prvChannelRoute : string = '';
 
   constructor(
     public userService: UserService,
     public toggleBoolean: ToggleBooleanService,
     private channelService: ChannleService,
     private chatService: ChatService,
-    public sanitizer:DomSanitizer
+    public sanitizer:DomSanitizer,
+    private route: Router
   ) {}
 
   showSideMenu() {
@@ -149,53 +151,34 @@ export class HeaderComponent {
       return { ...chat, message: highlightedMessage };
     });
   }
+
   
-  
-  getPrvChat(user: User[]) {
+  checkRoute(user: User[]){
     const userId = user[0].id!;
-    // Check if a private channel already exists
     const channelExistsBoolean = this.channelService.allPrvChannels.some(
       (channel) =>
         (channel.creatorId === userId && channel.talkToUserId === this.userService.userId) ||
         (channel.creatorId === this.userService.userId && channel.talkToUserId === userId)
     );
-  
     if (!channelExistsBoolean) {
-      // Create a new private channel if it doesn't exist
       this.userService.createPrvChannel(userId);
       console.log('New private channel created');
-      // Return an empty string or a placeholder value indicating channel creation
-      return '';
-    } else {
-      // Find the existing private channel ID
+    } 
+    this.getRouteToPrvChat(userId, channelExistsBoolean);
+  }
+
+
+  getRouteToPrvChat(userId: string, channelExistsBoolean: boolean){
+    if (channelExistsBoolean) {
       const existingChannel = this.channelService.allPrvChannels.find(
         (channel) =>
           (channel.creatorId === userId && channel.talkToUserId === this.userService.userId) ||
           (channel.creatorId === this.userService.userId && channel.talkToUserId === userId)
       );
-      return existingChannel!.id ;
+      console.log(`/main/${existingChannel!.id}`);
+      
+      this.route.navigateByUrl(`main/${existingChannel!.id}`); 
     }
-    //   return getUserRoutCreatorId;
-    //   // const foundChatId = this.channelService.allPrvChannels.filter((channel) => channel.talkToUserId === user[0].id!);
-    //   // for(const chat of foundChatId){
-    //   //   const filterChat = this.chatService.allChats.filter((channel) => channel.channelId === chat.id!);
-    //   //   return  filterChat[0].id;
-    //   // }
-    //   // return  foundChatId[0].id;
-    //   // return  '';
-    // } else if (getUserRoutCreatorId) {
-    //   return getUserRoutCreatorId;
-    // }else if (getUserRoutTalkToUserId){
-    //   return getUserRoutTalkToUserId;
-    // }
-    // return '';
-    
-    // const filterUser = this.userService.allUsers.filter( user => user.id === currentUser[0].id)
-    // console.log('filterUser', filterUser[0].firstName );
-    // const test =  this.userService.createPrvChannel(filterUser[0].id!);
-    // return test;
   }
-  
-  
-  
+
 }

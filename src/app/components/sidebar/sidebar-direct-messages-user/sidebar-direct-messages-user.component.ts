@@ -35,4 +35,5 @@ export class SidebarDirectMessagesUserComponent {
     
     return creatorChannels.concat(talkToUserChannels);
   }
+  
 }

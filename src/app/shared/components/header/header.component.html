@@ -11,7 +11,7 @@
           <h4>Users:</h4>
           <div class="ansersBox">
             @for (user of filteredUsers; track user) {
-              <div class="userDiv" routerLink="/main/{{ getPrvChat([user]) }}" >
+              <div class="userDiv" (click)="checkRoute([user])">
                 <div class="userImgDiv">
                   <img src="{{ user.avatar}}" class="userProfilImg">
                   <img src="assets/img/offlineRing.svg" class="userOnlineImg">
