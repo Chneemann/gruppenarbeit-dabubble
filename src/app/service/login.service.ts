@@ -105,6 +105,25 @@ export class loginService {
         console.error('Failed to update status:', error);
       });
   }
+
+  guestLogin() {
+    const auth = getAuth();
+    const email = 'test@test.de'; 
+    const password = '123456'; 
+    const userId = '5MgE6lBoxPgDvnLqr3Ik';
+
+    signInWithEmailAndPassword(auth, email, password)
+    .then(() => {
+        this.userService.userId = userId;
+        this.updateUserOnlineStatus(userId);
+        console.log('test',email,password,userId)
+         this.router.navigate(['/main']);
+    })
+    .catch((error) => {
+        console.error('Fehler bei der Gastanmeldung:', error);
+        this.errorMessage = 'Fehler bei der Gastanmeldung. Bitte versuchen Sie es später erneut.';
+    });
+}
   // -------------------- register ------------------------------->
 
   register() {

@@ -10,11 +10,7 @@
         verwendest.</span
       >
     </div>
-    <form
-      (ngSubmit)="onSubmit()"
-      #contactForm="ngForm"
-      class="contactForm"
-    >
+    <form (ngSubmit)="onSubmit()" #contactForm="ngForm" class="contactForm">
       <div class="inputContainer">
         <img class="iconP" src="/assets/img/login/mail.png" alt="" />
         <input
@@ -74,12 +70,19 @@
 
       <div class="loginBottom">
         <button
+          type="submit"
           [ngClass]="{ aktivButton: contactForm.valid }"
           [disabled]="!contactForm.valid"
         >
           Anmelden
         </button>
-        <button routerLink="/main" class="guestButton">Gäste-Login</button>
+        <button
+          type="button"
+          class="guestButton"
+          (click)="loginService.guestLogin()"
+        >
+          Gäste-Login
+        </button>
       </div>
     </form>
   </div>
