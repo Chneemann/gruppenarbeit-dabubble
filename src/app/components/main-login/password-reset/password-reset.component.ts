@@ -5,11 +5,10 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { StartHeaderComponent } from '../../../shared/components/login/start-header/start-header.component';
 import { SmallBtnComponent } from '../../../shared/components/small-btn/small-btn.component';
-import { Firestore } from '@angular/fire/firestore';
 import { Router, ActivatedRoute } from '@angular/router';
 import { getAuth } from 'firebase/auth';
 import { confirmPasswordReset } from 'firebase/auth';
-import { User } from 'firebase/auth';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-password-reset',
@@ -28,33 +27,32 @@ import { User } from 'firebase/auth';
 export class PasswordResetComponent {
   password: string = '';
   passwordRepeat: string = '';
-  firestore: Firestore = inject(Firestore);
-  oobCode: string;
+  oobCode: string = '';
 
-  constructor(private route: ActivatedRoute, private router: Router) {
-    this.oobCode = '';
-  }
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private queryParamsSubscription: Subscription
+  ) {}
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe((params) => {
-      this.oobCode = params['oobCode'];
-    });
+    this.queryParamsSubscription = this.route.queryParams.subscribe(
+      (params) => {
+        this.oobCode = params['oobCode'];
+      }
+    );
   }
 
-  onSubmit(ngForm: NgForm) {
-    console.log('LogingVersuch mit:', this.password);
-    this.resetPassword();
-
-    // ngForm.resetForm();
+  onSubmit(ngForm: NgForm): void {
+    this.resetPassword(ngForm);
   }
-  resetPassword() {
+
+  resetPassword(ngForm: NgForm): void {
     const auth = getAuth();
     const newPassword = this.passwordRepeat;
-
     confirmPasswordReset(auth, this.oobCode, newPassword)
       .then(() => {
-        console.log('Dein Passwort wurde erfolgreich geändert!');
-        // erfolgreich dan weiterleiten zu ->
+        ngForm.resetForm();
         this.router.navigate(['/login']);
       })
       .catch((error) => {
@@ -62,11 +60,11 @@ export class PasswordResetComponent {
       });
   }
 
+  ngOnDestroy(): void {
+    this.queryParamsSubscription.unsubscribe();
+  }
+
   passwordsMatch(): boolean {
     return this.password === this.passwordRepeat;
   }
-
-  // ngOnDestroy(): void {
-  //   this.queryParams.unsubscribe();
-  // } hier wegen subscibe beenden nochmal nachfragen !
 }
