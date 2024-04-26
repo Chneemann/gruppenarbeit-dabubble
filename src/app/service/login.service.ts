@@ -1,4 +1,4 @@
-import { Injectable, inject, Component } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import {
   Firestore,
   addDoc,
@@ -13,21 +13,11 @@ import {
 import {
   getAuth,
   signInWithPopup,
-  signInWithRedirect,
-  getRedirectResult,
   GoogleAuthProvider,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
 } from 'firebase/auth';
-import {
-  FormControl,
-  FormGroup,
-  FormsModule,
-  NgForm,
-  Validators,
-} from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { User } from '../interface/user.interface';
 import { UserService } from './user.service';
 // import { User } from 'firebase/auth';
@@ -141,27 +131,6 @@ export class loginService {
       });
   }
 
-  // createUserWithFirebase(user: User) {
-  //   if (!user || !user.uid) {
-  //     console.error('User or user UID is undefined.');
-  //     return;
-  //   }
-
-  //   const usersCollection = collection(this.firestore, 'users');
-  //   addDoc(usersCollection, user)
-  //     .then((docRef) => {
-  //       console.log('User successfully added to Firestore!');
-  //       this.currentUser = docRef.id;
-  //       console.log('UserREGI', this.currentUser);
-  //       // this.router.navigate([`/main/${docRef.id}`]);
-  //       this.login();
-  //     })
-  //     .catch((error) => {
-  //       console.error('Error adding user to Firestore:', error);
-  //     });
-  // }
-
-  //--------------------- create user in firestore for more functions --------------------->
   createUserInFirestore(user: User) {
     const userDataToSave: User = {
       uid: user.uid,
