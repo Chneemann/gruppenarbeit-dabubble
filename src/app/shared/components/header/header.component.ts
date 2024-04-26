@@ -7,15 +7,17 @@ import { ToggleBooleanService } from '../../../service/toggle-boolean.service';
 import { FormsModule } from '@angular/forms';
 import { ChannleService } from '../../../service/channle.service';
 import { ChatService } from '../../../service/chat.service';
-import { Channel, PrvChannel } from '../../../interface/channel.interface';
+import { Channel } from '../../../interface/channel.interface';
 import { Chat } from '../../../interface/chat.interface';
 import { Router, RouterLink } from '@angular/router';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
+import { HighlightPipe } from '../../../highlight.pipe';
+
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, EditUserComponent, FormsModule, RouterLink],
+  imports: [CommonModule, EditUserComponent, FormsModule, RouterLink, HighlightPipe],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
@@ -29,7 +31,7 @@ export class HeaderComponent {
   filteredUsers: User[] = [];
   filteredChannels: Channel[] = [];
   filteredChats: Chat[] = [];
-  prvChannelRoute : string = '';
+
 
   constructor(
     public userService: UserService,
@@ -81,8 +83,6 @@ export class HeaderComponent {
 
     this.filteredUsers = filterUsers;
     this.filteredChannels = filterChannels;
-    // console.log('this.filteredUsers', this.filteredUsers);
-    // console.log('this.filteredChannels', this.filteredChannels);
   }
 
 
@@ -119,37 +119,6 @@ export class HeaderComponent {
       }
     }
     this.filteredChats = publicChats;
-    this.filteredChats = this.highlightChatMessages(this.filteredChats, this.inputValue);
-    // console.log('this.filteredChats', this.filteredChats);
-  }
-
-
-  // highlightChatMessages(chats: Chat[], searchTerm: string): Chat[] {
-  //   return chats.map((chat) => {
-  //     if (typeof chat.message === 'string') {
-  //       const highlightedMessage = chat.message.replace(
-  //         new RegExp(searchTerm, 'gi'),
-  //         (match: SafeHtml) => this.sanitizer.bypassSecurityTrustHtml(`<p style="background-color: yellow;">${match}</p>`).toString()
-  //       );
-  //       return { ...chat, message: highlightedMessage };
-  //     } else {
-  //       return chat;
-  //     }
-  //   });
-  // }
-  
-
-  
-  
-
-  highlightChatMessages(chats: Chat[], searchTerm: string): Chat[] {
-    return chats.map((chat) => {
-      const highlightedMessage = chat.message.replace(
-        new RegExp(searchTerm, 'gi'), // 'gi' für globales und nicht-unterscheidendes Suchen
-        (match: SafeHtml) => `|${match}|`
-      );
-      return { ...chat, message: highlightedMessage };
-    });
   }
 
   

@@ -16,7 +16,7 @@
                   <img src="{{ user.avatar}}" class="userProfilImg">
                   <img src="assets/img/offlineRing.svg" class="userOnlineImg">
                 </div>
-                <p>{{user.firstName}} {{user.lastName}}</p>
+                <p [innerHTML]="(user.firstName + ' ' + user.lastName) | highlight:inputValue"></p>
               </div>
             }
           </div>
@@ -27,7 +27,7 @@
           <h4>Channels:</h4>
           <div class="ansersBox">
             @for (channel of filteredChannels; track channel) {
-              <p class="channelName" routerLink="/main/{{ channel.id }}"># {{channel.name}}</p>
+              <p class="channelName" [innerHTML]="channel.name | highlight:inputValue" routerLink="/main/{{ channel.id }}"># </p>
             }
           </div>
         </div>
@@ -40,7 +40,7 @@
               <div class="ansersBoxChats">
                 <p class="threadNmae">[ {{getChannel(chat.channelId)}} ]</p>
                 <div class="threadContetntBox">
-                  <p class="threadContetnt" [innerHTML]="chat.message" routerLink="/main/{{ chat.channelId }}"></p>
+                  <p class="threadContetnt" [innerHTML]="chat.message | highlight:inputValue" routerLink="/main/{{ chat.channelId }}"></p>
                 </div>
               </div>
             }
