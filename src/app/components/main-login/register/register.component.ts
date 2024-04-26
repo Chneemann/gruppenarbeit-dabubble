@@ -1,36 +1,27 @@
-import { Component, inject,Input } from '@angular/core';
-import {
-  FormControl,
-  FormGroup,
-  FormsModule,
-  NgForm,
-  Validators,
-} from '@angular/forms';
-import { Firestore, addDoc, collection } from '@angular/fire/firestore';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { Component, inject } from '@angular/core';
+import { FormsModule, NgForm } from '@angular/forms';
+import { Firestore } from '@angular/fire/firestore';
 import { CommonModule } from '@angular/common';
 import { RouterLink, Router } from '@angular/router';
 import { SmallBtnComponent } from '../../../shared/components/small-btn/small-btn.component';
 import { FooterComponent } from '../../../shared/components/login/footer/footer.component';
-import { User } from 'firebase/auth';
 import { loginService } from '../../../service/login.service';
-import { StartHeaderComponent } from "../../../shared/components/login/start-header/start-header.component";
+import { StartHeaderComponent } from '../../../shared/components/login/start-header/start-header.component';
 
 @Component({
-    selector: 'app-register',
-    standalone: true,
-    templateUrl: './register.component.html',
-    styleUrl: './register.component.scss',
-    imports: [
-        FormsModule,
-        CommonModule,
-        SmallBtnComponent,
-        FooterComponent,
-        RouterLink,
-        StartHeaderComponent
-    ]
+  selector: 'app-register',
+  standalone: true,
+  templateUrl: './register.component.html',
+  styleUrl: './register.component.scss',
+  imports: [
+    FormsModule,
+    CommonModule,
+    SmallBtnComponent,
+    FooterComponent,
+    RouterLink,
+    StartHeaderComponent,
+  ],
 })
-
 export class RegisterComponent {
   firestore: Firestore = inject(Firestore);
   isChecked: boolean = false;
@@ -45,32 +36,16 @@ export class RegisterComponent {
   }
 
   onSubmit(ngForm: NgForm) {
-    console.log(
-      'Registrierungsversuch mit:',
-      this.loginService.email,
-      this.loginService.password
-    );  
     const names = this.loginService.name.split(' ');
     this.loginService.firstName = names[0];
     this.loginService.lastName = names.slice(1).join(' ');
     this.router.navigate(['/avatar']);
-    // this.loginService.register();
-    // ngForm.resetForm();
   }
 
   toggleCheckbox() {
     this.isChecked = !this.isChecked;
     this.updateImage();
   }
-
-  formGroup = new FormGroup({
-    nameField: new FormControl('', Validators.required),
-    emailField: new FormControl('', [Validators.required, Validators.email]),
-    passwordField: new FormControl('', [
-      Validators.required,
-      Validators.minLength(6),
-    ]),
-  });
 
   onMouseOver() {
     this.updateImage(true);
