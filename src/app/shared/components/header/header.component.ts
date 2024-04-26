@@ -152,20 +152,48 @@ export class HeaderComponent {
   
   
   getPrvChat(user: User[]) {
-    console.log('user', user[0].firstName);
-    
-    const getUserRoutBoolean = this.channelService.allPrvChannels.some((channel) => channel.creatorId === user[0].id!);
+    const userId = user[0].id!;
+    // Check if a private channel already exists
+    const channelExistsBoolean = this.channelService.allPrvChannels.some(
+      (channel) =>
+        (channel.creatorId === userId && channel.talkToUserId === this.userService.userId) ||
+        (channel.creatorId === this.userService.userId && channel.talkToUserId === userId)
+    );
   
-    if (getUserRoutBoolean) {
-      const foundChatId = this.channelService.allPrvChannels.filter((channel) => channel.creatorId === user[0].id!);
-      // for(const chat of foundChatId){
-      //   const filterChat = this.chatService.allChats.filter((channel) => channel.channelId === chat.id!);
-      //   return  filterChat[0].id;
-      // }
-      return  foundChatId[0].id;
-      // return  '';
+    if (!channelExistsBoolean) {
+      // Create a new private channel if it doesn't exist
+      this.userService.createPrvChannel(userId);
+      console.log('New private channel created');
+      // Return an empty string or a placeholder value indicating channel creation
+      return '';
+    } else {
+      // Find the existing private channel ID
+      const existingChannel = this.channelService.allPrvChannels.find(
+        (channel) =>
+          (channel.creatorId === userId && channel.talkToUserId === this.userService.userId) ||
+          (channel.creatorId === this.userService.userId && channel.talkToUserId === userId)
+      );
+      return existingChannel!.id ;
     }
-    return '';
+    //   return getUserRoutCreatorId;
+    //   // const foundChatId = this.channelService.allPrvChannels.filter((channel) => channel.talkToUserId === user[0].id!);
+    //   // for(const chat of foundChatId){
+    //   //   const filterChat = this.chatService.allChats.filter((channel) => channel.channelId === chat.id!);
+    //   //   return  filterChat[0].id;
+    //   // }
+    //   // return  foundChatId[0].id;
+    //   // return  '';
+    // } else if (getUserRoutCreatorId) {
+    //   return getUserRoutCreatorId;
+    // }else if (getUserRoutTalkToUserId){
+    //   return getUserRoutTalkToUserId;
+    // }
+    // return '';
+    
+    // const filterUser = this.userService.allUsers.filter( user => user.id === currentUser[0].id)
+    // console.log('filterUser', filterUser[0].firstName );
+    // const test =  this.userService.createPrvChannel(filterUser[0].id!);
+    // return test;
   }
   
   

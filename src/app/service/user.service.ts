@@ -1,6 +1,7 @@
 import { Injectable, OnDestroy, inject } from '@angular/core';
 import { Firestore, collection, onSnapshot } from '@angular/fire/firestore';
 import { User } from '../interface/user.interface';
+import { ChannleService } from './channle.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,10 +13,9 @@ export class UserService implements OnDestroy {
   getUserIDs: string[] = [];
   isUserLogin: boolean = true;
   userId: string = 'JX5JxxPx0sdjEPHCs5F9';
-
   unsubUser;
 
-  constructor() {
+  constructor(private channelService: ChannleService) {
     this.unsubUser = this.subUserList();
   }
 
@@ -41,6 +41,39 @@ export class UserService implements OnDestroy {
     );
     return filteredUser;
   }
+
+
+  createPrvChannel(filterUserID: string) {
+    const newPrvChannel = {
+      creatorId: this.userId,
+      talkToUserId: filterUserID,
+    };
+
+    const channelExistsBoolean = this.channelService.allPrvChannels.some(
+      (channel) =>
+        (channel.creatorId === newPrvChannel.creatorId &&
+          channel.talkToUserId === newPrvChannel.talkToUserId) ||
+        (channel.creatorId === newPrvChannel.talkToUserId &&
+          channel.talkToUserId === newPrvChannel.creatorId)
+    );
+    const channelExists = this.channelService.allPrvChannels.filter(
+      (channel) =>
+        (channel.creatorId === newPrvChannel.creatorId &&
+          channel.talkToUserId === newPrvChannel.talkToUserId) ||
+        (channel.creatorId === newPrvChannel.talkToUserId &&
+          channel.talkToUserId === newPrvChannel.creatorId)
+    );
+
+    if (!channelExistsBoolean) {
+      this.channelService.createNewChannel(newPrvChannel, 'prv-channels');
+      console.log('prv channel angelegt');
+    } else {
+      console.log('Private channel already exists!', channelExists);
+      return channelExists;
+    }
+    return'';
+  }
+
 
   ngOnDestroy() {
     this.unsubUser();
