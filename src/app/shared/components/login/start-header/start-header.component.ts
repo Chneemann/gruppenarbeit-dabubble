@@ -26,28 +26,28 @@ export class StartHeaderComponent {
     if (!this.loginService.getAnimationState()) {
       this.triggerAnimations();
     } else {
-      this.d_none = true; // Setzen Sie d-none, wenn die Animation bereits abgespielt wurde
+      this.d_none = true;
     }
   }
 
   triggerAnimations(): void {
     setTimeout(() => {
-      this.animationStart = true; // erste dass hioer
+      this.animationStart = true; 
       setTimeout(() => {
-        this.animationLogo = true; // dann das hier nochmal drauf
+        this.animationLogo = true; 
         setTimeout(() => {
           setTimeout(() => {
             this.animationBackground = true;
           }, 1000);
           this.animationToEndPosiotion = true;
-          this.loginService.setAnimationState(true); //  Animation  abgespielt true
+          this.loginService.setAnimationState(true); 
           setTimeout(() => {
             this.d_none = true;
             this.loginService.setFinalClass(true);
             this.animationsBlock = true;
           }, 2000);
-        }, 2000); // hinterguner
-      }, 300); // dan nach der zeit dass usw aktuell schrift
-    }, 1000); // also das fängt an
+        }, 2000); 
+      }, 300); 
+    }, 1000); 
   }
 }
