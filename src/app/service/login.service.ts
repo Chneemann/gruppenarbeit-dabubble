@@ -116,7 +116,6 @@ export class loginService {
     .then(() => {
         this.userService.userId = userId;
         this.updateUserOnlineStatus(userId);
-        console.log('test',email,password,userId)
          this.router.navigate(['/main']);
     })
     .catch((error) => {
