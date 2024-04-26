@@ -44,7 +44,6 @@ export class PasswordForgetComponent {
   }
 
   onSubmit(ngForm: NgForm) {
-    console.log('LogingVersuch mit:', this.email);
     this.passwordReset(ngForm);
     this.sendEmail();
   }
