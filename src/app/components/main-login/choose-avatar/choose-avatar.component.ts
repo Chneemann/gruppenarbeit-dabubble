@@ -6,7 +6,6 @@ import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { Firestore } from '@angular/fire/firestore';
 import { CommonModule } from '@angular/common';
 import { loginService } from '../../../service/login.service';
-import { Router } from '@angular/router';
 import { StartHeaderComponent } from '../../../shared/components/login/start-header/start-header.component';
 
 @Component({
@@ -35,7 +34,7 @@ export class ChooseAvatarComponent {
     '/assets/img/user-icons/male-4.svg',
   ];
 
-  constructor(public loginService: loginService, private router: Router) {}
+  constructor(public loginService: loginService) {}
 
   onFileChange(event: Event) {
     const inputElement = event.target as HTMLInputElement;
