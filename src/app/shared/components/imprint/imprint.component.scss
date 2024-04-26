@@ -4,13 +4,12 @@ section {
   padding-right: 16px;
   background-color: #eceefe;
 }
-.container{
+.container {
   background-color: #ffff;
   border-radius: 24px;
   padding: 80px;
   margin-left: 75px;
   margin-right: 75px;
- 
 }
 .header {
   display: flex;
@@ -35,21 +34,21 @@ h1 {
   font-size: 61px;
   font-weight: 700;
   padding-bottom: 24px;
-  color: #444DF2;
+  color: #444df2;
 }
 
 h2 {
   font-size: 32px;
   font-weight: 700;
   padding: 48px 0 24px 0;
-  color: #444DF2;
+  color: #444df2;
 }
 
 h3 {
   font-size: 20px;
   font-weight: 700;
   padding: 24px 0;
-  color: #444DF2;
+  color: #444df2;
 }
 
 p {
@@ -66,22 +65,21 @@ a {
   }
 }
 
-  .team{
-    display: flex;
-    justify-content: start;
-    gap: 98px
-  }
-  .placholder{
-    height: 24px;
-  }
-
+.team {
+  display: flex;
+  justify-content: start;
+  gap: 98px;
+}
+.placholder {
+  height: 24px;
+}
 
 /*------------- RESPONSIVE -------------*/
 @media screen and (max-width: 1040px) {
   section {
     padding-right: 0;
   }
-  .team{
+  .team {
     flex-direction: column;
     gap: 21px;
   }
@@ -101,8 +99,7 @@ a {
 }
 
 @media screen and (max-width: 400px) {
-  h2{
+  h2 {
     font-size: 24px;
   }
 }
-

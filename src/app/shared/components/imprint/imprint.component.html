@@ -1,28 +1,36 @@
-
 <section>
   <app-header></app-header>
   <div class="container">
     <div class="header">
       <h1>{{ "imprint.headline" | translate }}</h1>
-      <app-small-btn routerLink="/login"
-      [imgSrc]="'login/arrow-back.svg'"
-      [imgSize]="'24px'"
-      [btnSize]="'48px'"
-      [btnBgHoverColor]="'#edeefe'">
-        </app-small-btn>
+      <app-small-btn
+        routerLink="/login"
+        [imgSrc]="'login/arrow-back.svg'"
+        [imgSize]="'24px'"
+        [btnSize]="'48px'"
+        [btnBgHoverColor]="'#edeefe'"
+      >
+      </app-small-btn>
     </div>
     {{ "imprint.tmg" | translate }}
     <br /><br />
     <div class="team">
-      <div ><p>Andre Kempf</p>
+      <div>
+        <p>Andre Kempf</p>
         <p>Großschneidersweg 2a</p>
-        <p>76149 Karlsruhe</p></div>
-      <div><p>Björn ten Eicken</p>
+        <p>76149 Karlsruhe</p>
+      </div>
+      <div>
+        <p>Björn ten Eicken</p>
         <p>Baisieperstraße 31</p>
-        <p>42859 Remscheid</p></div>
-      <div><p>Aleksander Demyanovych </p>
+        <p>42859 Remscheid</p>
+      </div>
+      <div>
+        <p>Aleksander Demyanovych</p>
         <p>Heidweilerstr. 23</p>
-        <p>54313 Zemmer</p></div></div>
+        <p>54313 Zemmer</p>
+      </div>
+    </div>
     <h3>{{ "imprint.contact" | translate }}</h3>
     <p>
       {{ "imprint.tel" | translate }}:

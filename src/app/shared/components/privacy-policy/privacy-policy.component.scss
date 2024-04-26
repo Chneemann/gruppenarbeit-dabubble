@@ -4,15 +4,14 @@ section {
   padding-right: 16px;
   background-color: #eceefe;
 }
-.container{
+.container {
   background-color: #ffff;
   border-radius: 24px;
   padding: 80px;
   margin-left: 75px;
   margin-right: 75px;
- 
 }
-.headerContainer{
+.headerContainer {
   display: flex;
   width: 99vw !important;
 }
@@ -38,7 +37,7 @@ section {
 h1 {
   font-size: 61px;
   font-weight: 700;
-  color: #444DF2;
+  color: #444df2;
   width: 100%;
 }
 
@@ -46,14 +45,14 @@ h2 {
   font-size: 32px;
   font-weight: 700;
   padding: 24px 0 12px 0;
-  color: #444DF2;
+  color: #444df2;
 }
 
 h3 {
   font-size: 20px;
   font-weight: 700;
   padding: 24px 0;
-  color: #444DF2;
+  color: #444df2;
 }
 
 p {
@@ -76,24 +75,23 @@ a {
     text-decoration: underline;
   }
 }
-.team{
+.team {
   display: flex;
   justify-content: start;
-  gap: 98px
+  gap: 98px;
 }
-.placholder{
+.placholder {
   height: 24px;
 }
 
 /*------------- RESPONSIVE -------------*/
 @media screen and (max-width: 1046px) {
-  h1{
+  h1 {
     font-size: 44px;
   }
-  .team{
+  .team {
     gap: 48px;
   }
-
 }
 @media screen and (max-width: 800px) {
   .container {
@@ -121,21 +119,21 @@ a {
   }
 }
 @media screen and (max-width: 600px) {
-  .header{
+  .header {
     align-items: end;
-    >h1{
+    > h1 {
       font-size: 40px;
       width: 88%;
     }
   }
 }
 @media screen and (max-width: 400px) {
-  .header{
-    >h1{
+  .header {
+    > h1 {
       font-size: 35px;
     }
-}
-h2{
-  font-size: 31px;
-}
+  }
+  h2 {
+    font-size: 31px;
+  }
 }
