@@ -16,6 +16,7 @@
   } @if(isEmojiPickerVisible) {
   <app-emoji-picker
     [output]="'id'"
+    [ngClass]="{ mirror: isMirrored }"
     (emojiOutputEmitter)="emojiOutputEmitter($event, chat.id)"
     (emojiVisibleEmitter)="emojiVisibleEmitter($event)"
   ></app-emoji-picker>

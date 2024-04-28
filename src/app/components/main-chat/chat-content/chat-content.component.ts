@@ -15,6 +15,7 @@ import { ChatMsgBoxComponent } from '../chat-msg-box/chat-msg-box.component';
 import { CommonModule } from '@angular/common';
 import { DownloadFilesService } from '../../../service/download-files.service';
 import { ChannleService } from '../../../service/channle.service';
+import { InfoComponent } from '../info/info.component';
 
 @Component({
   selector: 'app-chat-content',
@@ -24,6 +25,7 @@ import { ChannleService } from '../../../service/channle.service';
     SingleChatComponent,
     ChatMsgBoxComponent,
     CommonModule,
+    InfoComponent,
   ],
   templateUrl: './chat-content.component.html',
   styleUrl: './chat-content.component.scss',
