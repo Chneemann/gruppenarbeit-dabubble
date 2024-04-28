@@ -2,8 +2,11 @@
   @if (getChannelName(currentChannel).length > 0) {
   <div class="headline"># {{ getChannelName(currentChannel)[0].name }}</div>
   <p>
-    Der Channel wurde von
-    {{ getChannelName(currentChannel)[0].creator }} am
+    Der Channel wurde von @for (user of
+    getChatUsers(getChannelName(currentChannel)[0].creator); track user) {
+    {{ user.firstName }}
+    {{ user.lastName }}
+    } am
     {{ timeConverter(getChannelName(currentChannel)[0].createdDate) }} erstellt.
     Das ist der Anfang des Channels
     <span>#{{ getChannelName(currentChannel)[0].name }}</span
