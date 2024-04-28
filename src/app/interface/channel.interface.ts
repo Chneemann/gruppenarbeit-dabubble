@@ -5,6 +5,7 @@ export interface Channel {
   creator: string;
   privatChannel: boolean;
   hashtag: string;
+  createdDate: string;
   addedUser: Array<string>;
 }
 

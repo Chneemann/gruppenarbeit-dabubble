@@ -12,9 +12,10 @@ import { Channel } from '../../../../interface/channel.interface';
   standalone: true,
   imports: [CommonModule, SmallBtnComponent, FormsModule],
   templateUrl: './add-new-channel.component.html',
-  styleUrl: './add-new-channel.component.scss'
+  styleUrl: './add-new-channel.component.scss',
 })
 export class AddNewChannelComponent {
+  currentDate: string = new Date().toISOString().split('T')[0];
   changeImg: boolean = false;
   userName: string = '';
   showExistenUsers: boolean = false;
@@ -28,50 +29,49 @@ export class AddNewChannelComponent {
   channelIsPrivat: boolean = false;
   shwoNextWindow: boolean = false;
 
+  constructor(
+    public channelService: ChannleService,
+    public userService: UserService
+  ) {}
 
-  constructor(public channelService: ChannleService, public userService: UserService){}
-
-
-  toggleShowAddChannelBox(){
-    this.channelService.showAddChannelBox = !this.channelService.showAddChannelBox;
+  toggleShowAddChannelBox() {
+    this.channelService.showAddChannelBox =
+      !this.channelService.showAddChannelBox;
     this.shwoNextWindow = false;
     this.channelName = '';
     this.channelDescription = '';
   }
 
-
-  createNewChannel(){
+  createNewChannel() {
     this.shwoNextWindow = !this.shwoNextWindow;
   }
 
-
-  toggleBtnTrue(){
+  toggleBtnTrue() {
     this.changeImg = true;
     this.channelIsPrivat = true;
   }
 
-
-  toggleBtnFalse(){
+  toggleBtnFalse() {
     this.changeImg = false;
     this.channelIsPrivat = false;
   }
-
 
   filterUsers(userName: string) {
     this.showExistenUsers = true;
     this.getSearchedUser = [];
     const searchedUser = userName.toLowerCase().trim();
-    const filteredUsers = this.userService.getUsers().filter(user => {
+    const filteredUsers = this.userService.getUsers().filter((user) => {
       const fullName = `${user.firstName} ${user.lastName}`.toLowerCase();
       return fullName.includes(searchedUser);
     });
     this.getSearchedUser.push(...filteredUsers);
   }
-  
 
   chooseUser(user: User) {
-    const isUserAlreadySelected = this.getSelectedUsers.some(selectedUser => selectedUser.id === user.id);
-  
+    const isUserAlreadySelected = this.getSelectedUsers.some(
+      (selectedUser) => selectedUser.id === user.id
+    );
+
     if (!isUserAlreadySelected) {
       this.selectedUsers.push(user.id!);
       this.getSelectedUsers.push(user);
@@ -82,20 +82,17 @@ export class AddNewChannelComponent {
     this.userName = '';
     this.showExistenUsers = false;
   }
-  
 
-  spliceCurrentUser(index: number){
+  spliceCurrentUser(index: number) {
     this.getSelectedUsers.splice(index, 1);
     this.showExistenUsers = false;
   }
 
-
-  toggleAddedUserBox(){
+  toggleAddedUserBox() {
     this.showExistenUsers = false;
   }
-  
 
-  checkIfChannelNameIsValid(channelName:string){
+  checkIfChannelNameIsValid(channelName: string) {
     const channelNameLenght = channelName.length;
     if (channelNameLenght >= 3) {
       this.channelService.btnIsValid = true;
@@ -104,21 +101,21 @@ export class AddNewChannelComponent {
     }
   }
 
-  addNewChannel(){
+  addNewChannel() {
     const newChannel: Channel = {
       name: this.channelName,
       description: this.channelDescription || '',
       creator: this.userService.userId,
       privatChannel: this.privatChannel,
       hashtag: this.channelName,
-      addedUser: this.checkUserArray()
-    }
+      createdDate: this.currentDate,
+      addedUser: this.checkUserArray(),
+    };
     this.channelService.createNewChannel(newChannel, 'channels');
     this.openAddNewChannelWindow();
   }
 
-
-  checkUserArray(){
+  checkUserArray() {
     if (this.channelIsPrivat) {
       return this.selectedUsers;
     } else {
@@ -126,9 +123,9 @@ export class AddNewChannelComponent {
     }
   }
 
-
-  openAddNewChannelWindow(){
-    this.channelService.showAddChannelBox = !this.channelService.showAddChannelBox;
+  openAddNewChannelWindow() {
+    this.channelService.showAddChannelBox =
+      !this.channelService.showAddChannelBox;
     this.channelName = '';
     this.channelDescription = '';
     this.channelService.btnIsValid = false;
@@ -137,6 +134,5 @@ export class AddNewChannelComponent {
     this.shwoNextWindow = false;
   }
 
-  createChannel(){
-  }
+  createChannel() {}
 }

@@ -1,8 +1,4 @@
-import {
-  Component,
-  ElementRef,
-  Input
-} from '@angular/core';
+import { Component, ElementRef, Input } from '@angular/core';
 import { ChannleService } from '../../service/channle.service';
 import { MainComponent } from '../main/main.component';
 import { ChatService } from '../../service/chat.service';
@@ -31,7 +27,7 @@ import { ShowChannelMemberComponent } from './show-channel-member/show-channel-m
     ChatMsgBoxComponent,
     FormsModule,
     SmallBtnComponent,
-    ShowChannelMemberComponent
+    ShowChannelMemberComponent,
   ],
   templateUrl: './main-chat.component.html',
   styleUrl: './main-chat.component.scss',
@@ -42,7 +38,7 @@ export class MainChatComponent {
   openMenu: boolean = false;
   firstLetter: string = '';
   openSearchWindow: boolean = false;
-  getFiltertUsers: User [] = [];
+  getFiltertUsers: User[] = [];
   constructor(
     private route: Router,
     public userService: UserService,
@@ -60,11 +56,9 @@ export class MainChatComponent {
     this.openMenu = true;
   }
 
-
   closeMenu() {
     this.openMenu = false;
   }
-
 
   preventClose(event: MouseEvent) {
     if (this.elementRef.nativeElement.contains(event.target)) {
@@ -85,32 +79,26 @@ export class MainChatComponent {
 
   editChannelName() {}
 
-
   getUsers(): User[] {
     return this.userService.allUsers;
   }
-
 
   getChannels(): Channel[] {
     return this.channelService.allChannels;
   }
 
-
   getChats(): Chat[] {
     return this.chatService.allChats;
   }
-
 
   getPrvChatArray(): PrvChannel[] {
     return this.channelService.allPrvChannels;
   }
 
-
   getChatUsers(chatId: string) {
     const filteredTasks = this.getUsers().filter((user) => user.id == chatId);
     return filteredTasks;
   }
-
 
   getChatChannel(chatId: string) {
     const filteredTasks = this.getChats().filter(
@@ -119,14 +107,12 @@ export class MainChatComponent {
     return filteredTasks;
   }
 
-
   getChannelName(chatId: string) {
     const filteredTasks = this.getChannels().filter(
       (channel) => channel.id == chatId
     );
     return filteredTasks;
   }
-
 
   getPrvChat(prvChatId: string) {
     const filteredChats = this.getPrvChatArray().filter(
@@ -136,19 +122,21 @@ export class MainChatComponent {
     return filteredChats;
   }
 
-
   filterUser(talkToUserId: string) {
     return this.userService.allUsers.filter((user) => user.id == talkToUserId);
   }
-
 
   checkCurrentChannel(currentChannel: string) {
     if (currentChannel === 'searchBar') {
       return 'searchBar';
     }
-    const allChannels = this.channelService.allChannels.some((channel) => channel.id == currentChannel);
-    const allPrvChannels = this.channelService.allPrvChannels.some((channel) => channel.id == currentChannel);
-    
+    const allChannels = this.channelService.allChannels.some(
+      (channel) => channel.id == currentChannel
+    );
+    const allPrvChannels = this.channelService.allPrvChannels.some(
+      (channel) => channel.id == currentChannel
+    );
+
     if (allChannels) {
       return 'allChannels';
     } else if (allPrvChannels) {
@@ -156,7 +144,6 @@ export class MainChatComponent {
     }
     return '';
   }
-
 
   filterChannelAndUser(inputValue: string) {
     const filterChannels = '#';
@@ -172,17 +159,17 @@ export class MainChatComponent {
     return (this.chatService.inputValue = '');
   }
 
-
   openUserProfil() {
     this.channelService.openPrvChat = true;
   }
 
-
   chooseElement(element: Channel | User) {
     if ('firstName' in element) {
       this.chatService.inputValue += `${element.firstName} ${element.lastName}`;
-      const getUserID = element.id!;    
-      const getPrvChannel = this.channelService.allPrvChannels.filter((chat) => chat.talkToUserId == getUserID);
+      const getUserID = element.id!;
+      const getPrvChannel = this.channelService.allPrvChannels.filter(
+        (chat) => chat.talkToUserId == getUserID
+      );
       this.chatService.getPrvChatId = getPrvChannel[0].id!;
     } else {
       this.chatService.inputValue += element.name;
@@ -190,15 +177,17 @@ export class MainChatComponent {
     }
     this.toggleBoolean.openSearchWindow = false;
   }
-  
-  
-  filterChannelForSelectedUser(currentChannel: string){
-    const getBoolean = this.channelService.allChannels.some((channel) => channel.id == currentChannel);
-    const getAddedUsers = this.channelService.allChannels.filter((channel) => channel.id == currentChannel);
+
+  filterChannelForSelectedUser(currentChannel: string) {
+    const getBoolean = this.channelService.allChannels.some(
+      (channel) => channel.id == currentChannel
+    );
+    const getAddedUsers = this.channelService.allChannels.filter(
+      (channel) => channel.id == currentChannel
+    );
     this.filterUsers(getAddedUsers[0].addedUser);
     return getBoolean;
   }
-
 
   filterUsers(userArray: string[]) {
     this.getFiltertUsers = [];
@@ -210,9 +199,8 @@ export class MainChatComponent {
     }
   }
 
-  openMemberWindow(boolean: boolean){
+  openMemberWindow(boolean: boolean) {
     this.toggleBoolean.openChannelMemberWindow = true;
     this.toggleBoolean.openAddMemberWindow(boolean);
   }
-  
 }

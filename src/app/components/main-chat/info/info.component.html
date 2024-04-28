@@ -1,7 +1,13 @@
 <section>
-  <div class="headline"># Frontend</div>
+  @if (getChannelName(currentChannel).length > 0) {
+  <div class="headline"># {{ getChannelName(currentChannel)[0].name }}</div>
   <p>
-    Der Channel wurde von Guest am 03.04.2024 erstellt. Das ist der Anfang des
-    Channels <span>#Frontend</span>.
+    Der Channel wurde von
+    {{ getChannelName(currentChannel)[0].creator }} am
+    {{ timeConverter(getChannelName(currentChannel)[0].createdDate) }} erstellt.
+    Das ist der Anfang des Channels
+    <span>#{{ getChannelName(currentChannel)[0].name }}</span
+    >.
   </p>
+  }
 </section>
