@@ -45,28 +45,14 @@ export class SidebarChannelsComponent {
   }
 
   getChannels(): Channel[] {
-    return this.channelService.allChannels;
+    const checkIfUserIsAMember = this.channelService.allChannels.some(channel => channel.addedUser.includes(this.userService.userId));
+
+    if(checkIfUserIsAMember){
+      const checkIfUserIsAMember = this.channelService.allChannels.filter(channel => channel.addedUser.includes(this.userService.userId))
+      return checkIfUserIsAMember;
+    }
+    return [];
   }
 
-  // createPrvChannel() {
-  //   const newPrvChannel = {
-  //     creatorId: this.userService.userId,
-  //     talkToUserId: '1H87ZD5MvFbEuNUbcG0p',
-  //   };
 
-  //   const channelExists = this.channelService.allPrvChannels.some(
-  //     (channel) =>
-  //       (channel.creatorId === newPrvChannel.creatorId &&
-  //         channel.talkToUserId === newPrvChannel.talkToUserId) ||
-  //       (channel.creatorId === newPrvChannel.talkToUserId &&
-  //         channel.talkToUserId === newPrvChannel.creatorId)
-  //   );
-
-  //   if (!channelExists) {
-  //     this.channelService.createNewChannel(newPrvChannel, 'prv-channels');
-  //     console.log('prv channel angelegt');
-  //   } else {
-  //     console.log('Private channel already exists!');
-  //   }
-  // }
 }
