@@ -149,6 +149,7 @@ export class loginService {
           'Fehler bei der Gastanmeldung. Bitte versuchen Sie es später erneut.';
       });
   }
+  
   // -------------------- register ------------------------------->
 
   /**
