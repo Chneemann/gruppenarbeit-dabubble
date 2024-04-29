@@ -1,5 +1,5 @@
 import { Injectable, OnDestroy, inject } from '@angular/core';
-import { Firestore, collection, onSnapshot } from '@angular/fire/firestore';
+import { Firestore, collection, doc, onSnapshot, updateDoc } from '@angular/fire/firestore';
 import { User } from '../interface/user.interface';
 import { ChannleService } from './channle.service';
 
@@ -72,6 +72,17 @@ export class UserService implements OnDestroy {
       return channelExists;
     }
     return'';
+  }
+
+
+  updateUserData(newFirstName:string, newLastName:string, newEmail:string){
+    const userDocRef = doc(this.firestore, 'users', this.userId);
+    const updates = {
+      firstName: newFirstName,
+      lastName: newLastName,
+      email: newEmail
+    };
+    updateDoc(userDocRef, updates).catch((error) => {console.error(error);});
   }
 
 
