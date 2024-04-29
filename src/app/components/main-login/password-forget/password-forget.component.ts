@@ -30,6 +30,13 @@ export class PasswordForgetComponent {
   firestore: Firestore = inject(Firestore);
   constructor(private router: Router) {}
 
+
+   /**
+   * Initiates a password reset process for the user.
+   * Sends a password reset email to the user's registered email address.
+   * 
+   * @param ngForm The form data from the Angular form, used to manage form state.
+   */
   passwordReset(ngForm: NgForm) {
     const auth = getAuth();
     sendPasswordResetEmail(auth, this.email)
@@ -43,11 +50,22 @@ export class PasswordForgetComponent {
       });
   }
 
+
+ /**
+   * Handles the form submission, invoking the password reset function and then sending a notification email.
+   * 
+   * @param ngForm The form instance containing user input.
+   */
   onSubmit(ngForm: NgForm) {
     this.passwordReset(ngForm);
     this.sendEmail();
   }
 
+  
+  /**
+   * Simulates sending an email by toggling a button state to show feedback to the user.
+   * After a set timeout, resets the button state.
+   */
   sendEmail() {
     this.emailSentBtn = true;
     setTimeout(() => {
