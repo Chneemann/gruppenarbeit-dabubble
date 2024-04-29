@@ -44,19 +44,19 @@ app-secondary-chat {
 .slideIn {
   float: right;
   right: 0;
-  transition: 0.3s ease-in-out;
+  transition: 0.3s linear;
   animation: slideIn;
 }
 
 .slideOut {
   float: left;
   margin-right: -390px;
-  transition: 0.3s ease-in-out;
+  transition: 0.3s linear;
   animation: slideOut;
 }
 
 .slideInRightWindow {
-  transition: 0.5s ease-in-out;
+  transition: 0.3s linear;
   width: 100%;
   padding: 12px;
   animation: slideIn;
@@ -75,7 +75,7 @@ app-secondary-chat {
 }
 
 .slideOutRightWindow {
-  transition: 0.5s ease-in-out;
+  transition: 0.3s linear;
   animation: slideOut;
   width: 0;
   padding-right: 0;
