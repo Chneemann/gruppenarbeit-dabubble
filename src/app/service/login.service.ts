@@ -40,7 +40,9 @@ export class loginService {
   private introCompleteStatus = false;
 
   constructor(private router: Router, private userService: UserService) {}
+
   // -------------------- login start seite ------------------------------->
+  
   login() {
     const auth = getAuth();
     signInWithEmailAndPassword(auth, this.email, this.password)
