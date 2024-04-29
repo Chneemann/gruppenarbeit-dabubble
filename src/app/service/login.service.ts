@@ -43,6 +43,9 @@ export class loginService {
 
   // -------------------- login start seite ------------------------------->
   
+  /**
+ * Authenticates a user using their email and password, fetches the user document, and handles errors.
+ */
   login() {
     const auth = getAuth();
     signInWithEmailAndPassword(auth, this.email, this.password)
@@ -65,6 +68,11 @@ export class loginService {
       });
   }
 
+
+  /**
+ * Processes the query snapshot to fetch user document data and updates local and session state.
+ * @param snapshot QuerySnapshot object containing user documents.
+ */
   userDocument(snapshot: QuerySnapshot) {
     {
       if (snapshot.docs.length > 0) {
@@ -79,6 +87,11 @@ export class loginService {
     }
   }
 
+
+  /**
+ * Handles error codes returned from login attempts and sets appropriate error messages.
+ * @param errorCode String representing the error code returned from Firebase authentication.
+ */
   switchCase(errorCode: string) {
     switch (errorCode) {
       case 'auth/invalid-credential':
@@ -95,6 +108,11 @@ export class loginService {
     }
   }
 
+
+  /**
+ * Updates the online status of the user in Firestore.
+ * @param userId The user's document ID in Firestore.
+ */
   updateUserOnlineStatus(userId: string) {
     const userDocRef = doc(this.firestore, 'users', userId);
     const updates = {
@@ -109,6 +127,10 @@ export class loginService {
       });
   }
 
+
+  /**
+ * Performs a guest login using predetermined credentials and updates the user's online status.
+ */
   guestLogin() {
     const auth = getAuth();
     const email = 'guest@guestaccount.com';
@@ -129,6 +151,9 @@ export class loginService {
   }
   // -------------------- register ------------------------------->
 
+  /**
+ * Registers a new user with Firebase authentication and stores user data in Firestore.
+ */
   register() {
     const auth = getAuth();
     createUserWithEmailAndPassword(auth, this.email, this.password)
@@ -151,6 +176,11 @@ export class loginService {
       });
   }
 
+
+  /**
+ * Saves user data to Firestore and updates the application state.
+ * @param user The user object containing information to be saved.
+ */
   createUserInFirestore(user: User) {
     const userDataToSave: User = {
       uid: user.uid,
@@ -174,29 +204,58 @@ export class loginService {
 
   // -------------------- choose avatar ------------------------------->
 
+  /**
+ * Gets the URL of the avatar and updates the avatar source.
+ * @param url String URL of the avatar.
+ * @return Updated avatar URL.
+ */
   getAvatarUrl(url: string) {
     return (this.avatar = url);
   }
-  // -------------------- animation login------------------------------->
 
+  // -------------------- animation login ------------------------------->
+
+  /**
+ * Retrieves the animation state indicating whether it has played.
+ * @returns {boolean} True if the animation has already played, false otherwise.
+ */
   getAnimationState(): boolean {
     return this.hasAnimationPlayed;
   }
 
+
+  /**
+ * Retrieves the completion status of the introduction class.
+ * @returns {boolean} True if the introduction is complete, false otherwise.
+ */
   getFinalclass(): boolean {
     return this.introCompleteStatus;
   }
 
+
+  /**
+ * Sets the animation state.
+ * @param {boolean} state - The new state of the animation.
+ */
   setAnimationState(state: boolean): void {
     this.hasAnimationPlayed = state;
   }
 
+
+  /**
+ * Sets the final class completion status.
+ * @param {boolean} state - The new completion status of the introduction.
+ */
   setFinalClass(state: boolean): void {
     this.introCompleteStatus = state;
   }
 
-  //------------------------ GoogleLogin -------------------------------------------->
+  // -------------------- GoogleLogin ------------------------------->
 
+  /**
+ * Handles the user's sign-in process via Google authentication.
+ * Invokes Firebase's signInWithPopup to authenticate and potentially creates or updates the user's data in Firestore.
+ */
   googleLogin() {
     const auth = getAuth();
     const provider = new GoogleAuthProvider();
@@ -233,6 +292,11 @@ export class loginService {
       });
   }
 
+
+  /**
+ * Processes existing user data after successful Google login.
+ * @param {QuerySnapshot} snapshot - Firestore snapshot containing the user's data.
+ */
   ifExistUser(snapshot:QuerySnapshot){
     this.currentUser = snapshot.docs[0].id;
     this.userService.userId = this.currentUser;

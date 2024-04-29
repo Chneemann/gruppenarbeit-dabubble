@@ -22,6 +22,10 @@ export class StartHeaderComponent {
 
   constructor(public loginService: loginService) {}
 
+
+  /**
+ * Initializes the component and decides whether to start animations based on the login service state.
+ */
   ngOnInit(): void {
     if (!this.loginService.getAnimationState()) {
       this.triggerAnimations();
@@ -30,6 +34,10 @@ export class StartHeaderComponent {
     }
   }
 
+
+  /**
+ * Triggers a sequence of animations with nested timeouts to manage their execution order and timing.
+ */
   triggerAnimations(): void {
     setTimeout(() => {
       this.animationStart = true; 
