@@ -26,6 +26,11 @@ export class LoginComponent {
     private renderer: Renderer2
   ) {}
 
+
+  /**
+ * Initializes the component by removing a specific class from an element after a delay.
+ * This is typically used to manage UI changes that should only take effect after the component has been displayed for a certain time.
+ */
   ngOnInit(): void {
     setTimeout(() => {
       const element = this.elRef.nativeElement.querySelector(
@@ -36,6 +41,12 @@ export class LoginComponent {
       }
     }, 4500);
   }
+
+  
+  /**
+ * Handles form submission by triggering the login process through a login service.
+ * This method would typically be called when a user submits a form associated with logging in.
+ */
   onSubmit() {
     this.loginService.login();
   }
