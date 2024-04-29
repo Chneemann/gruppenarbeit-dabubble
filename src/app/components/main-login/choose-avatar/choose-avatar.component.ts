@@ -36,6 +36,11 @@ export class ChooseAvatarComponent {
 
   constructor(public loginService: loginService) {}
 
+  
+  /**
+   * Handles file selection changes and initiates the upload of the avatar.
+   * @param event The DOM event containing the file selection.
+   */
   onFileChange(event: Event) {
     const inputElement = event.target as HTMLInputElement;
 
@@ -56,6 +61,11 @@ export class ChooseAvatarComponent {
     }
   }
 
+
+  /**
+   * Uploads the selected file to Firebase Storage.
+   * @param file The file to be uploaded.
+   */
   uploadFile(file: File) {
     const storage = getStorage();
     const storageRef = ref(storage, 'avatars/' + file.name);
@@ -67,18 +77,23 @@ export class ChooseAvatarComponent {
             this.avatarSrc = url;
             console.log('bild url hier', url);
             this.loginService.getAvatarUrl(url);
-          }).catch((error) =>
+          })
+          .catch((error) =>
             console.error('Fehler beim Abrufen der Download-URL:', error)
-          );}).catch((error) => {
+          );
+      })
+      .catch((error) => {
         console.error('Fehler beim Hochladen:', error);
-      });}
+      });
+  }
 
+
+  /**
+   * Selects an avatar from the list of predefined avatars.
+   * @param index Index of the chosen avatar in the avatarImages list.
+   */
   chooseExistAvatar(index: number) {
     this.avatarSrc = this.avatarImages[index];
     this.loginService.getAvatarUrl(this.avatarSrc);
-    this.read();
-  }
-  read() {
-    console.log('das ist drin', this.avatarSrc);
   }
 }
