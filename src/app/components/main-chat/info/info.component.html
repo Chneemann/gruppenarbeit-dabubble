@@ -1,4 +1,5 @@
 <section>
+  <!-- Channel -->
   @if (getChannel(currentChannel).length > 0) {
   <div class="headline"># {{ getChannel(currentChannel)[0].name }}</div>
   <p>
@@ -12,8 +13,28 @@
     <span>#{{ getChannel(currentChannel)[0].name }}</span
     >.
   </p>
-  } @if (getPrivatChannel(currentChannel).length > 0) { @if
-  (getPrivatChannel(currentChannel)[0].talkToUserId == userService.userId) {
+  <!-- Privat Chat -->
+  } @if (getPrivatChannel(currentChannel).length > 0) {
+  <!-- My Chat -->
+  @if (getPrivatChannel(currentChannel)[0].talkToUserId == userService.userId &&
+  getPrivatChannel(currentChannel)[0].creatorId == userService.userId) {
+  <div class="headlinePrvChat">
+    @for (user of getChatUsers(getPrivatChannel(currentChannel)[0].creatorId);
+    track user) {
+    <div class="imgBoxPrvChat">
+      <img class="imgUserPrvChat" src="{{ user.avatar }}" />
+    </div>
+    <p>{{ user.firstName }} {{ user.lastName }} (Du)</p>
+    }
+  </div>
+  <p>
+    Dieser Raum ist nur für dich da. Mache dir Notizen, liste deine To-dos auf
+    oder bewahre Links und Dateien griffbereit auf. Du kannst hier auch gerne
+    Dinge mit dir selbst besprechen.
+  </p>
+  } @else {
+  <!-- Privat Chat (creatorId) -->
+  @if (getPrivatChannel(currentChannel)[0].talkToUserId == userService.userId) {
   <div class="headlinePrvChat">
     @for (user of getChatUsers(getPrivatChannel(currentChannel)[0].creatorId);
     track user) {
@@ -31,6 +52,22 @@
     } und dir statt.
   </p>
   } @else {
-  {{ getChatUsers(getPrivatChannel(currentChannel)[0].talkToUserId) }}
-  } }
+  <!-- Privat Chat (talkToUserId) -->
+  <div class="headlinePrvChat">
+    @for (user of
+    getChatUsers(getPrivatChannel(currentChannel)[0].talkToUserId); track user)
+    {
+    <div class="imgBoxPrvChat">
+      <img class="imgUserPrvChat" src="{{ user.avatar }}" />
+    </div>
+    <p>{{ user.firstName }} {{ user.lastName }}</p>
+    }
+  </div>
+  <p>
+    Diese Unterhaltung findet nur zwischen @for (user of
+    getChatUsers(getPrivatChannel(currentChannel)[0].creatorId); track user) {
+    <span>&commat;{{ user.firstName }}{{ user.lastName }}</span>
+    } und dir statt.
+  </p>
+  } } }
 </section>
