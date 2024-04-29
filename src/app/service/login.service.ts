@@ -1,6 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import {
   Firestore,
+  QuerySnapshot,
   addDoc,
   collection,
   doc,
@@ -42,54 +43,54 @@ export class loginService {
   // -------------------- login start seite ------------------------------->
   login() {
     const auth = getAuth();
-    if (!this.email || !this.password) {
-      this.errorMessage = 'E-Mail und Passwort dürfen nicht leer sein.';
-      return;
-    }
-
     signInWithEmailAndPassword(auth, this.email, this.password)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log('Eingeloggt als:', user);
-
         const usersCollection = collection(this.firestore, 'users');
         const querySnapshot = query(
           usersCollection,
           where('uid', '==', user.uid)
         );
         getDocs(querySnapshot)
-          .then((snapshot) => {
-            if (snapshot.docs.length > 0) {
-              const userDoc = snapshot.docs[0];
-              this.currentUser = userDoc.id;
-              console.log('UserLOGI', this.currentUser);
-              this.userService.userId = this.currentUser;
-              this.updateUserOnlineStatus(this.currentUser);
-              this.router.navigate([`/main`]);
-            } else {
-              console.info('Kein zugehöriges Benutzerdokument gefunden.');
-            }
-          })
+          .then((snapshot) => this.userDocument(snapshot))
           .catch((error) => {
-            console.info('Fehler beim Abrufen des Benutzerdokuments:', error);
+            console.error('Fehler beim Abrufen des Benutzerdokuments:', error);
           });
       })
       .catch((error) => {
         const errorCode = error.code;
-        switch (errorCode) {
-          case 'auth/invalid-credential':
-            this.errorMessage =
-              '*Ungültige Anmeldeinformationen. Bitte überprüfen Sie Ihre Eingaben.';
-            break;
-          case 'auth/too-many-requests':
-            this.errorMessage =
-              '*Der Zugriff auf dieses Konto wurde aufgrund zahlreicher fehlgeschlagener Anmeldeversuche vorübergehend deaktiviert.';
-            break;
-          default:
-            this.errorMessage = '*Bitte Überprüfe deine Eingaben.';
-            break;
-        }
+        this.switchCase(errorCode);
       });
+  }
+
+  userDocument(snapshot: QuerySnapshot) {
+    {
+      if (snapshot.docs.length > 0) {
+        const userDoc = snapshot.docs[0];
+        this.currentUser = userDoc.id;
+        this.userService.userId = this.currentUser;
+        this.updateUserOnlineStatus(this.currentUser);
+        this.router.navigate([`/main`]);
+      } else {
+        console.error('Kein zugehöriges Benutzerdokument gefunden.');
+      }
+    }
+  }
+
+  switchCase(errorCode: string) {
+    switch (errorCode) {
+      case 'auth/invalid-credential':
+        this.errorMessage =
+          '*Ungültige Anmeldeinformationen. Bitte überprüfen Sie Ihre Eingaben.';
+        break;
+      case 'auth/too-many-requests':
+        this.errorMessage =
+          '*Der Zugriff auf dieses Konto wurde aufgrund zahlreicher fehlgeschlagener Anmeldeversuche vorübergehend deaktiviert.';
+        break;
+      default:
+        this.errorMessage = '*Bitte Überprüfe deine Eingaben.';
+        break;
+    }
   }
 
   updateUserOnlineStatus(userId: string) {
@@ -99,37 +100,37 @@ export class loginService {
     };
     updateDoc(userDocRef, updates)
       .then(() => {
-        console.log(`Status ${updates}`);
+        console.error();
       })
       .catch((error) => {
-        console.error('Failed to update status:', error);
+        console.error(error);
       });
   }
 
   guestLogin() {
     const auth = getAuth();
-    const email = 'test@test.de'; 
-    const password = '123456'; 
-    const userId = '5MgE6lBoxPgDvnLqr3Ik';
+    const email = 'guest@guestaccount.com';
+    const password = 'guest@guestaccount.com';
+    const userId = 'JX5JxxPx0sdjEPHCs5F9';
 
     signInWithEmailAndPassword(auth, email, password)
-    .then(() => {
+      .then(() => {
         this.userService.userId = userId;
         this.updateUserOnlineStatus(userId);
-         this.router.navigate(['/main']);
-    })
-    .catch((error) => {
-        console.error('Fehler bei der Gastanmeldung:', error);
-        this.errorMessage = 'Fehler bei der Gastanmeldung. Bitte versuchen Sie es später erneut.';
-    });
-}
+        this.router.navigate(['/main']);
+      })
+      .catch((error) => {
+        console.error(error);
+        this.errorMessage =
+          'Fehler bei der Gastanmeldung. Bitte versuchen Sie es später erneut.';
+      });
+  }
   // -------------------- register ------------------------------->
 
   register() {
     const auth = getAuth();
     createUserWithEmailAndPassword(auth, this.email, this.password)
       .then((userCredential) => {
-        // erfolgreiche registrierung
         const user = userCredential.user;
 
         const userDataToSave: User = {
@@ -142,10 +143,9 @@ export class loginService {
         };
 
         this.createUserInFirestore(userDataToSave);
-        console.error('Registration error:', user.uid);
       })
       .catch((error) => {
-        console.error('Registration error:', error);
+        console.error(error);
       });
   }
 
@@ -158,19 +158,17 @@ export class loginService {
       avatar: user.avatar || '/assets/img/user-icons/guest.svg',
       status: true,
     };
-
     const usersCollection = collection(this.firestore, 'users');
     addDoc(usersCollection, userDataToSave)
       .then((docRef) => {
-        console.log('User successfully added to Firestore with ID:', docRef.id);
         this.currentUser = docRef.id;
         this.userService.userId = this.currentUser;
         this.router.navigate([`/main`]);
       })
       .catch((error) => {
-        console.error('Error adding user to Firestore:', error);
+        console.error(error);
       });
-  }
+    }
 
   // -------------------- choose avatar ------------------------------->
 
@@ -178,9 +176,11 @@ export class loginService {
     return (this.avatar = url);
   }
   // -------------------- animation login------------------------------->
+
   getAnimationState(): boolean {
     return this.hasAnimationPlayed;
   }
+
   getFinalclass(): boolean {
     return this.introCompleteStatus;
   }
@@ -188,9 +188,11 @@ export class loginService {
   setAnimationState(state: boolean): void {
     this.hasAnimationPlayed = state;
   }
+
   setFinalClass(state: boolean): void {
     this.introCompleteStatus = state;
   }
+
   //------------------------ GoogleLogin -------------------------------------------->
 
   googleLogin() {
@@ -200,14 +202,6 @@ export class loginService {
     signInWithPopup(auth, provider)
       .then((result) => {
         const user = result.user;
-        console.log(
-          'Google User: ',
-          user.displayName,
-          user.email,
-          user.photoURL
-        );
-
-        // existiert der benutzer prüfen
         const usersCollection = collection(this.firestore, 'users');
         const querySnapshot = query(
           usersCollection,
@@ -215,7 +209,6 @@ export class loginService {
         );
         getDocs(querySnapshot).then((snapshot) => {
           if (snapshot.empty) {
-            // wenn der nicht da ist, erstellen
             this.createUserInFirestore({
               uid: user.uid,
               email: user.email || 'leer@gmail.com',
@@ -229,15 +222,18 @@ export class loginService {
               status: true,
             });
           } else {
-            // wen benutzer schon da ist weiterleiten
-            this.currentUser = snapshot.docs[0].id;
-            this.userService.userId = this.currentUser;
-            this.router.navigate([`/main`]);
+            this.ifExistUser(snapshot)
           }
         });
       })
       .catch((error) => {
-        console.error('Google login error:', error);
+        console.error(error);
       });
+  }
+
+  ifExistUser(snapshot:QuerySnapshot){
+    this.currentUser = snapshot.docs[0].id;
+    this.userService.userId = this.currentUser;
+    this.router.navigate([`/main`]);
   }
 }
