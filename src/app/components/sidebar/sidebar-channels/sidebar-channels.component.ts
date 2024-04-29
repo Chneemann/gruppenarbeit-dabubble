@@ -48,7 +48,7 @@ export class SidebarChannelsComponent {
     const checkIfUserIsAMember = this.channelService.allChannels.some(channel => channel.addedUser.includes(this.userService.userId));
 
     if(checkIfUserIsAMember){
-      const checkIfUserIsAMember = this.channelService.allChannels.filter(channel => channel.addedUser.includes(this.userService.userId))
+      const checkIfUserIsAMember = this.channelService.allChannels.filter(channel => channel.addedUser.includes(this.userService.userId));
       return checkIfUserIsAMember;
     }
     return [];

@@ -23,7 +23,11 @@
         <img
           src="assets/img/{{ isOnline ? 'onlineRing.svg' : 'offlineRing.svg' }}"
         />
-        <p [ngClass]="{ fontColorGreen: isOnline }">Aktiv</p>
+        @if (isOnline) {
+          <p class="fontColorGreen">Aktiv</p>
+          } @else {
+            <p>Offline</p>
+          }
       </div>
 
       <div class="emailBox">

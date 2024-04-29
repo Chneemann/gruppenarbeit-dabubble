@@ -6,11 +6,12 @@ import { User } from '../../../interface/user.interface';
 import { FormsModule } from '@angular/forms';
 import { ChannleService } from '../../../service/channle.service';
 import { UserService } from '../../../service/user.service';
+import { OpenSendPrvMessageWindowComponent } from './open-send-prv-message-window/open-send-prv-message-window.component';
 
 @Component({
   selector: 'app-show-channel-member',
   standalone: true,
-  imports: [CommonModule, SmallBtnComponent, FormsModule],
+  imports: [CommonModule, SmallBtnComponent, FormsModule, OpenSendPrvMessageWindowComponent],
   templateUrl: './show-channel-member.component.html',
   styleUrl: './show-channel-member.component.scss',
 })
@@ -22,6 +23,8 @@ export class ShowChannelMemberComponent {
   getSelectedUsers: User[] = [];
   selectedUsers: string[] = [];
   userIsSelected: boolean = false;
+  openUserWindowBoolean: boolean = false;
+  user: User[] = [];
 
   @Input() getFiltertUsers!: User[];
   @Input() currentChannel!: string;
@@ -106,6 +109,16 @@ export class ShowChannelMemberComponent {
     this.closeChannelMemberWindow();
   }
 
+
+  openUserWindow(user: User){
+    this.user = [user];
+    this.openUserWindowBoolean = !this.openUserWindowBoolean;
+  }
+
+
+  changeOpenUserWindowBoolean(value: boolean){
+    this.openUserWindowBoolean = value;
+  }
 
   resetValues(){
    this.userName = '';

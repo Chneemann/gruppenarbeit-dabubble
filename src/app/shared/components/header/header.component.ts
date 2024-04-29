@@ -57,7 +57,6 @@ export class HeaderComponent {
 
   filterAllInfo(inputValue: string) {
     this.toggleBoolean.openSearchWindowHead = true;
-    // event.stopPropagation;
     const getInputValue = inputValue.toLowerCase().trim();
     this.filterUsersChannelsChats(getInputValue);
   

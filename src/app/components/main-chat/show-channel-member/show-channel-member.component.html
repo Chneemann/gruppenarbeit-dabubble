@@ -15,7 +15,7 @@
     </div>
     <div class="positionOfAllUsersInBox">
       @for(user of getFiltertUsers; track user){
-      <div class="user">
+      <div class="user" (click)="openUserWindow(user)">
         <div class="positionImgs">
           <img src="{{ user.avatar }}" class="avatarImg" />
           <img src="assets/img/onlineRing.svg" class="onlineImg" />
@@ -109,3 +109,9 @@
   </div>
   }
 </section>
+<app-open-send-prv-message-window
+  [ngClass]="{dBlock: openUserWindowBoolean, dNone: !openUserWindowBoolean}"
+  [user]="user"
+  [openUserWindowBoolean]="openUserWindowBoolean"
+  (closeUserWondow)="changeOpenUserWindowBoolean($event)"
+></app-open-send-prv-message-window>
