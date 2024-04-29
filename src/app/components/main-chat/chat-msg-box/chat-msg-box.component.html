@@ -17,7 +17,7 @@
         (click)="deleteFile(file)"
       />
     </div>
-    }
+    } 
     <input
       type="file"
       #fileInput
@@ -58,6 +58,10 @@
         [btnBgHoverColor]="'#edeefe'"
         (click)="targetChatUser()"
       ></app-small-btn>
+      @if(downloadFilesService.uploadFiles.length >= 5){
+        <p [ngClass]="{ 'showWanrningNotice': downloadFilesService.uploadFiles.length >= 5 }"
+        style="color: red;">Maximum number of files is 5.</p>
+      }
     </div>
     <img
       src="assets/img/sendIcon.svg"

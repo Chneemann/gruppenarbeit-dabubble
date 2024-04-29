@@ -8,7 +8,6 @@ import { UserService } from '../../../service/user.service';
 import { EmojiPickerComponent } from '../../../shared/components/emoji-picker/emoji-picker.component';
 import { SmallBtnComponent } from '../../../shared/components/small-btn/small-btn.component';
 import { ChatService } from '../../../service/chat.service';
-import { ChannleService } from '../../../service/channle.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -39,10 +38,8 @@ export class ChatMsgBoxComponent {
   isEmojiPickerVisible: boolean | undefined;
   currentChetValue: string = '';
   @Input() currentChannel: string = '';
-  base64String: any = '';
-  currentChangedFile: any = [];
-  currentAnswer: any;
-  test: any;
+  fileAmount: boolean = false;
+
 
   constructor(
     private route: Router,
@@ -52,21 +49,26 @@ export class ChatMsgBoxComponent {
     private chatService: ChatService
   ) {}
 
+
   emojiOutputEmitter($event: any) {
     this.addEmoji($event);
   }
 
+
   onFileChange(event: any) {
-    this.currentFiles = event.target.files;
-    this.hasFile = this.currentFiles!.length > 0;
-    if (this.currentFiles) {
-      for (let i = 0; i < this.currentFiles.length; i++) {
-        const fileInfo = this.currentFiles[i];
-        this.downloadFilesService.uploadFiles.push(fileInfo);
-        console.log(this.downloadFilesService.uploadFiles);
-      }
+    console.log('this.downloadFilesService.uploadFiles.length', this.downloadFilesService.uploadFiles.length);
+    if (this.downloadFilesService.uploadFiles.length <= 5) {
+      this.currentFiles = event.target.files;
+      this.hasFile = this.currentFiles!.length > 0;
+      if (this.currentFiles) {
+        for (let i = 0; i < this.currentFiles.length; i++) {
+          const fileInfo = this.currentFiles[i];
+          this.downloadFilesService.uploadFiles.push(fileInfo);
+        }
+      } 
     }
   }
+
 
   checkIcon(fileInfo: any) {
     if (fileInfo.type == 'audio/mpeg') {
@@ -82,14 +84,15 @@ export class ChatMsgBoxComponent {
     }
   }
 
+
   deleteFile(file: File) {
     const index = this.downloadFilesService.uploadFiles.indexOf(file);
     if (index !== -1) {
       this.downloadFilesService.uploadFiles.splice(index, 1);
       this.hasFile = this.downloadFilesService.uploadFiles.length > 0;
     }
-    console.log(this.downloadFilesService.uploadFiles); ///------------------------------------------------------------
   }
+
 
   showCurrentFile(file: File) {
     const blob = new Blob([file], { type: file.type });
@@ -102,11 +105,14 @@ export class ChatMsgBoxComponent {
     this.isEmojiPickerVisible = false;
   }
 
+
   toggleEmojiPicker() {
     this.isEmojiPickerVisible = !this.isEmojiPickerVisible;
   }
 
+
   targetChatUser() {}
+
 
   async sendMessage() {
     if (this.currentChannel) {

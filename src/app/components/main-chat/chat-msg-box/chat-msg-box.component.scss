@@ -106,3 +106,12 @@ app-emoji-picker {
   width: 100vw;
   height: 100vh;
 }
+
+.showWanrningNotice{
+  animation: shwoWN 0.3s ease-in-out;
+}
+
+@keyframes shwoWN {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
