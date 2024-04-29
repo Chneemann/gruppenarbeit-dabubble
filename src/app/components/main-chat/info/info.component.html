@@ -1,16 +1,36 @@
 <section>
-  @if (getChannelName(currentChannel).length > 0) {
-  <div class="headline"># {{ getChannelName(currentChannel)[0].name }}</div>
+  @if (getChannel(currentChannel).length > 0) {
+  <div class="headline"># {{ getChannel(currentChannel)[0].name }}</div>
   <p>
     Der Channel wurde von @for (user of
-    getChatUsers(getChannelName(currentChannel)[0].creator); track user) {
+    getChatUsers(getChannel(currentChannel)[0].creator); track user) {
     {{ user.firstName }}
     {{ user.lastName }}
     } am
-    {{ timeConverter(getChannelName(currentChannel)[0].createdDate) }} erstellt.
-    Das ist der Anfang des Channels
-    <span>#{{ getChannelName(currentChannel)[0].name }}</span
+    {{ timeConverter(getChannel(currentChannel)[0].createdDate) }} erstellt. Das
+    ist der Anfang des Channels
+    <span>#{{ getChannel(currentChannel)[0].name }}</span
     >.
   </p>
-  }
+  } @if (getPrivatChannel(currentChannel).length > 0) { @if
+  (getPrivatChannel(currentChannel)[0].talkToUserId == userService.userId) {
+  <div class="headlinePrvChat">
+    @for (user of getChatUsers(getPrivatChannel(currentChannel)[0].creatorId);
+    track user) {
+    <div class="imgBoxPrvChat">
+      <img class="imgUserPrvChat" src="{{ user.avatar }}" />
+    </div>
+    <p>{{ user.firstName }} {{ user.lastName }}</p>
+    }
+  </div>
+  <p>
+    Diese Unterhaltung findet nur zwischen @for (user of
+    getChatUsers(getPrivatChannel(currentChannel)[0].talkToUserId); track user)
+    {
+    <span>&commat;{{ user.firstName }}{{ user.lastName }}</span>
+    } und dir statt.
+  </p>
+  } @else {
+  {{ getChatUsers(getPrivatChannel(currentChannel)[0].talkToUserId) }}
+  } }
 </section>

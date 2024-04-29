@@ -14,7 +14,7 @@ export class InfoComponent {
 
   constructor(
     private channelService: ChannleService,
-    private userService: UserService
+    public userService: UserService
   ) {}
 
   getChatUsers(chatId: string) {
@@ -24,8 +24,15 @@ export class InfoComponent {
     return filteredTasks;
   }
 
-  getChannelName(chatId: string) {
+  getChannel(chatId: string) {
     const filteredTasks = this.channelService.allChannels.filter(
+      (channel) => channel.id == chatId
+    );
+    return filteredTasks;
+  }
+
+  getPrivatChannel(chatId: string) {
+    const filteredTasks = this.channelService.allPrvChannels.filter(
       (channel) => channel.id == chatId
     );
     return filteredTasks;
