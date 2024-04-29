@@ -18,7 +18,10 @@
       <div class="user" (click)="openUserWindow(user)">
         <div class="positionImgs">
           <img src="{{ user.avatar }}" class="avatarImg" />
-          <img src="assets/img/onlineRing.svg" class="onlineImg" />
+          <img
+            src="assets/img/{{ user.status ? 'onlineRing.svg' : 'offlineRing.svg' }}"
+            class="onlineIcon"
+          />
         </div>
         <h1>{{ user.firstName }} {{ user.lastName }}</h1>
       </div>
@@ -79,7 +82,10 @@
           <div class="userBox" (click)="chooseUser(user)">
             <div class="positionImgsBox">
               <img src="{{ user.avatar }}" class="addAvatarImg" />
-              <img src="assets/img/onlineRing.svg" class="addOnlineImg" />
+              <img
+                src="assets/img/{{ user.status ? 'onlineRing.svg' : 'offlineRing.svg' }}"
+                class="onlineIcon"
+              />
             </div>
             <h1>{{ user.firstName }} {{ user.lastName }}</h1>
           </div>

@@ -3,49 +3,64 @@
   directMessage; let i = $index) {
   <!-- PRIVAT CHAT (Message Yourself) -->
   @if (directMessage.creatorId === this.userService.userId &&
-  directMessage.talkToUserId === this.userService.userId && i === 0) { @for
-  (user of getChatUsers(directMessage.creatorId); track user){
-  <div
-    class="user"
-    routerLink="/main/{{ directMessage.id }}"
-    [ngClass]="{
-      active: currentChannel == directMessage.id
-    }"
-  >
-    <img src="{{ user.avatar }}" alt="" />
-    <div class="dot"></div>
+  directMessage.talkToUserId === this.userService.userId && i === 0) { 
+    @for (user of getChatUsers(directMessage.creatorId); track user){
+    <div
+      class="user"
+      routerLink="/main/{{ directMessage.id }}"
+      [ngClass]="{
+        active: currentChannel == directMessage.id
+      }"
+    >
+    <div class="imgBox">
+      <img src="{{ user.avatar }}" class="userImg" />
+      <img
+        src="assets/img/{{ user.status ? 'onlineRing.svg' : 'offlineRing.svg' }}"
+        class="onlineIcon"
+      />
+    </div>
     <p>{{ user.firstName }} {{ user.lastName }} (Du)</p>
   </div>
   } }
   <!-- PRIVAT CHAT (creatorId) -->
   @if (directMessage.talkToUserId === this.userService.userId &&
-  directMessage.creatorId !== this.userService.userId) { @for (user of
-  getChatUsers(directMessage.creatorId); track user){
-  <div
-    class="user"
-    routerLink="/main/{{ directMessage.id }}"
-    [ngClass]="{
-      active: currentChannel == directMessage.id
-    }"
-  >
-    <img src="{{ user.avatar }}" alt="" />
-    <div class="dot"></div>
+  directMessage.creatorId !== this.userService.userId) { 
+    @for (user of getChatUsers(directMessage.creatorId); track user){
+    <div
+      class="user"
+      routerLink="/main/{{ directMessage.id }}"
+      [ngClass]="{
+        active: currentChannel == directMessage.id
+      }"
+    >
+    <div class="imgBox">
+      <img src="{{ user.avatar }}" class="userImg" />
+      <img
+        src="assets/img/{{ user.status ? 'onlineRing.svg' : 'offlineRing.svg' }}"
+        class="onlineIcon"
+      />
+    </div>
     <p>{{ user.firstName }} {{ user.lastName }}</p>
   </div>
   } }
   <!-- PRIVAT CHAT (talkToUserId) -->
   @if (directMessage.creatorId === this.userService.userId &&
-  directMessage.talkToUserId !== this.userService.userId) { @for (user of
-  getChatUsers(directMessage.talkToUserId); track user){
-  <div
-    class="user"
-    routerLink="/main/{{ directMessage.id }}"
-    [ngClass]="{
-      active: currentChannel == directMessage.id
-    }"
-  >
-    <img src="{{ user.avatar }}" alt="" />
-    <div class="dot"></div>
+  directMessage.talkToUserId !== this.userService.userId) { 
+    @for (user of getChatUsers(directMessage.talkToUserId); track user){
+    <div
+      class="user"
+      routerLink="/main/{{ directMessage.id }}"
+      [ngClass]="{
+        active: currentChannel == directMessage.id
+      }"
+    >
+    <div class="imgBox">
+      <img src="{{ user.avatar }}" class="userImg" />
+      <img
+        src="assets/img/{{ user.status ? 'onlineRing.svg' : 'offlineRing.svg' }}"
+        class="onlineIcon"
+      />
+    </div>
     <p>{{ user.firstName }} {{ user.lastName }}</p>
   </div>
   } } }

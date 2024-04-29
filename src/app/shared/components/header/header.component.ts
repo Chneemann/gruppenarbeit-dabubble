@@ -42,18 +42,23 @@ export class HeaderComponent {
     private route: Router
   ) {}
 
+  
   showSideMenu() {
     this.openMenu = !this.openMenu;
   }
+
 
   showProfile() {
     this.showCurrentProfile = true;
     this.closeProfil = false;
   }
 
+
   updateTestValue(value: boolean) {
     this.showCurrentProfile = value;
   }
+
+
 
   filterAllInfo(inputValue: string) {
     this.toggleBoolean.openSearchWindowHead = true;

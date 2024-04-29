@@ -24,19 +24,21 @@
   @if (toggleBoolean.openSearchWindow) {
   <!-----search suggestions----->
   <div class="filteredElementWindow">
-    @if (firstLetter == '#') { @for (i of channelService.allChannels; track
-    $index) {
-    <h3 class="user" (click)="chooseElement(i)">#{{ i.name }}</h3>
-    } } @else if (firstLetter == '@') { @for (i of userService.allUsers; track
-    $index) {
-    <div class="user" (click)="chooseElement(i)">
-      <div class="positionImgs">
-        <img src="{{ i.avatar }}" class="avatarImg" />
-        <img src="assets/img/onlineRing.svg" class="onlineImg" />
+    @if (firstLetter == '#') { 
+      @for (i of channelService.allChannels; track $index) {
+        <h3 class="user" (click)="chooseElement(i)">#{{ i.name }}</h3>
+      } 
+    } @else if (firstLetter == '@') {
+       @for (i of userService.allUsers; track $index) {
+      <div class="user" (click)="chooseElement(i)">
+        <div class="positionImgs">
+          <img src="{{ i.avatar }}" class="avatarImg" />
+          <img src="assets/img/{{ i.status ? 'onlineRing.svg' : 'offlineRing.svg' }}" class="onlineIconFilterWindow"/>
+        </div>
+        <h3>{{ i.firstName }} {{ i.lastName }}</h3>
       </div>
-      <h3>{{ i.firstName }} {{ i.lastName }}</h3>
-    </div>
-    } }
+      } 
+    }
   </div>
   } } @else { @if(checkCurrentChannel(currentChannel) == 'allPrvChannels'){
   <!------------shwo prv chat----------->
@@ -49,6 +51,10 @@
           class="imgUserPrvChat"
           src="{{ filterUser(user.creatorId)[i].avatar }}"
         />
+        <img
+        src="assets/img/{{ filterUser(user.creatorId)[i].status ? 'onlineRing.svg' : 'offlineRing.svg' }}"
+        class="onlineIcon"
+      />
       </div>
       <p>
         {{ filterUser(user.creatorId)[i].firstName }}

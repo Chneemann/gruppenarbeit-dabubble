@@ -27,7 +27,7 @@ export class EditUserDetailsComponent {
 
 
   closeEditUserWindow(){
-    this.openEditUserValue = !this.openEditUserValue;
+    this.openEditUserValue = false;
     this.closeEditWindow.emit(this.openEditUserValue);
     this.nameValue ='';
     this.emailValue ='';

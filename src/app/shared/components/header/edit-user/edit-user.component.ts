@@ -36,6 +36,7 @@ export class EditUserComponent {
   closeCurrentProfile(){
     this.showCurrentProfile = false;
     this.testValueChange.emit(this.showCurrentProfile);
+    this.openEditUserValue = false;
   }
 
 
