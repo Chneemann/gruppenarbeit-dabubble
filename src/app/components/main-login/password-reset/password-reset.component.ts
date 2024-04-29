@@ -35,6 +35,10 @@ export class PasswordResetComponent {
     private queryParamsSubscription: Subscription
   ) {}
 
+
+/**
+ * Initializes the component by subscribing to query parameters.
+ */
   ngOnInit(): void {
     this.queryParamsSubscription = this.route.queryParams.subscribe(
       (params) => {
@@ -43,10 +47,20 @@ export class PasswordResetComponent {
     );
   }
 
+
+/**
+ * Handles the submission of the password reset form.
+ * @param ngForm The form data of the password reset form.
+ */
   onSubmit(ngForm: NgForm): void {
     this.resetPassword(ngForm);
   }
 
+
+/**
+ * Performs the password reset operation using Firebase Authentication.
+ * @param ngForm The form data of the password reset form.
+ */
   resetPassword(ngForm: NgForm): void {
     const auth = getAuth();
     const newPassword = this.passwordRepeat;
@@ -60,10 +74,19 @@ export class PasswordResetComponent {
       });
   }
 
+
+  /**
+ * Cleans up the component by unsubscribing from the query parameters subscription.
+ */
   ngOnDestroy(): void {
     this.queryParamsSubscription.unsubscribe();
   }
 
+
+  /**
+ * Checks if the entered passwords match.
+ * @returns true if the password and repeated password are the same.
+ */
   passwordsMatch(): boolean {
     return this.password === this.passwordRepeat;
   }

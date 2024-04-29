@@ -35,6 +35,11 @@ export class RegisterComponent {
     this.currentImage = this.defaultImage;
   }
 
+
+  /**
+ * Handles the form submission, extracting first and last names from a full name and navigating to the avatar page.
+ * @param ngForm The Angular form object representing the form submission.
+ */
   onSubmit(ngForm: NgForm) {
     const names = this.loginService.name.split(' ');
     this.loginService.firstName = names[0];
@@ -42,19 +47,36 @@ export class RegisterComponent {
     this.router.navigate(['/avatar']);
   }
 
+
+  /**
+ * Toggles a checkbox state and updates the corresponding image based on the new state.
+ */
   toggleCheckbox() {
     this.isChecked = !this.isChecked;
     this.updateImage();
   }
 
+
+  /**
+ * Updates the current image to a hover state image when the mouse is over the related component.
+ */
   onMouseOver() {
     this.updateImage(true);
   }
 
+
+  /**
+ * Reverts the current image to its default state when the mouse is out of the related component.
+ */
   onMouseOut() {
     this.updateImage();
   }
 
+
+  /**
+ * Updates the image displayed based on the checkbox state and hover state.
+ * @param isHovering Boolean indicating if the mouse is hovering over the image component (default is false).
+ */
   updateImage(isHovering: boolean = false) {
     if (this.isChecked) {
       this.currentImage = isHovering
