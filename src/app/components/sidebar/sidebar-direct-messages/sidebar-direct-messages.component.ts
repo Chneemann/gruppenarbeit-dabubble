@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { SidebarDirectMessagesUserComponent } from '../sidebar-direct-messages-user/sidebar-direct-messages-user.component';
 import { CommonModule } from '@angular/common';
 
@@ -10,9 +10,11 @@ import { CommonModule } from '@angular/common';
   styleUrl: './sidebar-direct-messages.component.scss',
 })
 export class SidebarDirectMessagesComponent {
+  @Input() currentChannel: string = '';
+
   minimizeUsers: boolean = false;
 
-  minimizeAllUsers(){
+  minimizeAllUsers() {
     this.minimizeUsers = !this.minimizeUsers;
   }
 }

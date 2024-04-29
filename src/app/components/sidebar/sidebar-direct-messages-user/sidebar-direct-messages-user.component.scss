@@ -25,10 +25,16 @@ section {
     padding: 0 12px 0 18px;
     text-align: left;
   }
-  &:hover {
+  &:hover,
+  &:active {
     background-color: #edeefe;
     border-radius: 36px;
   }
+}
+
+.active {
+  background-color: #edeefe;
+  border-radius: 36px;
 }
 
 .dot {

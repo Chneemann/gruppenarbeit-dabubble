@@ -16,9 +16,13 @@
   </div>
 
   <div class="channels">
-    <app-sidebar-channels></app-sidebar-channels>
+    <app-sidebar-channels
+      [currentChannel]="currentChannel"
+    ></app-sidebar-channels>
   </div>
   <div class="directMessages">
-    <app-sidebar-direct-messages></app-sidebar-direct-messages>
+    <app-sidebar-direct-messages
+      [currentChannel]="currentChannel"
+    ></app-sidebar-direct-messages>
   </div>
 </section>

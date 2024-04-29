@@ -1,10 +1,18 @@
 <section>
   <div class="headline" (click)="minimizeAllUsers()">
     <div class="headlineText">
-      <img src="assets/img/sidebar/{{minimizeUsers? 'arrow_right.png' : 'arrow-drop-down.svg'}}" class="arrowImg" />
+      <img
+        src="assets/img/sidebar/{{
+          minimizeUsers ? 'arrow_right.png' : 'arrow-drop-down.svg'
+        }}"
+        class="arrowImg"
+      />
       <img src="assets/img/sidebar/account-circle.svg" alt="" />
       <p>Direct messages</p>
     </div>
   </div>
-  <app-sidebar-direct-messages-user [ngClass]="{'hideAllUsers': minimizeUsers, 'showAllUsers': !minimizeUsers}" ></app-sidebar-direct-messages-user>
+  <app-sidebar-direct-messages-user
+    [currentChannel]="currentChannel"
+    [ngClass]="{ hideAllUsers: minimizeUsers, showAllUsers: !minimizeUsers }"
+  ></app-sidebar-direct-messages-user>
 </section>

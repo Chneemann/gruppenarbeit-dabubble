@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { UserService } from '../../../service/user.service';
 import { CommonModule } from '@angular/common';
 import { ChannleService } from '../../../service/channle.service';
@@ -13,6 +13,8 @@ import { RouterLink } from '@angular/router';
   styleUrl: './sidebar-direct-messages-user.component.scss',
 })
 export class SidebarDirectMessagesUserComponent {
+  @Input() currentChannel: string = '';
+
   constructor(
     public userService: UserService,
     private channelService: ChannleService
@@ -32,8 +34,7 @@ export class SidebarDirectMessagesUserComponent {
     const talkToUserChannels = this.channelService.allPrvChannels.filter(
       (user) => user.talkToUserId === userId
     );
-    
+
     return creatorChannels.concat(talkToUserChannels);
   }
-  
 }

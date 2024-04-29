@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ChannleService } from '../../../service/channle.service';
 import { Channel } from '../../../interface/channel.interface';
 import { RouterLink } from '@angular/router';
@@ -23,6 +23,8 @@ import { UserService } from '../../../service/user.service';
   styleUrl: './sidebar-channels.component.scss',
 })
 export class SidebarChannelsComponent {
+  @Input() currentChannel: string = '';
+
   minimizeChannels: boolean = true;
 
   constructor(
@@ -45,14 +47,16 @@ export class SidebarChannelsComponent {
   }
 
   getChannels(): Channel[] {
-    const checkIfUserIsAMember = this.channelService.allChannels.some(channel => channel.addedUser.includes(this.userService.userId));
+    const checkIfUserIsAMember = this.channelService.allChannels.some(
+      (channel) => channel.addedUser.includes(this.userService.userId)
+    );
 
-    if(checkIfUserIsAMember){
-      const checkIfUserIsAMember = this.channelService.allChannels.filter(channel => channel.addedUser.includes(this.userService.userId));
+    if (checkIfUserIsAMember) {
+      const checkIfUserIsAMember = this.channelService.allChannels.filter(
+        (channel) => channel.addedUser.includes(this.userService.userId)
+      );
       return checkIfUserIsAMember;
     }
     return [];
   }
-
-
 }

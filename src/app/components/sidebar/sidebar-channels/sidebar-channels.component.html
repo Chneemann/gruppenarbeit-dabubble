@@ -32,6 +32,9 @@
       class="channelName"
       routerLink="/main/{{ channel.id }}"
       (click)="closeSecondaryChat()"
+      [ngClass]="{
+        active: currentChannel == channel.id
+      }"
     >
       <img src="assets/img/hashtag.svg" alt="" />
       <p>{{ channel.name }}</p>

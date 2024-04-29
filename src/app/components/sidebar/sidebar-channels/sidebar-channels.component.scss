@@ -1,4 +1,4 @@
-@import '../../../../styles.scss';
+@import "../../../../styles.scss";
 
 section {
   display: flex;
@@ -16,7 +16,7 @@ section {
   display: flex;
   align-items: center;
   cursor: pointer;
-  .arrowImg{
+  .arrowImg {
     width: 10px;
     height: 10px;
     object-fit: contain;
@@ -37,7 +37,8 @@ section {
   }
 
   &:hover {
-    filter: invert(25%) sepia(100%) saturate(1833%) hue-rotate(230deg) brightness(101%) contrast(89%);
+    filter: invert(25%) sepia(100%) saturate(1833%) hue-rotate(230deg)
+      brightness(101%) contrast(89%);
   }
 }
 
@@ -65,11 +66,17 @@ section {
       padding-right: 8px;
     }
 
-    &:hover {
+    &:hover,
+    &:focus {
       background-color: #edeefe;
       border-radius: 24px;
     }
   }
+}
+
+.active {
+  background-color: #edeefe;
+  border-radius: 24px;
 }
 
 .addChannel {
@@ -102,7 +109,8 @@ section {
   }
 
   &:hover {
-    filter: invert(25%) sepia(100%) saturate(1833%) hue-rotate(230deg) brightness(101%) contrast(89%);
+    filter: invert(25%) sepia(100%) saturate(1833%) hue-rotate(230deg)
+      brightness(101%) contrast(89%);
 
     .circle {
       img {
@@ -113,11 +121,10 @@ section {
   }
 }
 
-
 .showAllChanneld {
   animation-name: slideIn;
   overflow: auto;
-  transition: max-height 0.3s ease-in-out; 
+  transition: max-height 0.3s ease-in-out;
   max-height: 18vh;
 }
 
@@ -139,7 +146,7 @@ section {
 
 @keyframes slideOut {
   from {
-    max-height: 16vh
+    max-height: 16vh;
   }
 
   to {
