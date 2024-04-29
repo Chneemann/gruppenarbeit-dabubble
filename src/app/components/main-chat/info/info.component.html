@@ -46,8 +46,7 @@
   </div>
   <p>
     Diese Unterhaltung findet nur zwischen @for (user of
-    getChatUsers(getPrivatChannel(currentChannel)[0].talkToUserId); track user)
-    {
+    getChatUsers(getPrivatChannel(currentChannel)[0].creatorId); track user) {
     <span>&commat;{{ user.firstName }}{{ user.lastName }}</span>
     } und dir statt.
   </p>
@@ -65,8 +64,9 @@
   </div>
   <p>
     Diese Unterhaltung findet nur zwischen @for (user of
-    getChatUsers(getPrivatChannel(currentChannel)[0].creatorId); track user) {
-    <span>&commat;{{ user.firstName }}{{ user.lastName }}</span>
+    getChatUsers(getPrivatChannel(currentChannel)[0].talkToUserId); track user)
+    {
+    <span>&commat;{{ user.firstName }} {{ user.lastName }}</span>
     } und dir statt.
   </p>
   } } }
