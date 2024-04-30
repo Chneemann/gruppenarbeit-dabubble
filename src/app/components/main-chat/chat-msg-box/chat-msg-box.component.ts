@@ -38,7 +38,7 @@ export class ChatMsgBoxComponent {
   isEmojiPickerVisible: boolean | undefined;
   currentChetValue: string = '';
   @Input() currentChannel: string = '';
-  fileAmount: boolean = false;
+
 
 
   constructor(

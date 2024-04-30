@@ -57,6 +57,7 @@ export class OpenSendPrvMessageWindowComponent {
     this.getRouteToPrvChat(userId, channelExistsBoolean);
     this.closeEverything();
   }
+  
 
   getRouteToPrvChat(userId: string, channelExistsBoolean: boolean) {
     if (channelExistsBoolean) {

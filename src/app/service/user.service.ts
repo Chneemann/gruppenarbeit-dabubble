@@ -81,7 +81,7 @@ export class UserService implements OnDestroy {
     const userDocRef = doc(this.firestore, 'users', this.userId);
     const updates = {
       firstName: newFirstName,
-      lastName: newLastName,
+      lastName: newLastName || '',
       email: newEmail
     };
     updateDoc(userDocRef, updates).catch((error) => {console.error(error);});

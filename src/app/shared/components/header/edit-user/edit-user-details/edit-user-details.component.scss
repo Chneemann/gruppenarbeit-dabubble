@@ -39,6 +39,10 @@
         border-radius: 50%;
         margin: 56px;
     }
+    p{
+        color: red;
+        margin-bottom: 16px;
+    }
 }
 
 .inputBox{
@@ -64,8 +68,20 @@
     }
 }
 
+.inputDisabled{
+    width: 344px;
+    border: none;
+    background-color: rgba(34, 34, 34, 0.2588235294);
+    outline: none;
+    height: 26px;
+    border-radius: 25px;
+    padding: 8px;
+    font-size: larger;
+}
+
 .position2Btn{
     margin-bottom: 24px;
+    @include displayFlex($g: 26px);
     .cancelBtn{
         width: 120px;
         height: 48px;
@@ -83,8 +99,7 @@
     }
     .saveBtn{
         width: 120px;
-        height: 48px;
-        margin-left: 24px;
+        height: 48px;   
         background-color: #444DF2;
         border: none;
         border-radius: 25px;
@@ -105,4 +120,15 @@
     top: 0;
     left: 0;
     z-index: 1;
+}
+
+.disabledBtn {
+    background-color: #22222242;
+    border: none;
+    font-size: larger;
+    color: #fff;
+    width: 120px;
+    height: 48px;
+    border-radius: 25px;
+    font-size: larger;
 }
