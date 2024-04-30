@@ -115,3 +115,53 @@ app-emoji-picker {
   from {opacity: 0;}
   to {opacity: 1;}
 }
+
+
+.positionOfAllUsersInBox {
+  position: absolute;
+  bottom: 36px;
+  @include displayFlex($j: flex-start, $a: flex-start);
+  flex-direction: column;
+  height: 210px;
+  overflow: auto;
+  width: 240px;
+  background-color: #fff;
+  border: 1px solid #745dda;
+  border-radius: 25px;
+  border-bottom-left-radius: 0;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding: 8px;
+  .user {
+    @include displayFlex($g: 12px);
+    padding: 6px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+
+    &:hover {
+      background-color: #EDEEFE;
+      border-radius: 25px;
+    }
+
+    .positionImgs {
+      @include displayFlex($a: flex-end);
+
+      .avatarImg {
+        width: 40px;
+        height: 40px;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+
+      .onlineIcon {
+        width: 12px;
+        height: 12px;
+        margin-left: -10px;
+      }
+    }
+  }
+}
+
+.addUserBox{
+  display: flex;
+}

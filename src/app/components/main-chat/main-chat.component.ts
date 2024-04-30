@@ -38,7 +38,6 @@ export class MainChatComponent {
   openMenu: boolean = false;
   firstLetter: string = '';
   openSearchWindow: boolean = false;
-  getFiltertUsers: User[] = [];
   constructor(
     private route: Router,
     public userService: UserService,
@@ -190,11 +189,11 @@ export class MainChatComponent {
   }
 
   filterUsers(userArray: string[]) {
-    this.getFiltertUsers = [];
+    this.userService.getFiltertUsers = [];
     for (let i = 0; i < this.userService.allUsers.length; i++) {
       const currentUser = this.userService.allUsers[i];
       if (userArray.includes(currentUser.id!)) {
-        this.getFiltertUsers.push(currentUser);
+        this.userService.getFiltertUsers.push(currentUser);
       }
     }
   }

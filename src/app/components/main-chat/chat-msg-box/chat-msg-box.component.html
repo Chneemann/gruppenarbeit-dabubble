@@ -56,8 +56,26 @@
         [imgSize]="'20px'"
         [btnSize]="'32px'"
         [btnBgHoverColor]="'#edeefe'"
-        (click)="targetChatUser()"
+        (click)="targetChatUser($event)"
       ></app-small-btn>
+      <div class="filteredElementWindow">
+        @if (toggleBoolean.selectUserInMsgBox) {
+          <div class="positionOfAllUsersInBox">
+            @for(user of userService.getFiltertUsers; track user){
+            <div class="user" (click)="chooseUser(user)">
+              <div class="positionImgs">
+                <img src="{{ user.avatar }}" class="avatarImg" />
+                <img
+                  src="assets/img/{{ user.status ? 'onlineRing.svg' : 'offlineRing.svg' }}"
+                  class="onlineIcon"
+                />
+              </div>
+              <h1>{{ user.firstName }} {{ user.lastName }}</h1>
+            </div>
+            }
+          </div>
+        }
+      </div>
       @if(downloadFilesService.uploadFiles.length >= 5){
         <p [ngClass]="{ 'showWanrningNotice': downloadFilesService.uploadFiles.length >= 5 }"
         style="color: red;">Maximum number of files is 5.</p>

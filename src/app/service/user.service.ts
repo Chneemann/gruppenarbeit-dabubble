@@ -13,6 +13,7 @@ export class UserService implements OnDestroy {
 
   allUsers: User[] = [];
   getUserIDs: string[] = [];
+  getFiltertUsers: User[] = [];
   isUserLogin: boolean = true;
   userId: string = 'JX5JxxPx0sdjEPHCs5F9';
   unsubUser;

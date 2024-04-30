@@ -96,15 +96,15 @@
     <div class="addUserToChannelBox">
       @if (filterChannelForSelectedUser(currentChannel)) {
       <div class="addedUsers" (click)="openMemberWindow(false)">
-        @for(user of getFiltertUsers.slice(0, 3) ; track user) {
+        @for(user of userService.getFiltertUsers.slice(0, 3) ; track user) {
         <div class="userAvatar">
           <img src="{{ user.avatar }}" alt="" />
         </div>
         }
-        <div *ngIf="getFiltertUsers.length > 3" class="dotsImg">
+        <div *ngIf="userService.getFiltertUsers.length > 3" class="dotsImg">
           <img *ngFor="let i of [0, 1, 2]" src="assets/img/offlineRing.svg" alt="">
         </div>
-        <h3>{{ getFiltertUsers.length }}</h3>
+        <h3>{{ userService.getFiltertUsers.length }}</h3>
       </div>
       <app-small-btn
         [imgSrc]="'addPerson.svg'"
@@ -121,7 +121,7 @@
       dBlock: toggleBoolean.openChannelMemberWindow,
       dNone: !toggleBoolean.openChannelMemberWindow
     }"
-    [getFiltertUsers]="getFiltertUsers"
+    [getFiltertUsers]="userService.getFiltertUsers"
     [currentChannel]="currentChannel"
   ></app-show-channel-member>
   <app-chat-content

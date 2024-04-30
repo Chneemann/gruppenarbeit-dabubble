@@ -9,6 +9,9 @@ import { EmojiPickerComponent } from '../../../shared/components/emoji-picker/em
 import { SmallBtnComponent } from '../../../shared/components/small-btn/small-btn.component';
 import { ChatService } from '../../../service/chat.service';
 import { Router } from '@angular/router';
+import { ChannleService } from '../../../service/channle.service';
+import { ToggleBooleanService } from '../../../service/toggle-boolean.service';
+import { User } from '../../../interface/user.interface';
 
 @Component({
   selector: 'app-chat-msg-box',
@@ -45,8 +48,10 @@ export class ChatMsgBoxComponent {
     private route: Router,
     public downloadFilesService: DownloadFilesService,
     private firestore: Firestore,
-    private userService: UserService,
-    private chatService: ChatService
+    public userService: UserService,
+    private chatService: ChatService,
+    public channelService: ChannleService,
+    public toggleBoolean: ToggleBooleanService
   ) {}
 
 
@@ -111,7 +116,18 @@ export class ChatMsgBoxComponent {
   }
 
 
-  targetChatUser() {}
+  targetChatUser(event : Event) {
+    event.stopPropagation();
+    this.toggleBoolean.selectUserInMsgBox = true; 
+  }
+
+
+  chooseUser(user: User){
+    const userName = ` @${user.firstName} ${user.lastName} `;
+
+    this.textArea += userName;
+    this.toggleBoolean.selectUserInMsgBox = false;
+  }
 
 
   async sendMessage() {
