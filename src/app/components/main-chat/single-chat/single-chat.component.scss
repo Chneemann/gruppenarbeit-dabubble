@@ -128,32 +128,61 @@ section {
 
 /*------------- ANIMATION -------------*/
 
-.animation-coming-in {
-  animation: coming-in 125ms ease-in-out forwards;
+.animation-coming-in-left {
+  animation: coming-in-left 125ms ease-in-out forwards;
 }
 
-.animation-coming-out {
-  animation: coming-out 125ms ease-in-out forwards;
+.animation-coming-in-right {
+  animation: coming-in-right 125ms ease-in-out forwards;
 }
 
-@keyframes coming-in {
+.animation-coming-out-left {
+  animation: coming-out-left 125ms ease-in-out forwards;
+}
+.animation-coming-out-right {
+  animation: coming-out-right 125ms ease-in-out forwards;
+}
+
+@keyframes coming-in-left {
   0% {
     opacity: 0;
-    transform: scale(0);
+    transform: translateX(-12px);
   }
   100% {
     opacity: 1;
-    transform: scale(1);
+    transform: translateX(0);
   }
 }
 
-@keyframes coming-out {
+@keyframes coming-out-left {
   0% {
     opacity: 1;
-    transform: scale(1);
+    transform: translateX(0);
   }
   100% {
     opacity: 0;
-    transform: scale(0);
+    transform: translateX(-12px);
+  }
+}
+
+@keyframes coming-in-right {
+  0% {
+    opacity: 0;
+    transform: translateX(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes coming-out-right {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(12px);
   }
 }

@@ -8,8 +8,14 @@
 >
   <app-options-menu
     [ngClass]="{
-      'animation-coming-in': isOptionMenuVisible,
-      'animation-coming-out': !isOptionMenuVisible,
+      'animation-coming-in-left':
+        isOptionMenuVisible && user.id === userService.userId,
+      'animation-coming-out-left':
+        !isOptionMenuVisible && user.id === userService.userId,
+      'animation-coming-in-right':
+        isOptionMenuVisible && user.id !== userService.userId,
+      'animation-coming-out-right':
+        !isOptionMenuVisible && user.id !== userService.userId,
       menuRightSide: user.id !== userService.userId,
       menuLeftSide: user.id === userService.userId
     }"
