@@ -10,10 +10,8 @@
     [ngClass]="{
       'animation-coming-in': isOptionMenuVisible,
       'animation-coming-out': !isOptionMenuVisible,
-    }"
-    [ngStyle]="{
-      left: user.id === userService.userId ? '12px' : '',
-      right: user.id !== userService.userId ? '260px' : ''
+      menuRightSide: user.id !== userService.userId,
+      menuLeftSide: user.id === userService.userId
     }"
     [user]="user"
     [currentChat]="currentChat"

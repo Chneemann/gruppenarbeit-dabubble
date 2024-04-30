@@ -13,9 +13,17 @@ section {
   }
 }
 
-app-options-menu {
+.menuRightSide {
   position: absolute;
   top: -24px;
+  right: 12px;
+  z-index: 2;
+}
+
+.menuLeftSide {
+  position: absolute;
+  top: -24px;
+  left: 12px;
   z-index: 2;
 }
 
