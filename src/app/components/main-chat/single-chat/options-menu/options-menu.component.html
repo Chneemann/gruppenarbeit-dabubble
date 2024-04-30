@@ -9,7 +9,6 @@
       [btnSize]="'36px'"
       [imgFilter]="'none'"
       [btnBgHoverColor]="'#edeefe'"
-      [ngClass]="{ mirror: index % 2 !== 0 }"
       (click)="addReactionIcon('okay', currentChat)"
     >
     </app-small-btn>
@@ -19,7 +18,6 @@
       [btnSize]="'36px'"
       [imgFilter]="'none'"
       [btnBgHoverColor]="'#edeefe'"
-      [ngClass]="{ mirror: index % 2 !== 0 }"
       (click)="addReactionIcon('clap-hands', currentChat)"
     >
     </app-small-btn>
@@ -28,7 +26,6 @@
       [imgSize]="'24px'"
       [btnSize]="'36px'"
       [btnBgHoverColor]="'#edeefe'"
-      [ngClass]="{ mirror: index % 2 !== 0 }"
       (click)="toggleEmojiPicker()"
     >
     </app-small-btn>
@@ -38,7 +35,6 @@
       [imgSize]="'24px'"
       [btnSize]="'36px'"
       [btnBgHoverColor]="'#edeefe'"
-      [ngClass]="{ mirror: index % 2 !== 0 }"
       (click)="toggleSecondaryChat(currentChat)"
     >
     </app-small-btn>
@@ -48,7 +44,6 @@
       [imgSize]="'24px'"
       [btnSize]="'36px'"
       [btnBgHoverColor]="'#edeefe'"
-      [ngClass]="{ mirror: index % 2 !== 0 }"
       (click)="toggleNav()"
     >
     </app-small-btn>
@@ -63,7 +58,7 @@
     }"
     (click)="editMsg()"
   >
-    <p [ngClass]="{ mirror: index % 2 !== 0 }">Edit message</p>
+    <p>Edit message</p>
   </div>
   } @else {
   <div class="content">
@@ -72,7 +67,6 @@
       [imgSize]="'24px'"
       [btnSize]="'36px'"
       [btnBgHoverColor]="'#edeefe'"
-      [ngClass]="{ mirror: index % 2 !== 0 }"
       (click)="toggleEmojiPicker()"
     ></app-small-btn>
   </div>
@@ -80,7 +74,6 @@
   <app-emoji-picker
     [output]="'id'"
     [ngClass]="{
-      mirror: index % 2 !== 0,
       secondaryChatPickerOffset: openOnSecondaryChat
     }"
     (emojiOutputEmitter)="emojiOutputEmitter($event, currentChat)"

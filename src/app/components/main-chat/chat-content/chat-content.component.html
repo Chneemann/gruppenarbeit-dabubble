@@ -9,7 +9,7 @@
       <p>{{ convertTimestampDate(chat.publishedTimestamp) }}</p>
       <span class="lines"></span>
     </div>
-    <div class="singleChat" [ngClass]="{ mirror: i % 2 !== 0 }">
+    <div class="singleChat">
       <app-single-chat
         [user]="user"
         [chat]="chat"

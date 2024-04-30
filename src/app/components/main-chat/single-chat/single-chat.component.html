@@ -19,7 +19,6 @@
   @if (!isMsgEditFormOpen) {
   <div
     class="userContent"
-    [ngClass]="{ mirror: index % 2 !== 0 }"
     [ngStyle]="{ width: openOnSecondaryChat ? '80%' : 'fit-content' }"
   >
     <div class="name">
@@ -57,11 +56,10 @@
       [chat]="chat"
       [index]="index"
       [openOnSecondaryChat]="openOnSecondaryChat"
-      [isMirrored]="index % 2 !== 0"
     ></app-reaction-emojis>
   </div>
   } @else {
-  <div class="editForm" [ngClass]="{ mirror: index % 2 !== 0 }">
+  <div class="editForm">
     <app-edit-msg
       [chat]="chat"
       (closeEditMsgEmitter)="closeEditMsgEmitter($event)"

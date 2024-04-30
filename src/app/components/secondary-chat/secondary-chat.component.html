@@ -14,7 +14,7 @@
     <div class="content">
       @for (chat of getSingleChat(this.chatService.isSecondaryChatId); track
       chat; let i = $index) {
-      <div [ngClass]="{ mirror: i % 2 !== 0 }">
+      <div>
         @for (user of getChatUsers(chat.userId); track user) {
         <app-single-chat
           [user]="user"
@@ -32,7 +32,7 @@
       </div>
       } @for (chat of getChatAnswers(this.chatService.isSecondaryChatId); track
       chat; let i = $index) {
-      <div [ngClass]="{ mirror: i % 2 !== 0 }">
+      <div>
         @for (user of getChatUsers(chat.userId); track user) {
         <app-single-chat
           [user]="user"
