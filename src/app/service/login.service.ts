@@ -81,6 +81,8 @@ export class loginService {
         this.userService.userId = this.currentUser;
         this.updateUserOnlineStatus(this.currentUser);
         this.router.navigate([`/main`]);
+        this.email = '';
+        this.password= '';
       } else {
         console.error('Kein zugehöriges Benutzerdokument gefunden.');
       }

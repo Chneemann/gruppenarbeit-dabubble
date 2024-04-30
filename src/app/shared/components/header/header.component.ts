@@ -53,6 +53,10 @@ export class HeaderComponent {
     this.closeProfil = false;
   }
 
+  logout(): void {
+    this.userService.currentUserLogout();
+  }
+
 
   updateTestValue(value: boolean) {
     this.showCurrentProfile = value;

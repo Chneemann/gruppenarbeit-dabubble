@@ -2,6 +2,8 @@ import { Injectable, OnDestroy, inject } from '@angular/core';
 import { Firestore, collection, doc, onSnapshot, updateDoc } from '@angular/fire/firestore';
 import { User } from '../interface/user.interface';
 import { ChannleService } from './channle.service';
+import { getAuth, signOut } from 'firebase/auth';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +17,7 @@ export class UserService implements OnDestroy {
   userId: string = 'JX5JxxPx0sdjEPHCs5F9';
   unsubUser;
 
-  constructor(private channelService: ChannleService) {
+  constructor(private channelService: ChannleService, private route: Router) {
     this.unsubUser = this.subUserList();
   }
 
@@ -88,5 +90,30 @@ export class UserService implements OnDestroy {
 
   ngOnDestroy() {
     this.unsubUser();
+  }
+
+  currentUserLogout(){
+    const auth = getAuth();
+    const userId = this.userId;
+  
+    if (userId) {
+      const userDocRef = doc(this.firestore, `users/${userId}`);
+  
+      updateDoc(userDocRef, { status: false })
+        .then(() => {
+          signOut(auth)
+            .then(() => {
+               this.route.navigate(['/login']);
+            })
+            .catch((error) => {
+              console.error(error);
+            });
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    } else {
+      console.error('Keine UserID gefunden');
+    }
   }
 }
