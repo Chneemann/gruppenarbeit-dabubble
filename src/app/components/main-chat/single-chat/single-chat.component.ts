@@ -52,6 +52,7 @@ export class SingleChatComponent {
   constructor(
     public chatService: ChatService,
     public channelService: ChatService,
+    public userService: UserService,
     public downloadFilesService: DownloadFilesService
   ) {}
 

@@ -6,6 +6,7 @@ import { ChatService } from '../../../../service/chat.service';
 import { EmojiPickerComponent } from '../../../../shared/components/emoji-picker/emoji-picker.component';
 import { UserService } from '../../../../service/user.service';
 import { ChatReactions } from '../../../../interface/chat.interface';
+import { User } from '../../../../interface/user.interface';
 
 @Component({
   selector: 'app-options-menu',
@@ -20,7 +21,7 @@ import { ChatReactions } from '../../../../interface/chat.interface';
   styleUrl: './options-menu.component.scss',
 })
 export class OptionsMenuComponent {
-  @Input() index: number = 0;
+  @Input() user: User = {} as User;
   @Input() currentChat: string = '';
   @Input() openOnSecondaryChat: boolean = false;
   @Input() isPrivatChannel: boolean = false;
@@ -31,7 +32,7 @@ export class OptionsMenuComponent {
 
   constructor(
     public chatService: ChatService,
-    private userService: UserService
+    public userService: UserService
   ) {}
 
   editMsg() {

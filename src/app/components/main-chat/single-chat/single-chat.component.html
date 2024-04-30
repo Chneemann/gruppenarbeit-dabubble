@@ -1,10 +1,17 @@
-<section (mousemove)="showOptionMenu()" (mouseleave)="hideOptionMenu()">
+<section
+  (mousemove)="showOptionMenu()"
+  (mouseleave)="hideOptionMenu()"
+  [ngStyle]="{
+    'justify-content':
+      user.id === userService.userId ? 'flex-end' : 'flex-start'
+  }"
+>
   <app-options-menu
     [ngClass]="{
       'animation-coming-in': isOptionMenuVisible,
       'animation-coming-out': !isOptionMenuVisible
     }"
-    [index]="index"
+    [user]="user"
     [currentChat]="currentChat"
     (editMsgEmitter)="editMsgEmitter($event)"
     [openOnSecondaryChat]="openOnSecondaryChat"
@@ -13,57 +20,85 @@
     ></app-options-menu
   >
 
-  <div class="userAvatar">
-    <img src="{{ user.avatar }}" alt="" />
-  </div>
-  @if (!isMsgEditFormOpen) {
   <div
-    class="userContent"
-    [ngStyle]="{ width: openOnSecondaryChat ? '80%' : 'fit-content' }"
+    class="chatBox"
+    [ngStyle]="{
+      'flex-direction': user.id === userService.userId ? 'row-reverse' : 'row'
+    }"
   >
-    <div class="name">
-      {{ user.firstName }} {{ user.lastName }}
-      <span>{{ convertTimestampHour(chat.publishedTimestamp) }}</span>
+    <div
+      class="userAvatar"
+      [ngStyle]="{
+        padding: user.id === userService.userId ? '0 0 0 24px' : '0 24px 0 0'
+      }"
+    >
+      <img src="{{ user.avatar }}" alt="" />
     </div>
-    <div class="content">
-      <div class="msg">
-        {{ chat.message }}
-        @if (chat.edited) {
-        <span>(bearbeitet)</span>
+    @if (!isMsgEditFormOpen) {
+    <div
+      class="userContent"
+      [ngStyle]="{ width: openOnSecondaryChat ? '80%' : 'fit-content' }"
+    >
+      <div
+        class="name"
+        [ngStyle]="{
+          'flex-direction':
+            user.id === userService.userId ? 'row-reverse' : 'row',
+        }"
+      >
+        {{ user.firstName }} {{ user.lastName }}
+        <span
+          [ngStyle]="{
+            padding:
+              user.id === userService.userId ? '0 24px 0 0' : '0 0 0 24px'
+          }"
+          >{{ convertTimestampHour(chat.publishedTimestamp) }}</span
+        >
+      </div>
+      <div
+        class="content"
+        [ngClass]="{ 'content-mirror': user.id === userService.userId }"
+      >
+        <div class="msg">
+          {{ chat.message }}
+          @if (chat.edited) {
+          <span>(bearbeitet)</span>
+          }
+        </div>
+        <app-attachments
+          [chatId]="chat.id"
+          [openOnSecondaryChat]="openOnSecondaryChat"
+        ></app-attachments>
+      </div>
+      @if (!isPrivatChannel) {
+      <div class="answers">
+        @if (chatService.getChatAnswers(chat.id).length > 0 && showAnswer) {
+        <p (click)="openSecondaryChat(chat.id)">
+          {{ displayCountChatAnswer() }} Answers
+        </p>
+        <span>Last answer: {{ displayLastChatAnswer() }}</span>
+
+        } @else if (showAnswer) {
+        <p (click)="openSecondaryChat(chat.id)">Answer...</p>
         }
       </div>
-      <app-attachments
-        [chatId]="chat.id"
-        [openOnSecondaryChat]="openOnSecondaryChat"
-      ></app-attachments>
-    </div>
-    @if (!isPrivatChannel) {
-    <div class="answers">
-      @if (chatService.getChatAnswers(chat.id).length > 0 && showAnswer) {
-      <p (click)="openSecondaryChat(chat.id)">
-        {{ displayCountChatAnswer() }} Answers
-      </p>
-      <span>Last answer: {{ displayLastChatAnswer() }}</span>
-
-      } @else if (showAnswer) {
-      <p (click)="openSecondaryChat(chat.id)">Answer...</p>
+      } @else {
+      <div class="spacer"></div>
       }
+      <app-reaction-emojis
+        [chat]="chat"
+        [user]="user"
+        [openOnSecondaryChat]="openOnSecondaryChat"
+      ></app-reaction-emojis>
     </div>
+
     } @else {
-    <div class="spacer"></div>
+    <div class="editForm">
+      <app-edit-msg
+        [chat]="chat"
+        (closeEditMsgEmitter)="closeEditMsgEmitter($event)"
+      ></app-edit-msg>
+    </div>
     }
-    <app-reaction-emojis
-      [chat]="chat"
-      [index]="index"
-      [openOnSecondaryChat]="openOnSecondaryChat"
-    ></app-reaction-emojis>
   </div>
-  } @else {
-  <div class="editForm">
-    <app-edit-msg
-      [chat]="chat"
-      (closeEditMsgEmitter)="closeEditMsgEmitter($event)"
-    ></app-edit-msg>
-  </div>
-  }
 </section>

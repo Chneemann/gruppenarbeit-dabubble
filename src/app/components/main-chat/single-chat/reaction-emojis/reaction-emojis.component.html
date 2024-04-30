@@ -1,6 +1,8 @@
 <section
   (mouseleave)="this.isEmojiPickerVisible = false"
-  [ngClass]="{ mirror: isMirrored }"
+  [ngStyle]="{
+    'flex-direction': user.id === userService.userId ? 'row-reverse' : 'row'
+  }"
 >
   @if (!openOnSecondaryChat) {
   <app-small-btn
@@ -10,18 +12,16 @@
     [btnBgColor]="'#fff'"
     [btnBgHoverColor]="'#edeefe'"
     (click)="toggleEmojiPicker()"
-    [ngClass]="{ mirror: isMirrored }"
   >
   </app-small-btn>
   } @if(isEmojiPickerVisible) {
   <app-emoji-picker
     [output]="'id'"
-    [ngClass]="{ mirror: isMirrored }"
     (emojiOutputEmitter)="emojiOutputEmitter($event, chat.id)"
     (emojiVisibleEmitter)="emojiVisibleEmitter($event)"
   ></app-emoji-picker>
   }
-  <div class="emojiSection" [ngClass]="{ mirror: isMirrored }">
+  <div class="emojiSection">
     @for (reaction of getReaction(chat.id); track reaction; let i = $index) {
     @if (reaction.id) {
     <div
@@ -44,12 +44,7 @@
 
   @if (reactionDialogId != '') { @for (reaction of
   getReactionDocId(reactionDialogId); track reaction) {
-  <div
-    class="dialog"
-    [ngClass]="{ mirror: isMirrored }"
-    [style.left.px]="dialogX"
-    [style.top.px]="dialogY"
-  >
+  <div class="dialog" [style.left.px]="dialogX" [style.top.px]="dialogY">
     <div class="icon">
       @if (reaction.icon === "okay" || reaction.icon === "clap-hands") {
       <img src="./../../../../../assets/img/{{ reaction.icon }}.svg" />

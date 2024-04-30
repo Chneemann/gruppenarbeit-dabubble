@@ -1,5 +1,6 @@
 section {
   display: flex;
+  justify-content: flex-start;
   padding: 32px 48px;
   position: relative;
   &:hover {
@@ -19,8 +20,11 @@ app-options-menu {
   z-index: 2;
 }
 
+.chatBox {
+  display: flex;
+}
+
 .userAvatar {
-  padding-right: 24px;
   img {
     width: 70px;
     height: 70px;
@@ -38,7 +42,6 @@ app-options-menu {
     span {
       font-size: 14px;
       font-weight: 400;
-      margin-left: 12px;
     }
   }
 
@@ -67,16 +70,11 @@ app-options-menu {
   }
 }
 
-.mirror {
-  transform: scaleX(-1);
-  .content {
-    color: #fff;
-    border-top-left-radius: 24px;
-    border-top-right-radius: 0;
-  }
-  .content {
-    background-color: #797ef3 !important;
-  }
+.content-mirror {
+  color: #fff;
+  border-top-left-radius: 24px;
+  border-top-right-radius: 0 !important;
+  background-color: #797ef3 !important;
 }
 
 .maxWidthSecondaryChat {

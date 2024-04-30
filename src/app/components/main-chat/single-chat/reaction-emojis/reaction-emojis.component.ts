@@ -19,6 +19,7 @@ import { ChannleService } from '../../../../service/channle.service';
 import { EmojiPickerComponent } from '../../../../shared/components/emoji-picker/emoji-picker.component';
 import { EmojiComponent } from '@ctrl/ngx-emoji-mart/ngx-emoji';
 import { timeInterval } from 'rxjs';
+import { User } from '../../../../interface/user.interface';
 @Component({
   selector: 'app-reaction-emojis',
   standalone: true,
@@ -32,9 +33,8 @@ import { timeInterval } from 'rxjs';
   styleUrl: './reaction-emojis.component.scss',
 })
 export class ReactionEmojisComponent {
+  @Input() user: User = {} as User;
   @Input() chat: Chat | ChatAnswers = {} as Chat | ChatAnswers;
-  @Input() index: number = 0;
-  @Input() isMirrored: boolean = false;
   @Input() openOnSecondaryChat: boolean = false;
 
   reactionDialogId: string = '';
@@ -43,6 +43,12 @@ export class ReactionEmojisComponent {
   emojiSectionWidth: number = 0;
   dialogX: number = 0;
   dialogY: number = 0;
+
+  constructor(
+    private elementRef: ElementRef,
+    public userService: UserService,
+    private chatService: ChatService
+  ) {}
 
   openDialog(reactionId: any, event: MouseEvent) {
     this.reactionDialogId = reactionId;
@@ -57,21 +63,10 @@ export class ReactionEmojisComponent {
     const currentTarget = event.currentTarget as HTMLElement;
     if (currentTarget) {
       const rect = currentTarget.getBoundingClientRect();
-      if (this.isMirrored) {
-        this.dialogX = event.clientX - rect.left + 200;
-        this.dialogY = event.clientY - rect.top - 10;
-      } else {
-        this.dialogX = event.clientX - 200;
-        this.dialogY = event.clientY + 10;
-      }
+      this.dialogX = event.clientX - 200;
+      this.dialogY = event.clientY + 10;
     }
   }
-
-  constructor(
-    private elementRef: ElementRef,
-    private userService: UserService,
-    private chatService: ChatService
-  ) {}
 
   emojiOutputEmitter($event: any, chatId: string) {
     if (!this.checkExistEmojiOnChat(chatId, $event)) {
