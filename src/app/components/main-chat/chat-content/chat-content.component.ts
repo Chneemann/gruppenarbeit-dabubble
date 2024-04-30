@@ -40,6 +40,7 @@ export class ChatContentComponent implements AfterViewInit, AfterViewChecked {
   @Input() getChatUsers!: (currentChannel: string) => any;
   @ViewChild('messageBody') messageBody: ElementRef | undefined;
   filesLoaded: boolean = false;
+  
 
   constructor(
     private chatService: ChatService,

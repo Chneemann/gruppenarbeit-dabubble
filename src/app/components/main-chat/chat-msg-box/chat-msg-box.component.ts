@@ -41,6 +41,7 @@ export class ChatMsgBoxComponent {
   isEmojiPickerVisible: boolean | undefined;
   currentChetValue: string = '';
   @Input() currentChannel: string = '';
+  showTargetMember: boolean = true; 
 
 
 
@@ -162,6 +163,16 @@ export class ChatMsgBoxComponent {
   forwardToChannel(){
     if (this.chatService.getChannelId || this.chatService.getPrvChatId) {
       this.route.navigateByUrl(`/main/${this.checkChannelId()}`);
+    }
+  }
+
+
+  filterPublicChannel(){
+    const publicChannel = this.channelService.allChannels.some(chat => chat.id === this.currentChannel);
+    if(publicChannel){
+      return this.showTargetMember = true;
+    } else {
+      return this.showTargetMember = false;
     }
   }
 
