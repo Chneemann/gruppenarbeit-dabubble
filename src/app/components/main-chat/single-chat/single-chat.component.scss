@@ -15,8 +15,7 @@ section {
 
 app-options-menu {
   position: absolute;
-  top: 0px;
-  right: 12px;
+  top: -24px;
   z-index: 2;
 }
 
@@ -75,6 +74,10 @@ app-options-menu {
   border-top-left-radius: 24px;
   border-top-right-radius: 0 !important;
   background-color: #797ef3 !important;
+}
+
+.mirror {
+  transform: scaleX(-1) !important;
 }
 
 .maxWidthSecondaryChat {

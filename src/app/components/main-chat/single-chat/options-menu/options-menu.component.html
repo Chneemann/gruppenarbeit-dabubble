@@ -1,5 +1,6 @@
 <section
   (mouseleave)="this.isNavOpen = false; this.isEmojiPickerVisible = false"
+  [ngClass]="{ mirror: user.id === userService.userId }"
 >
   @if (!openOnSecondaryChat) {
   <div class="content">
@@ -9,6 +10,7 @@
       [btnSize]="'36px'"
       [imgFilter]="'none'"
       [btnBgHoverColor]="'#edeefe'"
+      [ngClass]="{ mirror: user.id === userService.userId }"
       (click)="addReactionIcon('okay', currentChat)"
     >
     </app-small-btn>
@@ -18,6 +20,7 @@
       [btnSize]="'36px'"
       [imgFilter]="'none'"
       [btnBgHoverColor]="'#edeefe'"
+      [ngClass]="{ mirror: user.id === userService.userId }"
       (click)="addReactionIcon('clap-hands', currentChat)"
     >
     </app-small-btn>
@@ -26,6 +29,7 @@
       [imgSize]="'24px'"
       [btnSize]="'36px'"
       [btnBgHoverColor]="'#edeefe'"
+      [ngClass]="{ mirror: user.id === userService.userId }"
       (click)="toggleEmojiPicker()"
     >
     </app-small-btn>
@@ -35,6 +39,7 @@
       [imgSize]="'24px'"
       [btnSize]="'36px'"
       [btnBgHoverColor]="'#edeefe'"
+      [ngClass]="{ mirror: user.id === userService.userId }"
       (click)="toggleSecondaryChat(currentChat)"
     >
     </app-small-btn>
@@ -44,6 +49,7 @@
       [imgSize]="'24px'"
       [btnSize]="'36px'"
       [btnBgHoverColor]="'#edeefe'"
+      [ngClass]="{ mirror: user.id === userService.userId }"
       (click)="toggleNav()"
     >
     </app-small-btn>
@@ -58,7 +64,7 @@
     }"
     (click)="editMsg()"
   >
-    <p>Edit message</p>
+    <p [ngClass]="{ mirror: user.id === userService.userId }">Edit message</p>
   </div>
   } @else {
   <div class="content">
@@ -67,6 +73,7 @@
       [imgSize]="'24px'"
       [btnSize]="'36px'"
       [btnBgHoverColor]="'#edeefe'"
+      [ngClass]="{ mirror: user.id === userService.userId }"
       (click)="toggleEmojiPicker()"
     ></app-small-btn>
   </div>
@@ -74,6 +81,7 @@
   <app-emoji-picker
     [output]="'id'"
     [ngClass]="{
+      mirror: user.id === userService.userId,
       secondaryChatPickerOffset: openOnSecondaryChat
     }"
     (emojiOutputEmitter)="emojiOutputEmitter($event, currentChat)"

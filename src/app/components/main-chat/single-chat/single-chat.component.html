@@ -9,7 +9,11 @@
   <app-options-menu
     [ngClass]="{
       'animation-coming-in': isOptionMenuVisible,
-      'animation-coming-out': !isOptionMenuVisible
+      'animation-coming-out': !isOptionMenuVisible,
+    }"
+    [ngStyle]="{
+      left: user.id === userService.userId ? '12px' : '',
+      right: user.id !== userService.userId ? '260px' : ''
     }"
     [user]="user"
     [currentChat]="currentChat"
