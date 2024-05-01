@@ -117,11 +117,12 @@ export class AddNewChannelComponent {
 
   checkUserArray() {
     if (this.channelIsPrivat) {
-      return this.selectedUsers;
+      return [...this.selectedUsers, this.userService.userId];
     } else {
       return this.userService.getUserIDs;
     }
   }
+
 
   openAddNewChannelWindow() {
     this.channelService.showAddChannelBox =
