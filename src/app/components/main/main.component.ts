@@ -1,4 +1,9 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  HostListener,
+} from '@angular/core';
 import { HeaderComponent } from '../../shared/components/header/header.component';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { UserService } from '../../service/user.service';
@@ -13,8 +18,6 @@ import { AddNewChannelComponent } from '../sidebar/sidebar-channels/add-new-chan
 import { OverlayComponent } from '../../shared/components/overlay/overlay.component';
 import { PrivatChatComponent } from '../main-chat/privat-chat/privat-chat.component';
 import { ToggleBooleanService } from '../../service/toggle-boolean.service';
-import { BehaviorSubject, Observable, map, of } from 'rxjs';
-import { Channel } from '../../interface/channel.interface';
 
 @Component({
   selector: 'app-landing-page',
@@ -41,16 +44,18 @@ export class MainComponent {
     public channelService: ChannleService,
     private route: Router,
     private router: ActivatedRoute,
+    private elementRef: ElementRef,
     private toggleAllBooleans: ToggleBooleanService
-  ) {  }
+  ) {}
 
   currentChannel: string = '';
-  isSidebarOpen: boolean = true;
   currentUserID: string = this.userService.userId;
+  viewWidth: number = 0;
 
   ngOnInit() {
     this.ifUserLogin();
     this.routeUserId();
+    this.updateViewWidth();
   }
 
   ifUserLogin() {
@@ -67,10 +72,23 @@ export class MainComponent {
     }
   }
 
+  @HostListener('window:resize')
+  onResize() {
+    this.updateViewWidth();
+  }
 
-  toggleBooleans(){
+  private updateViewWidth() {
+    this.viewWidth = this.elementRef.nativeElement.offsetWidth;
+    if (this.viewWidth <= 1400) {
+      this.channelService.isSidebarOpen = false;
+    } else if (this.viewWidth >= 1400) {
+      this.channelService.isSidebarOpen = true;
+    }
+  }
+
+  toggleBooleans() {
     this.toggleAllBooleans.openSearchWindow = false;
-    this.toggleAllBooleans.openSearchWindowHead = false; 
-    this.toggleAllBooleans.selectUserInMsgBox = false; 
+    this.toggleAllBooleans.openSearchWindowHead = false;
+    this.toggleAllBooleans.selectUserInMsgBox = false;
   }
 }

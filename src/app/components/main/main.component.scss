@@ -21,16 +21,14 @@ app-privat-chat {
   display: flex;
   width: 100%;
   flex-grow: 1;
-  app-main-chat {
-    width: 100%;
-  }
-  app-privat-chat {
-    width: 100%;
-  }
 }
 
 .minusWidth {
   width: calc(100% - 518px);
+}
+
+app-main-chat {
+  width: 100%;
 }
 
 app-sidebar {
@@ -89,5 +87,18 @@ app-secondary-chat {
 
   to {
     transform: translateX(-100%);
+  }
+}
+
+/*------------- RESPONSIVE -------------*/
+
+@media screen and (max-width: 1400px) {
+  app-sidebar-toggle {
+    display: none;
+  }
+
+  app-secondary-chat {
+    width: 100vw;
+    max-width: 100vw;
   }
 }

@@ -1,25 +1,43 @@
 <div (click)="toggleBooleans()">
   @if (userService.isUserLogin) {
-    <app-header></app-header>
-    <div class="content">
-      <app-sidebar
-        [ngClass]="{
-          slideIn: channelService.isSidebarOpen,
-          slideOut: !channelService.isSidebarOpen
+  <app-header></app-header>
+  <div class="content">
+    <app-sidebar
+      [ngClass]="{
+        slideIn: channelService.isSidebarOpen,
+        slideOut: !channelService.isSidebarOpen
+      }"
+      [ngStyle]="{
+        'margin-right':
+          this.viewWidth <= 1900 && chatService.isSecondaryChatOpen
+            ? '-390px'
+            : ''
+      }"
+    ></app-sidebar>
+    <app-sidebar-toggle></app-sidebar-toggle>
+    <div class="chatBox">
+      <app-main-chat
+        [currentChannel]="currentChannel"
+        [ngStyle]="{
+          display:
+            this.viewWidth <= 1400 && chatService.isSecondaryChatOpen
+              ? 'none'
+              : 'block',
+          width:
+            this.viewWidth <= 1400 && chatService.isSecondaryChatOpen
+              ? '0%'
+              : '100%'
         }"
-      ></app-sidebar>
-      <app-sidebar-toggle></app-sidebar-toggle>
-      <div class="chatBox">
-        <app-main-chat [currentChannel]="currentChannel"></app-main-chat>
-        <app-secondary-chat
-          [currentChannel]="currentChannel"
-          [ngClass]="{
-            slideInRightWindow: chatService.isSecondaryChatOpen,
-            slideOutRightWindow: !chatService.isSecondaryChatOpen
-          }"
-        ></app-secondary-chat>
-      </div>
+      ></app-main-chat>
+      <app-secondary-chat
+        [currentChannel]="currentChannel"
+        [ngClass]="{
+          slideInRightWindow: chatService.isSecondaryChatOpen,
+          slideOutRightWindow: !chatService.isSecondaryChatOpen
+        }"
+      ></app-secondary-chat>
     </div>
-    }
-    <app-overlay></app-overlay>
+  </div>
+  }
+  <app-overlay></app-overlay>
 </div>
