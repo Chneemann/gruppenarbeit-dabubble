@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 import { ChannleService } from '../../../service/channle.service';
 import { ToggleBooleanService } from '../../../service/toggle-boolean.service';
 import { User } from '../../../interface/user.interface';
-
+import { MessageData } from '../../../interface/chat.interface';
 @Component({
   selector: 'app-chat-msg-box',
   standalone: true,
@@ -27,6 +27,9 @@ import { User } from '../../../interface/user.interface';
   styleUrl: './chat-msg-box.component.scss',
 })
 export class ChatMsgBoxComponent {
+  @Input() currentChannel: string = '';
+  @Input() target: string = '';
+
   hasFile: boolean = false;
   currentFiles!: FileList;
   files: any;
@@ -39,11 +42,8 @@ export class ChatMsgBoxComponent {
   ];
   public textArea: string = '';
   isEmojiPickerVisible: boolean | undefined;
-  currentChetValue: string = '';
-  @Input() currentChannel: string = '';
-  showTargetMember: boolean = true; 
-
-
+  currentChatValue: string = '';
+  showTargetMember: boolean = true;
 
   constructor(
     private route: Router,
@@ -55,14 +55,15 @@ export class ChatMsgBoxComponent {
     public toggleBoolean: ToggleBooleanService
   ) {}
 
-
   emojiOutputEmitter($event: any) {
     this.addEmoji($event);
   }
 
-
   onFileChange(event: any) {
-    console.log('this.downloadFilesService.uploadFiles.length', this.downloadFilesService.uploadFiles.length);
+    console.log(
+      'this.downloadFilesService.uploadFiles.length',
+      this.downloadFilesService.uploadFiles.length
+    );
     if (this.downloadFilesService.uploadFiles.length <= 5) {
       this.currentFiles = event.target.files;
       this.hasFile = this.currentFiles!.length > 0;
@@ -71,10 +72,9 @@ export class ChatMsgBoxComponent {
           const fileInfo = this.currentFiles[i];
           this.downloadFilesService.uploadFiles.push(fileInfo);
         }
-      } 
+      }
     }
   }
-
 
   checkIcon(fileInfo: any) {
     if (fileInfo.type == 'audio/mpeg') {
@@ -90,7 +90,6 @@ export class ChatMsgBoxComponent {
     }
   }
 
-
   deleteFile(file: File) {
     const index = this.downloadFilesService.uploadFiles.indexOf(file);
     if (index !== -1) {
@@ -98,7 +97,6 @@ export class ChatMsgBoxComponent {
       this.hasFile = this.downloadFilesService.uploadFiles.length > 0;
     }
   }
-
 
   showCurrentFile(file: File) {
     const blob = new Blob([file], { type: file.type });
@@ -111,74 +109,98 @@ export class ChatMsgBoxComponent {
     this.isEmojiPickerVisible = false;
   }
 
-
   toggleEmojiPicker() {
     this.isEmojiPickerVisible = !this.isEmojiPickerVisible;
   }
 
-
-  targetChatUser(event : Event) {
+  targetChatUser(event: Event) {
     event.stopPropagation();
-    this.toggleBoolean.selectUserInMsgBox = true; 
+    this.toggleBoolean.selectUserInMsgBox = true;
   }
 
-
-  chooseUser(user: User){
+  chooseUser(user: User) {
     const userName = ` @${user.firstName} ${user.lastName} `;
 
     this.textArea += userName;
     this.toggleBoolean.selectUserInMsgBox = false;
   }
 
-
   async sendMessage() {
     if (this.currentChannel) {
-      const messageRef = collection(this.firestore, 'chats');
-      await addDoc(messageRef, {
-        channelId: this.checkChannelId(),
-        message: this.currentChetValue,
-        publishedTimestamp: Math.floor(Date.now() / 1000),
-        userId: this.userService.userId,
-      }).then((docID) => {
-        this.downloadFilesService.loadAllFiles(docID.id);
-      });
+      const messageRef = collection(this.firestore, this.target);
+      const messageData = this.checkCollection(this.target);
+      if (messageData) {
+        await addDoc(messageRef, messageData)
+          .then((docRef) => {
+            this.downloadFilesService.loadAllFiles(docRef.id);
+          })
+          .catch((error) => {
+            console.error('Error adding document: ', error);
+          });
+      } else {
+        console.error('Invalid target:', this.target);
+      }
     } else {
-      console.error(this.currentChannel, 'this.currentChannel ist leer');
+      console.error('this.currentChannel is empty');
     }
     this.forwardToChannel();
     this.resetValues();
   }
 
+  checkCollection(target: string): MessageData | null {
+    let messageData: Partial<MessageData> = {
+      message: this.currentChatValue,
+      publishedTimestamp: Math.floor(Date.now() / 1000),
+      userId: this.userService.userId,
+      edited: false,
+    };
 
-  checkChannelId(){
+    if (target === 'chats') {
+      messageData.channelId = this.checkChannelId();
+    } else if (target === 'chat-answers') {
+      messageData.chatId = this.checkChatId();
+    } else {
+      console.error('Invalid target:', target);
+      return null;
+    }
+    return messageData as MessageData;
+  }
+
+  checkChannelId() {
     if (this.chatService.getChannelId) {
       return this.chatService.getChannelId;
-    } else if (this.chatService.getPrvChatId){
+    } else if (this.chatService.getPrvChatId) {
       return this.chatService.getPrvChatId;
     }
     return this.currentChannel;
   }
 
+  checkChatId() {
+    if (this.chatService.isSecondaryChatId) {
+      return this.chatService.isSecondaryChatId;
+    }
+    return;
+  }
 
-  forwardToChannel(){
+  forwardToChannel() {
     if (this.chatService.getChannelId || this.chatService.getPrvChatId) {
       this.route.navigateByUrl(`/main/${this.checkChannelId()}`);
     }
   }
 
-
-  filterPublicChannel(){
-    const publicChannel = this.channelService.allChannels.some(chat => chat.id === this.currentChannel);
-    if(publicChannel){
-      return this.showTargetMember = true;
+  filterPublicChannel() {
+    const publicChannel = this.channelService.allChannels.some(
+      (chat) => chat.id === this.currentChannel
+    );
+    if (publicChannel) {
+      return (this.showTargetMember = true);
     } else {
-      return this.showTargetMember = false;
+      return (this.showTargetMember = false);
     }
   }
 
-
-  resetValues(){
-    this.currentChetValue = '';
+  resetValues() {
+    this.currentChatValue = '';
     this.downloadFilesService.uploadFiles = [];
     this.hasFile = false;
     this.chatService.inputValue = '';

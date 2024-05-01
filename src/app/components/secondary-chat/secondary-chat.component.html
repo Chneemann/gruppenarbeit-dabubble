@@ -48,6 +48,9 @@
     </div>
   </div>
   <div class="answer">
-    <app-chat-msg-box></app-chat-msg-box>
+    <app-chat-msg-box
+      [currentChannel]="currentChannel"
+      [target]="'chat-answers'"
+    ></app-chat-msg-box>
   </div>
 </section>

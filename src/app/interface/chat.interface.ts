@@ -26,3 +26,12 @@ export interface ChatReactions {
   icon: string;
   userId: string[];
 }
+
+export interface MessageData {
+  message: string;
+  publishedTimestamp: number;
+  userId: string;
+  channelId?: string;
+  chatId?: string;
+  edited: boolean;
+}
