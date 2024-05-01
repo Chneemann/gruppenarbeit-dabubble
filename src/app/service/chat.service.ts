@@ -116,11 +116,21 @@ export class ChatService implements OnDestroy {
   }
 
   toggleSecondaryChat(chatId: string) {
-    chatId == 'none'? (this.isSecondaryChatOpen = false) : (this.isSecondaryChatOpen = !this.isSecondaryChatOpen); 
-    this.isSecondaryChatOpen ? (this.isSecondaryChatId = chatId): 
-    // setTimeout(() => {
+    if (this.isSecondaryChatId == chatId) {
+      chatId = 'none';
+    }
+    if (chatId == 'none') {
+      this.isSecondaryChatOpen = false;
       this.isSecondaryChatId = '';
-    // }, 100);
+    } else {
+      this.isSecondaryChatOpen = true;
+    }
+
+    if (this.isSecondaryChatOpen) {
+      // setTimeout(() => {
+      this.isSecondaryChatId = chatId;
+      // }, 100);
+    }
   }
 
   ngOnDestroy() {
