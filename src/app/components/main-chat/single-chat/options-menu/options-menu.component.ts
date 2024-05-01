@@ -46,11 +46,6 @@ export class OptionsMenuComponent {
     }
   }
 
-  isItMyChatMsg(chatId: string) {
-    let chat = this.chatService.allChats.filter((chat) => chat.id === chatId);
-    return chat.find((chat) => chat.userId === this.userService.userId);
-  }
-
   addReactionIcon(icon: string, chatId: string) {
     if (!this.checkExistEmojiOnChat(chatId, icon)) {
       this.addNewReaction(icon, chatId);
