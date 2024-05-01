@@ -30,21 +30,24 @@
         <p>{{ displayCountChatAnswer(chat.id) }} Answers</p>
         <div class="line"></div>
       </div>
-      } @for (chat of getChatAnswers(this.chatService.isSecondaryChatId); track
-      chat; let i = $index) {
-      <div>
-        @for (user of getChatUsers(chat.userId); track user) {
-        <app-single-chat
-          [user]="user"
-          [chat]="chat"
-          [index]="i"
-          [currentChat]="chat.id"
-          [showAnswer]="false"
-          [openOnSecondaryChat]="true"
-        ></app-single-chat>
+      }
+      <div class="messages">
+        @for (chat of getChatAnswers(this.chatService.isSecondaryChatId); track
+        chat; let i = $index) {
+        <div>
+          @for (user of getChatUsers(chat.userId); track user) {
+          <app-single-chat
+            [user]="user"
+            [chat]="chat"
+            [index]="i"
+            [currentChat]="chat.id"
+            [showAnswer]="false"
+            [openOnSecondaryChat]="true"
+          ></app-single-chat>
+          }
+        </div>
         }
       </div>
-      }
     </div>
   </div>
   <div class="answer">

@@ -17,6 +17,11 @@ section {
   box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.05);
 }
 
+.messages {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
 .content {
   height: calc(100vh - 500px);
   overflow-y: auto;

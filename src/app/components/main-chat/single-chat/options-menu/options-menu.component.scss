@@ -30,7 +30,7 @@
   border-bottom-left-radius: 30px;
   border-bottom-right-radius: 30px;
   p {
-    font-size: 24px;
+    font-size: 21px;
     font-weight: 600;
     padding: 10px 20px;
     border-radius: 30px;
@@ -39,7 +39,18 @@
       color: #545af1;
       background-color: #edeefe;
     }
+    &:nth-child(2) {
+      &:hover {
+        color: #fff;
+        background-color: #ed1f79;
+      }
+    }
   }
+}
+
+.navbar {
+  display: flex;
+  flex-direction: column;
 }
 
 app-emoji-picker {

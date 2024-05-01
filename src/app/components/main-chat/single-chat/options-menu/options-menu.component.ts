@@ -40,6 +40,11 @@ export class OptionsMenuComponent {
     this.toggleNav();
   }
 
+  deleteMsg(database: string) {
+    this.toggleNav();
+    this.chatService.deleteData(this.currentChat, database);
+  }
+
   emojiOutputEmitter($event: any, chatId: string) {
     if (!this.checkExistEmojiOnChat(chatId, $event)) {
       this.addNewReaction($event, chatId);

@@ -62,9 +62,21 @@
       'animation-coming-in': isNavOpen,
       'animation-coming-out': !isNavOpen
     }"
-    (click)="editMsg()"
   >
-    <p [ngClass]="{ mirror: user.id === userService.userId }">Edit message</p>
+    <div class="navbar">
+      <p
+        [ngClass]="{ mirror: user.id === userService.userId }"
+        (click)="editMsg()"
+      >
+        Edit message
+      </p>
+      <p
+        [ngClass]="{ mirror: user.id === userService.userId }"
+        (click)="deleteMsg('chats')"
+      >
+        Delete message
+      </p>
+    </div>
   </div>
   } @else {
   <div class="content">
@@ -95,9 +107,21 @@
       'animation-coming-in': isNavOpen,
       'animation-coming-out': !isNavOpen
     }"
-    (click)="editMsg()"
   >
-    <p [ngClass]="{ mirror: user.id === userService.userId }">Edit message</p>
+    <div class="navbar">
+      <p
+        [ngClass]="{ mirror: user.id === userService.userId }"
+        (click)="editMsg()"
+      >
+        Edit message
+      </p>
+      <p
+        [ngClass]="{ mirror: user.id === userService.userId }"
+        (click)="deleteMsg('chat-answers')"
+      >
+        Delete message
+      </p>
+    </div>
   </div>
   } @if(isEmojiPickerVisible) {
   <app-emoji-picker
