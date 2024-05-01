@@ -5,7 +5,11 @@ import {
   Input,
   Output,
 } from '@angular/core';
-import { Chat, ChatAnswers } from '../../../../interface/chat.interface';
+import {
+  Chat,
+  ChatAnswers,
+  ChatReactions,
+} from '../../../../interface/chat.interface';
 import { SingleChatComponent } from '../single-chat.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
@@ -13,6 +17,8 @@ import { ChatService } from '../../../../service/chat.service';
 import { PickerComponent } from '@ctrl/ngx-emoji-mart';
 import { SmallBtnComponent } from '../../../../shared/components/small-btn/small-btn.component';
 import { DownloadFilesService } from '../../../../service/download-files.service';
+import { EmojiPickerComponent } from '../../../../shared/components/emoji-picker/emoji-picker.component';
+import { UserService } from '../../../../service/user.service';
 
 @Component({
   selector: 'app-edit-msg',
@@ -23,6 +29,7 @@ import { DownloadFilesService } from '../../../../service/download-files.service
     SingleChatComponent,
     PickerComponent,
     SmallBtnComponent,
+    EmojiPickerComponent,
   ],
   templateUrl: './edit-msg.component.html',
   styleUrl: './edit-msg.component.scss',
@@ -32,17 +39,17 @@ export class EditMsgComponent {
   @Output() closeEditMsgEmitter: EventEmitter<boolean> =
     new EventEmitter<boolean>();
 
-  public isEmojiPickerVisible: boolean | undefined;
-  showEmojis: boolean = false;
+  isEmojiPickerVisible: boolean | undefined;
   public originalMessage: string = '';
 
   constructor(
     public chatService: ChatService,
-    public downloadFilesService: DownloadFilesService
+    public downloadFilesService: DownloadFilesService,
+    public userService: UserService
   ) {}
 
   ngOnInit() {
-    this.originalMessage = (this.chat.message as string);
+    this.originalMessage = this.chat.message as string;
   }
 
   closeEditMsg() {
@@ -57,14 +64,17 @@ export class EditMsgComponent {
 
   // EMOJI
 
+  emojiOutputEmitter($event: any) {
+    this.addEmoji($event);
+  }
+
   public addEmoji(event: any) {
-    this.chat.message = `${this.chat.message}${event.emoji.native}`;
+    this.chat.message = `${this.chat.message}${event}`;
     this.isEmojiPickerVisible = false;
   }
 
-  toggleShowEmojis() {
-    this.showEmojis = !this.showEmojis;
-    this.isEmojiPickerVisible = true;
+  toggleEmojiPicker() {
+    this.isEmojiPickerVisible = !this.isEmojiPickerVisible;
   }
 
   // FILES

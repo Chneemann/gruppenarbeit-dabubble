@@ -2,6 +2,7 @@
   (ngSubmit)="onSubmit(chat.id, taskForm)"
   #taskForm="ngForm"
   onsubmit="return false"
+  (mouseleave)="this.isEmojiPickerVisible = false"
 >
   <textarea
     type="text"
@@ -12,25 +13,21 @@
     [(ngModel)]="chat.message"
     >{{ originalMessage }}</textarea
   >
-  <div
-    class="smileysBackground"
-    [ngClass]="{ dBlock: showEmojis, dNone: !showEmojis }"
-    (click)="toggleShowEmojis()"
-  >
-    <emoji-mart
-      class="emoji-mart"
-      *ngIf="isEmojiPickerVisible"
-      (emojiSelect)="addEmoji($event)"
-      title="Choose your emoji"
-    ></emoji-mart>
-  </div>
-  <div class="userInteraction">
-    <img
-      src="assets/img/smileIcon.svg"
-      class="interactIcons"
-      (click)="isEmojiPickerVisible = !isEmojiPickerVisible"
-      (click)="toggleShowEmojis()"
-    />
+
+  @if(isEmojiPickerVisible) {
+  <app-emoji-picker
+    [output]="'native'"
+    (emojiOutputEmitter)="emojiOutputEmitter($event)"
+  ></app-emoji-picker>
+  }
+  <div class="footer">
+    <app-small-btn
+      [imgSrc]="'add-reaction.svg'"
+      [imgSize]="'24px'"
+      [btnSize]="'36px'"
+      [btnBgHoverColor]="'#edeefe'"
+      (click)="toggleEmojiPicker()"
+    ></app-small-btn>
     <div class="btns">
       <button type="reset" class="btn" (click)="closeEditMsg()">Cancel</button>
       <button

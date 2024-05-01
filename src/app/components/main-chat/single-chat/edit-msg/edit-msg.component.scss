@@ -21,18 +21,20 @@ form {
 
 app-emoji-picker {
   position: absolute;
-  top: -120px;
-  left: 180px;
+  top: 195px;
+  left: 10px;
   z-index: 5;
 }
 
-.userInteraction {
+app-small-btn {
+  padding: 9px;
+}
+
+.footer {
   display: flex;
   justify-content: space-between;
+  align-items: end;
   width: 100%;
-  img {
-    padding-left: 24px;
-  }
 }
 
 .btns {
