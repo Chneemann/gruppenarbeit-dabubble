@@ -62,6 +62,12 @@ export class EditMsgComponent {
     this.closeEditMsg();
   }
 
+  sendMessageWithEnter(e: KeyboardEvent, chatId: string, form: NgForm) {
+    if (e.keyCode === 13) {
+      this.onSubmit(chatId, form);
+    }
+  }
+
   // EMOJI
 
   emojiOutputEmitter($event: any) {

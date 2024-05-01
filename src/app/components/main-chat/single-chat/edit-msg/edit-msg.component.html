@@ -11,6 +11,7 @@
     minlength="6"
     #message="ngModel"
     [(ngModel)]="chat.message"
+    (keyup)="sendMessageWithEnter($event, chat.id, taskForm)"
     >{{ originalMessage }}</textarea
   >
 
