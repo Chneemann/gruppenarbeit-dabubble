@@ -33,8 +33,6 @@ export class UserService implements OnDestroy {
         this.allUsers.push(userWithId);
         this.getUserIDs.push(userWithId.id!);
       });
-      console.log(this.allUsers);
-      
     });
   }
 

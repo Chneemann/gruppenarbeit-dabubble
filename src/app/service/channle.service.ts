@@ -84,10 +84,16 @@ export class ChannleService implements OnDestroy {
 
 
 
-  async createNewChannel(newChannel: Channel | PrvChannel, path: string){
-    await addDoc(this.firesorePath(path), newChannel).catch(
-    (err) => { console.error(err)});
+  async createNewChannel(newChannel: Channel | PrvChannel, path: string): Promise<string | undefined> {
+    try {
+      const docRef = await addDoc(this.firesorePath(path), newChannel);
+      return docRef.id;
+    } catch (err) {
+      console.error('Error creating channel:', err);
+      return undefined; // Or handle the error differently
+    }
   }
+  
 
 
   async addNewMemberToChannel(category: string ,channelID: string, selectedUsers: string []){

@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { UserService } from '../../../../service/user.service';
 import { User } from '../../../../interface/user.interface';
 import { Channel } from '../../../../interface/channel.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-new-channel',
@@ -31,7 +32,8 @@ export class AddNewChannelComponent {
 
   constructor(
     public channelService: ChannleService,
-    public userService: UserService
+    public userService: UserService,
+    public route: Router
   ) {}
 
   toggleShowAddChannelBox() {
@@ -101,19 +103,22 @@ export class AddNewChannelComponent {
     }
   }
 
-  addNewChannel() {
+  async addNewChannel() {
     const newChannel: Channel = {
-      name: this.channelName,
-      description: this.channelDescription || '',
-      creator: this.userService.userId,
-      privatChannel: this.privatChannel,
-      hashtag: this.channelName,
-      createdDate: this.currentDate,
-      addedUser: this.checkUserArray(),
+        name: this.channelName,
+        description: this.channelDescription || '',
+        creator: this.userService.userId,
+        privatChannel: this.privatChannel,
+        hashtag: this.channelName,
+        createdDate: this.currentDate,
+        addedUser: this.checkUserArray(),
     };
-    this.channelService.createNewChannel(newChannel, 'channels');
+    const channelId = await this.channelService.createNewChannel(newChannel, 'channels');
     this.openAddNewChannelWindow();
-  }
+    this.route.navigateByUrl(`main/${channelId}`);
+}
+
+  
 
   checkUserArray() {
     if (this.channelIsPrivat) {
