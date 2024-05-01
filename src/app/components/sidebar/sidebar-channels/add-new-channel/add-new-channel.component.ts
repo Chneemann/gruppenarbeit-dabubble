@@ -64,7 +64,7 @@ export class AddNewChannelComponent {
     const searchedUser = userName.toLowerCase().trim();
     const filteredUsers = this.userService.getUsers().filter((user) => {
       const fullName = `${user.firstName} ${user.lastName}`.toLowerCase();
-      return fullName.includes(searchedUser);
+      return fullName.includes(searchedUser) && user.id !== this.userService.userId;
     });
     this.getSearchedUser.push(...filteredUsers);
   }
