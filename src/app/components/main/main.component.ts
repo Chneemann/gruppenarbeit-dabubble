@@ -1,8 +1,11 @@
 import {
+  AfterViewChecked,
   ChangeDetectorRef,
   Component,
   ElementRef,
   HostListener,
+  OnChanges,
+  SimpleChanges,
 } from '@angular/core';
 import { HeaderComponent } from '../../shared/components/header/header.component';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
@@ -79,9 +82,9 @@ export class MainComponent {
 
   private updateViewWidth() {
     this.viewWidth = this.elementRef.nativeElement.offsetWidth;
-    if (this.viewWidth <= 1400) {
+    if (this.viewWidth <= 1300) {
       this.channelService.isSidebarOpen = false;
-    } else if (this.viewWidth >= 1400) {
+    } else if (this.viewWidth >= 1300) {
       this.channelService.isSidebarOpen = true;
     }
   }
