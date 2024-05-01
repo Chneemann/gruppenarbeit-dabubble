@@ -1,4 +1,4 @@
-import { Component, ElementRef } from '@angular/core';
+import { Component, ElementRef, Input } from '@angular/core';
 import { ChannleService } from '../../../service/channle.service';
 import { ChatService } from '../../../service/chat.service';
 
@@ -10,6 +10,8 @@ import { ChatService } from '../../../service/chat.service';
   styleUrl: './sidebar-toggle.component.scss',
 })
 export class SidebarToggleComponent {
+  @Input() viewWidth: number = 0;
+
   constructor(
     private channelService: ChannleService,
     private chatService: ChatService,
@@ -22,11 +24,10 @@ export class SidebarToggleComponent {
   }
 
   checkViewWidth() {
-    let viewWidth = this.elementRef.nativeElement.offsetWidth;
-    if (viewWidth <= 1300 && this.chatService.isSecondaryChatOpen) {
+    if (this.viewWidth <= 1900 && this.chatService.isSecondaryChatOpen) {
       this.channelService.isSidebarOpen = true;
     }
-    if (viewWidth <= 1300) {
+    if (this.viewWidth <= 1900) {
       this.chatService.isSecondaryChatId = '';
       this.chatService.isSecondaryChatOpen = false;
     }
