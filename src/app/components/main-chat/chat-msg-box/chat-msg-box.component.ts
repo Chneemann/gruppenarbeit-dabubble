@@ -125,6 +125,12 @@ export class ChatMsgBoxComponent {
     this.toggleBoolean.selectUserInMsgBox = false;
   }
 
+  sendMessageWithEnter(e : KeyboardEvent){
+    if (e.keyCode === 13) {
+      this.sendMessage();
+    }
+  }
+
   async sendMessage() {
     if (this.currentChannel) {
       const messageRef = collection(this.firestore, this.target);
@@ -188,16 +194,6 @@ export class ChatMsgBoxComponent {
     }
   }
 
-  filterPublicChannel() {
-    const publicChannel = this.channelService.allChannels.some(
-      (chat) => chat.id === this.currentChannel
-    );
-    if (publicChannel) {
-      return (this.showTargetMember = true);
-    } else {
-      return (this.showTargetMember = false);
-    }
-  }
 
   resetValues() {
     this.currentChatValue = '';

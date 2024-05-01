@@ -5,6 +5,7 @@ import { ChannleService } from './channle.service';
 import { getAuth, signOut } from 'firebase/auth';
 import { Router } from '@angular/router';
 
+
 @Injectable({
   providedIn: 'root',
 })
@@ -16,6 +17,7 @@ export class UserService implements OnDestroy {
   getFiltertUsers: User[] = [];
   isUserLogin: boolean = true;
   userId: string = 'JX5JxxPx0sdjEPHCs5F9';
+  // userId: string = '';
   unsubUser;
 
   constructor(private channelService: ChannleService, private route: Router) {
@@ -31,6 +33,8 @@ export class UserService implements OnDestroy {
         this.allUsers.push(userWithId);
         this.getUserIDs.push(userWithId.id!);
       });
+      console.log(this.allUsers);
+      
     });
   }
 

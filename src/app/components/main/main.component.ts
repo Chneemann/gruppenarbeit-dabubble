@@ -13,6 +13,8 @@ import { AddNewChannelComponent } from '../sidebar/sidebar-channels/add-new-chan
 import { OverlayComponent } from '../../shared/components/overlay/overlay.component';
 import { PrivatChatComponent } from '../main-chat/privat-chat/privat-chat.component';
 import { ToggleBooleanService } from '../../service/toggle-boolean.service';
+import { BehaviorSubject, Observable, map, of } from 'rxjs';
+import { Channel } from '../../interface/channel.interface';
 
 @Component({
   selector: 'app-landing-page',
@@ -40,10 +42,11 @@ export class MainComponent {
     private route: Router,
     private router: ActivatedRoute,
     private toggleAllBooleans: ToggleBooleanService
-  ) {}
+  ) {  }
 
   currentChannel: string = '';
   isSidebarOpen: boolean = true;
+  currentUserID: string = this.userService.userId;
 
   ngOnInit() {
     this.ifUserLogin();
@@ -63,6 +66,7 @@ export class MainComponent {
       });
     }
   }
+
 
   toggleBooleans(){
     this.toggleAllBooleans.openSearchWindow = false;

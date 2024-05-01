@@ -33,6 +33,7 @@
     name="textarea"
     [(ngModel)]="textArea"
     [(ngModel)]="currentChatValue"
+    (keyup)="sendMessageWithEnter($event)"
   ></textarea>
   <div class="positionAllIcons">
     <div class="positionSpecialIcons">
@@ -51,7 +52,7 @@
         [btnBgHoverColor]="'#edeefe'"
         (click)="toggleEmojiPicker()"
       ></app-small-btn>
-      @if (filterPublicChannel()) {
+      @if (target == 'chats') {
       <app-small-btn
         [imgSrc]="'atIcon.svg'"
         [imgSize]="'20px'"
