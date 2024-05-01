@@ -30,9 +30,11 @@ import { ChatMsgBoxComponent } from '../main-chat/chat-msg-box/chat-msg-box.comp
   templateUrl: './secondary-chat.component.html',
   styleUrl: './secondary-chat.component.scss',
 })
-export class SecondaryChatComponent implements AfterViewInit, AfterViewChecked {
+export class SecondaryChatComponent implements AfterViewChecked {
   @Input() currentChannel: string = '';
   @ViewChild('messageBody') messageBody: ElementRef | undefined;
+  sidebarLoaded: boolean = false;
+  isNewMessage: boolean = false;
 
   constructor(
     public userService: UserService,
@@ -41,12 +43,18 @@ export class SecondaryChatComponent implements AfterViewInit, AfterViewChecked {
     private renderer: Renderer2
   ) {}
 
-  ngAfterViewInit() {
-    this.scrollToBottom();
+  ngAfterViewChecked() {
+    if (this.chatService.isSecondaryChatOpen && !this.sidebarLoaded) {
+      this.scrollToBottom();
+      this.sidebarLoaded = true;
+    }
   }
 
-  ngAfterViewChecked() {
-    this.scrollToBottom();
+  editMsgEmitter(variable: boolean) {
+    this.isNewMessage = variable;
+    if (this.isNewMessage) {
+      this.scrollToBottom();
+    }
   }
 
   scrollToBottom(): void {

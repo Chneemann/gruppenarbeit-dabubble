@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { PickerComponent } from '@ctrl/ngx-emoji-mart';
 import { Firestore, addDoc, collection } from '@angular/fire/firestore';
@@ -29,6 +29,7 @@ import { MessageData } from '../../../interface/chat.interface';
 export class ChatMsgBoxComponent {
   @Input() currentChannel: string = '';
   @Input() target: string = '';
+  @Output() newMsgEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   hasFile: boolean = false;
   currentFiles!: FileList;
@@ -125,7 +126,7 @@ export class ChatMsgBoxComponent {
     this.toggleBoolean.selectUserInMsgBox = false;
   }
 
-  sendMessageWithEnter(e : KeyboardEvent){
+  sendMessageWithEnter(e: KeyboardEvent) {
     if (e.keyCode === 13) {
       this.sendMessage();
     }
@@ -151,6 +152,7 @@ export class ChatMsgBoxComponent {
     }
     this.forwardToChannel();
     this.resetValues();
+    this.newMsgEmitter.emit(true);
   }
 
   checkCollection(target: string): MessageData | null {
@@ -193,7 +195,6 @@ export class ChatMsgBoxComponent {
       this.route.navigateByUrl(`/main/${this.checkChannelId()}`);
     }
   }
-
 
   resetValues() {
     this.currentChatValue = '';

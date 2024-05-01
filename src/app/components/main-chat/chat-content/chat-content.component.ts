@@ -40,6 +40,7 @@ export class ChatContentComponent implements AfterViewInit, AfterViewChecked {
   @Input() getChatUsers!: (currentChannel: string) => any;
   @ViewChild('messageBody') messageBody: ElementRef | undefined;
   filesLoaded: boolean = false;
+  isNewMessage: boolean = false;
 
   constructor(
     private chatService: ChatService,
@@ -63,7 +64,13 @@ export class ChatContentComponent implements AfterViewInit, AfterViewChecked {
       this.scrollToBottom();
       this.filesLoaded = false;
     }
-    this.scrollToBottom();
+  }
+
+  editMsgEmitter(variable: boolean) {
+    this.isNewMessage = variable;
+    if (this.isNewMessage) {
+      this.scrollToBottom();
+    }
   }
 
   scrollToBottom(): void {

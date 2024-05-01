@@ -25,6 +25,7 @@
   }
   <app-chat-msg-box
     [currentChannel]="currentChannel"
+    (newMsgEmitter)="editMsgEmitter($event)"
     [target]="'chats'"
   ></app-chat-msg-box>
 </section>

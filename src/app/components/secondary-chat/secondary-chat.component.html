@@ -53,6 +53,7 @@
   <div class="answer">
     <app-chat-msg-box
       [currentChannel]="currentChannel"
+      (newMsgEmitter)="editMsgEmitter($event)"
       [target]="'chat-answers'"
     ></app-chat-msg-box>
   </div>
