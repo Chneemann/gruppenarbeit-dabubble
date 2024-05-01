@@ -1,4 +1,12 @@
-import { Component, Input } from '@angular/core';
+import {
+  AfterViewChecked,
+  AfterViewInit,
+  Component,
+  ElementRef,
+  Input,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 import { UserService } from '../../service/user.service';
 import { ChannleService } from '../../service/channle.service';
 import { ChatService } from '../../service/chat.service';
@@ -22,14 +30,35 @@ import { ChatMsgBoxComponent } from '../main-chat/chat-msg-box/chat-msg-box.comp
   templateUrl: './secondary-chat.component.html',
   styleUrl: './secondary-chat.component.scss',
 })
-export class SecondaryChatComponent {
+export class SecondaryChatComponent implements AfterViewInit, AfterViewChecked {
   @Input() currentChannel: string = '';
+  @ViewChild('messageBody') messageBody: ElementRef | undefined;
 
   constructor(
     public userService: UserService,
     public channelService: ChannleService,
-    public chatService: ChatService
+    public chatService: ChatService,
+    private renderer: Renderer2
   ) {}
+
+  ngAfterViewInit() {
+    this.scrollToBottom();
+  }
+
+  ngAfterViewChecked() {
+    this.scrollToBottom();
+  }
+
+  scrollToBottom(): void {
+    if (this.messageBody) {
+      const element = this.messageBody.nativeElement;
+      this.renderer.setProperty(
+        element,
+        'scrollTop',
+        element.scrollHeight - element.clientHeight
+      );
+    }
+  }
 
   displayCountChatAnswer(chatId: string) {
     return this.chatService.getChatAnswers(chatId).length;

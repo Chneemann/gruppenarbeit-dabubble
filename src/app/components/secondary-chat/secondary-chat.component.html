@@ -11,7 +11,7 @@
         <img src="assets/img/closeIcon.svg" alt="" />
       </div>
     </div>
-    <div class="content">
+    <div class="content" #messageBody>
       @for (chat of getSingleChat(this.chatService.isSecondaryChatId); track
       chat; let i = $index) {
       <div>
