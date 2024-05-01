@@ -48,6 +48,7 @@ export class SingleChatComponent {
   trustedUrl: string = '';
   isOptionMenuVisible: boolean = false;
   isMsgEditFormOpen: boolean = false;
+  firstLoadOptionMenu: boolean = false;
 
   constructor(
     public chatService: ChatService,
@@ -67,10 +68,12 @@ export class SingleChatComponent {
 
   showOptionMenu() {
     this.isOptionMenuVisible = true;
+    this.firstLoadOptionMenu = true;
   }
 
   hideOptionMenu() {
     this.isOptionMenuVisible = false;
+    this.firstLoadOptionMenu = true;
   }
 
   displayCountChatAnswer() {
