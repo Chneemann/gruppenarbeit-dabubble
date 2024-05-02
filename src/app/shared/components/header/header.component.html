@@ -1,26 +1,29 @@
 <header>
-  <img src="assets/img/home-icon.svg" class="homeIcon" />
-
-  <app-search-bar></app-search-bar>
-
+  <div class="leftSide">
+    <img src="assets/img/home-icon.svg" class="homeIcon" />
+  </div>
+  <div class="middleSide">
+    <app-search-bar></app-search-bar>
+  </div>
   <div>
-    <!----- right hreader side----->
-    @for(i of userService.getCurentUsers(); track i){
-    <h1 class="fontNunito">{{ i.firstName }} {{ i.lastName }}</h1>
+    <div class="rightSide">
+      @for(i of userService.getCurentUsers(); track i){
+      <p class="fontNunito">{{ i.firstName }} {{ i.lastName }}</p>
 
-    <div>
-      <img src="{{ i.avatar }}" class="profileImg" />
+      <div class="img">
+        <img src="{{ i.avatar }}" class="profileImg" />
+        <img
+          src="assets/img/{{ i.status ? 'onlineRing.svg' : 'offlineRing.svg' }}"
+          class="onlineIcon"
+        />
+      </div>
       <img
-        src="assets/img/{{ i.status ? 'onlineRing.svg' : 'offlineRing.svg' }}"
-        class="onlineIcon"
+        src="assets/img/keyboardArrowDown.svg"
+        class="arrowDown"
+        (click)="showSideMenu()"
       />
+      }
     </div>
-    <img
-      src="assets/img/keyboardArrowDown.svg"
-      class="arrowDown"
-      (click)="showSideMenu()"
-    />
-    }
   </div>
 </header>
 
