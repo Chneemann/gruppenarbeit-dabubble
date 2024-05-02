@@ -52,7 +52,6 @@ export class MainComponent {
   ) {}
 
   currentChannel: string = '';
-  currentUserID: string = this.userService.userId;
   viewWidth: number = 0;
 
   ngOnInit() {
@@ -62,7 +61,7 @@ export class MainComponent {
   }
 
   ifUserLogin() {
-    if (!this.userService.isUserLogin) {
+    if (this.userService.userId == '') {
       this.route.navigateByUrl('/login');
     }
   }

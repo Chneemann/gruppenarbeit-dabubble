@@ -1,10 +1,15 @@
 import { Injectable, OnDestroy, inject } from '@angular/core';
-import { Firestore, collection, doc, onSnapshot, updateDoc } from '@angular/fire/firestore';
+import {
+  Firestore,
+  collection,
+  doc,
+  onSnapshot,
+  updateDoc,
+} from '@angular/fire/firestore';
 import { User } from '../interface/user.interface';
 import { ChannleService } from './channle.service';
 import { getAuth, signOut } from 'firebase/auth';
 import { Router } from '@angular/router';
-
 
 @Injectable({
   providedIn: 'root',
@@ -16,8 +21,8 @@ export class UserService implements OnDestroy {
   getUserIDs: string[] = [];
   getFiltertUsers: User[] = [];
   isUserLogin: boolean = true;
-  userId: string = 'JX5JxxPx0sdjEPHCs5F9';
-  // userId: string = '';
+  userId: string = '';
+
   unsubUser;
 
   constructor(private channelService: ChannleService, private route: Router) {
@@ -47,7 +52,6 @@ export class UserService implements OnDestroy {
     return filteredUser;
   }
 
-
   createPrvChannel(filterUserID: string) {
     const newPrvChannel = {
       creatorId: this.userId,
@@ -76,37 +80,37 @@ export class UserService implements OnDestroy {
       console.log('Private channel already exists!', channelExists);
       return channelExists;
     }
-    return'';
+    return '';
   }
 
-
-  updateUserData(newFirstName:string, newLastName:string, newEmail:string){
+  updateUserData(newFirstName: string, newLastName: string, newEmail: string) {
     const userDocRef = doc(this.firestore, 'users', this.userId);
     const updates = {
       firstName: newFirstName,
       lastName: newLastName || '',
-      email: newEmail
+      email: newEmail,
     };
-    updateDoc(userDocRef, updates).catch((error) => {console.error(error);});
+    updateDoc(userDocRef, updates).catch((error) => {
+      console.error(error);
+    });
   }
-
 
   ngOnDestroy() {
     this.unsubUser();
   }
 
-  currentUserLogout(){
+  currentUserLogout() {
     const auth = getAuth();
     const userId = this.userId;
-  
+
     if (userId) {
       const userDocRef = doc(this.firestore, `users/${userId}`);
-  
+
       updateDoc(userDocRef, { status: false })
         .then(() => {
           signOut(auth)
             .then(() => {
-               this.route.navigate(['/login']);
+              this.route.navigate(['/login']);
             })
             .catch((error) => {
               console.error(error);

@@ -46,7 +46,7 @@ export class MainChatComponent {
     private elementRef: ElementRef,
     public toggleBoolean: ToggleBooleanService
   ) {
-    if (this.currentChannel == '') {
+    if (this.currentChannel == '' && this.userService.userId !== '') {
       this.route.navigateByUrl('/main/XiqUAXRY1W7PixC9kVTa');
     }
   }
