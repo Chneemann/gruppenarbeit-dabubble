@@ -1,54 +1,7 @@
 <header>
   <img src="assets/img/home-icon.svg" class="homeIcon" />
 
-  <div class="inputPosition">
-    <input type="text" placeholder="Search content at current channel" class="fontNunito" [(ngModel)]="inputValue" (keyup)="filterAllInfo( inputValue)" />
-    <img src="assets/img/search-icon.svg" />
-    <div class="suggestionBox"  [ngClass]="{ showSearchWindow: toggleBoolean.openSearchWindowHead, hideSearchWindow: !toggleBoolean.openSearchWindowHead }">
-      <!-----Search output------>
-      @if (filteredUsers.length > 0 && inputValue != '') {
-        <div class="contantBox">
-          <h4>Users:</h4>
-          <div class="ansersBox">
-            @for (user of filteredUsers; track user) {
-              <div class="userDiv" (click)="checkRoute([user])">
-                <div class="userImgDiv">
-                  <img src="{{ user.avatar}}" class="userProfilImg">
-                  <img src="assets/img/offlineRing.svg" class="userOnlineImg">
-                </div>
-                <p [innerHTML]="(user.firstName + ' ' + user.lastName) | highlight:inputValue"></p>
-              </div>
-            }
-          </div>
-        </div>
-      }
-      @if (filteredChannels.length > 0 && inputValue != '') {
-        <div class="contantBox">
-          <h4>Channels:</h4>
-          <div class="ansersBox">
-            @for (channel of filteredChannels; track channel) {
-              <p class="channelName" [innerHTML]="channel.name | highlight:inputValue" routerLink="/main/{{ channel.id }}"># </p>
-            }
-          </div>
-        </div>
-      }
-      @if (filteredChats.length > 0 && inputValue != '') {
-        <div class="contantBoxChats">
-          <h4>Threads:</h4>
-          <div class="channelAnswers">
-            @for (chat of filteredChats; track chat) {
-              <div class="ansersBoxChats">
-                <p class="threadNmae">[ {{getChannel(chat.channelId)}} ]</p>
-                <div class="threadContetntBox">
-                  <p class="threadContetnt" [innerHTML]="chat.message | highlight:inputValue" routerLink="/main/{{ chat.channelId }}"></p>
-                </div>
-              </div>
-            }
-          </div>
-        </div>
-      }
-    </div>
-  </div>
+  <app-search-bar></app-search-bar>
 
   <div>
     <!----- right hreader side----->
@@ -56,7 +9,7 @@
     <h1 class="fontNunito">{{ i.firstName }} {{ i.lastName }}</h1>
 
     <div>
-      <img src="{{i.avatar}}" class="profileImg" />
+      <img src="{{ i.avatar }}" class="profileImg" />
       <img
         src="assets/img/{{ i.status ? 'onlineRing.svg' : 'offlineRing.svg' }}"
         class="onlineIcon"
@@ -78,7 +31,7 @@
 >
   <div class="whiteBox fontNunito">
     <p (click)="showProfile()" class="profilBtn">Profil</p>
-    <p  (click)="logout()" class="logOutBtn">Log out</p>
+    <p (click)="logout()" class="logOutBtn">Log out</p>
   </div>
 </div>
 

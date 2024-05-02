@@ -14,8 +14,7 @@ export class SidebarToggleComponent {
 
   constructor(
     private channelService: ChannleService,
-    private chatService: ChatService,
-    private elementRef: ElementRef
+    private chatService: ChatService
   ) {}
 
   toggleSidebar() {

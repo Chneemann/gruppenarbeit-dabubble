@@ -1,211 +1,71 @@
-@import '../../../../styles.scss';
+@import "../../../../styles.scss";
 
-header{
-    height: 110px;
-    @include displayFlex($j: space-between);
-    .homeIcon{
-        margin-left: 20px;
+header {
+  height: 110px;
+  @include displayFlex($j: space-between);
+  .homeIcon {
+    margin-left: 20px;
+  }
+  > div {
+    @include displayFlex($g: 20px);
+    h1 {
+      margin: 0;
+      font-size: 32px;
+      font-weight: 700;
     }
-    .inputPosition{
-        @include displayFlex();
-        position: relative;
-        input{
-            width: 40vw;
-            height: 40px;
-            border-radius: 30px;
-            padding-left: 20px;
-            padding-right: 48px;
-            font-size: larger;
-            border: none;
-            outline: none;
-        }
-        img{
-            margin-left: -40px;
-            cursor: pointer;
-        }
+    .profileImg {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 50%;
     }
-    >div{
-        @include displayFlex($g: 20px);
-        h1{
-            margin: 0;
-            font-size: 32px;
-            font-weight: 700;
-        }
-        .profileImg{
-            width: 80px;
-            height: 80px;
-            object-fit: cover;
-            border-radius: 50%;
-        }
-        .onlineIcon{
-            margin-left: -20px;
-        }
+    .onlineIcon {
+      margin-left: -20px;
     }
-    .arrowDown{
-        margin-right: 20px;
-        cursor: pointer;
-    }
-}
-
-.suggestionBox{
-    z-index: 5;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    border-radius: 30px;
-    background-color: white;
-    box-shadow: rgb(79 98 117) 0px 20px 30px -10px;
-    scrollbar-width: none;
-    overflow: scroll;
-    -ms-overflow-style: none;
-    display: flex;
-    gap: 20px;
-    flex-direction: column;
-    .contantBox{
-        @include displayFlex($j: space-between, $a:flex-start);
-        width: 100%;
-        h4{
-            width: 30%
-        }
-        .ansersBox{
-            @include displayFlex($a: flex-start, $g: 4px);
-            flex-direction: column;
-            width: 70%
-        }
-    }
-    .contantBoxChats{
-        @include displayFlex($j: space-between, $a:flex-start);
-        flex-direction: column;
-        width: 100%;
-        .channelAnswers{
-            width: 100%;
-            @include displayFlex($g: 4px);
-            flex-direction: column;
-            .ansersBoxChats{
-                width: 100%;
-                @include displayFlex($j: space-between, $a:flex-start);
-                .threadNmae{
-                    width: 30%;
-                }
-                .threadContetntBox{
-                    width: 70%;
-                    .threadContetnt{
-                        width: fit-content;
-                        padding: 4px;
-                        &:hover{
-                            background-color: #b4b8f8;
-                            border-radius: 25px;
-                            cursor: pointer;
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-.channelName{
-    padding: 4px;
-    &:hover{
-        background-color: #b4b8f8;
-        border-radius: 25px;
-        cursor: pointer;
-    }
-}
-
-.userDiv{
-    @include displayFlex();
-    padding: 4px;
-    &:hover{
-        background-color: #b4b8f8;
-        border-radius: 25px;
-        cursor: pointer;
-    }
-    .userImgDiv{
-        margin-left: 40px;
-        @include displayFlex($j: space-between, $a:flex-end);
-        .userProfilImg{
-            width: 32px;
-            height: 32px;
-            object-fit: cover;
-            border-radius: 50%;
-        }
-        .userOnlineImg{
-            width: 8px;
-            height: 8px;
-            object-fit: cover;
-            margin-right: 8px;
-        }
-    }
+  }
+  .arrowDown {
+    margin-right: 20px;
+    cursor: pointer;
+  }
 }
 
 .suggestionBox::-webkit-scrollbar {
-    display: none; 
+  display: none;
 }
 
-.menu{
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.3);
-    z-index: 5;
+.menu {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 5;
 }
 
-.whiteBox{
-    background-color: white;
-    @include displayFlex($g: 20px);
-    flex-direction: column;
-    width: 220px;
-    height: 160px;
-    border-top-left-radius: 40px;
-    border-bottom-left-radius: 40px;
-    border-bottom-right-radius: 40px;
-    position: absolute;
-    top: 110px;
-    right: 20px;
-    p{
-        font-size: 22px;
-        font-weight: 600;
-        cursor: pointer;
-        text-align: center;
-        padding: 8px;
-        &:hover{
-            width: 62%;
-            background-color: #EDEEFE;
-            border-radius: 15px;
-            color: #444df2;
-        }
+.whiteBox {
+  background-color: white;
+  @include displayFlex($g: 20px);
+  flex-direction: column;
+  width: 220px;
+  height: 160px;
+  border-top-left-radius: 40px;
+  border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 40px;
+  position: absolute;
+  top: 110px;
+  right: 20px;
+  p {
+    font-size: 22px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    padding: 8px;
+    &:hover {
+      width: 62%;
+      background-color: #edeefe;
+      border-radius: 15px;
+      color: #444df2;
     }
+  }
 }
-
-
-.showSearchWindow{
-    animation: shwoSW 0.3s ease-in-out;
-    width: calc(40vw + 26px);
-    max-height: 40vh;
-    padding: 20px;
-  }
-  
-  @keyframes shwoSW {
-    from {max-height: 0;}
-    to {max-height: 40vh;
-        padding: 20px;}
-  }
-  
-  .hideSearchWindow{
-    animation: hideSW 0.3s ease-in-out;
-    width: calc(40vw + 26px);
-    max-height: 0;
-    padding: 0;
-  }
-  
-  @keyframes hideSW {
-    from {max-height: 40vh;
-        padding: 20px;}
-    to {max-height: 0;
-        padding: 20px;}
-  }
-  
-  
