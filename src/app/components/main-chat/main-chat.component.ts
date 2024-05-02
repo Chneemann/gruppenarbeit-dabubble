@@ -59,24 +59,13 @@ export class MainChatComponent {
     this.openMenu = false;
   }
 
-  preventClose(event: MouseEvent) {
-    if (this.elementRef.nativeElement.contains(event.target)) {
-      const clickedElement = event.target as HTMLElement;
-      const menuContent =
-        this.elementRef.nativeElement.querySelector('.whiteBox');
-      const closeBtn = this.elementRef.nativeElement.querySelector('.closeBtn');
-      if (closeBtn.contains(clickedElement)) {
-        this.closeMenu();
-        event.stopPropagation();
-      }
-      if (!menuContent.contains(clickedElement)) {
-        this.closeMenu();
-        event.stopPropagation();
-      }
-    }
+  preventCloseWhiteBox(event: Event){
+    event.stopPropagation();
   }
 
-  editChannelName() {}
+  editChannelName(event: Event) {
+    event.stopPropagation();
+  }
 
   getUsers(): User[] {
     return this.userService.allUsers;
@@ -201,5 +190,26 @@ export class MainChatComponent {
   openMemberWindow(boolean: boolean) {
     this.toggleBoolean.openChannelMemberWindow = true;
     this.toggleBoolean.openAddMemberWindow(boolean);
+  }
+
+  leaveChannel(currentChannel: string, event: Event){
+    event.stopPropagation();
+    const getLogedInUser: string = this.userService.userId;
+    const getChannel = this.channelService.allChannels.filter(
+      (channel) => channel.id == currentChannel
+    );
+    if (getChannel) {
+      const userIndex = getChannel[0].addedUser.indexOf(getLogedInUser);
+  
+      if (userIndex) {
+        getChannel[0].addedUser.splice(userIndex, 1);
+        const userArray = getChannel[0].addedUser;
+        this.channelService.addNewMemberToChannel('channels', currentChannel, userArray, 'leaveChannel');
+        this.openMenu = false;
+        this.route.navigateByUrl(`main/XiqUAXRY1W7PixC9kVTa`);
+      } else {
+        console.warn('User not found in the channel');
+      }
+    }
   }
 }

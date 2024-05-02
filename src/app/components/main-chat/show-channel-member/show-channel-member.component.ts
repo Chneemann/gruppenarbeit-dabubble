@@ -105,7 +105,7 @@ export class ShowChannelMemberComponent {
 
 
   addUserToChannel(){
-    this.channelService.addNewMemberToChannel('channels', this.currentChannel, this.selectedUsers);
+    this.channelService.addNewMemberToChannel('channels', this.currentChannel, this.selectedUsers, 'addUserToChannel');
     this.closeChannelMemberWindow();
   }
 

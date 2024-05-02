@@ -138,9 +138,9 @@
   <div
     class="menu"
     [ngClass]="{ dBlock: openMenu, dNone: !openMenu }"
-    (mousedown)="preventClose($event)"
+    (click)="closeMenu()"
   >
-    <div class="whiteBox">
+    <div class="whiteBox" (click)="preventCloseWhiteBox($event)">
       @for (channel of getChannelName(currentChannel); track channel) {
       <div class="headerBox">
         <div class="headline">
@@ -156,7 +156,7 @@
         @for (channel of getChannelName(currentChannel); track channel) {
         <div class="contentHeadline">
           <p>Channel Name</p>
-          <span (click)="editChannelName()">Edit</span>
+          <span (click)="editChannelName($event)">Edit</span>
         </div>
         <div class="channelName">
           <img src="assets/img/hashtag.svg" alt="" />
@@ -168,7 +168,7 @@
         @for (channel of getChannelName(currentChannel); track channel) {
         <div class="contentHeadline">
           <p>Description</p>
-          <span (click)="editChannelName()">Edit</span>
+          <span (click)="editChannelName($event)">Edit</span>
         </div>
         <div class="channelName">
           <p>{{ channel.description }}</p>
@@ -184,7 +184,7 @@
         </div>
         }
       </div>
-      <div class="leaveChannel"><p>Leave channel</p></div>
+      <div class="leaveChannel"><p (click)="leaveChannel(currentChannel, $event)">Leave channel</p></div>
     </div>
   </div>
   } }

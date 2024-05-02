@@ -46,32 +46,6 @@ export class ChannleService implements OnDestroy {
   }
 
 
-  // async checkIfNewUserExistInChannel(userID: string) {
-  //   const frontendID = 'XiqUAXRY1W7PixC9kVTa';
-  //   const backendID = 'eV0AcEEMgVEFA9R2X4qQ';
-  //   if (this.allChannels.length < 0) {
-  //     const channelFE = this.allChannels.filter(channel => channel.id === frontendID);
-  //     const channelBE = this.allChannels.filter(channel => channel.id === backendID);
-  
-  //     const addedUserBE = channelBE[0].addedUser.filter(user => user === userID);
-  //     const addedUserFE = channelFE[0].addedUser.filter(user => user === userID);
-  
-  //     console.log(addedUserBE);
-  //     console.log(addedUserFE);
-  //   }
-  
-    
-  //   // const currentUserId = this.authService.userId; 
-  //   // if (!addedUserFE.includes(currentUserId) && !addedUserBE.includes(currentUserId)) {
-  //   //   const allMembers = [...currentUserId, ...this.channelMembers];
-  
-  //   //   await updateDoc( doc(this.firestore, `channels/${frontendID}`), { addedUser: allMembers });
-  //   //   await updateDoc( doc(this.firestore, `channels/${backendID}`), { addedUser: allMembers });
-
-  //   // }
-  // }
-
-
   subPrvChannelList() {
     return onSnapshot(this.firesorePath('prv-channels'), (list) => {
       this.allPrvChannels = [];
@@ -96,10 +70,14 @@ export class ChannleService implements OnDestroy {
   
 
 
-  async addNewMemberToChannel(category: string ,channelID: string, selectedUsers: string []){
-    const allMembers: string[] = [...selectedUsers, ...this.channelMembers];
+  async addNewMemberToChannel(category: string ,channelID: string, selectedUsers: string [], checkCategory: string){
+    if (checkCategory === 'addUserToChannel') {
+      const allMembers: string[] = [...selectedUsers, ...this.channelMembers];
+      const docRef = doc(this.firestore, `${category}/${channelID}`);
+      await updateDoc(docRef, { addedUser: allMembers });
+    }
     const docRef = doc(this.firestore, `${category}/${channelID}`);
-    await updateDoc(docRef, { addedUser: allMembers });
+    await updateDoc(docRef, { addedUser: selectedUsers });
   }
 
   ngOnDestroy() {

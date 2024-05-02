@@ -130,8 +130,7 @@ export class AddNewChannelComponent {
 
 
   openAddNewChannelWindow() {
-    this.channelService.showAddChannelBox =
-      !this.channelService.showAddChannelBox;
+    this.channelService.showAddChannelBox = !this.channelService.showAddChannelBox;
     this.channelName = '';
     this.channelDescription = '';
     this.channelService.btnIsValid = false;
