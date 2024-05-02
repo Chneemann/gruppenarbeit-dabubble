@@ -57,6 +57,11 @@ export class ChannleService implements OnDestroy {
   }
 
 
+  async saveAddedNameOrDescription(category: string, channelID: string, channelCategory: string, textValue: string) {
+    const docRef = doc(this.firestore, `${category}/${channelID}`);
+    await updateDoc(docRef, { [channelCategory]: textValue });
+  }
+
 
   async createNewChannel(newChannel: Channel | PrvChannel, path: string): Promise<string | undefined> {
     try {
@@ -64,7 +69,7 @@ export class ChannleService implements OnDestroy {
       return docRef.id;
     } catch (err) {
       console.error('Error creating channel:', err);
-      return undefined; // Or handle the error differently
+      return undefined;
     }
   }
   

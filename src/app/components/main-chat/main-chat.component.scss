@@ -161,6 +161,27 @@ section {
       font-size: 18px;
       font-weight: 400;
     }
+    .inputName{
+      width: 100%;
+      border: 1px solid #888dec;
+      outline: none;
+      height: 12px;
+      border-radius: 25px;
+      padding: 8px;
+      font-size: large;
+    }
+    .textareaDescription{
+      width: 100%;
+      padding: 16px;
+      max-height: 104px;
+      border-radius: 40px;
+      border: 1px solid #888dec;
+      resize: none;
+      font-size: medium;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      outline: none;
+    }
   }
   .channelCreator {
     margin-top: 24px;

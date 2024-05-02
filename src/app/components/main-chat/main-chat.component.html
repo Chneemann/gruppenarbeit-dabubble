@@ -156,23 +156,45 @@
         @for (channel of getChannelName(currentChannel); track channel) {
         <div class="contentHeadline">
           <p>Channel Name</p>
-          <span (click)="editChannelName($event)">Edit</span>
+          @if (!openEditNameInput) {
+            <span (click)="editChannelName($event)">Edit</span>
+          } @else {
+            <span (click)="saveEditChannelName($event)">Save Name</span>
+          }
         </div>
-        <div class="channelName">
-          <img src="assets/img/hashtag.svg" alt="" />
-          <p>{{ channel.name }}</p>
-        </div>
+        @if (!openEditNameInput) {
+          <div class="channelName">
+            <img src="assets/img/hashtag.svg" alt="" />
+            <p>{{ channel.name }}</p>
+          </div>
+        } @else {
+          <div class="channelName">
+            <img src="assets/img/hashtag.svg" alt="" />
+            <input type="text" [(ngModel)]="nameValue" class="inputName">
+          </div>
+        }
         }
       </div>
       <div class="contentChannel">
         @for (channel of getChannelName(currentChannel); track channel) {
+        
         <div class="contentHeadline">
           <p>Description</p>
-          <span (click)="editChannelName($event)">Edit</span>
+          @if (!openEditNameDescription) {
+            <span (click)="editChannelDescription($event)">Edit</span>
+          } @else {
+            <span (click)="saveEditChannelDescription($event)">Save Description</span>
+          }
         </div>
-        <div class="channelName">
-          <p>{{ channel.description }}</p>
-        </div>
+        @if (!openEditNameDescription) {
+          <div class="channelName">
+            <p>{{ channel.description }}</p>
+          </div>
+        } @else {
+          <div class="channelName">
+            <textarea cols="30" rows="10"[(ngModel)]="descriptionValue" class="textareaDescription"></textarea>
+          </div>
+        }
         <div class="line"></div>
         <div class="contentHeadline">
           <p>Created by</p>

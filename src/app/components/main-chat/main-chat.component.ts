@@ -36,8 +36,13 @@ export class MainChatComponent {
   @Input() currentChannel: string = '';
 
   openMenu: boolean = false;
+  openEditNameInput: boolean = false;
+  openEditNameDescription: boolean = false;
+  nameValue: string = ''
+  descriptionValue: string = ''
   firstLetter: string = '';
   openSearchWindow: boolean = false;
+  getCurrentChannel: Channel[] = [];
   constructor(
     private route: Router,
     public userService: UserService,
@@ -57,6 +62,11 @@ export class MainChatComponent {
 
   closeMenu() {
     this.openMenu = false;
+    this.openEditNameDescription = false;
+    this.openEditNameInput = false;
+    this.descriptionValue = '';
+    this.nameValue = '';
+    this.getCurrentChannel = [];
   }
 
   preventCloseWhiteBox(event: Event){
@@ -65,7 +75,28 @@ export class MainChatComponent {
 
   editChannelName(event: Event) {
     event.stopPropagation();
+    this.openEditNameInput = true;
+    this.nameValue = this.getCurrentChannel[0].name;
   }
+
+  saveEditChannelName(event: Event){
+    event.stopPropagation();
+    this.openEditNameInput = false;
+    this.channelService.saveAddedNameOrDescription('channels', this.currentChannel!, 'name', this.nameValue)
+  }
+
+  editChannelDescription(event: Event){
+    event.stopPropagation();
+    this.openEditNameDescription = true;
+    this.descriptionValue = this.getCurrentChannel[0].description;
+  }
+
+  saveEditChannelDescription(event: Event){
+    event.stopPropagation();
+    this.openEditNameDescription = false;
+    this.channelService.saveAddedNameOrDescription('channels', this.currentChannel!, 'description', this.descriptionValue)
+  }
+
 
   getUsers(): User[] {
     return this.userService.allUsers;
@@ -99,6 +130,7 @@ export class MainChatComponent {
     const filteredTasks = this.getChannels().filter(
       (channel) => channel.id == chatId
     );
+    this.getCurrentChannel = filteredTasks;
     return filteredTasks;
   }
 
