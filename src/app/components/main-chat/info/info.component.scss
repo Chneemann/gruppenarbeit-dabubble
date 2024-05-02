@@ -37,3 +37,19 @@ span {
     font-weight: 700;
   }
 }
+
+/*------------- RESPONSIVE -------------*/
+
+@media screen and (max-width: 600px) {
+  section {
+    padding: 24px 12px 12px 12px;
+  }
+
+  .headline {
+    font-size: 20px;
+  }
+
+  p {
+    font-size: 18px;
+  }
+}

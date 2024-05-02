@@ -28,3 +28,45 @@
     }
   }
 }
+
+/*------------- RESPONSIVE -------------*/
+
+@media screen and (max-width: 510px) {
+  .files {
+    .filesView {
+      audio {
+        width: 250px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .files {
+    .filesView {
+      audio {
+        width: 200px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 410px) {
+  .files {
+    .filesView {
+      audio {
+        width: 150px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .files {
+    .filesView {
+      audio {
+        width: 90px;
+      }
+    }
+  }
+}
