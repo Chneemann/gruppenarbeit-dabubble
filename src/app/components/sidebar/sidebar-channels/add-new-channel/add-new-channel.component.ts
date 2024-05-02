@@ -36,6 +36,10 @@ export class AddNewChannelComponent {
     public route: Router
   ) {}
 
+
+  /**
+   * Toggles the visibility of the add channel box.
+   */
   toggleShowAddChannelBox() {
     this.channelService.showAddChannelBox =
       !this.channelService.showAddChannelBox;
@@ -44,20 +48,37 @@ export class AddNewChannelComponent {
     this.channelDescription = '';
   }
 
+
+  /**
+   * Toggles the visibility of the next window.
+   */
   createNewChannel() {
     this.shwoNextWindow = !this.shwoNextWindow;
   }
 
+
+  /**
+   * Toggles the button to true.
+   */
   toggleBtnTrue() {
     this.changeImg = true;
     this.channelIsPrivat = true;
   }
 
+
+  /**
+   * Toggles the button to false.
+   */
   toggleBtnFalse() {
     this.changeImg = false;
     this.channelIsPrivat = false;
   }
 
+
+  /**
+   * Filters users based on input.
+   * @param userName The name of the user to filter.
+   */
   filterUsers(userName: string) {
     this.showExistenUsers = true;
     this.getSearchedUser = [];
@@ -69,6 +90,11 @@ export class AddNewChannelComponent {
     this.getSearchedUser.push(...filteredUsers);
   }
 
+
+  /**
+   * Chooses a user.
+   * @param user The user to choose.
+   */
   chooseUser(user: User) {
     const isUserAlreadySelected = this.getSelectedUsers.some(
       (selectedUser) => selectedUser.id === user.id
@@ -85,15 +111,29 @@ export class AddNewChannelComponent {
     this.showExistenUsers = false;
   }
 
+
+  /**
+   * Removes the current user.
+   * @param index The index of the user to remove.
+   */
   spliceCurrentUser(index: number) {
     this.getSelectedUsers.splice(index, 1);
     this.showExistenUsers = false;
   }
 
+
+  /**
+   * Toggles the added user box.
+   */
   toggleAddedUserBox() {
     this.showExistenUsers = false;
   }
 
+
+  /**
+   * Checks if the channel name is valid.
+   * @param channelName The name of the channel to check.
+   */
   checkIfChannelNameIsValid(channelName: string) {
     const channelNameLenght = channelName.length;
     if (channelNameLenght >= 3) {
@@ -103,6 +143,10 @@ export class AddNewChannelComponent {
     }
   }
 
+
+  /**
+   * Adds a new channel.
+   */
   async addNewChannel() {
     const newChannel: Channel = {
         name: this.channelName,
@@ -119,7 +163,10 @@ export class AddNewChannelComponent {
 }
 
   
-
+  /**
+   * Checks the user array.
+   * @returns The user array.
+   */
   checkUserArray() {
     if (this.channelIsPrivat) {
       return [...this.selectedUsers, this.userService.userId];
@@ -129,6 +176,9 @@ export class AddNewChannelComponent {
   }
 
 
+  /**
+   * Opens the add new channel window.
+   */
   openAddNewChannelWindow() {
     this.channelService.showAddChannelBox = !this.channelService.showAddChannelBox;
     this.channelName = '';
@@ -139,5 +189,4 @@ export class AddNewChannelComponent {
     this.shwoNextWindow = false;
   }
 
-  createChannel() {}
 }

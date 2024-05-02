@@ -15,12 +15,21 @@ export class SearchbarComponent {
 
   constructor(private toggleBoolean: ToggleBooleanService) {}
 
+
+  /**
+   * Closes the search window.
+   * @param event The event object.
+   */
   closeSearchWindow(event: Event) {
     this.toggleBoolean.openSearchWindow = false;
     event.stopPropagation();
     this.inputValue = '';
   }
 
+  /**
+   * Opens the search bar.
+   * @param event The event object.
+   */
   openSearchbar(event: Event){
     this.toggleBoolean.openSearchWindow = true;
     event.stopPropagation();

@@ -15,6 +15,10 @@ import { RouterLink } from '@angular/router';
 export class PrivacyPolicyComponent {
   constructor(private location: Location) {}
 
+
+  /**
+   * Navigates back to the previous location in the browser history.
+   */
   backClicked() {
     this.location.back();
   }

@@ -14,6 +14,10 @@ export class SidebarDirectMessagesComponent {
 
   minimizeUsers: boolean = false;
 
+
+  /**
+   * Toggles the visibility of direct message users.
+   */
   minimizeAllUsers() {
     this.minimizeUsers = !this.minimizeUsers;
   }

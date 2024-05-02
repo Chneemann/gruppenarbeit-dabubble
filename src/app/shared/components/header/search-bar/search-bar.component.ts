@@ -22,7 +22,7 @@ import { HighlightPipe } from '../../../../highlight.pipe';
 export class SearchBarComponent {
   openMenu: boolean = false;
   showCurrentProfile: boolean = false;
-  isOnline: boolean = true; //---- Zeige onlineStatus an
+  isOnline: boolean = true;
   closeProfil: boolean = false;
   openSearchWindow: boolean = false;
   inputValue: string = '';
@@ -39,27 +39,26 @@ export class SearchBarComponent {
     private route: Router
   ) {}
 
+
+  /**
+   * Filters all information based on the input value.
+   * @param inputValue The input value entered by the user.
+   */
   filterAllInfo(inputValue: string) {
     this.toggleBoolean.openSearchWindowHead = true;
     const getInputValue = inputValue.toLowerCase().trim();
     this.filterUsersChannelsChats(getInputValue);
   }
 
+
+  /**
+   * Filters users, channels, and chats based on the input value.
+   * @param inputValue The input value entered by the user.
+   */
   filterUsersChannelsChats(inputValue: string) {
-    const filterUsers = this.userService.getUsers().filter((user) => {
-      const fullName = `${user.firstName} ${user.lastName}`.toLowerCase();
-      return fullName.includes(inputValue);
-    });
-
-    const filterChannels = this.channelService.allChannels.filter((channel) => {
-      const channelName = `${channel.name}`.toLowerCase();
-      return channelName.includes(inputValue);
-    });
-
-    const filterChants = this.chatService.allChats.filter((chat) => {
-      const chatMessage = `${chat.message}`.toLowerCase();
-      return chatMessage.includes(inputValue);
-    });
+    const filterUsers = this.getFilterUsers(inputValue);
+    const filterChannels = this.getFilterChannels(inputValue);
+    const filterChants = this.getFilterChants(inputValue);
 
     this.sortPrvAndPublicMessages(filterChants);
 
@@ -67,6 +66,51 @@ export class SearchBarComponent {
     this.filteredChannels = filterChannels;
   }
 
+
+  /**
+   * Filters users based on the input value.
+   * @param inputValue The input value entered by the user.
+   * @returns An array of filtered users.
+   */
+  getFilterUsers(inputValue: string){
+    return this.userService.getUsers().filter((user) => {
+      const fullName = `${user.firstName} ${user.lastName}`.toLowerCase();
+      return fullName.includes(inputValue);
+    });
+  }
+
+
+  /**
+   * Filters channels based on the input value.
+   * @param inputValue The input value entered by the user.
+   * @returns An array of filtered channels.
+   */
+  getFilterChannels(inputValue: string){
+    return this.channelService.allChannels.filter((channel) => {
+      const channelName = `${channel.name}`.toLowerCase();
+      return channelName.includes(inputValue);
+    });
+  }
+
+
+  /**
+   * Filters chats based on the input value.
+   * @param inputValue The input value entered by the user.
+   * @returns An array of filtered chats.
+   */
+  getFilterChants(inputValue: string){
+    return this.chatService.allChats.filter((chat) => {
+      const chatMessage = `${chat.message}`.toLowerCase();
+      return chatMessage.includes(inputValue);
+    });
+  }
+
+
+  /**
+   * Retrieves the channel associated with the specified chat ID.
+   * @param chatID The ID of the chat.
+   * @returns The name of the channel.
+   */
   getChannel(chatID: string) {
     if (this.inputValue != '') {
       const filteredChatBoolean = this.filteredChats.some(
@@ -87,6 +131,11 @@ export class SearchBarComponent {
     return '';
   }
 
+
+  /**
+   * Sorts private and public messages.
+   * @param chats The array of chats to sort.
+   */
   sortPrvAndPublicMessages(chats: Chat[]) {
     const publicChats: Chat[] = [];
 
@@ -101,6 +150,11 @@ export class SearchBarComponent {
     this.filteredChats = publicChats;
   }
 
+
+  /**
+   * Checks the route based on the specified user.
+   * @param user The user to check the route for.
+   */
   checkRoute(user: User[]) {
     const userId = user[0].id!;
     const channelExistsBoolean = this.channelService.allPrvChannels.some(
@@ -117,6 +171,12 @@ export class SearchBarComponent {
     this.getRouteToPrvChat(userId, channelExistsBoolean);
   }
 
+
+  /**
+   * Navigates to the private chat route based on the specified user.
+   * @param userId The ID of the user.
+   * @param channelExistsBoolean A boolean indicating whether the channel exists.
+   */
   getRouteToPrvChat(userId: string, channelExistsBoolean: boolean) {
     if (channelExistsBoolean) {
       const existingChannel = this.channelService.allPrvChannels.find(

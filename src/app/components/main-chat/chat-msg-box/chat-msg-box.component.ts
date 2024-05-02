@@ -56,10 +56,20 @@ export class ChatMsgBoxComponent {
     public toggleBoolean: ToggleBooleanService
   ) {}
 
+
+  /**
+   * Handles the output from the emoji picker.
+   * @param $event The selected emoji.
+   */
   emojiOutputEmitter($event: any) {
     this.addEmoji($event);
   }
 
+
+  /**
+   * Handles file input change event.
+   * @param event The file change event.
+   */
   onFileChange(event: any) {
     console.log(
       'this.downloadFilesService.uploadFiles.length',
@@ -77,6 +87,12 @@ export class ChatMsgBoxComponent {
     }
   }
 
+
+  /**
+   * Checks the file type and returns the corresponding icon.
+   * @param fileInfo The file object.
+   * @returns The file icon path.
+   */
   checkIcon(fileInfo: any) {
     if (fileInfo.type == 'audio/mpeg') {
       return this.getFileIcons[2];
@@ -91,6 +107,11 @@ export class ChatMsgBoxComponent {
     }
   }
 
+
+  /**
+   * Deletes the selected file.
+   * @param file The file to be deleted.
+   */
   deleteFile(file: File) {
     const index = this.downloadFilesService.uploadFiles.indexOf(file);
     if (index !== -1) {
@@ -99,26 +120,50 @@ export class ChatMsgBoxComponent {
     }
   }
 
+
+  /**
+   * Opens the selected file in a new tab.
+   * @param file The file to be opened.
+   */
   showCurrentFile(file: File) {
     const blob = new Blob([file], { type: file.type });
     const url = URL.createObjectURL(blob);
     window.open(url, '_blank');
   }
 
+
+  /**
+   * Adds the selected emoji to the message text area.
+   * @param event The selected emoji.
+   */
   public addEmoji(event: any) {
     this.textArea = `${this.textArea}${event}`;
     this.isEmojiPickerVisible = false;
   }
 
+
+  /**
+   * Toggles the visibility of the emoji picker.
+   */
   toggleEmojiPicker() {
     this.isEmojiPickerVisible = !this.isEmojiPickerVisible;
   }
 
+
+  /**
+   * Displays the list of target chat users.
+   * @param event The event object.
+   */
   targetChatUser(event: Event) {
     event.stopPropagation();
     this.toggleBoolean.selectUserInMsgBox = true;
   }
 
+  
+  /**
+   * Appends the selected user's name to the message text area.
+   * @param user The selected user.
+   */
   chooseUser(user: User) {
     const userName = ` @${user.firstName} ${user.lastName} `;
 
@@ -126,12 +171,21 @@ export class ChatMsgBoxComponent {
     this.toggleBoolean.selectUserInMsgBox = false;
   }
 
+
+  /**
+   * Sends a message when Enter key is pressed.
+   * @param e The keyboard event.
+   */
   sendMessageWithEnter(e: KeyboardEvent) {
     if (e.keyCode === 13) {
       this.sendMessage();
     }
   }
 
+
+  /**
+   * Sends the message to the target channel.
+   */
   async sendMessage() {
     if (this.currentChannel) {
       const messageRef = collection(this.firestore, this.target);
@@ -155,6 +209,12 @@ export class ChatMsgBoxComponent {
     this.newMsgEmitter.emit(true);
   }
 
+
+  /**
+   * Checks the target collection and returns the message data.
+   * @param target The target collection.
+   * @returns The message data.
+   */
   checkCollection(target: string): MessageData | null {
     let messageData: Partial<MessageData> = {
       message: this.currentChatValue,
@@ -174,6 +234,12 @@ export class ChatMsgBoxComponent {
     return messageData as MessageData;
   }
 
+
+  /**
+   * Checks  
+   * the channel ID based on the chat service.
+   * @returns The channel ID.
+   */
   checkChannelId() {
     if (this.chatService.getChannelId) {
       return this.chatService.getChannelId;
@@ -183,6 +249,11 @@ export class ChatMsgBoxComponent {
     return this.currentChannel;
   }
 
+
+  /**
+   * Checks the chat ID based on the chat service.
+   * @returns The chat ID.
+   */
   checkChatId() {
     if (this.chatService.isSecondaryChatId) {
       return this.chatService.isSecondaryChatId;
@@ -190,12 +261,20 @@ export class ChatMsgBoxComponent {
     return;
   }
 
+
+  /**
+   * Navigates to the target channel after sending the message.
+   */
   forwardToChannel() {
     if (this.chatService.getChannelId || this.chatService.getPrvChatId) {
       this.route.navigateByUrl(`/main/${this.checkChannelId()}`);
     }
   }
 
+
+  /**
+   * Resets input values after sending the message.
+   */
   resetValues() {
     this.currentChatValue = '';
     this.downloadFilesService.uploadFiles = [];

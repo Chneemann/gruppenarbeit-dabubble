@@ -9,9 +9,12 @@ import { Component } from '@angular/core';
   styleUrl: './user.component.scss'
 })
 export class UserComponent {
-  isOnline = true; // -- wert später aus header auslesen
+  isOnline = true;
   openProfil = false;
 
+  /**
+   * Toggles the display of the side menu for user profile.
+   */
   showSideMenu() {
     this.openProfil = !this.openProfil;
   }

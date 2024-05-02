@@ -30,14 +30,27 @@ export class SidebarComponent implements OnInit {
     private router: ActivatedRoute
   ) {}
 
+
+   /**
+   * Lifecycle hook called after component initialization.
+   * It invokes the method to handle route parameters.
+   */
   ngOnInit() {
     this.routeUserId();
   }
 
+
+  /**
+   * Opens the search bar by toggling a boolean value.
+   */
   openSearchbar() {
     this.tootleBoolean.openSearchWindow = true;
   }
 
+
+  /**
+   * Retrieves the user ID from the route parameters.
+   */
   routeUserId() {
     if (this.router.params.subscribe()) {
       this.router.params.subscribe((params) => {

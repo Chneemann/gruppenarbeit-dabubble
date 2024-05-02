@@ -18,19 +18,36 @@ export class HeaderComponent {
 
   constructor(public userService: UserService) {}
 
+
+  /**
+  * Toggles the display of the side menu.
+  */
   showSideMenu() {
     this.openMenu = !this.openMenu;
   }
 
+
+  /**
+  * Displays the current user's profile.
+  */
   showProfile() {
     this.showCurrentProfile = true;
     this.closeProfil = false;
   }
 
+
+  /**
+   * Logs out the current user.
+   */
   logout(): void {
     this.userService.currentUserLogout();
   }
 
+
+  /**
+   * Updates the value indicating whether the current profile is displayed.
+   * @param value The new value indicating whether the current profile is displayed.
+   */
   updateTestValue(value: boolean) {
     this.showCurrentProfile = value;
   }

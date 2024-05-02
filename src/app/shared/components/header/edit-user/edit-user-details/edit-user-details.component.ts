@@ -32,6 +32,7 @@ export class EditUserDetailsComponent {
   }
 
 
+  /** Filters whether the user is a guest. */
   filterGuest(){
     const getGuest = this.userService.allUsers.filter(user => user.id === 'JX5JxxPx0sdjEPHCs5F9');
     if(getGuest){
@@ -42,6 +43,7 @@ export class EditUserDetailsComponent {
   }
   
 
+  /** Closes the edit user window. */
   closeEditUserWindow(){
     this.openEditUserValue = false;
     this.closeEditWindow.emit(this.openEditUserValue);
@@ -50,6 +52,7 @@ export class EditUserDetailsComponent {
   }
 
 
+  /** Saves the new user data. */
   saveNewUserData(){
     if (this.channelService.saveEditBtnIsValid && this.emailValueBoolean) {
       const fullname: string[] = this.nameValue.split(" ");
@@ -68,6 +71,10 @@ export class EditUserDetailsComponent {
   }
 
 
+  /**
+   * Checks if the user name is valid.
+   * @param nameValue The value of the user's name.
+   */
   checkIfUserNameIsValid(nameValue: string) {
     const channelNameLenght = nameValue.length;
     if (channelNameLenght >= 3 ) {
@@ -79,6 +86,10 @@ export class EditUserDetailsComponent {
   }
 
 
+  /**
+   * Checks if the user email is valid.
+   * @param emailValue The value of the user's email.
+   */
   checkIfUserEmailIsValid(emailValue: string) {
     const channelNameLenght = emailValue.length;
     if (channelNameLenght >= 3) {
@@ -90,6 +101,7 @@ export class EditUserDetailsComponent {
   }
 
 
+  /** Checks if the save button is valid. */
   chackSaveBtn(){
     if (this.nameValueBoolean && this.emailValueBoolean) {
       this.channelService.saveEditBtnIsValid = true;
@@ -97,7 +109,4 @@ export class EditUserDetailsComponent {
       this.channelService.saveEditBtnIsValid = false;
     }
   }
-
-  
-
 }

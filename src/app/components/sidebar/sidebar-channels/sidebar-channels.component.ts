@@ -33,19 +33,36 @@ export class SidebarChannelsComponent {
     public userService: UserService
   ) {}
 
+  
+  /**
+   * Toggles the visibility of channels.
+   */
   minimizeAllChannels() {
     this.minimizeChannels = !this.minimizeChannels;
   }
 
+
+  /**
+   * Opens the add new channel window.
+   */
   openAddChannelWindow() {
     this.channelService.btnIsValid = false;
     this.channelService.showAddChannelBox = true;
   }
 
+
+  /**
+   * Closes the secondary chat window.
+   */
   closeSecondaryChat() {
     this.chatService.toggleSecondaryChat('none');
   }
 
+
+  /**
+   * Retrieves channels for the current user.
+   * @returns Array of Channel objects.
+   */
   getChannels(): Channel[] {
     const checkIfUserIsAMember = this.channelService.allChannels.some(
       (channel) => channel.addedUser.includes(this.userService.userId)

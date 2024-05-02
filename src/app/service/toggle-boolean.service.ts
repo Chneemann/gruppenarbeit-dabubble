@@ -13,7 +13,11 @@ export class ToggleBooleanService {
   openSearchWindowHead: boolean = false;
   selectUserInMsgBox:boolean = false;
 
-
+  
+  /**
+   * Opens or closes the add member window based on the provided boolean value.
+   * @param boolean A boolean value to determine whether to open or close the add member window.
+   */
   openAddMemberWindow(boolean : boolean){
     this.closeChannelMemberWindow = boolean;
   }

@@ -37,6 +37,11 @@ export class ChatService implements OnDestroy {
     this.unsubChatReactions = this.subChatListReactions();
   }
 
+
+  /**
+   * Subscribes to the chat list collection in Firestore and updates the local chat list accordingly.
+   * @returns A function to unsubscribe from the chat list.
+   */
   subChatList() {
     const queryRef = query(
       collection(this.firestore, 'chats'),
@@ -52,6 +57,11 @@ export class ChatService implements OnDestroy {
     });
   }
 
+
+  /**
+   * Subscribes to the chat answers list collection in Firestore and updates the local chat answers list accordingly.
+   * @returns A function to unsubscribe from the chat answers list.
+   */
   subChatAnswersList() {
     return onSnapshot(collection(this.firestore, 'chat-answers'), (list) => {
       this.allChatAnswers = [];
@@ -62,6 +72,11 @@ export class ChatService implements OnDestroy {
     });
   }
 
+
+  /**
+   * Subscribes to the chat reactions list collection in Firestore and updates the local chat reactions list accordingly.
+   * @returns A function to unsubscribe from the chat reactions list.
+   */
   subChatListReactions() {
     return onSnapshot(collection(this.firestore, 'reactions'), (list) => {
       this.allChatReactions = [];
@@ -75,6 +90,12 @@ export class ChatService implements OnDestroy {
     });
   }
 
+
+  /**
+   * Updates the specified chat document with the provided data.
+   * @param chatId The ID of the chat document to update.
+   * @param update The partial data to update the chat document with.
+   */
   async updateChat(chatId: string, update: Partial<Chat>) {
     const chatRef = doc(collection(this.firestore, 'chats'), chatId);
     const updatedData = { ...update, edited: true };
@@ -84,6 +105,12 @@ export class ChatService implements OnDestroy {
     });
   }
 
+
+  /**
+   * Updates the reaction document with the specified ID with the provided array of user IDs.
+   * @param reactionId The ID of the reaction document to update.
+   * @param array The array of user IDs to update the reaction with.
+   */
   async updateReaction(reactionId: any, array: string[]) {
     await updateDoc(doc(collection(this.firestore, 'reactions'), reactionId), {
       userId: array,
@@ -92,6 +119,11 @@ export class ChatService implements OnDestroy {
     });
   }
 
+
+  /**
+   * Creates a new reaction document with the provided data.
+   * @param reaction The reaction data to add to Firestore.
+   */
   async createNewReaction(reaction: ChatReactions) {
     await addDoc(collection(this.firestore, 'reactions'), reaction).catch(
       (err) => {
@@ -100,6 +132,12 @@ export class ChatService implements OnDestroy {
     );
   }
 
+
+  /**
+   * Deletes a document from the specified Firestore collection.
+   * @param docId The ID of the document to delete.
+   * @param database The name of the Firestore collection.
+   */
   async deleteData(docId: string, database: string) {
     await deleteDoc(doc(collection(this.firestore, database), docId)).catch(
       (err) => {
@@ -108,6 +146,12 @@ export class ChatService implements OnDestroy {
     );
   }
 
+
+  /**
+   * Retrieves chat answers associated with the specified chat ID.
+   * @param chatId The ID of the chat to retrieve answers for.
+   * @returns An array of chat answers.
+   */
   getChatAnswers(chatId: string): ChatAnswers[] {
     const filteredTasks = this.allChatAnswers.filter(
       (chat) => chat.chatId == chatId
@@ -115,6 +159,11 @@ export class ChatService implements OnDestroy {
     return filteredTasks;
   }
 
+
+  /**
+   * Toggles the secondary chat window based on the provided chat ID.
+   * @param chatId The ID of the chat to toggle the secondary window for.
+   */
   toggleSecondaryChat(chatId: string) {
     if (this.isSecondaryChatId == chatId) {
       chatId = 'none';
@@ -127,12 +176,14 @@ export class ChatService implements OnDestroy {
     }
 
     if (this.isSecondaryChatOpen) {
-      // setTimeout(() => {
       this.isSecondaryChatId = chatId;
-      // }, 100);
     }
   }
 
+
+  /**
+   * Unsubscribes from all Firestore subscriptions when the service is destroyed.
+   */
   ngOnDestroy() {
     this.unsubChat();
     this.unsubChatAnswers();

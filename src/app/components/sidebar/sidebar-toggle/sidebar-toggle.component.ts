@@ -17,11 +17,19 @@ export class SidebarToggleComponent {
     private chatService: ChatService
   ) {}
 
+
+  /**
+   * Toggles the sidebar visibility and checks the view width.
+   */
   toggleSidebar() {
     this.channelService.isSidebarOpen = !this.channelService.isSidebarOpen;
     this.checkViewWidth();
   }
 
+
+  /**
+   * Checks the view width and adjusts sidebar and chat states accordingly.
+   */
   checkViewWidth() {
     if (this.viewWidth <= 1900 && this.chatService.isSecondaryChatOpen) {
       this.channelService.isSidebarOpen = true;

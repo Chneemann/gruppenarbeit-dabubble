@@ -20,6 +20,13 @@ export class SidebarDirectMessagesUserComponent {
     private channelService: ChannleService
   ) {}
 
+
+
+  /**
+   * Get users for private chat.
+   * @param userId The ID of the user.
+   * @returns Array of User objects.
+   */
   getChatUsers(userId: string) {
     const filteredTasks = this.userService
       .getUsers()
@@ -27,6 +34,12 @@ export class SidebarDirectMessagesUserComponent {
     return filteredTasks;
   }
 
+
+  /**
+   * Display private chat channels.
+   * @param userId The ID of the user.
+   * @returns Array of private chat channels.
+   */
   displayPrivateChat(userId: string) {
     const creatorChannels = this.channelService.allPrvChannels.filter(
       (user) => user.creatorId === userId

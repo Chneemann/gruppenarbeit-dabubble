@@ -15,6 +15,10 @@ import { RouterLink } from '@angular/router';
 export class ImprintComponent {
   constructor(private location: Location) {}
 
+
+  /**
+  * Navigates back to the previous location.
+  */
   backClicked() {
     this.location.back();
   }

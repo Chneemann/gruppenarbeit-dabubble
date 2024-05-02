@@ -14,6 +14,11 @@ export class EmojiPickerComponent {
   @Output() emojiVisibleEmitter: EventEmitter<boolean> =
     new EventEmitter<boolean>();
 
+
+  /**
+   * Adds an emoji.
+   * @param event The event object.
+   */  
   addEmoji(event: any) {
     this.output == 'id' ? this.emojiOutputEmitter.emit(event.emoji.id) : null;
     this.output == 'native'
@@ -22,6 +27,8 @@ export class EmojiPickerComponent {
     this.closeEmojiPicker();
   }
 
+
+  /** Closes the emoji picker. */
   closeEmojiPicker() {
     this.emojiVisibleEmitter.emit(false);
   }

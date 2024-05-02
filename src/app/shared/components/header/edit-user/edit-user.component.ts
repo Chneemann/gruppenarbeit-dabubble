@@ -12,7 +12,7 @@ import { User } from '../../../../interface/user.interface';
   styleUrl: './edit-user.component.scss'
 })
 export class EditUserComponent {
-  isOnline = true; // -- wert später aus header auslesen
+  isOnline = true; 
   openProfil = false;
   openEditUserValue = false;
   @Input() showCurrentProfile!:boolean;
@@ -23,16 +23,19 @@ export class EditUserComponent {
   }
 
 
+  /** Toggles the side menu. */
   showSideMenu() {
     this.openEditUserValue = !this.openEditUserValue;
   }
 
 
+  /** Opens the edit user section. */
   openEditUser(){
     this.openEditUserValue = true; 
   }
 
 
+  /** Closes the current profile. */
   closeCurrentProfile(){
     this.showCurrentProfile = false;
     this.testValueChange.emit(this.showCurrentProfile);
@@ -40,6 +43,10 @@ export class EditUserComponent {
   }
 
 
+  /**
+   * Updates the close value.
+   * @param value The value to update.
+   */
   updateCloseValue(value: boolean){
     this.showCurrentProfile = value;
     this.openEditUserValue = value;
