@@ -3,6 +3,7 @@ import {
   Firestore,
   QuerySnapshot,
   addDoc,
+  arrayUnion,
   collection,
   doc,
   getDocs,
@@ -74,7 +75,6 @@ export class loginService {
  * @param snapshot QuerySnapshot object containing user documents.
  */
   userDocument(snapshot: QuerySnapshot) {
-    {
       if (snapshot.docs.length > 0) {
         const userDoc = snapshot.docs[0];
         this.currentUser = userDoc.id;
@@ -86,7 +86,6 @@ export class loginService {
       } else {
         console.error('Kein zugehöriges Benutzerdokument gefunden.');
       }
-    }
   }
 
 
@@ -184,7 +183,7 @@ export class loginService {
  * Saves user data to Firestore and updates the application state.
  * @param user The user object containing information to be saved.
  */
-  createUserInFirestore(user: User) {
+  async createUserInFirestore(user: User) {
     const userDataToSave: User = {
       uid: user.uid,
       email: user.email,
@@ -194,16 +193,18 @@ export class loginService {
       status: true,
     };
     const usersCollection = collection(this.firestore, 'users');
-    addDoc(usersCollection, userDataToSave)
-      .then((docRef) => {
-        this.currentUser = docRef.id;
-        this.userService.userId = this.currentUser;
-        this.router.navigate([`/main`]);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    try {
+      const docRef = await addDoc(usersCollection, userDataToSave);
+      this.currentUser = docRef.id;
+      this.userService.userId = this.currentUser;
+      await this.addUserToChannels(this.currentUser, ['XiqUAXRY1W7PixC9kVTa', 'eV0AcEEMgVEFA9R2X4qQ']);
+      this.email = '';
+      this.password = '';
+      this.router.navigate([`/main`]);
+    } catch (error) {
+      console.error(error);
     }
+  }
 
   // -------------------- choose avatar ------------------------------->
 
@@ -305,4 +306,25 @@ export class loginService {
     this.userService.userId = this.currentUser;
     this.router.navigate([`/main`]);
   }
-}
+
+  
+/**
+ * Adds the current user to specified channels in Firestore. It updates each channel document
+ * to include the user's ID in an array of added users, ensuring that the user is part of the channel.
+ * Each operation is performed independently, and errors are handled individually.
+ * 
+ * @param {string} currentUser - The ID of the user to be added to the channels.
+ * @param {string[]} channelIds - An array of channel IDs to which the user will be added.
+ */
+  addUserToChannels(currentUser: string, channelIds: string[]) {
+    channelIds.forEach(channelId => {
+      const channelDocRef = doc(this.firestore, 'channels', channelId);
+    
+      updateDoc(channelDocRef, {
+        addedUser: arrayUnion(currentUser)
+      })
+      .catch(error => {
+        console.error(error);
+      });
+    });
+  }}
