@@ -34,12 +34,13 @@ import { ShowChannelMemberComponent } from './show-channel-member/show-channel-m
 })
 export class MainChatComponent {
   @Input() currentChannel: string = '';
+  @Input() viewWidth: number = 0;
 
   openMenu: boolean = false;
   openEditNameInput: boolean = false;
   openEditNameDescription: boolean = false;
-  nameValue: string = ''
-  descriptionValue: string = ''
+  nameValue: string = '';
+  descriptionValue: string = '';
   firstLetter: string = '';
   openSearchWindow: boolean = false;
   getCurrentChannel: Channel[] = [];
@@ -69,7 +70,7 @@ export class MainChatComponent {
     this.getCurrentChannel = [];
   }
 
-  preventCloseWhiteBox(event: Event){
+  preventCloseWhiteBox(event: Event) {
     event.stopPropagation();
   }
 
@@ -79,24 +80,33 @@ export class MainChatComponent {
     this.nameValue = this.getCurrentChannel[0].name;
   }
 
-  saveEditChannelName(event: Event){
+  saveEditChannelName(event: Event) {
     event.stopPropagation();
     this.openEditNameInput = false;
-    this.channelService.saveAddedNameOrDescription('channels', this.currentChannel!, 'name', this.nameValue)
+    this.channelService.saveAddedNameOrDescription(
+      'channels',
+      this.currentChannel!,
+      'name',
+      this.nameValue
+    );
   }
 
-  editChannelDescription(event: Event){
+  editChannelDescription(event: Event) {
     event.stopPropagation();
     this.openEditNameDescription = true;
     this.descriptionValue = this.getCurrentChannel[0].description;
   }
 
-  saveEditChannelDescription(event: Event){
+  saveEditChannelDescription(event: Event) {
     event.stopPropagation();
     this.openEditNameDescription = false;
-    this.channelService.saveAddedNameOrDescription('channels', this.currentChannel!, 'description', this.descriptionValue)
+    this.channelService.saveAddedNameOrDescription(
+      'channels',
+      this.currentChannel!,
+      'description',
+      this.descriptionValue
+    );
   }
-
 
   getUsers(): User[] {
     return this.userService.allUsers;
@@ -224,7 +234,7 @@ export class MainChatComponent {
     this.toggleBoolean.openAddMemberWindow(boolean);
   }
 
-  leaveChannel(currentChannel: string, event: Event){
+  leaveChannel(currentChannel: string, event: Event) {
     event.stopPropagation();
     const getLogedInUser: string = this.userService.userId;
     const getChannel = this.channelService.allChannels.filter(
@@ -232,11 +242,16 @@ export class MainChatComponent {
     );
     if (getChannel) {
       const userIndex = getChannel[0].addedUser.indexOf(getLogedInUser);
-  
+
       if (userIndex) {
         getChannel[0].addedUser.splice(userIndex, 1);
         const userArray = getChannel[0].addedUser;
-        this.channelService.addNewMemberToChannel('channels', currentChannel, userArray, 'leaveChannel');
+        this.channelService.addNewMemberToChannel(
+          'channels',
+          currentChannel,
+          userArray,
+          'leaveChannel'
+        );
         this.openMenu = false;
         this.route.navigateByUrl(`main/XiqUAXRY1W7PixC9kVTa`);
       } else {

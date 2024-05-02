@@ -19,7 +19,9 @@
         <div class="positionImgs">
           <img src="{{ user.avatar }}" class="avatarImg" />
           <img
-            src="assets/img/{{ user.status ? 'onlineRing.svg' : 'offlineRing.svg' }}"
+            src="assets/img/{{
+              user.status ? 'onlineRing.svg' : 'offlineRing.svg'
+            }}"
             class="onlineIcon"
           />
         </div>
@@ -83,7 +85,9 @@
             <div class="positionImgsBox">
               <img src="{{ user.avatar }}" class="addAvatarImg" />
               <img
-                src="assets/img/{{ user.status ? 'onlineRing.svg' : 'offlineRing.svg' }}"
+                src="assets/img/{{
+                  user.status ? 'onlineRing.svg' : 'offlineRing.svg'
+                }}"
                 class="onlineIcon"
               />
             </div>
@@ -116,7 +120,7 @@
   }
 </section>
 <app-open-send-prv-message-window
-  [ngClass]="{dBlock: openUserWindowBoolean, dNone: !openUserWindowBoolean}"
+  [ngClass]="{ dBlock: openUserWindowBoolean, dNone: !openUserWindowBoolean }"
   [user]="user"
   [openUserWindowBoolean]="openUserWindowBoolean"
   (closeUserWondow)="changeOpenUserWindowBoolean($event)"

@@ -24,25 +24,26 @@
   @if (toggleBoolean.openSearchWindow) {
   <!-----search suggestions----->
   <div class="filteredElementWindow">
-    @if (firstLetter == '#') { 
-      @for (i of channelService.allChannels; track $index) {
-        <h3 class="user" (click)="chooseElement(i)">#{{ i.name }}</h3>
-      } 
-    } @else if (firstLetter == '@') {
-       @for (i of userService.allUsers; track $index) {
-      <div class="user" (click)="chooseElement(i)">
-        <div class="positionImgs">
-          <img src="{{ i.avatar }}" class="avatarImg" />
-          <img src="assets/img/{{ i.status ? 'onlineRing.svg' : 'offlineRing.svg' }}" class="onlineIconFilterWindow"/>
-        </div>
-        <h3>{{ i.firstName }} {{ i.lastName }}</h3>
+    @if (firstLetter == '#') { @for (i of channelService.allChannels; track
+    $index) {
+    <h3 class="user" (click)="chooseElement(i)">#{{ i.name }}</h3>
+    } } @else if (firstLetter == '@') { @for (i of userService.allUsers; track
+    $index) {
+    <div class="user" (click)="chooseElement(i)">
+      <div class="positionImgs">
+        <img src="{{ i.avatar }}" class="avatarImg" />
+        <img
+          src="assets/img/{{ i.status ? 'onlineRing.svg' : 'offlineRing.svg' }}"
+          class="onlineIconFilterWindow"
+        />
       </div>
-      } 
-    }
+      <h3>{{ i.firstName }} {{ i.lastName }}</h3>
+    </div>
+    } }
   </div>
   } } @else { @if(checkCurrentChannel(currentChannel) == 'allPrvChannels'){
   <!------------shwo prv chat----------->
-     @for (user of getPrvChat(currentChannel); track user; let i = $index) {
+  @for (user of getPrvChat(currentChannel); track user; let i = $index) {
   <div class="headerPrvChat">
     <div class="headlinePrvChat" (click)="openUserProfil()">
       @if (user.talkToUserId == userService.userId) {
@@ -52,9 +53,13 @@
           src="{{ filterUser(user.creatorId)[i].avatar }}"
         />
         <img
-        src="assets/img/{{ filterUser(user.creatorId)[i].status ? 'onlineRing.svg' : 'offlineRing.svg' }}"
-        class="onlineIcon"
-      />
+          src="assets/img/{{
+            filterUser(user.creatorId)[i].status
+              ? 'onlineRing.svg'
+              : 'offlineRing.svg'
+          }}"
+          class="onlineIcon"
+        />
       </div>
       <p>
         {{ filterUser(user.creatorId)[i].firstName }}
@@ -84,9 +89,9 @@
     [hideContentWindow]="false"
   >
   </app-chat-content>
-  } } @else if (checkCurrentChannel(currentChannel) == 'allChannels') { 
+  } } @else if (checkCurrentChannel(currentChannel) == 'allChannels') {
   <!-------show public channel-chat ----------->
-    @for(channel of getChannelName(currentChannel); track channel) {
+  @for(channel of getChannelName(currentChannel); track channel) {
   <div class="header">
     <div class="headline" (click)="showMenu()">
       <img src="assets/img/hashtag.svg" alt="" />
@@ -102,7 +107,11 @@
         </div>
         }
         <div *ngIf="userService.getFiltertUsers.length > 3" class="dotsImg">
-          <img *ngFor="let i of [0, 1, 2]" src="assets/img/offlineRing.svg" alt="">
+          <img
+            *ngFor="let i of [0, 1, 2]"
+            src="assets/img/offlineRing.svg"
+            alt=""
+          />
         </div>
         <h3>{{ userService.getFiltertUsers.length }}</h3>
       </div>
@@ -111,7 +120,9 @@
         [imgSize]="'20px'"
         [btnSize]="'32px'"
         [btnBgHoverColor]="'#edeefe'"
-        (click)="openMemberWindow(true)"
+        (click)="
+          viewWidth <= 600 ? openMemberWindow(false) : openMemberWindow(true)
+        "
       ></app-small-btn>
       }
     </div>
@@ -157,43 +168,49 @@
         <div class="contentHeadline">
           <p>Channel Name</p>
           @if (!openEditNameInput) {
-            <span (click)="editChannelName($event)">Edit</span>
+          <span (click)="editChannelName($event)">Edit</span>
           } @else {
-            <span (click)="saveEditChannelName($event)">Save Name</span>
+          <span (click)="saveEditChannelName($event)">Save Name</span>
           }
         </div>
         @if (!openEditNameInput) {
-          <div class="channelName">
-            <img src="assets/img/hashtag.svg" alt="" />
-            <p>{{ channel.name }}</p>
-          </div>
+        <div class="channelName">
+          <img src="assets/img/hashtag.svg" alt="" />
+          <p>{{ channel.name }}</p>
+        </div>
         } @else {
-          <div class="channelName">
-            <img src="assets/img/hashtag.svg" alt="" />
-            <input type="text" [(ngModel)]="nameValue" class="inputName">
-          </div>
-        }
-        }
+        <div class="channelName">
+          <img src="assets/img/hashtag.svg" alt="" />
+          <input type="text" [(ngModel)]="nameValue" class="inputName" />
+        </div>
+        } }
       </div>
       <div class="contentChannel">
         @for (channel of getChannelName(currentChannel); track channel) {
-        
+
         <div class="contentHeadline">
           <p>Description</p>
           @if (!openEditNameDescription) {
-            <span (click)="editChannelDescription($event)">Edit</span>
+          <span (click)="editChannelDescription($event)">Edit</span>
           } @else {
-            <span (click)="saveEditChannelDescription($event)">Save Description</span>
+          <span (click)="saveEditChannelDescription($event)"
+            >Save Description</span
+          >
           }
         </div>
         @if (!openEditNameDescription) {
-          <div class="channelName">
-            <p>{{ channel.description }}</p>
-          </div>
+        <div class="channelName">
+          <p>{{ channel.description }}</p>
+        </div>
         } @else {
-          <div class="channelName">
-            <textarea cols="30" rows="10"[(ngModel)]="descriptionValue" class="textareaDescription"></textarea>
-          </div>
+        <div class="channelName">
+          <textarea
+            cols="30"
+            rows="10"
+            [(ngModel)]="descriptionValue"
+            class="textareaDescription"
+          ></textarea>
+        </div>
         }
         <div class="line"></div>
         <div class="contentHeadline">
@@ -206,7 +223,9 @@
         </div>
         }
       </div>
-      <div class="leaveChannel"><p (click)="leaveChannel(currentChannel, $event)">Leave channel</p></div>
+      <div class="leaveChannel">
+        <p (click)="leaveChannel(currentChannel, $event)">Leave channel</p>
+      </div>
     </div>
   </div>
   } }

@@ -24,14 +24,11 @@ export class UserService implements OnDestroy {
   userId: string = '';
   // userId: string = 'JX5JxxPx0sdjEPHCs5F9';
 
-
   unsubUser;
-
 
   constructor(private channelService: ChannleService, private route: Router) {
     this.unsubUser = this.subUserList();
   }
-
 
   /**
    * Subscribe to the list of users in Firestore.
@@ -49,8 +46,6 @@ export class UserService implements OnDestroy {
     });
   }
 
-
-  
   /**
    * Get all users.
    * @returns Array of User objects.
@@ -59,8 +54,6 @@ export class UserService implements OnDestroy {
     return this.allUsers;
   }
 
-
-  
   /**
    * Get current user's data.
    * @returns Array containing current user's data.
@@ -72,12 +65,11 @@ export class UserService implements OnDestroy {
     return filteredUser;
   }
 
-
   /**
-  * Create a private channel between the current user and another user.
-  * @param filterUserID ID of the user to create the private channel with.
-  * @returns Existing private channel if it already exists, otherwise an empty string.
-  */
+   * Create a private channel between the current user and another user.
+   * @param filterUserID ID of the user to create the private channel with.
+   * @returns Existing private channel if it already exists, otherwise an empty string.
+   */
   createPrvChannel(filterUserID: string) {
     const newPrvChannel = {
       creatorId: this.userId,
@@ -109,7 +101,6 @@ export class UserService implements OnDestroy {
     return '';
   }
 
-
   /**
    * Update current user's data in Firestore.
    * @param newFirstName New first name.
@@ -128,7 +119,6 @@ export class UserService implements OnDestroy {
     });
   }
 
-
   /**
    * Clean up subscriptions when the service is destroyed.
    */
@@ -137,8 +127,6 @@ export class UserService implements OnDestroy {
     this.unsubUser();
   }
 
-
-  
   /**
    * Log out the current user.
    */

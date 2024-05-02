@@ -11,7 +11,12 @@ import { OpenSendPrvMessageWindowComponent } from './open-send-prv-message-windo
 @Component({
   selector: 'app-show-channel-member',
   standalone: true,
-  imports: [CommonModule, SmallBtnComponent, FormsModule, OpenSendPrvMessageWindowComponent],
+  imports: [
+    CommonModule,
+    SmallBtnComponent,
+    FormsModule,
+    OpenSendPrvMessageWindowComponent,
+  ],
   templateUrl: './show-channel-member.component.html',
   styleUrl: './show-channel-member.component.scss',
 })
@@ -28,20 +33,18 @@ export class ShowChannelMemberComponent {
 
   @Input() getFiltertUsers!: User[];
   @Input() currentChannel!: string;
+
   constructor(
     public toggleBoolean: ToggleBooleanService,
     public channelService: ChannleService,
     public userService: UserService
   ) {}
-  
-
 
   closeChannelMemberWindow() {
     this.toggleBoolean.openChannelMemberWindow = false;
     this.toggleBoolean.closeChannelMemberWindow = false;
     this.resetValues();
   }
-
 
   filterUsers(userName: string) {
     this.showExistenUsers = true;
@@ -54,24 +57,25 @@ export class ShowChannelMemberComponent {
     this.checkIfUserIsInChannel(filteredUsers);
   }
 
-
   checkIfUserIsInChannel(filteredUsers: User[]) {
-    const getChannel = this.channelService.allChannels.filter(channel => channel.id === this.currentChannel);
-    
+    const getChannel = this.channelService.allChannels.filter(
+      (channel) => channel.id === this.currentChannel
+    );
+
     for (const user of getChannel) {
       const userArray = user.addedUser;
       this.channelService.channelMembers = userArray;
-      
+
       for (const user of filteredUsers) {
-        const isUserInChannel = userArray.some(channelUser => channelUser === user.id);
+        const isUserInChannel = userArray.some(
+          (channelUser) => channelUser === user.id
+        );
         if (!isUserInChannel) {
           this.getSearchedUser.push(user);
         }
-      }      
+      }
     }
   }
-  
-
 
   chooseUser(user: User) {
     const isUserAlreadySelected = this.getSelectedUsers.some(
@@ -89,44 +93,48 @@ export class ShowChannelMemberComponent {
     this.showExistenUsers = false;
   }
 
-
   spliceCurrentUser(index: number) {
     this.getSelectedUsers.splice(index, 1);
     this.showExistenUsers = false;
   }
 
-
-  getChannelName(currentChannel: string){
-    const getName = this.channelService.allChannels.some((channel) => channel.id == currentChannel);
-    const getChannelName = this.channelService.allChannels.filter((channel) => channel.id == currentChannel);
+  getChannelName(currentChannel: string) {
+    const getName = this.channelService.allChannels.some(
+      (channel) => channel.id == currentChannel
+    );
+    const getChannelName = this.channelService.allChannels.filter(
+      (channel) => channel.id == currentChannel
+    );
     this.getCurrentChannelName = getChannelName[0].name;
     return getName;
   }
 
-
-  addUserToChannel(){
-    this.channelService.addNewMemberToChannel('channels', this.currentChannel, this.selectedUsers, 'addUserToChannel');
+  addUserToChannel() {
+    this.channelService.addNewMemberToChannel(
+      'channels',
+      this.currentChannel,
+      this.selectedUsers,
+      'addUserToChannel'
+    );
     this.closeChannelMemberWindow();
   }
 
-
-  openUserWindow(user: User){
+  openUserWindow(user: User) {
     this.user = [user];
     this.openUserWindowBoolean = !this.openUserWindowBoolean;
   }
 
-
-  changeOpenUserWindowBoolean(value: boolean){
+  changeOpenUserWindowBoolean(value: boolean) {
     this.openUserWindowBoolean = value;
   }
 
-  resetValues(){
-   this.userName = '';
-   this.showExistenUsers = false;
-   this.getSearchedUser = [];
-   this.getCurrentChannelName = '';
-   this.getSelectedUsers = [];
-   this.selectedUsers = [];
-   this.userIsSelected = false;
+  resetValues() {
+    this.userName = '';
+    this.showExistenUsers = false;
+    this.getSearchedUser = [];
+    this.getCurrentChannelName = '';
+    this.getSelectedUsers = [];
+    this.selectedUsers = [];
+    this.userIsSelected = false;
   }
 }

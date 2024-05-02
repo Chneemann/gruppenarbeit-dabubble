@@ -28,7 +28,7 @@ section {
   img {
     &:first-child {
       width: 24px;
-      height: 24px;
+      height: 25px;
       padding-right: 12px;
     }
     &:nth-child(2) {
@@ -47,9 +47,9 @@ section {
   }
 }
 
-.addUserToChannelBox{
+.addUserToChannelBox {
   @include displayFlex($g: 12px);
-  .addedUsers{
+  .addedUsers {
     @include displayFlex($g: 8px);
     width: auto;
     height: 40px;
@@ -58,10 +58,10 @@ section {
     border-radius: 25px;
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
-    &:hover{
-      background-color: #EDEEFE;
+    &:hover {
+      background-color: #edeefe;
     }
-    .userAvatar{
+    .userAvatar {
       width: 40px;
       height: 40px;
       object-fit: cover;
@@ -69,14 +69,14 @@ section {
       border-radius: 50%;
       @include displayFlex();
       margin-left: -22px;
-      img{
-      width: 36px;
-      height: 36px;
-      object-fit: cover;
-      border-radius: 50%;
+      img {
+        width: 36px;
+        height: 36px;
+        object-fit: cover;
+        border-radius: 50%;
       }
     }
-    h3{
+    h3 {
       padding-right: 8px;
     }
   }
@@ -161,7 +161,7 @@ section {
       font-size: 18px;
       font-weight: 400;
     }
-    .inputName{
+    .inputName {
       width: 100%;
       border: 1px solid #888dec;
       outline: none;
@@ -170,7 +170,7 @@ section {
       padding: 8px;
       font-size: large;
     }
-    .textareaDescription{
+    .textareaDescription {
       width: 100%;
       padding: 16px;
       max-height: 104px;
@@ -217,54 +217,53 @@ section {
 
 // -------- prv chat--------
 
-
 .headerPrvChat {
-    height: auto;
-    display: flex;
-    padding: 8px 28px;
-    box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.05);
+  height: auto;
+  display: flex;
+  padding: 8px 28px;
+  box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.05);
 }
 
 .headerBoxPrvChat {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .headlinePrvChat {
-    display: flex;
-    align-items: center;
-    padding: 8px;
-    max-width: fit-content;
-    cursor: pointer;
-    .imgBoxPrvChat{
-      @include displayFlex($a: flex-end);
-      margin-right: 16px;
-      .imgUserPrvChat {
-        width: 56px;
-        height: 56px;
-        object-fit: cover;
-        border-radius: 50%;
-      }
-      .onlineIcon{
-        width: 16px;
-        height: 16px;
-        border-radius: 50%;
-        margin-left: -12px;
-      }
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  max-width: fit-content;
+  cursor: pointer;
+  .imgBoxPrvChat {
+    @include displayFlex($a: flex-end);
+    margin-right: 16px;
+    .imgUserPrvChat {
+      width: 56px;
+      height: 56px;
+      object-fit: cover;
+      border-radius: 50%;
     }
-    p {
-      font-size: 24px;
-      font-weight: 700;
-      padding-right: 12px;
+    .onlineIcon {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      margin-left: -12px;
     }
-    &:hover {
-        background-color: #edeefe;
-        border-radius: 35px;
-    }
+  }
+  p {
+    font-size: 24px;
+    font-weight: 700;
+    padding-right: 12px;
+  }
+  &:hover {
+    background-color: #edeefe;
+    border-radius: 35px;
+  }
 }
 
-.headerSearhcBar{
+.headerSearhcBar {
   height: auto;
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
@@ -272,7 +271,7 @@ section {
   @include displayFlex($a: flex-start, $g: 8px);
   flex-direction: column;
   padding: 16px;
-  input{
+  input {
     width: calc(100% - 8px);
     height: 36px;
     border-radius: 26px;
@@ -282,14 +281,13 @@ section {
     border: 1px solid #888dec;
     font-family: "Nunito", sans-serif;
     outline: none;
-    &:hover{
-        border: 1px solid #5f66e7;
+    &:hover {
+      border: 1px solid #5f66e7;
     }
   }
 }
 
-
-.filteredElementWindow{
+.filteredElementWindow {
   z-index: 1;
   max-height: 240px;
   overflow: auto;
@@ -300,31 +298,32 @@ section {
   border-radius: 25px;
   border-top-left-radius: 0;
   border: 1px solid #888dec;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   padding: 8px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
-  .user{
+  .user {
     @include displayFlex($j: flex-start);
     padding: 6px;
     margin-bottom: 6px;
     cursor: pointer;
     transition: 0.2s ease-in-out;
-    &:hover{
-      background-color: #EDEEFE;
+    &:hover {
+      background-color: #edeefe;
       border-radius: 25px;
     }
-    .positionImgs{
+    .positionImgs {
       @include displayFlex($a: flex-end);
-      .avatarImg{
+      .avatarImg {
         width: 40px;
         height: 40px;
         object-fit: cover;
         border-radius: 50%;
       }
-      .onlineIconFilterWindow{
+      .onlineIconFilterWindow {
         height: 12px;
         width: 12px;
         margin-left: -10px;
@@ -334,12 +333,40 @@ section {
   }
 }
 
-.dotsImg{
+.dotsImg {
   @include displayFlex($a: flex-end);
   margin-bottom: -26px;
   margin-left: -10px;
-  img{
+  img {
     width: 6px;
     height: 6px;
+  }
+}
+
+/*------------- RESPONSIVE -------------*/
+
+@media screen and (max-width: 600px) {
+  .addUserToChannelBox {
+    .addedUsers {
+      display: none;
+    }
+  }
+
+  .header {
+    height: 40px;
+    padding: 12px 24px;
+  }
+
+  .headline {
+    p {
+      font-size: 20px;
+    }
+    img {
+      &:first-child {
+        width: 18px;
+        height: 19px;
+        padding-right: 6px;
+      }
+    }
   }
 }

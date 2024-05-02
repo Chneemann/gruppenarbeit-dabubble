@@ -22,6 +22,7 @@
     <div class="chatBox">
       <app-main-chat
         [currentChannel]="currentChannel"
+        [viewWidth]="viewWidth"
         [ngStyle]="{
           display:
             this.viewWidth <= 1300 && chatService.isSecondaryChatOpen

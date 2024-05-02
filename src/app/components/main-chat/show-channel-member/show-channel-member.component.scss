@@ -1,4 +1,4 @@
-@import '../../../../styles.scss';
+@import "../../../../styles.scss";
 
 .darkBackground {
   position: absolute;
@@ -12,7 +12,7 @@
 
 .whiteBox {
   position: absolute;
-  top: 200px;
+  top: 199px;
   right: 108px;
   width: 320px;
   height: auto;
@@ -30,7 +30,6 @@
   }
 }
 
-
 .positionOfAllUsersInBox {
   @include displayFlex($j: flex-start, $a: flex-start);
   flex-direction: column;
@@ -45,7 +44,7 @@
     transition: 0.2s ease-in-out;
 
     &:hover {
-      background-color: #EDEEFE;
+      background-color: #edeefe;
       border-radius: 25px;
     }
 
@@ -82,8 +81,8 @@
 
 .addMemberToChannelBox {
   position: absolute;
-  top: 212px;
-  right: 12px;
+  top: 198px;
+  right: 62px;
   width: 400px;
   padding: 24px;
   z-index: 3;
@@ -96,12 +95,12 @@
   .posiotionHeader {
     @include displayFlex($j: space-between, $a: flex-start);
     width: 100%;
-    .headline{
+    .headline {
       @include displayFlex($a: flex-start, $g: 12px);
       flex-direction: column;
-      p{
+      p {
         font-size: larger;
-        color: #797EF3;
+        color: #797ef3;
       }
     }
   }
@@ -122,7 +121,7 @@
   &:hover {
     border: 1px solid #2c36f0;
   }
-  p{
+  p {
     position: absolute;
     top: -20px;
     left: 26px;
@@ -133,7 +132,7 @@
     padding: 4px;
     padding-left: 8px;
     padding-right: 8px;
-    background-color: #EDEEFE;
+    background-color: #edeefe;
     border-radius: 25px;
     border-radius: 25px;
     margin: 4px;
@@ -153,7 +152,8 @@
 
       &:hover {
         scale: 1.1;
-        filter: brightness(0) saturate(100%) invert(8%) sepia(96%) saturate(6339%) hue-rotate(1deg) brightness(102%) contrast(109%);
+        filter: brightness(0) saturate(100%) invert(8%) sepia(96%)
+          saturate(6339%) hue-rotate(1deg) brightness(102%) contrast(109%);
       }
     }
   }
@@ -172,10 +172,10 @@
 }
 
 .showSearchedUsersWindow::-webkit-scrollbar {
-  display: none; 
+  display: none;
 }
 
-.showSearchedUsersWindow{
+.showSearchedUsersWindow {
   position: absolute;
   top: 88%;
   right: 126px;
@@ -201,22 +201,22 @@
       padding: 6px;
       cursor: pointer;
       transition: 0.2s ease-in-out;
-  
+
       &:hover {
-        background-color: #EDEEFE;
+        background-color: #edeefe;
         border-radius: 25px;
       }
-  
+
       .positionImgsBox {
         @include displayFlex($a: flex-end);
-  
+
         .addAvatarImg {
           width: 40px;
           height: 40px;
           object-fit: cover;
           border-radius: 50%;
         }
-  
+
         .onlineIcon {
           width: 12px;
           height: 12px;
@@ -226,7 +226,6 @@
     }
   }
 }
-
 
 .positionCreateBtn {
   width: 100%;
@@ -240,15 +239,14 @@
   border: 1px solid #888dec;
   border-radius: 25px;
   font-size: larger;
-  color: #444DF2;
+  color: #444df2;
   transition: 0.3s ease-in-out;
   &:hover {
-    background-color: #444DF2;
+    background-color: #444df2;
     color: white;
     cursor: pointer;
   }
 }
-
 
 .disabledBtn {
   background-color: #22222242;
@@ -262,21 +260,38 @@
   transition: 0.3s ease-in-out;
 }
 
-
-.showWanrningNotice{
+.showWanrningNotice {
   animation: shwoWN 0.3s ease-in-out;
 }
 
 @keyframes shwoWN {
-  from {opacity: 0;}
-  to {opacity: 1;}
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
-.hideWanrningNotice{
+.hideWanrningNotice {
   animation: hideWN 0.3s ease-in-out;
 }
 
 @keyframes hideWN {
-  from {opacity: 1;}
-  to {opacity: 0;}
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/*------------- RESPONSIVE -------------*/
+
+@media screen and (max-width: 600px) {
+  .whiteBox {
+    top: 144px;
+    right: 18px;
+    width: 250px;
+  }
 }
