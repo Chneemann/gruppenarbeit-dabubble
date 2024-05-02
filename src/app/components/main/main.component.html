@@ -4,14 +4,18 @@
   <div class="content">
     <app-sidebar
       [ngClass]="{
-        slideIn: channelService.isSidebarOpen,
-        slideOut: !channelService.isSidebarOpen
+        slideIn: this.viewWidth >= 1300 && channelService.isSidebarOpen,
+        slideOut: this.viewWidth >= 1300 && !channelService.isSidebarOpen,
       }"
       [ngStyle]="{
         'margin-right':
           this.viewWidth <= 1900 && chatService.isSecondaryChatOpen
             ? '-390px'
-            : ''
+            : '',
+            display:
+            this.viewWidth <= 1300 && !channelService.isSidebarOpen
+              ? 'none'
+              : 'block',
       }"
     ></app-sidebar>
     <app-sidebar-toggle [viewWidth]="viewWidth"></app-sidebar-toggle>
@@ -32,8 +36,16 @@
       <app-secondary-chat
         [currentChannel]="currentChannel"
         [ngClass]="{
-          slideInRightWindow: chatService.isSecondaryChatOpen,
-          slideOutRightWindow: !chatService.isSecondaryChatOpen
+          slideInRightWindow:
+            this.viewWidth >= 1300 && chatService.isSecondaryChatOpen,
+          slideOutRightWindow:
+            this.viewWidth >= 1300 && !chatService.isSecondaryChatOpen,
+        }"
+        [ngStyle]="{
+          display:
+            this.viewWidth <= 1300 && !chatService.isSecondaryChatOpen
+              ? 'none'
+              : 'block'
         }"
       ></app-secondary-chat>
     </div>

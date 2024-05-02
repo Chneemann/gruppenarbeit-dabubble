@@ -44,10 +44,7 @@
       <img src="{{ user.avatar }}" alt="" />
     </div>
     @if (!isMsgEditFormOpen) {
-    <div
-      class="userContent"
-      [ngStyle]="{ width: openOnSecondaryChat ? '80%' : 'fit-content' }"
-    >
+    <div class="userContent">
       <div
         class="name"
         [ngStyle]="{
