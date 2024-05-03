@@ -11,9 +11,9 @@ import { CommonModule } from '@angular/common';
 })
 export class SidebarDirectMessagesComponent {
   @Input() currentChannel: string = '';
+  @Input() viewWidth: number = 0;
 
   minimizeUsers: boolean = false;
-
 
   /**
    * Toggles the visibility of direct message users.

@@ -5,17 +5,16 @@
   position: relative;
   input {
     width: 40vw;
-    height: 40px;
+    height: 70px;
     border-radius: 30px;
-    padding-left: 20px;
-    padding-right: 48px;
+    padding: 0 24px;
     font-size: larger;
     border: none;
     outline: none;
   }
-  img {
-    margin-left: -40px;
-    cursor: pointer;
+  .searchImg {
+    position: absolute;
+    right: 36px;
   }
 }
 
@@ -67,7 +66,7 @@
           width: fit-content;
           padding: 4px;
           &:hover {
-            background-color: #b4b8f8;
+            background-color: #edeefe;
             border-radius: 25px;
             cursor: pointer;
           }
@@ -80,7 +79,7 @@
 .channelName {
   padding: 4px;
   &:hover {
-    background-color: #b4b8f8;
+    background-color: #edeefe;
     border-radius: 25px;
     cursor: pointer;
   }
@@ -89,13 +88,13 @@
 .userDiv {
   @include displayFlex();
   padding: 4px;
+  position: relative;
   &:hover {
-    background-color: #b4b8f8;
+    background-color: #edeefe;
     border-radius: 25px;
     cursor: pointer;
   }
   .userImgDiv {
-    margin-left: 40px;
     @include displayFlex($j: space-between, $a: flex-end);
     .userProfilImg {
       width: 32px;
@@ -104,17 +103,21 @@
       border-radius: 50%;
     }
     .userOnlineImg {
-      width: 8px;
-      height: 8px;
+      position: absolute;
+      left: 28px;
+      width: 12px;
+      height: 12px;
       object-fit: cover;
-      margin-right: 8px;
     }
+  }
+  p {
+    margin-left: 12px;
   }
 }
 
 .showSearchWindow {
   animation: shwoSW 0.3s ease-in-out;
-  width: calc(40vw + 26px);
+  width: calc(40vw - 42px);
   max-height: 40vh;
   padding: 20px;
 }
@@ -131,7 +134,7 @@
 
 .hideSearchWindow {
   animation: hideSW 0.3s ease-in-out;
-  width: calc(40vw + 26px);
+  width: calc(40vw - 42px);
   max-height: 0;
   padding: 0;
 }

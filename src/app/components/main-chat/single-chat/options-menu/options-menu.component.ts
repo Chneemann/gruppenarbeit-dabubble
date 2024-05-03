@@ -7,6 +7,7 @@ import { EmojiPickerComponent } from '../../../../shared/components/emoji-picker
 import { UserService } from '../../../../service/user.service';
 import { ChatReactions } from '../../../../interface/chat.interface';
 import { User } from '../../../../interface/user.interface';
+import { SharedService } from '../../../../service/shared.service';
 
 @Component({
   selector: 'app-options-menu',
@@ -25,6 +26,7 @@ export class OptionsMenuComponent {
   @Input() currentChat: string = '';
   @Input() openOnSecondaryChat: boolean = false;
   @Input() isPrivatChannel: boolean = false;
+  @Input() viewWidth: number = 0;
   @Output() editMsgEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   isNavOpen: boolean = false;
@@ -32,8 +34,12 @@ export class OptionsMenuComponent {
 
   constructor(
     public chatService: ChatService,
-    public userService: UserService
+    public userService: UserService,
+    private sharedService: SharedService
   ) {}
+
+  RESPONSIVE_THRESHOLD_RESPONSIVE =
+    this.sharedService.RESPONSIVE_THRESHOLD_MOBILE;
 
   editMsg() {
     this.editMsgEmitter.emit(true);

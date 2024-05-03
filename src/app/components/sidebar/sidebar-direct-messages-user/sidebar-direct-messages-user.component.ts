@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { ChannleService } from '../../../service/channle.service';
 import { User } from '../../../interface/user.interface';
 import { RouterLink } from '@angular/router';
+import { ChatService } from '../../../service/chat.service';
+import { ToggleBooleanService } from '../../../service/toggle-boolean.service';
 
 @Component({
   selector: 'app-sidebar-direct-messages-user',
@@ -14,13 +16,14 @@ import { RouterLink } from '@angular/router';
 })
 export class SidebarDirectMessagesUserComponent {
   @Input() currentChannel: string = '';
+  @Input() viewWidth: number = 0;
 
   constructor(
     public userService: UserService,
-    private channelService: ChannleService
+    private channelService: ChannleService,
+    public chatService: ChatService,
+    public toggleBoolean: ToggleBooleanService
   ) {}
-
-
 
   /**
    * Get users for private chat.
@@ -34,6 +37,15 @@ export class SidebarDirectMessagesUserComponent {
     return filteredTasks;
   }
 
+  /**
+   * Closes the secondary chat window & sidebar.
+   */
+  closeSecondaryChatAndSidebar() {
+    this.chatService.toggleSecondaryChat('none');
+    if (this.viewWidth <= 1300) {
+      this.toggleBoolean.isSidebarOpen = false;
+    }
+  }
 
   /**
    * Display private chat channels.

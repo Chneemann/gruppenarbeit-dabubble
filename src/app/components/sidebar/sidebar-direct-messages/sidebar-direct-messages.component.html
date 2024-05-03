@@ -12,6 +12,7 @@
     </div>
   </div>
   <app-sidebar-direct-messages-user
+    [viewWidth]="viewWidth"
     [currentChannel]="currentChannel"
     [ngClass]="{ hideAllUsers: minimizeUsers, showAllUsers: !minimizeUsers }"
   ></app-sidebar-direct-messages-user>

@@ -1,12 +1,13 @@
 <div class="inputPosition">
   <input
     type="text"
-    placeholder="Search content at current channel"
+    maxlength="24"
+    placeholder="Search in devspace"
     class="fontNunito"
     [(ngModel)]="inputValue"
     (keyup)="filterAllInfo(inputValue)"
   />
-  <img src="assets/img/search-icon.svg" />
+  <img class="searchImg" src="assets/img/search-icon.svg" />
   <div
     class="suggestionBox"
     [ngClass]="{
@@ -23,7 +24,11 @@
         <div class="userDiv" (click)="checkRoute([user])">
           <div class="userImgDiv">
             <img src="{{ user.avatar }}" class="userProfilImg" />
+            @if (user.status === true) {
+            <img src="assets/img/onlineRing.svg" class="userOnlineImg" />
+            } @else {
             <img src="assets/img/offlineRing.svg" class="userOnlineImg" />
+            }
           </div>
           <p
             [innerHTML]="
@@ -67,6 +72,10 @@
         }
       </div>
     </div>
+    } @if ((filteredUsers.length === 0 && inputValue != '') &&
+    (filteredChannels.length === 0 && inputValue != '') && (filteredChats.length
+    === 0 && inputValue != '')) {
+    <p class="threadContetnt">No match found</p>
     }
   </div>
 </div>

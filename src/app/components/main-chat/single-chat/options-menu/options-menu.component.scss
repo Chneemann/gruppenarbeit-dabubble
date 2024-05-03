@@ -1,3 +1,5 @@
+@import "./../../../../../styles.scss";
+
 .content {
   display: flex;
   align-items: center;
@@ -105,5 +107,31 @@ app-small-btn {
   100% {
     opacity: 0;
     transform: translateY(-30px);
+  }
+}
+
+/*------------- RESPONSIVE -------------*/
+
+@media screen and (max-width: $RESPONSIVE_THRESHOLD_MOBILE) {
+  .content {
+    height: 32px;
+    padding: 2px 10px 2px 14px;
+    border-top-left-radius: 17px;
+    border-top-right-radius: 17px;
+    border-bottom-left-radius: 17px;
+  }
+
+  .nav {
+    top: 37px;
+    padding: 7px 14px;
+    border-top-left-radius: 21px;
+    border-bottom-left-radius: 21px;
+    border-bottom-right-radius: 21px;
+    p {
+      font-size: 18px;
+      font-weight: 600;
+      padding: 7px 14px;
+      border-radius: 21px;
+    }
   }
 }
