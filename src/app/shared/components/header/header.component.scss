@@ -150,7 +150,7 @@ header {
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: $RESPONSIVE_THRESHOLD_MOBILE) {
   .rightSide {
     .img {
       .profileImg {

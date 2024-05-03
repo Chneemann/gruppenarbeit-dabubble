@@ -1,3 +1,5 @@
+@import "../../../styles.scss";
+
 app-header {
   display: block;
   height: 110px;
@@ -89,7 +91,7 @@ app-secondary-chat {
 
 /*------------- RESPONSIVE -------------*/
 
-@media screen and (max-width: 1300px) {
+@media screen and (max-width: $RESPONSIVE_THRESHOLD) {
   app-sidebar-toggle {
     display: none;
   }
@@ -105,7 +107,7 @@ app-secondary-chat {
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: $RESPONSIVE_THRESHOLD_MOBILE) {
   .rightSide {
     .profileImg {
       width: 50px;

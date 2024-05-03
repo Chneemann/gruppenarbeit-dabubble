@@ -1,3 +1,5 @@
+@import "../../../../styles.scss";
+
 section {
   display: flex;
   justify-content: flex-start;
@@ -191,7 +193,7 @@ section {
 
 /*------------- RESPONSIVE -------------*/
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: $RESPONSIVE_THRESHOLD_MOBILE) {
   section {
     padding: 24px 12px;
   }

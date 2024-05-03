@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { UserService } from '../../../service/user.service';
 import { SearchBarComponent } from './search-bar/search-bar.component';
@@ -15,6 +15,8 @@ import { SharedService } from '../../../service/shared.service';
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
+  @Input() viewWidth: number = 0;
+
   openMenu: boolean = false;
   showCurrentProfile: boolean = false;
   closeProfil: boolean = false;

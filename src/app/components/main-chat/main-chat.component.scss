@@ -366,7 +366,7 @@ section {
 }
 
 /*------------- RESPONSIVE -------------*/
-@media screen and (max-width: 1300px) {
+@media screen and (max-width: $RESPONSIVE_THRESHOLD) {
   .menu {
     .whiteBox {
       top: 200px;
@@ -382,7 +382,7 @@ section {
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: $RESPONSIVE_THRESHOLD_MOBILE) {
   section {
     border-radius: 0;
   }

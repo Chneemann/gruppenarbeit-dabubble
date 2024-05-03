@@ -1,3 +1,5 @@
+@import "../../../../styles.scss";
+
 section {
   display: flex;
   flex-direction: column;
@@ -37,7 +39,7 @@ section {
 
 //----------- responsive ---------------
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: $RESPONSIVE_THRESHOLD_MOBILE) {
   section {
     height: calc(100vh - 144px);
   }

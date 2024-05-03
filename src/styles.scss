@@ -1,9 +1,13 @@
+$RESPONSIVE_THRESHOLD_MOBILE: 600px;
+$RESPONSIVE_THRESHOLD: 1300px;
+$RESPONSIVE_THRESHOLD_MAX: 1900px;
+
 * {
   margin: 0;
   font-family: "Nunito", sans-serif;
 }
 
-body{
+body {
   overflow-x: hidden;
   background-color: #eceefe;
 }

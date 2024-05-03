@@ -288,7 +288,7 @@
 
 /*------------- RESPONSIVE -------------*/
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: $RESPONSIVE_THRESHOLD_MOBILE) {
   .whiteBox {
     top: 144px;
     right: 18px;

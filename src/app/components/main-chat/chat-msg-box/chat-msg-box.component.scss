@@ -171,7 +171,7 @@ app-emoji-picker {
 
 //----------- responsive ---------------
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: $RESPONSIVE_THRESHOLD_MOBILE) {
   section {
     height: 50px;
     padding-bottom: 54px;

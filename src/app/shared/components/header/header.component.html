@@ -1,13 +1,14 @@
 <header>
   <div class="leftSide">
-    @if (RESPONSIVE_THRESHOLD && this.toggleBoolean.isSidebarOpen) {
-    <img src="assets/img/home-icon.svg" class="homeIcon" />
-    } @else {
+    @if (viewWidth <= RESPONSIVE_THRESHOLD && !this.toggleBoolean.isSidebarOpen)
+    {
     <div class="logo" (click)="toggleSidebar()">
       <img src="assets/img/arrowLeft.png" />
       <img src="assets/img/sidebar/workspace-logo.svg" alt="" />
       <p>Devspace</p>
     </div>
+    } @else {
+    <img src="assets/img/home-icon.svg" class="homeIcon" />
     }
   </div>
   <div class="middleSide">

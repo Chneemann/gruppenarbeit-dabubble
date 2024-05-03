@@ -1,6 +1,6 @@
 <div (click)="toggleBooleans()">
   @if (userService.isUserLogin) {
-  <app-header></app-header>
+  <app-header [viewWidth]="viewWidth"></app-header>
   <div class="content">
     <app-sidebar
       [viewWidth]="viewWidth"
