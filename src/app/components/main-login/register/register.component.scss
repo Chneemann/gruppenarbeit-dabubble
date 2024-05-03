@@ -4,6 +4,7 @@
 }
 .registerContainer {
   @include Card;
+  gap: 42px!important;
 }
 .registerTop {
   @include topText;
@@ -98,11 +99,7 @@ button {
   .registerBottom {
     margin-top: 26px;
     gap: 24px;
-    > button {
-      width: 118px;
-      height: 52px;
-      padding: 0;
-    }
+    
   }
   .guestButton {
     font-size: 17px;
@@ -115,5 +112,6 @@ button {
 @media (max-width: 380px) {
   .registerContainer {
     max-width: 306px;
+    gap:12px!important;
   }
 }
