@@ -4,7 +4,6 @@ import { EditUserComponent } from './edit-user/edit-user.component';
 import { UserService } from '../../../service/user.service';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { ToggleBooleanService } from '../../../service/toggle-boolean.service';
-import { SidebarToggleComponent } from '../../../components/sidebar/sidebar-toggle/sidebar-toggle.component';
 
 @Component({
   selector: 'app-header',
