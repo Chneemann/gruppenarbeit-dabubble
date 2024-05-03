@@ -3,6 +3,7 @@
   <app-header></app-header>
   <div class="content">
     <app-sidebar
+      [viewWidth]="viewWidth"
       [ngClass]="{
         slideIn: this.viewWidth >= 1300 && toggleAllBooleans.isSidebarOpen,
         slideOut: this.viewWidth >= 1300 && !toggleAllBooleans.isSidebarOpen,
@@ -12,10 +13,15 @@
           this.viewWidth <= 1900 && chatService.isSecondaryChatOpen
             ? '-390px'
             : '',
-            display:
-            this.viewWidth <= 1300 && !toggleAllBooleans.isSidebarOpen
-              ? 'none'
-              : 'block',
+        display:
+          this.viewWidth <= 1300 && !toggleAllBooleans.isSidebarOpen
+            ? 'none'
+            : 'block',
+        'max-width':
+          (this.viewWidth <= 1300 && chatService.isSecondaryChatOpen) ||
+          toggleAllBooleans.isSidebarOpen
+            ? '100%'
+            : '0%'
       }"
     ></app-sidebar>
     <app-sidebar-toggle [viewWidth]="viewWidth"></app-sidebar-toggle>
@@ -25,13 +31,13 @@
         [viewWidth]="viewWidth"
         [ngStyle]="{
           display:
-            this.viewWidth <= 1300 && chatService.isSecondaryChatOpen
+            this.viewWidth <= 1300 && (chatService.isSecondaryChatOpen || toggleAllBooleans.isSidebarOpen)
               ? 'none'
               : 'block',
           width:
-            this.viewWidth <= 1300 && chatService.isSecondaryChatOpen
+            this.viewWidth <= 1300 && (chatService.isSecondaryChatOpen || toggleAllBooleans.isSidebarOpen)
               ? '0%'
-              : '100%'
+              : '100%',
         }"
       ></app-main-chat>
       <app-secondary-chat

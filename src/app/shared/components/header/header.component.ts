@@ -4,6 +4,7 @@ import { EditUserComponent } from './edit-user/edit-user.component';
 import { UserService } from '../../../service/user.service';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { ToggleBooleanService } from '../../../service/toggle-boolean.service';
+import { ChatService } from '../../../service/chat.service';
 
 @Component({
   selector: 'app-header',
@@ -17,25 +18,26 @@ export class HeaderComponent {
   showCurrentProfile: boolean = false;
   closeProfil: boolean = false;
 
-  constructor(public userService: UserService, private toggleBoolean: ToggleBooleanService) {}
-
+  constructor(
+    public userService: UserService,
+    private toggleBoolean: ToggleBooleanService,
+    public chatService: ChatService
+  ) {}
 
   /**
-  * Toggles the display of the side menu.
-  */
+   * Toggles the display of the side menu.
+   */
   showSideMenu() {
     this.openMenu = !this.openMenu;
   }
 
-
   /**
-  * Displays the current user's profile.
-  */
+   * Displays the current user's profile.
+   */
   showProfile() {
     this.showCurrentProfile = true;
     this.closeProfil = false;
   }
-
 
   /**
    * Logs out the current user.
@@ -43,7 +45,6 @@ export class HeaderComponent {
   logout(): void {
     this.userService.currentUserLogout();
   }
-
 
   /**
    * Updates the value indicating whether the current profile is displayed.
@@ -56,7 +57,15 @@ export class HeaderComponent {
   /**
    * Toggle the Sidebar.
    */
-  toggleSeidebar(){
+  toggleSeidebar() {
+    this.closeSecondaryChat();
     this.toggleBoolean.isSidebarOpen = !this.toggleBoolean.isSidebarOpen;
+  }
+
+  /**
+   * Closes the secondary chat window.
+   */
+  closeSecondaryChat() {
+    this.chatService.toggleSecondaryChat('none');
   }
 }

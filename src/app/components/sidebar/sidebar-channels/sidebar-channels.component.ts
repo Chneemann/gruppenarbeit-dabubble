@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AddNewChannelComponent } from './add-new-channel/add-new-channel.component';
 import { UserService } from '../../../service/user.service';
+import { ToggleBooleanService } from '../../../service/toggle-boolean.service';
 
 @Component({
   selector: 'app-sidebar-channels',
@@ -24,23 +25,23 @@ import { UserService } from '../../../service/user.service';
 })
 export class SidebarChannelsComponent {
   @Input() currentChannel: string = '';
+  @Input() viewWidth: number = 0;
 
   minimizeChannels: boolean = true;
 
   constructor(
     public channelService: ChannleService,
     public chatService: ChatService,
-    public userService: UserService
+    public userService: UserService,
+    public toggleBoolean: ToggleBooleanService
   ) {}
 
-  
   /**
    * Toggles the visibility of channels.
    */
   minimizeAllChannels() {
     this.minimizeChannels = !this.minimizeChannels;
   }
-
 
   /**
    * Opens the add new channel window.
@@ -50,14 +51,15 @@ export class SidebarChannelsComponent {
     this.channelService.showAddChannelBox = true;
   }
 
-
   /**
-   * Closes the secondary chat window.
+   * Closes the secondary chat window & sidebar.
    */
-  closeSecondaryChat() {
+  closeSecondaryChatAndSidebar() {
     this.chatService.toggleSecondaryChat('none');
+    if (this.viewWidth <= 1300) {
+      this.toggleBoolean.isSidebarOpen = false;
+    }
   }
-
 
   /**
    * Retrieves channels for the current user.

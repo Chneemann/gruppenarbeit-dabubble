@@ -4,9 +4,8 @@
   display: flex;
   border-radius: 12px;
   border: 2px solid rgba(0, 0, 0, 0.3);
-  width: min-content;
-  overflow-x: auto;
-  overflow-y: hidden;
+  width: 100%;
+  overflow: auto;
   .filesView {
     padding: 12px 12px 6px 12px;
     cursor: pointer;
@@ -15,11 +14,13 @@
     img,
     video {
       height: 7.5vw;
+      min-height: 80px;
       width: auto;
       border-radius: 12px;
     }
     .otherFiles {
       height: 5vw;
+      min-height: 60px;
       width: auto;
       border-radius: 12px;
     }

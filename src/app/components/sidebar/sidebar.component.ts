@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { SidebarChannelsComponent } from './sidebar-channels/sidebar-channels.component';
 import { SidebarDirectMessagesComponent } from './sidebar-direct-messages/sidebar-direct-messages.component';
@@ -22,6 +22,8 @@ import { ToggleBooleanService } from '../../service/toggle-boolean.service';
   styleUrl: './sidebar.component.scss',
 })
 export class SidebarComponent implements OnInit {
+  @Input() viewWidth: number = 0;
+
   currentChannel: string = '';
 
   constructor(
@@ -30,8 +32,7 @@ export class SidebarComponent implements OnInit {
     private router: ActivatedRoute
   ) {}
 
-
-   /**
+  /**
    * Lifecycle hook called after component initialization.
    * It invokes the method to handle route parameters.
    */
@@ -39,14 +40,12 @@ export class SidebarComponent implements OnInit {
     this.routeUserId();
   }
 
-
   /**
    * Opens the search bar by toggling a boolean value.
    */
   openSearchbar() {
     this.tootleBoolean.openSearchWindow = true;
   }
-
 
   /**
    * Retrieves the user ID from the route parameters.

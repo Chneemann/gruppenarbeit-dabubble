@@ -31,7 +31,7 @@
     <div
       class="channelName"
       routerLink="/main/{{ channel.id }}"
-      (click)="closeSecondaryChat()"
+      (click)="closeSecondaryChatAndSidebar()"
       [ngClass]="{
         active: currentChannel == channel.id
       }"
