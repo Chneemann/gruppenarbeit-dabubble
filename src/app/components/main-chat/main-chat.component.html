@@ -168,7 +168,12 @@
         <div class="contentHeadline">
           <p>Channel Name</p>
           @if (!openEditNameInput) {
-          <span (click)="editChannelName($event)">Edit</span>
+            <!--check if user is creator-->
+            @if(checkCreator(currentChannel)){
+              <span (click)="editChannelName($event)">Edit</span>
+            } @else {
+              <span class="dieableEdit">Edit*</span>
+            }
           } @else {
           <span (click)="saveEditChannelName($event)">Save Name</span>
           }
@@ -191,7 +196,12 @@
         <div class="contentHeadline">
           <p>Description</p>
           @if (!openEditNameDescription) {
-          <span (click)="editChannelDescription($event)">Edit</span>
+            <!--check if user is creator-->
+            @if(checkCreator(currentChannel)){
+              <span (click)="editChannelDescription($event)">Edit</span>
+            } @else {
+              <span class="dieableEdit">Edit*</span>
+            }
           } @else {
           <span (click)="saveEditChannelDescription($event)"
             >Save Description</span
@@ -218,7 +228,10 @@
         </div>
         <div class="channelCreator">
           @for (user of getChatUsers(channel.creator); track user) {
-          <p>{{ user.firstName }} {{ user.lastName }}</p>
+          <p class="creatorName">{{ user.firstName }} {{ user.lastName }}</p>
+          }
+          @if(!checkCreator(currentChannel)){
+            <p class="warningPTag">*Ony the creator can edit the channel</p>
           }
         </div>
         }

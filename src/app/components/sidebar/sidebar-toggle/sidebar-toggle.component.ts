@@ -1,5 +1,4 @@
-import { Component, ElementRef, Input } from '@angular/core';
-import { ChannleService } from '../../../service/channle.service';
+import { Component, Input } from '@angular/core';
 import { ChatService } from '../../../service/chat.service';
 import { ToggleBooleanService } from '../../../service/toggle-boolean.service';
 
@@ -14,7 +13,6 @@ export class SidebarToggleComponent {
   @Input() viewWidth: number = 0;
 
   constructor(
-    private channelService: ChannleService,
     private chatService: ChatService,
     private toggleBoolean: ToggleBooleanService
   ) {}

@@ -132,3 +132,87 @@
     border-radius: 25px;
     font-size: larger;
 }
+
+/*------------- RESPONSIVE -------------*/
+
+@media screen and (max-width: 1300px) {
+    .arrowLeft{
+      display: block;
+      margin-left: 18px;
+      transition: 0.3 linear;
+      &:hover{
+        cursor: pointer;
+        scale: 1.2;
+      }
+    }
+  }
+
+@media screen and (max-width: 800px) {
+    .whiteBox{
+        width: 362px;
+        .boxHeader{
+            width: 300px;
+        }
+        .profileImg{
+            width: 140px;
+            height: 140px;
+            margin: 20px;
+        }
+    }
+    .inputBox{
+        width: 300px;
+        .positionName{
+            margin-bottom: 12px;
+            .positionNameIcon{
+                @include displayFlex($j: flex-start,$g: 20px);
+                h1{
+                    font-size: 24px;
+                }
+            }
+            .inputName{
+                width: 286px;
+                font-size: smaller;
+            }
+        }
+    }
+    p{
+        font-size: 14px;
+    }
+
+    .inputDisabled{
+        width: 284px;
+        font-size: smaller;
+    }
+}
+
+.position2Btn{
+    margin-bottom: 16px;
+    .cancelBtn{
+        width: 96px;
+        height: 36px;
+    }
+    .saveBtn{
+        width: 96px;
+        height: 36px;
+    }
+}
+
+.disabledBtn {
+    width: 96px;
+    height: 36px;
+}
+
+@media screen and (max-width: 600px) {
+    .whiteBox{
+        width: 90%;
+        border-radius: 35px;
+        .boxHeader{
+            width: 300px;
+        }
+        .profileImg{
+            width: 140px;
+            height: 140px;
+            margin: 20px;
+        }
+    }
+  }

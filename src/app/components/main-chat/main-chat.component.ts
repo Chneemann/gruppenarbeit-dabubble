@@ -44,12 +44,12 @@ export class MainChatComponent {
   firstLetter: string = '';
   openSearchWindow: boolean = false;
   getCurrentChannel: Channel[] = [];
+  channelCreator: boolean = false;
   constructor(
     private route: Router,
     public userService: UserService,
     public channelService: ChannleService,
     public chatService: ChatService,
-    private elementRef: ElementRef,
     public toggleBoolean: ToggleBooleanService
   ) {
     if (this.currentChannel == '' && this.userService.userId !== '') {
@@ -94,7 +94,7 @@ export class MainChatComponent {
   editChannelDescription(event: Event) {
     event.stopPropagation();
     this.openEditNameDescription = true;
-    this.descriptionValue = this.getCurrentChannel[0].description;
+    this.descriptionValue = this.getCurrentChannel[0].description || '';
   }
 
   saveEditChannelDescription(event: Event) {
@@ -107,6 +107,18 @@ export class MainChatComponent {
       this.descriptionValue
     );
   }
+
+  checkCreator(currentChannel: string){
+    const getChannel = this.channelService.allChannels.filter(
+      (channel) => channel.id == currentChannel
+    );
+    if (getChannel[0].creator === this.userService.userId) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
 
   getUsers(): User[] {
     return this.userService.allUsers;
