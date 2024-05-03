@@ -10,7 +10,12 @@
               src="{{ file }}"
               alt="image"
               loading="lazy"
-              [ngStyle]="{ height: openOnSecondaryChat ? '5vw' : '7.5vw' }"
+              [ngStyle]="{
+                height:
+                  openOnSecondaryChat && viewWidth >= RESPONSIVE_THRESHOLD
+                    ? '5vw'
+                    : '7.5vw'
+              }"
               (click)="showOverlay(file)"
             />
             } @if (['pdf', 'doc', 'txt'].includes(getFileType(file))) {
@@ -22,7 +27,12 @@
                 }}.png"
                 alt="image"
                 loading="lazy"
-                [ngStyle]="{ height: openOnSecondaryChat ? '3vw' : '5vw' }"
+                [ngStyle]="{
+                  height:
+                    openOnSecondaryChat && viewWidth >= RESPONSIVE_THRESHOLD
+                      ? '3vw'
+                      : '5vw'
+                }"
             /></a>
             } @if (['mp3', 'wav', 'wma'].includes(getFileType(file))) {
             <audio
@@ -30,7 +40,12 @@
               preload="auto"
               src="{{ file }}"
               loading="lazy"
-              [ngStyle]="{ width: openOnSecondaryChat ? '250px' : '' }"
+              [ngStyle]="{
+                width:
+                  openOnSecondaryChat && viewWidth >= RESPONSIVE_THRESHOLD
+                    ? '250px'
+                    : ''
+              }"
             ></audio>
             }@if (getFileType(file) === 'mp4') {
             <div (click)="showOverlay(file)">
@@ -38,7 +53,12 @@
                 src="{{ file }}"
                 alt="video"
                 loading="lazy"
-                [ngStyle]="{ height: openOnSecondaryChat ? '5vw' : '7.5vw' }"
+                [ngStyle]="{
+                  height:
+                    openOnSecondaryChat && viewWidth >= RESPONSIVE_THRESHOLD
+                      ? '5vw'
+                      : '7.5vw'
+                }"
               ></video>
             </div>
             }

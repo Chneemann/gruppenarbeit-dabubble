@@ -5,23 +5,19 @@
     <app-sidebar
       [viewWidth]="viewWidth"
       [ngClass]="{
-        slideIn: this.viewWidth >= 1300 && toggleAllBooleans.isSidebarOpen,
-        slideOut: this.viewWidth >= 1300 && !toggleAllBooleans.isSidebarOpen,
+        slideIn: this.viewWidth >= RESPONSIVE_THRESHOLD && toggleAllBooleans.isSidebarOpen,
+        slideOut: this.viewWidth >= RESPONSIVE_THRESHOLD && !toggleAllBooleans.isSidebarOpen,
       }"
       [ngStyle]="{
         'margin-right':
-          this.viewWidth <= 1900 && chatService.isSecondaryChatOpen
+          this.viewWidth <= RESPONSIVE_THRESHOLD_MAX && chatService.isSecondaryChatOpen
             ? '-390px'
             : '',
         display:
-          this.viewWidth <= 1300 && !toggleAllBooleans.isSidebarOpen
+          this.viewWidth <= RESPONSIVE_THRESHOLD && !toggleAllBooleans.isSidebarOpen
             ? 'none'
             : 'block',
-        'max-width':
-          (this.viewWidth <= 1300 && chatService.isSecondaryChatOpen) ||
-          toggleAllBooleans.isSidebarOpen
-            ? '100%'
-            : '0%'
+
       }"
     ></app-sidebar>
     <app-sidebar-toggle [viewWidth]="viewWidth"></app-sidebar-toggle>
@@ -31,11 +27,11 @@
         [viewWidth]="viewWidth"
         [ngStyle]="{
           display:
-            this.viewWidth <= 1300 && (chatService.isSecondaryChatOpen || toggleAllBooleans.isSidebarOpen)
+            this.viewWidth <= RESPONSIVE_THRESHOLD && (chatService.isSecondaryChatOpen || toggleAllBooleans.isSidebarOpen)
               ? 'none'
               : 'block',
           width:
-            this.viewWidth <= 1300 && (chatService.isSecondaryChatOpen || toggleAllBooleans.isSidebarOpen)
+            this.viewWidth <= RESPONSIVE_THRESHOLD && (chatService.isSecondaryChatOpen || toggleAllBooleans.isSidebarOpen)
               ? '0%'
               : '100%',
         }"
@@ -44,13 +40,14 @@
         [currentChannel]="currentChannel"
         [ngClass]="{
           slideInRightWindow:
-            this.viewWidth >= 1300 && chatService.isSecondaryChatOpen,
+            this.viewWidth >= RESPONSIVE_THRESHOLD && chatService.isSecondaryChatOpen,
           slideOutRightWindow:
-            this.viewWidth >= 1300 && !chatService.isSecondaryChatOpen,
+            this.viewWidth >= RESPONSIVE_THRESHOLD && !chatService.isSecondaryChatOpen,
         }"
         [ngStyle]="{
           display:
-            this.viewWidth <= 1300 && !chatService.isSecondaryChatOpen
+            this.viewWidth <= RESPONSIVE_THRESHOLD &&
+            !chatService.isSecondaryChatOpen
               ? 'none'
               : 'block'
         }"

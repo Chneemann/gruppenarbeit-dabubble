@@ -121,7 +121,9 @@
         [btnSize]="'32px'"
         [btnBgHoverColor]="'#edeefe'"
         (click)="
-          viewWidth <= 600 ? openMemberWindow(false) : openMemberWindow(true)
+          viewWidth <= RESPONSIVE_THRESHOLD_MOBILE
+            ? openMemberWindow(false)
+            : openMemberWindow(true)
         "
       ></app-small-btn>
       }
@@ -142,6 +144,7 @@
     [getUsers]="getUsers"
     [currentChannel]="currentChannel"
     [hideContentWindow]="false"
+    [viewWidth]="viewWidth"
   >
   </app-chat-content>
   }
@@ -168,13 +171,12 @@
         <div class="contentHeadline">
           <p>Channel Name</p>
           @if (!openEditNameInput) {
-            <!--check if user is creator-->
-            @if(checkCreator(currentChannel)){
-              <span (click)="editChannelName($event)">Edit</span>
-            } @else {
-              <span class="dieableEdit">Edit*</span>
-            }
+          <!--check if user is creator-->
+          @if(checkCreator(currentChannel)){
+          <span (click)="editChannelName($event)">Edit</span>
           } @else {
+          <span class="dieableEdit">Edit*</span>
+          } } @else {
           <span (click)="saveEditChannelName($event)">Save Name</span>
           }
         </div>
@@ -196,13 +198,12 @@
         <div class="contentHeadline">
           <p>Description</p>
           @if (!openEditNameDescription) {
-            <!--check if user is creator-->
-            @if(checkCreator(currentChannel)){
-              <span (click)="editChannelDescription($event)">Edit</span>
-            } @else {
-              <span class="dieableEdit">Edit*</span>
-            }
+          <!--check if user is creator-->
+          @if(checkCreator(currentChannel)){
+          <span (click)="editChannelDescription($event)">Edit</span>
           } @else {
+          <span class="dieableEdit">Edit*</span>
+          } } @else {
           <span (click)="saveEditChannelDescription($event)"
             >Save Description</span
           >
@@ -229,9 +230,8 @@
         <div class="channelCreator">
           @for (user of getChatUsers(channel.creator); track user) {
           <p class="creatorName">{{ user.firstName }} {{ user.lastName }}</p>
-          }
-          @if(!checkCreator(currentChannel)){
-            <p class="warningPTag">*Ony the creator can edit the channel</p>
+          } @if(!checkCreator(currentChannel)){
+          <p class="warningPTag">*Ony the creator can edit the channel</p>
           }
         </div>
         }

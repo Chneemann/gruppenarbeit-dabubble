@@ -15,6 +15,7 @@ import { ChatMsgBoxComponent } from './chat-msg-box/chat-msg-box.component';
 import { FormsModule } from '@angular/forms';
 import { SmallBtnComponent } from '../../shared/components/small-btn/small-btn.component';
 import { ShowChannelMemberComponent } from './show-channel-member/show-channel-member.component';
+import { SharedService } from '../../service/shared.service';
 
 @Component({
   selector: 'app-main-chat',
@@ -50,12 +51,15 @@ export class MainChatComponent {
     public userService: UserService,
     public channelService: ChannleService,
     public chatService: ChatService,
-    public toggleBoolean: ToggleBooleanService
+    public toggleBoolean: ToggleBooleanService,
+    private sharedService: SharedService
   ) {
     if (this.currentChannel == '' && this.userService.userId !== '') {
       this.route.navigateByUrl('/main/XiqUAXRY1W7PixC9kVTa');
     }
   }
+
+  RESPONSIVE_THRESHOLD_MOBILE = this.sharedService.RESPONSIVE_THRESHOLD_MOBILE;
 
   showMenu() {
     this.openMenu = true;
@@ -108,7 +112,7 @@ export class MainChatComponent {
     );
   }
 
-  checkCreator(currentChannel: string){
+  checkCreator(currentChannel: string) {
     const getChannel = this.channelService.allChannels.filter(
       (channel) => channel.id == currentChannel
     );
@@ -118,7 +122,6 @@ export class MainChatComponent {
       return false;
     }
   }
-
 
   getUsers(): User[] {
     return this.userService.allUsers;
@@ -258,7 +261,12 @@ export class MainChatComponent {
       if (userIndex) {
         getChannel[0].addedUser.splice(userIndex, 1);
         const userArray = getChannel[0].addedUser;
-        this.channelService.addNewMemberToChannel('channels',currentChannel,userArray,'leaveChannel');
+        this.channelService.addNewMemberToChannel(
+          'channels',
+          currentChannel,
+          userArray,
+          'leaveChannel'
+        );
         this.openMenu = false;
         this.route.navigateByUrl(`main/XiqUAXRY1W7PixC9kVTa`);
       } else {

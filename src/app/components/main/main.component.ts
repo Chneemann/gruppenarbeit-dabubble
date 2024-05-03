@@ -21,6 +21,7 @@ import { AddNewChannelComponent } from '../sidebar/sidebar-channels/add-new-chan
 import { OverlayComponent } from '../../shared/components/overlay/overlay.component';
 import { PrivatChatComponent } from '../main-chat/privat-chat/privat-chat.component';
 import { ToggleBooleanService } from '../../service/toggle-boolean.service';
+import { SharedService } from '../../service/shared.service';
 
 @Component({
   selector: 'app-landing-page',
@@ -48,11 +49,15 @@ export class MainComponent {
     private route: Router,
     private router: ActivatedRoute,
     private elementRef: ElementRef,
-    public toggleAllBooleans: ToggleBooleanService
+    public toggleAllBooleans: ToggleBooleanService,
+    private sharedService: SharedService
   ) {}
 
   currentChannel: string = '';
   viewWidth: number = 0;
+
+  RESPONSIVE_THRESHOLD = this.sharedService.RESPONSIVE_THRESHOLD;
+  RESPONSIVE_THRESHOLD_MAX = this.sharedService.RESPONSIVE_THRESHOLD_MAX;
 
   ngOnInit() {
     this.ifUserLogin();
@@ -81,9 +86,9 @@ export class MainComponent {
 
   private updateViewWidth() {
     this.viewWidth = this.elementRef.nativeElement.offsetWidth;
-    if (this.viewWidth <= 1300) {
+    if (this.viewWidth <= this.RESPONSIVE_THRESHOLD) {
       this.toggleAllBooleans.isSidebarOpen = false;
-    } else if (this.viewWidth >= 1300) {
+    } else if (this.viewWidth >= this.RESPONSIVE_THRESHOLD) {
       this.toggleAllBooleans.isSidebarOpen = true;
     }
   }
