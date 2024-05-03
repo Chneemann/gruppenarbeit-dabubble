@@ -1,5 +1,6 @@
 <header>
   <div class="leftSide">
+    <img src="assets/img/arrowLeft.png" class="arrowLeft" (click)="toggleSeidebar()">
     <img src="assets/img/home-icon.svg" class="homeIcon" />
   </div>
   <div class="middleSide">
@@ -10,18 +11,13 @@
       @for(i of userService.getCurentUsers(); track i){
       <p class="fontNunito">{{ i.firstName }} {{ i.lastName }}</p>
 
-      <div class="img">
+      <div class="img" (click)="showSideMenu()">
         <img src="{{ i.avatar }}" class="profileImg" />
         <img
           src="assets/img/{{ i.status ? 'onlineRing.svg' : 'offlineRing.svg' }}"
           class="onlineIcon"
         />
       </div>
-      <img
-        src="assets/img/keyboardArrowDown.svg"
-        class="arrowDown"
-        (click)="showSideMenu()"
-      />
       }
     </div>
   </div>

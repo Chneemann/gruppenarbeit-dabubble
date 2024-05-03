@@ -85,3 +85,11 @@ section {
 .mirror {
   transform: scaleX(-1);
 }
+
+//----------- responsive ---------------
+
+@media screen and (max-width: 600px) {
+  section {
+    height: calc(100vh - 96px);
+  }
+}

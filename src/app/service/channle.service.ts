@@ -11,7 +11,6 @@ export class ChannleService implements OnDestroy {
   firestore: Firestore = inject(Firestore);
 
   allChannels: Channel[] = [];
-  isSidebarOpen: boolean = true;
   showAddChannelBox: boolean = false;
   btnIsValid: boolean = false;
   saveEditBtnIsValid: boolean = false;

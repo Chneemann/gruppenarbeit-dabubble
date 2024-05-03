@@ -122,3 +122,42 @@
         }
     }
 }
+
+/*------------- RESPONSIVE -------------*/
+
+@media screen and (max-width: 1300px) {
+    .arrowLeft{
+      display: block;
+      margin-left: 18px;
+      transition: 0.3 linear;
+      &:hover{
+        cursor: pointer;
+        scale: 1.2;
+      }
+    }
+  }
+
+@media screen and (max-width: 800px) {
+    .whiteBox{
+        width: 362px;
+        .boxHeader{
+            width: 300px;
+        }
+        .profileImg{
+            width: 140px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin: 40px;
+        }
+    }
+  }
+
+.detailsBox{
+    width: 300px;
+    .editBtnPosition{
+        h1{
+            font-size: 26px;
+        }
+    }
+}

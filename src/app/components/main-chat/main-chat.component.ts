@@ -246,12 +246,7 @@ export class MainChatComponent {
       if (userIndex) {
         getChannel[0].addedUser.splice(userIndex, 1);
         const userArray = getChannel[0].addedUser;
-        this.channelService.addNewMemberToChannel(
-          'channels',
-          currentChannel,
-          userArray,
-          'leaveChannel'
-        );
+        this.channelService.addNewMemberToChannel('channels',currentChannel,userArray,'leaveChannel');
         this.openMenu = false;
         this.route.navigateByUrl(`main/XiqUAXRY1W7PixC9kVTa`);
       } else {

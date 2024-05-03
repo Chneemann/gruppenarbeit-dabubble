@@ -6,12 +6,12 @@ header {
 }
 
 .leftSide {
-  @include displayFlex($j: start);
+  @include displayFlex($j: start, $g: 20px);
   width: 20vw;
   .homeIcon {
     width: 242px;
     height: 70px;
-    margin-left: 20px;
+    margin-left: 12px;
   }
 }
 
@@ -26,18 +26,18 @@ header {
     font-size: 32px;
     font-weight: 700;
   }
-  .profileImg {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 50%;
-  }
-  .onlineIcon {
-    margin-left: -20px;
-  }
-  .arrowDown {
+  .img{
     margin-right: 20px;
     cursor: pointer;
+    .profileImg {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+    .onlineIcon {
+      margin-left: -20px;
+    }
   }
 }
 
@@ -82,7 +82,23 @@ header {
   }
 }
 
+.arrowLeft{
+  display: none;
+}
+
 /*------------- RESPONSIVE -------------*/
+
+@media screen and (max-width: 1300px) {
+  .arrowLeft{
+    display: block;
+    margin-left: 18px;
+    transition: 0.3 linear;
+    &:hover{
+      cursor: pointer;
+      scale: 1.2;
+    }
+  }
+}
 
 @media screen and (max-width: 1100px) {
   .middleSide {
@@ -92,33 +108,51 @@ header {
   .rightSide,
   .leftSide {
     width: 50vw;
+    margin-left: 0;
+  }
+
+  .profileImg{
+    margin: 0;
   }
 }
 
 @media screen and (max-width: 800px) {
   .rightSide {
     @include displayFlex($j: end, $g: 20px);
-    p,
-    .arrowDown {
+    p {
       display: none;
     }
     .img {
       margin-right: 20px;
     }
   }
+
+  .whiteBox {
+    @include displayFlex();
+    width: 148px;
+    height: 122px;
+  }
 }
+
 @media screen and (max-width: 600px) {
   .rightSide {
-    .profileImg {
-      width: 50px;
-      height: 50px;
+    .img{
+      .profileImg {
+        width: 56px;
+        height: 56px;
+      }
     }
   }
 
   .leftSide {
+    @include displayFlex($j: start, $g: 8px);
     .homeIcon {
       width: 162px;
       height: 45px;
     }
+  }
+
+  .whiteBox {
+    top: 72px;
   }
 }

@@ -1,6 +1,7 @@
 import { Component, ElementRef, Input } from '@angular/core';
 import { ChannleService } from '../../../service/channle.service';
 import { ChatService } from '../../../service/chat.service';
+import { ToggleBooleanService } from '../../../service/toggle-boolean.service';
 
 @Component({
   selector: 'app-sidebar-toggle',
@@ -14,7 +15,8 @@ export class SidebarToggleComponent {
 
   constructor(
     private channelService: ChannleService,
-    private chatService: ChatService
+    private chatService: ChatService,
+    private toggleBoolean: ToggleBooleanService
   ) {}
 
 
@@ -22,7 +24,7 @@ export class SidebarToggleComponent {
    * Toggles the sidebar visibility and checks the view width.
    */
   toggleSidebar() {
-    this.channelService.isSidebarOpen = !this.channelService.isSidebarOpen;
+    this.toggleBoolean.isSidebarOpen = !this.toggleBoolean.isSidebarOpen;
     this.checkViewWidth();
   }
 
@@ -32,7 +34,7 @@ export class SidebarToggleComponent {
    */
   checkViewWidth() {
     if (this.viewWidth <= 1900 && this.chatService.isSecondaryChatOpen) {
-      this.channelService.isSidebarOpen = true;
+      this.toggleBoolean.isSidebarOpen = true;
     }
     if (this.viewWidth <= 1900) {
       this.chatService.isSecondaryChatId = '';

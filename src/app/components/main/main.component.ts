@@ -48,7 +48,7 @@ export class MainComponent {
     private route: Router,
     private router: ActivatedRoute,
     private elementRef: ElementRef,
-    private toggleAllBooleans: ToggleBooleanService
+    public toggleAllBooleans: ToggleBooleanService
   ) {}
 
   currentChannel: string = '';
@@ -82,9 +82,9 @@ export class MainComponent {
   private updateViewWidth() {
     this.viewWidth = this.elementRef.nativeElement.offsetWidth;
     if (this.viewWidth <= 1300) {
-      this.channelService.isSidebarOpen = false;
+      this.toggleAllBooleans.isSidebarOpen = false;
     } else if (this.viewWidth >= 1300) {
-      this.channelService.isSidebarOpen = true;
+      this.toggleAllBooleans.isSidebarOpen = true;
     }
   }
 

@@ -4,8 +4,8 @@
   <div class="content">
     <app-sidebar
       [ngClass]="{
-        slideIn: this.viewWidth >= 1300 && channelService.isSidebarOpen,
-        slideOut: this.viewWidth >= 1300 && !channelService.isSidebarOpen,
+        slideIn: this.viewWidth >= 1300 && toggleAllBooleans.isSidebarOpen,
+        slideOut: this.viewWidth >= 1300 && !toggleAllBooleans.isSidebarOpen,
       }"
       [ngStyle]="{
         'margin-right':
@@ -13,7 +13,7 @@
             ? '-390px'
             : '',
             display:
-            this.viewWidth <= 1300 && !channelService.isSidebarOpen
+            this.viewWidth <= 1300 && !toggleAllBooleans.isSidebarOpen
               ? 'none'
               : 'block',
       }"
