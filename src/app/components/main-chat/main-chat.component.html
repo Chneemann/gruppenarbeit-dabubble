@@ -1,8 +1,8 @@
 <section>
   @if (checkCurrentChannel(currentChannel) == 'searchBar') {
   <!-----Searchwindow at the sidebar----->
-  <div class="headerSearhcBar">
-    <h1>New message</h1>
+  <div class="headerSearchBar">
+    <p>New message</p>
     <input
       type="text"
       placeholder="To: #channel or @someone"
@@ -10,7 +10,11 @@
       (keyup)="filterChannelAndUser(chatService.inputValue)"
     />
   </div>
-  <div style="margin-top: -24px">
+  <div
+    [ngStyle]="{
+      'margin-top': viewWidth <= RESPONSIVE_THRESHOLD_MOBILE ? '-88px' : '-64px'
+    }"
+  >
     <app-chat-content
       [getChatChannel]="getChatChannel"
       [getChatUsers]="getChatUsers"

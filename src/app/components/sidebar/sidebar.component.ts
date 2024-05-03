@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { ChannleService } from '../../service/channle.service';
 import { SearchbarComponent } from './searchbar/searchbar.component';
 import { ToggleBooleanService } from '../../service/toggle-boolean.service';
+import { ChatService } from '../../service/chat.service';
 @Component({
   selector: 'app-sidebar',
   standalone: true,
@@ -28,8 +29,9 @@ export class SidebarComponent implements OnInit {
 
   constructor(
     public channelService: ChannleService,
-    public tootleBoolean: ToggleBooleanService,
-    private router: ActivatedRoute
+    public toggleBoolean: ToggleBooleanService,
+    private router: ActivatedRoute,
+    public chatService: ChatService
   ) {}
 
   /**
@@ -44,7 +46,17 @@ export class SidebarComponent implements OnInit {
    * Opens the search bar by toggling a boolean value.
    */
   openSearchbar() {
-    this.tootleBoolean.openSearchWindow = true;
+    this.toggleBoolean.openSearchWindow = true;
+  }
+
+  /**
+   * Closes the secondary chat window & sidebar.
+   */
+  closeSecondaryChatAndSidebar() {
+    this.chatService.toggleSecondaryChat('none');
+    if (this.viewWidth <= 1300) {
+      this.toggleBoolean.isSidebarOpen = false;
+    }
   }
 
   /**
