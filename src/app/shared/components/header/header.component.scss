@@ -5,13 +5,41 @@ header {
   @include displayFlex($j: space-between);
 }
 
+.logo {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  max-width: fit-content;
+  transition: 0.3 linear;
+  cursor: pointer;
+  img {
+    &:first-child {
+      margin: 0 15px 0 20px;
+    }
+    &:nth-child(2) {
+      width: 60px;
+      height: 60px;
+      background-color: black;
+      border-radius: 100%;
+      margin-right: 12px;
+    }
+  }
+  p {
+    font-size: 24px;
+    font-weight: 700;
+  }
+  &:hover {
+    scale: 1.025;
+  }
+}
+
 .leftSide {
   @include displayFlex($j: start, $g: 20px);
   width: 20vw;
   .homeIcon {
     width: 242px;
     height: 70px;
-    margin-left: 12px;
+    margin-left: 20px;
   }
 }
 
@@ -26,7 +54,7 @@ header {
     font-size: 32px;
     font-weight: 700;
   }
-  .img{
+  .img {
     margin-right: 20px;
     cursor: pointer;
     .profileImg {
@@ -82,23 +110,11 @@ header {
   }
 }
 
-.arrowLeft{
+.arrowLeft {
   display: none;
 }
 
 /*------------- RESPONSIVE -------------*/
-
-@media screen and (max-width: 1300px) {
-  .arrowLeft{
-    display: block;
-    margin-left: 18px;
-    transition: 0.3 linear;
-    &:hover{
-      cursor: pointer;
-      scale: 1.2;
-    }
-  }
-}
 
 @media screen and (max-width: 1100px) {
   .middleSide {
@@ -111,7 +127,7 @@ header {
     margin-left: 0;
   }
 
-  .profileImg{
+  .profileImg {
     margin: 0;
   }
 }
@@ -136,7 +152,7 @@ header {
 
 @media screen and (max-width: 600px) {
   .rightSide {
-    .img{
+    .img {
       .profileImg {
         width: 56px;
         height: 56px;
@@ -154,5 +170,27 @@ header {
 
   .whiteBox {
     top: 72px;
+  }
+
+  .logo {
+    img {
+      &:first-child {
+        margin: 0 12px 0 16px;
+      }
+      &:nth-child(2) {
+        width: 50px;
+        height: 50px;
+        background-color: black;
+        border-radius: 100%;
+        margin-right: 12px;
+      }
+    }
+    p {
+      font-size: 20px;
+      font-weight: 700;
+    }
+    &:hover {
+      scale: 1.025;
+    }
   }
 }

@@ -5,6 +5,7 @@ import { UserService } from '../../../service/user.service';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { ToggleBooleanService } from '../../../service/toggle-boolean.service';
 import { ChatService } from '../../../service/chat.service';
+import { SharedService } from '../../../service/shared.service';
 
 @Component({
   selector: 'app-header',
@@ -20,9 +21,12 @@ export class HeaderComponent {
 
   constructor(
     public userService: UserService,
-    private toggleBoolean: ToggleBooleanService,
-    public chatService: ChatService
+    public toggleBoolean: ToggleBooleanService,
+    public chatService: ChatService,
+    private sharedService: SharedService
   ) {}
+
+  RESPONSIVE_THRESHOLD = this.sharedService.RESPONSIVE_THRESHOLD;
 
   /**
    * Toggles the display of the side menu.
@@ -57,7 +61,7 @@ export class HeaderComponent {
   /**
    * Toggle the Sidebar.
    */
-  toggleSeidebar() {
+  toggleSidebar() {
     this.closeSecondaryChat();
     this.toggleBoolean.isSidebarOpen = !this.toggleBoolean.isSidebarOpen;
   }

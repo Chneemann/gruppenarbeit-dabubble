@@ -1,7 +1,14 @@
 <header>
   <div class="leftSide">
-    <img src="assets/img/arrowLeft.png" class="arrowLeft" (click)="toggleSeidebar()">
+    @if (RESPONSIVE_THRESHOLD && this.toggleBoolean.isSidebarOpen) {
     <img src="assets/img/home-icon.svg" class="homeIcon" />
+    } @else {
+    <div class="logo" (click)="toggleSidebar()">
+      <img src="assets/img/arrowLeft.png" />
+      <img src="assets/img/sidebar/workspace-logo.svg" alt="" />
+      <p>Devspace</p>
+    </div>
+    }
   </div>
   <div class="middleSide">
     <app-search-bar></app-search-bar>
