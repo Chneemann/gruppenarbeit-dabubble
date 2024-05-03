@@ -103,6 +103,14 @@ section {
   }
 }
 
+.dieableEdit{
+  color: rgba(0, 0, 0, 0.5) !important;
+  cursor: context-menu !important;
+  &:hover{
+    font-weight: 400 !important;
+  }
+}
+
 .closeBtn {
   display: flex;
   justify-content: center;
@@ -185,10 +193,15 @@ section {
   }
   .channelCreator {
     margin-top: 24px;
-    p {
+    .creatorName{
       font-size: 24px;
       font-weight: 200;
       color: #535af1;
+    }
+    .warningPTag{
+      color: rgba(0, 0, 0, 0.5);
+      font-weight: 300;
+      font-size: 14px;
     }
   }
 }
@@ -203,7 +216,7 @@ section {
   justify-content: right;
   align-items: center;
   margin-top: 18px;
-  p {
+  p{
     padding: 12px 25px;
     border-radius: 25px;
     color: #fff;
