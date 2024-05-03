@@ -2,7 +2,7 @@ section {
   display: flex;
   flex-direction: column;
   justify-content: end;
-  height: calc(100vh - 222px);
+  height: calc(100vh - 210px);
   position: relative;
 }
 
@@ -35,11 +35,10 @@ section {
   }
 }
 
-
 //----------- responsive ---------------
 
 @media screen and (max-width: 600px) {
   section {
-    height: calc(100vh - 158px);
+    height: calc(100vh - 144px);
   }
 }

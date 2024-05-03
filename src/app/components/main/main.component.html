@@ -21,7 +21,17 @@
       }"
     ></app-sidebar>
     <app-sidebar-toggle [viewWidth]="viewWidth"></app-sidebar-toggle>
-    <div class="chatBox">
+    <div
+      class="chatBox"
+      [ngStyle]="{
+        display:
+          this.viewWidth <= RESPONSIVE_THRESHOLD &&
+          !chatService.isSecondaryChatOpen &&
+          toggleAllBooleans.isSidebarOpen
+            ? 'none'
+            : ''
+      }"
+    >
       <app-main-chat
         [currentChannel]="currentChannel"
         [viewWidth]="viewWidth"
@@ -33,7 +43,7 @@
           width:
             this.viewWidth <= RESPONSIVE_THRESHOLD && (chatService.isSecondaryChatOpen || toggleAllBooleans.isSidebarOpen)
               ? '0%'
-              : '100%',
+              : '',
         }"
       ></app-main-chat>
       <app-secondary-chat

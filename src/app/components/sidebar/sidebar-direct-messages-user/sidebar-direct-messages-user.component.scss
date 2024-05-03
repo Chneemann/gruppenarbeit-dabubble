@@ -4,7 +4,7 @@ section {
   max-height: 27vh;
   margin: 18px 0 0 12px;
   overflow: auto;
-  width: 288px;
+  min-width: 300px;
 }
 
 .user {
@@ -14,7 +14,7 @@ section {
   padding: 6px;
   max-width: fit-content;
   cursor: pointer;
-  .imgBox{
+  .imgBox {
     display: flex;
     align-items: flex-end;
     .userImg {
@@ -23,7 +23,7 @@ section {
       object-fit: cover;
       border-radius: 50%;
     }
-    .onlineIcon{
+    .onlineIcon {
       width: 16px;
       height: 16px;
       border-radius: 50%;
@@ -48,4 +48,3 @@ section {
   background-color: #edeefe;
   border-radius: 36px;
 }
-

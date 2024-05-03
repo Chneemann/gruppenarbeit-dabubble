@@ -107,10 +107,10 @@ section {
   }
 }
 
-.dieableEdit{
+.dieableEdit {
   color: rgba(0, 0, 0, 0.5) !important;
   cursor: context-menu !important;
-  &:hover{
+  &:hover {
     font-weight: 400 !important;
   }
 }
@@ -197,12 +197,12 @@ section {
   }
   .channelCreator {
     margin-top: 24px;
-    .creatorName{
+    .creatorName {
       font-size: 24px;
       font-weight: 200;
       color: #535af1;
     }
-    .warningPTag{
+    .warningPTag {
       color: rgba(0, 0, 0, 0.5);
       font-weight: 300;
       font-size: 14px;
@@ -220,7 +220,7 @@ section {
   justify-content: right;
   align-items: center;
   margin-top: 18px;
-  p{
+  p {
     padding: 12px 25px;
     border-radius: 25px;
     color: #fff;
@@ -362,13 +362,12 @@ section {
 
 /*------------- RESPONSIVE -------------*/
 @media screen and (max-width: 1300px) {
-  
-.menu {
-  .whiteBox {
-    top: 200px;
-    left: 70px;
+  .menu {
+    .whiteBox {
+      top: 200px;
+      left: 70px;
+    }
   }
-}
 }
 @media screen and (max-width: 690px) {
   .menu {
@@ -379,6 +378,10 @@ section {
 }
 
 @media screen and (max-width: 600px) {
+  section {
+    border-radius: 0;
+  }
+
   .addUserToChannelBox {
     .addedUsers {
       display: none;
@@ -410,7 +413,6 @@ section {
       max-height: 500px;
       overflow: auto;
       scrollbar-width: none;
-      
     }
   }
 }
