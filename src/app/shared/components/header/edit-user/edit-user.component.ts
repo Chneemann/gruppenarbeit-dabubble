@@ -3,53 +3,48 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { EditUserDetailsComponent } from './edit-user-details/edit-user-details.component';
 import { UserService } from '../../../../service/user.service';
 import { User } from '../../../../interface/user.interface';
+import { SharedService } from '../../../../service/shared.service';
 
 @Component({
   selector: 'app-edit-user',
   standalone: true,
   imports: [CommonModule, EditUserDetailsComponent],
   templateUrl: './edit-user.component.html',
-  styleUrl: './edit-user.component.scss'
+  styleUrl: './edit-user.component.scss',
 })
 export class EditUserComponent {
-  isOnline = true; 
+  isOnline = true;
   openProfil = false;
   openEditUserValue = false;
-  @Input() showCurrentProfile!:boolean;
+  @Input() showCurrentProfile!: boolean;
 
-  @Output()testValueChange = new EventEmitter<boolean>();
+  @Output() testValueChange = new EventEmitter<boolean>();
 
-  constructor(public userService: UserService){
-  }
-
+  constructor(public userService: UserService) {}
 
   /** Toggles the side menu. */
   showSideMenu() {
     this.openEditUserValue = !this.openEditUserValue;
   }
 
-
   /** Opens the edit user section. */
-  openEditUser(){
-    this.openEditUserValue = true; 
+  openEditUser() {
+    this.openEditUserValue = true;
   }
 
-
   /** Closes the current profile. */
-  closeCurrentProfile(){
+  closeCurrentProfile() {
     this.showCurrentProfile = false;
     this.testValueChange.emit(this.showCurrentProfile);
     this.openEditUserValue = false;
   }
 
-
   /**
    * Updates the close value.
    * @param value The value to update.
    */
-  updateCloseValue(value: boolean){
+  updateCloseValue(value: boolean) {
     this.showCurrentProfile = value;
     this.openEditUserValue = value;
   }
-
 }

@@ -44,7 +44,12 @@
 
   @if (reactionDialogId != '') { @for (reaction of
   getReactionDocId(reactionDialogId); track reaction) {
-  <div class="dialog" [style.left.px]="dialogX" [style.top.px]="dialogY">
+  <div
+    class="dialog"
+    [style.left.px]="dialogX"
+    [style.top.px]="dialogY"
+    (click)="reactionDialogId = ''"
+  >
     <div class="icon">
       @if (reaction.icon === "okay" || reaction.icon === "clap-hands") {
       <img src="./../../../../../assets/img/{{ reaction.icon }}.svg" />

@@ -1,3 +1,5 @@
+@import "../../../../../styles.scss";
+
 form {
   position: relative;
   width: calc(100% - 24px);
@@ -125,5 +127,27 @@ app-small-btn {
   &:hover {
     filter: brightness(0) saturate(100%) invert(20%) sepia(78%) saturate(5090%)
       hue-rotate(5deg) brightness(105%) contrast(103%);
+  }
+}
+
+@media screen and (max-width: $RESPONSIVE_THRESHOLD_MOBILE) {
+  .btns {
+    padding: 6px 0;
+    .btn {
+      padding: 6px 12px;
+      border-radius: 40px;
+      font-size: 16px;
+      &:first-child {
+        margin-right: 6px;
+      }
+    }
+  }
+
+  app-small-btn {
+    padding: 6px;
+  }
+
+  form {
+    width: calc(100% - 12px);
   }
 }
