@@ -129,12 +129,6 @@
   &:hover {
     border: 1px solid #2c36f0;
   }
-  p {
-    position: absolute;
-    top: -20px;
-    left: 26px;
-    color: red;
-  }
   .userPosition {
     @include displayFlex($g: 8px);
     padding: 4px;
@@ -144,7 +138,9 @@
     border-radius: 25px;
     border-radius: 25px;
     margin: 4px;
-
+    p {
+      font-size: 21px;
+    }
     .avatarImg {
       width: 32px;
       height: 32px;
@@ -216,7 +212,6 @@
       cursor: pointer;
       p {
         font-size: 21px;
-        font-style: 600;
       }
       &:hover {
         background-color: #edeefe;
