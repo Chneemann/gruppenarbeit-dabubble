@@ -32,6 +32,7 @@ import { ChatMsgBoxComponent } from '../main-chat/chat-msg-box/chat-msg-box.comp
 })
 export class SecondaryChatComponent implements AfterViewChecked {
   @Input() currentChannel: string = '';
+  @Input() viewWidth: number = 0;
   @ViewChild('messageBody') messageBody: ElementRef | undefined;
   sidebarLoaded: boolean = false;
   isNewMessage: boolean = false;

@@ -1,4 +1,8 @@
-<section>
+<section
+  [ngClass]="{
+    privatChatHeight: isPrivatChannel
+  }"
+>
   @if (!hideContentWindow) {
   <div class="content" #messageBody>
     <app-info [currentChannel]="currentChannel"></app-info>

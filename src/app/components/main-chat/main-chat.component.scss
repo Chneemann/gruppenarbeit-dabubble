@@ -235,10 +235,10 @@ section {
 // -------- prv chat--------
 
 .headerPrvChat {
-  height: auto;
-  display: flex;
-  padding: 8px 28px;
+  height: 60px;
+  padding: 24px 48px;
   box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.05);
+  @include displayFlex($j: space-between);
 }
 
 .headerBoxPrvChat {
@@ -250,7 +250,7 @@ section {
 .headlinePrvChat {
   display: flex;
   align-items: center;
-  padding: 8px;
+  padding: 6px 12px;
   max-width: fit-content;
   cursor: pointer;
   .imgBoxPrvChat {
@@ -366,6 +366,7 @@ section {
 }
 
 /*------------- RESPONSIVE -------------*/
+
 @media screen and (max-width: $RESPONSIVE_THRESHOLD) {
   .menu {
     .whiteBox {
@@ -394,7 +395,12 @@ section {
   }
 
   .header {
-    height: 40px;
+    height: 36px;
+    padding: 12px 24px;
+  }
+
+  .headerPrvChat {
+    height: 54px;
     padding: 12px 24px;
   }
 
@@ -410,6 +416,30 @@ section {
       }
     }
   }
+
+  .headlinePrvChat {
+    .imgBoxPrvChat {
+      margin-right: 16px;
+      .imgUserPrvChat {
+        width: 50px;
+        height: 50px;
+      }
+      .onlineIcon {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        margin-left: -12px;
+      }
+    }
+    p {
+      font-size: 20px;
+    }
+    &:hover {
+      background-color: #edeefe;
+      border-radius: 35px;
+    }
+  }
+
   .menu {
     .whiteBox {
       top: 70px;

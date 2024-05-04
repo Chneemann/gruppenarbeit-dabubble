@@ -48,6 +48,7 @@
       ></app-main-chat>
       <app-secondary-chat
         [currentChannel]="currentChannel"
+        [viewWidth]="viewWidth"
         [ngClass]="{
           slideInRightWindow:
             this.viewWidth >= RESPONSIVE_THRESHOLD && chatService.isSecondaryChatOpen,

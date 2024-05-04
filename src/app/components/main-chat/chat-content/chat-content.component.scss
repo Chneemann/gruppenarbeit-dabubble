@@ -8,6 +8,10 @@ section {
   position: relative;
 }
 
+.privatChatHeight {
+  height: calc(100vh - 230px);
+}
+
 .mirror {
   transform: scaleX(-1);
 }
@@ -42,5 +46,9 @@ section {
 @media screen and (max-width: $RESPONSIVE_THRESHOLD_MOBILE) {
   section {
     height: calc(100vh - 144px);
+  }
+
+  .privatChatHeight {
+    height: calc(100vh - 158px);
   }
 }
