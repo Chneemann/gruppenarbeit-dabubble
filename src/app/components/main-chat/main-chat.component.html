@@ -153,101 +153,14 @@
   </app-chat-content>
   }
   <!-- Channel description dialog -->
-  <div
-    class="menu"
-    [ngClass]="{ dBlock: openMenu, dNone: !openMenu }"
-    (click)="closeMenu()"
-  >
-    <div class="whiteBox" (click)="preventCloseWhiteBox($event)">
-      @for (channel of getChannelName(currentChannel); track channel) {
-      <div class="headerBox">
-        <div class="headline">
-          <img src="assets/img/hashtag.svg" alt="" />
-          <p>{{ channel.name }}</p>
-        </div>
-        <div class="closeBtn" (click)="closeMenu()">
-          <img src="assets/img/closeIcon.svg" alt="" />
-        </div>
-      </div>
-      }
-      <div class="contentChannel">
-        @for (channel of getChannelName(currentChannel); track channel) {
-        <div class="contentHeadline">
-          <p>Channel Name</p>
-          @if (!openEditNameInput) {
-          <!--check if user is creator-->
-          @if(checkCreator(currentChannel)){
-          <span (click)="editChannelName($event)">Edit</span>
-          } @else {
-          <span class="dieableEdit">Edit*</span>
-          } } @else {
-          <span (click)="saveEditChannelName($event)">Save Name</span>
-          }
-        </div>
-        @if (!openEditNameInput) {
-        <div class="channelName">
-          <img src="assets/img/hashtag.svg" alt="" />
-          <p>{{ channel.name }}</p>
-        </div>
-        } @else {
-        <div class="channelName">
-          <img src="assets/img/hashtag.svg" alt="" />
-          <input type="text" [(ngModel)]="nameValue" class="inputName" />
-        </div>
-        } }
-      </div>
-      <div class="contentChannel">
-        @for (channel of getChannelName(currentChannel); track channel) {
-
-        <div class="contentHeadline">
-          <p>Description</p>
-          @if (!openEditNameDescription) {
-          <!--check if user is creator-->
-          @if(checkCreator(currentChannel)){
-          <span (click)="editChannelDescription($event)">Edit</span>
-          } @else {
-          <span class="dieableEdit">Edit*</span>
-          } } @else {
-          <span (click)="saveEditChannelDescription($event)"
-            >Save Description</span
-          >
-          }
-        </div>
-        @if (!openEditNameDescription) {
-        <div class="channelName">
-          @if (channel.description !== "") {
-          <p>{{ channel.description }}</p>
-          } @else {
-          <p>No description.</p>
-          }
-        </div>
-        } @else {
-        <div class="channelName">
-          <textarea
-            cols="30"
-            rows="10"
-            [(ngModel)]="descriptionValue"
-            class="textareaDescription"
-          ></textarea>
-        </div>
-        }
-        <div class="line"></div>
-        <div class="contentHeadline">
-          <p>Created by</p>
-        </div>
-        <div class="channelCreator">
-          @for (user of getChatUsers(channel.creator); track user) {
-          <p class="creatorName">{{ user.firstName }} {{ user.lastName }}</p>
-          } @if(!checkCreator(currentChannel)){
-          <p class="warningPTag">*Ony the creator can edit the channel</p>
-          }
-        </div>
-        }
-      </div>
-      <div class="leaveChannel">
-        <p (click)="leaveChannel(currentChannel, $event)">Leave channel</p>
-      </div>
-    </div>
-  </div>
+  <app-channel-informations
+    [ngClass]="{
+      dBlock: openMenu,
+      dNone: !openMenu
+    }"
+    [viewWidth]="viewWidth"
+    (closeEditEmitter)="closeEditEmitter($event)"
+    [currentChannel]="currentChannel"
+  ></app-channel-informations>
   } }
 </section>

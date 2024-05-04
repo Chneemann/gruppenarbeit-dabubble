@@ -16,6 +16,7 @@ import { FormsModule } from '@angular/forms';
 import { SmallBtnComponent } from '../../shared/components/small-btn/small-btn.component';
 import { ShowChannelMemberComponent } from './show-channel-member/show-channel-member.component';
 import { SharedService } from '../../service/shared.service';
+import { ChannelInformationsComponent } from './channel-informations/channel-informations.component';
 
 @Component({
   selector: 'app-main-chat',
@@ -29,6 +30,7 @@ import { SharedService } from '../../service/shared.service';
     FormsModule,
     SmallBtnComponent,
     ShowChannelMemberComponent,
+    ChannelInformationsComponent,
   ],
   templateUrl: './main-chat.component.html',
   styleUrl: './main-chat.component.scss',
@@ -37,15 +39,11 @@ export class MainChatComponent {
   @Input() currentChannel: string = '';
   @Input() viewWidth: number = 0;
 
-  openMenu: boolean = false;
-  openEditNameInput: boolean = false;
-  openEditNameDescription: boolean = false;
-  nameValue: string = '';
-  descriptionValue: string = '';
   firstLetter: string = '';
   openSearchWindow: boolean = false;
-  getCurrentChannel: Channel[] = [];
   channelCreator: boolean = false;
+  openMenu: boolean = false;
+
   constructor(
     private route: Router,
     public userService: UserService,
@@ -61,66 +59,13 @@ export class MainChatComponent {
 
   RESPONSIVE_THRESHOLD_MOBILE = this.sharedService.RESPONSIVE_THRESHOLD_MOBILE;
 
+  closeEditEmitter(variable: boolean) {
+    this.openMenu = variable;
+    console.log(this.openMenu);
+  }
+
   showMenu() {
     this.openMenu = true;
-  }
-
-  closeMenu() {
-    this.openMenu = false;
-    this.openEditNameDescription = false;
-    this.openEditNameInput = false;
-    this.descriptionValue = '';
-    this.nameValue = '';
-    this.getCurrentChannel = [];
-  }
-
-  preventCloseWhiteBox(event: Event) {
-    event.stopPropagation();
-  }
-
-  editChannelName(event: Event) {
-    event.stopPropagation();
-    this.openEditNameInput = true;
-    this.nameValue = this.getCurrentChannel[0].name;
-  }
-
-  saveEditChannelName(event: Event) {
-    event.stopPropagation();
-    this.openEditNameInput = false;
-    this.channelService.saveAddedNameOrDescription(
-      'channels',
-      this.currentChannel!,
-      'name',
-      this.nameValue
-    );
-  }
-
-  editChannelDescription(event: Event) {
-    event.stopPropagation();
-    this.openEditNameDescription = true;
-    this.descriptionValue = this.getCurrentChannel[0].description || '';
-  }
-
-  saveEditChannelDescription(event: Event) {
-    event.stopPropagation();
-    this.openEditNameDescription = false;
-    this.channelService.saveAddedNameOrDescription(
-      'channels',
-      this.currentChannel!,
-      'description',
-      this.descriptionValue
-    );
-  }
-
-  checkCreator(currentChannel: string) {
-    const getChannel = this.channelService.allChannels.filter(
-      (channel) => channel.id == currentChannel
-    );
-    if (getChannel[0].creator === this.userService.userId) {
-      return true;
-    } else {
-      return false;
-    }
   }
 
   getUsers(): User[] {
@@ -155,7 +100,6 @@ export class MainChatComponent {
     const filteredTasks = this.getChannels().filter(
       (channel) => channel.id == chatId
     );
-    this.getCurrentChannel = filteredTasks;
     return filteredTasks;
   }
 
@@ -247,31 +191,5 @@ export class MainChatComponent {
   openMemberWindow(boolean: boolean) {
     this.toggleBoolean.openChannelMemberWindow = true;
     this.toggleBoolean.openAddMemberWindow(boolean);
-  }
-
-  leaveChannel(currentChannel: string, event: Event) {
-    event.stopPropagation();
-    const getLogedInUser: string = this.userService.userId;
-    const getChannel = this.channelService.allChannels.filter(
-      (channel) => channel.id == currentChannel
-    );
-    if (getChannel) {
-      const userIndex = getChannel[0].addedUser.indexOf(getLogedInUser);
-
-      if (userIndex) {
-        getChannel[0].addedUser.splice(userIndex, 1);
-        const userArray = getChannel[0].addedUser;
-        this.channelService.addNewMemberToChannel(
-          'channels',
-          currentChannel,
-          userArray,
-          'leaveChannel'
-        );
-        this.openMenu = false;
-        this.route.navigateByUrl(`main/XiqUAXRY1W7PixC9kVTa`);
-      } else {
-        console.warn('User not found in the channel');
-      }
-    }
   }
 }
