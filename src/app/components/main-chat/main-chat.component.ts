@@ -10,7 +10,7 @@ import {
   publicChannels,
 } from '../../interface/channel.interface';
 import { Chat } from '../../interface/chat.interface';
-import { Router } from '@angular/router';
+import { NavigationStart, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ChatContentComponent } from './chat-content/chat-content.component';
 import { SingleChatComponent } from './single-chat/single-chat.component';
@@ -21,6 +21,7 @@ import { SmallBtnComponent } from '../../shared/components/small-btn/small-btn.c
 import { ShowChannelMemberComponent } from './show-channel-member/show-channel-member.component';
 import { SharedService } from '../../service/shared.service';
 import { ChannelInformationsComponent } from './channel-informations/channel-informations.component';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-main-chat',
@@ -56,15 +57,54 @@ export class MainChatComponent {
     public toggleBoolean: ToggleBooleanService,
     private sharedService: SharedService
   ) {
-    if (this.currentChannel == '' && this.userService.userId !== '') {
-      this.route.navigateByUrl(`/main/${publicChannels[0]}`);
-    }
+    this.checkPrivatChatRouteEvent();
+    this.routeToStartChannel();
   }
 
   RESPONSIVE_THRESHOLD_MOBILE = this.sharedService.RESPONSIVE_THRESHOLD_MOBILE;
 
   closeEditEmitter(variable: boolean) {
     this.openMenu = variable;
+  }
+
+  checkPrivatChatRouteEvent() {
+    this.route.events
+      .pipe(
+        filter(
+          (event): event is NavigationStart => event instanceof NavigationStart
+        )
+      )
+      .subscribe((event: NavigationStart) => {
+        const urlParts = this.route.url.split('/');
+        const id = urlParts[urlParts.length - 1];
+        this.hasPrivatChatMessages(id);
+      });
+  }
+
+  hasPrivatChatMessages(chatId: string) {
+    const isPrivatChannel = this.channelService.allPrvChannels.filter(
+      (user) => user.id === chatId
+    );
+    if (isPrivatChannel.length > 0) {
+      const countMessages = this.chatService.allChats.filter(
+        (user) => user.channelId === chatId
+      );
+      const userChannel = this.channelService.allPrvChannels.filter(
+        (user) =>
+          user.creatorId === this.userService.userId &&
+          user.talkToUserId === this.userService.userId &&
+          user.id === chatId
+      );
+      if (countMessages.length === 0 && userChannel.length === 0) {
+        this.chatService.deleteData(chatId, 'prv-channels');
+      }
+    }
+  }
+
+  routeToStartChannel() {
+    if (this.currentChannel == '' && this.userService.userId !== '') {
+      this.route.navigateByUrl(`/main/${publicChannels[0]}`);
+    }
   }
 
   showMenu() {

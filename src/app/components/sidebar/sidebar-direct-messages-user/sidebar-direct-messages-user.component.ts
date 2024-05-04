@@ -6,6 +6,7 @@ import { User } from '../../../interface/user.interface';
 import { RouterLink } from '@angular/router';
 import { ChatService } from '../../../service/chat.service';
 import { ToggleBooleanService } from '../../../service/toggle-boolean.service';
+import { SharedService } from '../../../service/shared.service';
 
 @Component({
   selector: 'app-sidebar-direct-messages-user',
@@ -22,8 +23,11 @@ export class SidebarDirectMessagesUserComponent {
     public userService: UserService,
     private channelService: ChannleService,
     public chatService: ChatService,
-    public toggleBoolean: ToggleBooleanService
+    public toggleBoolean: ToggleBooleanService,
+    private sharedService: SharedService
   ) {}
+
+  RESPONSIVE_THRESHOLD = this.sharedService.RESPONSIVE_THRESHOLD;
 
   /**
    * Get users for private chat.
@@ -42,7 +46,7 @@ export class SidebarDirectMessagesUserComponent {
    */
   closeSecondaryChatAndSidebar() {
     this.chatService.toggleSecondaryChat('none');
-    if (this.viewWidth <= 1300) {
+    if (this.viewWidth <= this.RESPONSIVE_THRESHOLD) {
       this.toggleBoolean.isSidebarOpen = false;
     }
   }
@@ -60,6 +64,6 @@ export class SidebarDirectMessagesUserComponent {
       (user) => user.talkToUserId === userId
     );
 
-    return creatorChannels.concat(talkToUserChannels);
+    return Array.from(new Set(creatorChannels.concat(talkToUserChannels)));
   }
 }

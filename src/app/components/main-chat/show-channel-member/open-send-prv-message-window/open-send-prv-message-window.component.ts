@@ -38,7 +38,7 @@ export class OpenSendPrvMessageWindowComponent {
     this.toggleBoolean.closeChannelMemberWindow = false;
   }
 
-  routToUser(user: User[]) {
+  routeToUser(user: User[]) {
     const userId = user[0].id!;
     const channelExistsBoolean = this.channelService.allPrvChannels.some(
       (channel) =>
