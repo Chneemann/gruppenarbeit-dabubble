@@ -7,7 +7,11 @@ import {
   onSnapshot,
   updateDoc,
 } from '@angular/fire/firestore';
-import { Channel, PrvChannel } from '../interface/channel.interface';
+import {
+  publicChannels,
+  Channel,
+  PrvChannel,
+} from '../interface/channel.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +20,7 @@ export class ChannleService implements OnDestroy {
   firestore: Firestore = inject(Firestore);
 
   allChannels: Channel[] = [];
+  publicChannels: string[] = publicChannels;
   showAddChannelBox: boolean = false;
   btnIsValid: boolean = false;
   saveEditBtnIsValid: boolean = false;

@@ -61,11 +61,27 @@
         @if (!openEditNameDescription) {
         <!--check if user is creator-->
         @if(checkCreator(currentChannel)){
-        <span (click)="editChannelDescription($event)">Edit</span>
+        <app-small-btn
+          [imgSrc]="'pencil.svg'"
+          [imgSize]="'18px'"
+          [btnSize]="'32px'"
+          [btnBgHoverColor]="'#edeefe'"
+          (click)="editChannelDescription($event)"
+        ></app-small-btn>
         } @else {
-        <span class="dieableEdit">Edit*</span>
+        <img
+          class="disableEdit"
+          src="./../../../../assets/img/pencil.svg"
+          alt=""
+        />
         } } @else {
-        <span (click)="saveEditChannelDescription($event)">Save</span>
+        <app-small-btn
+          [imgSrc]="'save.svg'"
+          [imgSize]="'18px'"
+          [btnSize]="'32px'"
+          [btnBgHoverColor]="'#edeefe'"
+          (click)="saveEditChannelDescription($event)"
+        ></app-small-btn>
         }
       </div>
       @if (!openEditNameDescription) {

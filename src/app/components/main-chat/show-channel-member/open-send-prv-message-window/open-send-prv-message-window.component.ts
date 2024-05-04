@@ -26,20 +26,17 @@ export class OpenSendPrvMessageWindowComponent {
     private route: Router
   ) {}
 
-
   closeWindow() {
     this.openUserWindowBoolean = false;
     this.closeUserWondow.emit(this.openUserWindowBoolean);
   }
-  
 
-  closeEverything(){
+  closeEverything() {
     this.openUserWindowBoolean = false;
     this.closeUserWondow.emit(this.openUserWindowBoolean);
     this.toggleBoolean.openChannelMemberWindow = false;
     this.toggleBoolean.closeChannelMemberWindow = false;
   }
-
 
   routToUser(user: User[]) {
     const userId = user[0].id!;
@@ -50,14 +47,19 @@ export class OpenSendPrvMessageWindowComponent {
         (channel.creatorId === this.userService.userId &&
           channel.talkToUserId === userId)
     );
+
     if (!channelExistsBoolean) {
-      this.userService.createPrvChannel(userId);
-      console.log('New private channel created');
+      const createChannelPromise = this.userService.createPrvChannel(userId);
+      if (createChannelPromise instanceof Promise) {
+        createChannelPromise.then((docId) => {
+          this.route.navigateByUrl(`main/${docId}`);
+        });
+      }
+    } else {
+      this.getRouteToPrvChat(userId, channelExistsBoolean);
     }
-    this.getRouteToPrvChat(userId, channelExistsBoolean);
     this.closeEverything();
   }
-  
 
   getRouteToPrvChat(userId: string, channelExistsBoolean: boolean) {
     if (channelExistsBoolean) {
@@ -68,8 +70,6 @@ export class OpenSendPrvMessageWindowComponent {
           (channel.creatorId === this.userService.userId &&
             channel.talkToUserId === userId)
       );
-      console.log(`/main/${existingChannel!.id}`);
-
       this.route.navigateByUrl(`main/${existingChannel!.id}`);
     }
   }

@@ -22,6 +22,7 @@ import {
 import { Router } from '@angular/router';
 import { User } from '../interface/user.interface';
 import { UserService } from './user.service';
+import { publicChannels } from '../interface/channel.interface';
 // import { User } from 'firebase/auth';
 
 @Injectable({
@@ -43,10 +44,10 @@ export class loginService {
   constructor(private router: Router, private userService: UserService) {}
 
   // -------------------- login start seite ------------------------------->
-  
+
   /**
- * Authenticates a user using their email and password, fetches the user document, and handles errors.
- */
+   * Authenticates a user using their email and password, fetches the user document, and handles errors.
+   */
   login() {
     const auth = getAuth();
     signInWithEmailAndPassword(auth, this.email, this.password)
@@ -69,30 +70,28 @@ export class loginService {
       });
   }
 
-
   /**
- * Processes the query snapshot to fetch user document data and updates local and session state.
- * @param snapshot QuerySnapshot object containing user documents.
- */
+   * Processes the query snapshot to fetch user document data and updates local and session state.
+   * @param snapshot QuerySnapshot object containing user documents.
+   */
   userDocument(snapshot: QuerySnapshot) {
-      if (snapshot.docs.length > 0) {
-        const userDoc = snapshot.docs[0];
-        this.currentUser = userDoc.id;
-        this.userService.userId = this.currentUser;
-        this.updateUserOnlineStatus(this.currentUser);
-        this.router.navigate([`/main`]);
-        this.email = '';
-        this.password= '';
-      } else {
-        console.error('Kein zugehöriges Benutzerdokument gefunden.');
-      }
+    if (snapshot.docs.length > 0) {
+      const userDoc = snapshot.docs[0];
+      this.currentUser = userDoc.id;
+      this.userService.userId = this.currentUser;
+      this.updateUserOnlineStatus(this.currentUser);
+      this.router.navigate([`/main`]);
+      this.email = '';
+      this.password = '';
+    } else {
+      console.error('Kein zugehöriges Benutzerdokument gefunden.');
+    }
   }
 
-
   /**
- * Handles error codes returned from login attempts and sets appropriate error messages.
- * @param errorCode String representing the error code returned from Firebase authentication.
- */
+   * Handles error codes returned from login attempts and sets appropriate error messages.
+   * @param errorCode String representing the error code returned from Firebase authentication.
+   */
   switchCase(errorCode: string) {
     switch (errorCode) {
       case 'auth/invalid-credential':
@@ -109,11 +108,10 @@ export class loginService {
     }
   }
 
-
   /**
- * Updates the online status of the user in Firestore.
- * @param userId The user's document ID in Firestore.
- */
+   * Updates the online status of the user in Firestore.
+   * @param userId The user's document ID in Firestore.
+   */
   updateUserOnlineStatus(userId: string) {
     const userDocRef = doc(this.firestore, 'users', userId);
     const updates = {
@@ -128,10 +126,9 @@ export class loginService {
       });
   }
 
-
   /**
- * Performs a guest login using predetermined credentials and updates the user's online status.
- */
+   * Performs a guest login using predetermined credentials and updates the user's online status.
+   */
   guestLogin() {
     const auth = getAuth();
     const email = 'guest@guestaccount.com';
@@ -150,12 +147,12 @@ export class loginService {
           'Fehler bei der Gastanmeldung. Bitte versuchen Sie es später erneut.';
       });
   }
-  
+
   // -------------------- register ------------------------------->
 
   /**
- * Registers a new user with Firebase authentication and stores user data in Firestore.
- */
+   * Registers a new user with Firebase authentication and stores user data in Firestore.
+   */
   register() {
     const auth = getAuth();
     createUserWithEmailAndPassword(auth, this.email, this.password)
@@ -178,11 +175,10 @@ export class loginService {
       });
   }
 
-
   /**
- * Saves user data to Firestore and updates the application state.
- * @param user The user object containing information to be saved.
- */
+   * Saves user data to Firestore and updates the application state.
+   * @param user The user object containing information to be saved.
+   */
   async createUserInFirestore(user: User) {
     const userDataToSave: User = {
       uid: user.uid,
@@ -197,7 +193,7 @@ export class loginService {
       const docRef = await addDoc(usersCollection, userDataToSave);
       this.currentUser = docRef.id;
       this.userService.userId = this.currentUser;
-      await this.addUserToChannels(this.currentUser, ['XiqUAXRY1W7PixC9kVTa', 'eV0AcEEMgVEFA9R2X4qQ']);
+      await this.addUserToChannels(this.currentUser, publicChannels);
       this.email = '';
       this.password = '';
       this.router.navigate([`/main`]);
@@ -209,10 +205,10 @@ export class loginService {
   // -------------------- choose avatar ------------------------------->
 
   /**
- * Gets the URL of the avatar and updates the avatar source.
- * @param url String URL of the avatar.
- * @return Updated avatar URL.
- */
+   * Gets the URL of the avatar and updates the avatar source.
+   * @param url String URL of the avatar.
+   * @return Updated avatar URL.
+   */
   getAvatarUrl(url: string) {
     return (this.avatar = url);
   }
@@ -220,36 +216,33 @@ export class loginService {
   // -------------------- animation login ------------------------------->
 
   /**
- * Retrieves the animation state indicating whether it has played.
- * @returns {boolean} True if the animation has already played, false otherwise.
- */
+   * Retrieves the animation state indicating whether it has played.
+   * @returns {boolean} True if the animation has already played, false otherwise.
+   */
   getAnimationState(): boolean {
     return this.hasAnimationPlayed;
   }
 
-
   /**
- * Retrieves the completion status of the introduction class.
- * @returns {boolean} True if the introduction is complete, false otherwise.
- */
+   * Retrieves the completion status of the introduction class.
+   * @returns {boolean} True if the introduction is complete, false otherwise.
+   */
   getFinalclass(): boolean {
     return this.introCompleteStatus;
   }
 
-
   /**
- * Sets the animation state.
- * @param {boolean} state - The new state of the animation.
- */
+   * Sets the animation state.
+   * @param {boolean} state - The new state of the animation.
+   */
   setAnimationState(state: boolean): void {
     this.hasAnimationPlayed = state;
   }
 
-
   /**
- * Sets the final class completion status.
- * @param {boolean} state - The new completion status of the introduction.
- */
+   * Sets the final class completion status.
+   * @param {boolean} state - The new completion status of the introduction.
+   */
   setFinalClass(state: boolean): void {
     this.introCompleteStatus = state;
   }
@@ -257,9 +250,9 @@ export class loginService {
   // -------------------- GoogleLogin ------------------------------->
 
   /**
- * Handles the user's sign-in process via Google authentication.
- * Invokes Firebase's signInWithPopup to authenticate and potentially creates or updates the user's data in Firestore.
- */
+   * Handles the user's sign-in process via Google authentication.
+   * Invokes Firebase's signInWithPopup to authenticate and potentially creates or updates the user's data in Firestore.
+   */
   googleLogin() {
     const auth = getAuth();
     const provider = new GoogleAuthProvider();
@@ -287,7 +280,7 @@ export class loginService {
               status: true,
             });
           } else {
-            this.ifExistUser(snapshot)
+            this.ifExistUser(snapshot);
           }
         });
       })
@@ -296,35 +289,33 @@ export class loginService {
       });
   }
 
-
   /**
- * Processes existing user data after successful Google login.
- * @param {QuerySnapshot} snapshot - Firestore snapshot containing the user's data.
- */
-  ifExistUser(snapshot:QuerySnapshot){
+   * Processes existing user data after successful Google login.
+   * @param {QuerySnapshot} snapshot - Firestore snapshot containing the user's data.
+   */
+  ifExistUser(snapshot: QuerySnapshot) {
     this.currentUser = snapshot.docs[0].id;
     this.userService.userId = this.currentUser;
     this.router.navigate([`/main`]);
   }
 
-  
-/**
- * Adds the current user to specified channels in Firestore. It updates each channel document
- * to include the user's ID in an array of added users, ensuring that the user is part of the channel.
- * Each operation is performed independently, and errors are handled individually.
- * 
- * @param {string} currentUser - The ID of the user to be added to the channels.
- * @param {string[]} channelIds - An array of channel IDs to which the user will be added.
- */
+  /**
+   * Adds the current user to specified channels in Firestore. It updates each channel document
+   * to include the user's ID in an array of added users, ensuring that the user is part of the channel.
+   * Each operation is performed independently, and errors are handled individually.
+   *
+   * @param {string} currentUser - The ID of the user to be added to the channels.
+   * @param {string[]} channelIds - An array of channel IDs to which the user will be added.
+   */
   addUserToChannels(currentUser: string, channelIds: string[]) {
-    channelIds.forEach(channelId => {
+    channelIds.forEach((channelId) => {
       const channelDocRef = doc(this.firestore, 'channels', channelId);
-    
+
       updateDoc(channelDocRef, {
-        addedUser: arrayUnion(currentUser)
-      })
-      .catch(error => {
+        addedUser: arrayUnion(currentUser),
+      }).catch((error) => {
         console.error(error);
       });
     });
-  }}
+  }
+}

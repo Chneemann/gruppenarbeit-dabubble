@@ -83,20 +83,13 @@ export class UserService implements OnDestroy {
         (channel.creatorId === newPrvChannel.talkToUserId &&
           channel.talkToUserId === newPrvChannel.creatorId)
     );
-    const channelExists = this.channelService.allPrvChannels.filter(
-      (channel) =>
-        (channel.creatorId === newPrvChannel.creatorId &&
-          channel.talkToUserId === newPrvChannel.talkToUserId) ||
-        (channel.creatorId === newPrvChannel.talkToUserId &&
-          channel.talkToUserId === newPrvChannel.creatorId)
-    );
 
     if (!channelExistsBoolean) {
-      this.channelService.createNewChannel(newPrvChannel, 'prv-channels');
-      console.log('prv channel angelegt');
-    } else {
-      console.log('Private channel already exists!', channelExists);
-      return channelExists;
+      const docId = this.channelService.createNewChannel(
+        newPrvChannel,
+        'prv-channels'
+      );
+      return docId;
     }
     return '';
   }

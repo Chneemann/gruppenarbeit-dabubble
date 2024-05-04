@@ -4,7 +4,11 @@ import { MainComponent } from '../main/main.component';
 import { ChatService } from '../../service/chat.service';
 import { UserService } from '../../service/user.service';
 import { User } from '../../interface/user.interface';
-import { Channel, PrvChannel } from '../../interface/channel.interface';
+import {
+  Channel,
+  PrvChannel,
+  publicChannels,
+} from '../../interface/channel.interface';
 import { Chat } from '../../interface/chat.interface';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -53,7 +57,7 @@ export class MainChatComponent {
     private sharedService: SharedService
   ) {
     if (this.currentChannel == '' && this.userService.userId !== '') {
-      this.route.navigateByUrl('/main/XiqUAXRY1W7PixC9kVTa');
+      this.route.navigateByUrl(`/main/${publicChannels[0]}`);
     }
   }
 

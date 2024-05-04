@@ -11,14 +11,13 @@
   .whiteBox {
     background-color: #fff;
     padding: 24px;
-    max-width: 460px;
+    width: 460px;
     border-top-right-radius: 40px;
     border-bottom-left-radius: 40px;
     border-bottom-right-radius: 40px;
     position: absolute;
     top: 200px;
     left: 460px;
-    width: fit-content;
     height: fit-content;
     overflow: none;
   }
