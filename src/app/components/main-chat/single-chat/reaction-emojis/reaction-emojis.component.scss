@@ -94,6 +94,9 @@ ngx-emoji {
 }
 
 app-small-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin: 6px;
 }
 
@@ -112,5 +115,12 @@ app-small-btn {
     span {
       font-size: 14px;
     }
+  }
+
+  ngx-emoji {
+    display: flex;
+    align-items: center;
+    height: 20px !important;
+    width: auto !important;
   }
 }

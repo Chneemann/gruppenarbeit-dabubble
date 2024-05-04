@@ -38,8 +38,7 @@ export class OptionsMenuComponent {
     private sharedService: SharedService
   ) {}
 
-  RESPONSIVE_THRESHOLD_RESPONSIVE =
-    this.sharedService.RESPONSIVE_THRESHOLD_MOBILE;
+  RESPONSIVE_THRESHOLD_MOBILE = this.sharedService.RESPONSIVE_THRESHOLD_MOBILE;
 
   editMsg() {
     this.editMsgEmitter.emit(true);

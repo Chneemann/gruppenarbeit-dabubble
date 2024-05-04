@@ -71,6 +71,8 @@ section {
   padding: 0 48px;
   margin-bottom: 12px;
   p {
+    display: flex;
+    justify-content: center;
     width: 30%;
     font-size: 18px;
     font-weight: 400;
@@ -99,5 +101,16 @@ section {
   .header {
     height: 36px;
     padding: 12px;
+  }
+
+  .spacer {
+    padding: 0 12px;
+    p {
+      font-size: 16px;
+    }
+    .line {
+      width: 70%;
+      margin: 24px 0px 24px 12px;
+    }
   }
 }

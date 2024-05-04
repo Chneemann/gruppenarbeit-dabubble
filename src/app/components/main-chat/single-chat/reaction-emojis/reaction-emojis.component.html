@@ -7,8 +7,8 @@
   @if (!openOnSecondaryChat) {
   <app-small-btn
     [imgSrc]="'add-reaction.svg'"
-    [imgSize]="'24px'"
-    [btnSize]="'40px'"
+    [imgSize]="viewWidth >= RESPONSIVE_THRESHOLD_MOBILE ? '24px' : '21px'"
+    [btnSize]="viewWidth >= RESPONSIVE_THRESHOLD_MOBILE ? '40px' : '34px'"
     [btnBgColor]="'#fff'"
     [btnBgHoverColor]="'#edeefe'"
     (click)="toggleEmojiPicker()"
@@ -33,7 +33,11 @@
       @if (reaction.icon === "okay" || reaction.icon === "clap-hands") {
       <img src="./../../../../../assets/img/{{ reaction.icon }}.svg" />
       } @else {
-      <ngx-emoji emoji="{{ reaction.icon }}"></ngx-emoji>
+      <ngx-emoji
+        emoji="{{ reaction.icon }}"
+        [size]="viewWidth <= RESPONSIVE_THRESHOLD_MOBILE ? 20 : 24"
+      ></ngx-emoji>
+
       }
       <span>{{ reaction.userId.length }}</span>
     </div>

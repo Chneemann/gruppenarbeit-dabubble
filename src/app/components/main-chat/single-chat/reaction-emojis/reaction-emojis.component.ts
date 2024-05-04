@@ -20,6 +20,7 @@ import { EmojiPickerComponent } from '../../../../shared/components/emoji-picker
 import { EmojiComponent } from '@ctrl/ngx-emoji-mart/ngx-emoji';
 import { timeInterval } from 'rxjs';
 import { User } from '../../../../interface/user.interface';
+import { SharedService } from '../../../../service/shared.service';
 @Component({
   selector: 'app-reaction-emojis',
   standalone: true,
@@ -36,6 +37,7 @@ export class ReactionEmojisComponent {
   @Input() user: User = {} as User;
   @Input() chat: Chat | ChatAnswers = {} as Chat | ChatAnswers;
   @Input() openOnSecondaryChat: boolean = false;
+  @Input() viewWidth: number = 0;
 
   reactionDialogId: string = '';
   reactionDialogLeft = 0;
@@ -47,8 +49,11 @@ export class ReactionEmojisComponent {
   constructor(
     private elementRef: ElementRef,
     public userService: UserService,
-    private chatService: ChatService
+    private chatService: ChatService,
+    private sharedService: SharedService
   ) {}
+
+  RESPONSIVE_THRESHOLD_MOBILE = this.sharedService.RESPONSIVE_THRESHOLD_MOBILE;
 
   openDialog(reactionId: any, event: MouseEvent) {
     this.reactionDialogId = reactionId;
