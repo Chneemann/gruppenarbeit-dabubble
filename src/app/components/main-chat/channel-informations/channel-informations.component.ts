@@ -53,6 +53,50 @@ export class ChannelInformationsComponent {
     event.stopPropagation();
   }
 
+  getChannelName(chatId: string) {
+    const filteredTasks = this.channelService.allChannels.filter(
+      (channel) => channel.id == chatId
+    );
+    this.getCurrentChannel = filteredTasks;
+    return filteredTasks;
+  }
+
+  getAllChatUsers(channelId: string) {
+    const getChannel = this.channelService.allChannels.filter(
+      (channel) => channel.id === channelId
+    );
+
+    for (const user of getChannel) {
+      return user.addedUser;
+    }
+    return;
+  }
+
+  getChatUsers(chatId: string) {
+    const filteredTasks = this.userService.allUsers.filter(
+      (user) => user.id == chatId
+    );
+    return filteredTasks;
+  }
+
+  getChannelMembers(chatId: string) {
+    const filteredTasks = this.userService.allUsers.filter(
+      (user) => user.id == chatId
+    );
+    return filteredTasks;
+  }
+
+  checkCreator(currentChannel: string) {
+    const getChannel = this.channelService.allChannels.filter(
+      (channel) => channel.id == currentChannel
+    );
+    if (getChannel[0].creator === this.userService.userId) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   editChannelName(event: Event) {
     event.stopPropagation();
     this.openEditNameInput = true;
@@ -68,38 +112,6 @@ export class ChannelInformationsComponent {
       'name',
       this.nameValue
     );
-  }
-
-  getChannels(): Channel[] {
-    return this.channelService.allChannels;
-  }
-
-  getChannelName(chatId: string) {
-    const filteredTasks = this.getChannels().filter(
-      (channel) => channel.id == chatId
-    );
-    this.getCurrentChannel = filteredTasks;
-    return filteredTasks;
-  }
-
-  getUsers(): User[] {
-    return this.userService.allUsers;
-  }
-
-  getChatUsers(chatId: string) {
-    const filteredTasks = this.getUsers().filter((user) => user.id == chatId);
-    return filteredTasks;
-  }
-
-  checkCreator(currentChannel: string) {
-    const getChannel = this.channelService.allChannels.filter(
-      (channel) => channel.id == currentChannel
-    );
-    if (getChannel[0].creator === this.userService.userId) {
-      return true;
-    } else {
-      return false;
-    }
   }
 
   editChannelDescription(event: Event) {

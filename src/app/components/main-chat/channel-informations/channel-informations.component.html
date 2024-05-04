@@ -53,7 +53,7 @@
         }
       </div>
       @if (!openEditNameDescription) {
-      <div class="channelName">
+      <div class="channelDescription">
         @if (channel.description !== "") {
         <p>{{ channel.description }}</p>
         } @else {
@@ -86,11 +86,31 @@
     <div
       class="contentChannelMembers"
       [ngStyle]="{
-        display: viewWidth <= RESPONSIVE_THRESHOLD_MOBILE ? 'block' : 'none'
+        display: viewWidth >= RESPONSIVE_THRESHOLD_MOBILE ? 'none' : ''
       }"
     >
       <div class="contentHeadline">
         <p>Members</p>
+      </div>
+      <div class="allUsers">
+        @for (users of getAllChatUsers(currentChannel); track users) { @for
+        (user of getChatUsers(users); track user) {
+        <div class="user">
+          <div class="imgBox">
+            <img src="{{ user.avatar }}" class="userImg" />
+            <img
+              src="assets/img/{{
+                user.status ? 'onlineRing.svg' : 'offlineRing.svg'
+              }}"
+              class="onlineIcon"
+            />
+          </div>
+          <p>
+            {{ user.firstName }} {{ user.lastName }} @if (user.id ==
+            userService.userId) { (Du) }
+          </p>
+        </div>
+        }}
       </div>
     </div>
     <div class="leaveChannel">
