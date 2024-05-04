@@ -61,7 +61,6 @@ export class MainChatComponent {
 
   closeEditEmitter(variable: boolean) {
     this.openMenu = variable;
-    console.log(this.openMenu);
   }
 
   showMenu() {

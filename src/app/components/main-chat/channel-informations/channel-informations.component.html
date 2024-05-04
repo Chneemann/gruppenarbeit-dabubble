@@ -18,11 +18,27 @@
         @if (!openEditNameInput) {
         <!--check if user is creator-->
         @if(checkCreator(currentChannel)){
-        <span (click)="editChannelName($event)">Edit</span>
+        <app-small-btn
+          [imgSrc]="'pencil.svg'"
+          [imgSize]="'18px'"
+          [btnSize]="'32px'"
+          [btnBgHoverColor]="'#edeefe'"
+          (click)="editChannelName($event)"
+        ></app-small-btn>
         } @else {
-        <span class="dieableEdit">Edit*</span>
+        <img
+          class="disableEdit"
+          src="./../../../../assets/img/pencil.svg"
+          alt=""
+        />
         } } @else {
-        <span (click)="saveEditChannelName($event)">Save</span>
+        <app-small-btn
+          [imgSrc]="'save.svg'"
+          [imgSize]="'18px'"
+          [btnSize]="'32px'"
+          [btnBgHoverColor]="'#edeefe'"
+          (click)="saveEditChannelName($event)"
+        ></app-small-btn>
         }
       </div>
       @if (!openEditNameInput) {
@@ -93,9 +109,10 @@
         <p>Members</p>
       </div>
       <div class="allUsers">
-        @for (users of getAllChatUsers(currentChannel); track users) { @for
-        (user of getChatUsers(users); track user) {
-        <div class="user">
+        @for(allMembers of getAllChannelMembers(currentChannel)[0].addedUser;
+        track allMembers) { @for (user of getChatUsers(allMembers); track user)
+        {
+        <div class="user" (click)="openUserWindow(user)">
           <div class="imgBox">
             <img src="{{ user.avatar }}" class="userImg" />
             <img
@@ -113,6 +130,15 @@
         }}
       </div>
     </div>
+    <app-open-send-prv-message-window
+      [ngClass]="{
+        dBlock: openUserWindowBoolean,
+        dNone: !openUserWindowBoolean
+      }"
+      [user]="user"
+      [openUserWindowBoolean]="openUserWindowBoolean"
+      (closeUserWondow)="changeOpenUserWindowBoolean($event)"
+    ></app-open-send-prv-message-window>
     <div class="leaveChannel">
       <p (click)="leaveChannel(currentChannel, $event)">Leave channel</p>
     </div>

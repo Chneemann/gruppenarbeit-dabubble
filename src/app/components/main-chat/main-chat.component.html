@@ -153,14 +153,11 @@
   </app-chat-content>
   }
   <!-- Channel informations dialog -->
+  @if (openMenu) {
   <app-channel-informations
-    [ngClass]="{
-      dBlock: openMenu,
-      dNone: !openMenu
-    }"
     [viewWidth]="viewWidth"
     (closeEditEmitter)="closeEditEmitter($event)"
     [currentChannel]="currentChannel"
   ></app-channel-informations>
-  } }
+  } } }
 </section>

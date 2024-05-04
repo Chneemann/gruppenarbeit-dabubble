@@ -7,11 +7,18 @@ import { UserService } from '../../../service/user.service';
 import { Router } from '@angular/router';
 import { User } from '../../../interface/user.interface';
 import { SharedService } from '../../../service/shared.service';
+import { SmallBtnComponent } from '../../../shared/components/small-btn/small-btn.component';
+import { OpenSendPrvMessageWindowComponent } from '../show-channel-member/open-send-prv-message-window/open-send-prv-message-window.component';
 
 @Component({
   selector: 'app-channel-informations',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    SmallBtnComponent,
+    OpenSendPrvMessageWindowComponent,
+  ],
   templateUrl: './channel-informations.component.html',
   styleUrl: './channel-informations.component.scss',
 })
@@ -26,6 +33,8 @@ export class ChannelInformationsComponent {
   nameValue: string = '';
   descriptionValue: string = '';
   getCurrentChannel: Channel[] = [];
+  openUserWindowBoolean: boolean = false;
+  user: User[] = [];
 
   constructor(
     private route: Router,
@@ -61,22 +70,14 @@ export class ChannelInformationsComponent {
     return filteredTasks;
   }
 
-  getAllChatUsers(channelId: string) {
-    const getChannel = this.channelService.allChannels.filter(
+  getAllChannelMembers(channelId: string) {
+    return this.channelService.allChannels.filter(
       (channel) => channel.id === channelId
     );
-
-    for (const user of getChannel) {
-      return user.addedUser;
-    }
-    return;
   }
 
-  getChatUsers(chatId: string) {
-    const filteredTasks = this.userService.allUsers.filter(
-      (user) => user.id == chatId
-    );
-    return filteredTasks;
+  getChatUsers(userId: string) {
+    return this.userService.allUsers.filter((user) => user.id === userId);
   }
 
   getChannelMembers(chatId: string) {
@@ -95,6 +96,15 @@ export class ChannelInformationsComponent {
     } else {
       return false;
     }
+  }
+
+  openUserWindow(user: User) {
+    this.user = [user];
+    this.openUserWindowBoolean = !this.openUserWindowBoolean;
+  }
+
+  changeOpenUserWindowBoolean(value: boolean) {
+    this.openUserWindowBoolean = value;
   }
 
   editChannelName(event: Event) {
