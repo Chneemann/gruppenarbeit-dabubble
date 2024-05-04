@@ -1,5 +1,12 @@
 <ng-container *ngIf="downloadFilesService.downloadedFiles | async as files">
-  <div class="attachments" *ngFor="let folder of files">
+  <div
+    class="attachments"
+    *ngFor="let folder of files"
+    [ngStyle]="{
+      width:
+        openOnSecondaryChat && viewWidth >= RESPONSIVE_THRESHOLD ? '270px' : ''
+    }"
+  >
     <div *ngIf="chatId == folder.id">
       <br />
       <div class="files">

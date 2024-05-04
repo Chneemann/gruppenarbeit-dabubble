@@ -3,7 +3,7 @@
   @if (!toggleBoolean.closeChannelMemberWindow) {
   <div class="whiteBox">
     <div class="posiotionHeader">
-      <h2>Channel member</h2>
+      <p>Channel members</p>
       <app-small-btn
         [imgSrc]="'closeIcon.svg'"
         [imgSize]="'16px'"
@@ -31,16 +31,16 @@
     </div>
     <div class="addMemberBox" (click)="toggleBoolean.openAddMemberWindow(true)">
       <img src="assets/img/addPerson.svg" />
-      <h3>Add member</h3>
+      <p>Add member</p>
     </div>
   </div>
   } @else {
   <div class="addMemberToChannelBox">
     <div class="posiotionHeader">
       <div class="headline">
-        <h2>Add member</h2>
+        <p>Add member</p>
         @if (getChannelName(currentChannel)) {
-        <p># {{ getCurrentChannelName }}</p>
+        <span># {{ getCurrentChannelName }}</span>
         }
       </div>
       <app-small-btn
@@ -53,16 +53,6 @@
       ></app-small-btn>
     </div>
     <div class="addedUserBox">
-      @if (userIsSelected) {
-      <p
-        [ngClass]="{
-          showWanrningNotice: userIsSelected,
-          hideWanrningNotice: !userIsSelected
-        }"
-      >
-        User is allready selected.
-      </p>
-      }
       <div
         class="userPosition"
         *ngFor="let user of getSelectedUsers; let i = index"
@@ -80,7 +70,8 @@
         [ngClass]="{ dBlock: showExistenUsers, dNone: !showExistenUsers }"
       >
         <div class="positionOfAllUsersBox">
-          @for(user of getSearchedUser; track user){
+          @if(getSearchedUser.length <= 0) { <span>No results</span> } @for(user
+          of getSearchedUser; track user){ @if(!isUserAlreadySelectet(user)) {
           <div class="userBox" (click)="chooseUser(user)">
             <div class="positionImgsBox">
               <img src="{{ user.avatar }}" class="addAvatarImg" />
@@ -91,9 +82,9 @@
                 class="onlineIcon"
               />
             </div>
-            <h1>{{ user.firstName }} {{ user.lastName }}</h1>
+            <p>{{ user.firstName }} {{ user.lastName }}</p>
           </div>
-          }
+          } }
         </div>
       </div>
       <input
@@ -113,7 +104,7 @@
         [disabled]="getSelectedUsers.length === 0"
         (click)="addUserToChannel()"
       >
-        Create
+        Add
       </button>
     </div>
   </div>

@@ -15,7 +15,7 @@
   top: 199px;
   right: 108px;
   width: 320px;
-  height: auto;
+  height: fit-content;
   z-index: 4;
   border-radius: 35px;
   border-top-right-radius: 0;
@@ -26,6 +26,8 @@
 
   .posiotionHeader {
     @include displayFlex($j: space-between);
+    font-size: 24px;
+    font-weight: 600;
     width: 100%;
   }
 }
@@ -33,7 +35,8 @@
 .positionOfAllUsersInBox {
   @include displayFlex($j: flex-start, $a: flex-start);
   flex-direction: column;
-  height: 210px;
+  height: fit-content;
+  max-height: 300px;
   overflow: auto;
   width: 100%;
 
@@ -99,7 +102,12 @@
       @include displayFlex($a: flex-start, $g: 12px);
       flex-direction: column;
       p {
-        font-size: larger;
+        font-size: 24px;
+        font-weight: 600;
+      }
+      span {
+        font-size: 21px;
+        font-weight: 400;
         color: #797ef3;
       }
     }
@@ -159,7 +167,7 @@
   }
 
   .inputfieldStyle {
-    width: auto;
+    width: 100%;
     flex-grow: 1;
     outline: none;
     border: none;
@@ -178,7 +186,7 @@
 .showSearchedUsersWindow {
   position: absolute;
   top: 88%;
-  right: 126px;
+  left: 20px;
   z-index: 3;
   padding: 4px;
   border: 1px solid #888dec;
@@ -187,7 +195,8 @@
   background-color: white;
   overflow: auto;
   max-height: 210px;
-  width: 240px;
+  width: fit-content;
+  max-width: 240px;
   scrollbar-width: none;
   -ms-overflow-style: none;
   text-align: start;
@@ -196,12 +205,19 @@
     flex-direction: column;
     overflow: auto;
     width: 100%;
+    span {
+      font-size: 20px;
+      font-weight: 400;
+      padding: 6px;
+    }
     .userBox {
       @include displayFlex($g: 12px);
       padding: 6px;
       cursor: pointer;
-      transition: 0.2s ease-in-out;
-
+      p {
+        font-size: 21px;
+        font-style: 600;
+      }
       &:hover {
         background-color: #edeefe;
         border-radius: 25px;
@@ -260,38 +276,74 @@
   transition: 0.3s ease-in-out;
 }
 
-.showWanrningNotice {
-  animation: shwoWN 0.3s ease-in-out;
-}
-
-@keyframes shwoWN {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-.hideWanrningNotice {
-  animation: hideWN 0.3s ease-in-out;
-}
-
-@keyframes hideWN {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
 /*------------- RESPONSIVE -------------*/
 
 @media screen and (max-width: $RESPONSIVE_THRESHOLD_MOBILE) {
   .whiteBox {
-    top: 144px;
-    right: 18px;
+    top: 140px;
+    right: 20px;
     width: 250px;
+    .posiotionHeader {
+      font-size: 21px;
+    }
+  }
+
+  .addMemberToChannelBox {
+    position: absolute;
+    top: 140px;
+    right: 20px;
+    width: 230px;
+    .posiotionHeader {
+      .headline {
+        p {
+          font-size: 21px;
+        }
+        span {
+          font-size: 18px;
+        }
+      }
+    }
+  }
+
+  .showSearchedUsersWindow {
+    position: absolute;
+    top: 88%;
+    right: 0px;
+    max-height: 210px;
+    width: 200px;
+    .positionOfAllUsersBox {
+      span {
+        font-size: 18px;
+      }
+      .userBox {
+        p {
+          font-size: 18px;
+          font-style: 600;
+        }
+        .positionImgsBox {
+          .addAvatarImg {
+            width: 32px;
+            height: 32px;
+          }
+          .onlineIcon {
+            width: 9px;
+            height: 9px;
+            margin-left: -8px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-height: 600px) {
+  .positionOfAllUsersInBox {
+    max-height: 250px;
+  }
+}
+
+@media screen and (max-height: 500px) {
+  .positionOfAllUsersInBox {
+    max-height: 170px;
   }
 }

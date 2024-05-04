@@ -94,16 +94,16 @@ section {
     background-color: whitesmoke;
     padding: 24px;
     max-width: 500px;
+    max-height: 664px;
     border-top-right-radius: 40px;
     border-bottom-left-radius: 40px;
     border-bottom-right-radius: 40px;
     position: absolute;
     top: 200px;
     left: 460px;
-    height: -webkit-fill-available;
-    overflow: auto;
-    max-height: 664px;
-    scrollbar-width: none;
+    width: fit-content;
+    height: fit-content;
+    overflow: none;
   }
 }
 
@@ -396,17 +396,21 @@ section {
 
   .header {
     height: 36px;
-    padding: 12px 24px;
+    padding: 12px;
   }
 
   .headerPrvChat {
     height: 54px;
-    padding: 12px 24px;
+    padding: 12px;
   }
 
   .headline {
     p {
       font-size: 20px;
+      max-width: 180px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
     img {
       &:first-child {
@@ -414,6 +418,18 @@ section {
         height: 19px;
         padding-right: 6px;
       }
+    }
+  }
+
+  .headerSearchBar {
+    height: 84px;
+    padding: 12px;
+    p {
+      font-size: 20px;
+    }
+    input {
+      width: calc(100% - 28px);
+      height: 50px;
     }
   }
 
@@ -442,7 +458,7 @@ section {
 
   .menu {
     .whiteBox {
-      top: 70px;
+      top: 140px;
       left: 20px;
       margin-right: 18px;
       max-height: 500px;

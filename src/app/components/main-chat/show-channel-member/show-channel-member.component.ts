@@ -27,7 +27,7 @@ export class ShowChannelMemberComponent {
   getCurrentChannelName: string = '';
   getSelectedUsers: User[] = [];
   selectedUsers: string[] = [];
-  userIsSelected: boolean = false;
+
   openUserWindowBoolean: boolean = false;
   user: User[] = [];
 
@@ -46,15 +46,17 @@ export class ShowChannelMemberComponent {
     this.resetValues();
   }
 
-  filterUsers(userName: string) {
-    this.showExistenUsers = true;
-    this.getSearchedUser = [];
-    const searchedUser = userName.toLowerCase().trim();
-    const filteredUsers = this.userService.getUsers().filter((user) => {
-      const fullName = `${user.firstName} ${user.lastName}`.toLowerCase();
-      return fullName.includes(searchedUser);
-    });
-    this.checkIfUserIsInChannel(filteredUsers);
+  filterUsers(searchValue: string) {
+    if (searchValue != '') {
+      this.showExistenUsers = true;
+      this.getSearchedUser = [];
+      const searchedUser = searchValue.toLowerCase().trim();
+      const filteredUsers = this.userService.getUsers().filter((user) => {
+        const fullName = `${user.firstName} ${user.lastName}`.toLowerCase();
+        return fullName.includes(searchedUser);
+      });
+      this.checkIfUserIsInChannel(filteredUsers);
+    }
   }
 
   checkIfUserIsInChannel(filteredUsers: User[]) {
@@ -77,6 +79,12 @@ export class ShowChannelMemberComponent {
     }
   }
 
+  isUserAlreadySelectet(user: User) {
+    return this.getSelectedUsers.some(
+      (selectedUser) => selectedUser.id === user.id
+    );
+  }
+
   chooseUser(user: User) {
     const isUserAlreadySelected = this.getSelectedUsers.some(
       (selectedUser) => selectedUser.id === user.id
@@ -85,9 +93,6 @@ export class ShowChannelMemberComponent {
     if (!isUserAlreadySelected) {
       this.selectedUsers.push(user.id!);
       this.getSelectedUsers.push(user);
-      this.userIsSelected = false;
-    } else {
-      this.userIsSelected = true;
     }
     this.userName = '';
     this.showExistenUsers = false;
@@ -135,6 +140,5 @@ export class ShowChannelMemberComponent {
     this.getCurrentChannelName = '';
     this.getSelectedUsers = [];
     this.selectedUsers = [];
-    this.userIsSelected = false;
   }
 }

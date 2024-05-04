@@ -215,7 +215,11 @@
         </div>
         @if (!openEditNameDescription) {
         <div class="channelName">
+          @if (channel.description !== "") {
           <p>{{ channel.description }}</p>
+          } @else {
+          <p>No description.</p>
+          }
         </div>
         } @else {
         <div class="channelName">
