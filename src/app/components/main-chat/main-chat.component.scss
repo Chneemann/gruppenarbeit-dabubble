@@ -132,6 +132,7 @@ section {
   @include displayFlex($a: flex-start);
   flex-direction: column;
   padding: 24px 48px;
+  position: relative;
   p {
     font-size: 24px;
     font-weight: 700;
@@ -159,8 +160,8 @@ section {
   overflow: auto;
   scrollbar-width: none;
   position: absolute;
-  left: 440px;
-  top: 218px;
+  top: 127px;
+  left: 80px;
   border-radius: 25px;
   border-top-left-radius: 0;
   border: 1px solid #888dec;
@@ -282,5 +283,14 @@ section {
       background-color: #edeefe;
       border-radius: 35px;
     }
+  }
+}
+
+/*------------- RESPONSIVE -------------*/
+
+@media screen and (max-width: $RESPONSIVE_THRESHOLD_MOBILE) {
+  .filteredElementWindow {
+    top: 95px;
+    left: 45px;
   }
 }

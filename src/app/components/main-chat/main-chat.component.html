@@ -9,6 +9,29 @@
       [(ngModel)]="chatService.inputValue"
       (keyup)="filterChannelAndUser(chatService.inputValue)"
     />
+    @if (toggleBoolean.openSearchWindow) {
+    <!-----search suggestions----->
+    <div class="filteredElementWindow">
+      @if (firstLetter == '#') { @for (i of checkUserHasAccessToChannel(); track
+      $index) {
+      <h3 class="user" (click)="chooseElement(i)">#{{ i.name }}</h3>
+      } } @else if (firstLetter == '@') { @for (i of userService.allUsers; track
+      $index) {
+      <div class="user" (click)="chooseElement(i)">
+        <div class="positionImgs">
+          <img src="{{ i.avatar }}" class="avatarImg" />
+          <img
+            src="assets/img/{{
+              i.status ? 'onlineRing.svg' : 'offlineRing.svg'
+            }}"
+            class="onlineIconFilterWindow"
+          />
+        </div>
+        <h3>{{ i.firstName }} {{ i.lastName }}</h3>
+      </div>
+      } }
+    </div>
+    }
   </div>
   <div
     [ngStyle]="{
@@ -26,27 +49,7 @@
     >
     </app-chat-content>
   </div>
-  @if (toggleBoolean.openSearchWindow) {
-  <!-----search suggestions----->
-  <div class="filteredElementWindow">
-    @if (firstLetter == '#') { @for (i of channelService.allChannels; track
-    $index) {
-    <h3 class="user" (click)="chooseElement(i)">#{{ i.name }}</h3>
-    } } @else if (firstLetter == '@') { @for (i of userService.allUsers; track
-    $index) {
-    <div class="user" (click)="chooseElement(i)">
-      <div class="positionImgs">
-        <img src="{{ i.avatar }}" class="avatarImg" />
-        <img
-          src="assets/img/{{ i.status ? 'onlineRing.svg' : 'offlineRing.svg' }}"
-          class="onlineIconFilterWindow"
-        />
-      </div>
-      <h3>{{ i.firstName }} {{ i.lastName }}</h3>
-    </div>
-    } }
-  </div>
-  } } @else { @if(checkCurrentChannel(currentChannel) == 'allPrvChannels'){
+  } @else { @if(checkCurrentChannel(currentChannel) == 'allPrvChannels'){
   <!------------shwo prv chat----------->
   @for (user of getPrvChat(currentChannel); track user; let i = $index) {
   <div class="headerPrvChat">

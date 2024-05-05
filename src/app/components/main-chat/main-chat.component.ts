@@ -107,6 +107,23 @@ export class MainChatComponent {
     }
   }
 
+  /**
+   * Retrieves channels for the current user.
+   * @returns Array of Channel objects.
+   */
+  checkUserHasAccessToChannel() {
+    const isUserAChannelMember = this.channelService.allChannels.some(
+      (channel) => channel.addedUser.includes(this.userService.userId)
+    );
+
+    if (isUserAChannelMember) {
+      return this.channelService.allChannels.filter((channel) =>
+        channel.addedUser.includes(this.userService.userId)
+      );
+    }
+    return [];
+  }
+
   showMenu() {
     this.openMenu = true;
   }
