@@ -39,7 +39,6 @@ export class SearchBarComponent {
     private route: Router
   ) {}
 
-
   /**
    * Filters all information based on the input value.
    * @param inputValue The input value entered by the user.
@@ -50,7 +49,6 @@ export class SearchBarComponent {
     this.filterUsersChannelsChats(getInputValue);
   }
 
-
   /**
    * Filters users, channels, and chats based on the input value.
    * @param inputValue The input value entered by the user.
@@ -58,7 +56,7 @@ export class SearchBarComponent {
   filterUsersChannelsChats(inputValue: string) {
     const filterUsers = this.getFilterUsers(inputValue);
     const filterChannels = this.getFilterChannels(inputValue);
-    const filterChants = this.getFilterChants(inputValue);
+    const filterChants = this.getFilterChats(inputValue);
 
     this.sortPrvAndPublicMessages(filterChants);
 
@@ -66,45 +64,64 @@ export class SearchBarComponent {
     this.filteredChannels = filterChannels;
   }
 
-
   /**
    * Filters users based on the input value.
    * @param inputValue The input value entered by the user.
    * @returns An array of filtered users.
    */
-  getFilterUsers(inputValue: string){
+  getFilterUsers(inputValue: string) {
     return this.userService.getUsers().filter((user) => {
       const fullName = `${user.firstName} ${user.lastName}`.toLowerCase();
       return fullName.includes(inputValue);
     });
   }
 
-
   /**
    * Filters channels based on the input value.
    * @param inputValue The input value entered by the user.
    * @returns An array of filtered channels.
    */
-  getFilterChannels(inputValue: string){
-    return this.channelService.allChannels.filter((channel) => {
+  getFilterChannels(inputValue: string) {
+    const userHasAccessChannels = this.checkUserHasAccessToChannel();
+    return userHasAccessChannels.filter((channel) => {
       const channelName = `${channel.name}`.toLowerCase();
       return channelName.includes(inputValue);
     });
   }
-
 
   /**
    * Filters chats based on the input value.
    * @param inputValue The input value entered by the user.
    * @returns An array of filtered chats.
    */
-  getFilterChants(inputValue: string){
+  getFilterChats(inputValue: string) {
+    const userChannels = this.checkUserHasAccessToChannel();
+
     return this.chatService.allChats.filter((chat) => {
       const chatMessage = `${chat.message}`.toLowerCase();
-      return chatMessage.includes(inputValue);
+      return (
+        chatMessage.includes(inputValue) &&
+        userChannels.some((channel) => channel.id === chat.channelId)
+      );
     });
   }
 
+  /**
+   * Checks whether the user has access to a channel.
+   * @returns {Array} - A list of channels to which the user has access.
+   */
+  checkUserHasAccessToChannel() {
+    const isUserAChannelMember = this.channelService.allChannels.some(
+      (channel) => channel.addedUser.includes(this.userService.userId)
+    );
+
+    if (isUserAChannelMember) {
+      return this.channelService.allChannels.filter((channel) =>
+        channel.addedUser.includes(this.userService.userId)
+      );
+    }
+    return [];
+  }
 
   /**
    * Retrieves the channel associated with the specified chat ID.
@@ -131,7 +148,6 @@ export class SearchBarComponent {
     return '';
   }
 
-
   /**
    * Sorts private and public messages.
    * @param chats The array of chats to sort.
@@ -149,7 +165,6 @@ export class SearchBarComponent {
     }
     this.filteredChats = publicChats;
   }
-
 
   /**
    * Checks the route based on the specified user.
@@ -170,7 +185,6 @@ export class SearchBarComponent {
     }
     this.getRouteToPrvChat(userId, channelExistsBoolean);
   }
-
 
   /**
    * Navigates to the private chat route based on the specified user.
