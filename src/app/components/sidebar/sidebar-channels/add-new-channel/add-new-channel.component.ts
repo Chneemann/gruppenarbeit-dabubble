@@ -7,6 +7,7 @@ import { UserService } from '../../../../service/user.service';
 import { User } from '../../../../interface/user.interface';
 import { Channel } from '../../../../interface/channel.interface';
 import { Router } from '@angular/router';
+import { SharedService } from '../../../../service/shared.service';
 
 @Component({
   selector: 'app-add-new-channel',
@@ -16,6 +17,8 @@ import { Router } from '@angular/router';
   styleUrl: './add-new-channel.component.scss',
 })
 export class AddNewChannelComponent {
+  @Input() viewWidth: number = 0;
+
   currentDate: string = new Date().toISOString().split('T')[0];
   changeImg: boolean = false;
   userName: string = '';
@@ -28,14 +31,17 @@ export class AddNewChannelComponent {
   selectedUsers: string[] = [];
   testarray: string[] = [];
   channelIsPrivat: boolean = false;
-  shwoNextWindow: boolean = false;
+  showNextWindow: boolean = false;
+  showNextWindowMobile: boolean = false;
 
   constructor(
     public channelService: ChannleService,
     public userService: UserService,
-    public route: Router
+    public route: Router,
+    private sharedService: SharedService
   ) {}
 
+  RESPONSIVE_THRESHOLD_MOBILE = this.sharedService.RESPONSIVE_THRESHOLD_MOBILE;
 
   /**
    * Toggles the visibility of the add channel box.
@@ -43,19 +49,22 @@ export class AddNewChannelComponent {
   toggleShowAddChannelBox() {
     this.channelService.showAddChannelBox =
       !this.channelService.showAddChannelBox;
-    this.shwoNextWindow = false;
+    this.showNextWindow = false;
+    this.showNextWindowMobile = false;
     this.channelName = '';
     this.channelDescription = '';
   }
-
 
   /**
    * Toggles the visibility of the next window.
    */
   createNewChannel() {
-    this.shwoNextWindow = !this.shwoNextWindow;
+    if (this.viewWidth <= this.RESPONSIVE_THRESHOLD_MOBILE) {
+      this.showNextWindowMobile = true;
+    } else {
+      this.showNextWindow = true;
+    }
   }
-
 
   /**
    * Toggles the button to true.
@@ -65,7 +74,6 @@ export class AddNewChannelComponent {
     this.channelIsPrivat = true;
   }
 
-
   /**
    * Toggles the button to false.
    */
@@ -73,7 +81,6 @@ export class AddNewChannelComponent {
     this.changeImg = false;
     this.channelIsPrivat = false;
   }
-
 
   /**
    * Filters users based on input.
@@ -85,11 +92,12 @@ export class AddNewChannelComponent {
     const searchedUser = userName.toLowerCase().trim();
     const filteredUsers = this.userService.getUsers().filter((user) => {
       const fullName = `${user.firstName} ${user.lastName}`.toLowerCase();
-      return fullName.includes(searchedUser) && user.id !== this.userService.userId;
+      return (
+        fullName.includes(searchedUser) && user.id !== this.userService.userId
+      );
     });
     this.getSearchedUser.push(...filteredUsers);
   }
-
 
   /**
    * Chooses a user.
@@ -111,7 +119,6 @@ export class AddNewChannelComponent {
     this.showExistenUsers = false;
   }
 
-
   /**
    * Removes the current user.
    * @param index The index of the user to remove.
@@ -121,7 +128,6 @@ export class AddNewChannelComponent {
     this.showExistenUsers = false;
   }
 
-
   /**
    * Toggles the added user box.
    */
@@ -129,40 +135,40 @@ export class AddNewChannelComponent {
     this.showExistenUsers = false;
   }
 
-
   /**
    * Checks if the channel name is valid.
    * @param channelName The name of the channel to check.
    */
   checkIfChannelNameIsValid(channelName: string) {
     const channelNameLenght = channelName.length;
-    if (channelNameLenght >= 3) {
+    if (channelNameLenght >= 6) {
       this.channelService.btnIsValid = true;
     } else {
       this.channelService.btnIsValid = false;
     }
   }
 
-
   /**
    * Adds a new channel.
    */
   async addNewChannel() {
     const newChannel: Channel = {
-        name: this.channelName,
-        description: this.channelDescription || '',
-        creator: this.userService.userId,
-        privatChannel: this.privatChannel,
-        hashtag: this.channelName,
-        createdDate: this.currentDate,
-        addedUser: this.checkUserArray(),
+      name: this.channelName,
+      description: this.channelDescription || '',
+      creator: this.userService.userId,
+      privatChannel: this.privatChannel,
+      hashtag: this.channelName,
+      createdDate: this.currentDate,
+      addedUser: this.checkUserArray(),
     };
-    const channelId = await this.channelService.createNewChannel(newChannel, 'channels');
+    const channelId = await this.channelService.createNewChannel(
+      newChannel,
+      'channels'
+    );
     this.openAddNewChannelWindow();
     this.route.navigateByUrl(`main/${channelId}`);
-}
+  }
 
-  
   /**
    * Checks the user array.
    * @returns The user array.
@@ -175,18 +181,18 @@ export class AddNewChannelComponent {
     }
   }
 
-
   /**
    * Opens the add new channel window.
    */
   openAddNewChannelWindow() {
-    this.channelService.showAddChannelBox = !this.channelService.showAddChannelBox;
+    this.channelService.showAddChannelBox =
+      !this.channelService.showAddChannelBox;
     this.channelName = '';
     this.channelDescription = '';
     this.channelService.btnIsValid = false;
     this.getSelectedUsers = [];
     this.selectedUsers = [];
-    this.shwoNextWindow = false;
+    this.showNextWindow = false;
+    this.showNextWindowMobile = false;
   }
-
 }

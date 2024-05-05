@@ -12,6 +12,11 @@ section {
   height: calc(100vh - 230px);
 }
 
+.searchChatHeight {
+  margin-top: 64px;
+  height: calc(100vh - 274px);
+}
+
 .mirror {
   transform: scaleX(-1);
 }
@@ -50,5 +55,10 @@ section {
 
   .privatChatHeight {
     height: calc(100vh - 158px);
+  }
+
+  .searchChatHeight {
+    margin-top: 88px;
+    height: calc(100vh - 188px);
   }
 }

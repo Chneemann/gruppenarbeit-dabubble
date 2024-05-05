@@ -48,6 +48,7 @@
     <p>Add channel</p>
   </div>
   <app-add-new-channel
+    [viewWidth]="viewWidth"
     [ngClass]="{
       dBlock: channelService.showAddChannelBox,
       dNone: !channelService.showAddChannelBox

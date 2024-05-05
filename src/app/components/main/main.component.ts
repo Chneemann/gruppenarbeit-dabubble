@@ -19,7 +19,6 @@ import { SidebarToggleComponent } from '../sidebar/sidebar-toggle/sidebar-toggle
 import { CommonModule } from '@angular/common';
 import { AddNewChannelComponent } from '../sidebar/sidebar-channels/add-new-channel/add-new-channel.component';
 import { OverlayComponent } from '../../shared/components/overlay/overlay.component';
-import { PrivatChatComponent } from '../main-chat/privat-chat/privat-chat.component';
 import { ToggleBooleanService } from '../../service/toggle-boolean.service';
 import { SharedService } from '../../service/shared.service';
 
@@ -35,8 +34,7 @@ import { SharedService } from '../../service/shared.service';
     SidebarToggleComponent,
     CommonModule,
     AddNewChannelComponent,
-    OverlayComponent,
-    PrivatChatComponent,
+    OverlayComponent
   ],
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss',

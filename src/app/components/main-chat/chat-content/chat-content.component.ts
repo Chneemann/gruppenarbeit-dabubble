@@ -33,6 +33,7 @@ import { InfoComponent } from '../info/info.component';
 export class ChatContentComponent implements AfterViewInit, AfterViewChecked {
   @Input() currentChannel: string = '';
   @Input() isPrivatChannel: boolean = false;
+  @Input() isSearchChannel: boolean = false;
   @Input() hideContentWindow: boolean = false;
   @Input() viewWidth: number = 0;
   @Input() getChats!: () => any;

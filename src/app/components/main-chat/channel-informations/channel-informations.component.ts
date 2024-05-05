@@ -166,4 +166,8 @@ export class ChannelInformationsComponent {
       }
     }
   }
+
+  ngOnDestroy() {
+    this.closeMenu();
+  }
 }
