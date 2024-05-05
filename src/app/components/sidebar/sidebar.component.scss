@@ -6,6 +6,14 @@ section {
   background-color: #fff;
 }
 
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  padding-right: 12px;
+  width: 60px;
+}
+
 .headline {
   display: flex;
   justify-content: space-between;
@@ -14,7 +22,6 @@ section {
     display: flex;
     justify-content: left;
     align-items: center;
-    width: 80%;
     img {
       width: 60px;
       height: 60px;
@@ -40,5 +47,11 @@ section {
 @media screen and (max-width: $RESPONSIVE_THRESHOLD_MOBILE) {
   section {
     border-radius: 0;
+  }
+
+  .channels,
+  .directMessages,
+  .headline {
+    padding: 12px;
   }
 }

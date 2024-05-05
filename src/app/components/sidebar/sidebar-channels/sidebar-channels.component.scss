@@ -12,6 +12,14 @@ section {
   padding-bottom: 12px;
 }
 
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  padding-right: 12px;
+  width: 60px;
+}
+
 .headlineText {
   display: flex;
   align-items: center;

@@ -8,6 +8,7 @@ import { User } from '../../../../interface/user.interface';
 import { Channel } from '../../../../interface/channel.interface';
 import { Router } from '@angular/router';
 import { SharedService } from '../../../../service/shared.service';
+import { ToggleBooleanService } from '../../../../service/toggle-boolean.service';
 
 @Component({
   selector: 'app-add-new-channel',
@@ -38,7 +39,8 @@ export class AddNewChannelComponent {
     public channelService: ChannleService,
     public userService: UserService,
     public route: Router,
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    private toggleBooleanService: ToggleBooleanService
   ) {}
 
   RESPONSIVE_THRESHOLD_MOBILE = this.sharedService.RESPONSIVE_THRESHOLD_MOBILE;
@@ -166,6 +168,9 @@ export class AddNewChannelComponent {
       'channels'
     );
     this.openAddNewChannelWindow();
+    if (this.viewWidth <= this.RESPONSIVE_THRESHOLD_MOBILE) {
+      this.toggleBooleanService.isSidebarOpen = false;
+    }
     this.route.navigateByUrl(`main/${channelId}`);
   }
 

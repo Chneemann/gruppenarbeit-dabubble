@@ -24,6 +24,7 @@ import { ChatService } from '../../service/chat.service';
 })
 export class SidebarComponent implements OnInit {
   @Input() viewWidth: number = 0;
+  @Input() btnPosition: boolean = false;
 
   currentChannel: string = '';
 

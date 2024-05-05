@@ -37,7 +37,7 @@
     <input
       type="text"
       class="textfieldStyle hashtagPadding"
-      placeholder="e.g. Cooperation projects (minimum 6 letters)"
+      placeholder="e.g. Cooperation projects (min. 6 letters)"
       maxlength="20"
       [(ngModel)]="channelName"
       (keyup)="checkIfChannelNameIsValid(channelName)"
@@ -88,7 +88,7 @@
         alt=""
         (click)="toggleBtnFalse()"
       />
-      <span>Add all members for the office team</span>
+      <p>Add all members from&nbsp;<span>Devspace</span></p>
     </div>
     <div class="positionSelectionBtn">
       <img
@@ -97,7 +97,7 @@
         }}"
         (click)="toggleBtnTrue()"
       />
-      <span>Add certain people</span>
+      <p>Add certain people</p>
     </div>
     <div class="addedUserBox" *ngIf="changeImg">
       <div

@@ -34,7 +34,7 @@ import { SharedService } from '../../service/shared.service';
     SidebarToggleComponent,
     CommonModule,
     AddNewChannelComponent,
-    OverlayComponent
+    OverlayComponent,
   ],
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss',
@@ -83,7 +83,7 @@ export class MainComponent {
   }
 
   private updateViewWidth() {
-    this.viewWidth = this.elementRef.nativeElement.offsetWidth;
+    this.viewWidth = window.innerWidth;
     if (this.viewWidth <= this.RESPONSIVE_THRESHOLD) {
       this.toggleAllBooleans.isSidebarOpen = false;
     } else if (this.viewWidth >= this.RESPONSIVE_THRESHOLD) {

@@ -4,16 +4,24 @@
       <img src="assets/img/sidebar/workspace-logo.svg" alt="" />
       <p>Devspace</p>
     </div>
-    <app-small-btn
-      [imgSrc]="'sidebar/new-chat.svg'"
-      [imgSize]="'24px'"
-      [btnSize]="'48px'"
-      [btnBgHoverColor]="'#edeefe'"
-      style="margin-right: -26px"
-      routerLink="/main/searchBar"
-      (click)="closeSecondaryChatAndSidebar()"
+    <div
+      class="btn"
+      [ngStyle]="{
+        'padding-right': btnPosition ? '0' : '',
+        'justify-content': btnPosition ? 'center' : ''
+      }"
     >
-    </app-small-btn>
+      <app-small-btn
+        [imgSrc]="'sidebar/new-chat.svg'"
+        [imgSize]="'24px'"
+        [btnSize]="'48px'"
+        [btnBgHoverColor]="'#edeefe'"
+        style="margin-right: -26px"
+        routerLink="/main/searchBar"
+        (click)="closeSecondaryChatAndSidebar()"
+      >
+      </app-small-btn>
+    </div>
   </div>
 
   <div class="channels">

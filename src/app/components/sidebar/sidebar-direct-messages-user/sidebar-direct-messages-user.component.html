@@ -3,8 +3,8 @@
   directMessage; let i = $index) {
   <!-- PRIVAT CHAT (Message Yourself) -->
   @if (directMessage.creatorId === this.userService.userId &&
-  directMessage.talkToUserId === this.userService.userId && i === 0) { @for
-  (user of getChatUsers(directMessage.creatorId); track user){
+  directMessage.talkToUserId === this.userService.userId) { @for (user of
+  getChatUsers(directMessage.creatorId); track user){
   <div
     class="user"
     routerLink="/main/{{ directMessage.id }}"

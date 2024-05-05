@@ -10,15 +10,17 @@
       <img src="assets/img/sidebar/bubbles.svg" alt="" />
       <p>Channels</p>
     </div>
-    <app-small-btn
-      [imgSrc]="'add.svg'"
-      [imgSize]="'14px'"
-      [btnSize]="'28px'"
-      [btnBgHoverColor]="'#edeefe'"
-      (click)="openAddChannelWindow()"
-      style="margin-right: -11px"
-    >
-    </app-small-btn>
+    <div class="btn">
+      <app-small-btn
+        [imgSrc]="'add.svg'"
+        [imgSize]="'14px'"
+        [btnSize]="'28px'"
+        [btnBgHoverColor]="'#edeefe'"
+        (click)="openAddChannelWindow()"
+        style="margin-right: -11px"
+      >
+      </app-small-btn>
+    </div>
   </div>
   <div
     class="boxOfAllChannels"
