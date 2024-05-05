@@ -116,7 +116,7 @@ header {
 
 /*------------- RESPONSIVE -------------*/
 
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: $RESPONSIVE_THRESHOLD_SEARCHBAR) {
   .middleSide {
     display: none;
   }

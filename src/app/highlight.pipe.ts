@@ -2,10 +2,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
   name: 'highlight',
-  standalone: true
+  standalone: true,
 })
 export class HighlightPipe implements PipeTransform {
-
   /**
    * Transforms the input text by highlighting matches of the search query.
    * @param wholeText The entire text where matches will be highlighted.
@@ -16,8 +15,8 @@ export class HighlightPipe implements PipeTransform {
     if (!inputValue) {
       return wholeText;
     }
-    const re = new RegExp(inputValue, 'gi');
+    const escapedInputValue = inputValue.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const re = new RegExp(escapedInputValue, 'gi');
     return wholeText.replace(re, '<mark>$&</mark>');
   }
-
 }

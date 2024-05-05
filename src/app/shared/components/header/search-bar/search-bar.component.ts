@@ -44,9 +44,13 @@ export class SearchBarComponent {
    * @param inputValue The input value entered by the user.
    */
   filterAllInfo(inputValue: string) {
-    this.toggleBoolean.openSearchWindowHead = true;
-    const getInputValue = inputValue.toLowerCase().trim();
-    this.filterUsersChannelsChats(getInputValue);
+    if (inputValue !== '') {
+      this.toggleBoolean.openSearchWindowHead = true;
+      const getInputValue = inputValue.toLowerCase().trim();
+      this.filterUsersChannelsChats(getInputValue);
+    } else {
+      this.toggleBoolean.openSearchWindowHead = false;
+    }
   }
 
   /**
