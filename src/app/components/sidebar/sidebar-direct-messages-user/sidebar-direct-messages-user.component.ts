@@ -52,9 +52,9 @@ export class SidebarDirectMessagesUserComponent {
   }
 
   /**
-   * Display private chat channels.
-   * @param userId The ID of the user.
-   * @returns Array of private chat channels.
+   * Display private chat channels associated with the provided user ID.
+   * @param {string} userId - The ID of the user for whom private chat channels are to be displayed.
+   * @returns {Array} - An array of unique private chat channels sorted based on specific criteria.
    */
   displayPrivateChat(userId: string) {
     const creatorChannels = this.channelService.allPrvChannels.filter(
@@ -63,13 +63,37 @@ export class SidebarDirectMessagesUserComponent {
     const talkToUserChannels = this.channelService.allPrvChannels.filter(
       (channel) => channel.talkToUserId === userId
     );
+
     const allChannels = creatorChannels.concat(talkToUserChannels);
+
     // Sort the channels so that the channel with corrent logged in userId comes first
     allChannels.sort((a, b) => {
       if (a.creatorId === userId) return -1;
       if (b.creatorId === userId) return 1;
       return 0;
     });
+    const firstChannel = allChannels.shift();
+
+    // Sort the channels based on the last date of the chat
+    allChannels.sort((a, b) => {
+      const lastMessageA = this.chatService.allChats
+        .filter((chat) => chat.channelId === a.id)
+        .sort((x, y) => y.publishedTimestamp - x.publishedTimestamp)[0];
+
+      const lastMessageB = this.chatService.allChats
+        .filter((chat) => chat.channelId === b.id)
+        .sort((x, y) => y.publishedTimestamp - x.publishedTimestamp)[0];
+
+      if (!lastMessageA) return 1;
+      if (!lastMessageB) return -1;
+
+      return lastMessageB.publishedTimestamp - lastMessageA.publishedTimestamp;
+    });
+
+    if (firstChannel) {
+      allChannels.unshift(firstChannel);
+    }
+
     return Array.from(new Set(allChannels));
   }
 }
