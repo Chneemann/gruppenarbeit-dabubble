@@ -107,9 +107,11 @@
         <p>Created by</p>
       </div>
       <div class="channelCreator">
-        @for (user of getChatUsers(channel.creator); track user) {
+        @if(channel.creator == "Admin") {
+        <p class="creatorName">Admin</p>
+        } @else { @for (user of getChatUsers(channel.creator); track user) {
         <p class="creatorName">{{ user.firstName }} {{ user.lastName }}</p>
-        } @if(!checkCreator(currentChannel)){
+        } } @if(!checkCreator(currentChannel)){
         <p class="warningPTag">*Ony the creator can edit the channel</p>
         }
       </div>
@@ -140,7 +142,7 @@
           </div>
           <p>
             {{ user.firstName }} {{ user.lastName }} @if (user.id ==
-            userService.userId) { (Du) }
+            userService.userId) { (You) }
           </p>
         </div>
         }}

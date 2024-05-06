@@ -59,7 +59,10 @@
             padding:
               user.id === userService.userId ? '0 24px 0 0' : '0 0 0 24px'
           }"
-          >{{ convertTimestampHour(chat.publishedTimestamp) }}</span
+        >
+          @if(openOnSecondaryChat) {
+          {{ convertTimestampDate(chat.publishedTimestamp) }} }
+          {{ convertTimestampHour(chat.publishedTimestamp) }}</span
         >
       </div>
       <div

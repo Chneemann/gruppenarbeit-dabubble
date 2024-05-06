@@ -100,8 +100,11 @@ export class SecondaryChatComponent implements AfterViewChecked {
 
   getChatAnswers(chatId: string): ChatAnswers[] {
     const filteredTasks = this.getChatAnswer().filter(
-      (chat) => chat.chatId == chatId
+      (chat) => chat.chatId === chatId
     );
+
+    filteredTasks.sort((a, b) => b.publishedTimestamp - a.publishedTimestamp);
+
     return filteredTasks;
   }
 

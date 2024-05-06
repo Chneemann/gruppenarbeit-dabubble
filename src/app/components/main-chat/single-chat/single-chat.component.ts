@@ -103,6 +103,39 @@ export class SingleChatComponent {
     return formattedTime;
   }
 
+  /**
+   * Converts a timestamp to a formatted date string.
+   * @param {number} timestamp - The timestamp to convert.
+   * @returns {string} The formatted date string.
+   */
+  convertTimestampDate(timestamp: number) {
+    const currentDate = new Date();
+    const inputDate = new Date(timestamp * 1000);
+    const months = [
+      'Jan.',
+      'Feb.',
+      'Mar.',
+      'Apr.',
+      'May.',
+      'Jun.',
+      'Jul.',
+      'Aug.',
+      'Sep.',
+      'Oct.',
+      'Nov.',
+      'Dec.',
+    ];
+
+    const dayNumber = inputDate.getDate();
+    const month = months[inputDate.getMonth()];
+
+    if (inputDate.toDateString() === currentDate.toDateString()) {
+      return `Today`;
+    } else {
+      return `${dayNumber} ${month}`;
+    }
+  }
+
   openSecondaryChat(chatId: string) {
     this.chatService.toggleSecondaryChat(chatId);
   }
