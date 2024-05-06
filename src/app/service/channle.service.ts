@@ -12,6 +12,7 @@ import {
   Channel,
   PrvChannel,
 } from '../interface/channel.interface';
+import { ChatService } from './chat.service';
 
 @Injectable({
   providedIn: 'root',
@@ -28,11 +29,12 @@ export class ChannleService implements OnDestroy {
   allPrvChannels: PrvChannel[] = [];
   channelMembers: string[] = [];
   loggedInUser: string = '';
+  getChannelID: string = '';
 
   unsubChannel;
   unsubPrvChannel;
 
-  constructor() {
+  constructor(private chatService: ChatService) {
     this.unsubChannel = this.subChannelList();
     this.unsubPrvChannel = this.subPrvChannelList();
   }
@@ -106,6 +108,7 @@ export class ChannleService implements OnDestroy {
   ): Promise<string | undefined> {
     try {
       const docRef = await addDoc(this.firesorePath(path), newChannel);
+      this.chatService.getPrvChatId = docRef.id;
       return docRef.id;
     } catch (err) {
       console.error('Error creating channel:', err);
