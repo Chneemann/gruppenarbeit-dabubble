@@ -34,7 +34,7 @@ import { SharedService } from '../../service/shared.service';
     SidebarToggleComponent,
     CommonModule,
     AddNewChannelComponent,
-    OverlayComponent,
+    OverlayComponent
   ],
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss',

@@ -14,8 +14,8 @@
     <div class="filteredElementWindow">
       @if (firstLetter == '#') {
         <!-- render channels -->
-         @for (i of checkUserHasAccessToChannel(); track $index) {
-          <h3 class="user" (click)="chooseElement(i)">#{{ i.name }}</h3>
+         @for (i of checkIfUserHasAccessToChannel(); track $index) {
+          <h3 class="user" (click)="chooseElement(i)" [innerHTML]="i.name| highlight : chatService.inputValue"></h3>
           }
       } @else if (firstLetter == '@') { 
         <!-- render users -->
@@ -30,7 +30,7 @@
                 class="onlineIconFilterWindow"
               />
             </div>
-            <h3>{{ i.firstName }} {{ i.lastName }}</h3>
+            <h3 [innerHTML]="i.firstName + ' ' + i.lastName| highlight : chatService.inputValue" ></h3>
           </div>
         } 
       }

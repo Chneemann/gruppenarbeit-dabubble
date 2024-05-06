@@ -23,6 +23,7 @@ import { SharedService } from '../../service/shared.service';
 import { ChannelInformationsComponent } from './channel-informations/channel-informations.component';
 import { filter } from 'rxjs';
 import { OpenSendPrvMessageWindowComponent } from './show-channel-member/open-send-prv-message-window/open-send-prv-message-window.component';
+import { HighlightPipe } from '../../highlight.pipe';
 
 @Component({
   selector: 'app-main-chat',
@@ -37,7 +38,8 @@ import { OpenSendPrvMessageWindowComponent } from './show-channel-member/open-se
     SmallBtnComponent,
     ShowChannelMemberComponent,
     ChannelInformationsComponent,
-    OpenSendPrvMessageWindowComponent
+    OpenSendPrvMessageWindowComponent,
+    HighlightPipe
   ],
   templateUrl: './main-chat.component.html',
   styleUrl: './main-chat.component.scss',
@@ -121,7 +123,7 @@ export class MainChatComponent {
    * Retrieves channels for the current user.
    * @returns Array of Channel objects.
    */
-  checkUserHasAccessToChannel() {
+  checkIfUserHasAccessToChannel() {
     const isUserAChannelMember = this.channelService.allChannels.some(
       (channel) => channel.addedUser.includes(this.userService.userId)
     );
