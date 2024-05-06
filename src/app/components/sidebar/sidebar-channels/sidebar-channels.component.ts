@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ChannleService } from '../../../service/channle.service';
-import { Channel } from '../../../interface/channel.interface';
+import { Channel, publicChannels } from '../../../interface/channel.interface';
 import { RouterLink } from '@angular/router';
 import { ChatService } from '../../../service/chat.service';
 import { SmallBtnComponent } from '../../../shared/components/small-btn/small-btn.component';
@@ -62,20 +62,20 @@ export class SidebarChannelsComponent {
   }
 
   /**
-   * Retrieves channels for the current user.
-   * @returns Array of Channel objects.
+   * The channels accessible to the current user are scrolled, public channels are at the top
+   * @returns {Channel[]} An array of Channel objects.
    */
   getChannels(): Channel[] {
-    const checkIfUserIsAMember = this.channelService.allChannels.some(
-      (channel) => channel.addedUser.includes(this.userService.userId)
+    const userChannels = this.channelService.allChannels.filter((channel) =>
+      channel.addedUser.includes(this.userService.userId)
+    );
+    const priorityChannels = userChannels.filter((channel) =>
+      publicChannels.includes(channel.id!)
+    );
+    const otherChannels = userChannels.filter(
+      (channel) => !priorityChannels.includes(channel)
     );
 
-    if (checkIfUserIsAMember) {
-      const checkIfUserIsAMember = this.channelService.allChannels.filter(
-        (channel) => channel.addedUser.includes(this.userService.userId)
-      );
-      return checkIfUserIsAMember;
-    }
-    return [];
+    return [...priorityChannels, ...otherChannels];
   }
 }
