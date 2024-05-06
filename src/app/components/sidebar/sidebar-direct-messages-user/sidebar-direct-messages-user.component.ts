@@ -7,6 +7,7 @@ import { RouterLink } from '@angular/router';
 import { ChatService } from '../../../service/chat.service';
 import { ToggleBooleanService } from '../../../service/toggle-boolean.service';
 import { SharedService } from '../../../service/shared.service';
+import { PrvChannel } from '../../../interface/channel.interface';
 
 @Component({
   selector: 'app-sidebar-direct-messages-user',
@@ -63,18 +64,41 @@ export class SidebarDirectMessagesUserComponent {
     const talkToUserChannels = this.channelService.allPrvChannels.filter(
       (channel) => channel.talkToUserId === userId
     );
-
     const allChannels = creatorChannels.concat(talkToUserChannels);
 
     // Sort the channels so that the channel with corrent logged in userId comes first
+    this.sortUserPrivatChannel(allChannels, userId);
+    const firstChannel = allChannels.shift();
+
+    // Sort the channels based on the last date of the chat
+    this.sortAllAnotherChannel(allChannels, userId);
+
+    if (firstChannel) {
+      allChannels.unshift(firstChannel);
+    }
+
+    return Array.from(new Set(allChannels));
+  }
+
+  /**
+   * Sorts an array if it is the own user channel
+   * @param {PrvChannel[]} allChannels - Array of private channels to sort.
+   * @param {string} userId - The ID of the user.
+   */
+  sortUserPrivatChannel(allChannels: PrvChannel[], userId: string) {
     allChannels.sort((a, b) => {
       if (a.creatorId === userId) return -1;
       if (b.creatorId === userId) return 1;
       return 0;
     });
-    const firstChannel = allChannels.shift();
+  }
 
-    // Sort the channels based on the last date of the chat
+  /**
+   * Sorts an array of private channels based on the last message's timestamp.
+   * @param {PrvChannel[]} allChannels - Array of private channels to sort.
+   * @param {string} userId - The ID of the user.
+   */
+  sortAllAnotherChannel(allChannels: PrvChannel[], userId: string) {
     allChannels.sort((a, b) => {
       const lastMessageA = this.chatService.allChats
         .filter((chat) => chat.channelId === a.id)
@@ -89,11 +113,5 @@ export class SidebarDirectMessagesUserComponent {
 
       return lastMessageB.publishedTimestamp - lastMessageA.publishedTimestamp;
     });
-
-    if (firstChannel) {
-      allChannels.unshift(firstChannel);
-    }
-
-    return Array.from(new Set(allChannels));
   }
 }
