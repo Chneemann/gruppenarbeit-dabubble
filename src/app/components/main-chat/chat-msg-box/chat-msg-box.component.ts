@@ -245,6 +245,8 @@ export class ChatMsgBoxComponent {
       return this.chatService.getChannelId;
     } else if (this.chatService.getPrvChatId) {
       return this.chatService.getPrvChatId;
+    } else if (this.currentChannel === 'searchBar' && this.chatService.inputValue === ''){
+      return '';
     }
     return this.currentChannel;
   }
