@@ -5,11 +5,12 @@ import { ToggleBooleanService } from '../../../../service/toggle-boolean.service
 import { ChannleService } from '../../../../service/channle.service';
 import { UserService } from '../../../../service/user.service';
 import { Router } from '@angular/router';
+import { TranslateModule} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-open-send-prv-message-window',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslateModule],
   templateUrl: './open-send-prv-message-window.component.html',
   styleUrl: './open-send-prv-message-window.component.scss',
 })

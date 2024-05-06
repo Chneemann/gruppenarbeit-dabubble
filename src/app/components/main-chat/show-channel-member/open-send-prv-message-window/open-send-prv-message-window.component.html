@@ -5,7 +5,7 @@
   @for(i of talkToUser; track i){
   <div class="whiteBox">
     <div class="boxHeader">
-      <p>Profil</p>
+      <p>{{ 'open-send-prv-message.profil' | translate }}</p>
       <div class="positionCloseIcon" (click)="closeWindow()">
         <img src="assets/img/closeIcon.svg" class="closeIcon" />
       </div>
@@ -22,16 +22,16 @@
           class="onlineIcon"
         />
         @if (i.status) {
-        <p class="fontColorGreen">Aktiv</p>
+        <p class="fontColorGreen">{{ 'open-send-prv-message.aktiv' | translate }}</p>
         } @else {
-        <p>Offline</p>
+        <p>{{ 'open-send-prv-message.offline' | translate }}</p>
         }
       </div>
 
       <div class="emailBox">
         <img src="assets/img/mail-icon.svg" />
         <div class="email">
-          <p>E-Mail-Address</p>
+          <p>{{ 'open-send-prv-message.adress' | translate }}</p>
           <a
             href="mailto:wwweewefeff&#64;dede.de"
             target="_blank"
@@ -47,7 +47,7 @@
   @for(i of user; track i){
   <div class="whiteBox">
     <div class="boxHeader">
-      <p>Profil</p>
+      <p>{{ 'open-send-prv-message.profil' | translate }}</p>
       <div class="positionCloseIcon" (click)="closeWindow()">
         <img src="assets/img/closeIcon.svg" class="closeIcon" />
       </div>
@@ -64,9 +64,9 @@
           class="onlineIcon"
         />
         @if (i.status) {
-        <p class="fontColorGreen">Aktiv</p>
+        <p class="fontColorGreen">{{ 'open-send-prv-message.aktiv' | translate }}</p>
         } @else {
-        <p>Offline</p>
+        <p>{{ 'open-send-prv-message.offline' | translate }}</p>
         }
       </div>
 
@@ -84,7 +84,7 @@
       </div>
     </div>
     <button (click)="routeToUser(user)">
-      <img src="assets/img/messageIcon.svg" /> Message
+      <img src="assets/img/messageIcon.svg" /> {{ 'open-send-prv-message.message' | translate }}
     </button>
   </div>
   } }
