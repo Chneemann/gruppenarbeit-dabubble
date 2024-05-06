@@ -8,6 +8,7 @@ import { UserService } from '../../../../service/user.service';
 import { ChatReactions } from '../../../../interface/chat.interface';
 import { User } from '../../../../interface/user.interface';
 import { SharedService } from '../../../../service/shared.service';
+import { TranslateModule} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-options-menu',
@@ -17,6 +18,7 @@ import { SharedService } from '../../../../service/shared.service';
     SingleChatComponent,
     SmallBtnComponent,
     EmojiPickerComponent,
+    TranslateModule
   ],
   templateUrl: './options-menu.component.html',
   styleUrl: './options-menu.component.scss',

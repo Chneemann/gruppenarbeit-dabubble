@@ -30,13 +30,13 @@
       (click)="toggleEmojiPicker()"
     ></app-small-btn>
     <div class="btns">
-      <button type="reset" class="btn" (click)="closeEditMsg()">Cancel</button>
+      <button type="reset" class="btn" (click)="closeEditMsg()">{{ 'edit-msg.cancel' | translate }}</button>
       <button
         type="submit"
         class="btn"
         [disabled]="message.invalid || chat.message == originalMessage"
       >
-        Save
+      {{ 'edit-msg.save' | translate }}
       </button>
     </div>
   </div>

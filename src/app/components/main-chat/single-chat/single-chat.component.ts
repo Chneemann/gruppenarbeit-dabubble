@@ -15,6 +15,7 @@ import { PickerComponent } from '@ctrl/ngx-emoji-mart';
 import { EditMsgComponent } from './edit-msg/edit-msg.component';
 import { ReactionEmojisComponent } from './reaction-emojis/reaction-emojis.component';
 import { UserService } from '../../../service/user.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-single-chat',
@@ -32,6 +33,7 @@ import { UserService } from '../../../service/user.service';
     PickerComponent,
     EditMsgComponent,
     ReactionEmojisComponent,
+    TranslateModule
   ],
   templateUrl: './single-chat.component.html',
   styleUrl: './single-chat.component.scss',

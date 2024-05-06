@@ -17,6 +17,7 @@ import { Chat, ChatAnswers } from '../../interface/chat.interface';
 import { CommonModule } from '@angular/common';
 import { User } from '../../interface/user.interface';
 import { ChatMsgBoxComponent } from '../main-chat/chat-msg-box/chat-msg-box.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-secondary-chat',
@@ -26,6 +27,7 @@ import { ChatMsgBoxComponent } from '../main-chat/chat-msg-box/chat-msg-box.comp
     SingleChatComponent,
     ChatMsgBoxComponent,
     CommonModule,
+    TranslateModule
   ],
   templateUrl: './secondary-chat.component.html',
   styleUrl: './secondary-chat.component.scss',

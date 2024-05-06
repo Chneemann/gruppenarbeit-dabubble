@@ -2,7 +2,7 @@
   <div class="chat">
     <div class="header">
       <div class="headline">
-        <p>Thread</p>
+        <p>{{ 'secondary-chat.thread' | translate }}</p>
         @for (channel of getChannelName(); track channel) {
         <span># {{ channel.name }}</span>
         }
@@ -28,7 +28,7 @@
         }
       </div>
       <div class="spacer">
-        <p>{{ displayCountChatAnswer(chat.id) }} Answers</p>
+        <p>{{ displayCountChatAnswer(chat.id) }} {{ 'secondary-chat.answer' | translate }}</p>
         <div class="line"></div>
       </div>
       }

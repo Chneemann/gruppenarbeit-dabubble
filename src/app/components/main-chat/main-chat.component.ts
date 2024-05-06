@@ -24,6 +24,7 @@ import { ChannelInformationsComponent } from './channel-informations/channel-inf
 import { filter } from 'rxjs';
 import { OpenSendPrvMessageWindowComponent } from './show-channel-member/open-send-prv-message-window/open-send-prv-message-window.component';
 import { HighlightPipe } from '../../highlight.pipe';
+import { TranslateModule} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-main-chat',
@@ -39,7 +40,8 @@ import { HighlightPipe } from '../../highlight.pipe';
     ShowChannelMemberComponent,
     ChannelInformationsComponent,
     OpenSendPrvMessageWindowComponent,
-    HighlightPipe
+    HighlightPipe,
+    TranslateModule
   ],
   templateUrl: './main-chat.component.html',
   styleUrl: './main-chat.component.scss',

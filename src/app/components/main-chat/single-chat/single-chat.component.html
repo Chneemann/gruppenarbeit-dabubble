@@ -72,7 +72,7 @@
         <div class="msg">
           {{ chat.message }}
           @if (chat.edited) {
-          <span>(edited)</span>
+          <span>{{ 'single-chat.edit' | translate }}</span>
           }
         </div>
         <app-attachments
@@ -85,12 +85,12 @@
       <div class="answers">
         @if (chatService.getChatAnswers(chat.id).length > 0 && showAnswer) {
         <p (click)="openSecondaryChat(chat.id)">
-          {{ displayCountChatAnswer() }} Answers
+          {{ displayCountChatAnswer() }} {{ 'single-chat.answer' | translate }}
         </p>
-        <span>Last answer: {{ displayLastChatAnswer() }}</span>
+        <span>{{ 'single-chat.answer2' | translate }} {{ displayLastChatAnswer() }}</span>
 
         } @else if (showAnswer) {
-        <p (click)="openSecondaryChat(chat.id)">Answer...</p>
+        <p (click)="openSecondaryChat(chat.id)">{{ 'single-chat.answer3' | translate }}</p>
         }
       </div>
       } @else {

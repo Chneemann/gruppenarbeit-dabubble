@@ -19,6 +19,7 @@ import { SmallBtnComponent } from '../../../../shared/components/small-btn/small
 import { DownloadFilesService } from '../../../../service/download-files.service';
 import { EmojiPickerComponent } from '../../../../shared/components/emoji-picker/emoji-picker.component';
 import { UserService } from '../../../../service/user.service';
+import { TranslateModule} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-edit-msg',
@@ -30,6 +31,7 @@ import { UserService } from '../../../../service/user.service';
     PickerComponent,
     SmallBtnComponent,
     EmojiPickerComponent,
+    TranslateModule
   ],
   templateUrl: './edit-msg.component.html',
   styleUrl: './edit-msg.component.scss',

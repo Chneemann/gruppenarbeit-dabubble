@@ -77,9 +77,9 @@
       }
     </div>
     @if (getReactionDocId(reactionDialogId)[0].userId.length > 1) {
-    <p>haben reagiert.</p>
+    <p>{{ 'reaction-emojis.react' | translate }}</p>
     } @else {
-    <p>hat reagiert.</p>
+    <p>{{ 'reaction-emojis.react2' | translate }}</p>
     }
   </div>
   } }

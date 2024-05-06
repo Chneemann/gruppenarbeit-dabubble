@@ -68,13 +68,13 @@
         [ngClass]="{ mirror: user.id === userService.userId }"
         (click)="editMsg()"
       >
-        Edit message
+      {{ 'options-menu.edit' | translate }}
       </p>
       <p
         [ngClass]="{ mirror: user.id === userService.userId }"
         (click)="deleteMsg('chats')"
       >
-        Delete message
+      {{ 'options-menu.delete' | translate }}
       </p>
     </div>
   </div>
@@ -113,13 +113,13 @@
         [ngClass]="{ mirror: user.id === userService.userId }"
         (click)="editMsg()"
       >
-        Edit message
+      {{ 'options-menu.edit' | translate }}
       </p>
       <p
         [ngClass]="{ mirror: user.id === userService.userId }"
         (click)="deleteMsg('chat-answers')"
       >
-        Delete message
+      {{ 'options-menu.delete' | translate }}
       </p>
     </div>
   </div>

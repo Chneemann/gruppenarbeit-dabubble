@@ -21,6 +21,8 @@ import { EmojiComponent } from '@ctrl/ngx-emoji-mart/ngx-emoji';
 import { timeInterval } from 'rxjs';
 import { User } from '../../../../interface/user.interface';
 import { SharedService } from '../../../../service/shared.service';
+import { TranslateModule} from '@ngx-translate/core';
+
 @Component({
   selector: 'app-reaction-emojis',
   standalone: true,
@@ -29,6 +31,7 @@ import { SharedService } from '../../../../service/shared.service';
     SmallBtnComponent,
     EmojiPickerComponent,
     EmojiComponent,
+    TranslateModule
   ],
   templateUrl: './reaction-emojis.component.html',
   styleUrl: './reaction-emojis.component.scss',

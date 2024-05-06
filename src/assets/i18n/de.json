@@ -65,9 +65,11 @@
   "members":"Mitglieder",
   "leave":"Kanal verlassen"
 },
+
 "channel-msg-box": {
   "text":"Maximum number of files is 1."
 },
+
 "info": {
   "channelCreate":"Der Channel wurde von",
   "channelCreate2":"am",
@@ -76,6 +78,56 @@
   "talkTo":"Diese Unterhaltung findet nur zwischen",
   "talkTo2":"und dir statt."
 },
+
+"show-channel-member": {
+  "header":"Channel Mitglieder",
+  "addMember":"Mitglieder hinzufügen",
+  "result":"Keine Ergebnisse",
+  "add":"hinzufügen"
+},
+
+"open-send-prv-message": {
+  "profil":"Profil",
+  "aktiv":"Aktiv",
+  "offline":"Offline",
+  "adress":"E-Mail-Address",
+  "message":"Nachricht"
+},
+
+"main-chat": {
+  "message":"neue Nachricht"
+},
+
+"edit-msg": {
+  "save":"Speichern",
+  "cancel":"Abbrechen"
+},
+
+"options-menu": {
+  "delete":"Nachricht löschen",
+  "edit":"Nachricht bearbeiten"
+},
+
+"reaction-emojis": {
+  "react":"haben reagiert.",
+  "react2":"hat reagiert."
+},
+
+"single-chat": {
+  "edit":"(bearbeitet)",
+  "answer":"Antworten",
+  "answer2":"Letzte Antwort:",
+  "answer3":"Antwort..."
+},
+
+"secondary-chat": {
+  "thread":"Thread",
+  "answer":"Antworten"
+},
+
+
+
+
 
 
 
