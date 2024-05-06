@@ -9,6 +9,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { getAuth } from 'firebase/auth';
 import { confirmPasswordReset } from 'firebase/auth';
 import { Subscription } from 'rxjs';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-password-reset',
@@ -20,6 +21,7 @@ import { Subscription } from 'rxjs';
     FooterComponent,
     RouterModule,
     SmallBtnComponent,
+    TranslateModule
   ],
   templateUrl: './password-reset.component.html',
   styleUrl: './password-reset.component.scss',
@@ -28,11 +30,12 @@ export class PasswordResetComponent {
   password: string = '';
   passwordRepeat: string = '';
   oobCode: string = '';
+  private queryParamsSubscription: Subscription = new Subscription();
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private queryParamsSubscription: Subscription
+ 
   ) {}
 
 

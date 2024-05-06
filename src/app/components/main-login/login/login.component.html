@@ -2,12 +2,11 @@
   <app-start-header></app-start-header>
   <div class="loginContainer">
     <div class="loginTop">
-      <span>Anmeldung</span>
+      <span>{{ 'login.header' | translate }}</span>
     </div>
     <div class="loginInfoText">
       <span
-        >Wir empfehlen dir, die E-Mail-Adresse zu nutzen, die du bei der Arbeit
-        verwendest.</span
+        >{{ 'login.infoText' | translate }}</span
       >
     </div>
     <form (ngSubmit)="onSubmit()" #contactForm="ngForm" class="contactForm">
@@ -20,7 +19,7 @@
           id="email"
           name="email"
           type="email"
-          placeholder="email"
+          placeholder="{{ 'login.inputField' | translate }}"
           required
           [ngClass]="{ aktivInput: emailField.valid && emailField.touched }"
           pattern="[^@]+@[^.]+\..+"
@@ -37,7 +36,7 @@
           minlength="6"
           [(ngModel)]="this.loginService.password"
           name="password"
-          placeholder="Passwort"
+          placeholder="{{ 'login.inputField2' | translate }}"
           id="message"
           required
           [ngClass]="{
@@ -54,18 +53,18 @@
       </div>
 
       <div class="passwordContainer">
-        <span routerLink="/passwordForget">Passwort vergessen?</span>
+        <span routerLink="/passwordForget">{{ 'login.midText' | translate }}</span>
       </div>
 
       <div class="separatorContainer">
         <div></div>
-        <span>ODER</span>
+        <span>{{ 'login.midSeperator' | translate }}</span>
         <div></div>
       </div>
 
       <div (click)="loginService.googleLogin()" class="googleLogingContainer">
         <img src="/assets/img/login/google.svg" alt="" />
-        <span>Anmeldung mit Google</span>
+        <span>{{ 'login.googleBtn' | translate }}</span>
       </div>
 
       <div class="loginBottom">
@@ -74,24 +73,24 @@
           [ngClass]="{ aktivButton: contactForm.valid }"
           [disabled]="!contactForm.valid"
         >
-          Anmelden
+        {{ 'login.BtnLeft' | translate }}
         </button>
         <button
           type="button"
           class="guestButton"
           (click)="loginService.guestLogin()"
         >
-          Gäste-Login
+        {{ 'login.BtnRight' | translate }}
         </button>
       </div>
     </form>
   </div>
   <div class="mobileRegisterContainer">
     <div>
-      <span>Neu bei DABubble?</span>
+      <span> {{ 'login.topText' | translate }}</span>
       <div class="mobileCreateAccountContainer">
         <span routerLink="/register" class="mobileCreateAccoun"
-          >Konto erstellen</span
+          > {{ 'login.topText2' | translate }}</span
         >
       </div>
     </div>

@@ -11,12 +11,11 @@
         >
         </app-small-btn>
       </div>
-      <span>Konto erstellen</span>
+      <span> {{ 'createAccount.header' | translate }}</span>
     </div>
     <div class="registerInfoText">
       <span
-        >Mit deinem Namen und deiner E-Mail-Adresse hast du dein neues
-        DABubble-Konto.</span
+        >{{ 'createAccount.infoText' | translate }}</span
       >
     </div>
     <form
@@ -33,7 +32,7 @@
           id="name"
           name="name"
           type="text"
-          placeholder="Name und Nachname"
+          placeholder="{{ 'createAccount.inputField' | translate }}"
           required
           [ngClass]="{ aktivInput: nameField.valid && nameField.touched }"
         />
@@ -50,7 +49,7 @@
           id="email"
           name="email"
           type="email"
-          placeholder="email"
+          placeholder="{{ 'createAccount.inputField2' | translate }}"
           required
           [ngClass]="{ aktivInput: emailField.valid && emailField.touched }"
           pattern="[^@]+@[^.]+\..+"
@@ -67,7 +66,7 @@
           minlength="6"
           [(ngModel)]="loginService.password"
           name="password"
-          placeholder="Passwort"
+          placeholder="{{ 'createAccount.inputField3' | translate }}"
           id="message"
           required
           [ngClass]="{
@@ -94,10 +93,10 @@
           />
         </div>
         <span
-          >Ich stimme der
+          >{{ 'createAccount.midText' | translate }}
           <span class="fontColor" [routerLink]="['/Datenschutz']"
-            >Datenschutzerklärung </span
-          >zu.</span
+            >{{ 'createAccount.midText2' | translate }} </span
+          >{{ 'createAccount.midText3' | translate }}</span
         >
       </div>
       <div class="registerBottom">
@@ -105,7 +104,7 @@
           [ngClass]="{ aktivButton: isChecked && contactForm.valid }"
           [disabled]="!isChecked || !contactForm.valid"
         >
-          Weiter
+        {{ 'createAccount.Btn' | translate }}
         </button>
       </div>
     </form>

@@ -8,6 +8,7 @@ import { getAuth, sendPasswordResetEmail } from 'firebase/auth';
 import { Firestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { StartHeaderComponent } from '../../../shared/components/login/start-header/start-header.component';
+import { TranslateModule} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-password-forget',
@@ -21,6 +22,7 @@ import { StartHeaderComponent } from '../../../shared/components/login/start-hea
     RouterModule,
     SmallBtnComponent,
     StartHeaderComponent,
+    TranslateModule
   ],
 })
 
@@ -42,7 +44,7 @@ export class PasswordForgetComponent {
     sendPasswordResetEmail(auth, this.email)
       .then(() => {
         ngForm.resetForm(ngForm);
-        // this.router.navigate(['/login']);  später zum weiter leiten einmal abklären 
+         this.router.navigate(['/login']);
       })
       .catch((error) => {
         const errorCode = error.code;

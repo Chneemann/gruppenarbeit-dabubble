@@ -5,6 +5,7 @@ import { RouterLink } from '@angular/router';
 import { FooterComponent } from '../../../shared/components/login/footer/footer.component';
 import { CommonModule } from '@angular/common';
 import { StartHeaderComponent } from '../../../shared/components/login/start-header/start-header.component';
+import { TranslateModule} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +18,7 @@ import { StartHeaderComponent } from '../../../shared/components/login/start-hea
     FooterComponent,
     RouterLink,
     StartHeaderComponent,
+    TranslateModule
   ],
 })
 export class LoginComponent {

@@ -7,6 +7,7 @@ import { SmallBtnComponent } from '../../../shared/components/small-btn/small-bt
 import { FooterComponent } from '../../../shared/components/login/footer/footer.component';
 import { loginService } from '../../../service/login.service';
 import { StartHeaderComponent } from '../../../shared/components/login/start-header/start-header.component';
+import { TranslateModule} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-register',
@@ -20,6 +21,7 @@ import { StartHeaderComponent } from '../../../shared/components/login/start-hea
     FooterComponent,
     RouterLink,
     StartHeaderComponent,
+    TranslateModule
   ],
 })
 export class RegisterComponent {

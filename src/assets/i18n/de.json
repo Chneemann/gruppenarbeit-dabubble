@@ -1,4 +1,62 @@
 {
+"login": {
+  "header":"Anmeldung",
+  "infoText":"Wir empfehlen dir, die E-Mail-Adresse zu nutzen, die du bei der Arbeit verwendest.",
+  "inputField":"beispielname@email.com",
+  "inputField2":"Passwort",
+  "midText":"Passwort vergessen?",
+  "midSeperator":"ODER",
+  "googleBtn":"Anmeldung mit Google",
+  "BtnLeft":"Anmelden",
+  "BtnRight":"Gäste-Login",
+  "topText":"Neu bei DABubble?",
+  "topText2":"Konto erstellen"
+},
+
+"createAccount": {
+  "header":"Konto erstellen",
+  "infoText":"Mit deinem Namen und deiner E-Mail-Adresse hast du dein neues DABubble-Konto.",
+  "inputField":"Name und Nachname",
+  "inputField2":"beispielname@email.com",
+  "inputField3":"Passwort",
+  "midText":"Ich stimme der",
+  "midText2":"Datenschutzerklärung",
+  "midText3":"zu.",
+  "Btn":"Weiter"
+},
+
+"chooseAvatar": {
+  "header":"Wähle deinen Avatar",
+  "avatarInfo":"Aus der Liste wählen",
+  "ownAvatar":"eigenes Bild verwenden",
+  "avatarBtn":"Datei hochladen",
+  "Btn":"Weiter"
+},
+
+"passwordForget": {
+  "header":"Passwort zurücksetzen",
+  "infoText":"Bitte geben Sie Ihre E-Mail-Adresse ein.",
+  "inputfield":"beispielname@email.com",
+  "infoTextBottom":"Wir senden Ihnen eine E-Mail, Über die Sie Ihr Passwort ändern können.",
+  "Btn":"E-Mail senden"
+},
+
+"passwordReset": {
+  "header":"Passwort zurücksetzen",
+  "inputfield":"Neues Passwort",
+  "inputfield2":"Neues Passwort bestätigen",
+  "Btn":"Passwort ändern"
+},
+
+
+
+
+
+
+
+
+
+
   "imprint": {
     "headline": "Imprint",
     "tmg": "Angaben gemäß §5 TMG",

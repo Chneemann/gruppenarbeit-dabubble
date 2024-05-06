@@ -7,6 +7,7 @@ import { Firestore } from '@angular/fire/firestore';
 import { CommonModule } from '@angular/common';
 import { loginService } from '../../../service/login.service';
 import { StartHeaderComponent } from '../../../shared/components/login/start-header/start-header.component';
+import { TranslateModule} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-choose-avatar',
@@ -19,6 +20,7 @@ import { StartHeaderComponent } from '../../../shared/components/login/start-hea
     RouterModule,
     SmallBtnComponent,
     CommonModule,
+    TranslateModule
   ],
 })
 export class ChooseAvatarComponent {
