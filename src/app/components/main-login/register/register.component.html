@@ -37,7 +37,7 @@
           [ngClass]="{ aktivInput: nameField.valid && nameField.touched }"
         />
         @if (!nameField.valid && nameField.touched) {
-        <p class="error">*Name ist erforderlich.</p>
+        <p class="error">{{ 'createAccount.errorText' | translate }}</p>
         }
       </div>
       <div class="inputContainer">
@@ -55,7 +55,7 @@
           pattern="[^@]+@[^.]+\..+"
         />
         @if (!emailField.valid && emailField.touched) {
-        <p class="error">*Email ist erforderlich.</p>
+        <p class="error">{{ 'createAccount.errorText2' | translate }}</p>
         }
       </div>
       <div class="inputContainer">
@@ -77,7 +77,7 @@
         />
         @if (!passwordField.valid && passwordField.touched) {
         <p class="error">
-          *Bitte geben Sie ein Passwort ein (mindestens 6 Zeichen).
+          {{ 'createAccount.errorText3' | translate }}
         </p>
         }
       </div>

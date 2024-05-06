@@ -25,7 +25,7 @@
           pattern="[^@]+@[^.]+\..+"
         />
         @if (!emailField.valid && emailField.touched) {
-        <p class="error">*Email ist erforderlich.</p>
+        <p class="error">{{ 'login.errorText' | translate }}</p>
         }
       </div>
       <div class="inputContainer">
@@ -46,7 +46,7 @@
           rows="10"
         />
         @if (!passwordField.valid && passwordField.touched) {
-        <p class="error">*Passwort ist erforderlich.</p>
+        <p class="error">{{ 'login.errorText2' | translate }}</p>
         } @if (loginService.errorMessage) {
         <p class="error">{{ loginService.errorMessage }}</p>
         }

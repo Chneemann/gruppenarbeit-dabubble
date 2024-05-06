@@ -35,7 +35,6 @@ export class PasswordResetComponent {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
- 
   ) {}
 
 

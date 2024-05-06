@@ -10,7 +10,9 @@
   "BtnLeft":"Anmelden",
   "BtnRight":"Gäste-Login",
   "topText":"Neu bei DABubble?",
-  "topText2":"Konto erstellen"
+  "topText2":"Konto erstellen",
+  "errorText":"*Email ist erforderlich.",
+  "errorText2":"*Passwort ist erforderlich."
 },
 
 "createAccount": {
@@ -22,7 +24,10 @@
   "midText":"Ich stimme der",
   "midText2":"Datenschutzerklärung",
   "midText3":"zu.",
-  "Btn":"Weiter"
+  "Btn":"Weiter",
+  "errorText":"*Name ist erforderlich.",
+  "errorText2":"*Email ist erforderlich.",
+  "errorText3":"*Bitte geben Sie ein Passwort ein (mindestens 6 Zeichen)."
 },
 
 "chooseAvatar": {
@@ -38,14 +43,17 @@
   "infoText":"Bitte geben Sie Ihre E-Mail-Adresse ein.",
   "inputfield":"beispielname@email.com",
   "infoTextBottom":"Wir senden Ihnen eine E-Mail, Über die Sie Ihr Passwort ändern können.",
-  "Btn":"E-Mail senden"
+  "Btn":"E-Mail senden",
+  "errorText":"*Email ist erforderlich."
 },
 
 "passwordReset": {
   "header":"Passwort zurücksetzen",
   "inputfield":"Neues Passwort",
   "inputfield2":"Neues Passwort bestätigen",
-  "Btn":"Passwort ändern"
+  "Btn":"Passwort ändern",
+  "errorText":"*Bitte geben Sie ein neus Passwort ein (mindestens 6 Zeichen).",
+  "errorText2":"*Die Passwörter stimmen nicht überein."
 },
 
 
