@@ -19,6 +19,11 @@
     [output]="'id'"
     (emojiOutputEmitter)="emojiOutputEmitter($event, chat.id)"
     (emojiVisibleEmitter)="emojiVisibleEmitter($event)"
+    [ngStyle]="{
+      left: user.id === userService.userId ? 'unset' : '',
+      right: user.id === userService.userId ? '20px' : '',
+      
+    }"
   ></app-emoji-picker>
   }
   <div class="emojiSection">
@@ -67,6 +72,7 @@
       <div class="user">
         {{ getUserId(reactionUId)[0].firstName }}
         {{ getUserId(reactionUId)[0].lastName }}
+        @if (getUserId(reactionUId)[0].id == userService.userId) { (You)}
       </div>
       }
     </div>
