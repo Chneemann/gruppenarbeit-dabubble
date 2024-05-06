@@ -38,12 +38,19 @@ section {
   .sendIcon {
     padding: 6px;
     cursor: pointer;
+    transform: 0.3 ease-in-out;
     &:hover {
       scale: 1.1;
       filter: brightness(0) saturate(100%) invert(56%) sepia(97%)
         saturate(1270%) hue-rotate(204deg) brightness(95%) contrast(94%);
     }
   }
+}
+
+.sendIconDisabled{
+  padding: 6px;
+  transform: 0.3 ease-in-out;
+  filter: brightness(0) saturate(100%) invert(78%) sepia(4%) saturate(4098%) hue-rotate(207deg) brightness(99%) contrast(98%);
 }
 
 .verticalLine {

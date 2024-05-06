@@ -41,10 +41,11 @@ export class ChatMsgBoxComponent {
     'assets/img/pdfIcon.svg',
     'assets/img/videoIcon.svg',
   ];
-  public textArea: string = '';
+  textArea: string = '';
   isEmojiPickerVisible: boolean | undefined;
   currentChatValue: string = '';
   showTargetMember: boolean = true;
+
 
   constructor(
     private route: Router,
@@ -54,7 +55,7 @@ export class ChatMsgBoxComponent {
     private chatService: ChatService,
     public channelService: ChannleService,
     public toggleBoolean: ToggleBooleanService
-  ) {}
+  ) {  }
 
 
   /**
@@ -177,8 +178,10 @@ export class ChatMsgBoxComponent {
    * @param e The keyboard event.
    */
   sendMessageWithEnter(e: KeyboardEvent) {
-    if (e.keyCode === 13) {
-      this.sendMessage();
+    if (this.textArea.trim() !== ''){
+      if (e.keyCode === 13) {
+        this.sendMessage();
+      } 
     }
   }
 
@@ -187,7 +190,7 @@ export class ChatMsgBoxComponent {
    * Sends the message to the target channel.
    */
   async sendMessage() {
-    if (this.currentChannel) {
+    if (this.currentChannel && this.textArea.trim() !== '') {
       const messageRef = collection(this.firestore, this.target);
       const messageData = this.checkCollection(this.target);
       if (messageData) {
@@ -201,8 +204,6 @@ export class ChatMsgBoxComponent {
       } else {
         console.error('Invalid target:', this.target);
       }
-    } else {
-      console.error('this.currentChannel is empty');
     }
     this.forwardToChannel();
     this.resetValues();
@@ -217,7 +218,7 @@ export class ChatMsgBoxComponent {
    */
   checkCollection(target: string): MessageData | null {
     let messageData: Partial<MessageData> = {
-      message: this.currentChatValue,
+      message: this.textArea,
       publishedTimestamp: Math.floor(Date.now() / 1000),
       userId: this.userService.userId,
       edited: false,
@@ -276,7 +277,7 @@ export class ChatMsgBoxComponent {
    * Resets input values after sending the message.
    */
   resetValues() {
-    this.currentChatValue = '';
+    this.textArea = '';
     this.downloadFilesService.uploadFiles = [];
     this.hasFile = false;
     this.chatService.inputValue = '';
