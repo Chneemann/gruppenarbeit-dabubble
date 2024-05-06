@@ -72,11 +72,7 @@ export class ChatMsgBoxComponent {
    * @param event The file change event.
    */
   onFileChange(event: any) {
-    console.log(
-      'this.downloadFilesService.uploadFiles.length',
-      this.downloadFilesService.uploadFiles.length
-    );
-    if (this.downloadFilesService.uploadFiles.length <= 5) {
+    if (this.downloadFilesService.uploadFiles.length < 1) {
       this.currentFiles = event.target.files;
       this.hasFile = this.currentFiles!.length > 0;
       if (this.currentFiles) {
@@ -270,6 +266,15 @@ export class ChatMsgBoxComponent {
     if (this.chatService.getChannelId || this.chatService.getPrvChatId) {
       this.route.navigateByUrl(`/main/${this.checkChannelId()}`);
     }
+  }
+
+
+  /**
+   * Close popups by leaving with the mouse the chat-msg-box.
+   */
+  mouseLeave(){
+    this.isEmojiPickerVisible = false;
+    this.toggleBoolean.selectUserInMsgBox = false;
   }
 
 
