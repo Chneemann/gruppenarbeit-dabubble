@@ -1,5 +1,49 @@
 <section>
   <div class="darkBackground" (click)="closeWindow()"></div>
+  @if (showProfil) {
+  <!----- show prvProfil ----->
+  @for(i of talkToUser; track i){
+  <div class="whiteBox">
+    <div class="boxHeader">
+      <p>Profil</p>
+      <div class="positionCloseIcon" (click)="closeWindow()">
+        <img src="assets/img/closeIcon.svg" class="closeIcon" />
+      </div>
+    </div>
+    <img src="{{ i.avatar }}" class="profileImg" />
+    <div class="detailsBox">
+      <div class="editBtnPosition">
+        <p class="name">{{ i.firstName }} {{ i.lastName }}</p>
+      </div>
+
+      <div class="statusBox">
+        <img
+          src="assets/img/{{ i.status ? 'onlineRing.svg' : 'offlineRing.svg' }}"
+          class="onlineIcon"
+        />
+        @if (i.status) {
+        <p class="fontColorGreen">Aktiv</p>
+        } @else {
+        <p>Offline</p>
+        }
+      </div>
+
+      <div class="emailBox">
+        <img src="assets/img/mail-icon.svg" />
+        <div class="email">
+          <p>E-Mail-Address</p>
+          <a
+            href="mailto:wwweewefeff&#64;dede.de"
+            target="_blank"
+            class="fontNunito"
+            >{{ i.email }}</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+  } } @else {
+  <!----- show channelMember ----->
   @for(i of user; track i){
   <div class="whiteBox">
     <div class="boxHeader">
@@ -43,5 +87,5 @@
       <img src="assets/img/messageIcon.svg" /> Message
     </button>
   </div>
-  }
+  } }
 </section>

@@ -15,8 +15,11 @@ import { Router } from '@angular/router';
 })
 export class OpenSendPrvMessageWindowComponent {
   @Input() user!: User[];
+  @Input() talkToUser!: User[];
   @Input() openUserWindowBoolean!: boolean;
+  @Input() showProfil!: boolean;
   @Output() closeUserWondow = new EventEmitter<boolean>();
+  @Output() showProfilWindow = new EventEmitter<boolean>();
   isOnline: boolean = false;
 
   constructor(
@@ -28,7 +31,9 @@ export class OpenSendPrvMessageWindowComponent {
 
   closeWindow() {
     this.openUserWindowBoolean = false;
+    this.showProfil = false;
     this.closeUserWondow.emit(this.openUserWindowBoolean);
+    this.showProfilWindow.emit(this.showProfil);
   }
 
   closeEverything() {

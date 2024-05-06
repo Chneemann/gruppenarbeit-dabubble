@@ -165,4 +165,10 @@
     [currentChannel]="currentChannel"
   ></app-channel-informations>
   } } }
+  @if (showProfil) {
+    <app-open-send-prv-message-window [showProfil]="showProfil"
+    (showProfilWindow)="getShowProfilWindowBoolean($event)"
+    [talkToUser]="talkToUser"
+    ></app-open-send-prv-message-window>
+  }
 </section>

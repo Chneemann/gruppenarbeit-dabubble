@@ -22,6 +22,7 @@ import { ShowChannelMemberComponent } from './show-channel-member/show-channel-m
 import { SharedService } from '../../service/shared.service';
 import { ChannelInformationsComponent } from './channel-informations/channel-informations.component';
 import { filter } from 'rxjs';
+import { OpenSendPrvMessageWindowComponent } from './show-channel-member/open-send-prv-message-window/open-send-prv-message-window.component';
 
 @Component({
   selector: 'app-main-chat',
@@ -36,6 +37,7 @@ import { filter } from 'rxjs';
     SmallBtnComponent,
     ShowChannelMemberComponent,
     ChannelInformationsComponent,
+    OpenSendPrvMessageWindowComponent
   ],
   templateUrl: './main-chat.component.html',
   styleUrl: './main-chat.component.scss',
@@ -48,6 +50,9 @@ export class MainChatComponent {
   openSearchWindow: boolean = false;
   channelCreator: boolean = false;
   openMenu: boolean = false;
+  showProfil: boolean = false;
+  talkToUser!: User[];
+
 
   constructor(
     private route: Router,
@@ -65,6 +70,10 @@ export class MainChatComponent {
 
   closeEditEmitter(variable: boolean) {
     this.openMenu = variable;
+  }
+
+  getShowProfilWindowBoolean(value : boolean){
+    this.showProfil = value;
   }
 
   checkPrivatChatRouteEvent() {
@@ -167,8 +176,16 @@ export class MainChatComponent {
     const filteredChats = this.getPrvChatArray().filter(
       (prvChat) => prvChat.id == prvChatId
     );
-
+    this.getTalkToUser(filteredChats);
     return filteredChats;
+  }
+
+  getTalkToUser(filteredChat: PrvChannel[]){
+    const talkToUser = filteredChat[0].talkToUserId;
+    const getUser = this.userService.allUsers.filter(user => user.id === talkToUser);
+    if (getUser) {
+      this.talkToUser = getUser;
+    }
   }
 
   filterUser(talkToUserId: string) {
@@ -209,7 +226,8 @@ export class MainChatComponent {
   }
 
   openUserProfil() {
-    this.channelService.openPrvChat = true;
+    this.showProfil = true;
+    // this.channelService.openPrvChat = true;
   }
 
   chooseElement(element: Channel | User) {
