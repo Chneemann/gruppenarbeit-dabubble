@@ -58,12 +58,18 @@ export class SidebarDirectMessagesUserComponent {
    */
   displayPrivateChat(userId: string) {
     const creatorChannels = this.channelService.allPrvChannels.filter(
-      (user) => user.creatorId === userId
+      (channel) => channel.creatorId === userId
     );
     const talkToUserChannels = this.channelService.allPrvChannels.filter(
-      (user) => user.talkToUserId === userId
+      (channel) => channel.talkToUserId === userId
     );
-
-    return Array.from(new Set(creatorChannels.concat(talkToUserChannels)));
+    const allChannels = creatorChannels.concat(talkToUserChannels);
+    // Sort the channels so that the channel with corrent logged in userId comes first
+    allChannels.sort((a, b) => {
+      if (a.creatorId === userId) return -1;
+      if (b.creatorId === userId) return 1;
+      return 0;
+    });
+    return Array.from(new Set(allChannels));
   }
 }
