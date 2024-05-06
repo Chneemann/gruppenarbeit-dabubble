@@ -52,6 +52,7 @@ export class MainChatComponent {
   openMenu: boolean = false;
   showProfil: boolean = false;
   talkToUser!: User[];
+  routToPrvCHannel: boolean = false;
 
 
   constructor(
@@ -227,22 +228,34 @@ export class MainChatComponent {
 
   openUserProfil() {
     this.showProfil = true;
-    // this.channelService.openPrvChat = true;
   }
 
   chooseElement(element: Channel | User) {
     if ('firstName' in element) {
-      this.chatService.inputValue += `${element.firstName} ${element.lastName}`;
+      this.chatService.inputValue = `@${element.firstName} ${element.lastName}`;
       const getUserID = element.id!;
-      const getPrvChannel = this.channelService.allPrvChannels.filter(
-        (chat) => chat.talkToUserId == getUserID
-      );
-      this.chatService.getPrvChatId = getPrvChannel[0].id!;
+      this.routToPrvCHannel = true;
+      this.checkIfPrvChatExist(getUserID);
     } else {
-      this.chatService.inputValue += element.name;
+      this.chatService.inputValue = `#${element.name}`;
       this.chatService.getChannelId = element.id!;
     }
-    this.toggleBoolean.openSearchWindow = false;
+    this.toggleBoolean.openSearchWindow = false; 
+  }
+
+  checkIfPrvChatExist(userID: string){
+    const filterPrvChannelBoolean = this.channelService.allPrvChannels.some(
+      (chat) => chat.talkToUserId == userID);
+    if (!filterPrvChannelBoolean) {
+      this.userService.createPrvChannel(userID);
+      setTimeout(() => {
+        this.chatService.getPrvChatId = this.channelService.getChannelID;
+      }, 2000);
+    } else {
+      const filterPrvChannelValue = this.channelService.allPrvChannels.filter(
+        (chat) => chat.talkToUserId == userID);
+      this.chatService.getPrvChatId = filterPrvChannelValue[0].id!;
+    }
   }
 
   filterChannelForSelectedUser(currentChannel: string) {

@@ -28,6 +28,7 @@ export class ChannleService implements OnDestroy {
   allPrvChannels: PrvChannel[] = [];
   channelMembers: string[] = [];
   loggedInUser: string = '';
+  getChannelID: string = '';
 
   unsubChannel;
   unsubPrvChannel;
@@ -106,6 +107,7 @@ export class ChannleService implements OnDestroy {
   ): Promise<string | undefined> {
     try {
       const docRef = await addDoc(this.firesorePath(path), newChannel);
+      this.getChannelID = docRef.id;
       return docRef.id;
     } catch (err) {
       console.error('Error creating channel:', err);
