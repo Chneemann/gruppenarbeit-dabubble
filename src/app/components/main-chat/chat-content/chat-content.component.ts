@@ -54,11 +54,7 @@ export class ChatContentComponent implements AfterViewInit, AfterViewChecked {
 
   ngAfterViewInit() {
     this.scrollToBottom();
-    this.downloadFilesService.downloadedFiles.subscribe((files) => {
-      if (files.length > 0) {
-        this.filesLoaded = true;
-      }
-    });
+    this.checkIfLoadedFirebaseFiles();
   }
 
   ngAfterViewChecked() {
@@ -68,6 +64,10 @@ export class ChatContentComponent implements AfterViewInit, AfterViewChecked {
     }
   }
 
+  /**
+   * Updates the state of isNewMessage and optionally scrolls to the bottom.
+   * @param {boolean} variable - The new value for isNewMessage.
+   */
   editMsgEmitter(variable: boolean) {
     this.isNewMessage = variable;
     if (this.isNewMessage) {
@@ -75,6 +75,20 @@ export class ChatContentComponent implements AfterViewInit, AfterViewChecked {
     }
   }
 
+  /**
+   * Checks whether Firebase files have been loaded from the server
+   */
+  checkIfLoadedFirebaseFiles() {
+    this.downloadFilesService.downloadedFiles.subscribe((files) => {
+      if (files.length > 0) {
+        this.filesLoaded = true;
+      }
+    });
+  }
+
+  /**
+   * Scrolls to the bottom of the message body element.
+   */
   scrollToBottom(): void {
     if (this.messageBody) {
       const element = this.messageBody.nativeElement;
@@ -86,6 +100,43 @@ export class ChatContentComponent implements AfterViewInit, AfterViewChecked {
     }
   }
 
+  /**
+   * Checks if a message was published today.
+   * @param {number} timestamp - The timestamp of the message.
+   * @returns {boolean} True if the message was published today, otherwise false.
+   */
+  isPublishedToday(timestamp: number): boolean {
+    return this.getAllTodayChats(this.currentChannel).includes(timestamp);
+  }
+
+  /**
+   * Retrieves timestamps of all messages published today in a specified channel.
+   * @param {string} currentChannel - The current channel.
+   * @returns {number[]} An array of timestamps of messages published today in the channel.
+   */
+  getAllTodayChats(currentChannel: string) {
+    const todayDate = new Date();
+    const todayTimestamps = this.chatService.allChats
+      .filter((chat) => chat.channelId === currentChannel)
+      .filter((chat) => {
+        const chatDate = new Date(chat.publishedTimestamp * 1000);
+        return (
+          chatDate.getFullYear() === todayDate.getFullYear() &&
+          chatDate.getMonth() === todayDate.getMonth() &&
+          chatDate.getDate() === todayDate.getDate()
+        );
+      })
+      .map((chat) => chat.publishedTimestamp);
+
+    todayTimestamps.shift();
+    return todayTimestamps;
+  }
+
+  /**
+   * Converts a timestamp to a formatted date string.
+   * @param {number} timestamp - The timestamp to convert.
+   * @returns {string} The formatted date string.
+   */
   convertTimestampDate(timestamp: number) {
     const currentDate = new Date();
     const inputDate = new Date(timestamp * 1000);

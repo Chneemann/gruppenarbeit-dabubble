@@ -9,11 +9,13 @@
     <app-info [currentChannel]="currentChannel"></app-info>
     @for (chat of getChatChannel(currentChannel); track chat; let i = $index) {
     @for (user of getChatUsers(chat.userId); track user) {
+    @if(!isPublishedToday(chat.publishedTimestamp)) {
     <div class="line">
       <span class="lines"></span>
       <p>{{ convertTimestampDate(chat.publishedTimestamp) }}</p>
       <span class="lines"></span>
     </div>
+    }
     <div class="singleChat">
       <app-single-chat
         [user]="user"
