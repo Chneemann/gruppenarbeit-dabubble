@@ -9,6 +9,7 @@ import { User } from '../../../interface/user.interface';
 import { SharedService } from '../../../service/shared.service';
 import { SmallBtnComponent } from '../../../shared/components/small-btn/small-btn.component';
 import { OpenSendPrvMessageWindowComponent } from '../show-channel-member/open-send-prv-message-window/open-send-prv-message-window.component';
+import { TranslateModule} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-channel-informations',
@@ -18,6 +19,7 @@ import { OpenSendPrvMessageWindowComponent } from '../show-channel-member/open-s
     FormsModule,
     SmallBtnComponent,
     OpenSendPrvMessageWindowComponent,
+    TranslateModule
   ],
   templateUrl: './channel-informations.component.html',
   styleUrl: './channel-informations.component.scss',

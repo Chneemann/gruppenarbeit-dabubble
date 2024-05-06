@@ -56,6 +56,30 @@
   "errorText2":"*Die Passwörter stimmen nicht überein."
 },
 
+"channel-informations": {
+  "header":"Channel Name",
+  "channelInfo":"Beschreibung",
+  "channelInfo2":"keine Beschreibung.",
+  "channelMadeBy":"Erstellt von",
+  "channelErrorText":"*Nur der Ersteller kann den Kanal bearbeiten",
+  "members":"Mitglieder",
+  "leave":"Kanal verlassen"
+},
+"channel-msg-box": {
+  "text":"Maximum number of files is 1."
+},
+"info": {
+  "channelCreate":"Der Channel wurde von",
+  "channelCreate2":"am",
+  "channelCreate3":" erstellt. Das ist der Anfang des Channels",
+  "notice":"Dieser Raum ist nur für dich da. Mache dir Notizen, liste deine To-dos auf oder bewahre Links und Dateien griffbereit auf. Du kannst hier auch gerne Dinge mit dir selbst besprechen.",
+  "talkTo":"Diese Unterhaltung findet nur zwischen",
+  "talkTo2":"und dir statt."
+},
+
+
+
+
 
 
 

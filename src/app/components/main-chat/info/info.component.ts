@@ -1,11 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { ChannleService } from '../../../service/channle.service';
 import { UserService } from '../../../service/user.service';
+import { TranslateModule} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-info',
   standalone: true,
-  imports: [],
+  imports: [ TranslateModule ],
   templateUrl: './info.component.html',
   styleUrl: './info.component.scss',
 })

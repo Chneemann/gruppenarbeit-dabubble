@@ -13,6 +13,8 @@ import { ChannleService } from '../../../service/channle.service';
 import { ToggleBooleanService } from '../../../service/toggle-boolean.service';
 import { User } from '../../../interface/user.interface';
 import { MessageData } from '../../../interface/chat.interface';
+import { TranslateModule} from '@ngx-translate/core';
+
 @Component({
   selector: 'app-chat-msg-box',
   standalone: true,
@@ -22,6 +24,7 @@ import { MessageData } from '../../../interface/chat.interface';
     PickerComponent,
     EmojiPickerComponent,
     SmallBtnComponent,
+    TranslateModule
   ],
   templateUrl: './chat-msg-box.component.html',
   styleUrl: './chat-msg-box.component.scss',

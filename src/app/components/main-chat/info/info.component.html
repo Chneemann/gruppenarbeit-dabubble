@@ -3,13 +3,12 @@
   @if (getChannel(currentChannel).length > 0) {
   <div class="headline"># {{ getChannel(currentChannel)[0].name }}</div>
   <p>
-    Der Channel wurde von @for (user of
+    {{ 'info.channelCreate' | translate }} @for (user of
     getChatUsers(getChannel(currentChannel)[0].creator); track user) {
     {{ user.firstName }}
     {{ user.lastName }}
-    } am
-    {{ timeConverter(getChannel(currentChannel)[0].createdDate) }} erstellt. Das
-    ist der Anfang des Channels
+    } {{ 'info.channelCreate2' | translate }}
+    {{ timeConverter(getChannel(currentChannel)[0].createdDate) }} {{ 'info.channelCreate3' | translate }}
     <span>#{{ getChannel(currentChannel)[0].name }}</span
     >.
   </p>
@@ -28,9 +27,7 @@
     }
   </div>
   <p>
-    Dieser Raum ist nur für dich da. Mache dir Notizen, liste deine To-dos auf
-    oder bewahre Links und Dateien griffbereit auf. Du kannst hier auch gerne
-    Dinge mit dir selbst besprechen.
+    {{ 'info.notice' | translate }}
   </p>
   } @else {
   <!-- Privat Chat (creatorId) -->
@@ -45,10 +42,10 @@
     }
   </div>
   <p>
-    Diese Unterhaltung findet nur zwischen @for (user of
+    {{ 'info.talkTo' | translate }} @for (user of
     getChatUsers(getPrivatChannel(currentChannel)[0].creatorId); track user) {
     <span>&commat;{{ user.firstName }}{{ user.lastName }}</span>
-    } und dir statt.
+    } {{ 'info.talkTo2' | translate }}
   </p>
   } @else {
   <!-- Privat Chat (talkToUserId) -->
@@ -63,11 +60,11 @@
     }
   </div>
   <p>
-    Diese Unterhaltung findet nur zwischen @for (user of
+    {{ 'info.talkTo' | translate }} @for (user of
     getChatUsers(getPrivatChannel(currentChannel)[0].talkToUserId); track user)
     {
     <span>&commat;{{ user.firstName }} {{ user.lastName }}</span>
-    } und dir statt.
+    } {{ 'info.talkTo2' | translate }}
   </p>
   } } }
 </section>
