@@ -248,9 +248,6 @@ export class MainChatComponent {
       (chat) => chat.talkToUserId == userID);
     if (!filterPrvChannelBoolean) {
       this.userService.createPrvChannel(userID);
-      setTimeout(() => {
-        this.chatService.getPrvChatId = this.channelService.getChannelID;
-      }, 2000);
     } else {
       const filterPrvChannelValue = this.channelService.allPrvChannels.filter(
         (chat) => chat.talkToUserId == userID);
