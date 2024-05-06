@@ -3,7 +3,7 @@
   @if (!toggleBoolean.closeChannelMemberWindow) {
   <div class="whiteBox">
     <div class="posiotionHeader">
-      <p>Channel members</p>
+      <p>{{ 'show-channel-member.header' | translate }}</p>
       <app-small-btn
         [imgSrc]="'closeIcon.svg'"
         [imgSize]="'16px'"
@@ -31,14 +31,14 @@
     </div>
     <div class="addMemberBox" (click)="toggleBoolean.openAddMemberWindow(true)">
       <img src="assets/img/addPerson.svg" />
-      <p>Add member</p>
+      <p>{{ 'show-channel-member.addMember' | translate }}</p>
     </div>
   </div>
   } @else {
   <div class="addMemberToChannelBox">
     <div class="posiotionHeader">
       <div class="headline">
-        <p>Add member</p>
+        <p>{{ 'show-channel-member.addMember' | translate }}</p>
         @if (getChannelName(currentChannel)) {
         <span># {{ getCurrentChannelName }}</span>
         }
@@ -70,7 +70,7 @@
         [ngClass]="{ dBlock: showExistenUsers, dNone: !showExistenUsers }"
       >
         <div class="positionOfAllUsersBox">
-          @if(getSearchedUser.length <= 0) { <span>No results</span> } @for(user
+          @if(getSearchedUser.length <= 0) { <span>{{ 'show-channel-member.result' | translate }}</span> } @for(user
           of getSearchedUser; track user){ @if(!isUserAlreadySelectet(user)) {
           <div class="userBox" (click)="chooseUser(user)">
             <div class="positionImgsBox">
@@ -104,7 +104,7 @@
         [disabled]="getSelectedUsers.length === 0"
         (click)="addUserToChannel()"
       >
-        Add
+      {{ 'show-channel-member.add' | translate }}
       </button>
     </div>
   </div>

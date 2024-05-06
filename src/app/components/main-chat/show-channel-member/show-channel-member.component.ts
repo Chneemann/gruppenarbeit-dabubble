@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { ChannleService } from '../../../service/channle.service';
 import { UserService } from '../../../service/user.service';
 import { OpenSendPrvMessageWindowComponent } from './open-send-prv-message-window/open-send-prv-message-window.component';
+import { TranslateModule} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-show-channel-member',
@@ -16,6 +17,7 @@ import { OpenSendPrvMessageWindowComponent } from './open-send-prv-message-windo
     SmallBtnComponent,
     FormsModule,
     OpenSendPrvMessageWindowComponent,
+    TranslateModule
   ],
   templateUrl: './show-channel-member.component.html',
   styleUrl: './show-channel-member.component.scss',
