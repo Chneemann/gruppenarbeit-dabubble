@@ -43,7 +43,7 @@ export class loginService {
 
   constructor(private router: Router, private userService: UserService) {}
 
-  // -------------------- login start seite ------------------------------->
+  // -------------------- login start ------------------------------->
 
   /**
    * Authenticates a user using their email and password, fetches the user document, and handles errors.
@@ -106,24 +106,6 @@ export class loginService {
         this.errorMessage = '*Bitte Überprüfe deine Eingaben.';
         break;
     }
-  }
-
-  /**
-   * Updates the online status of the user in Firestore.
-   * @param userId The user's document ID in Firestore.
-   */
-  updateUserOnlineStatus(userId: string) {
-    const userDocRef = doc(this.firestore, 'users', userId);
-    const updates = {
-      status: true,
-    };
-    updateDoc(userDocRef, updates)
-      .then(() => {
-        console.error();
-      })
-      .catch((error) => {
-        console.error(error);
-      });
   }
 
   /**
@@ -194,6 +176,7 @@ export class loginService {
       this.currentUser = docRef.id;
       this.userService.userId = this.currentUser;
       await this.addUserToChannels(this.currentUser, publicChannels);
+      await this.addPrivateChannel(this.currentUser)
       this.email = '';
       this.password = '';
       this.router.navigate([`/main`]);
@@ -299,6 +282,26 @@ export class loginService {
     this.router.navigate([`/main`]);
   }
 
+    // -------------------- UserAddFunktions ------------------------------->
+
+  /**
+   * Updates the online status of the user in Firestore.
+   * @param userId The user's document ID in Firestore.
+   */
+  updateUserOnlineStatus(userId: string) {
+    const userDocRef = doc(this.firestore, 'users', userId);
+    const updates = {
+      status: true,
+    };
+    updateDoc(userDocRef, updates)
+      .then(() => {
+        console.error();
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
   /**
    * Adds the current user to specified channels in Firestore. It updates each channel document
    * to include the user's ID in an array of added users, ensuring that the user is part of the channel.
@@ -318,4 +321,25 @@ export class loginService {
       });
     });
   }
+
+  /**
+ * Asynchronously adds a private channel for the current user.
+ * 
+ * This method creates a new document in the 'prv-channels' collection within Firestore. The new document contains the creator's user ID for both the creator and recipient fields, implying a private or personal channel.
+ * 
+ * @param currentUser The user ID of the current user and the creator of the private channel.
+ * @async
+ * @returns {Promise<void>} A promise that resolves when the channel is successfully added or rejects with an error message if the operation fails.
+ */
+  async addPrivateChannel(currentUser: string) {
+    try {
+      await addDoc(collection(this.firestore, 'prv-channels'), {
+        creatorId: currentUser,
+        talkToUserId: currentUser
+      });
+    } catch (error) {
+      console.error("Fehler beim Erstellen des privaten Kanals: ", error);
+    }
+  }
 }
+
