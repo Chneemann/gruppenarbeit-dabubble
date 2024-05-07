@@ -16,7 +16,7 @@
     border-bottom-left-radius: 40px;
     border-bottom-right-radius: 40px;
     position: absolute;
-    top: 188px;
+    top: 200px;
     left: 460px;
     height: fit-content;
     overflow: none;
@@ -260,7 +260,7 @@
 @media screen and (max-width: $RESPONSIVE_THRESHOLD) {
   .menu {
     .whiteBox {
-      top: 188px;
+      top: 200px;
       left: 70px;
     }
   }

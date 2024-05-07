@@ -93,13 +93,18 @@ section {
 //----------- responsive ---------------
 
 @media screen and (max-width: $RESPONSIVE_THRESHOLD_MOBILE) {
+  section {
+    height: calc(100vh - 80px);
+    border-radius: 0;
+  }
+
   .header {
     height: 36px;
     padding: 12px;
   }
 
   .content {
-    height: calc(100vh - 428px);
+    height: calc(100vh - 350px);
   }
 
   .spacer {
