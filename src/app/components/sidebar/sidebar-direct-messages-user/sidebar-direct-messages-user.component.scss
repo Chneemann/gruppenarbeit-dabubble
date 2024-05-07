@@ -1,3 +1,5 @@
+@import "../../../../styles.scss";
+
 section {
   display: flex;
   flex-direction: column;
@@ -47,4 +49,11 @@ section {
   cursor: default;
   background-color: #edeefe;
   border-radius: 36px;
+}
+
+
+@media screen and (max-width: $RESPONSIVE_THRESHOLD_MOBILE) {
+  section {
+    max-height: 22vh;
+  }
 }
