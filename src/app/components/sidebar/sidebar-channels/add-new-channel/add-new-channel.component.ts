@@ -9,11 +9,12 @@ import { Channel } from '../../../../interface/channel.interface';
 import { Router } from '@angular/router';
 import { SharedService } from '../../../../service/shared.service';
 import { ToggleBooleanService } from '../../../../service/toggle-boolean.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-add-new-channel',
   standalone: true,
-  imports: [CommonModule, SmallBtnComponent, FormsModule],
+  imports: [CommonModule, SmallBtnComponent, FormsModule, TranslateModule],
   templateUrl: './add-new-channel.component.html',
   styleUrl: './add-new-channel.component.scss',
 })

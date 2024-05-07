@@ -11,7 +11,7 @@
   @if (!showNextWindow) {
   <div class="whiteWindow">
     <div class="posiotionHeader">
-      <p>Create channel</p>
+      <p>{{ 'add-new-channel.header' | translate }}</p>
       <app-small-btn
         [imgSrc]="'closeIcon.svg'"
         [imgSize]="'16px'"
@@ -21,13 +21,12 @@
       ></app-small-btn>
     </div>
     <span class="infoMsg"
-      >Channels are for your team to communicate. It is best if they are
-      topic-based.</span
+      >{{ 'add-new-channel.info' | translate }}</span
     >
     <div class="descriptionBox">
-      <p>Channel-Name</p>
+      <p>{{ 'add-new-channel.header2' | translate }}</p>
       &nbsp;
-      <span>(required)</span>
+      <span>{{ 'add-new-channel.required' | translate }}</span>
       <img
         class="hashtag"
         src="./../../../../../assets/img/hashtag.svg"
@@ -37,15 +36,15 @@
     <input
       type="text"
       class="textfieldStyle hashtagPadding"
-      placeholder="e.g. Cooperation projects (min. 6 letters)"
+      placeholder="{{ 'add-new-channel.placeholder' | translate }}"
       maxlength="20"
       [(ngModel)]="channelName"
       (keyup)="checkIfChannelNameIsValid(channelName)"
     />
     <div class="descriptionBox">
-      <p>Description</p>
+      <p>{{ 'add-new-channel.description' | translate }}</p>
       &nbsp;
-      <span>(optional)</span>
+      <span>{{ 'add-new-channel.optional' | translate }}</span>
     </div>
     <textarea
       id=""
@@ -53,7 +52,7 @@
       rows="10"
       class="textfieldStyle"
       [(ngModel)]="channelDescription"
-      placeholder="Write here which topics can be discussed in the channel."
+      placeholder="{{ 'add-new-channel.placeholder2' | translate }}"
     ></textarea>
     <div class="btnBox">
       <button
@@ -64,14 +63,14 @@
           furterBtnClass: channelService.btnIsValid
         }"
       >
-        Create
+      {{ 'add-new-channel.create' | translate }}
       </button>
     </div>
   </div>
   } @if (showNextWindow || showNextWindowMobile) {
   <div class="smalWhiteBox" (click)="toggleAddedUserBox()">
     <div class="headerAddPeople">
-      <h2>Add People</h2>
+      <h2> {{ 'add-new-channel.addPeople' | translate }}</h2>
       <app-small-btn
         [imgSrc]="'closeIcon.svg'"
         [imgSize]="'16px'"
@@ -88,7 +87,7 @@
         alt=""
         (click)="toggleBtnFalse()"
       />
-      <p>Add all members from&nbsp;<span>Devspace</span></p>
+      <p> {{ 'add-new-channel.addAll' | translate }}&nbsp;<span> {{ 'add-new-channel.devspace' | translate }}</span></p>
     </div>
     <div class="positionSelectionBtn">
       <img
@@ -97,7 +96,7 @@
         }}"
         (click)="toggleBtnTrue()"
       />
-      <p>Add certain people</p>
+      <p> {{ 'add-new-channel.add' | translate }}</p>
     </div>
     <div class="addedUserBox" *ngIf="changeImg">
       <div
@@ -141,7 +140,7 @@
       </div>
     </div>
     <div class="positionCreateBtn">
-      <button class="btnBox" (click)="addNewChannel()">Create</button>
+      <button class="btnBox" (click)="addNewChannel()"> {{ 'add-new-channel.create' | translate }}</button>
     </div>
   </div>
   }

@@ -125,6 +125,23 @@
   "answer":"Antworten"
 },
 
+"add-new-channel": {
+  "header":"Channel erstellen",
+  "info":"Channel dienen deinem Team zur Kommuniktaion. Am bestensollten sie themenbezogen sein #marketing zum Beispiel.",
+  "header2":"Channel-Name",
+  "required":"(erforderlich)",
+  "placeholder":"(mind. 6 Buchstaben)",
+  "placeholder2":"Schreiben Sie hier, welche Themen im Kanal besprochen werden können.",
+  "description":"Beschreibung",
+  "optional":"(optional)",
+  "create":"Erstellen",
+  "addPeople":"Leute hinzufügen",
+  "addAll":"Alle Mitglieder hinzufügen von",
+  "devspace":"Devspace",
+  "add":"Fügen Sie bestimmte Personen hinzu"
+
+},
+
 
 
 
