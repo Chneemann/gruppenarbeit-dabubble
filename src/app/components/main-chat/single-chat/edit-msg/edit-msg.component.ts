@@ -19,7 +19,7 @@ import { SmallBtnComponent } from '../../../../shared/components/small-btn/small
 import { DownloadFilesService } from '../../../../service/download-files.service';
 import { EmojiPickerComponent } from '../../../../shared/components/emoji-picker/emoji-picker.component';
 import { UserService } from '../../../../service/user.service';
-import { TranslateModule} from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-edit-msg',
@@ -31,7 +31,7 @@ import { TranslateModule} from '@ngx-translate/core';
     PickerComponent,
     SmallBtnComponent,
     EmojiPickerComponent,
-    TranslateModule
+    TranslateModule,
   ],
   templateUrl: './edit-msg.component.html',
   styleUrl: './edit-msg.component.scss',
@@ -54,16 +54,30 @@ export class EditMsgComponent {
     this.originalMessage = this.chat.message as string;
   }
 
+  /**
+   * Restore the original message and emit an event to close the edit message form.
+   */
   closeEditMsg() {
     this.chat.message = this.originalMessage;
     this.closeEditMsgEmitter.emit(false);
   }
 
+  /**
+   * Submit the edited message and update the chat.
+   * @param {string} chatId - The ID of the chat.
+   * @param {NgForm} form - The form containing the edited message.
+   */
   onSubmit(chatId: string, form: NgForm) {
     this.chatService.updateChat(chatId, form.value);
     this.closeEditMsg();
   }
 
+  /**
+   * Submit the message when the Enter key is pressed.
+   * @param {KeyboardEvent} e - The keyboard event.
+   * @param {string} chatId - The ID of the chat.
+   * @param {NgForm} form - The form containing the message.
+   */
   sendMessageWithEnter(e: KeyboardEvent, chatId: string, form: NgForm) {
     if (e.keyCode === 13) {
       this.onSubmit(chatId, form);
@@ -72,26 +86,46 @@ export class EditMsgComponent {
 
   // EMOJI
 
+  /**
+   * Add an emoji to the message.
+   * @param {any} $event - The emitted event containing the emoji.
+   */
   emojiOutputEmitter($event: any) {
     this.addEmoji($event);
   }
 
+  /**
+   * Add an emoji to the message.
+   * @param {any} event - The emitted event containing the emoji.
+   */
   public addEmoji(event: any) {
     this.chat.message = `${this.chat.message}${event}`;
     this.isEmojiPickerVisible = false;
   }
 
+  /**
+   * Toggle the visibility of the emoji picker.
+   */
   toggleEmojiPicker() {
     this.isEmojiPickerVisible = !this.isEmojiPickerVisible;
   }
 
   // FILES
 
+  /**
+   * Open the file in a new tab.
+   * @param {string} filePath - The path to the file.
+   */
   showCurrentFile(filePath: string) {
     const url = filePath;
     window.open(url, '_blank');
   }
 
+  /**
+   * Get the type of file based on its extension.
+   * @param {string} filePath - The path to the file.
+   * @returns {string} - The path to the corresponding file icon.
+   */
   getFileType(filePath: string): string {
     const fileName = filePath.split('?')[0].split('/').pop();
 
@@ -109,6 +143,10 @@ export class EditMsgComponent {
     return 'assets/img/documentIcon.svg';
   }
 
+  /**
+   * Delete a file.
+   * @param {string} file - The file to be deleted.
+   */
   deleteFile(file: string) {
     console.log('Deleted:' + file);
   }
