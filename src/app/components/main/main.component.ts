@@ -34,7 +34,7 @@ import { SharedService } from '../../service/shared.service';
     SidebarToggleComponent,
     CommonModule,
     AddNewChannelComponent,
-    OverlayComponent
+    OverlayComponent,
   ],
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss',
@@ -63,12 +63,18 @@ export class MainComponent {
     this.updateViewWidth();
   }
 
+  /**
+   * Checks if the user is logged in.
+   */
   ifUserLogin() {
     if (this.userService.userId == '') {
       this.route.navigateByUrl('/login');
     }
   }
 
+  /**
+   * Subscribes to route params and updates the current channel.
+   */
   routeUserId() {
     if (this.router.params.subscribe()) {
       this.router.params.subscribe((params) => {
@@ -77,11 +83,17 @@ export class MainComponent {
     }
   }
 
+  /**
+   * Listens for window resize events.
+   */
   @HostListener('window:resize')
   onResize() {
     this.updateViewWidth();
   }
 
+  /**
+   * Updates the view width based on the current window width.
+   */
   private updateViewWidth() {
     this.viewWidth = window.innerWidth;
     if (this.viewWidth <= this.RESPONSIVE_THRESHOLD) {
@@ -91,6 +103,9 @@ export class MainComponent {
     }
   }
 
+  /**
+   * Toggles various boolean values to control UI elements.
+   */
   toggleBooleans() {
     this.toggleAllBooleans.openSearchWindow = false;
     this.toggleAllBooleans.openSearchWindowHead = false;

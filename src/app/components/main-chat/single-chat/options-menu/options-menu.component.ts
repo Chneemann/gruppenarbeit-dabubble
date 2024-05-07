@@ -8,7 +8,7 @@ import { UserService } from '../../../../service/user.service';
 import { ChatReactions } from '../../../../interface/chat.interface';
 import { User } from '../../../../interface/user.interface';
 import { SharedService } from '../../../../service/shared.service';
-import { TranslateModule} from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-options-menu',
@@ -18,7 +18,7 @@ import { TranslateModule} from '@ngx-translate/core';
     SingleChatComponent,
     SmallBtnComponent,
     EmojiPickerComponent,
-    TranslateModule
+    TranslateModule,
   ],
   templateUrl: './options-menu.component.html',
   styleUrl: './options-menu.component.scss',
@@ -42,22 +42,39 @@ export class OptionsMenuComponent {
 
   RESPONSIVE_THRESHOLD_MOBILE = this.sharedService.RESPONSIVE_THRESHOLD_MOBILE;
 
+  /**
+   * Emits signal to edit message and toggles navigation.
+   */
   editMsg() {
     this.editMsgEmitter.emit(true);
     this.toggleNav();
   }
 
+  /**
+   * Deletes message from specified database and toggles navigation.
+   * @param {string} database - The name of the database to delete from.
+   */
   deleteMsg(database: string) {
     this.toggleNav();
     this.chatService.deleteData(this.currentChat, database);
   }
 
+  /**
+   * Emits emoji output event for a chat message.
+   * @param {*} $event - The event containing the emoji.
+   * @param {string} chatId - The ID of the chat message.
+   */
   emojiOutputEmitter($event: any, chatId: string) {
     if (!this.checkExistEmojiOnChat(chatId, $event)) {
       this.addNewReaction($event, chatId);
     }
   }
 
+  /**
+   * Adds reaction icon to a chat message.
+   * @param {string} icon - The icon to add as reaction.
+   * @param {string} chatId - The ID of the chat message.
+   */
   addReactionIcon(icon: string, chatId: string) {
     if (!this.checkExistEmojiOnChat(chatId, icon)) {
       this.addNewReaction(icon, chatId);
@@ -69,6 +86,11 @@ export class OptionsMenuComponent {
     }
   }
 
+  /**
+   * Adds a new reaction to a chat message.
+   * @param {*} event - The event containing the reaction.
+   * @param {string} chatId - The ID of the chat message.
+   */
   addNewReaction(event: any, chatId: string) {
     let reaction: ChatReactions = {
       chatId: chatId,
@@ -79,6 +101,12 @@ export class OptionsMenuComponent {
     this.chatService.createNewReaction(reactionWithoutId);
   }
 
+  /**
+   * Checks if a specific emoji exists on a chat message.
+   * @param {string} chatId - The ID of the chat message.
+   * @param {string} icon - The icon to check for existence.
+   * @returns {boolean} - True if the emoji exists, false otherwise.
+   */
   checkExistEmojiOnChat(chatId: string, icon: string) {
     return this.getReaction(chatId).length > 0 &&
       this.getReactionIcon(chatId, icon).length > 0
@@ -86,41 +114,75 @@ export class OptionsMenuComponent {
       : false;
   }
 
+  /**
+   * Retrieves all reactions for a chat message.
+   * @param {string} chatId - The ID of the chat message.
+   * @returns {Array} - Array of reactions for the chat message.
+   */
   getReaction(chatId: string) {
     return this.chatService.allChatReactions.filter(
       (reaction) => reaction.chatId === chatId
     );
   }
 
+  /**
+   * Retrieves reactions with a specific icon for a chat message.
+   * @param {string} chatId - The ID of the chat message.
+   * @param {string} icon - The icon to filter reactions.
+   * @returns {Array} - Array of reactions with the specified icon.
+   */
   getReactionIcon(chatId: string, icon: string) {
     const chat = this.getReaction(chatId);
     return chat.filter((reaction) => reaction.icon == icon);
   }
 
+  /**
+   * Emits signal to toggle emoji picker visibility.
+   * @param {*} $event - The event containing the visibility state.
+   */
   emojiVisibleEmitter($event: any) {
     this.isEmojiPickerVisible = $event;
   }
 
+  /**
+   * Toggles the navigation bar state.
+   */
   toggleNav() {
     this.isNavOpen = !this.isNavOpen;
     this.isEmojiPickerVisible = false;
   }
 
+  /**
+   * Toggles the secondary chat display.
+   * @param {string} chatId - The ID of the chat message.
+   */
   toggleSecondaryChat(chatId: string) {
     this.chatService.toggleSecondaryChat(chatId);
     this.isEmojiPickerVisible = false;
   }
 
+  /**
+   * Toggles the visibility of the emoji picker.
+   */
   toggleEmojiPicker() {
     this.isEmojiPickerVisible = !this.isEmojiPickerVisible;
   }
 
+  /**
+   * Retrieves the document ID for a reaction.
+   * @param {string} chatId - The ID of the chat message.
+   * @returns {Array} - Array containing the reaction document ID.
+   */
   getReactionDocId(chatId: string) {
     return this.chatService.allChatReactions.filter(
       (reaction) => reaction.id === chatId
     );
   }
 
+  /**
+   * Toggles the reaction of a user on a chat message.
+   * @param {string} reactionID - The ID of the reaction.
+   */
   toggleEmoji(reactionID: string) {
     const userIds = this.getReactionDocId(reactionID)[0].userId;
     if (userIds.includes(this.userService.userId)) {
