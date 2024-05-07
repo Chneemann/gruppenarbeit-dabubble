@@ -5,7 +5,7 @@
     <p>{{ 'main-chat.message' | translate }}</p>
     <input
       type="text"
-      placeholder="To: #channel or @someone"
+      placeholder="{{ 'main-chat.placeholder' | translate }}"
       [(ngModel)]="chatService.inputValue"
       (keyup)="filterChannelAndUser(chatService.inputValue)"
     />
