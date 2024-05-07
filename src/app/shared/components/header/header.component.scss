@@ -51,7 +51,7 @@ header {
   width: 20vw;
   @include displayFlex($j: end, $g: 20px);
   p {
-    font-size: 32px;
+    font-size: 28px;
     font-weight: 700;
   }
   .img {
