@@ -153,7 +153,7 @@ header {
 @media screen and (max-width: $RESPONSIVE_THRESHOLD_MOBILE) {
 
   .whiteBox {
-    top: 72%;
+    top: 80%;
     bottom: 72px !important;
     right: 0;
     width: 100%;
@@ -204,5 +204,11 @@ header {
     &:hover {
       scale: 1.025;
     }
+  }
+}
+
+@media screen and (max-width: $RESPONSIVE_THRESHOLD_MOBILE380px){
+  .whiteBox {
+    top: 72%;
   }
 }
