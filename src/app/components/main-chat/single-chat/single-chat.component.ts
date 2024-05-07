@@ -33,7 +33,7 @@ import { TranslateModule } from '@ngx-translate/core';
     PickerComponent,
     EditMsgComponent,
     ReactionEmojisComponent,
-    TranslateModule
+    TranslateModule,
   ],
   templateUrl: './single-chat.component.html',
   styleUrl: './single-chat.component.scss',
@@ -60,29 +60,51 @@ export class SingleChatComponent {
     public downloadFilesService: DownloadFilesService
   ) {}
 
+  /**
+   * Emits a signal to edit a message.
+   * @param {boolean} variable - The value indicating whether the message edit form should be open or not.
+   */
   editMsgEmitter(variable: boolean) {
     this.isMsgEditFormOpen = variable;
   }
 
+  /**
+   * Emits a signal to close the message edit form and hide the option menu.
+   * @param {boolean} value - The value indicating whether the message edit form should be closed.
+   */
   closeEditMsgEmitter(value: boolean) {
     this.isMsgEditFormOpen = value;
     this.hideOptionMenu();
   }
 
+  /**
+   * Shows the option menu.
+   */
   showOptionMenu() {
     this.isOptionMenuVisible = true;
     this.firstLoadOptionMenu = true;
   }
 
+  /**
+   * Hides the option menu.
+   */
   hideOptionMenu() {
     this.isOptionMenuVisible = false;
     this.firstLoadOptionMenu = true;
   }
 
+  /**
+   * Displays the count of chat answers.
+   * @returns {number} The count of chat answers.
+   */
   displayCountChatAnswer() {
     return this.chatService.getChatAnswers(this.chat.id).length;
   }
 
+  /**
+   * Displays the timestamp of the last chat answer in a formatted time.
+   * @returns {string|null} The formatted time of the last chat answer.
+   */
   displayLastChatAnswer() {
     const getChatAnswers = this.chatService.getChatAnswers(this.chat.id);
     const lastChatAnswer = getChatAnswers[getChatAnswers.length - 1];
@@ -92,6 +114,11 @@ export class SingleChatComponent {
     return null;
   }
 
+  /**
+   * Converts a timestamp to a formatted time string.
+   * @param {number} timestamp - The timestamp to convert.
+   * @returns {string} The formatted time string.
+   */
   convertTimestampHour(timestamp: number) {
     const date = new Date(timestamp * 1000);
     let hour = date.getHours();
@@ -138,6 +165,10 @@ export class SingleChatComponent {
     }
   }
 
+  /**
+   * Opens a secondary chat.
+   * @param {string} chatId - The ID of the secondary chat to open.
+   */
   openSecondaryChat(chatId: string) {
     this.chatService.toggleSecondaryChat(chatId);
   }

@@ -36,8 +36,6 @@ export class ChatContentComponent implements AfterViewInit, AfterViewChecked {
   @Input() isSearchChannel: boolean = false;
   @Input() hideContentWindow: boolean = false;
   @Input() viewWidth: number = 0;
-  @Input() getChats!: () => any;
-  @Input() getUsers!: () => any;
   @Input() getChatChannel!: (currentChannel: string) => any;
   @Input() getChatUsers!: (currentChannel: string) => any;
   @ViewChild('messageBody') messageBody: ElementRef | undefined;

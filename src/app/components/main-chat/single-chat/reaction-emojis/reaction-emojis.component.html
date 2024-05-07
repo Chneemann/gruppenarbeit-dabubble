@@ -4,7 +4,6 @@
     'flex-direction': user.id === userService.userId ? 'row-reverse' : 'row'
   }"
 >
-  @if (!openOnSecondaryChat) {
   <app-small-btn
     [imgSrc]="'add-reaction.svg'"
     [imgSize]="viewWidth >= RESPONSIVE_THRESHOLD_MOBILE ? '24px' : '21px'"
@@ -14,7 +13,7 @@
     (click)="toggleEmojiPicker()"
   >
   </app-small-btn>
-  } @if(isEmojiPickerVisible) {
+  @if(isEmojiPickerVisible) {
   <app-emoji-picker
     [output]="'id'"
     (emojiOutputEmitter)="emojiOutputEmitter($event, chat.id)"
@@ -77,9 +76,9 @@
       }
     </div>
     @if (getReactionDocId(reactionDialogId)[0].userId.length > 1) {
-    <p>{{ 'reaction-emojis.react' | translate }}</p>
+    <p>{{ "reaction-emojis.react" | translate }}</p>
     } @else {
-    <p>{{ 'reaction-emojis.react2' | translate }}</p>
+    <p>{{ "reaction-emojis.react2" | translate }}</p>
     }
   </div>
   } }

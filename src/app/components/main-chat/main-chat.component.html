@@ -2,7 +2,7 @@
   @if (checkCurrentChannel(currentChannel) == 'searchBar') {
   <!-----Searchwindow at the sidebar----->
   <div class="headerSearchBar">
-    <p>{{ 'main-chat.message' | translate }}</p>
+    <p>{{ "main-chat.message" | translate }}</p>
     <input
       type="text"
       placeholder="{{ 'main-chat.placeholder' | translate }}"
@@ -13,27 +13,33 @@
     <!-----search suggestions----->
     <div class="filteredElementWindow">
       @if (firstLetter == '#') {
-        <!-- render channels -->
-         @for (i of checkIfUserHasAccessToChannel(); track $index) {
-          <h3 class="user" (click)="chooseElement(i)" [innerHTML]="i.name| highlight : chatService.inputValue"></h3>
-          }
-      } @else if (firstLetter == '@') { 
-        <!-- render users -->
-        @for (i of userService.allUsers; track $index) {
-          <div class="user" (click)="chooseElement(i)">
-            <div class="positionImgs">
-              <img src="{{ i.avatar }}" class="avatarImg" />
-              <img
-                src="assets/img/{{
-                  i.status ? 'onlineRing.svg' : 'offlineRing.svg'
-                }}"
-                class="onlineIconFilterWindow"
-              />
-            </div>
-            <h3 [innerHTML]="i.firstName + ' ' + i.lastName| highlight : chatService.inputValue" ></h3>
-          </div>
-        } 
-      }
+      <!-- render channels -->
+      @for (i of checkIfUserHasAccessToChannel(); track $index) {
+      <h3
+        class="user"
+        (click)="chooseElement(i)"
+        [innerHTML]="i.name | highlight : chatService.inputValue"
+      ></h3>
+      } } @else if (firstLetter == '@') {
+      <!-- render users -->
+      @for (i of userService.allUsers; track $index) {
+      <div class="user" (click)="chooseElement(i)">
+        <div class="positionImgs">
+          <img src="{{ i.avatar }}" class="avatarImg" />
+          <img
+            src="assets/img/{{
+              i.status ? 'onlineRing.svg' : 'offlineRing.svg'
+            }}"
+            class="onlineIconFilterWindow"
+          />
+        </div>
+        <h3
+          [innerHTML]="
+            i.firstName + ' ' + i.lastName | highlight : chatService.inputValue
+          "
+        ></h3>
+      </div>
+      } }
     </div>
     }
   </div>
@@ -45,8 +51,6 @@
     <app-chat-content
       [getChatChannel]="getChatChannel"
       [getChatUsers]="getChatUsers"
-      [getChats]="getChats"
-      [getUsers]="getUsers"
       [currentChannel]="currentChannel"
       [hideContentWindow]="false"
       [isSearchChannel]="true"
@@ -94,8 +98,6 @@
   <app-chat-content
     [getChatChannel]="getChatChannel"
     [getChatUsers]="getChatUsers"
-    [getChats]="getChats"
-    [getUsers]="getUsers"
     [currentChannel]="currentChannel"
     [isPrivatChannel]="true"
     [hideContentWindow]="false"
@@ -153,8 +155,6 @@
   <app-chat-content
     [getChatChannel]="getChatChannel"
     [getChatUsers]="getChatUsers"
-    [getChats]="getChats"
-    [getUsers]="getUsers"
     [currentChannel]="currentChannel"
     [hideContentWindow]="false"
     [viewWidth]="viewWidth"
@@ -168,11 +168,11 @@
     (closeEditEmitter)="closeEditEmitter($event)"
     [currentChannel]="currentChannel"
   ></app-channel-informations>
-  } } }
-  @if (showProfil) {
-    <app-open-send-prv-message-window [showProfil]="showProfil"
+  } } } @if (showProfil) {
+  <app-open-send-prv-message-window
+    [showProfil]="showProfil"
     (showProfilWindow)="getShowProfilWindowBoolean($event)"
     [talkToUser]="talkToUser"
-    ></app-open-send-prv-message-window>
+  ></app-open-send-prv-message-window>
   }
 </section>

@@ -24,7 +24,7 @@ import { ChannelInformationsComponent } from './channel-informations/channel-inf
 import { filter } from 'rxjs';
 import { OpenSendPrvMessageWindowComponent } from './show-channel-member/open-send-prv-message-window/open-send-prv-message-window.component';
 import { HighlightPipe } from '../../highlight.pipe';
-import { TranslateModule} from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-main-chat',
@@ -41,7 +41,7 @@ import { TranslateModule} from '@ngx-translate/core';
     ChannelInformationsComponent,
     OpenSendPrvMessageWindowComponent,
     HighlightPipe,
-    TranslateModule
+    TranslateModule,
   ],
   templateUrl: './main-chat.component.html',
   styleUrl: './main-chat.component.scss',
@@ -57,7 +57,6 @@ export class MainChatComponent {
   showProfil: boolean = false;
   talkToUser!: User[];
   routToPrvCHannel: boolean = false;
-
 
   constructor(
     private route: Router,
@@ -77,7 +76,7 @@ export class MainChatComponent {
     this.openMenu = variable;
   }
 
-  getShowProfilWindowBoolean(value : boolean){
+  getShowProfilWindowBoolean(value: boolean) {
     this.showProfil = value;
   }
 
@@ -142,52 +141,40 @@ export class MainChatComponent {
     this.openMenu = true;
   }
 
-  getUsers(): User[] {
-    return this.userService.allUsers;
-  }
-
-  getChannels(): Channel[] {
-    return this.channelService.allChannels;
-  }
-
-  getChats(): Chat[] {
-    return this.chatService.allChats;
-  }
-
-  getPrvChatArray(): PrvChannel[] {
-    return this.channelService.allPrvChannels;
-  }
-
   getChatUsers(chatId: string) {
-    const filteredTasks = this.getUsers().filter((user) => user.id == chatId);
+    const filteredTasks = this.userService.allUsers.filter(
+      (user) => user.id == chatId
+    );
     return filteredTasks;
   }
 
   getChatChannel(chatId: string) {
-    const filteredTasks = this.getChats().filter(
+    const filteredTasks = this.chatService.allChats.filter(
       (chat) => chat.channelId == chatId
     );
     return filteredTasks;
   }
 
   getChannelName(chatId: string) {
-    const filteredTasks = this.getChannels().filter(
+    const filteredTasks = this.channelService.allChannels.filter(
       (channel) => channel.id == chatId
     );
     return filteredTasks;
   }
 
   getPrvChat(prvChatId: string) {
-    const filteredChats = this.getPrvChatArray().filter(
+    const filteredChats = this.channelService.allPrvChannels.filter(
       (prvChat) => prvChat.id == prvChatId
     );
     this.getTalkToUser(filteredChats);
     return filteredChats;
   }
 
-  getTalkToUser(filteredChat: PrvChannel[]){
+  getTalkToUser(filteredChat: PrvChannel[]) {
     const talkToUser = filteredChat[0].talkToUserId;
-    const getUser = this.userService.allUsers.filter(user => user.id === talkToUser);
+    const getUser = this.userService.allUsers.filter(
+      (user) => user.id === talkToUser
+    );
     if (getUser) {
       this.talkToUser = getUser;
     }
@@ -244,17 +231,19 @@ export class MainChatComponent {
       this.chatService.inputValue = `#${element.name}`;
       this.chatService.getChannelId = element.id!;
     }
-    this.toggleBoolean.openSearchWindow = false; 
+    this.toggleBoolean.openSearchWindow = false;
   }
 
-  checkIfPrvChatExist(userID: string){
+  checkIfPrvChatExist(userID: string) {
     const filterPrvChannelBoolean = this.channelService.allPrvChannels.some(
-      (chat) => chat.talkToUserId == userID);
+      (chat) => chat.talkToUserId == userID
+    );
     if (!filterPrvChannelBoolean) {
       this.userService.createPrvChannel(userID);
     } else {
       const filterPrvChannelValue = this.channelService.allPrvChannels.filter(
-        (chat) => chat.talkToUserId == userID);
+        (chat) => chat.talkToUserId == userID
+      );
       this.chatService.getPrvChatId = filterPrvChannelValue[0].id!;
     }
   }
