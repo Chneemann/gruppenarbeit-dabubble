@@ -24,8 +24,10 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.scss",
-            "./node_modules/@ctrl/ngx-emoji-mart/picker.css"],
+            "styles": [
+              "src/styles.scss",
+              "./node_modules/@ctrl/ngx-emoji-mart/picker.css"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -33,13 +35,13 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "2mb",
+                  "maximumError": "4mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "16kb",
+                  "maximumError": "32kb"
                 }
               ],
               "outputHashing": "all"
@@ -77,8 +79,10 @@
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.scss",
-            "./node_modules/@ctrl/ngx-emoji-mart/picker.css"],
+            "styles": [
+              "src/styles.scss",
+              "./node_modules/@ctrl/ngx-emoji-mart/picker.css"
+            ],
             "scripts": []
           }
         }
