@@ -101,21 +101,24 @@ export class ChatContentComponent implements AfterViewInit, AfterViewChecked {
   }
 
   /**
-   * Checks if a message was published today.
-   * @param {number} timestamp - The timestamp of the message.
-   * @returns {boolean} True if the message was published today, otherwise false.
+   * Checks whether multiple chats have been posted for the date
+   * @param {number} timestamp - The timestamp to be checked.
+   * @returns {boolean} - Returns true or false.
    */
-  isPublishedToday(timestamp: number): boolean {
-    return this.getAllTodayChats(this.currentChannel).includes(timestamp);
+  isPublishedToday(timestamp: number) {
+    return this.getAllChatsOnTheDate(this.currentChannel, timestamp).includes(
+      timestamp
+    );
   }
 
   /**
-   * Retrieves timestamps of all messages published today in a specified channel.
-   * @param {string} currentChannel - The current channel.
-   * @returns {number[]} An array of timestamps of messages published today in the channel.
+   * Retrieves timestamps of all chats posted on a specific date in a given channel.
+   * @param {string} currentChannel - The current channel ID.
+   * @param {number} timestamp - The timestamp representing the date.
+   * @returns {number[]} An array of timestamps of messages.
    */
-  getAllTodayChats(currentChannel: string) {
-    const todayDate = new Date();
+  getAllChatsOnTheDate(currentChannel: string, timestamp: number) {
+    const todayDate = new Date(timestamp * 1000);
     const todayTimestamps = this.chatService.allChats
       .filter((chat) => chat.channelId === currentChannel)
       .filter((chat) => {
