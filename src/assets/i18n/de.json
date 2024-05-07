@@ -139,9 +139,20 @@
   "addAll":"Alle Mitglieder hinzufügen von",
   "devspace":"Devspace",
   "add":"Fügen Sie bestimmte Personen hinzu"
-
 },
 
+"sidebar-channels": {
+  "channel":"Channels",
+  "addChannel":"Channel hinzufügen"
+},
+
+"sidebar-direct-messages": {
+  "messages":"Direktnachrichten"
+},
+
+"sidebar-toggle": {
+  "openWorkspace":"Menü öffnen"
+},
 
 
 

@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { AddNewChannelComponent } from './add-new-channel/add-new-channel.component';
 import { UserService } from '../../../service/user.service';
 import { ToggleBooleanService } from '../../../service/toggle-boolean.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-sidebar-channels',
@@ -19,6 +20,7 @@ import { ToggleBooleanService } from '../../../service/toggle-boolean.service';
     CommonModule,
     FormsModule,
     AddNewChannelComponent,
+    TranslateModule
   ],
   templateUrl: './sidebar-channels.component.html',
   styleUrl: './sidebar-channels.component.scss',

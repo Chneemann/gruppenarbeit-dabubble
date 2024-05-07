@@ -1,11 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { ChatService } from '../../../service/chat.service';
 import { ToggleBooleanService } from '../../../service/toggle-boolean.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-sidebar-toggle',
   standalone: true,
-  imports: [],
+  imports: [TranslateModule],
   templateUrl: './sidebar-toggle.component.html',
   styleUrl: './sidebar-toggle.component.scss',
 })
