@@ -154,8 +154,8 @@
             width: 300px;
         }
         .profileImg{
-            width: 140px;
-            height: 140px;
+            width: 160px;
+            height: 160px;
             margin: 20px;
         }
     }
@@ -188,17 +188,17 @@
 .position2Btn{
     margin-bottom: 16px;
     .cancelBtn{
-        width: 96px;
+        width: 110px;
         height: 36px;
     }
     .saveBtn{
-        width: 96px;
+        width: 110px;
         height: 36px;
     }
 }
 
 .disabledBtn {
-    width: 96px;
+    width: 110px;
     height: 36px;
 }
 
@@ -206,6 +206,11 @@
     .whiteBox{
         width: 90%;
         border-radius: 35px;
+        top: 14%;
+        right: 22px;
+        height: 58%;
+        gap: 8px;
+        padding-top: 8px;
         .boxHeader{
             width: 300px;
         }
@@ -214,5 +219,14 @@
             height: 140px;
             margin: 20px;
         }
+    }
+}
+
+@media screen and (max-width: $RESPONSIVE_THRESHOLD_MOBILE380px){
+    .whiteBox {
+        top: 9%;
+        right: 22px;
+        height: 76%;
+        padding-top: 8px;
     }
   }

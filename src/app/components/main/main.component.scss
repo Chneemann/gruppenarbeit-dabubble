@@ -121,7 +121,7 @@ app-secondary-chat {
 }
 
 
-@media screen and (max-width: 380px) {
+@media screen and (max-width: $RESPONSIVE_THRESHOLD_MOBILE380px) {
   app-sidebar,
   app-main-chat,
   app-secondary-chat {

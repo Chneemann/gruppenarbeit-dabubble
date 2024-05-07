@@ -151,6 +151,19 @@ header {
 }
 
 @media screen and (max-width: $RESPONSIVE_THRESHOLD_MOBILE) {
+
+  .whiteBox {
+    top: 72%;
+    bottom: 72px !important;
+    right: 0;
+    width: 100%;
+    height: 186px;
+    gap: 16px;
+    border-radius: 40px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
   .rightSide {
     .img {
       .profileImg {
@@ -169,10 +182,6 @@ header {
       width: 162px;
       height: 45px;
     }
-  }
-
-  .whiteBox {
-    top: 80px;
   }
 
   .logo {

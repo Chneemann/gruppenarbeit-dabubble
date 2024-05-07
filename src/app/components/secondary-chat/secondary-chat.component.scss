@@ -115,7 +115,7 @@ section {
 }
 
 
-@media screen and (max-width: 380px) {
+@media screen and (max-width: $RESPONSIVE_THRESHOLD_MOBILE380px) {
   section {
     height: calc(100vh - 80px);
   }
