@@ -49,16 +49,21 @@ section {
 //----------- responsive ---------------
 
 @media screen and (max-width: $RESPONSIVE_THRESHOLD_MOBILE) {
-  section {
-    height: calc(100vh - 144px);
-  }
-
   .privatChatHeight {
-    height: calc(100vh - 158px);
+    height: calc(100vh - 230px);
   }
 
   .searchChatHeight {
     margin-top: 88px;
     height: calc(100vh - 188px);
+  }
+}
+
+@media screen and (max-width: 380px) {
+  section {
+    height: calc(100vh - 144px);
+  }
+  .privatChatHeight {
+    height: calc(100vh - 158px);
   }
 }

@@ -164,7 +164,7 @@ section {
 }
 
 
-@media screen and (max-width: $RESPONSIVE_THRESHOLD_MOBILE) {
+@media screen and (max-width: 380px) {
   .showAllChanneld {
     max-height: 16vh;
   }
