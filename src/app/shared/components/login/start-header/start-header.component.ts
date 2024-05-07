@@ -2,11 +2,12 @@ import { Component, EventEmitter, Input } from '@angular/core';
 import { CommonModule, NgStyle } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { loginService } from '../../../../service/login.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-start-header',
   standalone: true,
-  imports: [CommonModule, RouterLink, NgStyle],
+  imports: [CommonModule, RouterLink, NgStyle, TranslateModule],
   templateUrl: './start-header.component.html',
   styleUrl: './start-header.component.scss',
 })

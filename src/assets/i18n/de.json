@@ -154,6 +154,44 @@
   "openWorkspace":"Menü öffnen"
 },
 
+"edit-user-details": {
+  "profile":"Dein Profil bearbeiten",
+  "fullName":"Vollständiger Name",
+  "placeholder":"Geben Sie Ihren Namen ein mindestens 3 Buchstaben",
+  "placeholder2":"Geben Sie Ihre E-Mail-Adresse ein",
+  "email":"E-Mail-Addresse",
+  "cancel":"Abbrechen",
+  "save":"Speichern",
+  "errorMessage":"* Änderungen am Gast Profil sind nicht möglich."
+},
+
+"edit-user": {
+  "edit":"bearbeiten",
+  "email":"E-Mail-Addresse"
+},
+
+"search-bar": {
+  "placeholder":"Im Devspace suchen",
+  "errorMessage":"Keine Übereinstimmung gefunden"
+},
+
+"footer": {
+  "privatePolice":"Datenschutz",
+  "imprint":"Impressum"
+},
+
+"start-header": {
+  "new":"Neu bei DABubble?",
+  "create":"Konto erstellen"
+},
+
+"user": {
+  "email":"E-Mail-Addresse",
+  "message":"Direktnachrichten"
+},
+
+
+
 
 
 

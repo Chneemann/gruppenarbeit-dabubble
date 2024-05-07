@@ -11,13 +11,14 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HighlightPipe } from '../../../../highlight.pipe';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-search-bar',
   standalone: true,
   templateUrl: './search-bar.component.html',
   styleUrl: './search-bar.component.scss',
-  imports: [CommonModule, FormsModule, RouterLink, HighlightPipe],
+  imports: [CommonModule, FormsModule, RouterLink, HighlightPipe, TranslateModule],
 })
 export class SearchBarComponent {
   openMenu: boolean = false;

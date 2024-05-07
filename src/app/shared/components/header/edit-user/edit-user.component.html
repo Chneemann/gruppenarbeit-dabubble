@@ -11,7 +11,7 @@
   <div class="detailsBox">
     <div class="editBtnPosition">
       <p class="name">{{ i.firstName }} {{ i.lastName }}</p>
-      <p class="editBtn" (click)="openEditUser()">Edit</p>
+      <p class="editBtn" (click)="openEditUser()">{{ 'edit-user.edit' | translate }}</p>
     </div>
 
     <div class="statusBox">
@@ -28,7 +28,7 @@
     <div class="emailBox">
       <img src="assets/img/mail-icon.svg" />
       <div class="email">
-        <p>E-Mail-Address</p>
+        <p>{{ 'edit-user.email' | translate }}</p>
         <a
           href="mailto:wwweewefeff&#64;dede.de"
           target="_blank"
