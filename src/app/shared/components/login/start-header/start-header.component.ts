@@ -1,15 +1,16 @@
-import { Component, EventEmitter, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule, NgStyle } from '@angular/common';
-import { Router, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { loginService } from '../../../../service/login.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { LanguageService } from '../../../../service/language.service';
+import { SmallBtnComponent } from '../../small-btn/small-btn.component';
 
 
 @Component({
   selector: 'app-start-header',
   standalone: true,
-  imports: [CommonModule, RouterLink, NgStyle, TranslateModule],
+  imports: [CommonModule, RouterLink, NgStyle, TranslateModule, SmallBtnComponent],
   templateUrl: './start-header.component.html',
   styleUrl: './start-header.component.scss',
 })

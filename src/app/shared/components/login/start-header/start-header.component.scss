@@ -1,3 +1,5 @@
+@import "../../../../../styles.scss";
+
 .headerContainer {
   display: flex;
   width: 97vw;
@@ -51,11 +53,11 @@
     border: 1px solid #444df2;
   }
 }
+
 .switchLanguage{
-  cursor: pointer;
-    position: absolute;
-    right: 73px;
-    top: 24px;
+  position: absolute;
+  right: 26px;
+  top: 18px;
 }
 // animation start ------------------------------------------------------------>
 
@@ -294,5 +296,12 @@
       width: 70px;
       height: 70px;
     }
+  }
+}
+
+@media screen and (max-width: $RESPONSIVE_THRESHOLD_MOBILE) {
+  .switchLanguage{
+    right: 10px;
+    top: 8px;
   }
 }

@@ -40,5 +40,11 @@
       </div>
     </div>
   </div>
-  <span class="switchLanguage" (click)="LanguageService.switchLanguage()">Test</span>
+  <app-small-btn class="switchLanguage"
+    [imgSrc]="'language.svg'"
+    [imgSize]="'32px'"
+    [btnSize]="'40px'"
+    [btnBgHoverColor]="'#edeefe'"
+    (click)="LanguageService.switchLanguage()"
+  ></app-small-btn>
 </div>
