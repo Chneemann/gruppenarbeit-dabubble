@@ -15,6 +15,11 @@ section {
   }
 }
 
+.chat {
+  display: flex;
+  flex-direction: column;
+}
+
 .menuRightSide {
   position: absolute;
   top: -24px;
@@ -44,6 +49,8 @@ section {
 }
 
 .userContent {
+  display: flex;
+  flex-direction: column;
   width: fit-content;
   .name {
     display: flex;

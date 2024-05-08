@@ -45,62 +45,70 @@
       <img src="{{ user.avatar }}" alt="" />
     </div>
     @if (!isMsgEditFormOpen) {
-    <div class="userContent">
-      <div
-        class="name"
-        [ngStyle]="{
+    <div
+      class="chat"
+      [ngStyle]="{
+        'align-items': user.id === userService.userId ? 'flex-end' : ''
+      }"
+    >
+      <div class="userContent">
+        <div
+          class="name"
+          [ngStyle]="{
           'flex-direction':
             user.id === userService.userId ? 'row-reverse' : 'row',
         }"
-      >
-        {{ user.firstName }} {{ user.lastName }}
-        <span
-          [ngStyle]="{
-            padding:
-              user.id === userService.userId ? '0 24px 0 0' : '0 0 0 24px'
-          }"
         >
-          @if(openOnSecondaryChat) {
-          {{ convertTimestampDate(chat.publishedTimestamp) }} }
-          {{ convertTimestampHour(chat.publishedTimestamp) }}</span
+          {{ user.firstName }} {{ user.lastName }}
+          <span
+            [ngStyle]="{
+              padding:
+                user.id === userService.userId ? '0 24px 0 0' : '0 0 0 24px'
+            }"
+          >
+            @if(openOnSecondaryChat) {
+            {{ convertTimestampDate(chat.publishedTimestamp) }} }
+            {{ convertTimestampHour(chat.publishedTimestamp) }}</span
+          >
+        </div>
+        <div
+          class="content"
+          [ngClass]="{ 'content-mirror': user.id === userService.userId }"
         >
-      </div>
-      <div
-        class="content"
-        [ngClass]="{ 'content-mirror': user.id === userService.userId }"
-      >
-        <div class="msg">
-          {{ chat.message }}
-          @if (chat.edited) {
-          <span>{{ "single-chat.edit" | translate }}</span>
+          <div class="msg">
+            {{ chat.message }}
+            @if (chat.edited) {
+            <span>{{ "single-chat.edit" | translate }}</span>
+            }
+          </div>
+          <app-attachments
+            [chatId]="chat.id"
+            [openOnSecondaryChat]="openOnSecondaryChat"
+            [viewWidth]="viewWidth"
+          ></app-attachments>
+        </div>
+        @if (!isPrivatChannel) {
+        <div class="answers">
+          @if (chatService.getChatAnswers(chat.id).length > 0 && showAnswer) {
+          <p (click)="openSecondaryChat(chat.id)">
+            {{ displayCountChatAnswer() }}
+            {{ "single-chat.answer" | translate }}
+          </p>
+          <span
+            >{{ "single-chat.answer2" | translate }}
+            {{ displayLastChatAnswer() }}</span
+          >
+
+          } @else if (showAnswer) {
+          <p (click)="openSecondaryChat(chat.id)">
+            {{ "single-chat.answer3" | translate }}
+          </p>
           }
         </div>
-        <app-attachments
-          [chatId]="chat.id"
-          [openOnSecondaryChat]="openOnSecondaryChat"
-          [viewWidth]="viewWidth"
-        ></app-attachments>
-      </div>
-      @if (!isPrivatChannel) {
-      <div class="answers">
-        @if (chatService.getChatAnswers(chat.id).length > 0 && showAnswer) {
-        <p (click)="openSecondaryChat(chat.id)">
-          {{ displayCountChatAnswer() }} {{ "single-chat.answer" | translate }}
-        </p>
-        <span
-          >{{ "single-chat.answer2" | translate }}
-          {{ displayLastChatAnswer() }}</span
-        >
-
-        } @else if (showAnswer) {
-        <p (click)="openSecondaryChat(chat.id)">
-          {{ "single-chat.answer3" | translate }}
-        </p>
+        } @else {
+        <div class="spacer"></div>
         }
       </div>
-      } @else {
-      <div class="spacer"></div>
-      }
       <app-reaction-emojis
         [chat]="chat"
         [user]="user"
@@ -109,7 +117,6 @@
         [secondaryChatFirstMsg]="secondaryChatFirstMsg"
       ></app-reaction-emojis>
     </div>
-
     } @else {
     <div class="editForm">
       <app-edit-msg
