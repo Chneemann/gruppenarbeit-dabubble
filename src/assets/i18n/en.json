@@ -152,6 +152,10 @@
       "messages": "Direct messages"
     },
 
+    "sidebar-direct-messages-user": {
+      "you":"You"
+    },
+
     "sidebar-toggle": {
       "openWorkspace": "Open Menu"
     },

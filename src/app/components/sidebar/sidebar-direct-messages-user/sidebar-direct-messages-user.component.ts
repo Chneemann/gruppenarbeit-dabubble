@@ -2,17 +2,17 @@ import { Component, Input } from '@angular/core';
 import { UserService } from '../../../service/user.service';
 import { CommonModule } from '@angular/common';
 import { ChannleService } from '../../../service/channle.service';
-import { User } from '../../../interface/user.interface';
 import { RouterLink } from '@angular/router';
 import { ChatService } from '../../../service/chat.service';
 import { ToggleBooleanService } from '../../../service/toggle-boolean.service';
 import { SharedService } from '../../../service/shared.service';
 import { PrvChannel } from '../../../interface/channel.interface';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-sidebar-direct-messages-user',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, TranslateModule],
   templateUrl: './sidebar-direct-messages-user.component.html',
   styleUrl: './sidebar-direct-messages-user.component.scss',
 })
