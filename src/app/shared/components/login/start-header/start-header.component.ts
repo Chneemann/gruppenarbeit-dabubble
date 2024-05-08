@@ -3,6 +3,8 @@ import { CommonModule, NgStyle } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { loginService } from '../../../../service/login.service';
 import { TranslateModule } from '@ngx-translate/core';
+import { LanguageService } from '../../../../service/language.service';
+
 
 @Component({
   selector: 'app-start-header',
@@ -21,7 +23,7 @@ export class StartHeaderComponent {
   animationToEndPosiotion: boolean = false;
   animationsBlock: boolean = false;
 
-  constructor(public loginService: loginService) {}
+  constructor(public loginService: loginService, public LanguageService: LanguageService) {}
 
 
   /**

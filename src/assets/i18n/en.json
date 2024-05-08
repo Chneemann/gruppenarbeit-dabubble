@@ -1,4 +1,197 @@
 {
+    "login": {
+      "header": "Login",
+      "infoText": "We recommend using the email address you use at work.",
+      "inputField": "example.name@email.com",
+      "inputField2": "Password",
+      "midText": "Forgot password?",
+      "midSeperator": "OR",
+      "googleBtn": "Sign in with Google",
+      "BtnLeft": "Login",
+      "BtnRight": "Guest Login",
+      "topText": "New to DABubble?",
+      "topText2": "Create account",
+      "errorText": "*Email is required.",
+      "errorText2": "*Password is required."
+    },
+
+    "createAccount": {
+      "header": "Create Account",
+      "infoText": "With your name and email address, you have your new DABubble account.",
+      "inputField": "First and Last Name",
+      "inputField2": "example.name@email.com",
+      "inputField3": "Password",
+      "midText": "I agree to the",
+      "midText2": "Privacy Policy",
+      "midText3": ".",
+      "Btn": "Continue",
+      "errorText": "*Name is required.",
+      "errorText2": "*Email is required.",
+      "errorText3": "*Please enter a password (at least 6 characters)."
+    },
+
+    "chooseAvatar": {
+      "header": "Choose your Avatar",
+      "avatarInfo": "Choose from the list",
+      "ownAvatar": "use own picture",
+      "avatarBtn": "Upload file",
+      "Btn": "Continue"
+    },
+
+    "passwordForget": {
+      "header": "Reset Password",
+      "infoText": "Please enter your email address.",
+      "inputfield": "example.name@email.com",
+      "infoTextBottom": "We will send you an email to change your password.",
+      "Btn": "Send Email",
+      "errorText": "*Email is required."
+    },
+
+    "passwordReset": {
+      "header": "Reset Password",
+      "inputfield": "New Password",
+      "inputfield2": "Confirm New Password",
+      "Btn": "Change Password",
+      "errorText": "*Please enter a new password (at least 6 characters).",
+      "errorText2": "*The passwords do not match."
+    },
+
+    "channel-informations": {
+      "header": "Channel Name",
+      "channelInfo": "Description",
+      "channelInfo2": "no description.",
+      "channelMadeBy": "Created by",
+      "channelErrorText": "*Only the creator can edit the channel",
+      "members": "Members",
+      "leave": "Leave Channel"
+    },
+
+    "channel-msg-box": {
+      "text": "The maximum number of files is 1.",
+      "placeholder": "Enter your message"
+    },
+
+    "info": {
+      "channelCreate": "The channel was created by",
+      "channelCreate2": "on",
+      "channelCreate3": ". This is the beginning of the channel",
+      "notice": "This space is just for you. Make notes, list your to-dos, or keep links and files handy. You can also talk things over with yourself here.",
+      "talkTo": "This conversation is just between",
+      "talkTo2": "and you."
+    },
+
+    "show-channel-member": {
+      "header": "Channel Members",
+      "addMember": "Add Members",
+      "result": "No results",
+      "add": "add"
+    },
+
+    "open-send-prv-message": {
+      "profil": "Profile",
+      "aktiv": "Active",
+      "offline": "Offline",
+      "adress": "Email Address",
+      "message": "Message"
+    },
+
+    "main-chat": {
+      "message": "New Message",
+      "placeholder": "To: #channel or @someone"
+    },
+
+    "edit-msg": {
+      "save": "Save",
+      "cancel": "Cancel"
+    },
+
+    "options-menu": {
+      "delete": "Delete message",
+      "edit": "Edit message"
+    },
+
+    "reaction-emojis": {
+      "react": "have reacted.",
+      "react2": "has reacted."
+    },
+
+    "single-chat": {
+      "edit": "(edited)",
+      "answer": "Reply",
+      "answer2": "Last reply:",
+      "answer3": "Reply..."
+    },
+
+    "secondary-chat": {
+      "thread": "Thread",
+      "answer": "Reply"
+    },
+
+    "add-new-channel": {
+      "header": "Create Channel",
+      "info": "Channels serve your team for communication. They should be topic-related, e.g., #marketing.",
+      "header2": "Channel Name",
+      "required": "(required)",
+      "placeholder": "(at least 6 characters)",
+      "placeholder2": "Write here what topics can be discussed in the channel.",
+      "description": "Description",
+      "optional": "(optional)",
+      "create": "Create",
+      "addPeople": "Add people",
+      "addAll": "Add all members from",
+      "devspace": "Devspace",
+      "add": "Add specific people"
+    },
+
+    "sidebar-channels": {
+      "channel": "Channels",
+      "addChannel": "Add Channel"
+    },
+
+    "sidebar-direct-messages": {
+      "messages": "Direct messages"
+    },
+
+    "sidebar-toggle": {
+      "openWorkspace": "Open Menu"
+    },
+
+    "edit-user-details": {
+      "profile": "Edit Your Profile",
+      "fullName": "Full Name",
+      "placeholder": "Enter your name, at least 3 letters",
+      "placeholder2": "Enter your email address",
+      "email": "Email Address",
+      "cancel": "Cancel",
+      "save": "Save",
+      "errorMessage": "* Changes to the guest profile are not possible."
+    },
+
+    "edit-user": {
+      "edit": "edit",
+      "email": "Email Address"
+    },
+
+    "search-bar": {
+      "placeholder": "Search in Devspace",
+      "errorMessage": "No match found"
+    },
+
+    "footer": {
+      "privatePolice": "Privacy Policy",
+      "imprint": "Legal Notice"
+    },
+
+    "start-header": {
+      "new": "New to DABubble?",
+      "create": "Create Account"
+    },
+
+    "user": {
+      "email": "Email Address",
+      "message": "Direct Messages"
+    },
+
   "imprint": {
     "headline": "Imprint",
     "tmg": "Information according to §5 TMG",
@@ -19,6 +212,7 @@
     "sourceText1": "of the",
     "sourceLink1": "law firm Hasselbach, lawyers for labor law and family law"
   },
+  
   "privacy-policy": {
     "headline": "Privacy policy",
     "preambleHeadline": "Preamble",
