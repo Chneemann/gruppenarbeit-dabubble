@@ -57,7 +57,7 @@
 },
 
 "channel-informations": {
-  "header":"Channel Name",
+  "header":"Kanal Name",
   "channelInfo":"Beschreibung",
   "channelInfo2":"keine Beschreibung.",
   "channelMadeBy":"Erstellt von",
@@ -72,16 +72,16 @@
 },
 
 "info": {
-  "channelCreate":"Der Channel wurde von",
+  "channelCreate":"Der Kanal wurde von",
   "channelCreate2":"am",
-  "channelCreate3":" erstellt. Das ist der Anfang des Channels",
+  "channelCreate3":" erstellt. Das ist der Anfang des Kanals",
   "notice":"Dieser Raum ist nur für dich da. Mache dir Notizen, liste deine To-dos auf oder bewahre Links und Dateien griffbereit auf. Du kannst hier auch gerne Dinge mit dir selbst besprechen.",
   "talkTo":"Diese Unterhaltung findet nur zwischen",
   "talkTo2":"und dir statt."
 },
 
 "show-channel-member": {
-  "header":"Channel Mitglieder",
+  "header":"Kanal Mitglieder",
   "addMember":"Mitglieder hinzufügen",
   "result":"Keine Ergebnisse",
   "add":"hinzufügen"
@@ -97,7 +97,7 @@
 
 "main-chat": {
   "message":"Neue Nachricht",
-  "placeholder":"An: #channel oder @jemanden"
+  "placeholder":"An: #Kanal oder @jemanden"
 },
 
 "edit-msg": {
@@ -128,9 +128,9 @@
 },
 
 "add-new-channel": {
-  "header":"Channel erstellen",
-  "info":"Channel dienen deinem Team zur Kommuniktaion. Am bestensollten sie themenbezogen sein #marketing zum Beispiel.",
-  "header2":"Channel-Name",
+  "header":"Kanal erstellen",
+  "info":"Kanäls dienen ihrem Team zur Kommuniktaion. Am besten sollten sie themenbezogen sein #marketing zum Beispiel.",
+  "header2":"Kanal-Name",
   "required":"(erforderlich)",
   "placeholder":"(mind. 6 Buchstaben)",
   "placeholder2":"Schreiben Sie hier, welche Themen im Kanal besprochen werden können.",
@@ -144,8 +144,8 @@
 },
 
 "sidebar-channels": {
-  "channel":"Channels",
-  "addChannel":"Channel hinzufügen"
+  "channel":"Kanäle",
+  "addChannel":"Kanal hinzufügen"
 },
 
 "sidebar-direct-messages": {
