@@ -197,6 +197,11 @@
   "create":"Konto erstellen"
 },
 
+"login-header": {
+  "profil": "Profil",
+  "logout": "Ausloggen"
+},
+
 "user": {
   "email":"E-Mail-Addresse",
   "message":"Direktnachrichten"

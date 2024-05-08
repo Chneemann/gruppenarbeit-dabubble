@@ -8,6 +8,7 @@ import { ChatService } from '../../../service/chat.service';
 import { SharedService } from '../../../service/shared.service';
 import { SmallBtnComponent } from '../small-btn/small-btn.component';
 import { LanguageService } from '../../../service/language.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header',
@@ -17,6 +18,7 @@ import { LanguageService } from '../../../service/language.service';
     EditUserComponent,
     SearchBarComponent,
     SmallBtnComponent,
+    TranslateModule
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',

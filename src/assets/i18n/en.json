@@ -197,6 +197,11 @@
       "create": "Create Account"
     },
 
+    "login-header": {
+      "profil": "Profile",
+      "logout": "Log out"
+    },
+
     "user": {
       "email": "Email Address",
       "message": "Direct Messages"
