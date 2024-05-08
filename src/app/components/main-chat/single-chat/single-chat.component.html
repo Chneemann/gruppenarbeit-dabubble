@@ -72,7 +72,7 @@
         <div class="msg">
           {{ chat.message }}
           @if (chat.edited) {
-          <span>{{ 'single-chat.edit' | translate }}</span>
+          <span>{{ "single-chat.edit" | translate }}</span>
           }
         </div>
         <app-attachments
@@ -85,12 +85,17 @@
       <div class="answers">
         @if (chatService.getChatAnswers(chat.id).length > 0 && showAnswer) {
         <p (click)="openSecondaryChat(chat.id)">
-          {{ displayCountChatAnswer() }} {{ 'single-chat.answer' | translate }}
+          {{ displayCountChatAnswer() }} {{ "single-chat.answer" | translate }}
         </p>
-        <span>{{ 'single-chat.answer2' | translate }} {{ displayLastChatAnswer() }}</span>
+        <span
+          >{{ "single-chat.answer2" | translate }}
+          {{ displayLastChatAnswer() }}</span
+        >
 
         } @else if (showAnswer) {
-        <p (click)="openSecondaryChat(chat.id)">{{ 'single-chat.answer3' | translate }}</p>
+        <p (click)="openSecondaryChat(chat.id)">
+          {{ "single-chat.answer3" | translate }}
+        </p>
         }
       </div>
       } @else {
@@ -108,6 +113,8 @@
     <div class="editForm">
       <app-edit-msg
         [chat]="chat"
+        [viewWidth]="viewWidth"
+        [openOnSecondaryChat]="openOnSecondaryChat"
         (closeEditMsgEmitter)="closeEditMsgEmitter($event)"
       ></app-edit-msg>
     </div>

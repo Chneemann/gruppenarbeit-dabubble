@@ -20,6 +20,7 @@ import { DownloadFilesService } from '../../../../service/download-files.service
 import { EmojiPickerComponent } from '../../../../shared/components/emoji-picker/emoji-picker.component';
 import { UserService } from '../../../../service/user.service';
 import { TranslateModule } from '@ngx-translate/core';
+import { SharedService } from '../../../../service/shared.service';
 
 @Component({
   selector: 'app-edit-msg',
@@ -38,6 +39,8 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class EditMsgComponent {
   @Input() chat!: Chat | ChatAnswers;
+  @Input() viewWidth: number = 0;
+  @Input() openOnSecondaryChat: boolean = false;
   @Output() closeEditMsgEmitter: EventEmitter<boolean> =
     new EventEmitter<boolean>();
 
@@ -47,8 +50,12 @@ export class EditMsgComponent {
   constructor(
     public chatService: ChatService,
     public downloadFilesService: DownloadFilesService,
-    public userService: UserService
+    public userService: UserService,
+    private sharedService: SharedService
   ) {}
+
+  RESPONSIVE_THRESHOLD = this.sharedService.RESPONSIVE_THRESHOLD;
+  RESPONSIVE_THRESHOLD_MOBILE = this.sharedService.RESPONSIVE_THRESHOLD_MOBILE;
 
   ngOnInit() {
     this.originalMessage = this.chat.message as string;
