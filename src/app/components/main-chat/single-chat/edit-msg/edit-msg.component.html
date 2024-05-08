@@ -26,17 +26,37 @@
       [imgSrc]="'add-reaction.svg'"
       [imgSize]="'24px'"
       [btnSize]="'36px'"
+      [imgSize]="viewWidth >= RESPONSIVE_THRESHOLD_MOBILE ? '24px' : '17px'"
+      [btnSize]="viewWidth >= RESPONSIVE_THRESHOLD_MOBILE ? '36px' : '25px'"
       [btnBgHoverColor]="'#edeefe'"
       (click)="toggleEmojiPicker()"
     ></app-small-btn>
     <div class="btns">
-      <button type="reset" class="btn" (click)="closeEditMsg()">{{ 'edit-msg.cancel' | translate }}</button>
+      <button
+        type="reset"
+        class="btn"
+        [ngStyle]="{
+          'font-size':
+            viewWidth >= RESPONSIVE_THRESHOLD && openOnSecondaryChat
+              ? '14px'
+              : ''
+        }"
+        (click)="closeEditMsg()"
+      >
+        {{ "edit-msg.cancel" | translate }}
+      </button>
       <button
         type="submit"
         class="btn"
+        [ngStyle]="{
+          'font-size':
+            viewWidth >= RESPONSIVE_THRESHOLD && openOnSecondaryChat
+              ? '14px'
+              : ''
+        }"
         [disabled]="message.invalid || chat.message == originalMessage"
       >
-      {{ 'edit-msg.save' | translate }}
+        {{ "edit-msg.save" | translate }}
       </button>
     </div>
   </div>

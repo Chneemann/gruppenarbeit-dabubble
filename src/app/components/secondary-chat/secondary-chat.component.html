@@ -2,7 +2,7 @@
   <div class="chat">
     <div class="header">
       <div class="headline">
-        <p>{{ 'secondary-chat.thread' | translate }}</p>
+        <p>{{ "secondary-chat.thread" | translate }}</p>
         @for (channel of getChannelName(); track channel) {
         <span># {{ channel.name }}</span>
         }
@@ -23,12 +23,16 @@
           [currentChat]="chat.id"
           [showAnswer]="false"
           [openOnSecondaryChat]="true"
+          [secondaryChatFirstMsg]="true"
           [viewWidth]="viewWidth"
         ></app-single-chat>
         }
       </div>
       <div class="spacer">
-        <p>{{ displayCountChatAnswer(chat.id) }} {{ 'secondary-chat.answer' | translate }}</p>
+        <p>
+          {{ displayCountChatAnswer(chat.id) }}
+          {{ "secondary-chat.answer" | translate }}
+        </p>
         <div class="line"></div>
       </div>
       }

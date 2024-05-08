@@ -40,6 +40,7 @@ export class ReactionEmojisComponent {
   @Input() user: User = {} as User;
   @Input() chat: Chat | ChatAnswers = {} as Chat | ChatAnswers;
   @Input() openOnSecondaryChat: boolean = false;
+  @Input() secondaryChatFirstMsg: boolean = false;
   @Input() viewWidth: number = 0;
 
   reactionDialogId: string = '';

@@ -46,6 +46,7 @@ export class SingleChatComponent {
   @Input() isPrivatChannel: boolean = false;
   @Input() showAnswer: boolean = false;
   @Input() openOnSecondaryChat: boolean = false;
+  @Input() secondaryChatFirstMsg: boolean = false;
   @Input() viewWidth: number = 0;
 
   trustedUrl: string = '';
