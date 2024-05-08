@@ -28,19 +28,19 @@ export class EditUserDetailsComponent {
   constructor(
     public userService: UserService,
     public channelService: ChannleService
-  ) {
-    this.filterGuest();
-  }
+  ) {}
 
   /** Filters whether the user is a guest. */
   filterGuest() {
     const getGuest = this.userService.allUsers.filter(
-      (user) => user.id === 'JX5JxxPx0sdjEPHCs5F9'
+      (user) => user.id === this.userService.userId
     );
-    if (getGuest) {
+    if ('JX5JxxPx0sdjEPHCs5F9' === getGuest[0].id) {
       this.asGuestOnline = true;
+      return false;
     } else {
       this.asGuestOnline = false;
+      return true;
     }
   }
 

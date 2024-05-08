@@ -16,8 +16,9 @@
           <img src="assets/img/personCircle.svg" />
           <h1 class="fontNunito">{{ 'edit-user-details.fullName' | translate }}</h1>
         </div>
-        @if (asGuestOnline) {
+        @if (!filterGuest()) {
           <input
+            class="inputName"
             class="inputDisabled"
             type="text"
             placeholder="{{ 'edit-user-details.placeholder' | translate }}"
@@ -45,7 +46,7 @@
           <img src="assets/img/mail-iconBlack.svg" />
           <h1 class="fontNunito">{{ 'edit-user-details.email' | translate }}</h1>
         </div>
-        @if (asGuestOnline) {
+        @if (!filterGuest()) {
           <input
             class="inputDisabled"
             type="email"
