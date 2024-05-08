@@ -4,7 +4,7 @@
   <div class="boxHeader">
     <p>Profil</p>
     <div class="positionCloseIcon" (click)="closeCurrentProfile()">
-      <img src="assets/img/closeIcon.svg" class="closeIcon" />
+      <img src="./assets/img/closeIcon.svg" class="closeIcon" />
     </div>
   </div>
   <img src="{{ i.avatar }}" class="profileImg" (click)="showSideMenu()" />
@@ -16,7 +16,7 @@
 
     <div class="statusBox">
       <img
-        src="assets/img/{{ i.status ? 'onlineRing.svg' : 'offlineRing.svg' }}"
+        src="./assets/img/{{ i.status ? 'onlineRing.svg' : 'offlineRing.svg' }}"
       />
       @if (i.status) {
       <p class="fontColorGreen">Aktiv</p>
@@ -26,7 +26,7 @@
     </div>
 
     <div class="emailBox">
-      <img src="assets/img/mail-icon.svg" />
+      <img src="./assets/img/mail-icon.svg" />
       <div class="email">
         <p>{{ 'edit-user.email' | translate }}</p>
         <a

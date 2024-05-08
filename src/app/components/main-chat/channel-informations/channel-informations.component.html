@@ -3,11 +3,11 @@
     @for (channel of getChannelName(currentChannel); track channel) {
     <div class="headerBox">
       <div class="headline">
-        <img src="assets/img/hashtag.svg" alt="" />
+        <img src="./assets/img/hashtag.svg" alt="" />
         <p>{{ channel.name }}</p>
       </div>
       <div class="closeBtn" (click)="closeMenu()">
-        <img src="assets/img/closeIcon.svg" alt="" />
+        <img src="./assets/img/closeIcon.svg" alt="" />
       </div>
     </div>
     }
@@ -28,7 +28,7 @@
         } @else {
         <img
           class="disableEdit"
-          src="./../../../../assets/img/pencil.svg"
+          src="./assets/img/pencil.svg"
           alt=""
         />
         } } @else {
@@ -43,12 +43,12 @@
       </div>
       @if (!openEditNameInput) {
       <div class="channelName">
-        <img src="assets/img/hashtag.svg" alt="" />
+        <img src="./assets/img/hashtag.svg" alt="" />
         <p>{{ channel.name }}</p>
       </div>
       } @else {
       <div class="channelName">
-        <img src="assets/img/hashtag.svg" alt="" />
+        <img src="./assets/img/hashtag.svg" alt="" />
         <input type="text" [(ngModel)]="nameValue" class="inputName" />
       </div>
       } }
@@ -71,7 +71,7 @@
         } @else {
         <img
           class="disableEdit"
-          src="./../../../../assets/img/pencil.svg"
+          src="./assets/img/pencil.svg"
           alt=""
         />
         } } @else {
@@ -134,7 +134,7 @@
           <div class="imgBox">
             <img src="{{ user.avatar }}" class="userImg" />
             <img
-              src="assets/img/{{
+              src="./assets/img/{{
                 user.status ? 'onlineRing.svg' : 'offlineRing.svg'
               }}"
               class="onlineIcon"

@@ -38,11 +38,11 @@ export class ChatMsgBoxComponent {
   currentFiles!: FileList;
   files: any;
   getFileIcons = [
-    'assets/img/documentIcon.svg',
-    'assets/img/imgIcon.svg',
-    'assets/img/mp3Icon.svg',
-    'assets/img/pdfIcon.svg',
-    'assets/img/videoIcon.svg',
+    './assets/img/documentIcon.svg',
+    './assets/img/imgIcon.svg',
+    './assets/img/mp3Icon.svg',
+    './assets/img/pdfIcon.svg',
+    './assets/img/videoIcon.svg',
   ];
   textArea: string = '';
   isEmojiPickerVisible: boolean | undefined;

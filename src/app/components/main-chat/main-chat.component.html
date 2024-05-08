@@ -27,7 +27,7 @@
         <div class="positionImgs">
           <img src="{{ i.avatar }}" class="avatarImg" />
           <img
-            src="assets/img/{{
+            src="./assets/img/{{
               i.status ? 'onlineRing.svg' : 'offlineRing.svg'
             }}"
             class="onlineIconFilterWindow"
@@ -69,7 +69,7 @@
           src="{{ filterUser(user.creatorId)[i].avatar }}"
         />
         <img
-          src="assets/img/{{
+          src="./assets/img/{{
             filterUser(user.creatorId)[i].status
               ? 'onlineRing.svg'
               : 'offlineRing.svg'
@@ -109,9 +109,9 @@
   @for(channel of getChannelName(currentChannel); track channel) {
   <div class="header">
     <div class="headline" (click)="showMenu()">
-      <img src="assets/img/hashtag.svg" alt="" />
+      <img src="./assets/img/hashtag.svg" alt="" />
       <p>{{ channel.name }}</p>
-      <img src="assets/img/keyboardArrowDown.svg" alt="" />
+      <img src="./assets/img/keyboardArrowDown.svg" alt="" />
     </div>
     <div class="addUserToChannelBox">
       @if (filterChannelForSelectedUser(currentChannel)) {
@@ -124,7 +124,7 @@
         <div *ngIf="userService.getFiltertUsers.length > 3" class="dotsImg">
           <img
             *ngFor="let i of [0, 1, 2]"
-            src="assets/img/offlineRing.svg"
+            src="./assets/img/offlineRing.svg"
             alt=""
           />
         </div>

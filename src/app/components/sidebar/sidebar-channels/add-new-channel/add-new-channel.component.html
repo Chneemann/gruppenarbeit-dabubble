@@ -29,7 +29,7 @@
       <span>{{ 'add-new-channel.required' | translate }}</span>
       <img
         class="hashtag"
-        src="./../../../../../assets/img/hashtag.svg"
+        src="./assets/img/hashtag.svg"
         alt=""
       />
     </div>
@@ -81,7 +81,7 @@
     </div>
     <div class="positionSelectionBtn">
       <img
-        src="assets/img/{{
+        src="./assets/img/{{
           changeImg ? 'radioButtonUnchecked.svg' : 'radioButtonChecked.svg'
         }}"
         alt=""
@@ -91,7 +91,7 @@
     </div>
     <div class="positionSelectionBtn">
       <img
-        src="assets/img/{{
+        src="./assets/img/{{
           !changeImg ? 'radioButtonUnchecked.svg' : 'radioButtonChecked.svg'
         }}"
         (click)="toggleBtnTrue()"
@@ -106,7 +106,7 @@
         <img src="{{ user.avatar }}" class="avatarImg" />
         <h3>{{ user.firstName }} {{ user.lastName }}</h3>
         <img
-          src="assets/img/closeIcon.svg"
+          src="./assets/img/closeIcon.svg"
           class="imgClose"
           (click)="spliceCurrentUser(i)"
         />
@@ -127,7 +127,7 @@
             <div class="positionImgs">
               <img src="{{ user.avatar }}" class="avatarImg" />
               <img
-                src="assets/img/{{
+                src="./assets/img/{{
                   user.status ? 'onlineRing.svg' : 'offlineRing.svg'
                 }}"
                 class="onlineIcon"

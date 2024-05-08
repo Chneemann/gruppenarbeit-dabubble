@@ -4,7 +4,7 @@
     <div class="boxHeader fontNunito">
       <h2 class="fontNunito">{{ 'edit-user-details.profile' | translate }}</h2>
       <div class="positionCloseIcon" (click)="closeEditUserWindow()">
-        <img src="assets/img/closeIcon.svg" class="closeIcon" />
+        <img src="./assets/img/closeIcon.svg" class="closeIcon" />
       </div>
     </div>
 
@@ -13,7 +13,7 @@
     <div class="inputBox">
       <div class="positionName">
         <div class="positionNameIcon">
-          <img src="assets/img/personCircle.svg" />
+          <img src="./assets/img/personCircle.svg" />
           <h1 class="fontNunito">{{ 'edit-user-details.fullName' | translate }}</h1>
         </div>
         @if (!filterGuest()) {
@@ -43,7 +43,7 @@
 
       <div class="positionName">
         <div class="positionNameIcon">
-          <img src="assets/img/mail-iconBlack.svg" />
+          <img src="./assets/img/mail-iconBlack.svg" />
           <h1 class="fontNunito">{{ 'edit-user-details.email' | translate }}</h1>
         </div>
         @if (!filterGuest()) {

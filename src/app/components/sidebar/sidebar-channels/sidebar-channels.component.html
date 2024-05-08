@@ -2,12 +2,12 @@
   <div class="headline">
     <div class="headlineText" (click)="minimizeAllChannels()">
       <img
-        src="assets/img/sidebar/{{
+        src="./assets/img/sidebar/{{
           !minimizeChannels ? 'arrow_right.png' : 'arrow-drop-down.svg'
         }}"
         class="arrowImg"
       />
-      <img src="assets/img/sidebar/bubbles.svg" alt="" />
+      <img src="./assets/img/sidebar/bubbles.svg" alt="" />
       <p> {{ 'sidebar-channels.channel' | translate }}</p>
     </div>
     <div class="btn">
@@ -38,14 +38,14 @@
         active: currentChannel == channel.id
       }"
     >
-      <img src="assets/img/hashtag.svg" alt="" />
+      <img src="./assets/img/hashtag.svg" alt="" />
       <p>{{ channel.name }}</p>
     </div>
     }
   </div>
   <div class="addChannel" (click)="openAddChannelWindow()">
     <div class="circle">
-      <img src="assets/img/sidebar/add-circle.svg" alt="" />
+      <img src="./assets/img/sidebar/add-circle.svg" alt="" />
     </div>
     <p>{{ 'sidebar-channels.addChannel' | translate }}</p>
   </div>

@@ -7,7 +7,7 @@
     [(ngModel)]="inputValue"
     (keyup)="filterAllInfo(inputValue)"
   />
-  <img class="searchImg" src="assets/img/search-icon.svg" />
+  <img class="searchImg" src="./assets/img/search-icon.svg" />
   <div
     class="suggestionBox"
     [ngClass]="{
@@ -28,9 +28,9 @@
           <div class="userImgDiv">
             <img src="{{ user.avatar }}" class="userProfilImg" />
             @if (user.status === true) {
-            <img src="assets/img/onlineRing.svg" class="userOnlineImg" />
+            <img src="./assets/img/onlineRing.svg" class="userOnlineImg" />
             } @else {
-            <img src="assets/img/offlineRing.svg" class="userOnlineImg" />
+            <img src="./assets/img/offlineRing.svg" class="userOnlineImg" />
             }
           </div>
           <p

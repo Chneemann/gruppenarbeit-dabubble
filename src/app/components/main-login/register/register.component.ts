@@ -28,10 +28,10 @@ export class RegisterComponent {
   firestore: Firestore = inject(Firestore);
   isChecked: boolean = false;
   currentImage: string;
-  defaultImage = '/assets/img/login/box.png';
-  clickedImage = '/assets/img/login/box-checked.png';
-  hoverImage = '/assets/img/login/box-hover.png';
-  clickedHoverImage = '/assets/img/login/box-checked-hover.png';
+  defaultImage = './assets/img/login/box.png';
+  clickedImage = './assets/img/login/box-checked.png';
+  hoverImage = './assets/img/login/box-hover.png';
+  clickedHoverImage = './assets/img/login/box-checked-hover.png';
 
   constructor(public loginService: loginService, private router: Router) {
     this.currentImage = this.defaultImage;

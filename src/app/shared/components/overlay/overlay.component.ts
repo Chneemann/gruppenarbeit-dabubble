@@ -1,10 +1,7 @@
 import {
   Component,
-  EventEmitter,
   HostListener,
-  Input,
-  OnInit,
-  Output,
+  OnInit
 } from '@angular/core';
 import { OverlayService } from '../../../service/overlay.service';
 import { CommonModule } from '@angular/common';

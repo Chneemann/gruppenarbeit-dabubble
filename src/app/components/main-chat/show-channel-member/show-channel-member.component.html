@@ -24,7 +24,7 @@
         <div class="positionImgs">
           <img src="{{ user.avatar }}" class="avatarImg" />
           <img
-            src="assets/img/{{
+            src="./assets/img/{{
               user.status ? 'onlineRing.svg' : 'offlineRing.svg'
             }}"
             class="onlineIcon"
@@ -35,7 +35,7 @@
       }
     </div>
     <div class="addMemberBox" (click)="toggleBoolean.openAddMemberWindow(true)">
-      <img src="assets/img/addPerson.svg" />
+      <img src="./assets/img/addPerson.svg" />
       <p>{{ "show-channel-member.addMember" | translate }}</p>
     </div>
   </div>
@@ -70,7 +70,7 @@
         <img src="{{ user.avatar }}" class="avatarImg" />
         <p>{{ user.firstName }} {{ user.lastName }}</p>
         <img
-          src="assets/img/closeIcon.svg"
+          src="./assets/img/closeIcon.svg"
           class="imgClose"
           (click)="spliceCurrentUser(i)"
         />
@@ -88,7 +88,7 @@
             <div class="positionImgsBox">
               <img src="{{ user.avatar }}" class="addAvatarImg" />
               <img
-                src="assets/img/{{
+                src="./assets/img/{{
                   user.status ? 'onlineRing.svg' : 'offlineRing.svg'
                 }}"
                 class="onlineIcon"

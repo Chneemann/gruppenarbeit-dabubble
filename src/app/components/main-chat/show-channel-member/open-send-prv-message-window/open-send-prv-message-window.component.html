@@ -7,7 +7,7 @@
     <div class="boxHeader">
       <p>{{ 'open-send-prv-message.profil' | translate }}</p>
       <div class="positionCloseIcon" (click)="closeWindow()">
-        <img src="assets/img/closeIcon.svg" class="closeIcon" />
+        <img src="./assets/img/closeIcon.svg" class="closeIcon" />
       </div>
     </div>
     <img src="{{ i.avatar }}" class="profileImg" />
@@ -18,7 +18,7 @@
 
       <div class="statusBox">
         <img
-          src="assets/img/{{ i.status ? 'onlineRing.svg' : 'offlineRing.svg' }}"
+          src="./assets/img/{{ i.status ? 'onlineRing.svg' : 'offlineRing.svg' }}"
           class="onlineIcon"
         />
         @if (i.status) {
@@ -29,7 +29,7 @@
       </div>
 
       <div class="emailBox">
-        <img src="assets/img/mail-icon.svg" />
+        <img src="./assets/img/mail-icon.svg" />
         <div class="email">
           <p>{{ 'open-send-prv-message.adress' | translate }}</p>
           <a
@@ -49,7 +49,7 @@
     <div class="boxHeader">
       <p>{{ 'open-send-prv-message.profil' | translate }}</p>
       <div class="positionCloseIcon" (click)="closeWindow()">
-        <img src="assets/img/closeIcon.svg" class="closeIcon" />
+        <img src="./assets/img/closeIcon.svg" class="closeIcon" />
       </div>
     </div>
     <img src="{{ i.avatar }}" class="profileImg" />
@@ -60,7 +60,7 @@
 
       <div class="statusBox">
         <img
-          src="assets/img/{{ i.status ? 'onlineRing.svg' : 'offlineRing.svg' }}"
+          src="./assets/img/{{ i.status ? 'onlineRing.svg' : 'offlineRing.svg' }}"
           class="onlineIcon"
         />
         @if (i.status) {
@@ -71,7 +71,7 @@
       </div>
 
       <div class="emailBox">
-        <img src="assets/img/mail-icon.svg" />
+        <img src="./assets/img/mail-icon.svg" />
         <div class="email">
           <p>E-Mail-Address</p>
           <a
@@ -84,7 +84,7 @@
       </div>
     </div>
     <button (click)="routeToUser(user)">
-      <img src="assets/img/messageIcon.svg" /> {{ 'open-send-prv-message.message' | translate }}
+      <img src="./assets/img/messageIcon.svg" /> {{ 'open-send-prv-message.message' | translate }}
     </button>
   </div>
   } }
