@@ -18,7 +18,7 @@ import { TranslateModule } from '@ngx-translate/core';
     EditUserComponent,
     SearchBarComponent,
     SmallBtnComponent,
-    TranslateModule
+    TranslateModule,
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
@@ -61,6 +61,8 @@ export class HeaderComponent {
    */
   logout(): void {
     this.userService.currentUserLogout();
+    this.chatService.isSecondaryChatId = '';
+    this.chatService.isSecondaryChatOpen = false;
   }
 
   /**
