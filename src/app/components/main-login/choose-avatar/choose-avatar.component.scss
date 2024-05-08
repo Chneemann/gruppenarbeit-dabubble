@@ -103,10 +103,10 @@ button {
       white-space: nowrap;
     }
   }
-  .viewAvatarContainer{
-    >img{
+  .viewAvatarContainer {
+    > img {
       height: 148px;
-    width: 148px;
+      width: 148px;
     }
   }
   .chooseAvatarContainer {
@@ -123,15 +123,24 @@ button {
   .avatarBottom {
     margin-top: 8px;
   }
-}
-@media (max-width: 380px) {
-  .avatarContainer {
-    max-width: 306px;
+  .BtnUpload {
+    &:hover {
+      background-color: #ffff;
+      color: #676eec;
+    }
   }
-  .avatarTop {
-    width: 95%;
-    > span {
-      font-size: 24px;
+  .hoverBtn {
+    background-color: #676eec;
+  }
+  @media (max-width: 380px) {
+    .avatarContainer {
+      max-width: 306px;
+    }
+    .avatarTop {
+      width: 95%;
+      > span {
+        font-size: 24px;
+      }
     }
   }
 }
