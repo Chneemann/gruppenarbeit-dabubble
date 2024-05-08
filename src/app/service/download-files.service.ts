@@ -28,7 +28,7 @@ export class DownloadFilesService {
     for (const file of this.uploadFiles) {
       const storageRef = ref(storage, `chatFiles/${docID}/${file.name}`);
       uploadBytes(storageRef, file).then((snapshot) => {
-        console.log('Uploaded a blob or file!', snapshot);
+        this.listAllFiles();
       });
     }
   }

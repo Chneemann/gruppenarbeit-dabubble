@@ -2,12 +2,10 @@
 
 .files {
   display: flex;
-  border-radius: 12px;
-  border: 2px solid rgba(0, 0, 0, 0.3);
+
   max-width: calc(100vw - 140px);
   overflow: auto;
   .filesView {
-    padding: 12px 12px 6px 12px;
     cursor: pointer;
     transition: 0.3s ease-in-out;
     filter: drop-shadow(3px 3px 3px rgba(0, 0, 0, 0.3));
