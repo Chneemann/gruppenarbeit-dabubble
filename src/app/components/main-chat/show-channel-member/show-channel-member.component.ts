@@ -23,6 +23,8 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrl: './show-channel-member.component.scss',
 })
 export class ShowChannelMemberComponent {
+  @Input() isSecondaryChatOpen: boolean = false;
+
   userName: string = '';
   showExistenUsers: boolean = false;
   getSearchedUser: User[] = [];

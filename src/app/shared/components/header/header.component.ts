@@ -12,7 +12,12 @@ import { LanguageService } from '../../../service/language.service';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, EditUserComponent, SearchBarComponent, SmallBtnComponent],
+  imports: [
+    CommonModule,
+    EditUserComponent,
+    SearchBarComponent,
+    SmallBtnComponent,
+  ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
@@ -32,6 +37,7 @@ export class HeaderComponent {
   ) {}
 
   RESPONSIVE_THRESHOLD = this.sharedService.RESPONSIVE_THRESHOLD;
+  RESPONSIVE_THRESHOLD_MOBILE = this.sharedService.RESPONSIVE_THRESHOLD_MOBILE;
 
   /**
    * Toggles the display of the side menu.

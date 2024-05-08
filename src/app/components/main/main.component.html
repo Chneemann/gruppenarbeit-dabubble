@@ -38,6 +38,7 @@
       }"
     >
       <app-main-chat
+        [isSecondaryChatOpen]="chatService.isSecondaryChatOpen"
         [currentChannel]="currentChannel"
         [viewWidth]="viewWidth"
         [ngStyle]="{

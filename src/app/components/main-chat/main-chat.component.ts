@@ -48,6 +48,7 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class MainChatComponent {
   @Input() currentChannel: string = '';
+  @Input() isSecondaryChatOpen: boolean = false;
   @Input() viewWidth: number = 0;
 
   firstLetter: string = '';
