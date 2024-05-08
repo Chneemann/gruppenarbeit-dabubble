@@ -83,7 +83,6 @@ export class UserService implements OnDestroy {
         (channel.creatorId === newPrvChannel.talkToUserId &&
           channel.talkToUserId === newPrvChannel.creatorId)
     );
-
     if (!channelExistsBoolean) {
       const docId = this.channelService.createNewChannel(
         newPrvChannel,

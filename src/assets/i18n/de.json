@@ -1,211 +1,212 @@
 {
-"login": {
-  "header":"Anmeldung",
-  "infoText":"Wir empfehlen dir, die E-Mail-Adresse zu nutzen, die du bei der Arbeit verwendest.",
-  "inputField":"beispielname@email.com",
-  "inputField2":"Passwort",
-  "midText":"Passwort vergessen?",
-  "midSeperator":"ODER",
-  "googleBtn":"Anmeldung mit Google",
-  "BtnLeft":"Anmelden",
-  "BtnRight":"Gäste-Login",
-  "topText":"Neu bei DABubble?",
-  "topText2":"Konto erstellen",
-  "errorText":"*Email ist erforderlich.",
-  "errorText2":"*Passwort ist erforderlich."
-},
+  "login": {
+    "header": "Anmeldung",
+    "infoText": "Wir empfehlen dir, die E-Mail-Adresse zu nutzen, die du bei der Arbeit verwendest.",
+    "inputField": "beispielname@email.com",
+    "inputField2": "Passwort",
+    "midText": "Passwort vergessen?",
+    "midSeperator": "ODER",
+    "googleBtn": "Anmeldung mit Google",
+    "BtnLeft": "Anmelden",
+    "BtnRight": "Gäste-Login",
+    "topText": "Neu bei DABubble?",
+    "topText2": "Konto erstellen",
+    "errorText": "*Email ist erforderlich.",
+    "errorText2": "*Passwort ist erforderlich."
+  },
 
-"createAccount": {
-  "header":"Konto erstellen",
-  "infoText":"Mit deinem Namen und deiner E-Mail-Adresse hast du dein neues DABubble-Konto.",
-  "inputField":"Name und Nachname",
-  "inputField2":"beispielname@email.com",
-  "inputField3":"Passwort",
-  "midText":"Ich stimme der",
-  "midText2":"Datenschutzerklärung",
-  "midText3":"zu.",
-  "Btn":"Weiter",
-  "errorText":"*Name ist erforderlich.",
-  "errorText2":"*Email ist erforderlich.",
-  "errorText3":"*Bitte geben Sie ein Passwort ein (mind. 6 Zeichen)."
-},
+  "createAccount": {
+    "header": "Konto erstellen",
+    "infoText": "Mit deinem Namen und deiner E-Mail-Adresse hast du dein neues DABubble-Konto.",
+    "inputField": "Name und Nachname",
+    "inputField2": "beispielname@email.com",
+    "inputField3": "Passwort",
+    "midText": "Ich stimme der",
+    "midText2": "Datenschutzerklärung",
+    "midText3": "zu.",
+    "Btn": "Weiter",
+    "errorText": "*Name ist erforderlich.",
+    "errorText2": "*Email ist erforderlich.",
+    "errorText3": "*Bitte geben Sie ein Passwort ein (mind. 6 Zeichen)."
+  },
 
-"chooseAvatar": {
-  "header":"Wähle deinen Avatar",
-  "avatarInfo":"Aus der Liste wählen",
-  "ownAvatar":"eigenes Bild verwenden",
-  "avatarBtn":"Datei hochladen",
-  "Btn":"Weiter"
-},
+  "chooseAvatar": {
+    "header": "Wähle deinen Avatar",
+    "avatarInfo": "Aus der Liste wählen",
+    "ownAvatar": "eigenes Bild verwenden",
+    "avatarBtn": "Datei hochladen",
+    "Btn": "Weiter"
+  },
 
-"passwordForget": {
-  "header":"Passwort zurücksetzen",
-  "infoText":"Bitte geben Sie Ihre E-Mail-Adresse ein.",
-  "inputfield":"beispielname@email.com",
-  "infoTextBottom":"Wir senden Ihnen eine E-Mail, Über die Sie Ihr Passwort ändern können.",
-  "Btn":"E-Mail senden",
-  "errorText":"*Email ist erforderlich."
-},
+  "passwordForget": {
+    "header": "Passwort zurücksetzen",
+    "infoText": "Bitte geben Sie Ihre E-Mail-Adresse ein.",
+    "inputfield": "beispielname@email.com",
+    "infoTextBottom": "Wir senden Ihnen eine E-Mail, Über die Sie Ihr Passwort ändern können.",
+    "Btn": "E-Mail senden",
+    "errorText": "*Email ist erforderlich."
+  },
 
-"passwordReset": {
-  "header":"Passwort zurücksetzen",
-  "inputfield":"Neues Passwort",
-  "inputfield2":"Neues Passwort bestätigen",
-  "Btn":"Passwort ändern",
-  "errorText":"*Bitte geben Sie ein neus Passwort ein (mind.6 Zeichen).",
-  "errorText2":"*Die Passwörter stimmen nicht überein."
-},
+  "passwordReset": {
+    "header": "Passwort zurücksetzen",
+    "inputfield": "Neues Passwort",
+    "inputfield2": "Neues Passwort bestätigen",
+    "Btn": "Passwort ändern",
+    "errorText": "*Bitte geben Sie ein neus Passwort ein (mind.6 Zeichen).",
+    "errorText2": "*Die Passwörter stimmen nicht überein."
+  },
 
-"channel-informations": {
-  "header":"Kanal Name",
-  "channelInfo":"Beschreibung",
-  "channelInfo2":"keine Beschreibung.",
-  "channelMadeBy":"Erstellt von",
-  "channelErrorText":"*Nur der Ersteller kann den Kanal bearbeiten",
-  "members":"Mitglieder",
-  "leave":"Kanal verlassen"
-},
+  "channel-informations": {
+    "header": "Kanal Name",
+    "channelInfo": "Beschreibung",
+    "channelInfo2": "keine Beschreibung.",
+    "channelMadeBy": "Erstellt von",
+    "channelErrorText": "*Nur der Ersteller kann den Kanal bearbeiten",
+    "members": "Mitglieder",
+    "leave": "Kanal verlassen"
+  },
 
-"channel-msg-box": {
-  "text":"Die maximale Anzahl an Dateien beträgt 1.",
-  "placeholder":"Geben Sie Ihre Nachricht ein"
-},
+  "channel-msg-box": {
+    "text": "Die maximale Anzahl an Dateien beträgt 1.",
+    "placeholder": "Geben Sie Ihre Nachricht ein"
+  },
 
-"info": {
-  "channelCreate":"Der Kanal wurde von",
-  "channelCreate2":"am",
-  "channelCreate3":" erstellt. Das ist der Anfang des Kanals",
-  "notice":"Dieser Raum ist nur für dich da. Mache dir Notizen, liste deine To-dos auf oder bewahre Links und Dateien griffbereit auf. Du kannst hier auch gerne Dinge mit dir selbst besprechen.",
-  "talkTo":"Diese Unterhaltung findet nur zwischen",
-  "talkTo2":"und dir statt."
-},
+  "info": {
+    "channelCreate": "Der Kanal wurde von",
+    "channelCreate2": "am",
+    "channelCreate3": " erstellt. Das ist der Anfang des Kanals",
+    "notice": "Dieser Raum ist nur für dich da. Mache dir Notizen, liste deine To-dos auf oder bewahre Links und Dateien griffbereit auf. Du kannst hier auch gerne Dinge mit dir selbst besprechen.",
+    "talkTo": "Diese Unterhaltung findet nur zwischen",
+    "talkTo2": "und dir statt."
+  },
 
-"show-channel-member": {
-  "header":"Kanal Mitglieder",
-  "addMember":"Mitglieder hinzufügen",
-  "result":"Keine Ergebnisse",
-  "add":"hinzufügen"
-},
+  "show-channel-member": {
+    "header": "Kanal Mitglieder",
+    "addMember": "Mitglieder hinzufügen",
+    "result": "Keine Ergebnisse",
+    "add": "hinzufügen"
+  },
 
-"open-send-prv-message": {
-  "profil":"Profil",
-  "aktiv":"Aktiv",
-  "offline":"Offline",
-  "adress":"E-Mail-Address",
-  "message":"Nachricht"
-},
+  "open-send-prv-message": {
+    "profil": "Profil",
+    "aktiv": "Aktiv",
+    "offline": "Offline",
+    "adress": "E-Mail-Address",
+    "message": "Nachricht"
+  },
 
-"main-chat": {
-  "message":"Neue Nachricht",
-  "placeholder":"An: #Kanal oder @jemanden"
-},
+  "main-chat": {
+    "message": "Neue Nachricht",
+    "placeholder": "An: #Kanal oder @jemanden"
+  },
 
-"edit-msg": {
-  "save":"Speichern",
-  "cancel":"Abbrechen"
-},
+  "edit-msg": {
+    "save": "Speichern",
+    "cancel": "Abbrechen"
+  },
 
-"options-menu": {
-  "delete":"Nachricht löschen",
-  "edit":"Nachricht bearbeiten"
-},
+  "options-menu": {
+    "delete": "Nachricht löschen",
+    "edit": "Nachricht bearbeiten"
+  },
 
-"reaction-emojis": {
-  "react":"haben reagiert.",
-  "react2":"hat reagiert."
-},
+  "reaction-emojis": {
+    "react": "haben reagiert.",
+    "react2": "hat reagiert."
+  },
 
-"single-chat": {
-  "edit":"(bearbeitet)",
-  "answer":"Antworten",
-  "answer2":"Letzte Antwort:",
-  "answer3":"Antwort..."
-},
+  "single-chat": {
+    "edit": "(bearbeitet)",
+    "answer": "Antworten",
+    "answer2": "Letzte Antwort:",
+    "answer3": "Antwort..."
+  },
 
-"secondary-chat": {
-  "thread":"Thema",
-  "answer":"Antworten"
-},
+  "secondary-chat": {
+    "thread": "Thema",
+    "answer": "Antworten"
+  },
 
-"add-new-channel": {
-  "header":"Kanal erstellen",
-  "info":"Kanäls dienen ihrem Team zur Kommuniktaion. Am besten sollten sie themenbezogen sein #marketing zum Beispiel.",
-  "header2":"Kanal-Name",
-  "required":"(erforderlich)",
-  "placeholder":"(mind. 6 Buchstaben)",
-  "placeholder2":"Schreiben Sie hier, welche Themen im Kanal besprochen werden können.",
-  "description":"Beschreibung",
-  "optional":"(optional)",
-  "create":"Erstellen",
-  "addPeople":"Leute hinzufügen",
-  "addAll":"Alle Mitglieder hinzufügen von",
-  "devspace":"Devspace",
-  "add":"Fügen Sie bestimmte Personen hinzu"
-},
+  "add-new-channel": {
+    "header": "Kanal erstellen",
+    "info": "Kanäls dienen ihrem Team zur Kommuniktaion. Am besten sollten sie themenbezogen sein #marketing zum Beispiel.",
+    "header2": "Kanal-Name",
+    "required": "(erforderlich)",
+    "placeholder": "(mind. 6 Buchstaben)",
+    "placeholder2": "Schreiben Sie hier, welche Themen im Kanal besprochen werden können.",
+    "description": "Beschreibung",
+    "optional": "(optional)",
+    "create": "Erstellen",
+    "addPeople": "Leute hinzufügen",
+    "addAll": "Alle Mitglieder hinzufügen von",
+    "devspace": "Devspace",
+    "add": "Fügen Sie bestimmte Personen hinzu"
+  },
 
-"sidebar-channels": {
-  "channel":"Kanäle",
-  "addChannel":"Kanal hinzufügen"
-},
+  "sidebar-channels": {
+    "channel": "Kanäle",
+    "addChannel": "Kanal hinzufügen"
+  },
 
-"sidebar-direct-messages": {
-  "messages":"Direktnachrichten"
-},
+  "sidebar-direct-messages": {
+    "messages": "Direktnachrichten",
+    "members": "Mitgliederliste"
+  },
 
-"sidebar-direct-messages-user": {
-  "you":"Du"
-},
+  "sidebar-direct-messages-user": {
+    "you": "Du"
+  },
 
-"sidebar-toggle": {
-  "openWorkspace":"Menü öffnen"
-},
+  "sidebar-toggle": {
+    "openWorkspace": "Menü öffnen"
+  },
 
-"edit-user-details": {
-  "profile":"Dein Profil bearbeiten",
-  "fullName":"Vollständiger Name",
-  "placeholder":"Geben Sie Ihren Namen ein mind. 3 Buchstaben",
-  "placeholder2":"Geben Sie Ihre E-Mail-Adresse ein",
-  "email":"E-Mail-Addresse",
-  "cancel":"Abbrechen",
-  "save":"Speichern",
-  "errorMessage":"* Änderungen am Gast Profil sind nicht möglich."
-},
+  "edit-user-details": {
+    "profile": "Dein Profil bearbeiten",
+    "fullName": "Vollständiger Name",
+    "placeholder": "Geben Sie Ihren Namen ein mind. 3 Buchstaben",
+    "placeholder2": "Geben Sie Ihre E-Mail-Adresse ein",
+    "email": "E-Mail-Addresse",
+    "cancel": "Abbrechen",
+    "save": "Speichern",
+    "errorMessage": "* Änderungen am Gast Profil sind nicht möglich."
+  },
 
-"edit-user": {
-  "edit":"bearbeiten",
-  "email":"E-Mail-Addresse"
-},
+  "edit-user": {
+    "edit": "bearbeiten",
+    "email": "E-Mail-Addresse"
+  },
 
-"search-bar": {
-  "placeholder":"Im Devspace suchen",
-  "errorMessage":"Keine Übereinstimmung gefunden"
-},
+  "search-bar": {
+    "placeholder": "Im Devspace suchen",
+    "errorMessage": "Keine Übereinstimmung gefunden"
+  },
 
-"search-bar-header": {
-  "user":"Benutzer",
-  "channels":"Kanäle",
-  "thread": "Themen"
-},
+  "search-bar-header": {
+    "user": "Benutzer",
+    "channels": "Kanäle",
+    "thread": "Themen"
+  },
 
-"footer": {
-  "privatePolice":"Datenschutz",
-  "imprint":"Impressum"
-},
+  "footer": {
+    "privatePolice": "Datenschutz",
+    "imprint": "Impressum"
+  },
 
-"start-header": {
-  "new":"Neu bei DABubble?",
-  "create":"Konto erstellen"
-},
+  "start-header": {
+    "new": "Neu bei DABubble?",
+    "create": "Konto erstellen"
+  },
 
-"login-header": {
-  "profil": "Profil",
-  "logout": "Ausloggen"
-},
+  "login-header": {
+    "profil": "Profil",
+    "logout": "Ausloggen"
+  },
 
-"user": {
-  "email":"E-Mail-Addresse",
-  "message":"Direktnachrichten"
-},
+  "user": {
+    "email": "E-Mail-Addresse",
+    "message": "Direktnachrichten"
+  },
 
   "imprint": {
     "headline": "Imprint",

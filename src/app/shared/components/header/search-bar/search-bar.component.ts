@@ -198,7 +198,7 @@ export class SearchBarComponent {
    * Checks the route based on the specified user.
    * @param user The user to check the route for.
    */
-  checkRoute(user: User[]) {
+  async checkRoute(user: User[]) {
     const userId = user[0].id!;
     const channelExistsBoolean = this.channelService.allPrvChannels.some(
       (channel) =>
@@ -208,7 +208,10 @@ export class SearchBarComponent {
           channel.talkToUserId === userId)
     );
     if (!channelExistsBoolean) {
-      this.userService.createPrvChannel(userId);
+      const id = await this.userService.createPrvChannel(userId);
+      if (id) {
+        this.route.navigateByUrl(`main/${id}`);
+      }
     }
     this.getRouteToPrvChat(userId, channelExistsBoolean);
   }

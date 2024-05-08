@@ -4,6 +4,21 @@ section {
   min-width: 300px;
 }
 
+.headline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  padding-right: 12px;
+  width: 60px;
+}
+
 .headlineText {
   display: flex;
   align-items: center;
