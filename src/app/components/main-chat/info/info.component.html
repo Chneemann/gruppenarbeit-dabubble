@@ -3,12 +3,14 @@
   @if (getChannel(currentChannel).length > 0) {
   <div class="headline"># {{ getChannel(currentChannel)[0].name }}</div>
   <p>
-    {{ 'info.channelCreate' | translate }} @for (user of
-    getChatUsers(getChannel(currentChannel)[0].creator); track user) {
+    {{ "info.channelCreate" | translate }}
+    @if(getChannel(currentChannel)[0].creator == "Admin") { Admin } @else { @for
+    (user of getChatUsers(getChannel(currentChannel)[0].creator); track user) {
     {{ user.firstName }}
     {{ user.lastName }}
-    } {{ 'info.channelCreate2' | translate }}
-    {{ timeConverter(getChannel(currentChannel)[0].createdDate) }} {{ 'info.channelCreate3' | translate }}
+    } } {{ "info.channelCreate2" | translate }}
+    {{ timeConverter(getChannel(currentChannel)[0].createdDate)
+    }}{{ "info.channelCreate3" | translate }}
     <span>#{{ getChannel(currentChannel)[0].name }}</span
     >.
   </p>
@@ -27,7 +29,7 @@
     }
   </div>
   <p>
-    {{ 'info.notice' | translate }}
+    {{ "info.notice" | translate }}
   </p>
   } @else {
   <!-- Privat Chat (creatorId) -->
@@ -42,10 +44,10 @@
     }
   </div>
   <p>
-    {{ 'info.talkTo' | translate }} @for (user of
+    {{ "info.talkTo" | translate }} @for (user of
     getChatUsers(getPrivatChannel(currentChannel)[0].creatorId); track user) {
     <span>&commat;{{ user.firstName }}{{ user.lastName }}</span>
-    } {{ 'info.talkTo2' | translate }}
+    } {{ "info.talkTo2" | translate }}
   </p>
   } @else {
   <!-- Privat Chat (talkToUserId) -->
@@ -60,11 +62,11 @@
     }
   </div>
   <p>
-    {{ 'info.talkTo' | translate }} @for (user of
+    {{ "info.talkTo" | translate }} @for (user of
     getChatUsers(getPrivatChannel(currentChannel)[0].talkToUserId); track user)
     {
     <span>&commat;{{ user.firstName }} {{ user.lastName }}</span>
-    } {{ 'info.talkTo2' | translate }}
+    } {{ "info.talkTo2" | translate }}
   </p>
   } } }
 </section>
