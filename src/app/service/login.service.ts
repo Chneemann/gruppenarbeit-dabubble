@@ -155,6 +155,9 @@ export class loginService {
       .catch((error) => {
         console.error(error);
       });
+    this.name = '';
+    this.email = '';
+    this.password = '';
   }
 
   /**

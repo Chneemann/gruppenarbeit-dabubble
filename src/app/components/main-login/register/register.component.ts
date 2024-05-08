@@ -88,4 +88,13 @@ export class RegisterComponent {
       this.currentImage = isHovering ? this.hoverImage : this.defaultImage;
     }
   }
+
+  /**
+   * Clear the values, if user click on the arrow back button.
+   */
+  resetValues(){
+    this.loginService.name = '';
+    this.loginService.email = '';
+    this.loginService.password = '';
+  }
 }
