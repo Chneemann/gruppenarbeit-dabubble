@@ -35,7 +35,7 @@ export class loginService {
   name: string = '';
   firstName: string = '';
   lastName: string = '';
-  avatar: string = '/assets/img/user-icons/guest.svg';
+  avatar: string = './assets/img/user-icons/guest.svg';
   currentUser: string = '';
   errorMessage: string = '';
   private hasAnimationPlayed = false;
@@ -262,7 +262,7 @@ export class loginService {
               lastName: user.displayName
                 ? user.displayName.split(' ').slice(1).join(' ')
                 : 'LastName',
-              avatar: user.photoURL || '/assets/img/user-icons/guest.svg',
+              avatar: user.photoURL || './assets/img/user-icons/guest.svg',
               status: true,
             });
           } else {
