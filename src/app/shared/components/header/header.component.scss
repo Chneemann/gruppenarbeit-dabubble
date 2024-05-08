@@ -116,7 +116,7 @@ header {
 
 /*------------- RESPONSIVE -------------*/
 
-@media screen and (max-width: $RESPONSIVE_THRESHOLD_SEARCHBAR) {
+@media screen and (max-width: $RESPONSIVE_THRESHOLD) {
   .middleSide {
     display: none;
   }
@@ -151,7 +151,6 @@ header {
 }
 
 @media screen and (max-width: $RESPONSIVE_THRESHOLD_MOBILE) {
-
   .whiteBox {
     top: 80%;
     bottom: 72px !important;
@@ -207,7 +206,7 @@ header {
   }
 }
 
-@media screen and (max-width: $RESPONSIVE_THRESHOLD_MOBILE380px){
+@media screen and (max-width: $RESPONSIVE_THRESHOLD_MOBILE380px) {
   .whiteBox {
     top: 72%;
   }

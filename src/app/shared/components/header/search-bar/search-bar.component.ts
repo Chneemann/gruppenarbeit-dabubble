@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { User } from '../../../../interface/user.interface';
 import { Channel } from '../../../../interface/channel.interface';
 import { Chat } from '../../../../interface/chat.interface';
@@ -12,15 +12,24 @@ import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HighlightPipe } from '../../../../highlight.pipe';
 import { TranslateModule } from '@ngx-translate/core';
+import { SharedService } from '../../../../service/shared.service';
 
 @Component({
   selector: 'app-search-bar',
   standalone: true,
   templateUrl: './search-bar.component.html',
   styleUrl: './search-bar.component.scss',
-  imports: [CommonModule, FormsModule, RouterLink, HighlightPipe, TranslateModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    RouterLink,
+    HighlightPipe,
+    TranslateModule,
+  ],
 })
 export class SearchBarComponent {
+  @Input() viewWidth: number = 0;
+
   openMenu: boolean = false;
   showCurrentProfile: boolean = false;
   isOnline: boolean = true;
@@ -37,8 +46,22 @@ export class SearchBarComponent {
     private channelService: ChannleService,
     private chatService: ChatService,
     public sanitizer: DomSanitizer,
-    private route: Router
+    private route: Router,
+    private sharedService: SharedService
   ) {}
+
+  RESPONSIVE_THRESHOLD = this.sharedService.RESPONSIVE_THRESHOLD;
+
+  /**
+   * Closes the secondary chat window & sidebar.
+   */
+  closeSecondaryChatAndSidebar() {
+    this.chatService.toggleSecondaryChat('none');
+    if (this.viewWidth <= this.RESPONSIVE_THRESHOLD) {
+      this.toggleBoolean.isSidebarOpen = false;
+      this.inputValue = '';
+    }
+  }
 
   /**
    * Filters all information based on the input value.
@@ -186,7 +209,6 @@ export class SearchBarComponent {
     );
     if (!channelExistsBoolean) {
       this.userService.createPrvChannel(userId);
-      console.log('New private channel created');
     }
     this.getRouteToPrvChat(userId, channelExistsBoolean);
   }
@@ -205,8 +227,6 @@ export class SearchBarComponent {
           (channel.creatorId === this.userService.userId &&
             channel.talkToUserId === userId)
       );
-      console.log(`/main/${existingChannel!.id}`);
-
       this.route.navigateByUrl(`main/${existingChannel!.id}`);
     }
   }

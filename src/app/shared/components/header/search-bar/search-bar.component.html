@@ -21,7 +21,10 @@
       <h4>Users:</h4>
       <div class="ansersBox">
         @for (user of filteredUsers; track user) {
-        <div class="userDiv" (click)="checkRoute([user])">
+        <div
+          class="userDiv"
+          (click)="checkRoute([user]); closeSecondaryChatAndSidebar()"
+        >
           <div class="userImgDiv">
             <img src="{{ user.avatar }}" class="userProfilImg" />
             @if (user.status === true) {
@@ -48,6 +51,7 @@
           class="channelName"
           [innerHTML]="channel.name | highlight : inputValue"
           routerLink="/main/{{ channel.id }}"
+          (click)="closeSecondaryChatAndSidebar()"
         >
           #
         </p>
@@ -66,6 +70,7 @@
               class="threadContetnt"
               [innerHTML]="chat.message | highlight : inputValue"
               routerLink="/main/{{ chat.channelId }}"
+              (click)="closeSecondaryChatAndSidebar()"
             ></p>
           </div>
         </div>
@@ -75,7 +80,7 @@
     } @if ((filteredUsers.length === 0 && inputValue != '') &&
     (filteredChannels.length === 0 && inputValue != '') && (filteredChats.length
     === 0 && inputValue != '')) {
-    <p class="threadContetnt">{{ 'search-bar.errorMessage' | translate }}</p>
+    <p class="threadContetnt">{{ "search-bar.errorMessage" | translate }}</p>
     }
   </div>
 </div>

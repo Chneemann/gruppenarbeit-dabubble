@@ -10,6 +10,7 @@ import { AddNewChannelComponent } from './add-new-channel/add-new-channel.compon
 import { UserService } from '../../../service/user.service';
 import { ToggleBooleanService } from '../../../service/toggle-boolean.service';
 import { TranslateModule } from '@ngx-translate/core';
+import { SharedService } from '../../../service/shared.service';
 
 @Component({
   selector: 'app-sidebar-channels',
@@ -20,7 +21,7 @@ import { TranslateModule } from '@ngx-translate/core';
     CommonModule,
     FormsModule,
     AddNewChannelComponent,
-    TranslateModule
+    TranslateModule,
   ],
   templateUrl: './sidebar-channels.component.html',
   styleUrl: './sidebar-channels.component.scss',
@@ -35,8 +36,11 @@ export class SidebarChannelsComponent {
     public channelService: ChannleService,
     public chatService: ChatService,
     public userService: UserService,
-    public toggleBoolean: ToggleBooleanService
+    public toggleBoolean: ToggleBooleanService,
+    private sharedService: SharedService
   ) {}
+
+  RESPONSIVE_THRESHOLD = this.sharedService.RESPONSIVE_THRESHOLD;
 
   /**
    * Toggles the visibility of channels.
@@ -58,7 +62,7 @@ export class SidebarChannelsComponent {
    */
   closeSecondaryChatAndSidebar() {
     this.chatService.toggleSecondaryChat('none');
-    if (this.viewWidth <= 1300) {
+    if (this.viewWidth <= this.RESPONSIVE_THRESHOLD) {
       this.toggleBoolean.isSidebarOpen = false;
     }
   }

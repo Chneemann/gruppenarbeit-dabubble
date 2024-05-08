@@ -8,6 +8,8 @@ import { ChannleService } from '../../service/channle.service';
 import { SearchbarComponent } from './searchbar/searchbar.component';
 import { ToggleBooleanService } from '../../service/toggle-boolean.service';
 import { ChatService } from '../../service/chat.service';
+import { SharedService } from '../../service/shared.service';
+import { SearchBarComponent } from '../../shared/components/header/search-bar/search-bar.component';
 @Component({
   selector: 'app-sidebar',
   standalone: true,
@@ -18,6 +20,7 @@ import { ChatService } from '../../service/chat.service';
     SmallBtnComponent,
     CommonModule,
     SearchbarComponent,
+    SearchBarComponent,
   ],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss',
@@ -32,8 +35,11 @@ export class SidebarComponent implements OnInit {
     public channelService: ChannleService,
     public toggleBoolean: ToggleBooleanService,
     private router: ActivatedRoute,
-    public chatService: ChatService
+    public chatService: ChatService,
+    private sharedService: SharedService
   ) {}
+
+  RESPONSIVE_THRESHOLD = this.sharedService.RESPONSIVE_THRESHOLD;
 
   ngOnInit() {
     this.routeUserId();
@@ -51,7 +57,7 @@ export class SidebarComponent implements OnInit {
    */
   closeSecondaryChatAndSidebar() {
     this.chatService.toggleSecondaryChat('none');
-    if (this.viewWidth <= 1300) {
+    if (this.viewWidth <= this.RESPONSIVE_THRESHOLD) {
       this.toggleBoolean.isSidebarOpen = false;
     }
   }

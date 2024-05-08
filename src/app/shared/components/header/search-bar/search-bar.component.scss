@@ -149,3 +149,23 @@
     padding: 20px;
   }
 }
+
+/*------------- RESPONSIVE -------------*/
+
+@media screen and (max-width: $RESPONSIVE_THRESHOLD) {
+  .inputPosition {
+    input {
+      width: 95vw;
+      height: 38px;
+      border-radius: 24px;
+      padding: 6px 12px;
+      border: 1px solid #adb0d9;
+    }
+  }
+
+  .showSearchWindow,
+  .hideSearchWindow {
+    width: calc(95vw - 42px);
+    max-height: 60vh;
+  }
+}

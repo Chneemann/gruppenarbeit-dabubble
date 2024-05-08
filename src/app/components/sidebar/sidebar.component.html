@@ -1,4 +1,5 @@
 <section>
+  @if (viewWidth >= RESPONSIVE_THRESHOLD) {
   <div class="headline">
     <div class="logo">
       <img src="assets/img/sidebar/workspace-logo.svg" alt="" />
@@ -23,6 +24,11 @@
       </app-small-btn>
     </div>
   </div>
+  } @else {
+  <div class="searchBar">
+    <app-search-bar></app-search-bar>
+  </div>
+  }
 
   <div class="channels">
     <app-sidebar-channels
