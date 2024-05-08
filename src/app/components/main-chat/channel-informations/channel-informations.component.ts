@@ -9,7 +9,7 @@ import { User } from '../../../interface/user.interface';
 import { SharedService } from '../../../service/shared.service';
 import { SmallBtnComponent } from '../../../shared/components/small-btn/small-btn.component';
 import { OpenSendPrvMessageWindowComponent } from '../show-channel-member/open-send-prv-message-window/open-send-prv-message-window.component';
-import { TranslateModule} from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-channel-informations',
@@ -19,7 +19,7 @@ import { TranslateModule} from '@ngx-translate/core';
     FormsModule,
     SmallBtnComponent,
     OpenSendPrvMessageWindowComponent,
-    TranslateModule
+    TranslateModule,
   ],
   templateUrl: './channel-informations.component.html',
   styleUrl: './channel-informations.component.scss',
@@ -47,10 +47,16 @@ export class ChannelInformationsComponent {
 
   RESPONSIVE_THRESHOLD_MOBILE = this.sharedService.RESPONSIVE_THRESHOLD_MOBILE;
 
+  /**
+   * Closes the menu by emitting a signal to close editing.
+   */
   showMenu() {
     this.closeEditEmitter.emit(true);
   }
 
+  /**
+   * Closes the menu and resets various states.
+   */
   closeMenu() {
     this.closeEditEmitter.emit(false);
     this.openEditNameDescription = false;
@@ -60,10 +66,19 @@ export class ChannelInformationsComponent {
     this.getCurrentChannel = [];
   }
 
+  /**
+   * Prevents the propagation of an event.
+   * @param {Event} event - The event to stop propagation.
+   */
   preventCloseWhiteBox(event: Event) {
     event.stopPropagation();
   }
 
+  /**
+   * Retrieves the channel name based on its ID.
+   * @param {string} chatId - The ID of the channel.
+   * @returns {Channel[]} - The filtered channels.
+   */
   getChannelName(chatId: string) {
     const filteredTasks = this.channelService.allChannels.filter(
       (channel) => channel.id == chatId
@@ -72,16 +87,31 @@ export class ChannelInformationsComponent {
     return filteredTasks;
   }
 
+  /**
+   * Retrieves all channel members based on channel ID.
+   * @param {string} channelId - The ID of the channel.
+   * @returns {User[]} - The filtered users.
+   */
   getAllChannelMembers(channelId: string) {
     return this.channelService.allChannels.filter(
       (channel) => channel.id === channelId
     );
   }
 
+  /**
+   * Retrieves chat users based on user ID.
+   * @param {string} userId - The ID of the user.
+   * @returns {User[]} - The filtered users.
+   */
   getChatUsers(userId: string) {
     return this.userService.allUsers.filter((user) => user.id === userId);
   }
 
+  /**
+   * Retrieves channel members based on channel ID.
+   * @param {string} chatId - The ID of the channel.
+   * @returns {User[]} - The filtered users.
+   */
   getChannelMembers(chatId: string) {
     const filteredTasks = this.userService.allUsers.filter(
       (user) => user.id == chatId
@@ -89,6 +119,11 @@ export class ChannelInformationsComponent {
     return filteredTasks;
   }
 
+  /**
+   * Checks if the current user is the creator of the channel.
+   * @param {string} currentChannel - The ID of the current channel.
+   * @returns {boolean} - True if the user is the creator, false otherwise.
+   */
   checkCreator(currentChannel: string) {
     const getChannel = this.channelService.allChannels.filter(
       (channel) => channel.id == currentChannel
@@ -100,21 +135,37 @@ export class ChannelInformationsComponent {
     }
   }
 
+  /**
+   * Opens a window displaying information about a user.
+   * @param {User} user - The user to display information about.
+   */
   openUserWindow(user: User) {
     this.user = [user];
     this.openUserWindowBoolean = !this.openUserWindowBoolean;
   }
 
+  /**
+   * Changes the state of the user window.
+   * @param {boolean} value - The new state of the user window.
+   */
   changeOpenUserWindowBoolean(value: boolean) {
     this.openUserWindowBoolean = value;
   }
 
+  /**
+   * Initiates editing the channel name.
+   * @param {Event} event - The event that triggered the editing.
+   */
   editChannelName(event: Event) {
     event.stopPropagation();
     this.openEditNameInput = true;
     this.nameValue = this.getCurrentChannel[0].name;
   }
 
+  /**
+   * Saves the edited channel name.
+   * @param {Event} event - The event that triggered the save.
+   */
   saveEditChannelName(event: Event) {
     event.stopPropagation();
     this.openEditNameInput = false;
@@ -126,12 +177,20 @@ export class ChannelInformationsComponent {
     );
   }
 
+  /**
+   * Initiates editing the channel description.
+   * @param {Event} event - The event that triggered the editing.
+   */
   editChannelDescription(event: Event) {
     event.stopPropagation();
     this.openEditNameDescription = true;
     this.descriptionValue = this.getCurrentChannel[0].description || '';
   }
 
+  /**
+   * Saves the edited channel description.
+   * @param {Event} event - The event that triggered the save.
+   */
   saveEditChannelDescription(event: Event) {
     event.stopPropagation();
     this.openEditNameDescription = false;
@@ -143,6 +202,11 @@ export class ChannelInformationsComponent {
     );
   }
 
+  /**
+   * Allows the user to leave the channel.
+   * @param {string} currentChannel - The ID of the current channel.
+   * @param {Event} event - The event that triggered the action.
+   */
   leaveChannel(currentChannel: string, event: Event) {
     event.stopPropagation();
     const getLogedInUser: string = this.userService.userId;

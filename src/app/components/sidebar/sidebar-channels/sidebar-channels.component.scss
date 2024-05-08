@@ -94,8 +94,6 @@ section {
   margin: 12px 24px;
   padding: 8px;
   cursor: pointer;
-  max-width: 140px;
-
   .circle {
     display: flex;
     align-items: center;
@@ -162,7 +160,6 @@ section {
     max-height: 0;
   }
 }
-
 
 @media screen and (max-width: $RESPONSIVE_THRESHOLD_MOBILE380px) {
   .showAllChanneld {

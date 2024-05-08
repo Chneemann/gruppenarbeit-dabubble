@@ -5,7 +5,7 @@ import { ToggleBooleanService } from '../../../../service/toggle-boolean.service
 import { ChannleService } from '../../../../service/channle.service';
 import { UserService } from '../../../../service/user.service';
 import { Router } from '@angular/router';
-import { TranslateModule} from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-open-send-prv-message-window',
@@ -30,6 +30,10 @@ export class OpenSendPrvMessageWindowComponent {
     private route: Router
   ) {}
 
+  /**
+   * Closes the user window and profile window if open.
+   * Emits events to notify about window closure.
+   */
   closeWindow() {
     this.openUserWindowBoolean = false;
     this.showProfil = false;
@@ -37,6 +41,10 @@ export class OpenSendPrvMessageWindowComponent {
     this.showProfilWindow.emit(this.showProfil);
   }
 
+  /**
+   * Closes all open windows and resets toggle booleans.
+   * Emits events to notify about window closures.
+   */
   closeEverything() {
     this.openUserWindowBoolean = false;
     this.closeUserWondow.emit(this.openUserWindowBoolean);
@@ -44,6 +52,11 @@ export class OpenSendPrvMessageWindowComponent {
     this.toggleBoolean.closeChannelMemberWindow = false;
   }
 
+  /**
+   * Routes to the user's private chat.
+   * If the chat channel does not exist, it creates one.
+   * @param {User[]} user - The user to route to.
+   */
   routeToUser(user: User[]) {
     const userId = user[0].id!;
     const channelExistsBoolean = this.channelService.allPrvChannels.some(
@@ -67,6 +80,11 @@ export class OpenSendPrvMessageWindowComponent {
     this.closeEverything();
   }
 
+  /**
+   * Routes to the existing private chat.
+   * @param {string} userId - The ID of the user to route to.
+   * @param {boolean} channelExistsBoolean - Indicates whether the chat channel exists.
+   */
   getRouteToPrvChat(userId: string, channelExistsBoolean: boolean) {
     if (channelExistsBoolean) {
       const existingChannel = this.channelService.allPrvChannels.find(

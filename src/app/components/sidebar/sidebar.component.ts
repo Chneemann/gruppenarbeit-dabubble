@@ -35,10 +35,6 @@ export class SidebarComponent implements OnInit {
     public chatService: ChatService
   ) {}
 
-  /**
-   * Lifecycle hook called after component initialization.
-   * It invokes the method to handle route parameters.
-   */
   ngOnInit() {
     this.routeUserId();
   }
