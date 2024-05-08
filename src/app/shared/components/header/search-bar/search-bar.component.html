@@ -18,7 +18,7 @@
     <!-----Search output------>
     @if (filteredUsers.length > 0 && inputValue != '') {
     <div class="contantBox">
-      <h4>Users:</h4>
+      <h4>{{ 'search-bar-header.user' | translate }}:</h4>
       <div class="ansersBox">
         @for (user of filteredUsers; track user) {
         <div
@@ -44,7 +44,7 @@
     </div>
     } @if (filteredChannels.length > 0 && inputValue != '') {
     <div class="contantBox">
-      <h4>Channels:</h4>
+      <h4>{{ 'search-bar-header.channels' | translate }}:</h4>
       <div class="ansersBox">
         @for (channel of filteredChannels; track channel) {
         <p
@@ -60,7 +60,7 @@
     </div>
     } @if (filteredChats.length > 0 && inputValue != '') {
     <div class="contantBoxChats">
-      <h4>Threads:</h4>
+      <h4>{{ 'search-bar-header.thread' | translate }}:</h4>
       <div class="channelAnswers">
         @for (chat of filteredChats; track chat) {
         <div class="ansersBoxChats">

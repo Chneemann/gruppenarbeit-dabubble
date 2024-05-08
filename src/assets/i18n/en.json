@@ -177,6 +177,12 @@
       "errorMessage": "No match found"
     },
 
+    "search-bar-header": {
+      "user":"Users",
+      "channels":"Channels",
+      "thread": "Threads"
+    },
+
     "footer": {
       "privatePolice": "Privacy Policy",
       "imprint": "Legal Notice"

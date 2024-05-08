@@ -123,7 +123,7 @@
 },
 
 "secondary-chat": {
-  "thread":"Thread",
+  "thread":"Thema",
   "answer":"Antworten"
 },
 
@@ -175,6 +175,12 @@
 "search-bar": {
   "placeholder":"Im Devspace suchen",
   "errorMessage":"Keine Übereinstimmung gefunden"
+},
+
+"search-bar-header": {
+  "user":"Benutzer",
+  "channels":"Kanäle",
+  "thread": "Themen"
 },
 
 "footer": {
