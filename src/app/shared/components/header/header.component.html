@@ -27,6 +27,13 @@
         />
       </div>
       }
+      <app-small-btn class="positionPlanet"
+        [imgSrc]="'language.svg'"
+        [imgSize]="'32px'"
+        [btnSize]="'40px'"
+        [btnBgHoverColor]="'#edeefe'"
+        (click)="languageService.switchLanguage()"
+      ></app-small-btn>
     </div>
   </div>
 </header>

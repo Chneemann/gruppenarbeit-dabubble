@@ -6,11 +6,13 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
 import { ToggleBooleanService } from '../../../service/toggle-boolean.service';
 import { ChatService } from '../../../service/chat.service';
 import { SharedService } from '../../../service/shared.service';
+import { SmallBtnComponent } from '../small-btn/small-btn.component';
+import { LanguageService } from '../../../service/language.service';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, EditUserComponent, SearchBarComponent],
+  imports: [CommonModule, EditUserComponent, SearchBarComponent, SmallBtnComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
@@ -25,7 +27,8 @@ export class HeaderComponent {
     public userService: UserService,
     public toggleBoolean: ToggleBooleanService,
     public chatService: ChatService,
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    public languageService: LanguageService
   ) {}
 
   RESPONSIVE_THRESHOLD = this.sharedService.RESPONSIVE_THRESHOLD;

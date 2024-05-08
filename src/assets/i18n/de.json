@@ -27,7 +27,7 @@
   "Btn":"Weiter",
   "errorText":"*Name ist erforderlich.",
   "errorText2":"*Email ist erforderlich.",
-  "errorText3":"*Bitte geben Sie ein Passwort ein (mindestens 6 Zeichen)."
+  "errorText3":"*Bitte geben Sie ein Passwort ein (mind. 6 Zeichen)."
 },
 
 "chooseAvatar": {
@@ -52,7 +52,7 @@
   "inputfield":"Neues Passwort",
   "inputfield2":"Neues Passwort bestätigen",
   "Btn":"Passwort ändern",
-  "errorText":"*Bitte geben Sie ein neus Passwort ein (mindestens 6 Zeichen).",
+  "errorText":"*Bitte geben Sie ein neus Passwort ein (mind.6 Zeichen).",
   "errorText2":"*Die Passwörter stimmen nicht überein."
 },
 
@@ -159,7 +159,7 @@
 "edit-user-details": {
   "profile":"Dein Profil bearbeiten",
   "fullName":"Vollständiger Name",
-  "placeholder":"Geben Sie Ihren Namen ein mindestens 3 Buchstaben",
+  "placeholder":"Geben Sie Ihren Namen ein mind. 3 Buchstaben",
   "placeholder2":"Geben Sie Ihre E-Mail-Adresse ein",
   "email":"E-Mail-Addresse",
   "cancel":"Abbrechen",
