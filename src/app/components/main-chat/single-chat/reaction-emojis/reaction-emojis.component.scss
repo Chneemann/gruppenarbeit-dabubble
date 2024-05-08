@@ -80,7 +80,15 @@ section {
   transform: scaleX(-1);
 }
 
-app-emoji-picker {
+.emojiPickerFirstMsg {
+  position: absolute;
+  top: 50px;
+  left: 20px;
+  z-index: 3;
+  width: fit-content;
+}
+
+.emojiPickerAnswerMsg {
   position: absolute;
   bottom: 50px;
   left: 20px;

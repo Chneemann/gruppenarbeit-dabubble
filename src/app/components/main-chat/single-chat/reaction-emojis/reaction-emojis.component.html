@@ -15,6 +15,10 @@
   </app-small-btn>
   @if(isEmojiPickerVisible) {
   <app-emoji-picker
+    [ngClass]="{
+      emojiPickerFirstMsg: secondaryChatFirstMsg,
+      emojiPickerAnswerMsg: !secondaryChatFirstMsg
+    }"
     [output]="'id'"
     (emojiOutputEmitter)="emojiOutputEmitter($event, chat.id)"
     (emojiVisibleEmitter)="emojiVisibleEmitter($event)"
