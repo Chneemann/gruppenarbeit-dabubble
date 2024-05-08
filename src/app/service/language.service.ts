@@ -19,12 +19,8 @@ export class LanguageService {
  * 
  * @param lang The language code to switch to. Supported values are 'en' for English and 'de' for German.
  */
-  switchLanguage(lang: string) {
-    if (lang === 'en') {
-      this.currentLang = 'en';
-    } else if (lang == 'de') {
-      this.currentLang = 'de';
-    }
+  switchLanguage() {
+    this.currentLang = this.currentLang === 'en' ? 'de' : 'en';
     this.translate.use(this.currentLang);
   }
 }
