@@ -1,232 +1,232 @@
-@import '../../../../../../styles.scss';
+@import "../../../../../../styles.scss";
 
-
-.whiteBox{
-    width: 440px;
-    height: auto;
-    background-color: white;
-    border-radius: 35px;
-    position: absolute;
-    z-index: 5;
-    top: 110px;
-    right: 20px;
-    @include displayFlex();
-    flex-direction: column;
-    padding-top: 32px;
-    .boxHeader{
-        width: 360px;
-        @include displayFlex($j: space-between);
-        .positionCloseIcon {
-            width: 40px;
-            height: 40px;
-            @include displayFlex();
-            margin-right: -10px;
-            transition: 0.3s ease-in-out;
-            &:hover {
-                background-color: #ECEEFE;
-                border-radius: 25px;
-                cursor: pointer;
-                > img {
-                    filter: invert(59%) sepia(26%) saturate(871%) hue-rotate(199deg) brightness(93%) contrast(100%);
-                }
-            }
-        }
-    }
-    .profileImg{
-        width: 200px;
-        height: 200px;
-        object-fit: cover;
-        border-radius: 50%;
-        margin: 56px;
-    }
-    p{
-        color: red;
-        margin-bottom: 16px;
-    }
-}
-
-.inputBox{
+.whiteBox {
+  width: 440px;
+  height: auto;
+  background-color: white;
+  border-radius: 35px;
+  position: absolute;
+  z-index: 5;
+  top: 110px;
+  right: 20px;
+  @include displayFlex();
+  flex-direction: column;
+  padding-top: 32px;
+  .boxHeader {
     width: 360px;
-    .positionName{
-        margin-bottom: 26px;
-        .positionNameIcon{
-            @include displayFlex($j: flex-start,$g: 20px);
+    @include displayFlex($j: space-between);
+    .positionCloseIcon {
+      width: 40px;
+      height: 40px;
+      @include displayFlex();
+      margin-right: -10px;
+      transition: 0.3s ease-in-out;
+      &:hover {
+        background-color: #eceefe;
+        border-radius: 25px;
+        cursor: pointer;
+        > img {
+          filter: invert(59%) sepia(26%) saturate(871%) hue-rotate(199deg)
+            brightness(93%) contrast(100%);
         }
-        .inputName{
-            width: 344px;
-            border: 1px solid #888dec;
-            outline: none;
-            height: 26px;
-            border-radius: 25px;
-            padding: 8px;
-            font-size: larger;
-            transition: 0.3s ease-in-out;
-            &:hover{
-                border: 1px solid #2c36f0;
-            }
-        }
+      }
     }
+  }
+  .profileImg {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: 56px;
+  }
+  p {
+    color: red;
+    margin-bottom: 16px;
+  }
 }
 
-.inputDisabled{
-    width: 344px;
-    border: none;
-    background-color: rgba(34, 34, 34, 0.2588235294);
-    outline: none;
-    height: 26px;
+.inputBox {
+  width: 360px;
+  .positionName {
+    margin-bottom: 26px;
+    .positionNameIcon {
+      @include displayFlex($j: flex-start, $g: 20px);
+    }
+    .inputName {
+      width: 344px;
+      border: 1px solid #888dec;
+      outline: none;
+      height: 26px;
+      border-radius: 25px;
+      padding: 8px;
+      font-size: larger;
+      transition: 0.3s ease-in-out;
+      &:hover {
+        border: 1px solid #2c36f0;
+      }
+    }
+  }
+}
+
+.inputDisabled {
+  width: 344px;
+  border: none;
+  background-color: rgba(34, 34, 34, 0.2588235294);
+  outline: none;
+  height: 26px;
+  border-radius: 25px;
+  padding: 8px;
+  font-size: larger;
+}
+
+.position2Btn {
+  margin-bottom: 24px;
+  @include displayFlex($g: 26px);
+  .cancelBtn {
+    width: 120px;
+    height: 48px;
+    background-color: white;
+    border: 1px solid #888dec;
     border-radius: 25px;
-    padding: 8px;
     font-size: larger;
+    color: #444df2;
+    transition: 0.3s ease-in-out;
+    &:hover {
+      background-color: #444df2;
+      color: white;
+      cursor: pointer;
+    }
+  }
+  .saveBtn {
+    width: 120px;
+    height: 48px;
+    background-color: #444df2;
+    border: none;
+    border-radius: 25px;
+    font-size: larger;
+    color: white;
+    transition: 0.3s ease-in-out;
+    &:hover {
+      background-color: #888dec;
+      cursor: pointer;
+    }
+  }
 }
 
-.position2Btn{
-    margin-bottom: 24px;
-    @include displayFlex($g: 26px);
-    .cancelBtn{
-        width: 120px;
-        height: 48px;
-        background-color: white;
-        border: 1px solid #888dec;
-        border-radius: 25px;
-        font-size: larger;
-        color: #444DF2;
-        transition: 0.3s ease-in-out;
-        &:hover{
-            background-color: #444DF2;
-            color: white;
-            cursor: pointer;
-        }
-    }
-    .saveBtn{
-        width: 120px;
-        height: 48px;   
-        background-color: #444DF2;
-        border: none;
-        border-radius: 25px;
-        font-size: larger;
-        color: white;
-        transition: 0.3s ease-in-out;
-        &:hover{
-            background-color: #888dec;
-            cursor: pointer;
-        }
-    }
-}
-
-.grayBackground{
-    width: 100vw;
-    height: 100vh;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
+.grayBackground {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
 }
 
 .disabledBtn {
-    background-color: #22222242;
-    border: none;
-    font-size: larger;
-    color: #fff;
-    width: 120px;
-    height: 48px;
-    border-radius: 25px;
-    font-size: larger;
+  background-color: #22222242;
+  border: none;
+  font-size: larger;
+  color: #fff;
+  width: 120px;
+  height: 48px;
+  border-radius: 25px;
+  font-size: larger;
 }
 
 /*------------- RESPONSIVE -------------*/
 
 @media screen and (max-width: 1300px) {
-    .arrowLeft{
-      display: block;
-      margin-left: 18px;
-      transition: 0.3 linear;
-      &:hover{
-        cursor: pointer;
-        scale: 1.2;
+  .arrowLeft {
+    display: block;
+    margin-left: 18px;
+    transition: 0.3 linear;
+    &:hover {
+      cursor: pointer;
+      scale: 1.2;
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .whiteBox {
+    width: 362px;
+    .boxHeader {
+      width: 300px;
+    }
+    .profileImg {
+      width: 160px;
+      height: 160px;
+      margin: 20px;
+    }
+  }
+  .inputBox {
+    width: 300px;
+    .positionName {
+      margin-bottom: 12px;
+      .positionNameIcon {
+        @include displayFlex($j: flex-start, $g: 20px);
+        h1 {
+          font-size: 24px;
+        }
+      }
+      .inputName {
+        width: 286px;
+        font-size: smaller;
       }
     }
   }
+  p {
+    font-size: 14px;
+  }
 
-@media screen and (max-width: 800px) {
-    .whiteBox{
-        width: 362px;
-        .boxHeader{
-            width: 300px;
-        }
-        .profileImg{
-            width: 160px;
-            height: 160px;
-            margin: 20px;
-        }
-    }
-    .inputBox{
-        width: 300px;
-        .positionName{
-            margin-bottom: 12px;
-            .positionNameIcon{
-                @include displayFlex($j: flex-start,$g: 20px);
-                h1{
-                    font-size: 24px;
-                }
-            }
-            .inputName{
-                width: 286px;
-                font-size: smaller;
-            }
-        }
-    }
-    p{
-        font-size: 14px;
-    }
-
-    .inputDisabled{
-        width: 284px;
-        font-size: smaller;
-    }
+  .inputDisabled {
+    width: 284px;
+    font-size: smaller;
+  }
 }
 
-.position2Btn{
-    margin-bottom: 16px;
-    .cancelBtn{
-        width: 110px;
-        height: 36px;
-    }
-    .saveBtn{
-        width: 110px;
-        height: 36px;
-    }
+.position2Btn {
+  margin-bottom: 16px;
+  .cancelBtn {
+    width: 110px;
+    height: 36px;
+  }
+  .saveBtn {
+    width: 110px;
+    height: 36px;
+  }
 }
 
 .disabledBtn {
-    width: 110px;
-    height: 36px;
+  width: 110px;
+  height: 36px;
 }
 
 @media screen and (max-width: 600px) {
-    .whiteBox{
-        width: 90%;
-        border-radius: 35px;
-        top: 14%;
-        right: 22px;
-        height: 58%;
-        gap: 8px;
-        padding-top: 8px;
-        .boxHeader{
-            width: 300px;
-        }
-        .profileImg{
-            width: 140px;
-            height: 140px;
-            margin: 20px;
-        }
+  .whiteBox {
+    width: 90%;
+    border-radius: 35px;
+    top: 14%;
+    right: 22px;
+    height: 58%;
+    gap: 8px;
+    padding-top: 8px;
+    .boxHeader {
+      width: 300px;
     }
-}
-
-@media screen and (max-width: $RESPONSIVE_THRESHOLD_MOBILE380px){
-    .whiteBox {
-        top: 9%;
-        right: 22px;
-        height: 76%;
-        padding-top: 8px;
+    .profileImg {
+      width: 140px;
+      height: 140px;
+      margin: 20px;
     }
   }
+}
+
+@media screen and (max-width: $RESPONSIVE_THRESHOLD_MOBILE380px) {
+  .whiteBox {
+    top: 9%;
+    right: 22px;
+    height: 76%;
+    padding-top: 8px;
+  }
+}

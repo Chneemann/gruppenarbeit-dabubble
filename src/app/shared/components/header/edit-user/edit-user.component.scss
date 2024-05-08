@@ -151,26 +151,30 @@
 @media screen and (max-width: $RESPONSIVE_THRESHOLD_MOBILE) {
   .whiteBox {
     border-radius: 35px;
-    width: 90%;
+    width: auto;
     right: 22px;
-    height: 60%;
-    top: 14%;
-    padding-top: 0;
+    height: auto;
+    top: 25%;
+    right: 15vw;
+    left: 15vw;
+    padding: 24px;
     .boxHeader {
-      width: 280px;
+      width: 100%;
+      padding: 0 12px;
       p {
         font-size: 21px;
         font-weight: 700;
       }
     }
     .profileImg {
-      width: 180px;  
-      height: 180px;  
+      width: 180px;
+      height: 180px;
       margin: 32px;
     }
   }
   .detailsBox {
-    width: 280px;
+    width: 100%;
+    padding: 0 12px;
     .editBtnPosition {
       .name {
         font-size: 24px;
@@ -197,10 +201,9 @@
   }
 }
 
-@media screen and (max-width: $RESPONSIVE_THRESHOLD_MOBILE380px){
+@media screen and (max-width: 450px) {
   .whiteBox {
-    height: 72%;
-    top: 10%;
-    padding-top: 28px;
+    right: 5vw;
+    left: 5vw;
   }
 }
