@@ -39,7 +39,7 @@
       (mouseleave)="closeDialog()"
     >
       @if (reaction.icon === "okay" || reaction.icon === "clap-hands") {
-      <img src="./../../../../../assets/img/{{ reaction.icon }}.svg" />
+      <img src="./assets/img/{{ reaction.icon }}.svg" />
       } @else {
       <ngx-emoji
         emoji="{{ reaction.icon }}"
@@ -64,7 +64,7 @@
   >
     <div class="icon">
       @if (reaction.icon === "okay" || reaction.icon === "clap-hands") {
-      <img src="./../../../../../assets/img/{{ reaction.icon }}.svg" />
+      <img src="./assets/img/{{ reaction.icon }}.svg" />
       } @else {
       <ngx-emoji emoji="{{ reaction.icon }}"></ngx-emoji>
       }
