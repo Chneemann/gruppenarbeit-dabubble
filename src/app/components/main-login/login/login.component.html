@@ -11,7 +11,7 @@
     </div>
     <form (ngSubmit)="onSubmit()" #contactForm="ngForm" class="contactForm">
       <div class="inputContainer">
-        <img class="iconP" src="/assets/img/login/mail.png" alt="" />
+        <img class="iconP" src="./assets/img/login/mail.png" alt="" />
         <input
           class="inputField"
           #emailField="ngModel"
@@ -29,7 +29,7 @@
         }
       </div>
       <div class="inputContainer">
-        <img class="iconP" src="/assets/img/login/lock.png" alt="" />
+        <img class="iconP" src="./assets/img/login/lock.png" alt="" />
         <input
           class="inputField"
           #passwordField="ngModel"
@@ -63,7 +63,7 @@
       </div>
 
       <div (click)="loginService.googleLogin()" class="googleLogingContainer">
-        <img src="/assets/img/login/google.svg" alt="" />
+        <img src="./assets/img/login/google.svg" alt="" />
         <span>{{ 'login.googleBtn' | translate }}</span>
       </div>
 
