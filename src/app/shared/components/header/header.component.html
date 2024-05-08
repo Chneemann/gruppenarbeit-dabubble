@@ -22,7 +22,9 @@
       <div class="img" (click)="showSideMenu()">
         <img src="{{ i.avatar }}" class="profileImg" />
         <img
-          src="assets/img/{{ i.status ? 'onlineRing.svg' : 'offlineRing.svg' }}"
+          src="./assets/img/{{
+            i.status ? 'onlineRing.svg' : 'offlineRing.svg'
+          }}"
           class="onlineIcon"
         />
       </div>
@@ -47,8 +49,12 @@
   (click)="showSideMenu()"
 >
   <div class="whiteBox fontNunito">
-    <p (click)="showProfile()" class="profilBtn">{{ 'login-header.profil' | translate }}</p>
-    <p (click)="logout()" class="logOutBtn">{{ 'login-header.logout' | translate }}</p>
+    <p (click)="showProfile()" class="profilBtn">
+      {{ "login-header.profil" | translate }}
+    </p>
+    <p (click)="logout()" class="logOutBtn">
+      {{ "login-header.logout" | translate }}
+    </p>
   </div>
 </div>
 
