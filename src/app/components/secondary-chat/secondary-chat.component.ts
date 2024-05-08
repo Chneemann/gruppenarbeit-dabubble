@@ -27,7 +27,7 @@ import { TranslateModule } from '@ngx-translate/core';
     SingleChatComponent,
     ChatMsgBoxComponent,
     CommonModule,
-    TranslateModule
+    TranslateModule,
   ],
   templateUrl: './secondary-chat.component.html',
   styleUrl: './secondary-chat.component.scss',
@@ -46,6 +46,9 @@ export class SecondaryChatComponent implements AfterViewChecked {
     private renderer: Renderer2
   ) {}
 
+  /**
+   * Scrolls to the bottom if the secondary chat is open and the sidebar has not been loaded yet.
+   */
   ngAfterViewChecked() {
     if (this.chatService.isSecondaryChatOpen && !this.sidebarLoaded) {
       this.scrollToBottom();
@@ -53,6 +56,10 @@ export class SecondaryChatComponent implements AfterViewChecked {
     }
   }
 
+  /**
+   * Updates the isNewMessage flag and scrolls to the bottom if there's a new message.
+   * @param {boolean} variable - Flag indicating if there's a new message.
+   */
   editMsgEmitter(variable: boolean) {
     this.isNewMessage = variable;
     if (this.isNewMessage) {
@@ -60,6 +67,9 @@ export class SecondaryChatComponent implements AfterViewChecked {
     }
   }
 
+  /**
+   * Scrolls the message body to the bottom.
+   */
   scrollToBottom(): void {
     if (this.messageBody) {
       const element = this.messageBody.nativeElement;
@@ -71,37 +81,41 @@ export class SecondaryChatComponent implements AfterViewChecked {
     }
   }
 
+  /**
+   * Returns the count of chat answers for a given chat ID.
+   * @param {string} chatId - The ID of the chat.
+   * @returns {number} - The count of chat answers.
+   */
   displayCountChatAnswer(chatId: string) {
     return this.chatService.getChatAnswers(chatId).length;
   }
 
+  /**
+   * Closes the thread chat window.
+   */
   closeSecondaryChat() {
     this.chatService.toggleSecondaryChat('none');
   }
 
-  getChannels(): Channel[] {
-    return this.channelService.allChannels;
-  }
-
-  getChats(): Chat[] {
-    return this.chatService.allChats;
-  }
-
-  getChatAnswer(): ChatAnswers[] {
-    return this.chatService.allChatAnswers;
-  }
-
-  getUsers(): User[] {
-    return this.userService.allUsers;
-  }
-
+  /**
+   * Retrieves a single chat by its ID.
+   * @param {string} chatId - The ID of the chat.
+   * @returns {Chat[]} - An array containing the single chat.
+   */
   getSingleChat(chatId: string): Chat[] {
-    const filteredTasks = this.getChats().filter((chat) => chat.id == chatId);
+    const filteredTasks = this.chatService.allChats.filter(
+      (chat) => chat.id == chatId
+    );
     return filteredTasks;
   }
 
+  /**
+   * Retrieves chat answers for a given chat ID.
+   * @param {string} chatId - The ID of the chat.
+   * @returns {ChatAnswers[]} - An array containing chat answers.
+   */
   getChatAnswers(chatId: string): ChatAnswers[] {
-    const filteredTasks = this.getChatAnswer().filter(
+    const filteredTasks = this.chatService.allChatAnswers.filter(
       (chat) => chat.chatId === chatId
     );
 
@@ -110,20 +124,36 @@ export class SecondaryChatComponent implements AfterViewChecked {
     return filteredTasks;
   }
 
+  /**
+   * Retrieves users belonging to a chat.
+   * @param {string} chatId - The ID of the chat.
+   * @returns {User[]} - An array containing users.
+   */
   getChatUsers(chatId: string) {
-    const filteredTasks = this.getUsers().filter((user) => user.id == chatId);
+    const filteredTasks = this.userService.allUsers.filter(
+      (user) => user.id == chatId
+    );
     return filteredTasks;
   }
 
+  /**
+   * Retrieves the name of the channel.
+   * @returns {Channel[]} - An array containing the channel name.
+   */
   getChannelName() {
-    const filteredTasks = this.getChannels().filter(
+    const filteredTasks = this.channelService.allChannels.filter(
       (channel) => channel.id == this.currentChannel
     );
     return filteredTasks;
   }
 
+  /**
+   * Retrieves chats belonging to a channel.
+   * @param {string} chatId - The ID of the chat (channel).
+   * @returns {Chat[]} - An array containing chats.
+   */
   getChatChannel(chatId: string) {
-    const filteredTasks = this.getChats().filter(
+    const filteredTasks = this.chatService.allChats.filter(
       (chat) => chat.channelId == chatId
     );
     return filteredTasks;

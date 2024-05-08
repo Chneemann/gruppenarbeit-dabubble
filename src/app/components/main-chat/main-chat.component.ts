@@ -72,14 +72,25 @@ export class MainChatComponent {
 
   RESPONSIVE_THRESHOLD_MOBILE = this.sharedService.RESPONSIVE_THRESHOLD_MOBILE;
 
+  /**
+   * Sets the openMenu property based on the provided variable.
+   * @param {boolean} variable - The value to set for openMenu.
+   */
   closeEditEmitter(variable: boolean) {
     this.openMenu = variable;
   }
 
+  /**
+   * Sets the showProfil property based on the provided value.
+   * @param {boolean} value - The value to set for showProfil.
+   */
   getShowProfilWindowBoolean(value: boolean) {
     this.showProfil = value;
   }
 
+  /**
+   * Checks the route events for private chat messages.
+   */
   checkPrivatChatRouteEvent() {
     this.route.events
       .pipe(
@@ -94,6 +105,10 @@ export class MainChatComponent {
       });
   }
 
+  /**
+   * Checks if there are private chat messages for a given chat ID and performs necessary actions.
+   * @param {string} chatId - The ID of the chat.
+   */
   hasPrivatChatMessages(chatId: string) {
     const isPrivatChannel = this.channelService.allPrvChannels.filter(
       (user) => user.id === chatId
@@ -114,6 +129,9 @@ export class MainChatComponent {
     }
   }
 
+  /**
+   * Redirects to the start channel if the current channel is empty and the user is logged in.
+   */
   routeToStartChannel() {
     if (this.currentChannel == '' && this.userService.userId !== '') {
       this.route.navigateByUrl(`/main/${publicChannels[0]}`);
@@ -121,8 +139,8 @@ export class MainChatComponent {
   }
 
   /**
-   * Retrieves channels for the current user.
-   * @returns Array of Channel objects.
+   * Checks if the current user has access to any channels.
+   * @returns {Channel[]} Array of Channel objects that the user has access to.
    */
   checkIfUserHasAccessToChannel() {
     const isUserAChannelMember = this.channelService.allChannels.some(
@@ -137,10 +155,18 @@ export class MainChatComponent {
     return [];
   }
 
+  /**
+   * Sets the openMenu property to true.
+   */
   showMenu() {
     this.openMenu = true;
   }
 
+  /**
+   * Retrieves users associated with a chat ID.
+   * @param {string} chatId - The ID of the chat.
+   * @returns {User[]} Array of User objects associated with the chat ID.
+   */
   getChatUsers(chatId: string) {
     const filteredTasks = this.userService.allUsers.filter(
       (user) => user.id == chatId
@@ -148,6 +174,11 @@ export class MainChatComponent {
     return filteredTasks;
   }
 
+  /**
+   * Retrieves chats associated with a chat ID.
+   * @param {string} chatId - The ID of the chat.
+   * @returns {Chat[]} Array of Chat objects associated with the chat ID.
+   */
   getChatChannel(chatId: string) {
     const filteredTasks = this.chatService.allChats.filter(
       (chat) => chat.channelId == chatId
@@ -155,6 +186,11 @@ export class MainChatComponent {
     return filteredTasks;
   }
 
+  /**
+   * Retrieves channel information for a given channel ID.
+   * @param {string} chatId - The ID of the channel.
+   * @returns {Channel[]} Array of Channel objects matching the provided channel ID.
+   */
   getChannelName(chatId: string) {
     const filteredTasks = this.channelService.allChannels.filter(
       (channel) => channel.id == chatId
@@ -162,6 +198,11 @@ export class MainChatComponent {
     return filteredTasks;
   }
 
+  /**
+   * Retrieves private chat information for a given private chat ID.
+   * @param {string} prvChatId - The ID of the private chat.
+   * @returns {PrvChannel[]} Array of PrvChannel objects matching the provided private chat ID.
+   */
   getPrvChat(prvChatId: string) {
     const filteredChats = this.channelService.allPrvChannels.filter(
       (prvChat) => prvChat.id == prvChatId
@@ -170,6 +211,10 @@ export class MainChatComponent {
     return filteredChats;
   }
 
+  /**
+   * Retrieves the user associated with a filtered private chat.
+   * @param {PrvChannel[]} filteredChat - The filtered private chat.
+   */
   getTalkToUser(filteredChat: PrvChannel[]) {
     const talkToUser = filteredChat[0].talkToUserId;
     const getUser = this.userService.allUsers.filter(
@@ -180,10 +225,20 @@ export class MainChatComponent {
     }
   }
 
+  /**
+   * Filters users based on the provided talkToUserId.
+   * @param {string} talkToUserId - The ID of the user to filter.
+   * @returns {User[]} Array of User objects matching the provided user ID.
+   */
   filterUser(talkToUserId: string) {
     return this.userService.allUsers.filter((user) => user.id == talkToUserId);
   }
 
+  /**
+   * Checks the type of the current channel.
+   * @param {string} currentChannel - The ID of the current channel.
+   * @returns {string} Type of the current channel ('searchBar', 'allChannels', 'allPrvChannels').
+   */
   checkCurrentChannel(currentChannel: string) {
     if (currentChannel === 'searchBar') {
       return 'searchBar';
@@ -203,6 +258,11 @@ export class MainChatComponent {
     return '';
   }
 
+  /**
+   * Filters channels and users based on the input value.
+   * @param {string} inputValue - The input value to filter.
+   * @returns {string} Type of filtering ('filterChannel', 'filterUsers').
+   */
   filterChannelAndUser(inputValue: string) {
     const filterChannels = '#';
     const filterUsers = '@';
@@ -217,10 +277,17 @@ export class MainChatComponent {
     return (this.chatService.inputValue = '');
   }
 
+  /**
+   * Sets the showProfil property to true.
+   */
   openUserProfil() {
     this.showProfil = true;
   }
 
+  /**
+   * Chooses an element and performs necessary actions based on its type.
+   * @param {Channel | User} element - The element to choose.
+   */
   chooseElement(element: Channel | User) {
     if ('firstName' in element) {
       this.chatService.inputValue = `@${element.firstName} ${element.lastName}`;
@@ -234,6 +301,10 @@ export class MainChatComponent {
     this.toggleBoolean.openSearchWindow = false;
   }
 
+  /**
+   * Checks if a private chat exists for the provided user ID and performs necessary actions.
+   * @param {string} userID - The ID of the user.
+   */
   checkIfPrvChatExist(userID: string) {
     const filterPrvChannelBoolean = this.channelService.allPrvChannels.some(
       (chat) => chat.talkToUserId == userID
@@ -248,6 +319,11 @@ export class MainChatComponent {
     }
   }
 
+  /**
+   * Filters channels for a selected user.
+   * @param {string} currentChannel - The ID of the current channel.
+   * @returns {boolean} Boolean indicating if the channel is found.
+   */
   filterChannelForSelectedUser(currentChannel: string) {
     const getBoolean = this.channelService.allChannels.some(
       (channel) => channel.id == currentChannel
@@ -259,6 +335,10 @@ export class MainChatComponent {
     return getBoolean;
   }
 
+  /**
+   * Filters users based on an array of user IDs.
+   * @param {string[]} userArray - The array of user IDs to filter.
+   */
   filterUsers(userArray: string[]) {
     this.userService.getFiltertUsers = [];
     for (let i = 0; i < this.userService.allUsers.length; i++) {
@@ -269,6 +349,10 @@ export class MainChatComponent {
     }
   }
 
+  /**
+   * Opens the channel member window.
+   * @param {boolean} boolean - Boolean value to open or close the add member window.
+   */
   openMemberWindow(boolean: boolean) {
     this.toggleBoolean.openChannelMemberWindow = true;
     this.toggleBoolean.openAddMemberWindow(boolean);

@@ -2,7 +2,7 @@
 
 app-header {
   display: block;
-  height: 100px;
+  height: 110px;
   background-color: #edeefe;
 }
 
@@ -119,7 +119,6 @@ app-secondary-chat {
     min-height: calc(100vh - 80px);
   }
 }
-
 
 @media screen and (max-width: $RESPONSIVE_THRESHOLD_MOBILE380px) {
   app-sidebar,
