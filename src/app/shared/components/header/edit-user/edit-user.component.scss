@@ -12,9 +12,9 @@
 }
 
 .whiteBox {
-  width: 440px;
+  width: 400px;
   height: auto;
-  background-color: #fff;
+  background-color: white;
   border-radius: 35px;
   position: absolute;
   z-index: 5;
@@ -22,8 +22,7 @@
   right: 20px;
   @include displayFlex();
   flex-direction: column;
-  padding-top: 32px;
-  border-top-right-radius: 0;
+  padding: 24px;
   .boxHeader {
     width: 360px;
     @include displayFlex($j: space-between);

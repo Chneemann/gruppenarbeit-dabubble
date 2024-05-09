@@ -47,8 +47,8 @@
     [imgSrc]="'language.svg'"
     [imgSize]="'32px'"
     [btnSize]="'40px'"
-    [imgSize]="viewWidth >= RESPONSIVE_THRESHOLD_MOBILE ? '24px' : '17px'"
-    [btnSize]="viewWidth >= RESPONSIVE_THRESHOLD_MOBILE ? '36px' : '25px'"
+    [imgSize]="viewWidth > 570 ? '24px' : '17px'"
+    [btnSize]="viewWidth > 570 ? '36px' : '25px'"
     [btnBgHoverColor]="'#edeefe'"
     (click)="LanguageService.switchLanguage()"
   ></app-small-btn>

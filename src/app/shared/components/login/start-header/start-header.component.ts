@@ -33,11 +33,8 @@ export class StartHeaderComponent {
 
   constructor(
     public loginService: loginService,
-    public LanguageService: LanguageService,
-    public sharedService: SharedService
+    public LanguageService: LanguageService
   ) {}
-
-  RESPONSIVE_THRESHOLD_MOBILE = this.sharedService.RESPONSIVE_THRESHOLD_MOBILE;
 
   /**
    * Initializes the component and decides whether to start animations based on the login service state.
