@@ -38,7 +38,7 @@ export class loginService {
   avatar: string = './assets/img/user-icons/guest.svg';
   currentUser: string = '';
   errorMessage: string = '';
-  isFirstLoad: boolean = true; 
+  isFirstLoad: boolean = true;
   private hasAnimationPlayed = false;
   private introCompleteStatus = false;
 
@@ -117,12 +117,16 @@ export class loginService {
     const email = 'guest@guestaccount.com';
     const password = 'guest@guestaccount.com';
     const userId = 'JX5JxxPx0sdjEPHCs5F9';
+    this.email = 'guest@guestaccount.com';
+    this.password = 'guest@guestaccount.com';
 
     signInWithEmailAndPassword(auth, email, password)
       .then(() => {
         this.userService.userId = userId;
         this.updateUserOnlineStatus(userId);
         this.router.navigate(['/main']);
+        this.email = '';
+        this.password = '';
       })
       .catch((error) => {
         console.error(error);

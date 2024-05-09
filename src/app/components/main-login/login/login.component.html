@@ -2,12 +2,10 @@
   <app-start-header></app-start-header>
   <div class="loginContainer">
     <div class="loginTop">
-      <span>{{ 'login.header' | translate }}</span>
+      <span>{{ "login.header" | translate }}</span>
     </div>
     <div class="loginInfoText">
-      <span
-        >{{ 'login.infoText' | translate }}</span
-      >
+      <span>{{ "login.infoText" | translate }}</span>
     </div>
     <form (ngSubmit)="onSubmit()" #contactForm="ngForm" class="contactForm">
       <div class="inputContainer">
@@ -25,7 +23,7 @@
           pattern="[^@]+@[^.]+\..+"
         />
         @if (!emailField.valid && emailField.touched) {
-        <p class="error">{{ 'login.errorText' | translate }}</p>
+        <p class="error">{{ "login.errorText" | translate }}</p>
         }
       </div>
       <div class="inputContainer">
@@ -36,6 +34,7 @@
           minlength="6"
           [(ngModel)]="this.loginService.password"
           name="password"
+          type="password"
           placeholder="{{ 'login.inputField2' | translate }}"
           id="message"
           required
@@ -46,25 +45,27 @@
           rows="10"
         />
         @if (!passwordField.valid && passwordField.touched) {
-        <p class="error">{{ 'login.errorText2' | translate }}</p>
+        <p class="error">{{ "login.errorText2" | translate }}</p>
         } @if (loginService.errorMessage) {
         <p class="error">{{ loginService.errorMessage }}</p>
         }
       </div>
 
       <div class="passwordContainer">
-        <span routerLink="/passwordForget">{{ 'login.midText' | translate }}</span>
+        <span routerLink="/passwordForget">{{
+          "login.midText" | translate
+        }}</span>
       </div>
 
       <div class="separatorContainer">
         <div></div>
-        <span>{{ 'login.midSeperator' | translate }}</span>
+        <span>{{ "login.midSeperator" | translate }}</span>
         <div></div>
       </div>
 
       <div (click)="loginService.googleLogin()" class="googleLogingContainer">
         <img src="./assets/img/login/google.svg" alt="" />
-        <span>{{ 'login.googleBtn' | translate }}</span>
+        <span>{{ "login.googleBtn" | translate }}</span>
       </div>
 
       <div class="loginBottom">
@@ -73,24 +74,24 @@
           [ngClass]="{ aktivButton: contactForm.valid }"
           [disabled]="!contactForm.valid"
         >
-        {{ 'login.BtnLeft' | translate }}
+          {{ "login.BtnLeft" | translate }}
         </button>
         <button
           type="button"
           class="guestButton"
           (click)="loginService.guestLogin()"
         >
-        {{ 'login.BtnRight' | translate }}
+          {{ "login.BtnRight" | translate }}
         </button>
       </div>
     </form>
   </div>
   <div class="mobileRegisterContainer">
     <div>
-      <span> {{ 'login.topText' | translate }}</span>
+      <span> {{ "login.topText" | translate }}</span>
       <div class="mobileCreateAccountContainer">
-        <span routerLink="/register" class="mobileCreateAccoun"
-          > {{ 'login.topText2' | translate }}</span
+        <span routerLink="/register" class="mobileCreateAccoun">
+          {{ "login.topText2" | translate }}</span
         >
       </div>
     </div>
