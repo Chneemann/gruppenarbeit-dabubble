@@ -5,11 +5,18 @@ import { UserService } from '../../../../../service/user.service';
 import { FormsModule } from '@angular/forms';
 import { ChannleService } from '../../../../../service/channle.service';
 import { TranslateModule } from '@ngx-translate/core';
+import { SmallBtnComponent } from '../../../small-btn/small-btn.component';
 
 @Component({
   selector: 'app-edit-user-details',
   standalone: true,
-  imports: [CommonModule, EditUserComponent, FormsModule, TranslateModule],
+  imports: [
+    CommonModule,
+    EditUserComponent,
+    FormsModule,
+    TranslateModule,
+    SmallBtnComponent,
+  ],
   templateUrl: './edit-user-details.component.html',
   styleUrl: './edit-user-details.component.scss',
 })

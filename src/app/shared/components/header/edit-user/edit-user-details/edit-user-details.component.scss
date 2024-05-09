@@ -1,7 +1,7 @@
 @import "../../../../../../styles.scss";
 
 .whiteBox {
-  width: 440px;
+  width: 400px;
   height: auto;
   background-color: white;
   border-radius: 35px;
@@ -11,26 +11,10 @@
   right: 20px;
   @include displayFlex();
   flex-direction: column;
-  padding-top: 32px;
+  padding: 24px;
   .boxHeader {
     width: 360px;
     @include displayFlex($j: space-between);
-    .positionCloseIcon {
-      width: 40px;
-      height: 40px;
-      @include displayFlex();
-      margin-right: -10px;
-      transition: 0.3s ease-in-out;
-      &:hover {
-        background-color: #eceefe;
-        border-radius: 25px;
-        cursor: pointer;
-        > img {
-          filter: invert(59%) sepia(26%) saturate(871%) hue-rotate(199deg)
-            brightness(93%) contrast(100%);
-        }
-      }
-    }
   }
   .profileImg {
     width: 200px;
@@ -46,20 +30,29 @@
 }
 
 .inputBox {
-  width: 360px;
+  width: calc(100% - 24px);
+  margin-bottom: 24px;
   .positionName {
-    margin-bottom: 26px;
     .positionNameIcon {
+      margin: 12px 0;
       @include displayFlex($j: flex-start, $g: 20px);
+      p {
+        font-size: 21px;
+        font-weight: 600;
+        margin: 0;
+        color: #000;
+      }
     }
     .inputName {
-      width: 344px;
+      width: calc(100% - 24px);
       border: 1px solid #888dec;
       outline: none;
       height: 26px;
       border-radius: 25px;
-      padding: 8px;
-      font-size: larger;
+      padding: 8px 12px;
+      margin-bottom: 12px;
+      font-size: 18px;
+      font-weight: 400;
       transition: 0.3s ease-in-out;
       &:hover {
         border: 1px solid #2c36f0;
@@ -69,14 +62,16 @@
 }
 
 .inputDisabled {
-  width: 344px;
+  width: calc(100% - 12px);
   border: none;
   background-color: rgba(34, 34, 34, 0.2588235294);
   outline: none;
   height: 26px;
   border-radius: 25px;
-  padding: 8px;
-  font-size: larger;
+  padding: 8px 12px;
+  margin-bottom: 12px;
+  font-size: 18px;
+  font-weight: 400;
 }
 
 .position2Btn {
@@ -135,98 +130,65 @@
 
 /*------------- RESPONSIVE -------------*/
 
-@media screen and (max-width: 1300px) {
-  .arrowLeft {
-    display: block;
-    margin-left: 18px;
-    transition: 0.3 linear;
-    &:hover {
-      cursor: pointer;
-      scale: 1.2;
-    }
-  }
-}
-
-@media screen and (max-width: 800px) {
+@media screen and (max-width: $RESPONSIVE_THRESHOLD_MOBILE) {
   .whiteBox {
-    width: 362px;
-    .boxHeader {
-      width: 300px;
-    }
-    .profileImg {
-      width: 160px;
-      height: 160px;
-      margin: 20px;
-    }
-  }
-  .inputBox {
-    width: 300px;
-    .positionName {
-      margin-bottom: 12px;
-      .positionNameIcon {
-        @include displayFlex($j: flex-start, $g: 20px);
-        h1 {
-          font-size: 24px;
-        }
-      }
-      .inputName {
-        width: 286px;
-        font-size: smaller;
-      }
-    }
-  }
-  p {
-    font-size: 14px;
-  }
-
-  .inputDisabled {
-    width: 284px;
-    font-size: smaller;
-  }
-}
-
-.position2Btn {
-  margin-bottom: 16px;
-  .cancelBtn {
-    width: 110px;
-    height: 36px;
-  }
-  .saveBtn {
-    width: 110px;
-    height: 36px;
-  }
-}
-
-.disabledBtn {
-  width: 110px;
-  height: 36px;
-}
-
-@media screen and (max-width: 600px) {
-  .whiteBox {
-    width: 90%;
     border-radius: 35px;
-    top: 14%;
+    width: auto;
     right: 22px;
-    height: 58%;
-    gap: 8px;
-    padding-top: 8px;
+    height: auto;
+    top: 25%;
+    right: 15vw;
+    left: 15vw;
+    padding: 24px;
     .boxHeader {
-      width: 300px;
+      width: 100%;
+      padding: 0 12px;
+      p {
+        font-size: 21px;
+        font-weight: 700;
+      }
     }
     .profileImg {
-      width: 140px;
-      height: 140px;
-      margin: 20px;
+      width: 180px;
+      height: 180px;
+      margin: 32px;
+    }
+    p {
+      font-size: 13px;
+    }
+  }
+  .detailsBox {
+    width: 100%;
+    padding: 0 12px;
+    .editBtnPosition {
+      .name {
+        font-size: 24px;
+        font-weight: 700;
+      }
+    }
+  }
+
+  .emailBox {
+    @include displayFlex($j: flex-start, $a: flex-start, $g: 10px);
+    img {
+      margin-top: 2px;
+    }
+    .email {
+      > p {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+      > a {
+        margin-bottom: 0;
+      }
     }
   }
 }
 
-@media screen and (max-width: $RESPONSIVE_THRESHOLD_MOBILE380px) {
+@media screen and (max-width: 450px) {
   .whiteBox {
-    top: 9%;
-    right: 22px;
-    height: 76%;
-    padding-top: 8px;
+    right: 5vw;
+    left: 5vw;
   }
 }

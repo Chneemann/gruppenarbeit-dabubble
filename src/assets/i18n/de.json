@@ -165,8 +165,8 @@
   "edit-user-details": {
     "profile": "Dein Profil bearbeiten",
     "fullName": "Vollständiger Name",
-    "placeholder": "Geben Sie Ihren Namen ein mind. 3 Buchstaben",
-    "placeholder2": "Geben Sie Ihre E-Mail-Adresse ein",
+    "placeholder": "Ihr Name (min. 3 Buchstaben)",
+    "placeholder2": "Ihre E-Mail-Adresse",
     "email": "E-Mail-Addresse",
     "cancel": "Abbrechen",
     "save": "Speichern",

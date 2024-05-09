@@ -31,22 +31,6 @@
       font-size: 24px;
       font-weight: 700;
     }
-    .positionCloseIcon {
-      width: 40px;
-      height: 40px;
-      @include displayFlex();
-      margin-right: -10px;
-      transition: 0.3s ease-in-out;
-      &:hover {
-        background-color: #eceefe;
-        border-radius: 25px;
-        cursor: pointer;
-        > img {
-          filter: invert(59%) sepia(26%) saturate(871%) hue-rotate(199deg)
-            brightness(93%) contrast(100%);
-        }
-      }
-    }
   }
   .profileImg {
     width: 200px;

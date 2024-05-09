@@ -3,15 +3,25 @@
 <div class="whiteBox">
   <div class="boxHeader">
     <p>Profil</p>
-    <div class="positionCloseIcon" (click)="closeCurrentProfile()">
-      <img src="./assets/img/closeIcon.svg" class="closeIcon" />
-    </div>
+    <app-small-btn
+      [imgSrc]="'closeIcon.svg'"
+      [imgSize]="'18px'"
+      [btnSize]="'32px'"
+      [btnBgHoverColor]="'#edeefe'"
+      (click)="closeCurrentProfile()"
+    ></app-small-btn>
   </div>
   <img src="{{ i.avatar }}" class="profileImg" (click)="showSideMenu()" />
   <div class="detailsBox">
     <div class="editBtnPosition">
       <p class="name">{{ i.firstName }} {{ i.lastName }}</p>
-      <p class="editBtn" (click)="openEditUser()">{{ 'edit-user.edit' | translate }}</p>
+      <app-small-btn
+        [imgSrc]="'pencil.svg'"
+        [imgSize]="'18px'"
+        [btnSize]="'32px'"
+        [btnBgHoverColor]="'#edeefe'"
+        (click)="openEditUser()"
+      ></app-small-btn>
     </div>
 
     <div class="statusBox">
@@ -28,7 +38,7 @@
     <div class="emailBox">
       <img src="./assets/img/mail-icon.svg" />
       <div class="email">
-        <p>{{ 'edit-user.email' | translate }}</p>
+        <p>{{ "edit-user.email" | translate }}</p>
         <a
           href="mailto:wwweewefeff&#64;dede.de"
           target="_blank"
