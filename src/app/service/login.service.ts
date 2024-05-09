@@ -38,6 +38,7 @@ export class loginService {
   avatar: string = './assets/img/user-icons/guest.svg';
   currentUser: string = '';
   errorMessage: string = '';
+  isFirstLoad: boolean = true; 
   private hasAnimationPlayed = false;
   private introCompleteStatus = false;
 

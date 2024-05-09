@@ -5,7 +5,7 @@ import { RouterLink } from '@angular/router';
 import { FooterComponent } from '../../../shared/components/login/footer/footer.component';
 import { CommonModule } from '@angular/common';
 import { StartHeaderComponent } from '../../../shared/components/login/start-header/start-header.component';
-import { TranslateModule} from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +18,7 @@ import { TranslateModule} from '@ngx-translate/core';
     FooterComponent,
     RouterLink,
     StartHeaderComponent,
-    TranslateModule
+    TranslateModule,
   ],
 })
 export class LoginComponent {
@@ -28,27 +28,34 @@ export class LoginComponent {
     private renderer: Renderer2
   ) {}
 
-
   /**
- * Initializes the component by removing a specific class from an element after a delay.
- * This is typically used to manage UI changes that should only take effect after the component has been displayed for a certain time.
- */
+   * Initializes the component and manages the removal of the 'startIntroScrollProtect' class from an element.
+   * On the first load, this class is removed after a delay of 4.5 seconds to manage initial UI transitions.
+   * On subsequent loads, the class is removed immediately, ensuring the UI remains consistent without delay.
+   * This behavior is controlled by the `isFirstLoad` property of the loginService.
+   */
   ngOnInit(): void {
-    setTimeout(() => {
-      const element = this.elRef.nativeElement.querySelector(
-        '.startIntroScrollProtect'
-      );
-      if (element) {
-        this.renderer.removeClass(element, 'startIntroScrollProtect');
-      }
-    }, 4500);
+    const element = this.elRef.nativeElement.querySelector(
+      '.startIntroScrollProtect'
+    );
+
+    if (this.loginService.isFirstLoad) {
+      setTimeout(() => {
+        if (element) {
+          this.renderer.removeClass(element, 'startIntroScrollProtect');
+        }
+      }, 4500);
+
+      this.loginService.isFirstLoad = false;
+    } else if (element) {
+      this.renderer.removeClass(element, 'startIntroScrollProtect');
+    }
   }
 
-  
   /**
- * Handles form submission by triggering the login process through a login service.
- * This method would typically be called when a user submits a form associated with logging in.
- */
+   * Handles form submission by triggering the login process through a login service.
+   * This method would typically be called when a user submits a form associated with logging in.
+   */
   onSubmit() {
     this.loginService.login();
   }
