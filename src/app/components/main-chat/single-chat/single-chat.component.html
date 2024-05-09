@@ -90,18 +90,27 @@
         @if (!isPrivatChannel) {
         <div class="answers">
           @if (chatService.getChatAnswers(chat.id).length > 0 && showAnswer) {
+          @if(chatService.getChatAnswers(chat.id).length == 1) {
+          <p (click)="openSecondaryChat(chat.id)">
+            {{ displayCountChatAnswer() }}
+            {{ "single-chat.answer2" | translate }}
+          </p>
+          <span
+            >{{ "single-chat.answer3" | translate }}
+            {{ displayLastChatAnswer() }}</span
+          >
+          } @else {
           <p (click)="openSecondaryChat(chat.id)">
             {{ displayCountChatAnswer() }}
             {{ "single-chat.answer" | translate }}
           </p>
           <span
-            >{{ "single-chat.answer2" | translate }}
+            >{{ "single-chat.answer3" | translate }}
             {{ displayLastChatAnswer() }}</span
           >
-
-          } @else if (showAnswer) {
+          } } @else if (showAnswer) {
           <p (click)="openSecondaryChat(chat.id)">
-            {{ "single-chat.answer3" | translate }}
+            {{ "single-chat.answer4" | translate }}
           </p>
           }
         </div>

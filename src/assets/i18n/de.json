@@ -118,8 +118,9 @@
   "single-chat": {
     "edit": "(bearbeitet)",
     "answer": "Antworten",
-    "answer2": "Letzte Antwort:",
-    "answer3": "Antwort..."
+    "answer2": "Antwort",
+    "answer3": "Letzte Antwort:",
+    "answer4": "Antwort..."
   },
 
   "secondary-chat": {

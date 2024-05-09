@@ -117,9 +117,10 @@
 
   "single-chat": {
     "edit": "(edited)",
-    "answer": "Reply",
-    "answer2": "Last reply:",
-    "answer3": "Reply..."
+    "answer": "Replys",
+    "answer2": "Reply",
+    "answer3": "Last reply:",
+    "answer4": "Reply..."
   },
 
   "secondary-chat": {
