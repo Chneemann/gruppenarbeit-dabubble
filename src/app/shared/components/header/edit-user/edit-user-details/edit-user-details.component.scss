@@ -62,7 +62,7 @@
 }
 
 .inputDisabled {
-  width: calc(100% - 12px);
+  width: calc(100% - 24px);
   border: none;
   background-color: rgba(34, 34, 34, 0.2588235294);
   outline: none;
@@ -136,7 +136,7 @@
     width: auto;
     right: 22px;
     height: auto;
-    top: 25%;
+    top: unset;
     right: 15vw;
     left: 15vw;
     padding: 24px;
@@ -149,9 +149,9 @@
       }
     }
     .profileImg {
-      width: 180px;
-      height: 180px;
-      margin: 32px;
+      width: 120px;
+      height: 120px;
+      margin: 18px;
     }
     p {
       font-size: 13px;

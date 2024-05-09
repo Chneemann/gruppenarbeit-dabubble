@@ -137,8 +137,8 @@
     border-radius: 35px;
     width: auto;
     right: 22px;
-    height: auto;
-    top: 25%;
+    height: fit-content;
+    top: unset;
     right: 15vw;
     left: 15vw;
     padding: 24px;
@@ -151,9 +151,9 @@
       }
     }
     .profileImg {
-      width: 180px;
-      height: 180px;
-      margin: 32px;
+      width: 120px;
+      height: 120px;
+      margin: 18px;
     }
   }
   .detailsBox {

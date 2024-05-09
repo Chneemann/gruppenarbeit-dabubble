@@ -9,7 +9,7 @@ import { ImprintComponent } from './shared/components/imprint/imprint.component'
 import { PrivacyPolicyComponent } from './shared/components/privacy-policy/privacy-policy.component';
 
 export const routes: Routes = [
-  { path: '', component: LoginComponent },
+  { path: '', component: MainComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'avatar', component: ChooseAvatarComponent },
