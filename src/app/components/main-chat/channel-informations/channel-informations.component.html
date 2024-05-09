@@ -14,7 +14,7 @@
     <div class="contentChannel">
       @for (channel of getChannelName(currentChannel); track channel) {
       <div class="contentHeadline">
-        <p>{{ 'channel-informations.header' | translate }}</p>
+        <p>{{ "channel-informations.header" | translate }}</p>
         @if (!openEditNameInput) {
         <!--check if user is creator-->
         @if(checkCreator(currentChannel)){
@@ -26,11 +26,7 @@
           (click)="editChannelName($event)"
         ></app-small-btn>
         } @else {
-        <img
-          class="disableEdit"
-          src="./assets/img/pencil.svg"
-          alt=""
-        />
+        <img class="disableEdit" src="./assets/img/pencil.svg" alt="" />
         } } @else {
         <app-small-btn
           [imgSrc]="'save.svg'"
@@ -57,7 +53,7 @@
       @for (channel of getChannelName(currentChannel); track channel) {
 
       <div class="contentHeadline">
-        <p>{{ 'channel-informations.channelInfo' | translate }}</p>
+        <p>{{ "channel-informations.channelInfo" | translate }}</p>
         @if (!openEditNameDescription) {
         <!--check if user is creator-->
         @if(checkCreator(currentChannel)){
@@ -69,11 +65,7 @@
           (click)="editChannelDescription($event)"
         ></app-small-btn>
         } @else {
-        <img
-          class="disableEdit"
-          src="./assets/img/pencil.svg"
-          alt=""
-        />
+        <img class="disableEdit" src="./assets/img/pencil.svg" alt="" />
         } } @else {
         <app-small-btn
           [imgSrc]="'save.svg'"
@@ -89,7 +81,7 @@
         @if (channel.description !== "") {
         <p>{{ channel.description }}</p>
         } @else {
-        <p>{{ 'channel-informations.channelInfo2' | translate }}</p>
+        <p>{{ "channel-informations.channelInfo2" | translate }}</p>
         }
       </div>
       } @else {
@@ -104,7 +96,7 @@
       }
       <div class="line"></div>
       <div class="contentHeadline">
-        <p>{{ 'channel-informations.channelMadeBy' | translate }}</p>
+        <p>{{ "channel-informations.channelMadeBy" | translate }}</p>
       </div>
       <div class="channelCreator">
         @if(channel.creator == "Admin") {
@@ -112,7 +104,9 @@
         } @else { @for (user of getChatUsers(channel.creator); track user) {
         <p class="creatorName">{{ user.firstName }} {{ user.lastName }}</p>
         } } @if(!checkCreator(currentChannel)){
-        <p class="warningPTag">{{ 'channel-informations.channelErrorText' | translate }}</p>
+        <p class="warningPTag">
+          {{ "channel-informations.channelErrorText" | translate }}
+        </p>
         }
       </div>
       }
@@ -124,7 +118,7 @@
       }"
     >
       <div class="contentHeadline">
-        <p>{{ 'channel-informations.members' | translate }}</p>
+        <p>{{ "channel-informations.members" | translate }}</p>
       </div>
       <div class="allUsers">
         @for(allMembers of getAllChannelMembers(currentChannel)[0].addedUser;
@@ -158,7 +152,12 @@
       (closeUserWondow)="changeOpenUserWindowBoolean($event)"
     ></app-open-send-prv-message-window>
     <div class="leaveChannel">
-      <p (click)="leaveChannel(currentChannel, $event)">{{ 'channel-informations.leave' | translate }}</p>
+      <button
+        [disabled]="openEditNameInput || openEditNameDescription"
+        (click)="leaveChannel(currentChannel, $event)"
+      >
+        {{ "channel-informations.leave" | translate }}
+      </button>
     </div>
   </div>
 </div>

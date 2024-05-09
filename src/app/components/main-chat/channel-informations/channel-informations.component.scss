@@ -178,16 +178,26 @@
   justify-content: right;
   align-items: center;
   margin-top: 18px;
-  p {
-    padding: 12px 25px;
-    border-radius: 25px;
-    color: #fff;
-    background-color: #444df2;
-    cursor: pointer;
-    &:hover {
-      filter: opacity(70%);
-    }
-  }
+}
+
+.leaveChannel button {
+  padding: 12px 25px;
+  border-radius: 25px;
+  font-weight: 400;
+  font-size: 18px;
+  color: #fff;
+  border: 0px;
+  background-color: #444df2;
+  cursor: pointer;
+}
+
+.leaveChannel button:disabled {
+  background-color: #999;
+  cursor: unset;
+}
+
+.leaveChannel button:hover:not(:disabled) {
+  filter: opacity(70%);
 }
 
 .disableEdit {
