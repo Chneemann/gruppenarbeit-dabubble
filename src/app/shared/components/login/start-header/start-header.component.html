@@ -34,16 +34,21 @@
 
   <div [style.display]="display" class="registerContainer">
     <div>
-      <span>{{ 'start-header.new' | translate }}</span>
+      <span>{{ "start-header.new" | translate }}</span>
       <div class="createAccountContainer">
-        <span routerLink="/register" class="createAccoun">{{ 'start-header.create' | translate }}</span>
+        <span routerLink="/register" class="createAccoun">{{
+          "start-header.create" | translate
+        }}</span>
       </div>
     </div>
   </div>
-  <app-small-btn class="switchLanguage"
+  <app-small-btn
+    class="switchLanguage"
     [imgSrc]="'language.svg'"
     [imgSize]="'32px'"
     [btnSize]="'40px'"
+    [imgSize]="viewWidth >= RESPONSIVE_THRESHOLD_MOBILE ? '24px' : '17px'"
+    [btnSize]="viewWidth >= RESPONSIVE_THRESHOLD_MOBILE ? '36px' : '25px'"
     [btnBgHoverColor]="'#edeefe'"
     (click)="LanguageService.switchLanguage()"
   ></app-small-btn>

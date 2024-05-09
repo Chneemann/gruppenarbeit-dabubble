@@ -54,7 +54,7 @@
   }
 }
 
-.switchLanguage{
+.switchLanguage {
   position: absolute;
   right: 26px;
   top: 18px;
@@ -91,6 +91,7 @@
   align-items: center;
   animation: logoAnimation-slide 0.5s ease-in forwards 1s;
   background-size: contain;
+  gap: 11px;
   z-index: 999;
 }
 
@@ -160,7 +161,7 @@
   overflow: hidden;
   white-space: nowrap;
   transition: clip-path 0.5s ease-in-out;
-  animation: textAnimation 0.5s ease-in forwards 1.1s; 
+  animation: textAnimation 0.5s ease-in forwards 1.1s;
   z-index: 900;
   clip-path: inset(0 100% 0 0);
 }
@@ -282,7 +283,7 @@
     animation: none;
     animation: imgSizeMobile 0.5s ease-in forwards 1s;
   }
-  
+
   @keyframes imgSizeMobile {
     0% {
       width: 90px;
@@ -300,7 +301,7 @@
 }
 
 @media screen and (max-width: $RESPONSIVE_THRESHOLD_MOBILE) {
-  .switchLanguage{
+  .switchLanguage {
     right: 10px;
     top: 8px;
   }
