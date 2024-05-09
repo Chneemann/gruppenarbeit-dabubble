@@ -13,7 +13,10 @@
     </div>
     <div class="positionOfAllUsersInBox">
       @for(user of userService.getUsers(); track user){
-      <div class="user" (click)="checkRoute([user])">
+      <div
+        class="user"
+        (click)="checkRoute([user]); closeSecondaryChatAndSidebar()"
+      >
         <div class="positionImgs">
           <img src="{{ user.avatar }}" class="avatarImg" />
           <img

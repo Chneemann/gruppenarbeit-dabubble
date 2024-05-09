@@ -24,6 +24,7 @@
     </div>
     } @if (showAllUsers) {
     <app-show-all-users
+      [viewWidth]="viewWidth"
       (toggleMemberListEmitter)="toggleMemberListEmitter($event)"
     ></app-show-all-users>
     }

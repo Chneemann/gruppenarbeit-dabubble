@@ -1,10 +1,13 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { UserService } from '../../../service/user.service';
 import { User } from '../../../interface/user.interface';
 import { ChannleService } from '../../../service/channle.service';
 import { Router } from '@angular/router';
 import { SmallBtnComponent } from '../../../shared/components/small-btn/small-btn.component';
+import { ChatService } from '../../../service/chat.service';
+import { SharedService } from '../../../service/shared.service';
+import { ToggleBooleanService } from '../../../service/toggle-boolean.service';
 
 @Component({
   selector: 'app-show-all-users',
@@ -14,17 +17,38 @@ import { SmallBtnComponent } from '../../../shared/components/small-btn/small-bt
   styleUrl: './show-all-users.component.scss',
 })
 export class ShowAllUsersComponent {
+  @Input() viewWidth: number = 0;
   @Output() toggleMemberListEmitter: EventEmitter<boolean> =
     new EventEmitter<boolean>();
 
   constructor(
     public userService: UserService,
     private route: Router,
-    private channelService: ChannleService
+    private channelService: ChannleService,
+    private chatService: ChatService,
+    public toggleBoolean: ToggleBooleanService,
+    private sharedService: SharedService
   ) {}
 
+  RESPONSIVE_THRESHOLD = this.sharedService.RESPONSIVE_THRESHOLD;
+
+  /**
+   * Toggles the member list by emitting an event.
+   * @param {boolean} isVisible - Indicates whether the member list should be visible or not.
+   */
   toggleMemberList() {
     this.toggleMemberListEmitter.emit(false);
+  }
+
+  /**
+   * Closes the secondary chat window & sidebar.
+   */
+  closeSecondaryChatAndSidebar() {
+    this.chatService.toggleSecondaryChat('none');
+    this.toggleMemberList();
+    if (this.viewWidth <= this.RESPONSIVE_THRESHOLD) {
+      this.toggleBoolean.isSidebarOpen = false;
+    }
   }
 
   /**
