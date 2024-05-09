@@ -11,13 +11,13 @@
       <p>{{ "sidebar-direct-messages.messages" | translate }}</p>
     </div>
     @if (!showAllUsers) {
-    <div class="btn">
+    <div class="btnAllUsersWindow">
       <app-small-btn
         [imgSrc]="'add.svg'"
         [imgSize]="'14px'"
         [btnSize]="'28px'"
         [btnBgHoverColor]="'#edeefe'"
-        (click)="showAllUsersWindow()"
+        (click)="toggleAllUsersWindow()"
         style="margin-right: -11px"
       >
       </app-small-btn>

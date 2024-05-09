@@ -6,8 +6,9 @@ section {
   right: 0px;
 }
 
-.whiteBox {
+.whiteBoxAllUsersWindow {
   height: fit-content;
+  max-height: 30vh;
   width: 240px;
   z-index: 4;
   border-radius: 35px;
@@ -18,7 +19,7 @@ section {
   @include displayFlex($g: 20px);
   flex-direction: column;
 
-  .posiotionHeader {
+  .positionHeader {
     @include displayFlex($j: space-between);
     font-size: 24px;
     font-weight: 600;
