@@ -73,6 +73,13 @@ export class ChatMsgBoxComponent {
   }
 
   /**
+   * Select Textarea at onload.
+   */
+  ngAfterViewInit() {
+    this.textAreaRef.nativeElement.select();
+  }
+
+  /**
    * Handles file input change event.
    * @param event The file change event.
    */
