@@ -29,6 +29,10 @@ export class UserService implements OnDestroy {
     this.unsubUser = this.subUserList();
   }
 
+  /**
+   * Retrieves the current user's ID from local storage.
+   * @returns {string|number|undefined} The ID of the current user if found in local storage, otherwise undefined.
+   */
   getCurrentUserId() {
     let currentUser = localStorage.getItem('currentUser');
     if (currentUser !== null) {

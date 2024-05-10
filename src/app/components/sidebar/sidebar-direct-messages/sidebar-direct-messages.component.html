@@ -23,10 +23,12 @@
       </app-small-btn>
     </div>
     } @if (showAllUsers) {
-    <app-show-all-users
-      [viewWidth]="viewWidth"
-      (toggleMemberListEmitter)="toggleMemberListEmitter($event)"
-    ></app-show-all-users>
+    <div class="invisibleDiv">
+      <app-show-all-users
+        [viewWidth]="viewWidth"
+        (toggleMemberListEmitter)="toggleMemberListEmitter($event)"
+      ></app-show-all-users>
+    </div>
     }
   </div>
   <app-sidebar-direct-messages-user

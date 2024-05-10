@@ -350,6 +350,10 @@ export class loginService {
     }
   }
 
+  /**
+   * Stores the current user's ID in the local storage.
+   * @param {string} userId - The ID of the current user to be stored.
+   */
   getUserIdInLocalStorage(userId: string) {
     localStorage.setItem('currentUser', JSON.stringify(userId));
   }
