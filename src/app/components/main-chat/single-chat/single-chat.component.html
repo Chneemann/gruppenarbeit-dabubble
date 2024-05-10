@@ -56,77 +56,75 @@
           user.id === userService.getCurrentUserId() ? 'flex-end' : ''
       }"
     >
-      <div class="userContent">
-        <div
-          class="name"
-          [ngStyle]="{
+      <div
+        class="name"
+        [ngStyle]="{
           'flex-direction':
             user.id === userService.getCurrentUserId() ? 'row-reverse' : 'row',
         }"
-        >
-          {{ user.firstName }} {{ user.lastName }}
-          <span
-            [ngStyle]="{
-              padding:
-                user.id === userService.getCurrentUserId()
-                  ? '0 24px 0 0'
-                  : '0 0 0 24px'
-            }"
-          >
-            @if(openOnSecondaryChat) {
-            {{ convertTimestampDate(chat.publishedTimestamp) }} }
-            {{ convertTimestampHour(chat.publishedTimestamp) }}</span
-          >
-        </div>
-        <div
-          class="content"
-          [ngClass]="{
-            'content-mirror': user.id === userService.getCurrentUserId()
+      >
+        {{ user.firstName }} {{ user.lastName }}
+        <span
+          [ngStyle]="{
+            padding:
+              user.id === userService.getCurrentUserId()
+                ? '0 24px 0 0'
+                : '0 0 0 24px'
           }"
         >
-          <div class="msg">
-            {{ chat.message }}
-            @if (chat.edited) {
-            <span>{{ "single-chat.edit" | translate }}</span>
-            }
-          </div>
-          <app-attachments
-            [chatId]="chat.id"
-            [openOnSecondaryChat]="openOnSecondaryChat"
-            [viewWidth]="viewWidth"
-          ></app-attachments>
-        </div>
-        @if (!isPrivatChannel) {
-        <div class="answers">
-          @if (chatService.getChatAnswers(chat.id).length > 0 && showAnswer) {
-          @if(chatService.getChatAnswers(chat.id).length == 1) {
-          <p (click)="openSecondaryChat(chat.id)">
-            {{ displayCountChatAnswer() }}
-            {{ "single-chat.answer2" | translate }}
-          </p>
-          <span
-            >{{ "single-chat.answer3" | translate }}
-            {{ displayLastChatAnswer() }}</span
-          >
-          } @else {
-          <p (click)="openSecondaryChat(chat.id)">
-            {{ displayCountChatAnswer() }}
-            {{ "single-chat.answer" | translate }}
-          </p>
-          <span
-            >{{ "single-chat.answer3" | translate }}
-            {{ displayLastChatAnswer() }}</span
-          >
-          } } @else if (showAnswer) {
-          <p (click)="openSecondaryChat(chat.id)">
-            {{ "single-chat.answer4" | translate }}
-          </p>
+          @if(openOnSecondaryChat) {
+          {{ convertTimestampDate(chat.publishedTimestamp) }} }
+          {{ convertTimestampHour(chat.publishedTimestamp) }}</span
+        >
+      </div>
+      <div
+        class="content"
+        [ngClass]="{
+          'content-mirror': user.id === userService.getCurrentUserId()
+        }"
+      >
+        <div class="msg">
+          {{ chat.message }}
+          @if (chat.edited) {
+          <span>{{ "single-chat.edit" | translate }}</span>
           }
         </div>
+        <app-attachments
+          [chatId]="chat.id"
+          [openOnSecondaryChat]="openOnSecondaryChat"
+          [viewWidth]="viewWidth"
+        ></app-attachments>
+      </div>
+      @if (!isPrivatChannel) {
+      <div class="answers">
+        @if (chatService.getChatAnswers(chat.id).length > 0 && showAnswer) {
+        @if(chatService.getChatAnswers(chat.id).length == 1) {
+        <p (click)="openSecondaryChat(chat.id)">
+          {{ displayCountChatAnswer() }}
+          {{ "single-chat.answer2" | translate }}
+        </p>
+        <span
+          >{{ "single-chat.answer3" | translate }}
+          {{ displayLastChatAnswer() }}</span
+        >
         } @else {
-        <div class="spacer"></div>
+        <p (click)="openSecondaryChat(chat.id)">
+          {{ displayCountChatAnswer() }}
+          {{ "single-chat.answer" | translate }}
+        </p>
+        <span
+          >{{ "single-chat.answer3" | translate }}
+          {{ displayLastChatAnswer() }}</span
+        >
+        } } @else if (showAnswer) {
+        <p (click)="openSecondaryChat(chat.id)">
+          {{ "single-chat.answer4" | translate }}
+        </p>
         }
       </div>
+      } @else {
+      <div class="spacer"></div>
+      }
       <app-reaction-emojis
         [chat]="chat"
         [user]="user"

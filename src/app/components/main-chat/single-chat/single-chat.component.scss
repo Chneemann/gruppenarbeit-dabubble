@@ -48,10 +48,7 @@ section {
   }
 }
 
-.userContent {
-  display: flex;
-  flex-direction: column;
-  width: fit-content;
+.chat {
   .name {
     display: flex;
     align-items: center;
@@ -76,7 +73,7 @@ section {
     background-color: #eceefe;
     .msg {
       position: relative;
-      width: 100%;
+      width: fit-content;
       span {
         font-size: 12px;
         font-style: italic;
@@ -93,14 +90,6 @@ section {
   border-top-left-radius: 24px;
   border-top-right-radius: 0 !important;
   background-color: #797ef3 !important;
-}
-
-.mirror {
-  transform: scaleX(-1) !important;
-}
-
-.maxWidthSecondaryChat {
-  width: 200px;
 }
 
 .answers {

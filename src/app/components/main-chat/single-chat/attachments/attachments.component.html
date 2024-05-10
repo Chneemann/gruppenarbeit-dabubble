@@ -1,12 +1,5 @@
 <ng-container *ngIf="downloadFilesService.downloadedFiles | async as files">
-  <div
-    class="attachments"
-    *ngFor="let folder of files"
-    [ngStyle]="{
-      width:
-        openOnSecondaryChat && viewWidth >= RESPONSIVE_THRESHOLD ? '270px' : ''
-    }"
-  >
+  <div class="attachments" *ngFor="let folder of files">
     <div *ngIf="chatId == folder.id">
       <br />
       <div class="files">
@@ -29,9 +22,7 @@
             <a href="{{ file }}" target="_blank">
               <img
                 class="otherFiles"
-                src="./assets/img/attachments/{{
-                  getFileType(file)
-                }}.png"
+                src="./assets/img/attachments/{{ getFileType(file) }}.png"
                 alt="image"
                 loading="lazy"
                 [ngStyle]="{
