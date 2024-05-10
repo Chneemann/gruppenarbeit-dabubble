@@ -50,10 +50,11 @@ export class SecondaryChatComponent implements AfterViewChecked {
    * Scrolls to the bottom if the secondary chat is open and the sidebar has not been loaded yet.
    */
   ngAfterViewChecked() {
-    if (this.chatService.isSecondaryChatOpen && !this.sidebarLoaded) {
-      this.scrollToBottom();
-      this.sidebarLoaded = true;
-    }
+    setTimeout(() => {
+      if (this.chatService.isSecondaryChatOpen && !this.sidebarLoaded) {
+        this.scrollToBottom();
+      }
+    }, 200);
   }
 
   /**
@@ -78,6 +79,7 @@ export class SecondaryChatComponent implements AfterViewChecked {
         'scrollTop',
         element.scrollHeight - element.clientHeight
       );
+      this.sidebarLoaded = true;
     }
   }
 
@@ -95,6 +97,7 @@ export class SecondaryChatComponent implements AfterViewChecked {
    */
   closeSecondaryChat() {
     this.chatService.toggleSecondaryChat('none');
+    this.sidebarLoaded = false;
   }
 
   /**
