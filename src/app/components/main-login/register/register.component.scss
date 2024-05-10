@@ -63,6 +63,18 @@ button {
   border: 1px solid#686868;
 }
 
+.fontColor{
+  color: #797ef3;
+  cursor: pointer;
+  &:hover{
+    font-weight: 500;
+    background-color: #eceefe;
+    padding: 2px 2px 2px 5px;
+    border-radius: 100px;
+    color: #444df2;
+  }
+}
+
 @media (max-width: 570px) {
   .registerTop {
     margin-bottom: 0;

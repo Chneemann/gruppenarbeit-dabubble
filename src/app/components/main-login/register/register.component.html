@@ -68,6 +68,7 @@
           [(ngModel)]="loginService.password"
           name="password"
           placeholder="{{ 'createAccount.inputField3' | translate }}"
+          type="password"
           id="message"
           required
           [ngClass]="{
@@ -95,7 +96,7 @@
         </div>
         <span
           >{{ 'createAccount.midText' | translate }}
-          <span class="fontColor" [routerLink]="['/Datenschutz']"
+          <span class="fontColor" routerLink="/privacy-policy"
             >{{ 'createAccount.midText2' | translate }} </span
           >{{ 'createAccount.midText3' | translate }}</span
         >
@@ -112,4 +113,3 @@
   </div>
   <app-footer></app-footer>
 </div>
-
