@@ -4,7 +4,7 @@
 }
 .registerContainer {
   @include Card;
-  gap: 42px!important;
+  gap: 42px !important;
 }
 .registerTop {
   @include topText;
@@ -63,16 +63,22 @@ button {
   border: 1px solid#686868;
 }
 
-.fontColor{
+.fontColor {
   color: #797ef3;
   cursor: pointer;
-  &:hover{
+  &:hover {
     font-weight: 500;
     background-color: #eceefe;
     padding: 2px 2px 2px 5px;
     border-radius: 100px;
     color: #444df2;
   }
+}
+
+.passwordEye {
+  position: absolute;
+  top: 18px;
+  right: 25px;
 }
 
 @media (max-width: 570px) {
@@ -112,7 +118,6 @@ button {
   .registerBottom {
     margin-top: 26px;
     gap: 24px;
-    
   }
   .guestButton {
     font-size: 17px;
@@ -125,6 +130,6 @@ button {
 @media (max-width: 380px) {
   .registerContainer {
     max-width: 306px;
-    gap:12px!important;
+    gap: 12px !important;
   }
 }

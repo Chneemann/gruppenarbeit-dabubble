@@ -61,14 +61,15 @@
       </div>
       <div class="inputContainer">
         <img class="iconP" src="./assets/img/login/lock.png" alt="" />
-        <input
+        <input 
           class="inputField"
           #passwordField="ngModel"
           minlength="6"
+          maxlength="16" 
           [(ngModel)]="loginService.password"
           name="password"
           placeholder="{{ 'createAccount.inputField3' | translate }}"
-          type="password"
+          [type]="loginService.passwordFieldType"
           id="message"
           required
           [ngClass]="{
@@ -77,6 +78,7 @@
           cols="30"
           rows="10"
         />
+        <img class="passwordEye" (click)="loginService.togglePasswordVisibility()" [src]="loginService.passwordIcon" alt="Toggle visibility">
         @if (!passwordField.valid && passwordField.touched) {
         <p class="error">
           {{ 'createAccount.errorText3' | translate }}
