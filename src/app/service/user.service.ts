@@ -21,12 +21,19 @@ export class UserService implements OnDestroy {
   getUserIDs: string[] = [];
   getFiltertUsers: User[] = [];
   isUserLogin: boolean = true;
-  userId: string = '';
+  userId: string = this.getCurrentUserId();
 
   unsubUser;
 
   constructor(private channelService: ChannleService, private route: Router) {
     this.unsubUser = this.subUserList();
+  }
+
+  getCurrentUserId() {
+    let currentUser = localStorage.getItem('currentUser');
+    if (currentUser !== null) {
+      return JSON.parse(currentUser);
+    }
   }
 
   /**

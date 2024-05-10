@@ -79,7 +79,7 @@ export class loginService {
     if (snapshot.docs.length > 0) {
       const userDoc = snapshot.docs[0];
       this.currentUser = userDoc.id;
-      this.userService.userId = this.currentUser;
+      this.getUserIdInLocalStorage(this.currentUser);
       this.updateUserOnlineStatus(this.currentUser);
       this.router.navigate([`/main`]);
       this.email = '';
@@ -122,7 +122,7 @@ export class loginService {
 
     signInWithEmailAndPassword(auth, email, password)
       .then(() => {
-        this.userService.userId = userId;
+        this.getUserIdInLocalStorage(userId);
         this.updateUserOnlineStatus(userId);
         this.router.navigate(['/main']);
         this.email = '';
@@ -182,7 +182,7 @@ export class loginService {
     try {
       const docRef = await addDoc(usersCollection, userDataToSave);
       this.currentUser = docRef.id;
-      this.userService.userId = this.currentUser;
+      this.getUserIdInLocalStorage(this.currentUser);
       await this.addUserToChannels(this.currentUser, publicChannels);
       await this.addPrivateChannel(this.currentUser);
       this.email = '';
@@ -286,7 +286,7 @@ export class loginService {
    */
   ifExistUser(snapshot: QuerySnapshot) {
     this.currentUser = snapshot.docs[0].id;
-    this.userService.userId = this.currentUser;
+    this.getUserIdInLocalStorage(this.currentUser);
     this.router.navigate([`/main`]);
   }
 
@@ -348,5 +348,9 @@ export class loginService {
     } catch (error) {
       console.error('Fehler beim Erstellen des privaten Kanals: ', error);
     }
+  }
+
+  getUserIdInLocalStorage(userId: string) {
+    localStorage.setItem('currentUser', JSON.stringify(userId));
   }
 }
