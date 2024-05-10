@@ -34,6 +34,7 @@
     name="textarea"
     [(ngModel)]="textArea"
     (keyup)="sendMessageWithEnter($event)"
+    (keyup)="checkChannelAndUser($event)"
   ></textarea>
   <div class="positionAllIcons">
     <div class="positionSpecialIcons">
@@ -85,7 +86,7 @@
         [ngClass]="{
           showWanrningNotice: downloadFilesService.uploadFiles.length >= 1
         }"
-        style="color: red"
+        class="warningMessage"
       >
         {{ "channel-msg-box.text" | translate }}
       </p>
@@ -99,6 +100,34 @@
       class="sendIcon"
       (click)="sendMessage()"
     />
+    }
+    <!--- show chnnels or users by pressing @ or #-->
+    @if (openSmallWindow) {
+      <div class="filteredElementWindow2">
+        @if (showChannels) {
+          @for (i of checkIfUserHasAccessToChannel(); track $index) {
+            <h3
+              class="user2"
+              (click)="chooseElement(i)"
+            >{{i.name}}</h3>
+            }
+        }@else if (showUsers) {
+          @for (i of userService.allUsers; track $index) {
+            <div class="user2" (click)="chooseElement(i)">
+              <div class="positionImgs2">
+                <img src="{{ i.avatar }}" class="avatarImg2" />
+                <img
+                  src="./assets/img/{{
+                    i.status ? 'onlineRing.svg' : 'offlineRing.svg'
+                  }}"
+                  class="onlineIconFilterWindow"
+                />
+              </div>
+              <h3>{{i.firstName}} {{i.lastName}}</h3>
+            </div>
+          }
+        }
+      </div>
     }
   </div>
   @if (isEmojiPickerVisible) {

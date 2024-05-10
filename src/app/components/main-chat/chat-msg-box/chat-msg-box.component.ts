@@ -1,12 +1,5 @@
 import { CommonModule } from '@angular/common';
-import {
-  Component,
-  ElementRef,
-  EventEmitter,
-  Input,
-  Output,
-  ViewChild,
-} from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { PickerComponent } from '@ctrl/ngx-emoji-mart';
 import { Firestore, addDoc, collection } from '@angular/fire/firestore';
@@ -21,6 +14,7 @@ import { ToggleBooleanService } from '../../../service/toggle-boolean.service';
 import { User } from '../../../interface/user.interface';
 import { MessageData } from '../../../interface/chat.interface';
 import { TranslateModule } from '@ngx-translate/core';
+import { Channel } from '../../../interface/channel.interface';
 
 @Component({
   selector: 'app-chat-msg-box',
@@ -40,7 +34,7 @@ export class ChatMsgBoxComponent {
   @Input() currentChannel: string = '';
   @Input() target: string = '';
   @Output() newMsgEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
-  @ViewChild('textarea') textarea!: ElementRef;
+  @ViewChild('textarea') textAreaRef!: ElementRef;
 
   hasFile: boolean = false;
   currentFiles!: FileList;
@@ -56,6 +50,9 @@ export class ChatMsgBoxComponent {
   isEmojiPickerVisible: boolean | undefined;
   currentChatValue: string = '';
   showTargetMember: boolean = true;
+  showChannels: boolean = false;
+  showUsers: boolean = false;
+  openSmallWindow: boolean = false;
 
   constructor(
     private route: Router,
@@ -66,10 +63,6 @@ export class ChatMsgBoxComponent {
     public channelService: ChannleService,
     public toggleBoolean: ToggleBooleanService
   ) {}
-
-  ngAfterViewInit() {
-    this.textarea.nativeElement.select();
-  }
 
   /**
    * Handles the output from the emoji picker.
@@ -278,8 +271,62 @@ export class ChatMsgBoxComponent {
   mouseLeave() {
     this.isEmojiPickerVisible = false;
     this.toggleBoolean.selectUserInMsgBox = false;
+    this.openSmallWindow = false;
+    this.showChannels = false;
+    this.showUsers = false;
   }
 
+  /**
+   * Open channels or user window by pressing @ or #.
+   */
+  checkChannelAndUser(e: KeyboardEvent) {
+    if (e.key === '#') {
+      this.openSmallWindow = true;
+      this.showChannels = true;
+      this.showUsers = false;
+    } else if (e.key === '@') {
+      this.openSmallWindow = true;
+      this.showChannels = false;
+      this.showUsers = true;
+    }
+  }
+  
+
+  /**
+   * Checks if the current user has access to any channels.
+   * @returns {Channel[]} Array of Channel objects that the user has access to.
+   */
+  checkIfUserHasAccessToChannel() {
+    const isUserAChannelMember = this.channelService.allChannels.some(
+      (channel) =>
+        channel.addedUser.includes(this.userService.getCurrentUserId())
+    );
+
+    if (isUserAChannelMember) {
+      return this.channelService.allChannels.filter((channel) =>
+        channel.addedUser.includes(this.userService.getCurrentUserId())
+      );
+    }
+    return [];
+  }
+
+
+   /**
+   * Chooses an element and performs necessary actions based on its type.
+   * @param {Channel | User} element - The element to choose.
+   */
+   chooseElement(element: Channel | User) {
+    if ('firstName' in element) {
+      this.textArea += `${element.firstName} ${element.lastName} `; 
+    } else {
+      this.textArea += `${element.name} `;
+    }
+    this.showUsers = false;
+    this.showChannels = false;
+    this.openSmallWindow = false;
+    this.textAreaRef.nativeElement.focus();
+  }
+  
   /**
    * Resets input values after sending the message.
    */

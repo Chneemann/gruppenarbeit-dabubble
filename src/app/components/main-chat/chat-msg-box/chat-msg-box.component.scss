@@ -176,6 +176,56 @@ app-emoji-picker {
   display: flex;
 }
 
+.warningMessage{
+  color: red;
+}
+
+.filteredElementWindow2 {
+  z-index: 1;
+  max-height: 240px;
+  overflow: auto;
+  scrollbar-width: none;
+  position: absolute;
+  bottom: 100%;
+  left: 100px;
+  border-radius: 25px;
+  border-bottom-left-radius: 0;
+  border: 1px solid #888dec;
+  background-color: #ffffff;
+  padding: 8px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  .user2 {
+    @include displayFlex($j: flex-start);
+    padding: 6px;
+    margin-bottom: 6px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    &:hover {
+      background-color: #edeefe;
+      border-radius: 25px;
+    }
+    .positionImgs2 {
+      @include displayFlex($a: flex-end);
+      .avatarImg2 {
+        width: 40px;
+        height: 40px;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+      .onlineIconFilterWindow {
+        height: 12px;
+        width: 12px;
+        margin-left: -10px;
+        margin-right: 8px;
+      }
+    }
+  }
+}
+
 //----------- responsive ---------------
 
 @media screen and (max-width: $RESPONSIVE_THRESHOLD_MOBILE) {
@@ -183,5 +233,9 @@ app-emoji-picker {
     height: 50px;
     padding-bottom: 54px;
     margin: 12px;
+  }
+  
+  .warningMessage{
+    font-size: 12px;
   }
 }
