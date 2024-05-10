@@ -143,6 +143,7 @@ export class UserService implements OnDestroy {
         .then(() => {
           signOut(auth)
             .then(() => {
+              this.deleteUserIdInLocalStorage();
               this.route.navigate(['/login']);
             })
             .catch((error) => {
@@ -155,5 +156,12 @@ export class UserService implements OnDestroy {
     } else {
       console.error('Keine UserID gefunden');
     }
+  }
+
+  /**
+   * Deletes the user ID from local storage.
+   */
+  deleteUserIdInLocalStorage() {
+    localStorage.removeItem('currentUser');
   }
 }

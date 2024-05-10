@@ -134,7 +134,7 @@ export class MainChatComponent {
    * Redirects to the start channel if the current channel is empty and the user is logged in.
    */
   routeToStartChannel() {
-    if (this.currentChannel == '' && this.userService.userId !== '') {
+    if (this.currentChannel === '' && this.userService.userId !== undefined) {
       this.route.navigateByUrl(`/main/${publicChannels[0]}`);
     }
   }

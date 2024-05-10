@@ -42,7 +42,21 @@ export class loginService {
   private hasAnimationPlayed = false;
   private introCompleteStatus = false;
 
-  constructor(private router: Router, private userService: UserService) {}
+  constructor(private router: Router, private userService: UserService) {
+    this.ifUserLoggedIn();
+  }
+
+  /**
+   * Checks if a user is logged in by checking if there is a user stored in the local storage.
+   * If a user is found, it redirects to the main page.
+   * @returns {void}
+   */
+  ifUserLoggedIn() {
+    let currentUser = localStorage.getItem('currentUser');
+    if (currentUser !== null) {
+      this.router.navigate([`/main`]);
+    }
+  }
 
   // -------------------- login start ------------------------------->
 
@@ -81,7 +95,6 @@ export class loginService {
       this.currentUser = userDoc.id;
       this.getUserIdInLocalStorage(this.currentUser);
       this.updateUserOnlineStatus(this.currentUser);
-      this.router.navigate([`/main`]);
       this.email = '';
       this.password = '';
     } else {
@@ -124,7 +137,6 @@ export class loginService {
       .then(() => {
         this.getUserIdInLocalStorage(userId);
         this.updateUserOnlineStatus(userId);
-        this.router.navigate(['/main']);
         this.email = '';
         this.password = '';
       })
@@ -187,7 +199,6 @@ export class loginService {
       await this.addPrivateChannel(this.currentUser);
       this.email = '';
       this.password = '';
-      this.router.navigate([`/main`]);
     } catch (error) {
       console.error(error);
     }
@@ -287,7 +298,6 @@ export class loginService {
   ifExistUser(snapshot: QuerySnapshot) {
     this.currentUser = snapshot.docs[0].id;
     this.getUserIdInLocalStorage(this.currentUser);
-    this.router.navigate([`/main`]);
   }
 
   // -------------------- UserAddFunktions ------------------------------->
@@ -356,5 +366,6 @@ export class loginService {
    */
   getUserIdInLocalStorage(userId: string) {
     localStorage.setItem('currentUser', JSON.stringify(userId));
+    window.location.reload();
   }
 }
