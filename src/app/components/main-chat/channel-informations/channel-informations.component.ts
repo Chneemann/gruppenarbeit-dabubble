@@ -215,8 +215,7 @@ export class ChannelInformationsComponent {
     );
     if (getChannel) {
       const userIndex = getChannel[0].addedUser.indexOf(getLogedInUser);
-
-      if (userIndex) {
+      if (userIndex !== -1) {
         getChannel[0].addedUser.splice(userIndex, 1);
         const userArray = getChannel[0].addedUser;
         this.channelService.addNewMemberToChannel(
@@ -226,9 +225,7 @@ export class ChannelInformationsComponent {
           'leaveChannel'
         );
         this.closeEditEmitter.emit(false);
-        this.route.navigateByUrl(`main/XiqUAXRY1W7PixC9kVTa`);
-      } else {
-        console.warn('User not found in the channel');
+        this.route.navigateByUrl(`main`);
       }
     }
   }
