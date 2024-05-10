@@ -128,7 +128,7 @@ export class ChannelInformationsComponent {
     const getChannel = this.channelService.allChannels.filter(
       (channel) => channel.id == currentChannel
     );
-    if (getChannel[0].creator === this.userService.userId) {
+    if (getChannel[0].creator === this.userService.getCurrentUserId()) {
       return true;
     } else {
       return false;
@@ -209,7 +209,7 @@ export class ChannelInformationsComponent {
    */
   leaveChannel(currentChannel: string, event: Event) {
     event.stopPropagation();
-    const getLogedInUser: string = this.userService.userId;
+    const getLogedInUser: string = this.userService.getCurrentUserId();
     const getChannel = this.channelService.allChannels.filter(
       (channel) => channel.id == currentChannel
     );

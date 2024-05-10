@@ -3,22 +3,22 @@
   (mouseleave)="hideOptionMenu()"
   [ngStyle]="{
     'justify-content':
-      user.id === userService.userId ? 'flex-end' : 'flex-start'
+      user.id === userService.getCurrentUserId() ? 'flex-end' : 'flex-start'
   }"
 >
   @if (firstLoadOptionMenu) {
   <app-options-menu
     [ngClass]="{
-      menuRightSide: user.id !== userService.userId,
-      menuLeftSide: user.id === userService.userId,
+      menuRightSide: user.id !== userService.getCurrentUserId(),
+      menuLeftSide: user.id === userService.getCurrentUserId(),
       'animation-coming-in-left':
-        isOptionMenuVisible && user.id === userService.userId,
+        isOptionMenuVisible && user.id === userService.getCurrentUserId(),
       'animation-coming-out-left':
-        !isOptionMenuVisible && user.id === userService.userId,
+        !isOptionMenuVisible && user.id === userService.getCurrentUserId(),
       'animation-coming-in-right':
-        isOptionMenuVisible && user.id !== userService.userId,
+        isOptionMenuVisible && user.id !== userService.getCurrentUserId(),
       'animation-coming-out-right':
-        !isOptionMenuVisible && user.id !== userService.userId
+        !isOptionMenuVisible && user.id !== userService.getCurrentUserId()
     }"
     [user]="user"
     [currentChat]="currentChat"
@@ -33,13 +33,17 @@
   <div
     class="chatBox"
     [ngStyle]="{
-      'flex-direction': user.id === userService.userId ? 'row-reverse' : 'row'
+      'flex-direction':
+        user.id === userService.getCurrentUserId() ? 'row-reverse' : 'row'
     }"
   >
     <div
       class="userAvatar"
       [ngStyle]="{
-        padding: user.id === userService.userId ? '0 0 0 24px' : '0 24px 0 0'
+        padding:
+          user.id === userService.getCurrentUserId()
+            ? '0 0 0 24px'
+            : '0 24px 0 0'
       }"
     >
       <img src="{{ user.avatar }}" alt="" />
@@ -48,7 +52,8 @@
     <div
       class="chat"
       [ngStyle]="{
-        'align-items': user.id === userService.userId ? 'flex-end' : ''
+        'align-items':
+          user.id === userService.getCurrentUserId() ? 'flex-end' : ''
       }"
     >
       <div class="userContent">
@@ -56,14 +61,16 @@
           class="name"
           [ngStyle]="{
           'flex-direction':
-            user.id === userService.userId ? 'row-reverse' : 'row',
+            user.id === userService.getCurrentUserId() ? 'row-reverse' : 'row',
         }"
         >
           {{ user.firstName }} {{ user.lastName }}
           <span
             [ngStyle]="{
               padding:
-                user.id === userService.userId ? '0 24px 0 0' : '0 0 0 24px'
+                user.id === userService.getCurrentUserId()
+                  ? '0 24px 0 0'
+                  : '0 0 0 24px'
             }"
           >
             @if(openOnSecondaryChat) {
@@ -73,7 +80,9 @@
         </div>
         <div
           class="content"
-          [ngClass]="{ 'content-mirror': user.id === userService.userId }"
+          [ngClass]="{
+            'content-mirror': user.id === userService.getCurrentUserId()
+          }"
         >
           <div class="msg">
             {{ chat.message }}

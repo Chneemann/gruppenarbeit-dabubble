@@ -73,7 +73,7 @@ export class SidebarChannelsComponent {
    */
   getChannels(): Channel[] {
     const userChannels = this.channelService.allChannels.filter((channel) =>
-      channel.addedUser.includes(this.userService.userId)
+      channel.addedUser.includes(this.userService.getCurrentUserId())
     );
     const priorityChannels = userChannels.filter((channel) =>
       publicChannels.includes(channel.id!)

@@ -120,8 +120,8 @@ export class MainChatComponent {
       );
       const userChannel = this.channelService.allPrvChannels.filter(
         (user) =>
-          user.creatorId === this.userService.userId &&
-          user.talkToUserId === this.userService.userId &&
+          user.creatorId === this.userService.getCurrentUserId() &&
+          user.talkToUserId === this.userService.getCurrentUserId() &&
           user.id === chatId
       );
       if (countMessages.length === 0 && userChannel.length === 0) {
@@ -134,7 +134,10 @@ export class MainChatComponent {
    * Redirects to the start channel if the current channel is empty and the user is logged in.
    */
   routeToStartChannel() {
-    if (this.currentChannel === '' && this.userService.userId !== undefined) {
+    if (
+      this.currentChannel === '' &&
+      this.userService.getCurrentUserId() !== undefined
+    ) {
       this.route.navigateByUrl(`/main/${publicChannels[0]}`);
     }
   }
@@ -145,12 +148,13 @@ export class MainChatComponent {
    */
   checkIfUserHasAccessToChannel() {
     const isUserAChannelMember = this.channelService.allChannels.some(
-      (channel) => channel.addedUser.includes(this.userService.userId)
+      (channel) =>
+        channel.addedUser.includes(this.userService.getCurrentUserId())
     );
 
     if (isUserAChannelMember) {
       return this.channelService.allChannels.filter((channel) =>
-        channel.addedUser.includes(this.userService.userId)
+        channel.addedUser.includes(this.userService.getCurrentUserId())
       );
     }
     return [];

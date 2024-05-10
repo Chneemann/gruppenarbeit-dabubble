@@ -69,7 +69,7 @@ export class ReactionEmojisComponent {
       let reaction: ChatReactions = {
         chatId: chatId,
         icon: $event,
-        userId: [this.userService.userId],
+        userId: [this.userService.getCurrentUserId()],
       };
       const { id, ...reactionWithoutId } = reaction;
       this.chatService.createNewReaction(reactionWithoutId);
@@ -203,15 +203,15 @@ export class ReactionEmojisComponent {
    */
   toggleEmoji(reactionID: string) {
     const userIds = this.getReactionDocId(reactionID)[0].userId;
-    if (userIds.includes(this.userService.userId)) {
-      userIds.splice(userIds.indexOf(this.userService.userId), 1);
+    if (userIds.includes(this.userService.getCurrentUserId())) {
+      userIds.splice(userIds.indexOf(this.userService.getCurrentUserId()), 1);
       if (userIds.length == 0) {
         this.chatService.deleteData(reactionID, 'reactions');
       } else {
         this.chatService.updateReaction(reactionID, userIds);
       }
     } else {
-      userIds.push(this.userService.userId);
+      userIds.push(this.userService.getCurrentUserId());
       this.chatService.updateReaction(reactionID, userIds);
     }
   }

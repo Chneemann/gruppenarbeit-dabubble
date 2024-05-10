@@ -136,7 +136,7 @@
           </div>
           <p>
             {{ user.firstName }} {{ user.lastName }} @if (user.id ==
-            userService.userId) { (You) }
+            userService.getCurrentUserId()) { (You) }
           </p>
         </div>
         }}

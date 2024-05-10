@@ -140,12 +140,13 @@ export class SearchBarComponent {
    */
   checkUserHasAccessToChannel() {
     const isUserAChannelMember = this.channelService.allChannels.some(
-      (channel) => channel.addedUser.includes(this.userService.userId)
+      (channel) =>
+        channel.addedUser.includes(this.userService.getCurrentUserId())
     );
 
     if (isUserAChannelMember) {
       return this.channelService.allChannels.filter((channel) =>
-        channel.addedUser.includes(this.userService.userId)
+        channel.addedUser.includes(this.userService.getCurrentUserId())
       );
     }
     return [];
@@ -203,8 +204,8 @@ export class SearchBarComponent {
     const channelExistsBoolean = this.channelService.allPrvChannels.some(
       (channel) =>
         (channel.creatorId === userId &&
-          channel.talkToUserId === this.userService.userId) ||
-        (channel.creatorId === this.userService.userId &&
+          channel.talkToUserId === this.userService.getCurrentUserId()) ||
+        (channel.creatorId === this.userService.getCurrentUserId() &&
           channel.talkToUserId === userId)
     );
     if (!channelExistsBoolean) {
@@ -226,8 +227,8 @@ export class SearchBarComponent {
       const existingChannel = this.channelService.allPrvChannels.find(
         (channel) =>
           (channel.creatorId === userId &&
-            channel.talkToUserId === this.userService.userId) ||
-          (channel.creatorId === this.userService.userId &&
+            channel.talkToUserId === this.userService.getCurrentUserId()) ||
+          (channel.creatorId === this.userService.getCurrentUserId() &&
             channel.talkToUserId === userId)
       );
       this.route.navigateByUrl(`main/${existingChannel!.id}`);

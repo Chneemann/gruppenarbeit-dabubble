@@ -94,7 +94,6 @@ export class loginService {
       const userDoc = snapshot.docs[0];
       this.currentUser = userDoc.id;
       this.getUserIdInLocalStorage(this.currentUser);
-      this.updateUserOnlineStatus(this.currentUser);
       this.email = '';
       this.password = '';
     } else {
@@ -136,7 +135,6 @@ export class loginService {
     signInWithEmailAndPassword(auth, email, password)
       .then(() => {
         this.getUserIdInLocalStorage(userId);
-        this.updateUserOnlineStatus(userId);
         this.email = '';
         this.password = '';
       })
@@ -194,9 +192,9 @@ export class loginService {
     try {
       const docRef = await addDoc(usersCollection, userDataToSave);
       this.currentUser = docRef.id;
-      this.getUserIdInLocalStorage(this.currentUser);
       await this.addUserToChannels(this.currentUser, publicChannels);
       await this.addPrivateChannel(this.currentUser);
+      this.getUserIdInLocalStorage(this.currentUser);
       this.email = '';
       this.password = '';
     } catch (error) {
@@ -306,12 +304,12 @@ export class loginService {
    * Updates the online status of the user in Firestore.
    * @param userId The user's document ID in Firestore.
    */
-  updateUserOnlineStatus(userId: string) {
+  async updateUserOnlineStatus(userId: string) {
     const userDocRef = doc(this.firestore, 'users', userId);
     const updates = {
       status: true,
     };
-    updateDoc(userDocRef, updates)
+    await updateDoc(userDocRef, updates)
       .then(() => {
         console.error();
       })
@@ -364,8 +362,9 @@ export class loginService {
    * Stores the current user's ID in the local storage.
    * @param {string} userId - The ID of the current user to be stored.
    */
-  getUserIdInLocalStorage(userId: string) {
+  async getUserIdInLocalStorage(userId: string) {
     localStorage.setItem('currentUser', JSON.stringify(userId));
+    await this.updateUserOnlineStatus(userId);
     window.location.reload();
   }
 }

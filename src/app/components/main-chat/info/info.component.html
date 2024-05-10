@@ -17,8 +17,10 @@
   <!-- Privat Chat -->
   } @if (getPrivatChannel(currentChannel).length > 0) {
   <!-- My Chat -->
-  @if (getPrivatChannel(currentChannel)[0].talkToUserId == userService.userId &&
-  getPrivatChannel(currentChannel)[0].creatorId == userService.userId) {
+  @if (getPrivatChannel(currentChannel)[0].talkToUserId ==
+  userService.getCurrentUserId() &&
+  getPrivatChannel(currentChannel)[0].creatorId ==
+  userService.getCurrentUserId()) {
   <div class="headlinePrvChat">
     @for (user of getChatUsers(getPrivatChannel(currentChannel)[0].creatorId);
     track user) {
@@ -33,7 +35,8 @@
   </p>
   } @else {
   <!-- Privat Chat (creatorId) -->
-  @if (getPrivatChannel(currentChannel)[0].talkToUserId == userService.userId) {
+  @if (getPrivatChannel(currentChannel)[0].talkToUserId ==
+  userService.getCurrentUserId()) {
   <div class="headlinePrvChat">
     @for (user of getChatUsers(getPrivatChannel(currentChannel)[0].creatorId);
     track user) {

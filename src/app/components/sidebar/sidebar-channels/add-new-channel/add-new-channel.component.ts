@@ -96,7 +96,8 @@ export class AddNewChannelComponent {
     const filteredUsers = this.userService.getUsers().filter((user) => {
       const fullName = `${user.firstName} ${user.lastName}`.toLowerCase();
       return (
-        fullName.includes(searchedUser) && user.id !== this.userService.userId
+        fullName.includes(searchedUser) &&
+        user.id !== this.userService.getCurrentUserId()
       );
     });
     this.getSearchedUser.push(...filteredUsers);
@@ -158,7 +159,7 @@ export class AddNewChannelComponent {
     const newChannel: Channel = {
       name: this.channelName,
       description: this.channelDescription || '',
-      creator: this.userService.userId,
+      creator: this.userService.getCurrentUserId(),
       privatChannel: this.privatChannel,
       hashtag: this.channelName,
       createdDate: this.currentDate,
@@ -181,7 +182,7 @@ export class AddNewChannelComponent {
    */
   checkUserArray() {
     if (this.channelIsPrivat) {
-      return [...this.selectedUsers, this.userService.userId];
+      return [...this.selectedUsers, this.userService.getCurrentUserId()];
     } else {
       return this.userService.getUserIDs;
     }

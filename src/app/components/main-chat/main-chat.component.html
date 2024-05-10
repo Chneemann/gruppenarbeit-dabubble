@@ -62,7 +62,7 @@
   @for (user of getPrvChat(currentChannel); track user; let i = $index) {
   <div class="headerPrvChat">
     <div class="headlinePrvChat" (click)="openUserProfil()">
-      @if (user.talkToUserId == userService.userId) {
+      @if (user.talkToUserId == userService.getCurrentUserId()) {
       <div class="imgBoxPrvChat">
         <img
           class="imgUserPrvChat"

@@ -1,10 +1,11 @@
 <section>
-  @for (directMessage of displayPrivateChat(this.userService.userId); track
-  directMessage; let i = $index) {
+  @for (directMessage of
+  displayPrivateChat(this.userService.getCurrentUserId()); track directMessage;
+  let i = $index) {
   <!-- PRIVAT CHAT (Message Yourself) -->
-  @if (directMessage.creatorId === this.userService.userId &&
-  directMessage.talkToUserId === this.userService.userId) { @for (user of
-  getChatUsers(directMessage.creatorId); track user){
+  @if (directMessage.creatorId === this.userService.getCurrentUserId() &&
+  directMessage.talkToUserId === this.userService.getCurrentUserId()) { @for
+  (user of getChatUsers(directMessage.creatorId); track user){
   <div
     class="user"
     routerLink="/main/{{ directMessage.id }}"
@@ -22,13 +23,17 @@
         class="onlineIcon"
       />
     </div>
-    <p>{{ user.firstName }} {{ user.lastName }} ({{ 'sidebar-direct-messages-user.you' | translate }})</p>
+    <p>
+      {{ user.firstName }} {{ user.lastName }} ({{
+        "sidebar-direct-messages-user.you" | translate
+      }})
+    </p>
   </div>
   } }
   <!-- PRIVAT CHAT (creatorId) -->
-  @if (directMessage.talkToUserId === this.userService.userId &&
-  directMessage.creatorId !== this.userService.userId) { @for (user of
-  getChatUsers(directMessage.creatorId); track user){
+  @if (directMessage.talkToUserId === this.userService.getCurrentUserId() &&
+  directMessage.creatorId !== this.userService.getCurrentUserId()) { @for (user
+  of getChatUsers(directMessage.creatorId); track user){
   <div
     class="user"
     routerLink="/main/{{ directMessage.id }}"
@@ -50,9 +55,9 @@
   </div>
   } }
   <!-- PRIVAT CHAT (talkToUserId) -->
-  @if (directMessage.creatorId === this.userService.userId &&
-  directMessage.talkToUserId !== this.userService.userId) { @for (user of
-  getChatUsers(directMessage.talkToUserId); track user){
+  @if (directMessage.creatorId === this.userService.getCurrentUserId() &&
+  directMessage.talkToUserId !== this.userService.getCurrentUserId()) { @for
+  (user of getChatUsers(directMessage.talkToUserId); track user){
   <div
     class="user"
     routerLink="/main/{{ directMessage.id }}"

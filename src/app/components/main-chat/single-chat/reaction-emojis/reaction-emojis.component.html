@@ -1,7 +1,8 @@
 <section
   (mouseleave)="this.isEmojiPickerVisible = false"
   [ngStyle]="{
-    'flex-direction': user.id === userService.userId ? 'row-reverse' : 'row'
+    'flex-direction':
+      user.id === userService.getCurrentUserId() ? 'row-reverse' : 'row'
   }"
 >
   <app-small-btn
@@ -23,8 +24,8 @@
     (emojiOutputEmitter)="emojiOutputEmitter($event, chat.id)"
     (emojiVisibleEmitter)="emojiVisibleEmitter($event)"
     [ngStyle]="{
-      left: user.id === userService.userId ? 'unset' : '',
-      right: user.id === userService.userId ? '20px' : '',
+      left: user.id === userService.getCurrentUserId() ? 'unset' : '',
+      right: user.id === userService.getCurrentUserId() ? '20px' : '',
       
     }"
   ></app-emoji-picker>
@@ -75,7 +76,8 @@
       <div class="user">
         {{ getUserId(reactionUId)[0].firstName }}
         {{ getUserId(reactionUId)[0].lastName }}
-        @if (getUserId(reactionUId)[0].id == userService.userId) { (You)}
+        @if (getUserId(reactionUId)[0].id == userService.getCurrentUserId()) {
+        (You)}
       </div>
       }
     </div>

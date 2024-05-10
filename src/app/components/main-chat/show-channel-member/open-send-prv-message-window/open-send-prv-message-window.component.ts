@@ -62,8 +62,8 @@ export class OpenSendPrvMessageWindowComponent {
     const channelExistsBoolean = this.channelService.allPrvChannels.some(
       (channel) =>
         (channel.creatorId === userId &&
-          channel.talkToUserId === this.userService.userId) ||
-        (channel.creatorId === this.userService.userId &&
+          channel.talkToUserId === this.userService.getCurrentUserId()) ||
+        (channel.creatorId === this.userService.getCurrentUserId() &&
           channel.talkToUserId === userId)
     );
 
@@ -90,8 +90,8 @@ export class OpenSendPrvMessageWindowComponent {
       const existingChannel = this.channelService.allPrvChannels.find(
         (channel) =>
           (channel.creatorId === userId &&
-            channel.talkToUserId === this.userService.userId) ||
-          (channel.creatorId === this.userService.userId &&
+            channel.talkToUserId === this.userService.getCurrentUserId()) ||
+          (channel.creatorId === this.userService.getCurrentUserId() &&
             channel.talkToUserId === userId)
       );
       this.route.navigateByUrl(`main/${existingChannel!.id}`);

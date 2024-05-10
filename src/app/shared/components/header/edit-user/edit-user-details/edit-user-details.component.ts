@@ -40,7 +40,7 @@ export class EditUserDetailsComponent {
   /** Filters whether the user is a guest. */
   filterGuest() {
     const getGuest = this.userService.allUsers.filter(
-      (user) => user.id === this.userService.userId
+      (user) => user.id === this.userService.getCurrentUserId()
     );
     if ('JX5JxxPx0sdjEPHCs5F9' === getGuest[0].id) {
       this.asGuestOnline = true;

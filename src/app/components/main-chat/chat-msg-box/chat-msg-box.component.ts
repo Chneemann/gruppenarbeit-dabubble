@@ -13,7 +13,7 @@ import { ChannleService } from '../../../service/channle.service';
 import { ToggleBooleanService } from '../../../service/toggle-boolean.service';
 import { User } from '../../../interface/user.interface';
 import { MessageData } from '../../../interface/chat.interface';
-import { TranslateModule} from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-chat-msg-box',
@@ -24,7 +24,7 @@ import { TranslateModule} from '@ngx-translate/core';
     PickerComponent,
     EmojiPickerComponent,
     SmallBtnComponent,
-    TranslateModule
+    TranslateModule,
   ],
   templateUrl: './chat-msg-box.component.html',
   styleUrl: './chat-msg-box.component.scss',
@@ -49,7 +49,6 @@ export class ChatMsgBoxComponent {
   currentChatValue: string = '';
   showTargetMember: boolean = true;
 
-
   constructor(
     private route: Router,
     public downloadFilesService: DownloadFilesService,
@@ -58,8 +57,7 @@ export class ChatMsgBoxComponent {
     private chatService: ChatService,
     public channelService: ChannleService,
     public toggleBoolean: ToggleBooleanService
-  ) {  }
-
+  ) {}
 
   /**
    * Handles the output from the emoji picker.
@@ -68,7 +66,6 @@ export class ChatMsgBoxComponent {
   emojiOutputEmitter($event: any) {
     this.addEmoji($event);
   }
-
 
   /**
    * Handles file input change event.
@@ -86,7 +83,6 @@ export class ChatMsgBoxComponent {
       }
     }
   }
-
 
   /**
    * Checks the file type and returns the corresponding icon.
@@ -107,7 +103,6 @@ export class ChatMsgBoxComponent {
     }
   }
 
-
   /**
    * Deletes the selected file.
    * @param file The file to be deleted.
@@ -120,7 +115,6 @@ export class ChatMsgBoxComponent {
     }
   }
 
-
   /**
    * Opens the selected file in a new tab.
    * @param file The file to be opened.
@@ -131,7 +125,6 @@ export class ChatMsgBoxComponent {
     window.open(url, '_blank');
   }
 
-
   /**
    * Adds the selected emoji to the message text area.
    * @param event The selected emoji.
@@ -141,14 +134,12 @@ export class ChatMsgBoxComponent {
     this.isEmojiPickerVisible = false;
   }
 
-
   /**
    * Toggles the visibility of the emoji picker.
    */
   toggleEmojiPicker() {
     this.isEmojiPickerVisible = !this.isEmojiPickerVisible;
   }
-
 
   /**
    * Displays the list of target chat users.
@@ -159,7 +150,6 @@ export class ChatMsgBoxComponent {
     this.toggleBoolean.selectUserInMsgBox = true;
   }
 
-  
   /**
    * Appends the selected user's name to the message text area.
    * @param user The selected user.
@@ -171,19 +161,17 @@ export class ChatMsgBoxComponent {
     this.toggleBoolean.selectUserInMsgBox = false;
   }
 
-
   /**
    * Sends a message when Enter key is pressed.
    * @param e The keyboard event.
    */
   sendMessageWithEnter(e: KeyboardEvent) {
-    if (this.textArea.trim() !== ''){
+    if (this.textArea.trim() !== '') {
       if (e.keyCode === 13) {
         this.sendMessage();
-      } 
+      }
     }
   }
-
 
   /**
    * Sends the message to the target channel.
@@ -209,7 +197,6 @@ export class ChatMsgBoxComponent {
     this.newMsgEmitter.emit(true);
   }
 
-
   /**
    * Checks the target collection and returns the message data.
    * @param target The target collection.
@@ -219,7 +206,7 @@ export class ChatMsgBoxComponent {
     let messageData: Partial<MessageData> = {
       message: this.textArea,
       publishedTimestamp: Math.floor(Date.now() / 1000),
-      userId: this.userService.userId,
+      userId: this.userService.getCurrentUserId(),
       edited: false,
     };
 
@@ -234,9 +221,8 @@ export class ChatMsgBoxComponent {
     return messageData as MessageData;
   }
 
-
   /**
-   * Checks  
+   * Checks
    * the channel ID based on the chat service.
    * @returns The channel ID.
    */
@@ -245,12 +231,14 @@ export class ChatMsgBoxComponent {
       return this.chatService.getChannelId;
     } else if (this.chatService.getPrvChatId) {
       return this.chatService.getPrvChatId;
-    } else if (this.currentChannel === 'searchBar' && this.chatService.inputValue === ''){
+    } else if (
+      this.currentChannel === 'searchBar' &&
+      this.chatService.inputValue === ''
+    ) {
       return '';
     }
     return this.currentChannel;
   }
-
 
   /**
    * Checks the chat ID based on the chat service.
@@ -263,7 +251,6 @@ export class ChatMsgBoxComponent {
     return;
   }
 
-
   /**
    * Navigates to the target channel after sending the message.
    */
@@ -273,15 +260,13 @@ export class ChatMsgBoxComponent {
     }
   }
 
-
   /**
    * Close popups by leaving with the mouse the chat-msg-box.
    */
-  mouseLeave(){
+  mouseLeave() {
     this.isEmojiPickerVisible = false;
     this.toggleBoolean.selectUserInMsgBox = false;
   }
-
 
   /**
    * Resets input values after sending the message.

@@ -21,7 +21,6 @@ export class UserService implements OnDestroy {
   getUserIDs: string[] = [];
   getFiltertUsers: User[] = [];
   isUserLogin: boolean = true;
-  userId: string = this.getCurrentUserId();
 
   unsubUser;
 
@@ -70,7 +69,7 @@ export class UserService implements OnDestroy {
    */
   getCurentUsers() {
     const filteredUser = this.getUsers().filter(
-      (user) => user.id == this.userId
+      (user) => user.id == this.getCurrentUserId()
     );
     return filteredUser;
   }
@@ -82,7 +81,7 @@ export class UserService implements OnDestroy {
    */
   createPrvChannel(filterUserID: string) {
     const newPrvChannel = {
-      creatorId: this.userId,
+      creatorId: this.getCurrentUserId(),
       talkToUserId: filterUserID,
     };
 
@@ -110,7 +109,7 @@ export class UserService implements OnDestroy {
    * @param newEmail New email.
    */
   updateUserData(newFirstName: string, newLastName: string, newEmail: string) {
-    const userDocRef = doc(this.firestore, 'users', this.userId);
+    const userDocRef = doc(this.firestore, 'users', this.getCurrentUserId());
     const updates = {
       firstName: newFirstName,
       lastName: newLastName || '',
@@ -134,7 +133,7 @@ export class UserService implements OnDestroy {
    */
   currentUserLogout() {
     const auth = getAuth();
-    const userId = this.userId;
+    const userId = this.getCurrentUserId();
 
     if (userId) {
       const userDocRef = doc(this.firestore, `users/${userId}`);
