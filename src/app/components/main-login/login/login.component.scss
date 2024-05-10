@@ -160,6 +160,11 @@ button {
     border: 1px solid #444df2;
   }
 }
+.passwordEye {
+  position: absolute;
+  top: 18px;
+  right: 25px;
+}
 @media (max-width: 570px) {
   .loginTop {
     margin-bottom: 0;

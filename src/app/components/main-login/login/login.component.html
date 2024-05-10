@@ -32,9 +32,10 @@
           class="inputField"
           #passwordField="ngModel"
           minlength="6"
+          maxlength="16" 
           [(ngModel)]="this.loginService.password"
           name="password"
-          type="password"
+          [type]="loginService.passwordFieldType"
           placeholder="{{ 'login.inputField2' | translate }}"
           id="message"
           required
@@ -44,6 +45,7 @@
           cols="30"
           rows="10"
         />
+        <img class="passwordEye" (click)="loginService.togglePasswordVisibility()" [src]="loginService.passwordIcon" alt="Toggle visibility">
         @if (!passwordField.valid && passwordField.touched) {
         <p class="error">{{ "login.errorText2" | translate }}</p>
         } @if (loginService.errorMessage) {
