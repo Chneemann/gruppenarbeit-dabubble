@@ -27,6 +27,9 @@
       <p>{{ 'add-new-channel.header2' | translate }}</p>
       &nbsp;
       <span>{{ 'add-new-channel.required' | translate }}</span>
+      @if (chechIfChannelExist(channelName)) {
+        <p class="warning">{{ 'add-new-channel.warning' | translate }}</p>
+      }
       <img
         class="hashtag"
         src="./assets/img/hashtag.svg"

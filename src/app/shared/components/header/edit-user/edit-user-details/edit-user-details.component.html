@@ -1,97 +1,108 @@
 <div class="grayBackground" (click)="closeEditUserWindow()"></div>
 @for(i of userService.getCurentUsers(); track i){
 <div class="whiteBox">
-  <div class="boxHeader fontNunito">
-    <h2 class="fontNunito">{{ "edit-user-details.profile" | translate }}</h2>
-    <app-small-btn
-      [imgSrc]="'closeIcon.svg'"
-      [imgSize]="'18px'"
-      [btnSize]="'32px'"
-      [btnBgHoverColor]="'#edeefe'"
-      (click)="closeEditUserWindow()"
-    ></app-small-btn>
-  </div>
-
-  <img src="{{ i.avatar }}" class="profileImg" />
-
-  <div class="inputBox">
-    <div class="positionName">
-      <div class="positionNameIcon">
-        <img src="./assets/img/personCircle.svg" />
-        <p class="fontNunito">{{ "edit-user-details.fullName" | translate }}</p>
-      </div>
-      @if (!filterGuest()) {
-      <input
-        class="inputName"
-        class="inputDisabled"
-        type="text"
-        placeholder="{{ 'edit-user-details.placeholder' | translate }}"
-        [(ngModel)]="nameValue"
-        required
-        minlength="3"
-        [disabled]="asGuestOnline"
-        (keyup)="checkIfUserNameIsValid(nameValue)"
-      />
-      } @else {
-      <input
-        class="inputName"
-        type="text"
-        placeholder="{{ 'edit-user-details.placeholder' | translate }}"
-        [(ngModel)]="nameValue"
-        required
-        minlength="3"
-        (keyup)="checkIfUserNameIsValid(nameValue)"
-      />
-      }
-    </div>
-
-    <div class="positionName">
-      <div class="positionNameIcon">
-        <img src="./assets/img/mail-iconBlack.svg" />
-        <p class="fontNunito">{{ "edit-user-details.email" | translate }}</p>
-      </div>
-      @if (!filterGuest()) {
-      <input
-        class="inputDisabled"
-        type="email"
-        required
-        name="emailValue"
-        placeholder="{{ 'edit-user-details.placeholder2' | translate }}"
-        [(ngModel)]="emailValue"
-        [disabled]="asGuestOnline"
-        (keyup)="checkIfUserEmailIsValid(emailValue)"
-      />
-      } @else {
-      <input
-        class="inputName"
-        type="email"
-        required
-        name="emailValue"
-        placeholder="{{ 'edit-user-details.placeholder2' | translate }}"
-        [(ngModel)]="emailValue"
-        (keyup)="checkIfUserEmailIsValid(emailValue)"
-      />
-      }
-    </div>
-  </div>
-
-  <div class="position2Btn">
-    <button class="cancelBtn" (click)="closeEditUserWindow()">
-      {{ "edit-user-details.cancel" | translate }}
-    </button>
-    <button
-      [disabled]="!channelService.saveEditBtnIsValid"
-      [ngClass]="{
-        disabledBtn: !channelService.saveEditBtnIsValid,
-        saveBtn: channelService.saveEditBtnIsValid
-      }"
-      (click)="saveNewUserData()"
+  <form
+    (ngSubmit)="saveNewUserData(contactForm)"
+    #contactForm="ngForm"
+    onsubmit="return false"
     >
-      {{ "edit-user-details.save" | translate }}
-    </button>
-  </div>
-  @if (asGuestOnline) {
-  <p>{{ "edit-user-details.errorMessage" | translate }}</p>
-  }
+    <div class="boxHeader fontNunito">
+      <h2 class="fontNunito">{{ "edit-user-details.profile" | translate }}</h2>
+      <app-small-btn
+        [imgSrc]="'closeIcon.svg'"
+        [imgSize]="'18px'"
+        [btnSize]="'32px'"
+        [btnBgHoverColor]="'#edeefe'"
+        (click)="closeEditUserWindow()"
+      ></app-small-btn>
+    </div>
+
+    <img src="{{ i.avatar }}" class="profileImg" />
+
+    <div class="inputBox">
+      <div class="positionName">
+        <div class="positionNameIcon">
+          <img src="./assets/img/personCircle.svg" />
+          <p class="fontNunito">
+            {{ "edit-user-details.fullName" | translate }}
+          </p>
+        </div>
+        @if (!filterGuest()) {
+        <input
+          class="inputDisabled"
+          type="text"
+          placeholder="{{ 'edit-user-details.placeholder' | translate }}"
+          [(ngModel)]="nameValue"
+          required
+          [disabled]="asGuestOnline"
+          (keyup)="checkIfUserNameIsValid(nameValue)"
+          name="fullName"
+        />
+        } @else {
+        <input
+          class="inputName"
+          type="text"
+          placeholder="{{ 'edit-user-details.placeholder' | translate }}"
+          [(ngModel)]="nameValue"
+          required
+          minlength="3"
+          (keyup)="checkIfUserNameIsValid(nameValue)"
+          name="fullName"
+        />
+        }
+      </div>
+
+      <div class="positionName">
+        <div class="positionNameIcon">
+          <img src="./assets/img/mail-iconBlack.svg" />
+          <p class="fontNunito">{{ "edit-user-details.email" | translate }}</p>
+        </div>
+        @if (!filterGuest()) {
+        <input
+          class="inputDisabled"
+          type="email"
+          required
+          name="emailValue"
+          placeholder="{{ 'edit-user-details.placeholder2' | translate }}"
+          [(ngModel)]="emailValue"
+          [disabled]="asGuestOnline"
+          (keyup)="checkIfUserEmailIsValid(emailValue)"
+        />
+        } @else {
+          <input
+            class="inputName"
+            type="email"
+            required
+            name="email"
+            id="email"
+            pattern="[^@]+@[^\.]+\..+"
+            #email="ngModel"
+            placeholder="{{ 'edit-user-details.placeholder2' | translate }}"
+            [(ngModel)]="emailValue"
+            (keyup)="checkIfUserEmailIsValid(emailValue)"
+          /> 
+        }
+      </div>
+    </div>
+
+    <div class="position2Btn">
+      <button class="cancelBtn" (click)="closeEditUserWindow()">
+        {{ "edit-user-details.cancel" | translate }}
+      </button>
+      <button
+        type="submit"
+        [disabled]=""
+        [ngClass]="{
+          disabledBtn: !channelService.saveEditBtnIsValid,
+          saveBtn: channelService.saveEditBtnIsValid
+        }"
+      >
+        {{ "edit-user-details.save" | translate }}
+      </button>
+    </div>
+    @if (asGuestOnline) {
+    <p>{{ "edit-user-details.errorMessage" | translate }}</p>
+    }
+  </form>
 </div>
 }

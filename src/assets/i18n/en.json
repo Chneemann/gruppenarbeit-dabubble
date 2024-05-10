@@ -141,7 +141,8 @@
     "addPeople": "Add people",
     "addAll": "Add all members from",
     "devspace": "Devspace",
-    "add": "Add specific people"
+    "add": "Add specific people",
+    "warning": "This channel already exists"
   },
 
   "sidebar-channels": {

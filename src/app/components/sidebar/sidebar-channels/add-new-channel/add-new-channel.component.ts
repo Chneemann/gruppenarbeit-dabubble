@@ -145,10 +145,24 @@ export class AddNewChannelComponent {
    */
   checkIfChannelNameIsValid(channelName: string) {
     const channelNameLenght = channelName.length;
-    if (channelNameLenght >= 6) {
+    if (channelNameLenght >= 6 && !this.chechIfChannelExist(channelName)) {
       this.channelService.btnIsValid = true;
     } else {
       this.channelService.btnIsValid = false;
+    }
+  }
+
+  /**
+   * Check if channel is allready existing.
+   * @param channelName 
+   * @returns 
+   */
+  chechIfChannelExist(channelName: string){
+    const filterChannel = this.channelService.allChannels.some(channel => channel.name === channelName);
+    if (filterChannel) {
+      return true;
+    } else {
+      return false;
     }
   }
 

@@ -141,7 +141,8 @@
     "addPeople": "Leute hinzufügen",
     "addAll": "Alle Mitglieder hinzufügen von",
     "devspace": "Devspace",
-    "add": "Fügen Sie bestimmte Personen hinzu"
+    "add": "Fügen Sie bestimmte Personen hinzu",
+    "warning": "Dieser Kanal existiert bereits"
   },
 
   "sidebar-channels": {
