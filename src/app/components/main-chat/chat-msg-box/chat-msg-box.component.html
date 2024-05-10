@@ -28,6 +28,7 @@
     />
   </div>
   <textarea
+    #textarea
     placeholder=" {{ 'channel-msg-box.placeholder' | translate }}"
     type="text"
     name="textarea"
@@ -86,17 +87,14 @@
         }"
         style="color: red"
       >
-      {{ 'channel-msg-box.text' | translate }}
+        {{ "channel-msg-box.text" | translate }}
       </p>
       }
     </div>
     @if(textArea == ''){
-      <img
-      src="./assets/img/sendIcon.svg"
-      class="sendIconDisabled"
-    />
+    <img src="./assets/img/sendIcon.svg" class="sendIconDisabled" />
     } @else {
-      <img
+    <img
       src="./assets/img/sendIcon.svg"
       class="sendIcon"
       (click)="sendMessage()"
