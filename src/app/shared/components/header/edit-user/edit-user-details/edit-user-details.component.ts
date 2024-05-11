@@ -76,14 +76,12 @@ export class EditUserDetailsComponent {
         this.changeNameValue();
         const getName = this.splitNameValue();
         this.changeNameValue();
+        this.userService.updateUserData(
+          getName[0],
+          getName[1],
+          this.changedEmail
+        );
 
-        if (this.changedName && this.changedEmail) {
-          this.userService.updateUserData(
-            getName[0],
-            getName[1],
-            this.changedEmail
-          );
-        }
         this.showCurrentProfile = false;
         this.channelService.saveEditBtnIsValid = false;
         this.saveUserData.emit(this.showCurrentProfile);
@@ -151,7 +149,7 @@ export class EditUserDetailsComponent {
         this.emailValueBoolean = false;
       }
     }
-    this.chackSaveBtnEmail();
+    this.checkSaveBtnEmail();
   }
 
   /**
@@ -168,7 +166,7 @@ export class EditUserDetailsComponent {
   /**
    * Checks if the save button is valid.
    */
-  chackSaveBtnEmail() {
+  checkSaveBtnEmail() {
     if (this.nameValueBoolean) {
       this.channelService.saveEditBtnIsValid = true;
     } else {

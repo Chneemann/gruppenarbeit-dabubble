@@ -114,22 +114,19 @@ export class UserService implements OnDestroy {
    */
   updateUserData(newFirstName: string, newLastName: string, newEmail: string) {
     const userDocRef = doc(this.firestore, 'users', this.getCurrentUserId());
-    const updates = {
-      firstName: newFirstName,
-      lastName: newLastName || '',
-      email: newEmail,
-    };
+    const updates: any = {};
+
+    if (newEmail !== '') {
+      updates.email = newEmail;
+    }
+    if (newFirstName !== '') {
+      updates.firstName = newFirstName;
+      updates.lastName = newLastName;
+    }
+
     updateDoc(userDocRef, updates).catch((error) => {
       console.error(error);
     });
-  }
-
-  /**
-   * Clean up subscriptions when the service is destroyed.
-   */
-
-  ngOnDestroy() {
-    this.unsubUser();
   }
 
   /**
@@ -166,5 +163,12 @@ export class UserService implements OnDestroy {
    */
   deleteUserIdInLocalStorage() {
     localStorage.removeItem('currentUser');
+  }
+
+  /**
+   * Clean up subscriptions when the service is destroyed.
+   */
+  ngOnDestroy() {
+    this.unsubUser();
   }
 }
