@@ -305,8 +305,8 @@ export class ChatMsgBoxComponent {
     } else if (e.key !== 'Alt') {
       this.openSmallWindow = false;
       this.showChannels = false;
-      this.showUsers = true;
-    }
+      this.showUsers = false;
+    } 
   }
 
   /**

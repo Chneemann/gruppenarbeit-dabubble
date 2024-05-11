@@ -34,7 +34,7 @@
     name="textarea"
     [(ngModel)]="textArea"
     (keyup)="sendMessageWithEnter($event)"
-    (keyup)="checkChannelAndUser($event)"
+    (keypress)="checkChannelAndUser($event)"
   ></textarea>
   <div class="positionAllIcons">
     <div class="positionSpecialIcons">
