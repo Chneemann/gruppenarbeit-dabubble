@@ -16,7 +16,8 @@ import { Router } from '@angular/router';
 })
 export class UserService implements OnDestroy {
   firestore: Firestore = inject(Firestore);
-
+  nameValue: string = '';
+  emailValue: string = '';
   allUsers: User[] = [];
   getUserIDs: string[] = [];
   getFiltertUsers: User[] = [];
@@ -71,6 +72,8 @@ export class UserService implements OnDestroy {
     const filteredUser = this.getUsers().filter(
       (user) => user.id == this.getCurrentUserId()
     );
+    this.nameValue = filteredUser[0]?.firstName + ' ' + filteredUser[0]?.lastName;
+    this.emailValue = filteredUser[0]?.email;
     return filteredUser;
   }
 

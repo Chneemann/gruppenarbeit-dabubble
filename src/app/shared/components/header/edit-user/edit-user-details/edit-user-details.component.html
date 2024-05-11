@@ -28,25 +28,24 @@
           </p>
         </div>
         @if (!filterGuest()) {
+        <!--guest input-->
         <input
           class="inputDisabled"
           type="text"
-          placeholder="{{ 'edit-user-details.placeholder' | translate }}"
-          [(ngModel)]="nameValue"
+          [(ngModel)]="userService.nameValue"
           required
           [disabled]="asGuestOnline"
-          (keyup)="checkIfUserNameIsValid(nameValue)"
           name="fullName"
         />
         } @else {
         <input
           class="inputName"
           type="text"
+          [(ngModel)]="userService.nameValue"
           placeholder="{{ 'edit-user-details.placeholder' | translate }}"
-          [(ngModel)]="nameValue"
           required
           minlength="3"
-          (keyup)="checkIfUserNameIsValid(nameValue)"
+          (ngModelChange)="checkIfUserNameIsValid($event)"
           name="fullName"
         />
         }
@@ -58,15 +57,13 @@
           <p class="fontNunito">{{ "edit-user-details.email" | translate }}</p>
         </div>
         @if (!filterGuest()) {
+        <!--guest input-->
         <input
           class="inputDisabled"
           type="email"
           required
           name="emailValue"
-          placeholder="{{ 'edit-user-details.placeholder2' | translate }}"
-          [(ngModel)]="emailValue"
           [disabled]="asGuestOnline"
-          (keyup)="checkIfUserEmailIsValid(emailValue)"
         />
         } @else {
         <input
@@ -78,8 +75,8 @@
           pattern="[^@]+@[^\.]+\..+"
           #email="ngModel"
           placeholder="{{ 'edit-user-details.placeholder2' | translate }}"
-          [(ngModel)]="emailValue"
-          (keyup)="checkIfUserEmailIsValid(emailValue)"
+          [(ngModel)]="userService.emailValue"
+          (ngModelChange)="checkIfUserEmailIsValid($event)"
         />
         }
       </div>
@@ -91,7 +88,7 @@
       </button>
       <button
         type="submit"
-        [disabled]=""
+        [disabled]="!channelService.saveEditBtnIsValid"
         [ngClass]="{
           disabledBtn: !channelService.saveEditBtnIsValid,
           saveBtn: channelService.saveEditBtnIsValid

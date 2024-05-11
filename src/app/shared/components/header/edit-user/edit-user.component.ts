@@ -2,8 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { EditUserDetailsComponent } from './edit-user-details/edit-user-details.component';
 import { UserService } from '../../../../service/user.service';
-import { User } from '../../../../interface/user.interface';
-import { SharedService } from '../../../../service/shared.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { SmallBtnComponent } from '../../small-btn/small-btn.component';
 

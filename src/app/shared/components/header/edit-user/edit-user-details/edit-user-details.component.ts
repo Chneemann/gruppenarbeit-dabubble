@@ -7,6 +7,7 @@ import { ChannleService } from '../../../../../service/channle.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { SmallBtnComponent } from '../../../small-btn/small-btn.component';
 
+
 @Component({
   selector: 'app-edit-user-details',
   standalone: true,
@@ -22,10 +23,10 @@ import { SmallBtnComponent } from '../../../small-btn/small-btn.component';
 })
 export class EditUserDetailsComponent {
   asGuestOnline: boolean = false;
-  nameValue: string = '';
-  emailValue: string = '';
   nameValueBoolean: boolean = false;
   emailValueBoolean: boolean = false;
+  changedName: string = '';
+  changedEmail: string = '';
   @Input() openEditUserValue!: boolean;
   @Input() showCurrentProfile!: boolean;
 
@@ -36,6 +37,7 @@ export class EditUserDetailsComponent {
     public userService: UserService,
     public channelService: ChannleService
   ) {}
+
 
   /** Filters whether the user is a guest. */
   filterGuest() {
@@ -55,8 +57,6 @@ export class EditUserDetailsComponent {
   closeEditUserWindow() {
     this.openEditUserValue = false;
     this.closeEditWindow.emit(this.openEditUserValue);
-    this.nameValue = '';
-    this.emailValue = '';
   }
 
   /** Saves the new user data. */
@@ -64,10 +64,9 @@ export class EditUserDetailsComponent {
     if (ngForm.submitted && ngForm.form.valid) {
       if (
         this.channelService.saveEditBtnIsValid &&
-        this.emailValueBoolean &&
-        this.nameValue
+        this.emailValueBoolean 
       ) {
-        const fullname: string[] = this.nameValue.split(' ');
+        const fullname: string[] = this.changedName.split(' ');
         const newFirstName: string = fullname[0];
         let newLastName: string = fullname[1];
         if (fullname[2]) {
@@ -77,10 +76,8 @@ export class EditUserDetailsComponent {
         this.userService.updateUserData(
           newFirstName,
           newLastName,
-          this.emailValue
+          this.changedEmail
         );
-        this.nameValue = '';
-        this.emailValue = '';
         this.showCurrentProfile = false;
         this.channelService.saveEditBtnIsValid = false;
         this.saveUserData.emit(this.showCurrentProfile);
@@ -93,25 +90,35 @@ export class EditUserDetailsComponent {
    * @param nameValue The value of the user's name.
    */
   checkIfUserNameIsValid(nameValue: string) {
-    const channelNameLenght = nameValue.length;
-    if (channelNameLenght >= 3) {
-      this.nameValueBoolean = true;
-    } else {
+    if (nameValue.trim() === '') {
       this.nameValueBoolean = false;
+    } else {
+      const channelNameLenght = nameValue.length;
+      if (channelNameLenght >= 3) {
+        this.nameValueBoolean = true;
+        this.changedName = nameValue;
+      } else {
+        this.nameValueBoolean = false;
+      }
     }
     this.chackSaveBtn();
   }
-
+  
   /**
    * Checks if the user email is valid.
    * @param emailValue The value of the user's email.
    */
   checkIfUserEmailIsValid(emailValue: string) {
-    const emailRegex = /^[\w.%+-]+@[\w.-]+\.[a-zA-Z]{2,}$/;
-    if (emailRegex.test(emailValue)) {
-      this.emailValueBoolean = true;
-    } else {
+    if (emailValue.trim() === '') {
       this.emailValueBoolean = false;
+    } else {
+      const emailRegex = /^[\w.%+-]+@[\w.-]+\.[a-zA-Z]{2,}$/;
+      if (emailRegex.test(emailValue)) {
+        this.emailValueBoolean = true;
+        this.changedEmail = emailValue;
+      } else {
+        this.emailValueBoolean = false;
+      }
     }
     this.chackSaveBtn();
   }
