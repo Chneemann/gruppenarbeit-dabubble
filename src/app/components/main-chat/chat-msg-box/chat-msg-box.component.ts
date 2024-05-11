@@ -302,11 +302,12 @@ export class ChatMsgBoxComponent {
       this.openSmallWindow = true;
       this.showChannels = false;
       this.showUsers = true;
-    } else if (e.key !== 'Alt') {
+    }
+    if (e.key === 'Backspace') {
       this.openSmallWindow = false;
       this.showChannels = false;
       this.showUsers = false;
-    } 
+    }
   }
 
   /**
