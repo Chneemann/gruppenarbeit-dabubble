@@ -29,7 +29,7 @@ export class EditUserDetailsComponent {
   changedEmail: string = '';
   @Input() openEditUserValue!: boolean;
   @Input() showCurrentProfile!: boolean;
-
+ 
   @Output() closeEditWindow = new EventEmitter<boolean>();
   @Output() saveUserData = new EventEmitter<boolean>();
 
@@ -57,31 +57,56 @@ export class EditUserDetailsComponent {
   closeEditUserWindow() {
     this.openEditUserValue = false;
     this.closeEditWindow.emit(this.openEditUserValue);
+    this.channelService.saveEditBtnIsValid = false;
   }
 
   /** Saves the new user data. */
   saveNewUserData(ngForm: NgForm) {
     if (ngForm.submitted && ngForm.form.valid) {
       if (
-        this.channelService.saveEditBtnIsValid &&
+        this.channelService.saveEditBtnIsValid ||
         this.emailValueBoolean 
       ) {
-        const fullname: string[] = this.changedName.split(' ');
-        const newFirstName: string = fullname[0];
-        let newLastName: string = fullname[1];
-        if (fullname[2]) {
-          newLastName += ' ' + fullname[2];
+        this.chechNameValue();
+        const getName = this.splitNameValue();
+        this.chechEmailValue();
+        
+        if(this.changedName && this.changedEmail){
+          this.userService.updateUserData(
+            getName[0],
+            getName[1],
+            this.changedEmail
+          );
         }
-
-        this.userService.updateUserData(
-          newFirstName,
-          newLastName,
-          this.changedEmail
-        );
         this.showCurrentProfile = false;
         this.channelService.saveEditBtnIsValid = false;
         this.saveUserData.emit(this.showCurrentProfile);
       }
+    }
+  }
+
+  /** Get the name value. */
+  chechNameValue(){
+    if (this.changedName =='') {
+      this.changedName = this.userService.nameValue;
+    }
+  }
+
+  /**Separate the first ans lastname. */
+  splitNameValue(){
+    const fullname: string[] = this.changedName.split(' ');
+    const newFirstName: string = fullname[0];
+    let newLastName: string = fullname[1];
+    if (fullname[2]) {
+      newLastName += ' ' + fullname[2];
+    }
+    return [newFirstName, newLastName];
+  }
+
+  /** Get the email value. */
+  chechEmailValue(){
+    if (this.changedEmail =='') {
+      this.changedEmail = this.userService.emailValue;
     }
   }
 
@@ -101,7 +126,7 @@ export class EditUserDetailsComponent {
         this.nameValueBoolean = false;
       }
     }
-    this.chackSaveBtn();
+    this.chackSaveBtnName();
   }
   
   /**
@@ -120,17 +145,28 @@ export class EditUserDetailsComponent {
         this.emailValueBoolean = false;
       }
     }
-    this.chackSaveBtn();
+    this.chackSaveBtnEmail();
   }
 
   /**
    * Checks if the save button is valid.
    */
-  chackSaveBtn() {
-    if (this.nameValueBoolean && this.emailValueBoolean) {
+  chackSaveBtnName() {
+    if (this.nameValueBoolean) {
+      this.channelService.saveEditBtnIsValid = true;
+    } else{
+      this.channelService.saveEditBtnIsValid = false;
+    } 
+  }
+
+  /**
+   * Checks if the save button is valid.
+   */
+  chackSaveBtnEmail() {
+    if (this.nameValueBoolean) {
       this.channelService.saveEditBtnIsValid = true;
     } else {
       this.channelService.saveEditBtnIsValid = false;
-    }
+    }  
   }
 }
