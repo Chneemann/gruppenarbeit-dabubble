@@ -31,11 +31,7 @@
         <input
           class="inputDisabled"
           type="text"
-          placeholder="{{
-            !nameValue
-              ? i.firstName + ' ' + i.lastName
-              : ('edit-user-details.placeholder' | translate)
-          }}"
+          placeholder="{{ 'edit-user-details.placeholder' | translate }}"
           [(ngModel)]="nameValue"
           required
           [disabled]="asGuestOnline"
@@ -46,11 +42,7 @@
         <input
           class="inputName"
           type="text"
-          placeholder="{{
-            !nameValue
-              ? i.firstName + ' ' + i.lastName
-              : ('edit-user-details.placeholder' | translate)
-          }}"
+          placeholder="{{ 'edit-user-details.placeholder' | translate }}"
           [(ngModel)]="nameValue"
           required
           minlength="3"
@@ -71,11 +63,6 @@
           type="email"
           required
           name="emailValue"
-          placeholder="{{
-            !nameValue
-              ? i.email
-              : ('edit-user-details.placeholder2' | translate)
-          }}"
           placeholder="{{ 'edit-user-details.placeholder2' | translate }}"
           [(ngModel)]="emailValue"
           [disabled]="asGuestOnline"
@@ -90,11 +77,7 @@
           id="email"
           pattern="[^@]+@[^\.]+\..+"
           #email="ngModel"
-          placeholder="{{
-            !nameValue
-              ? i.email
-              : ('edit-user-details.placeholder2' | translate)
-          }}"
+          placeholder="{{ 'edit-user-details.placeholder2' | translate }}"
           [(ngModel)]="emailValue"
           (keyup)="checkIfUserEmailIsValid(emailValue)"
         />
