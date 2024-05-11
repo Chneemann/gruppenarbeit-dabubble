@@ -29,7 +29,6 @@ export class EditUserDetailsComponent {
   @Input() openEditUserValue!: boolean;
   @Input() showCurrentProfile!: boolean;
 
-
   @Output() closeEditWindow = new EventEmitter<boolean>();
   @Output() saveUserData = new EventEmitter<boolean>();
 
@@ -68,8 +67,6 @@ export class EditUserDetailsComponent {
         this.emailValueBoolean &&
         this.nameValue
       ) {
-        console.log('-------------------');
-
         const fullname: string[] = this.nameValue.split(' ');
         const newFirstName: string = fullname[0];
         let newLastName: string = fullname[1];
@@ -105,7 +102,6 @@ export class EditUserDetailsComponent {
     this.chackSaveBtn();
   }
 
-  
   /**
    * Checks if the user email is valid.
    * @param emailValue The value of the user's email.
@@ -119,7 +115,6 @@ export class EditUserDetailsComponent {
     }
     this.chackSaveBtn();
   }
-  
 
   /**
    * Checks if the save button is valid.

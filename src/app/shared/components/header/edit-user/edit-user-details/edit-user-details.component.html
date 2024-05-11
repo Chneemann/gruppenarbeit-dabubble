@@ -5,7 +5,7 @@
     (ngSubmit)="saveNewUserData(contactForm)"
     #contactForm="ngForm"
     onsubmit="return false"
-    >
+  >
     <div class="boxHeader fontNunito">
       <h2 class="fontNunito">{{ "edit-user-details.profile" | translate }}</h2>
       <app-small-btn
@@ -31,7 +31,11 @@
         <input
           class="inputDisabled"
           type="text"
-          placeholder="{{ 'edit-user-details.placeholder' | translate }}"
+          placeholder="{{
+            !nameValue
+              ? i.firstName + ' ' + i.lastName
+              : ('edit-user-details.placeholder' | translate)
+          }}"
           [(ngModel)]="nameValue"
           required
           [disabled]="asGuestOnline"
@@ -42,7 +46,11 @@
         <input
           class="inputName"
           type="text"
-          placeholder="{{ 'edit-user-details.placeholder' | translate }}"
+          placeholder="{{
+            !nameValue
+              ? i.firstName + ' ' + i.lastName
+              : ('edit-user-details.placeholder' | translate)
+          }}"
           [(ngModel)]="nameValue"
           required
           minlength="3"
@@ -63,24 +71,33 @@
           type="email"
           required
           name="emailValue"
+          placeholder="{{
+            !nameValue
+              ? i.email
+              : ('edit-user-details.placeholder2' | translate)
+          }}"
           placeholder="{{ 'edit-user-details.placeholder2' | translate }}"
           [(ngModel)]="emailValue"
           [disabled]="asGuestOnline"
           (keyup)="checkIfUserEmailIsValid(emailValue)"
         />
         } @else {
-          <input
-            class="inputName"
-            type="email"
-            required
-            name="email"
-            id="email"
-            pattern="[^@]+@[^\.]+\..+"
-            #email="ngModel"
-            placeholder="{{ 'edit-user-details.placeholder2' | translate }}"
-            [(ngModel)]="emailValue"
-            (keyup)="checkIfUserEmailIsValid(emailValue)"
-          /> 
+        <input
+          class="inputName"
+          type="email"
+          required
+          name="email"
+          id="email"
+          pattern="[^@]+@[^\.]+\..+"
+          #email="ngModel"
+          placeholder="{{
+            !nameValue
+              ? i.email
+              : ('edit-user-details.placeholder2' | translate)
+          }}"
+          [(ngModel)]="emailValue"
+          (keyup)="checkIfUserEmailIsValid(emailValue)"
+        />
         }
       </div>
     </div>

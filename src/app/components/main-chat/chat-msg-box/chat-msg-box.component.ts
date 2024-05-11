@@ -1,5 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { PickerComponent } from '@ctrl/ngx-emoji-mart';
 import { Firestore, addDoc, collection } from '@angular/fire/firestore';
@@ -295,9 +302,12 @@ export class ChatMsgBoxComponent {
       this.openSmallWindow = true;
       this.showChannels = false;
       this.showUsers = true;
+    } else if (e.key !== 'Alt') {
+      this.openSmallWindow = false;
+      this.showChannels = false;
+      this.showUsers = true;
     }
   }
-  
 
   /**
    * Checks if the current user has access to any channels.
@@ -317,14 +327,13 @@ export class ChatMsgBoxComponent {
     return [];
   }
 
-
-   /**
+  /**
    * Chooses an element and performs necessary actions based on its type.
    * @param {Channel | User} element - The element to choose.
    */
-   chooseElement(element: Channel | User) {
+  chooseElement(element: Channel | User) {
     if ('firstName' in element) {
-      this.textArea += `${element.firstName} ${element.lastName} `; 
+      this.textArea += `${element.firstName} ${element.lastName} `;
     } else {
       this.textArea += `${element.name} `;
     }
@@ -333,7 +342,7 @@ export class ChatMsgBoxComponent {
     this.openSmallWindow = false;
     this.textAreaRef.nativeElement.focus();
   }
-  
+
   /**
    * Resets input values after sending the message.
    */
