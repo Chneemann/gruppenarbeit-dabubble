@@ -39,6 +39,7 @@
         />
         } @else {
         <input
+          #inputName
           class="inputName"
           type="text"
           [(ngModel)]="userService.nameValue"
@@ -67,13 +68,13 @@
         />
         } @else {
         <input
+          #inputEmail
           class="inputName"
           type="email"
           required
           name="email"
           id="email"
           pattern="[^@]+@[^\.]+\..+"
-          #email="ngModel"
           placeholder="{{ 'edit-user-details.placeholder2' | translate }}"
           [(ngModel)]="userService.emailValue"
           (ngModelChange)="checkIfUserEmailIsValid($event)"

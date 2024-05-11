@@ -1,12 +1,18 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { EditUserComponent } from '../edit-user.component';
 import { UserService } from '../../../../../service/user.service';
 import { FormsModule, NgForm } from '@angular/forms';
 import { ChannleService } from '../../../../../service/channle.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { SmallBtnComponent } from '../../../small-btn/small-btn.component';
-
 
 @Component({
   selector: 'app-edit-user-details',
@@ -29,7 +35,9 @@ export class EditUserDetailsComponent {
   changedEmail: string = '';
   @Input() openEditUserValue!: boolean;
   @Input() showCurrentProfile!: boolean;
- 
+  @ViewChild('inputName') inputName!: ElementRef;
+  @ViewChild('inputEmail') inputEmail!: ElementRef;
+
   @Output() closeEditWindow = new EventEmitter<boolean>();
   @Output() saveUserData = new EventEmitter<boolean>();
 
@@ -37,7 +45,6 @@ export class EditUserDetailsComponent {
     public userService: UserService,
     public channelService: ChannleService
   ) {}
-
 
   /** Filters whether the user is a guest. */
   filterGuest() {
@@ -58,20 +65,19 @@ export class EditUserDetailsComponent {
     this.openEditUserValue = false;
     this.closeEditWindow.emit(this.openEditUserValue);
     this.channelService.saveEditBtnIsValid = false;
+    this.inputName.nativeElement.value = this.userService.nameValue;
+    this.inputEmail.nativeElement.value = this.userService.emailValue;
   }
 
   /** Saves the new user data. */
   saveNewUserData(ngForm: NgForm) {
     if (ngForm.submitted && ngForm.form.valid) {
-      if (
-        this.channelService.saveEditBtnIsValid ||
-        this.emailValueBoolean 
-      ) {
-        this.chechNameValue();
+      if (this.channelService.saveEditBtnIsValid || this.emailValueBoolean) {
+        this.changeNameValue();
         const getName = this.splitNameValue();
-        this.chechEmailValue();
-        
-        if(this.changedName && this.changedEmail){
+        this.changeNameValue();
+
+        if (this.changedName && this.changedEmail) {
           this.userService.updateUserData(
             getName[0],
             getName[1],
@@ -86,14 +92,14 @@ export class EditUserDetailsComponent {
   }
 
   /** Get the name value. */
-  chechNameValue(){
-    if (this.changedName =='') {
+  changeNameValue() {
+    if (this.changedName == '') {
       this.changedName = this.userService.nameValue;
     }
   }
 
   /**Separate the first ans lastname. */
-  splitNameValue(){
+  splitNameValue() {
     const fullname: string[] = this.changedName.split(' ');
     const newFirstName: string = fullname[0];
     let newLastName: string = fullname[1];
@@ -104,8 +110,8 @@ export class EditUserDetailsComponent {
   }
 
   /** Get the email value. */
-  chechEmailValue(){
-    if (this.changedEmail =='') {
+  chechEmailValue() {
+    if (this.changedEmail == '') {
       this.changedEmail = this.userService.emailValue;
     }
   }
@@ -128,7 +134,7 @@ export class EditUserDetailsComponent {
     }
     this.chackSaveBtnName();
   }
-  
+
   /**
    * Checks if the user email is valid.
    * @param emailValue The value of the user's email.
@@ -154,9 +160,9 @@ export class EditUserDetailsComponent {
   chackSaveBtnName() {
     if (this.nameValueBoolean) {
       this.channelService.saveEditBtnIsValid = true;
-    } else{
+    } else {
       this.channelService.saveEditBtnIsValid = false;
-    } 
+    }
   }
 
   /**
@@ -167,6 +173,6 @@ export class EditUserDetailsComponent {
       this.channelService.saveEditBtnIsValid = true;
     } else {
       this.channelService.saveEditBtnIsValid = false;
-    }  
+    }
   }
 }
