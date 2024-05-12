@@ -166,12 +166,19 @@ export class loginService {
           email: this.email,
           status: true,
         };
-
         this.createUserInFirestore(userDataToSave);
+        this.deleteUserFormData();
       })
       .catch((error) => {
         console.error(error);
+        this.deleteUserFormData();
       });
+  }
+
+  /**
+   * Clears user forms data.
+   */
+  deleteUserFormData() {
     this.name = '';
     this.email = '';
     this.password = '';
@@ -370,14 +377,22 @@ export class loginService {
     window.location.reload();
   }
 
-  togglePasswordVisibility(){
-    this.passwordFieldType = this.passwordFieldType === 'password' ? 'text' : 'password';
-    this.toggleIcon() 
+  /**
+   * Toggles password visibility.
+   */
+  togglePasswordVisibility() {
+    this.passwordFieldType =
+      this.passwordFieldType === 'password' ? 'text' : 'password';
+    this.toggleIcon();
   }
 
+  /**
+   * Toggles password icon.
+   */
   toggleIcon() {
-    this.passwordIcon = this.passwordIcon === './assets/img/login/close-eye.svg' 
-      ? './assets/img/login/open-eye.svg' 
-      : './assets/img/login/close-eye.svg' ;
+    this.passwordIcon =
+      this.passwordIcon === './assets/img/login/close-eye.svg'
+        ? './assets/img/login/open-eye.svg'
+        : './assets/img/login/close-eye.svg';
   }
 }
